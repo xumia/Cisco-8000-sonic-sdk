@@ -1,0 +1,4667 @@
+$block{SBIF} = {
+  Defines_db => "",
+  MsiMasterInterruptReg => { #Structure Type: Reg;
+    Name => "MsiMasterInterruptReg",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "MSI Master Interrupt Register",
+    Width => "9", # Excel Formula: =calc_reg_width(E8:E16,F16)
+    Type => "Interrupt",
+    MsiMacInt => { #Structure Type: RegField;
+      Name => "MsiMacInt",
+      RegMem => "RegField",
+      Description => "MSI MAC Interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    MsiSerdesInt => { #Structure Type: RegField;
+      Name => "MsiSerdesInt",
+      RegMem => "RegField",
+      Description => "MSI Serdes Interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    MsiMemInt => { #Structure Type: RegField;
+      Name => "MsiMemInt",
+      RegMem => "RegField",
+      Description => "MSI Mem Interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F9,E10)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    MsiCssEcc1bErrInt => { #Structure Type: RegField;
+      Name => "MsiCssEcc1bErrInt",
+      RegMem => "RegField",
+      Description => "MSI CSS ECC 1b Error Interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F10,E11)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    MsiCssEcc2bErrInt => { #Structure Type: RegField;
+      Name => "MsiCssEcc2bErrInt",
+      RegMem => "RegField",
+      Description => "MSI CSS ECC 2b Error Interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F11,E12)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    MsiAccessEngine0ErrInt => { #Structure Type: RegField;
+      Name => "MsiAccessEngine0ErrInt",
+      RegMem => "RegField",
+      Description => "MSI Access Engine 0 Error Interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F12,E13)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    MsiAccessEngine1ErrInt => { #Structure Type: RegField;
+      Name => "MsiAccessEngine1ErrInt",
+      RegMem => "RegField",
+      Description => "MSI Access Engine 1 Error Interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F13,E14)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    MsiAccessEngine0DoneInt => { #Structure Type: RegField;
+      Name => "MsiAccessEngine0DoneInt",
+      RegMem => "RegField",
+      Description => "MSI Access Engine 0 Done Interrupt",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F14,E15)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    MsiAccessEngine1DoneInt => { #Structure Type: RegField;
+      Name => "MsiAccessEngine1DoneInt",
+      RegMem => "RegField",
+      Description => "MSI Access Engine 1 Done Interrupt",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F15,E16)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+  },
+  MsiMasterInterruptRegMask => { #Structure Type: Reg; Skip Register;
+    Name => "MsiMasterInterruptRegMask",
+    RegMem => "Reg",
+    Address => "4",
+    Description => "This register masks MsiMasterInterruptReg interrupt register",
+    Width => "9", # Excel Formula: =calc_reg_width(E8:E16,F16)
+    Type => "InterruptMask",
+    DefaultValue => "b1",
+    MsiMacIntMask => { #Structure Type: RegField;
+      Name => "MsiMacIntMask",
+      RegMem => "RegField",
+      Description => "This field masks MsiMacInt interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsiSerdesIntMask => { #Structure Type: RegField;
+      Name => "MsiSerdesIntMask",
+      RegMem => "RegField",
+      Description => "This field masks MsiSerdesInt interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsiMemIntMask => { #Structure Type: RegField;
+      Name => "MsiMemIntMask",
+      RegMem => "RegField",
+      Description => "This field masks MsiMemInt interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F9,E10)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsiCssEcc1bErrIntMask => { #Structure Type: RegField;
+      Name => "MsiCssEcc1bErrIntMask",
+      RegMem => "RegField",
+      Description => "This field masks MsiCssEcc1bErrInt interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F10,E11)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsiCssEcc2bErrIntMask => { #Structure Type: RegField;
+      Name => "MsiCssEcc2bErrIntMask",
+      RegMem => "RegField",
+      Description => "This field masks MsiCssEcc2bErrInt interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F11,E12)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsiAccessEngine0ErrIntMask => { #Structure Type: RegField;
+      Name => "MsiAccessEngine0ErrIntMask",
+      RegMem => "RegField",
+      Description => "This field masks MsiAccessEngine0ErrInt interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F12,E13)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsiAccessEngine1ErrIntMask => { #Structure Type: RegField;
+      Name => "MsiAccessEngine1ErrIntMask",
+      RegMem => "RegField",
+      Description => "This field masks MsiAccessEngine1ErrInt interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F13,E14)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsiAccessEngine0DoneIntMask => { #Structure Type: RegField;
+      Name => "MsiAccessEngine0DoneIntMask",
+      RegMem => "RegField",
+      Description => "This field masks MsiAccessEngine0DoneInt interrupt",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F14,E15)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsiAccessEngine1DoneIntMask => { #Structure Type: RegField;
+      Name => "MsiAccessEngine1DoneIntMask",
+      RegMem => "RegField",
+      Description => "This field masks MsiAccessEngine1DoneInt interrupt",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F15,E16)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  MsiMasterInterruptRegTest => { #Structure Type: Reg; Skip Register;
+    Name => "MsiMasterInterruptRegTest",
+    RegMem => "Reg",
+    Address => "8",
+    Description => "This register tests MsiMasterInterruptReg interrupt register",
+    Width => "9", # Excel Formula: =calc_reg_width(E8:E16,F16)
+    Type => "InterruptTest",
+    DefaultValue => "b0",
+    MsiMacIntTest => { #Structure Type: RegField;
+      Name => "MsiMacIntTest",
+      RegMem => "RegField",
+      Description => "This field tests MsiMacInt interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsiSerdesIntTest => { #Structure Type: RegField;
+      Name => "MsiSerdesIntTest",
+      RegMem => "RegField",
+      Description => "This field tests MsiSerdesInt interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsiMemIntTest => { #Structure Type: RegField;
+      Name => "MsiMemIntTest",
+      RegMem => "RegField",
+      Description => "This field tests MsiMemInt interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F9,E10)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsiCssEcc1bErrIntTest => { #Structure Type: RegField;
+      Name => "MsiCssEcc1bErrIntTest",
+      RegMem => "RegField",
+      Description => "This field tests MsiCssEcc1bErrInt interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F10,E11)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsiCssEcc2bErrIntTest => { #Structure Type: RegField;
+      Name => "MsiCssEcc2bErrIntTest",
+      RegMem => "RegField",
+      Description => "This field tests MsiCssEcc2bErrInt interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F11,E12)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsiAccessEngine0ErrIntTest => { #Structure Type: RegField;
+      Name => "MsiAccessEngine0ErrIntTest",
+      RegMem => "RegField",
+      Description => "This field tests MsiAccessEngine0ErrInt interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F12,E13)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsiAccessEngine1ErrIntTest => { #Structure Type: RegField;
+      Name => "MsiAccessEngine1ErrIntTest",
+      RegMem => "RegField",
+      Description => "This field tests MsiAccessEngine1ErrInt interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F13,E14)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsiAccessEngine0DoneIntTest => { #Structure Type: RegField;
+      Name => "MsiAccessEngine0DoneIntTest",
+      RegMem => "RegField",
+      Description => "This field tests MsiAccessEngine0DoneInt interrupt",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F14,E15)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsiAccessEngine1DoneIntTest => { #Structure Type: RegField;
+      Name => "MsiAccessEngine1DoneIntTest",
+      RegMem => "RegField",
+      Description => "This field tests MsiAccessEngine1DoneInt interrupt",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F15,E16)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  ArcMasterInterruptReg => { #Structure Type: Reg;
+    Name => "ArcMasterInterruptReg",
+    RegMem => "Reg",
+    Address => "C", # Excel Formula: =calc_reg_address(C7,A7,G7, 1)
+    Description => "Arc Master Interrupt Register",
+    Width => "9", # Excel Formula: =calc_reg_width(E18:E26,F26)
+    Type => "Interrupt",
+    ArcMacInt => { #Structure Type: RegField;
+      Name => "ArcMacInt",
+      RegMem => "RegField",
+      Description => "Arc MAC Interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F17,E18,TRUE)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    ArcSerdesInt => { #Structure Type: RegField;
+      Name => "ArcSerdesInt",
+      RegMem => "RegField",
+      Description => "Arc Serdes Interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F18,E19)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    ArcMemInt => { #Structure Type: RegField;
+      Name => "ArcMemInt",
+      RegMem => "RegField",
+      Description => "Arc Mem Interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F19,E20)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    ArcCssEcc1bErrInt => { #Structure Type: RegField;
+      Name => "ArcCssEcc1bErrInt",
+      RegMem => "RegField",
+      Description => "Arc CSS ECC 1b Error Interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F20,E21)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    ArcCssEcc2bErrInt => { #Structure Type: RegField;
+      Name => "ArcCssEcc2bErrInt",
+      RegMem => "RegField",
+      Description => "Arc CSS ECC 2b Error Interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F21,E22)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    ArcAccessEngine0ErrInt => { #Structure Type: RegField;
+      Name => "ArcAccessEngine0ErrInt",
+      RegMem => "RegField",
+      Description => "Arc Access Engine 0 Error Interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F22,E23)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    ArcAccessEngine1ErrInt => { #Structure Type: RegField;
+      Name => "ArcAccessEngine1ErrInt",
+      RegMem => "RegField",
+      Description => "Arc Access Engine 1 Error Interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F23,E24)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    ArcAccessEngine0DoneInt => { #Structure Type: RegField;
+      Name => "ArcAccessEngine0DoneInt",
+      RegMem => "RegField",
+      Description => "Arc Access Engine 0 Done Interrupt",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F24,E25)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    ArcAccessEngine1DoneInt => { #Structure Type: RegField;
+      Name => "ArcAccessEngine1DoneInt",
+      RegMem => "RegField",
+      Description => "Arc Access Engine 1 Done Interrupt",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F25,E26)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+  },
+  ArcMasterInterruptRegMask => { #Structure Type: Reg; Skip Register;
+    Name => "ArcMasterInterruptRegMask",
+    RegMem => "Reg",
+    Address => "10",
+    Description => "This register masks ArcMasterInterruptReg interrupt register",
+    Width => "9", # Excel Formula: =calc_reg_width(E18:E26,F26)
+    Type => "InterruptMask",
+    DefaultValue => "b1",
+    ArcMacIntMask => { #Structure Type: RegField;
+      Name => "ArcMacIntMask",
+      RegMem => "RegField",
+      Description => "This field masks ArcMacInt interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F17,E18,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    ArcSerdesIntMask => { #Structure Type: RegField;
+      Name => "ArcSerdesIntMask",
+      RegMem => "RegField",
+      Description => "This field masks ArcSerdesInt interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F18,E19)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    ArcMemIntMask => { #Structure Type: RegField;
+      Name => "ArcMemIntMask",
+      RegMem => "RegField",
+      Description => "This field masks ArcMemInt interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F19,E20)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    ArcCssEcc1bErrIntMask => { #Structure Type: RegField;
+      Name => "ArcCssEcc1bErrIntMask",
+      RegMem => "RegField",
+      Description => "This field masks ArcCssEcc1bErrInt interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F20,E21)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    ArcCssEcc2bErrIntMask => { #Structure Type: RegField;
+      Name => "ArcCssEcc2bErrIntMask",
+      RegMem => "RegField",
+      Description => "This field masks ArcCssEcc2bErrInt interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F21,E22)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    ArcAccessEngine0ErrIntMask => { #Structure Type: RegField;
+      Name => "ArcAccessEngine0ErrIntMask",
+      RegMem => "RegField",
+      Description => "This field masks ArcAccessEngine0ErrInt interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F22,E23)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    ArcAccessEngine1ErrIntMask => { #Structure Type: RegField;
+      Name => "ArcAccessEngine1ErrIntMask",
+      RegMem => "RegField",
+      Description => "This field masks ArcAccessEngine1ErrInt interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F23,E24)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    ArcAccessEngine0DoneIntMask => { #Structure Type: RegField;
+      Name => "ArcAccessEngine0DoneIntMask",
+      RegMem => "RegField",
+      Description => "This field masks ArcAccessEngine0DoneInt interrupt",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F24,E25)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    ArcAccessEngine1DoneIntMask => { #Structure Type: RegField;
+      Name => "ArcAccessEngine1DoneIntMask",
+      RegMem => "RegField",
+      Description => "This field masks ArcAccessEngine1DoneInt interrupt",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F25,E26)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  ArcMasterInterruptRegTest => { #Structure Type: Reg; Skip Register;
+    Name => "ArcMasterInterruptRegTest",
+    RegMem => "Reg",
+    Address => "14",
+    Description => "This register tests ArcMasterInterruptReg interrupt register",
+    Width => "9", # Excel Formula: =calc_reg_width(E18:E26,F26)
+    Type => "InterruptTest",
+    DefaultValue => "b0",
+    ArcMacIntTest => { #Structure Type: RegField;
+      Name => "ArcMacIntTest",
+      RegMem => "RegField",
+      Description => "This field tests ArcMacInt interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F17,E18,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ArcSerdesIntTest => { #Structure Type: RegField;
+      Name => "ArcSerdesIntTest",
+      RegMem => "RegField",
+      Description => "This field tests ArcSerdesInt interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F18,E19)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ArcMemIntTest => { #Structure Type: RegField;
+      Name => "ArcMemIntTest",
+      RegMem => "RegField",
+      Description => "This field tests ArcMemInt interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F19,E20)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ArcCssEcc1bErrIntTest => { #Structure Type: RegField;
+      Name => "ArcCssEcc1bErrIntTest",
+      RegMem => "RegField",
+      Description => "This field tests ArcCssEcc1bErrInt interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F20,E21)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ArcCssEcc2bErrIntTest => { #Structure Type: RegField;
+      Name => "ArcCssEcc2bErrIntTest",
+      RegMem => "RegField",
+      Description => "This field tests ArcCssEcc2bErrInt interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F21,E22)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ArcAccessEngine0ErrIntTest => { #Structure Type: RegField;
+      Name => "ArcAccessEngine0ErrIntTest",
+      RegMem => "RegField",
+      Description => "This field tests ArcAccessEngine0ErrInt interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F22,E23)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ArcAccessEngine1ErrIntTest => { #Structure Type: RegField;
+      Name => "ArcAccessEngine1ErrIntTest",
+      RegMem => "RegField",
+      Description => "This field tests ArcAccessEngine1ErrInt interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F23,E24)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ArcAccessEngine0DoneIntTest => { #Structure Type: RegField;
+      Name => "ArcAccessEngine0DoneIntTest",
+      RegMem => "RegField",
+      Description => "This field tests ArcAccessEngine0DoneInt interrupt",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F24,E25)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ArcAccessEngine1DoneIntTest => { #Structure Type: RegField;
+      Name => "ArcAccessEngine1DoneIntTest",
+      RegMem => "RegField",
+      Description => "This field tests ArcAccessEngine1DoneInt interrupt",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F25,E26)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  PadMasterInterruptReg => { #Structure Type: Reg;
+    Name => "PadMasterInterruptReg",
+    RegMem => "Reg",
+    Address => "18", # Excel Formula: =calc_reg_address(C17,A17,G17, 1)
+    Description => "Pad Master Interrupt Register",
+    Width => "7", # Excel Formula: =calc_reg_width(E28:E34,F34)
+    Type => "Interrupt",
+    PadMacInt => { #Structure Type: RegField;
+      Name => "PadMacInt",
+      RegMem => "RegField",
+      Description => "Pad MAC Interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F27,E28,TRUE)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PadSerdesInt => { #Structure Type: RegField;
+      Name => "PadSerdesInt",
+      RegMem => "RegField",
+      Description => "Pad Serdes Interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F28,E29)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PadMemInt => { #Structure Type: RegField;
+      Name => "PadMemInt",
+      RegMem => "RegField",
+      Description => "Pad Mem Interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F29,E30)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PadCssEcc1bErrInt => { #Structure Type: RegField;
+      Name => "PadCssEcc1bErrInt",
+      RegMem => "RegField",
+      Description => "Pad CSS ECC 1b Error Interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F30,E31)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PadCssEcc2bErrInt => { #Structure Type: RegField;
+      Name => "PadCssEcc2bErrInt",
+      RegMem => "RegField",
+      Description => "Pad CSS ECC 2b Error Interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F31,E32)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PadAccessEngine0ErrInt => { #Structure Type: RegField;
+      Name => "PadAccessEngine0ErrInt",
+      RegMem => "RegField",
+      Description => "Pad Access Engine 0 Error Interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F32,E33)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PadAccessEngine1ErrInt => { #Structure Type: RegField;
+      Name => "PadAccessEngine1ErrInt",
+      RegMem => "RegField",
+      Description => "Pad Access Engine 1 Error Interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F33,E34)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+  },
+  PadMasterInterruptRegMask => { #Structure Type: Reg; Skip Register;
+    Name => "PadMasterInterruptRegMask",
+    RegMem => "Reg",
+    Address => "1C",
+    Description => "This register masks PadMasterInterruptReg interrupt register",
+    Width => "7", # Excel Formula: =calc_reg_width(E28:E34,F34)
+    Type => "InterruptMask",
+    DefaultValue => "b1",
+    PadMacIntMask => { #Structure Type: RegField;
+      Name => "PadMacIntMask",
+      RegMem => "RegField",
+      Description => "This field masks PadMacInt interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F27,E28,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PadSerdesIntMask => { #Structure Type: RegField;
+      Name => "PadSerdesIntMask",
+      RegMem => "RegField",
+      Description => "This field masks PadSerdesInt interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F28,E29)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PadMemIntMask => { #Structure Type: RegField;
+      Name => "PadMemIntMask",
+      RegMem => "RegField",
+      Description => "This field masks PadMemInt interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F29,E30)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PadCssEcc1bErrIntMask => { #Structure Type: RegField;
+      Name => "PadCssEcc1bErrIntMask",
+      RegMem => "RegField",
+      Description => "This field masks PadCssEcc1bErrInt interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F30,E31)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PadCssEcc2bErrIntMask => { #Structure Type: RegField;
+      Name => "PadCssEcc2bErrIntMask",
+      RegMem => "RegField",
+      Description => "This field masks PadCssEcc2bErrInt interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F31,E32)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PadAccessEngine0ErrIntMask => { #Structure Type: RegField;
+      Name => "PadAccessEngine0ErrIntMask",
+      RegMem => "RegField",
+      Description => "This field masks PadAccessEngine0ErrInt interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F32,E33)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PadAccessEngine1ErrIntMask => { #Structure Type: RegField;
+      Name => "PadAccessEngine1ErrIntMask",
+      RegMem => "RegField",
+      Description => "This field masks PadAccessEngine1ErrInt interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F33,E34)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  PadMasterInterruptRegTest => { #Structure Type: Reg; Skip Register;
+    Name => "PadMasterInterruptRegTest",
+    RegMem => "Reg",
+    Address => "20",
+    Description => "This register tests PadMasterInterruptReg interrupt register",
+    Width => "7", # Excel Formula: =calc_reg_width(E28:E34,F34)
+    Type => "InterruptTest",
+    DefaultValue => "b0",
+    PadMacIntTest => { #Structure Type: RegField;
+      Name => "PadMacIntTest",
+      RegMem => "RegField",
+      Description => "This field tests PadMacInt interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F27,E28,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PadSerdesIntTest => { #Structure Type: RegField;
+      Name => "PadSerdesIntTest",
+      RegMem => "RegField",
+      Description => "This field tests PadSerdesInt interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F28,E29)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PadMemIntTest => { #Structure Type: RegField;
+      Name => "PadMemIntTest",
+      RegMem => "RegField",
+      Description => "This field tests PadMemInt interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F29,E30)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PadCssEcc1bErrIntTest => { #Structure Type: RegField;
+      Name => "PadCssEcc1bErrIntTest",
+      RegMem => "RegField",
+      Description => "This field tests PadCssEcc1bErrInt interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F30,E31)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PadCssEcc2bErrIntTest => { #Structure Type: RegField;
+      Name => "PadCssEcc2bErrIntTest",
+      RegMem => "RegField",
+      Description => "This field tests PadCssEcc2bErrInt interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F31,E32)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PadAccessEngine0ErrIntTest => { #Structure Type: RegField;
+      Name => "PadAccessEngine0ErrIntTest",
+      RegMem => "RegField",
+      Description => "This field tests PadAccessEngine0ErrInt interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F32,E33)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PadAccessEngine1ErrIntTest => { #Structure Type: RegField;
+      Name => "PadAccessEngine1ErrIntTest",
+      RegMem => "RegField",
+      Description => "This field tests PadAccessEngine1ErrInt interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F33,E34)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  CssEcc1bErrorInterruptReg => { #Structure Type: Reg;
+    Name => "CssEcc1bErrorInterruptReg",
+    RegMem => "Reg",
+    Address => "24", # Excel Formula: =calc_reg_address(C27,A27,G27, 1)
+    Description => "CSS ECC 1b Error Interrupt Register",
+    Width => "18", # Excel Formula: =calc_reg_width(E36:E53,F53)
+    Type => "Interrupt",
+    PcieRbufEcc1bErr => { #Structure Type: RegField;
+      Name => "PcieRbufEcc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F35,E36,TRUE)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieSotbufEcc1bErr => { #Structure Type: RegField;
+      Name => "PcieSotbufEcc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F36,E37)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieEdmaRdbuffEcc1bErr => { #Structure Type: RegField;
+      Name => "PcieEdmaRdbuffEcc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F37,E38)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieMcbSbEcc1bErr => { #Structure Type: RegField;
+      Name => "PcieMcbSbEcc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F38,E39)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieMcbA2cEcc1bErr => { #Structure Type: RegField;
+      Name => "PcieMcbA2cEcc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F39,E40)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieXadmx1DecompDataEcc1bErr => { #Structure Type: RegField;
+      Name => "PcieXadmx1DecompDataEcc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F40,E41)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieRadmxDecompDataEcc1bErr => { #Structure Type: RegField;
+      Name => "PcieRadmxDecompDataEcc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F41,E42)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieRadmxCompEcc1bErr => { #Structure Type: RegField;
+      Name => "PcieRadmxCompEcc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F42,E43)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieRadmQbufferHdrEcc1bErr => { #Structure Type: RegField;
+      Name => "PcieRadmQbufferHdrEcc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F43,E44)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieRadmQbufferDataEcc1bErr => { #Structure Type: RegField;
+      Name => "PcieRadmQbufferDataEcc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F44,E45)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    SbifAccessEngineDataMem0Ecc1bErr => { #Structure Type: RegField;
+      Name => "SbifAccessEngineDataMem0Ecc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F45,E46)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    SbifAccessEngineDataMem1Ecc1bErr => { #Structure Type: RegField;
+      Name => "SbifAccessEngineDataMem1Ecc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F46,E47)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    SbifAccessEngineCommandMem0Ecc1bErr => { #Structure Type: RegField;
+      Name => "SbifAccessEngineCommandMem0Ecc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F47,E48)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    SbifAccessEngineCommandMem1Ecc1bErr => { #Structure Type: RegField;
+      Name => "SbifAccessEngineCommandMem1Ecc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "13", # Excel Formula: =calc_position(F48,E49)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    ChainInputSyncEcc1bErr => { #Structure Type: RegField;
+      Name => "ChainInputSyncEcc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "14", # Excel Formula: =calc_position(F49,E50)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    ChainOutputSyncEcc1bErr => { #Structure Type: RegField;
+      Name => "ChainOutputSyncEcc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F50,E51)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    SbmSpicoEcc1bErr => { #Structure Type: RegField;
+      Name => "SbmSpicoEcc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F51,E52)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PciePcsEcc1bErr => { #Structure Type: RegField;
+      Name => "PciePcsEcc1bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "17", # Excel Formula: =calc_position(F52,E53)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+  },
+  CssEcc1bErrorInterruptRegMask => { #Structure Type: Reg; Skip Register;
+    Name => "CssEcc1bErrorInterruptRegMask",
+    RegMem => "Reg",
+    Address => "28",
+    Description => "This register masks CssEcc1bErrorInterruptReg interrupt register",
+    Width => "18", # Excel Formula: =calc_reg_width(E36:E53,F53)
+    Type => "InterruptMask",
+    DefaultValue => "b1",
+    PcieRbufEcc1bErrMask => { #Structure Type: RegField;
+      Name => "PcieRbufEcc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F35,E36,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieSotbufEcc1bErrMask => { #Structure Type: RegField;
+      Name => "PcieSotbufEcc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F36,E37)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieEdmaRdbuffEcc1bErrMask => { #Structure Type: RegField;
+      Name => "PcieEdmaRdbuffEcc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F37,E38)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieMcbSbEcc1bErrMask => { #Structure Type: RegField;
+      Name => "PcieMcbSbEcc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F38,E39)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieMcbA2cEcc1bErrMask => { #Structure Type: RegField;
+      Name => "PcieMcbA2cEcc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F39,E40)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieXadmx1DecompDataEcc1bErrMask => { #Structure Type: RegField;
+      Name => "PcieXadmx1DecompDataEcc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F40,E41)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieRadmxDecompDataEcc1bErrMask => { #Structure Type: RegField;
+      Name => "PcieRadmxDecompDataEcc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F41,E42)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieRadmxCompEcc1bErrMask => { #Structure Type: RegField;
+      Name => "PcieRadmxCompEcc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F42,E43)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieRadmQbufferHdrEcc1bErrMask => { #Structure Type: RegField;
+      Name => "PcieRadmQbufferHdrEcc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F43,E44)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieRadmQbufferDataEcc1bErrMask => { #Structure Type: RegField;
+      Name => "PcieRadmQbufferDataEcc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F44,E45)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    SbifAccessEngineDataMem0Ecc1bErrMask => { #Structure Type: RegField;
+      Name => "SbifAccessEngineDataMem0Ecc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F45,E46)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    SbifAccessEngineDataMem1Ecc1bErrMask => { #Structure Type: RegField;
+      Name => "SbifAccessEngineDataMem1Ecc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F46,E47)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    SbifAccessEngineCommandMem0Ecc1bErrMask => { #Structure Type: RegField;
+      Name => "SbifAccessEngineCommandMem0Ecc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F47,E48)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    SbifAccessEngineCommandMem1Ecc1bErrMask => { #Structure Type: RegField;
+      Name => "SbifAccessEngineCommandMem1Ecc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "13", # Excel Formula: =calc_position(F48,E49)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    ChainInputSyncEcc1bErrMask => { #Structure Type: RegField;
+      Name => "ChainInputSyncEcc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "14", # Excel Formula: =calc_position(F49,E50)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    ChainOutputSyncEcc1bErrMask => { #Structure Type: RegField;
+      Name => "ChainOutputSyncEcc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F50,E51)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    SbmSpicoEcc1bErrMask => { #Structure Type: RegField;
+      Name => "SbmSpicoEcc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F51,E52)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PciePcsEcc1bErrMask => { #Structure Type: RegField;
+      Name => "PciePcsEcc1bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "17", # Excel Formula: =calc_position(F52,E53)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  CssEcc1bErrorInterruptRegTest => { #Structure Type: Reg; Skip Register;
+    Name => "CssEcc1bErrorInterruptRegTest",
+    RegMem => "Reg",
+    Address => "2C",
+    Description => "This register tests CssEcc1bErrorInterruptReg interrupt register",
+    Width => "18", # Excel Formula: =calc_reg_width(E36:E53,F53)
+    Type => "InterruptTest",
+    DefaultValue => "b0",
+    PcieRbufEcc1bErrTest => { #Structure Type: RegField;
+      Name => "PcieRbufEcc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F35,E36,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieSotbufEcc1bErrTest => { #Structure Type: RegField;
+      Name => "PcieSotbufEcc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F36,E37)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieEdmaRdbuffEcc1bErrTest => { #Structure Type: RegField;
+      Name => "PcieEdmaRdbuffEcc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F37,E38)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieMcbSbEcc1bErrTest => { #Structure Type: RegField;
+      Name => "PcieMcbSbEcc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F38,E39)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieMcbA2cEcc1bErrTest => { #Structure Type: RegField;
+      Name => "PcieMcbA2cEcc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F39,E40)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieXadmx1DecompDataEcc1bErrTest => { #Structure Type: RegField;
+      Name => "PcieXadmx1DecompDataEcc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F40,E41)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieRadmxDecompDataEcc1bErrTest => { #Structure Type: RegField;
+      Name => "PcieRadmxDecompDataEcc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F41,E42)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieRadmxCompEcc1bErrTest => { #Structure Type: RegField;
+      Name => "PcieRadmxCompEcc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F42,E43)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieRadmQbufferHdrEcc1bErrTest => { #Structure Type: RegField;
+      Name => "PcieRadmQbufferHdrEcc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F43,E44)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieRadmQbufferDataEcc1bErrTest => { #Structure Type: RegField;
+      Name => "PcieRadmQbufferDataEcc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F44,E45)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    SbifAccessEngineDataMem0Ecc1bErrTest => { #Structure Type: RegField;
+      Name => "SbifAccessEngineDataMem0Ecc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F45,E46)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    SbifAccessEngineDataMem1Ecc1bErrTest => { #Structure Type: RegField;
+      Name => "SbifAccessEngineDataMem1Ecc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F46,E47)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    SbifAccessEngineCommandMem0Ecc1bErrTest => { #Structure Type: RegField;
+      Name => "SbifAccessEngineCommandMem0Ecc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F47,E48)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    SbifAccessEngineCommandMem1Ecc1bErrTest => { #Structure Type: RegField;
+      Name => "SbifAccessEngineCommandMem1Ecc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "13", # Excel Formula: =calc_position(F48,E49)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ChainInputSyncEcc1bErrTest => { #Structure Type: RegField;
+      Name => "ChainInputSyncEcc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "14", # Excel Formula: =calc_position(F49,E50)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ChainOutputSyncEcc1bErrTest => { #Structure Type: RegField;
+      Name => "ChainOutputSyncEcc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F50,E51)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    SbmSpicoEcc1bErrTest => { #Structure Type: RegField;
+      Name => "SbmSpicoEcc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F51,E52)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PciePcsEcc1bErrTest => { #Structure Type: RegField;
+      Name => "PciePcsEcc1bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "17", # Excel Formula: =calc_position(F52,E53)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  CssEcc2bErrorInterruptReg => { #Structure Type: Reg;
+    Name => "CssEcc2bErrorInterruptReg",
+    RegMem => "Reg",
+    Address => "30", # Excel Formula: =calc_reg_address(C35,A35,G35, 1)
+    Description => "CSS ECC 2b Error Interrupt Register",
+    Width => "18", # Excel Formula: =calc_reg_width(E55:E72,F72)
+    Type => "Interrupt",
+    PcieRbufEcc2bErr => { #Structure Type: RegField;
+      Name => "PcieRbufEcc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F54,E55,TRUE)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieSotbufEcc2bErr => { #Structure Type: RegField;
+      Name => "PcieSotbufEcc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F55,E56)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieEdmaRdbuffEcc2bErr => { #Structure Type: RegField;
+      Name => "PcieEdmaRdbuffEcc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F56,E57)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieMcbSbEcc2bErr => { #Structure Type: RegField;
+      Name => "PcieMcbSbEcc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F57,E58)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieMcbA2cEcc2bErr => { #Structure Type: RegField;
+      Name => "PcieMcbA2cEcc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F58,E59)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieXadmx1DecompDataEcc2bErr => { #Structure Type: RegField;
+      Name => "PcieXadmx1DecompDataEcc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F59,E60)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieRadmxDecompDataEcc2bErr => { #Structure Type: RegField;
+      Name => "PcieRadmxDecompDataEcc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F60,E61)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieRadmxCompEcc2bErr => { #Structure Type: RegField;
+      Name => "PcieRadmxCompEcc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F61,E62)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieRadmQbufferHdrEcc2bErr => { #Structure Type: RegField;
+      Name => "PcieRadmQbufferHdrEcc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F62,E63)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PcieRadmQbufferDataEcc2bErr => { #Structure Type: RegField;
+      Name => "PcieRadmQbufferDataEcc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F63,E64)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    SbifAccessEngineDataMem0Ecc2bErr => { #Structure Type: RegField;
+      Name => "SbifAccessEngineDataMem0Ecc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F64,E65)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    SbifAccessEngineDataMem1Ecc2bErr => { #Structure Type: RegField;
+      Name => "SbifAccessEngineDataMem1Ecc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F65,E66)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    SbifAccessEngineCommandMem0Ecc2bErr => { #Structure Type: RegField;
+      Name => "SbifAccessEngineCommandMem0Ecc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F66,E67)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    SbifAccessEngineCommandMem1Ecc2bErr => { #Structure Type: RegField;
+      Name => "SbifAccessEngineCommandMem1Ecc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "13", # Excel Formula: =calc_position(F67,E68)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    ChainInputSyncEcc2bErr => { #Structure Type: RegField;
+      Name => "ChainInputSyncEcc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "14", # Excel Formula: =calc_position(F68,E69)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    ChainOutputSyncEcc2bErr => { #Structure Type: RegField;
+      Name => "ChainOutputSyncEcc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F69,E70)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    SbmSpicoEcc2bErr => { #Structure Type: RegField;
+      Name => "SbmSpicoEcc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F70,E71)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+    PciePcsEcc2bErr => { #Structure Type: RegField;
+      Name => "PciePcsEcc2bErr",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "17", # Excel Formula: =calc_position(F71,E72)
+      Type => "Interrupt",
+      UsedBy => "SBIF",
+    },
+  },
+  CssEcc2bErrorInterruptRegMask => { #Structure Type: Reg; Skip Register;
+    Name => "CssEcc2bErrorInterruptRegMask",
+    RegMem => "Reg",
+    Address => "34",
+    Description => "This register masks CssEcc2bErrorInterruptReg interrupt register",
+    Width => "18", # Excel Formula: =calc_reg_width(E55:E72,F72)
+    Type => "InterruptMask",
+    DefaultValue => "b1",
+    PcieRbufEcc2bErrMask => { #Structure Type: RegField;
+      Name => "PcieRbufEcc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F54,E55,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieSotbufEcc2bErrMask => { #Structure Type: RegField;
+      Name => "PcieSotbufEcc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F55,E56)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieEdmaRdbuffEcc2bErrMask => { #Structure Type: RegField;
+      Name => "PcieEdmaRdbuffEcc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F56,E57)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieMcbSbEcc2bErrMask => { #Structure Type: RegField;
+      Name => "PcieMcbSbEcc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F57,E58)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieMcbA2cEcc2bErrMask => { #Structure Type: RegField;
+      Name => "PcieMcbA2cEcc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F58,E59)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieXadmx1DecompDataEcc2bErrMask => { #Structure Type: RegField;
+      Name => "PcieXadmx1DecompDataEcc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F59,E60)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieRadmxDecompDataEcc2bErrMask => { #Structure Type: RegField;
+      Name => "PcieRadmxDecompDataEcc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F60,E61)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieRadmxCompEcc2bErrMask => { #Structure Type: RegField;
+      Name => "PcieRadmxCompEcc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F61,E62)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieRadmQbufferHdrEcc2bErrMask => { #Structure Type: RegField;
+      Name => "PcieRadmQbufferHdrEcc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F62,E63)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PcieRadmQbufferDataEcc2bErrMask => { #Structure Type: RegField;
+      Name => "PcieRadmQbufferDataEcc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F63,E64)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    SbifAccessEngineDataMem0Ecc2bErrMask => { #Structure Type: RegField;
+      Name => "SbifAccessEngineDataMem0Ecc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F64,E65)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    SbifAccessEngineDataMem1Ecc2bErrMask => { #Structure Type: RegField;
+      Name => "SbifAccessEngineDataMem1Ecc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F65,E66)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    SbifAccessEngineCommandMem0Ecc2bErrMask => { #Structure Type: RegField;
+      Name => "SbifAccessEngineCommandMem0Ecc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F66,E67)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    SbifAccessEngineCommandMem1Ecc2bErrMask => { #Structure Type: RegField;
+      Name => "SbifAccessEngineCommandMem1Ecc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "13", # Excel Formula: =calc_position(F67,E68)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    ChainInputSyncEcc2bErrMask => { #Structure Type: RegField;
+      Name => "ChainInputSyncEcc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "14", # Excel Formula: =calc_position(F68,E69)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    ChainOutputSyncEcc2bErrMask => { #Structure Type: RegField;
+      Name => "ChainOutputSyncEcc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F69,E70)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    SbmSpicoEcc2bErrMask => { #Structure Type: RegField;
+      Name => "SbmSpicoEcc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F70,E71)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PciePcsEcc2bErrMask => { #Structure Type: RegField;
+      Name => "PciePcsEcc2bErrMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "17", # Excel Formula: =calc_position(F71,E72)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  CssEcc2bErrorInterruptRegTest => { #Structure Type: Reg; Skip Register;
+    Name => "CssEcc2bErrorInterruptRegTest",
+    RegMem => "Reg",
+    Address => "38",
+    Description => "This register tests CssEcc2bErrorInterruptReg interrupt register",
+    Width => "18", # Excel Formula: =calc_reg_width(E55:E72,F72)
+    Type => "InterruptTest",
+    DefaultValue => "b0",
+    PcieRbufEcc2bErrTest => { #Structure Type: RegField;
+      Name => "PcieRbufEcc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F54,E55,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieSotbufEcc2bErrTest => { #Structure Type: RegField;
+      Name => "PcieSotbufEcc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F55,E56)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieEdmaRdbuffEcc2bErrTest => { #Structure Type: RegField;
+      Name => "PcieEdmaRdbuffEcc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F56,E57)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieMcbSbEcc2bErrTest => { #Structure Type: RegField;
+      Name => "PcieMcbSbEcc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F57,E58)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieMcbA2cEcc2bErrTest => { #Structure Type: RegField;
+      Name => "PcieMcbA2cEcc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F58,E59)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieXadmx1DecompDataEcc2bErrTest => { #Structure Type: RegField;
+      Name => "PcieXadmx1DecompDataEcc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F59,E60)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieRadmxDecompDataEcc2bErrTest => { #Structure Type: RegField;
+      Name => "PcieRadmxDecompDataEcc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F60,E61)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieRadmxCompEcc2bErrTest => { #Structure Type: RegField;
+      Name => "PcieRadmxCompEcc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F61,E62)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieRadmQbufferHdrEcc2bErrTest => { #Structure Type: RegField;
+      Name => "PcieRadmQbufferHdrEcc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F62,E63)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PcieRadmQbufferDataEcc2bErrTest => { #Structure Type: RegField;
+      Name => "PcieRadmQbufferDataEcc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F63,E64)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    SbifAccessEngineDataMem0Ecc2bErrTest => { #Structure Type: RegField;
+      Name => "SbifAccessEngineDataMem0Ecc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F64,E65)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    SbifAccessEngineDataMem1Ecc2bErrTest => { #Structure Type: RegField;
+      Name => "SbifAccessEngineDataMem1Ecc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F65,E66)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    SbifAccessEngineCommandMem0Ecc2bErrTest => { #Structure Type: RegField;
+      Name => "SbifAccessEngineCommandMem0Ecc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F66,E67)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    SbifAccessEngineCommandMem1Ecc2bErrTest => { #Structure Type: RegField;
+      Name => "SbifAccessEngineCommandMem1Ecc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "13", # Excel Formula: =calc_position(F67,E68)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ChainInputSyncEcc2bErrTest => { #Structure Type: RegField;
+      Name => "ChainInputSyncEcc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "14", # Excel Formula: =calc_position(F68,E69)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ChainOutputSyncEcc2bErrTest => { #Structure Type: RegField;
+      Name => "ChainOutputSyncEcc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F69,E70)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    SbmSpicoEcc2bErrTest => { #Structure Type: RegField;
+      Name => "SbmSpicoEcc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F70,E71)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PciePcsEcc2bErrTest => { #Structure Type: RegField;
+      Name => "PciePcsEcc2bErrTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "17", # Excel Formula: =calc_position(F71,E72)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  ResetReg => { #Structure Type: Reg;
+    Name => "ResetReg",
+    RegMem => "Reg",
+    Address => "3C", # Excel Formula: =calc_reg_address(C54,A54,G54, 1)
+    Description => "Reset Register",
+    Width => "3", # Excel Formula: =calc_reg_width(E74:E76,F76)
+    Type => "Config",
+    MacRstn => { #Structure Type: RegField;
+      Name => "MacRstn",
+      RegMem => "RegField",
+      Description => "Mac Reset Not (Active Low)",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F73,E74,TRUE)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    MemRstn => { #Structure Type: RegField;
+      Name => "MemRstn",
+      RegMem => "RegField",
+      Description => "Memory block Reset Not (Active Low)",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F74,E75)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    ArcRstn => { #Structure Type: RegField;
+      Name => "ArcRstn",
+      RegMem => "RegField",
+      Description => "ARC Reset Not (Active Low)",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F75,E76)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h1",
+    },
+  },
+  SbifGlobalConfigReg => { #Structure Type: Reg;
+    Name => "SbifGlobalConfigReg",
+    RegMem => "Reg",
+    Address => "40", # Excel Formula: =calc_reg_address(C73,A73,G73, 1)
+    Description => "System Bus Interface Global Configuration Register",
+    Width => "17", # Excel Formula: =calc_reg_width(E78:E79,F79)
+    Type => "Config",
+    BurstWriteMode => { #Structure Type: RegField;
+      Name => "BurstWriteMode",
+      RegMem => "RegField",
+      Description => "Enable bursts writes",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F77,E78,TRUE)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    CifChainRespTimeout => { #Structure Type: RegField;
+      Name => "CifChainRespTimeout",
+      RegMem => "RegField",
+      Description => "Cif Chain Response Timeout
+Set (in clock cycles, multipled internally by 32) the timeout threshold
+Zero means disabling the timeout",
+      Width => "16",
+      Position => "16:1", # Excel Formula: =calc_position(F78,E79)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngPriorityReg => { #Structure Type: Reg;
+    Name => "AccEngPriorityReg",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C77,A77,G77, 1)
+    Description => "System Bus Interface Global Configuration Register",
+    Width => "16", # Excel Formula: =calc_reg_width(E81:E88,F88)
+    Type => "Config",
+    AccEng0Priority => { #Structure Type: RegField;
+      Name => "AccEng0Priority",
+      RegMem => "RegField",
+      Description => "Access Engine 0 Priority",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F80,E81,TRUE)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEng1Priority => { #Structure Type: RegField;
+      Name => "AccEng1Priority",
+      RegMem => "RegField",
+      Description => "Access Engine 1 Priority",
+      Width => "2",
+      Position => "3:2", # Excel Formula: =calc_position(F81,E82)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEng2Priority => { #Structure Type: RegField;
+      Name => "AccEng2Priority",
+      RegMem => "RegField",
+      Description => "Access Engine 2 Priority",
+      Width => "2",
+      Position => "5:4", # Excel Formula: =calc_position(F82,E83)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEng3Priority => { #Structure Type: RegField;
+      Name => "AccEng3Priority",
+      RegMem => "RegField",
+      Description => "Access Engine 3 Priority",
+      Width => "2",
+      Position => "7:6", # Excel Formula: =calc_position(F83,E84)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEng4Priority => { #Structure Type: RegField;
+      Name => "AccEng4Priority",
+      RegMem => "RegField",
+      Description => "Access Engine 4 Priority",
+      Width => "2",
+      Position => "9:8", # Excel Formula: =calc_position(F84,E85)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEng5Priority => { #Structure Type: RegField;
+      Name => "AccEng5Priority",
+      RegMem => "RegField",
+      Description => "Access Engine 5 Priority",
+      Width => "2",
+      Position => "11:10", # Excel Formula: =calc_position(F85,E86)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEng6Priority => { #Structure Type: RegField;
+      Name => "AccEng6Priority",
+      RegMem => "RegField",
+      Description => "Access Engine 6 Priority",
+      Width => "2",
+      Position => "13:12", # Excel Formula: =calc_position(F86,E87)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEng7Priority => { #Structure Type: RegField;
+      Name => "AccEng7Priority",
+      RegMem => "RegField",
+      Description => "Access Engine 7 Priority",
+      Width => "2",
+      Position => "15:14", # Excel Formula: =calc_position(F87,E88)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  CommandMemFifoOverrideReg => { #Structure Type: Reg;
+    Name => "CommandMemFifoOverrideReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C80,A80,G80, 1)
+    Description => "Command Memory FIFO Override Configuration Register",
+    Width => "8", # Excel Formula: =calc_reg_width(E90:E97,F97)
+    Type => "Config",
+    CommandMem0FifoOverride => { #Structure Type: RegField;
+      Name => "CommandMem0FifoOverride",
+      RegMem => "RegField",
+      Description => "Allows writing to actual address to the command memory 0 instead of FIFO mode",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F89,E90,TRUE)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    CommandMem1FifoOverride => { #Structure Type: RegField;
+      Name => "CommandMem1FifoOverride",
+      RegMem => "RegField",
+      Description => "Allows writing to actual address to the command memory 1 instead of FIFO mode",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F90,E91)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    CommandMem2FifoOverride => { #Structure Type: RegField;
+      Name => "CommandMem2FifoOverride",
+      RegMem => "RegField",
+      Description => "Allows writing to actual address to the command memory 2 instead of FIFO mode",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F91,E92)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    CommandMem3FifoOverride => { #Structure Type: RegField;
+      Name => "CommandMem3FifoOverride",
+      RegMem => "RegField",
+      Description => "Allows writing to actual address to the command memory 3 instead of FIFO mode",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F92,E93)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    CommandMem4FifoOverride => { #Structure Type: RegField;
+      Name => "CommandMem4FifoOverride",
+      RegMem => "RegField",
+      Description => "Allows writing to actual address to the command memory 4 instead of FIFO mode",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F93,E94)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    CommandMem5FifoOverride => { #Structure Type: RegField;
+      Name => "CommandMem5FifoOverride",
+      RegMem => "RegField",
+      Description => "Allows writing to actual address to the command memory 5 instead of FIFO mode",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F94,E95)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    CommandMem6FifoOverride => { #Structure Type: RegField;
+      Name => "CommandMem6FifoOverride",
+      RegMem => "RegField",
+      Description => "Allows writing to actual address to the command memory 6 instead of FIFO mode",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F95,E96)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    CommandMem7FifoOverride => { #Structure Type: RegField;
+      Name => "CommandMem7FifoOverride",
+      RegMem => "RegField",
+      Description => "Allows writing to actual address to the command memory 7 instead of FIFO mode",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F96,E97)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngResetReg => { #Structure Type: Reg;
+    Name => "AccEngResetReg",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C89,A89,G89, 1)
+    Description => "Access Engines Reset Register",
+    Width => "8", # Excel Formula: =calc_reg_width(E99:E106,F106)
+    Type => "Config",
+    AccEng0Reset => { #Structure Type: RegField;
+      Name => "AccEng0Reset",
+      RegMem => "RegField",
+      Description => "Access Engine 0 Reset",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F98,E99,TRUE)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEng1Reset => { #Structure Type: RegField;
+      Name => "AccEng1Reset",
+      RegMem => "RegField",
+      Description => "Access Engine 1 Reset",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F99,E100)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEng2Reset => { #Structure Type: RegField;
+      Name => "AccEng2Reset",
+      RegMem => "RegField",
+      Description => "Access Engine 2 Reset",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F100,E101)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEng3Reset => { #Structure Type: RegField;
+      Name => "AccEng3Reset",
+      RegMem => "RegField",
+      Description => "Access Engine 3 Reset",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F101,E102)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEng4Reset => { #Structure Type: RegField;
+      Name => "AccEng4Reset",
+      RegMem => "RegField",
+      Description => "Access Engine 4 Reset",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F102,E103)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEng5Reset => { #Structure Type: RegField;
+      Name => "AccEng5Reset",
+      RegMem => "RegField",
+      Description => "Access Engine 5 Reset",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F103,E104)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEng6Reset => { #Structure Type: RegField;
+      Name => "AccEng6Reset",
+      RegMem => "RegField",
+      Description => "Access Engine 6 Reset",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F104,E105)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEng7Reset => { #Structure Type: RegField;
+      Name => "AccEng7Reset",
+      RegMem => "RegField",
+      Description => "Access Engine 7 Reset",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F105,E106)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngGoReg0 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 12;
+    Name => "AccEngGoReg[8]",
+    RegMem => "Reg",
+    Address => "50", # Excel Formula: =calc_reg_address(C98,A98,G98, 1)
+    Description => "Access Engine Go Register",
+    Width => "2", # Excel Formula: =calc_reg_width(E108:E108,F108)
+    Type => "External",
+    UsedBy => "SBIF",
+    Comments => "EnBdWr",
+    ArrayLength => "8",
+    ArrayIndex => "0",
+    AccEngGo0 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 9;
+      Name => "AccEngGo[n]",
+      RegMem => "RegField",
+      Description => "Enable Access Engine [n]:
+0 = Stop
+1 = Single go (stop when command FIFO is empty)
+2 = Continuous",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F107,E108,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngGoReg1 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 12;
+    Name => "AccEngGoReg[8]",
+    RegMem => "Reg",
+    Address => "54",
+    Description => "Access Engine Go Register",
+    Width => "2", # Excel Formula: =calc_reg_width(E108:E108,F108)
+    Type => "External",
+    UsedBy => "SBIF",
+    Comments => "EnBdWr",
+    ArrayLength => "8",
+    ArrayIndex => "1",
+    AccEngGo1 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 9;
+      Name => "AccEngGo[n]",
+      RegMem => "RegField",
+      Description => "Enable Access Engine [n]:
+0 = Stop
+1 = Single go (stop when command FIFO is empty)
+2 = Continuous",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F107,E108,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngGoReg2 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 12;
+    Name => "AccEngGoReg[8]",
+    RegMem => "Reg",
+    Address => "58",
+    Description => "Access Engine Go Register",
+    Width => "2", # Excel Formula: =calc_reg_width(E108:E108,F108)
+    Type => "External",
+    UsedBy => "SBIF",
+    Comments => "EnBdWr",
+    ArrayLength => "8",
+    ArrayIndex => "2",
+    AccEngGo2 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 9;
+      Name => "AccEngGo[n]",
+      RegMem => "RegField",
+      Description => "Enable Access Engine [n]:
+0 = Stop
+1 = Single go (stop when command FIFO is empty)
+2 = Continuous",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F107,E108,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngGoReg3 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 12;
+    Name => "AccEngGoReg[8]",
+    RegMem => "Reg",
+    Address => "5C",
+    Description => "Access Engine Go Register",
+    Width => "2", # Excel Formula: =calc_reg_width(E108:E108,F108)
+    Type => "External",
+    UsedBy => "SBIF",
+    Comments => "EnBdWr",
+    ArrayLength => "8",
+    ArrayIndex => "3",
+    AccEngGo3 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 9;
+      Name => "AccEngGo[n]",
+      RegMem => "RegField",
+      Description => "Enable Access Engine [n]:
+0 = Stop
+1 = Single go (stop when command FIFO is empty)
+2 = Continuous",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F107,E108,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngGoReg4 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 12;
+    Name => "AccEngGoReg[8]",
+    RegMem => "Reg",
+    Address => "60",
+    Description => "Access Engine Go Register",
+    Width => "2", # Excel Formula: =calc_reg_width(E108:E108,F108)
+    Type => "External",
+    UsedBy => "SBIF",
+    Comments => "EnBdWr",
+    ArrayLength => "8",
+    ArrayIndex => "4",
+    AccEngGo4 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 9;
+      Name => "AccEngGo[n]",
+      RegMem => "RegField",
+      Description => "Enable Access Engine [n]:
+0 = Stop
+1 = Single go (stop when command FIFO is empty)
+2 = Continuous",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F107,E108,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngGoReg5 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 12;
+    Name => "AccEngGoReg[8]",
+    RegMem => "Reg",
+    Address => "64",
+    Description => "Access Engine Go Register",
+    Width => "2", # Excel Formula: =calc_reg_width(E108:E108,F108)
+    Type => "External",
+    UsedBy => "SBIF",
+    Comments => "EnBdWr",
+    ArrayLength => "8",
+    ArrayIndex => "5",
+    AccEngGo5 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 9;
+      Name => "AccEngGo[n]",
+      RegMem => "RegField",
+      Description => "Enable Access Engine [n]:
+0 = Stop
+1 = Single go (stop when command FIFO is empty)
+2 = Continuous",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F107,E108,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngGoReg6 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 12;
+    Name => "AccEngGoReg[8]",
+    RegMem => "Reg",
+    Address => "68",
+    Description => "Access Engine Go Register",
+    Width => "2", # Excel Formula: =calc_reg_width(E108:E108,F108)
+    Type => "External",
+    UsedBy => "SBIF",
+    Comments => "EnBdWr",
+    ArrayLength => "8",
+    ArrayIndex => "6",
+    AccEngGo6 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 9;
+      Name => "AccEngGo[n]",
+      RegMem => "RegField",
+      Description => "Enable Access Engine [n]:
+0 = Stop
+1 = Single go (stop when command FIFO is empty)
+2 = Continuous",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F107,E108,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngGoReg7 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 12;
+    Name => "AccEngGoReg[8]",
+    RegMem => "Reg",
+    Address => "6C",
+    Description => "Access Engine Go Register",
+    Width => "2", # Excel Formula: =calc_reg_width(E108:E108,F108)
+    Type => "External",
+    UsedBy => "SBIF",
+    Comments => "EnBdWr",
+    ArrayLength => "8",
+    ArrayIndex => "7",
+    AccEngGo7 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 9;
+      Name => "AccEngGo[n]",
+      RegMem => "RegField",
+      Description => "Enable Access Engine [n]:
+0 = Stop
+1 = Single go (stop when command FIFO is empty)
+2 = Continuous",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F107,E108,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngCmdPtrReg0 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 16;
+    Name => "AccEngCmdPtrReg[8]",
+    RegMem => "Reg",
+    Address => "70", # Excel Formula: =calc_reg_address(C107,A107,G107, 1)
+    Description => "Access Engine [n] Command Fifo Pointers",
+    Width => "20", # Excel Formula: =calc_reg_width(E110:E111,F111)
+    Type => "External",
+    UsedBy => "SBIF",
+    Comments => "EnBdWr",
+    ArrayLength => "8",
+    ArrayIndex => "0",
+    AccEngCmdWrPtr0 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 15;
+      Name => "AccEngCmdWrPtr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Command Fifo Write Pointers",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F109,E110,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+    AccEngCmdRdPtr0 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 15;
+      Name => "AccEngCmdRdPtr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Command Fifo Read Pointers",
+      Width => "10",
+      Position => "19:10", # Excel Formula: =calc_position(F110,E111)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngCmdPtrReg1 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 16;
+    Name => "AccEngCmdPtrReg[8]",
+    RegMem => "Reg",
+    Address => "74",
+    Description => "Access Engine [n] Command Fifo Pointers",
+    Width => "20", # Excel Formula: =calc_reg_width(E110:E111,F111)
+    Type => "External",
+    UsedBy => "SBIF",
+    Comments => "EnBdWr",
+    ArrayLength => "8",
+    ArrayIndex => "1",
+    AccEngCmdWrPtr1 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 15;
+      Name => "AccEngCmdWrPtr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Command Fifo Write Pointers",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F109,E110,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+    AccEngCmdRdPtr1 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 15;
+      Name => "AccEngCmdRdPtr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Command Fifo Read Pointers",
+      Width => "10",
+      Position => "19:10", # Excel Formula: =calc_position(F110,E111)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngCmdPtrReg2 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 16;
+    Name => "AccEngCmdPtrReg[8]",
+    RegMem => "Reg",
+    Address => "78",
+    Description => "Access Engine [n] Command Fifo Pointers",
+    Width => "20", # Excel Formula: =calc_reg_width(E110:E111,F111)
+    Type => "External",
+    UsedBy => "SBIF",
+    Comments => "EnBdWr",
+    ArrayLength => "8",
+    ArrayIndex => "2",
+    AccEngCmdWrPtr2 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 15;
+      Name => "AccEngCmdWrPtr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Command Fifo Write Pointers",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F109,E110,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+    AccEngCmdRdPtr2 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 15;
+      Name => "AccEngCmdRdPtr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Command Fifo Read Pointers",
+      Width => "10",
+      Position => "19:10", # Excel Formula: =calc_position(F110,E111)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngCmdPtrReg3 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 16;
+    Name => "AccEngCmdPtrReg[8]",
+    RegMem => "Reg",
+    Address => "7C",
+    Description => "Access Engine [n] Command Fifo Pointers",
+    Width => "20", # Excel Formula: =calc_reg_width(E110:E111,F111)
+    Type => "External",
+    UsedBy => "SBIF",
+    Comments => "EnBdWr",
+    ArrayLength => "8",
+    ArrayIndex => "3",
+    AccEngCmdWrPtr3 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 15;
+      Name => "AccEngCmdWrPtr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Command Fifo Write Pointers",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F109,E110,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+    AccEngCmdRdPtr3 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 15;
+      Name => "AccEngCmdRdPtr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Command Fifo Read Pointers",
+      Width => "10",
+      Position => "19:10", # Excel Formula: =calc_position(F110,E111)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngCmdPtrReg4 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 16;
+    Name => "AccEngCmdPtrReg[8]",
+    RegMem => "Reg",
+    Address => "80",
+    Description => "Access Engine [n] Command Fifo Pointers",
+    Width => "20", # Excel Formula: =calc_reg_width(E110:E111,F111)
+    Type => "External",
+    UsedBy => "SBIF",
+    Comments => "EnBdWr",
+    ArrayLength => "8",
+    ArrayIndex => "4",
+    AccEngCmdWrPtr4 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 15;
+      Name => "AccEngCmdWrPtr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Command Fifo Write Pointers",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F109,E110,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+    AccEngCmdRdPtr4 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 15;
+      Name => "AccEngCmdRdPtr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Command Fifo Read Pointers",
+      Width => "10",
+      Position => "19:10", # Excel Formula: =calc_position(F110,E111)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngCmdPtrReg5 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 16;
+    Name => "AccEngCmdPtrReg[8]",
+    RegMem => "Reg",
+    Address => "84",
+    Description => "Access Engine [n] Command Fifo Pointers",
+    Width => "20", # Excel Formula: =calc_reg_width(E110:E111,F111)
+    Type => "External",
+    UsedBy => "SBIF",
+    Comments => "EnBdWr",
+    ArrayLength => "8",
+    ArrayIndex => "5",
+    AccEngCmdWrPtr5 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 15;
+      Name => "AccEngCmdWrPtr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Command Fifo Write Pointers",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F109,E110,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+    AccEngCmdRdPtr5 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 15;
+      Name => "AccEngCmdRdPtr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Command Fifo Read Pointers",
+      Width => "10",
+      Position => "19:10", # Excel Formula: =calc_position(F110,E111)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngCmdPtrReg6 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 16;
+    Name => "AccEngCmdPtrReg[8]",
+    RegMem => "Reg",
+    Address => "88",
+    Description => "Access Engine [n] Command Fifo Pointers",
+    Width => "20", # Excel Formula: =calc_reg_width(E110:E111,F111)
+    Type => "External",
+    UsedBy => "SBIF",
+    Comments => "EnBdWr",
+    ArrayLength => "8",
+    ArrayIndex => "6",
+    AccEngCmdWrPtr6 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 15;
+      Name => "AccEngCmdWrPtr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Command Fifo Write Pointers",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F109,E110,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+    AccEngCmdRdPtr6 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 15;
+      Name => "AccEngCmdRdPtr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Command Fifo Read Pointers",
+      Width => "10",
+      Position => "19:10", # Excel Formula: =calc_position(F110,E111)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngCmdPtrReg7 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 16;
+    Name => "AccEngCmdPtrReg[8]",
+    RegMem => "Reg",
+    Address => "8C",
+    Description => "Access Engine [n] Command Fifo Pointers",
+    Width => "20", # Excel Formula: =calc_reg_width(E110:E111,F111)
+    Type => "External",
+    UsedBy => "SBIF",
+    Comments => "EnBdWr",
+    ArrayLength => "8",
+    ArrayIndex => "7",
+    AccEngCmdWrPtr7 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 15;
+      Name => "AccEngCmdWrPtr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Command Fifo Write Pointers",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F109,E110,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+    AccEngCmdRdPtr7 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 15;
+      Name => "AccEngCmdRdPtr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Command Fifo Read Pointers",
+      Width => "10",
+      Position => "19:10", # Excel Formula: =calc_position(F110,E111)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngStatusReg0 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 16;
+    Name => "AccEngStatusReg[8]",
+    RegMem => "Reg",
+    Address => "90", # Excel Formula: =calc_reg_address(C109,A109,G109, 1)
+    Description => "Access Engine [n] Status",
+    Width => "26", # Excel Formula: =calc_reg_width(E113:E118,F118)
+    Type => "ReadOnly",
+    ArrayLength => "8",
+    ArrayIndex => "0",
+    AccEngActive0 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 13;
+      Name => "AccEngActive[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Active Status",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F112,E113,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngCurrCount0 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 16;
+      Name => "AccEngCurrCount[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Current Count Status",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F113,E114)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngError0 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 12;
+      Name => "AccEngError[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Indication (cleared on read)",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F114,E115)
+      Type => "Event",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorBlkId0 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 17;
+      Name => "AccEngErrorBlkId[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Block ID",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F115,E116)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorInvCmd0 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 18;
+      Name => "AccEngErrorInvCmd[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Invalid Command",
+      Width => "1",
+      Position => "24", # Excel Formula: =calc_position(F116,E117)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorAhbRsp0 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 18;
+      Name => "AccEngErrorAhbRsp[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error AHB Response",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F117,E118)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngStatusReg1 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 16;
+    Name => "AccEngStatusReg[8]",
+    RegMem => "Reg",
+    Address => "94",
+    Description => "Access Engine [n] Status",
+    Width => "26", # Excel Formula: =calc_reg_width(E113:E118,F118)
+    Type => "ReadOnly",
+    ArrayLength => "8",
+    ArrayIndex => "1",
+    AccEngActive1 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 13;
+      Name => "AccEngActive[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Active Status",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F112,E113,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngCurrCount1 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 16;
+      Name => "AccEngCurrCount[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Current Count Status",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F113,E114)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngError1 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 12;
+      Name => "AccEngError[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Indication (cleared on read)",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F114,E115)
+      Type => "Event",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorBlkId1 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 17;
+      Name => "AccEngErrorBlkId[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Block ID",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F115,E116)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorInvCmd1 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 18;
+      Name => "AccEngErrorInvCmd[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Invalid Command",
+      Width => "1",
+      Position => "24", # Excel Formula: =calc_position(F116,E117)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorAhbRsp1 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 18;
+      Name => "AccEngErrorAhbRsp[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error AHB Response",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F117,E118)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngStatusReg2 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 16;
+    Name => "AccEngStatusReg[8]",
+    RegMem => "Reg",
+    Address => "98",
+    Description => "Access Engine [n] Status",
+    Width => "26", # Excel Formula: =calc_reg_width(E113:E118,F118)
+    Type => "ReadOnly",
+    ArrayLength => "8",
+    ArrayIndex => "2",
+    AccEngActive2 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 13;
+      Name => "AccEngActive[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Active Status",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F112,E113,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngCurrCount2 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 16;
+      Name => "AccEngCurrCount[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Current Count Status",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F113,E114)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngError2 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 12;
+      Name => "AccEngError[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Indication (cleared on read)",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F114,E115)
+      Type => "Event",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorBlkId2 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 17;
+      Name => "AccEngErrorBlkId[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Block ID",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F115,E116)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorInvCmd2 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 18;
+      Name => "AccEngErrorInvCmd[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Invalid Command",
+      Width => "1",
+      Position => "24", # Excel Formula: =calc_position(F116,E117)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorAhbRsp2 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 18;
+      Name => "AccEngErrorAhbRsp[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error AHB Response",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F117,E118)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngStatusReg3 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 16;
+    Name => "AccEngStatusReg[8]",
+    RegMem => "Reg",
+    Address => "9C",
+    Description => "Access Engine [n] Status",
+    Width => "26", # Excel Formula: =calc_reg_width(E113:E118,F118)
+    Type => "ReadOnly",
+    ArrayLength => "8",
+    ArrayIndex => "3",
+    AccEngActive3 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 13;
+      Name => "AccEngActive[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Active Status",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F112,E113,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngCurrCount3 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 16;
+      Name => "AccEngCurrCount[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Current Count Status",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F113,E114)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngError3 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 12;
+      Name => "AccEngError[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Indication (cleared on read)",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F114,E115)
+      Type => "Event",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorBlkId3 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 17;
+      Name => "AccEngErrorBlkId[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Block ID",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F115,E116)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorInvCmd3 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 18;
+      Name => "AccEngErrorInvCmd[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Invalid Command",
+      Width => "1",
+      Position => "24", # Excel Formula: =calc_position(F116,E117)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorAhbRsp3 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 18;
+      Name => "AccEngErrorAhbRsp[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error AHB Response",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F117,E118)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngStatusReg4 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 16;
+    Name => "AccEngStatusReg[8]",
+    RegMem => "Reg",
+    Address => "A0",
+    Description => "Access Engine [n] Status",
+    Width => "26", # Excel Formula: =calc_reg_width(E113:E118,F118)
+    Type => "ReadOnly",
+    ArrayLength => "8",
+    ArrayIndex => "4",
+    AccEngActive4 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 13;
+      Name => "AccEngActive[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Active Status",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F112,E113,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngCurrCount4 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 16;
+      Name => "AccEngCurrCount[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Current Count Status",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F113,E114)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngError4 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 12;
+      Name => "AccEngError[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Indication (cleared on read)",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F114,E115)
+      Type => "Event",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorBlkId4 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 17;
+      Name => "AccEngErrorBlkId[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Block ID",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F115,E116)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorInvCmd4 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 18;
+      Name => "AccEngErrorInvCmd[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Invalid Command",
+      Width => "1",
+      Position => "24", # Excel Formula: =calc_position(F116,E117)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorAhbRsp4 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 18;
+      Name => "AccEngErrorAhbRsp[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error AHB Response",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F117,E118)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngStatusReg5 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 16;
+    Name => "AccEngStatusReg[8]",
+    RegMem => "Reg",
+    Address => "A4",
+    Description => "Access Engine [n] Status",
+    Width => "26", # Excel Formula: =calc_reg_width(E113:E118,F118)
+    Type => "ReadOnly",
+    ArrayLength => "8",
+    ArrayIndex => "5",
+    AccEngActive5 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 13;
+      Name => "AccEngActive[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Active Status",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F112,E113,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngCurrCount5 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 16;
+      Name => "AccEngCurrCount[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Current Count Status",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F113,E114)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngError5 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 12;
+      Name => "AccEngError[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Indication (cleared on read)",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F114,E115)
+      Type => "Event",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorBlkId5 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 17;
+      Name => "AccEngErrorBlkId[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Block ID",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F115,E116)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorInvCmd5 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 18;
+      Name => "AccEngErrorInvCmd[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Invalid Command",
+      Width => "1",
+      Position => "24", # Excel Formula: =calc_position(F116,E117)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorAhbRsp5 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 18;
+      Name => "AccEngErrorAhbRsp[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error AHB Response",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F117,E118)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngStatusReg6 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 16;
+    Name => "AccEngStatusReg[8]",
+    RegMem => "Reg",
+    Address => "A8",
+    Description => "Access Engine [n] Status",
+    Width => "26", # Excel Formula: =calc_reg_width(E113:E118,F118)
+    Type => "ReadOnly",
+    ArrayLength => "8",
+    ArrayIndex => "6",
+    AccEngActive6 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 13;
+      Name => "AccEngActive[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Active Status",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F112,E113,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngCurrCount6 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 16;
+      Name => "AccEngCurrCount[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Current Count Status",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F113,E114)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngError6 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 12;
+      Name => "AccEngError[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Indication (cleared on read)",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F114,E115)
+      Type => "Event",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorBlkId6 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 17;
+      Name => "AccEngErrorBlkId[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Block ID",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F115,E116)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorInvCmd6 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 18;
+      Name => "AccEngErrorInvCmd[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Invalid Command",
+      Width => "1",
+      Position => "24", # Excel Formula: =calc_position(F116,E117)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorAhbRsp6 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 18;
+      Name => "AccEngErrorAhbRsp[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error AHB Response",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F117,E118)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngStatusReg7 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 16;
+    Name => "AccEngStatusReg[8]",
+    RegMem => "Reg",
+    Address => "AC",
+    Description => "Access Engine [n] Status",
+    Width => "26", # Excel Formula: =calc_reg_width(E113:E118,F118)
+    Type => "ReadOnly",
+    ArrayLength => "8",
+    ArrayIndex => "7",
+    AccEngActive7 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 13;
+      Name => "AccEngActive[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Active Status",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F112,E113,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngCurrCount7 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 16;
+      Name => "AccEngCurrCount[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Current Count Status",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F113,E114)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngError7 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 12;
+      Name => "AccEngError[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Indication (cleared on read)",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F114,E115)
+      Type => "Event",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorBlkId7 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 17;
+      Name => "AccEngErrorBlkId[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Block ID",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F115,E116)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorInvCmd7 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 18;
+      Name => "AccEngErrorInvCmd[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Invalid Command",
+      Width => "1",
+      Position => "24", # Excel Formula: =calc_position(F116,E117)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    AccEngErrorAhbRsp7 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 18;
+      Name => "AccEngErrorAhbRsp[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error AHB Response",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F117,E118)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngErrorAddrReg0 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 19;
+    Name => "AccEngErrorAddrReg[8]",
+    RegMem => "Reg",
+    Address => "B0", # Excel Formula: =calc_reg_address(C112,A112,G112, 1)
+    Description => "Access Engine [n] Error Address Register",
+    Width => "32", # Excel Formula: =calc_reg_width(E120:E120,F120)
+    Type => "ReadOnly",
+    ArrayLength => "8",
+    ArrayIndex => "0",
+    AccEngErrorAddr0 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 16;
+      Name => "AccEngErrorAddr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Address",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F119,E120,TRUE)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngErrorAddrReg1 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 19;
+    Name => "AccEngErrorAddrReg[8]",
+    RegMem => "Reg",
+    Address => "B4",
+    Description => "Access Engine [n] Error Address Register",
+    Width => "32", # Excel Formula: =calc_reg_width(E120:E120,F120)
+    Type => "ReadOnly",
+    ArrayLength => "8",
+    ArrayIndex => "1",
+    AccEngErrorAddr1 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 16;
+      Name => "AccEngErrorAddr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Address",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F119,E120,TRUE)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngErrorAddrReg2 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 19;
+    Name => "AccEngErrorAddrReg[8]",
+    RegMem => "Reg",
+    Address => "B8",
+    Description => "Access Engine [n] Error Address Register",
+    Width => "32", # Excel Formula: =calc_reg_width(E120:E120,F120)
+    Type => "ReadOnly",
+    ArrayLength => "8",
+    ArrayIndex => "2",
+    AccEngErrorAddr2 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 16;
+      Name => "AccEngErrorAddr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Address",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F119,E120,TRUE)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngErrorAddrReg3 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 19;
+    Name => "AccEngErrorAddrReg[8]",
+    RegMem => "Reg",
+    Address => "BC",
+    Description => "Access Engine [n] Error Address Register",
+    Width => "32", # Excel Formula: =calc_reg_width(E120:E120,F120)
+    Type => "ReadOnly",
+    ArrayLength => "8",
+    ArrayIndex => "3",
+    AccEngErrorAddr3 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 16;
+      Name => "AccEngErrorAddr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Address",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F119,E120,TRUE)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngErrorAddrReg4 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 19;
+    Name => "AccEngErrorAddrReg[8]",
+    RegMem => "Reg",
+    Address => "C0",
+    Description => "Access Engine [n] Error Address Register",
+    Width => "32", # Excel Formula: =calc_reg_width(E120:E120,F120)
+    Type => "ReadOnly",
+    ArrayLength => "8",
+    ArrayIndex => "4",
+    AccEngErrorAddr4 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 16;
+      Name => "AccEngErrorAddr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Address",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F119,E120,TRUE)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngErrorAddrReg5 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 19;
+    Name => "AccEngErrorAddrReg[8]",
+    RegMem => "Reg",
+    Address => "C4",
+    Description => "Access Engine [n] Error Address Register",
+    Width => "32", # Excel Formula: =calc_reg_width(E120:E120,F120)
+    Type => "ReadOnly",
+    ArrayLength => "8",
+    ArrayIndex => "5",
+    AccEngErrorAddr5 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 16;
+      Name => "AccEngErrorAddr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Address",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F119,E120,TRUE)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngErrorAddrReg6 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 19;
+    Name => "AccEngErrorAddrReg[8]",
+    RegMem => "Reg",
+    Address => "C8",
+    Description => "Access Engine [n] Error Address Register",
+    Width => "32", # Excel Formula: =calc_reg_width(E120:E120,F120)
+    Type => "ReadOnly",
+    ArrayLength => "8",
+    ArrayIndex => "6",
+    AccEngErrorAddr6 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 16;
+      Name => "AccEngErrorAddr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Address",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F119,E120,TRUE)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccEngErrorAddrReg7 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 19;
+    Name => "AccEngErrorAddrReg[8]",
+    RegMem => "Reg",
+    Address => "CC",
+    Description => "Access Engine [n] Error Address Register",
+    Width => "32", # Excel Formula: =calc_reg_width(E120:E120,F120)
+    Type => "ReadOnly",
+    ArrayLength => "8",
+    ArrayIndex => "7",
+    AccEngErrorAddr7 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 16;
+      Name => "AccEngErrorAddr[n]",
+      RegMem => "RegField",
+      Description => "Access Engine [n] Error Address",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F119,E120,TRUE)
+      Type => "Capture",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  ArcRunHaltReg => { #Structure Type: Reg;
+    Name => "ArcRunHaltReg",
+    RegMem => "Reg",
+    Address => "D0", # Excel Formula: =calc_reg_address(C119,A119,G119, 1)
+    Description => "ARC Run and Halt Register",
+    Width => "2", # Excel Formula: =calc_reg_width(E122:E123,F123)
+    Type => "External",
+    UsedBy => "SBIF",
+    ArcRun => { #Structure Type: RegField;
+      Name => "ArcRun",
+      RegMem => "RegField",
+      Description => "Initiate Run command to the ARC",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F121,E122,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+    ArcHalt => { #Structure Type: RegField;
+      Name => "ArcHalt",
+      RegMem => "RegField",
+      Description => "Initiate Halt command to the ARC",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F122,E123)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  ArcStatusReg => { #Structure Type: Reg;
+    Name => "ArcStatusReg",
+    RegMem => "Reg",
+    Address => "D4", # Excel Formula: =calc_reg_address(C121,A121,G121, 1)
+    Description => "ARC Status Register",
+    Width => "5", # Excel Formula: =calc_reg_width(E125:E127,F127)
+    Type => "ReadOnly",
+    ArcHaltStatus => { #Structure Type: RegField;
+      Name => "ArcHaltStatus",
+      RegMem => "RegField",
+      Description => "Arc Halt Status",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F124,E125,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    ArcSleep => { #Structure Type: RegField;
+      Name => "ArcSleep",
+      RegMem => "RegField",
+      Description => "Arc Sleep Status",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F125,E126)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    ArcSleepMode => { #Structure Type: RegField;
+      Name => "ArcSleepMode",
+      RegMem => "RegField",
+      Description => "Arc Sleep Mode Status",
+      Width => "3",
+      Position => "4:2", # Excel Formula: =calc_position(F126,E127)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  SbmReqReg => { #Structure Type: Reg;
+    Name => "SbmReqReg",
+    RegMem => "Reg",
+    Address => "D8", # Excel Formula: =calc_reg_address(C124,A124,G124, 1)
+    Description => "SBUS Master Request Register",
+    Width => "24", # Excel Formula: =calc_reg_width(E129:E131,F131)
+    Type => "Config",
+    SbmReqRxAddr => { #Structure Type: RegField;
+      Name => "SbmReqRxAddr",
+      RegMem => "RegField",
+      Description => "Request Receiver Address",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F128,E129,TRUE)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    SbmReqDataAddr => { #Structure Type: RegField;
+      Name => "SbmReqDataAddr",
+      RegMem => "RegField",
+      Description => "Request Data Address",
+      Width => "8",
+      Position => "15:8", # Excel Formula: =calc_position(F129,E130)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    SbmReqCmd => { #Structure Type: RegField;
+      Name => "SbmReqCmd",
+      RegMem => "RegField",
+      Description => "Request Command",
+      Width => "8",
+      Position => "23:16", # Excel Formula: =calc_position(F130,E131)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  SbmReqDataReg => { #Structure Type: Reg;
+    Name => "SbmReqDataReg",
+    RegMem => "Reg",
+    Address => "DC", # Excel Formula: =calc_reg_address(C128,A128,G128, 1)
+    Description => "SBUS Master Request Data Register",
+    Width => "32", # Excel Formula: =calc_reg_width(E133:E133,F133)
+    Type => "Config",
+    SbmReqData => { #Structure Type: RegField;
+      Name => "SbmReqData",
+      RegMem => "RegField",
+      Description => "Request Data",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F132,E133,TRUE)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  SbmReqExecuteReg => { #Structure Type: Reg;
+    Name => "SbmReqExecuteReg",
+    RegMem => "Reg",
+    Address => "E0", # Excel Formula: =calc_reg_address(C132,A132,G132, 1)
+    Description => "SBUS Master Request Execute Register",
+    Width => "1", # Excel Formula: =calc_reg_width(E135:E135,F135)
+    Type => "External",
+    UsedBy => "SBIF",
+    SbmReqExecute => { #Structure Type: RegField;
+      Name => "SbmReqExecute",
+      RegMem => "RegField",
+      Description => "Request Execute - write 1 to execute the request. When done the register is cleared by the HW",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F134,E135,TRUE)
+      Type => "External",
+      DefaultValue => "h0",
+    },
+  },
+  SbmRspResultReg => { #Structure Type: Reg;
+    Name => "SbmRspResultReg",
+    RegMem => "Reg",
+    Address => "E4", # Excel Formula: =calc_reg_address(C134,A134,G134, 1)
+    Description => "SBUS Master Response Result Code Register",
+    Width => "4", # Excel Formula: =calc_reg_width(E137:E138,F138)
+    Type => "ReadOnly",
+    SbmRspResultValid => { #Structure Type: RegField;
+      Name => "SbmRspResultValid",
+      RegMem => "RegField",
+      Description => "Response Result Valid - 1 indicates a valid response, cleared on read",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F136,E137,TRUE)
+      Type => "Event",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    SbmRspResultCode => { #Structure Type: RegField;
+      Name => "SbmRspResultCode",
+      RegMem => "RegField",
+      Description => "Response Result Code",
+      Width => "3",
+      Position => "3:1", # Excel Formula: =calc_position(F137,E138)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  SbmRspDataReg => { #Structure Type: Reg;
+    Name => "SbmRspDataReg",
+    RegMem => "Reg",
+    Address => "E8", # Excel Formula: =calc_reg_address(C136,A136,G136, 1)
+    Description => "SBUS Master Response Data Register",
+    Width => "32", # Excel Formula: =calc_reg_width(E140:E140,F140)
+    Type => "ReadOnly",
+    SbmRspData => { #Structure Type: RegField;
+      Name => "SbmRspData",
+      RegMem => "RegField",
+      Description => "Response Data",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F139,E140,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  MiscOutputReg => { #Structure Type: Reg;
+    Name => "MiscOutputReg",
+    RegMem => "Reg",
+    Address => "EC", # Excel Formula: =calc_reg_address(C139,A139,G139, 1)
+    Description => "Misc Output Register",
+    Width => "9", # Excel Formula: =calc_reg_width(E142:E143,F143)
+    Type => "Config",
+    MiscOutputRegister => { #Structure Type: RegField;
+      Name => "MiscOutputRegister",
+      RegMem => "RegField",
+      Description => "Misc output to pads",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F141,E142,TRUE)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    MiscOutputResetOrReg => { #Structure Type: RegField;
+      Name => "MiscOutputResetOrReg",
+      RegMem => "RegField",
+      Description => "Misc output is set from reset manager (0) or from register (1)",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F142,E143)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  PcieCfgResetReg => { #Structure Type: Reg;
+    Name => "PcieCfgResetReg",
+    RegMem => "Reg",
+    Address => "F0", # Excel Formula: =calc_reg_address(C141,A141,G141, 1)
+    Description => "Pcie Configuraion Reset Register",
+    Width => "3", # Excel Formula: =calc_reg_width(E145:E147,F147)
+    Type => "Config",
+    PcieCfgRstnOverrideEn => { #Structure Type: RegField;
+      Name => "PcieCfgRstnOverrideEn",
+      RegMem => "RegField",
+      Description => "Drive the Pcie reset from the configuration register when this field is set to 1",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F144,E145,TRUE)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    PcieCfgRstn => { #Structure Type: RegField;
+      Name => "PcieCfgRstn",
+      RegMem => "RegField",
+      Description => "Pcie Override Reset Not (Active Low)",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F145,E146)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    PcieCfgWaitLinkTraining => { #Structure Type: RegField;
+      Name => "PcieCfgWaitLinkTraining",
+      RegMem => "RegField",
+      Description => "After Pcie reset, if this field is set it prevents from link training to start, allowing to perfrom configuration writes to the Pcie core",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F146,E147)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "F4", # Excel Formula: =calc_reg_address(C144,A144,G144, 1)
+    Description => "MBIST Configuration for the block",
+    Width => "3", # Excel Formula: =calc_reg_width(E149:E151,F151)
+    Type => "Config",
+    CoreBistRprMode => { #Structure Type: RegField;
+      Name => "CoreBistRprMode",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F148,E149,TRUE)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    CoreBistRun => { #Structure Type: RegField;
+      Name => "CoreBistRun",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F149,E150)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    CoreBistPtrnFill => { #Structure Type: RegField;
+      Name => "CoreBistPtrnFill",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F150,E151)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  SbifMbistStatusFail => { #Structure Type: Reg;
+    Name => "SbifMbistStatusFail",
+    RegMem => "Reg",
+    Address => "F8", # Excel Formula: =calc_reg_address(C148,A148,G148, 1)
+    Description => "SBIF MBIST Status Fail Register",
+    Width => "4", # Excel Formula: =calc_reg_width(E153:E153,F153)
+    Type => "ReadOnly",
+    SbifBistDoneFailOut => { #Structure Type: RegField;
+      Name => "SbifBistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST failed",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F152,E153,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  SbifMbistStatusPass => { #Structure Type: Reg;
+    Name => "SbifMbistStatusPass",
+    RegMem => "Reg",
+    Address => "FC", # Excel Formula: =calc_reg_address(C152,A152,G152, 1)
+    Description => "SBIF MBIST Status Pass Register",
+    Width => "4", # Excel Formula: =calc_reg_width(E155:E155,F155)
+    Type => "ReadOnly",
+    SbifBistDonePassOut => { #Structure Type: RegField;
+      Name => "SbifBistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST passed",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F154,E155,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  SyncMbistStatusFail => { #Structure Type: Reg;
+    Name => "SyncMbistStatusFail",
+    RegMem => "Reg",
+    Address => "100", # Excel Formula: =calc_reg_address(C154,A154,G154, 1)
+    Description => "Sync MBIST Status Fail Register",
+    Width => "2", # Excel Formula: =calc_reg_width(E157:E157,F157)
+    Type => "ReadOnly",
+    SyncBistDoneFailOut => { #Structure Type: RegField;
+      Name => "SyncBistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST failed",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F156,E157,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  SyncMbistStatusPass => { #Structure Type: Reg;
+    Name => "SyncMbistStatusPass",
+    RegMem => "Reg",
+    Address => "104", # Excel Formula: =calc_reg_address(C156,A156,G156, 1)
+    Description => "Sync MBIST Status Pass Register",
+    Width => "2", # Excel Formula: =calc_reg_width(E159:E159,F159)
+    Type => "ReadOnly",
+    SyncBistDonePassOut => { #Structure Type: RegField;
+      Name => "SyncBistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST passed",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F158,E159,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  PcieMbistStatusFail => { #Structure Type: Reg;
+    Name => "PcieMbistStatusFail",
+    RegMem => "Reg",
+    Address => "108", # Excel Formula: =calc_reg_address(C158,A158,G158, 1)
+    Description => "PCIe MBIST Status Fail Register",
+    Width => "10", # Excel Formula: =calc_reg_width(E161:E161,F161)
+    Type => "ReadOnly",
+    PcieBistDoneFailOut => { #Structure Type: RegField;
+      Name => "PcieBistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST failed",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F160,E161,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  PcieMbistStatusPass => { #Structure Type: Reg;
+    Name => "PcieMbistStatusPass",
+    RegMem => "Reg",
+    Address => "10C", # Excel Formula: =calc_reg_address(C160,A160,G160, 1)
+    Description => "PCIe MBIST Status Pass Register",
+    Width => "10", # Excel Formula: =calc_reg_width(E163:E163,F163)
+    Type => "ReadOnly",
+    PcieBistDonePassOut => { #Structure Type: RegField;
+      Name => "PcieBistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST passed",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F162,E163,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  ArcMbistStatusFail => { #Structure Type: Reg;
+    Name => "ArcMbistStatusFail",
+    RegMem => "Reg",
+    Address => "110", # Excel Formula: =calc_reg_address(C162,A162,G162, 1)
+    Description => "ARC MBIST Status Fail Register",
+    Width => "8", # Excel Formula: =calc_reg_width(E165:E165,F165)
+    Type => "ReadOnly",
+    ArcBistDoneFailOut => { #Structure Type: RegField;
+      Name => "ArcBistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST failed",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F164,E165,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  ArcMbistStatusPass => { #Structure Type: Reg;
+    Name => "ArcMbistStatusPass",
+    RegMem => "Reg",
+    Address => "114", # Excel Formula: =calc_reg_address(C164,A164,G164, 1)
+    Description => "ARC MBIST Status Pass Register",
+    Width => "8", # Excel Formula: =calc_reg_width(E167:E167,F167)
+    Type => "ReadOnly",
+    ArcBistDonePassOut => { #Structure Type: RegField;
+      Name => "ArcBistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST passed",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F166,E167,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  SbmMbistStatusFail => { #Structure Type: Reg;
+    Name => "SbmMbistStatusFail",
+    RegMem => "Reg",
+    Address => "118", # Excel Formula: =calc_reg_address(C166,A166,G166, 1)
+    Description => "Sbus Master MBIST Status Fail Register",
+    Width => "1", # Excel Formula: =calc_reg_width(E169:E169,F169)
+    Type => "ReadOnly",
+    SbmBistDoneFailOut => { #Structure Type: RegField;
+      Name => "SbmBistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST failed",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F168,E169,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  SbmMbistStatusPass => { #Structure Type: Reg;
+    Name => "SbmMbistStatusPass",
+    RegMem => "Reg",
+    Address => "11C", # Excel Formula: =calc_reg_address(C168,A168,G168, 1)
+    Description => "Sbus Master MBIST Status Pass Register",
+    Width => "1", # Excel Formula: =calc_reg_width(E171:E171,F171)
+    Type => "ReadOnly",
+    SbmBistDonePassOut => { #Structure Type: RegField;
+      Name => "SbmBistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST passed",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F170,E171,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  TapFsmStatusReg => { #Structure Type: Reg;
+    Name => "TapFsmStatusReg",
+    RegMem => "Reg",
+    Address => "120", # Excel Formula: =calc_reg_address(C170,A170,G170, 1)
+    Description => "Avago TAP FSM Status Register",
+    Width => "9", # Excel Formula: =calc_reg_width(E173:E173,F173)
+    Type => "ReadOnly",
+    TapFsmStatus => { #Structure Type: RegField;
+      Name => "TapFsmStatus",
+      RegMem => "RegField",
+      Description => "TAP FSM Stattus",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F172,E173,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  ObsrvMuxReg => { #Structure Type: Reg;
+    Name => "ObsrvMuxReg",
+    RegMem => "Reg",
+    Address => "124", # Excel Formula: =calc_reg_address(C172,A172,G172, 1)
+    Description => "Observation Mux Register",
+    Width => "8", # Excel Formula: =calc_reg_width(E175:E178,F178)
+    Type => "Config",
+    IfgClkObsrvMux => { #Structure Type: RegField;
+      Name => "IfgClkObsrvMux",
+      RegMem => "RegField",
+      Description => "IFG Clock Observation Mux",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F174,E175,TRUE)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    MisoSynceMux => { #Structure Type: RegField;
+      Name => "MisoSynceMux",
+      RegMem => "RegField",
+      Description => "MISO pad mux select between SPI MISO (0) and SyncE CSS clock (1)",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F175,E176)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    OutputCssClockDiv2 => { #Structure Type: RegField;
+      Name => "OutputCssClockDiv2",
+      RegMem => "RegField",
+      Description => "Controls if CSS clock output is a div2 or not",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F176,E177)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    OutputCssClockDrvStrength => { #Structure Type: RegField;
+      Name => "OutputCssClockDrvStrength",
+      RegMem => "RegField",
+      Description => "Controls the drive strengh of the CSS clock output",
+      Width => "2",
+      Position => "7:6", # Excel Formula: =calc_position(F177,E178)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  MemRepairReg => { #Structure Type: Reg;
+    Name => "MemRepairReg",
+    RegMem => "Reg",
+    Address => "128", # Excel Formula: =calc_reg_address(C174,A174,G174, 1)
+    Description => "Memory Repair Control Register",
+    Width => "5", # Excel Formula: =calc_reg_width(E180:E184,F184)
+    Type => "Config",
+    MemRepairAutoLoadEn => { #Structure Type: RegField;
+      Name => "MemRepairAutoLoadEn",
+      RegMem => "RegField",
+      Description => "Memory Repair AUTO_LOAD_ENABLE signal",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F179,E180,TRUE)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h1",
+    },
+    MemRepairCoreReiMode => { #Structure Type: RegField;
+      Name => "MemRepairCoreReiMode",
+      RegMem => "RegField",
+      Description => "Memory Repair CORE_REI_MODE signal",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F180,E181)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    MemRepairCoreReiRun => { #Structure Type: RegField;
+      Name => "MemRepairCoreReiRun",
+      RegMem => "RegField",
+      Description => "Memory Repair CORE_REI_RUN signal",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F181,E182)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    MemRepairCoreMemMasterRst => { #Structure Type: RegField;
+      Name => "MemRepairCoreMemMasterRst",
+      RegMem => "RegField",
+      Description => "Memory Repair CORE_MEMMASTER_RST signal",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F182,E183)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    MemRepairCoreMemRst => { #Structure Type: RegField;
+      Name => "MemRepairCoreMemRst",
+      RegMem => "RegField",
+      Description => "Memory Repair CORE_MEM_RST signal",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F183,E184)
+      Type => "Config",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  MemRepairStatusReg => { #Structure Type: Reg;
+    Name => "MemRepairStatusReg",
+    RegMem => "Reg",
+    Address => "12C", # Excel Formula: =calc_reg_address(C179,A179,G179, 1)
+    Description => "Memory Repair Status Register",
+    Width => "2", # Excel Formula: =calc_reg_width(E186:E187,F187)
+    Type => "ReadOnly",
+    MemRepairReiDonePass => { #Structure Type: RegField;
+      Name => "MemRepairReiDonePass",
+      RegMem => "RegField",
+      Description => "Memory Repair REI_DONE_PASS status",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F185,E186,TRUE)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+    MemRepairReiDoneFail => { #Structure Type: RegField;
+      Name => "MemRepairReiDoneFail",
+      RegMem => "RegField",
+      Description => "Memory Repair REI_DONE_FAIL status",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F186,E187)
+      Type => "Status",
+      UsedBy => "SBIF",
+      DefaultValue => "h0",
+    },
+  },
+  AccessEngineDataMem0 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 0; ArrayLocationInName: 20;
+    Name => "AccessEngineDataMem[16]",
+    RegMem => "Mem",
+    Address => "130", # Excel Formula: =calc_reg_address(C185,A185,G185, 1)
+    Description => "Access Engine Data Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E189:E189,M188,F189,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "0",
+    MemLogicalWidth => "32",
+    AccessEngineDataMemField0 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "AccessEngineDataMemField[n]",
+      RegMem => "MemField",
+      Description => "Data Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F188,E189,TRUE)
+    },
+  },
+  AccessEngineDataMem1 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 1; ArrayLocationInName: 20;
+    Name => "AccessEngineDataMem[16]",
+    RegMem => "Mem",
+    Address => "530",
+    Description => "Access Engine Data Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E189:E189,M188,F189,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "1",
+    MemLogicalWidth => "32",
+    AccessEngineDataMemField1 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 1; ArrayLocationInName: 25;
+      Name => "AccessEngineDataMemField[n]",
+      RegMem => "MemField",
+      Description => "Data Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F188,E189,TRUE)
+    },
+  },
+  AccessEngineDataMem2 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 2; ArrayLocationInName: 20;
+    Name => "AccessEngineDataMem[16]",
+    RegMem => "Mem",
+    Address => "930",
+    Description => "Access Engine Data Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E189:E189,M188,F189,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "2",
+    MemLogicalWidth => "32",
+    AccessEngineDataMemField2 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 2; ArrayLocationInName: 25;
+      Name => "AccessEngineDataMemField[n]",
+      RegMem => "MemField",
+      Description => "Data Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F188,E189,TRUE)
+    },
+  },
+  AccessEngineDataMem3 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 3; ArrayLocationInName: 20;
+    Name => "AccessEngineDataMem[16]",
+    RegMem => "Mem",
+    Address => "D30",
+    Description => "Access Engine Data Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E189:E189,M188,F189,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "3",
+    MemLogicalWidth => "32",
+    AccessEngineDataMemField3 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 3; ArrayLocationInName: 25;
+      Name => "AccessEngineDataMemField[n]",
+      RegMem => "MemField",
+      Description => "Data Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F188,E189,TRUE)
+    },
+  },
+  AccessEngineDataMem4 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 4; ArrayLocationInName: 20;
+    Name => "AccessEngineDataMem[16]",
+    RegMem => "Mem",
+    Address => "1130",
+    Description => "Access Engine Data Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E189:E189,M188,F189,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "4",
+    MemLogicalWidth => "32",
+    AccessEngineDataMemField4 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 4; ArrayLocationInName: 25;
+      Name => "AccessEngineDataMemField[n]",
+      RegMem => "MemField",
+      Description => "Data Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F188,E189,TRUE)
+    },
+  },
+  AccessEngineDataMem5 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 5; ArrayLocationInName: 20;
+    Name => "AccessEngineDataMem[16]",
+    RegMem => "Mem",
+    Address => "1530",
+    Description => "Access Engine Data Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E189:E189,M188,F189,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "5",
+    MemLogicalWidth => "32",
+    AccessEngineDataMemField5 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 5; ArrayLocationInName: 25;
+      Name => "AccessEngineDataMemField[n]",
+      RegMem => "MemField",
+      Description => "Data Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F188,E189,TRUE)
+    },
+  },
+  AccessEngineDataMem6 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 6; ArrayLocationInName: 20;
+    Name => "AccessEngineDataMem[16]",
+    RegMem => "Mem",
+    Address => "1930",
+    Description => "Access Engine Data Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E189:E189,M188,F189,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "6",
+    MemLogicalWidth => "32",
+    AccessEngineDataMemField6 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 6; ArrayLocationInName: 25;
+      Name => "AccessEngineDataMemField[n]",
+      RegMem => "MemField",
+      Description => "Data Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F188,E189,TRUE)
+    },
+  },
+  AccessEngineDataMem7 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 7; ArrayLocationInName: 20;
+    Name => "AccessEngineDataMem[16]",
+    RegMem => "Mem",
+    Address => "1D30",
+    Description => "Access Engine Data Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E189:E189,M188,F189,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "7",
+    MemLogicalWidth => "32",
+    AccessEngineDataMemField7 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 7; ArrayLocationInName: 25;
+      Name => "AccessEngineDataMemField[n]",
+      RegMem => "MemField",
+      Description => "Data Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F188,E189,TRUE)
+    },
+  },
+  AccessEngineDataMem8 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 8; ArrayLocationInName: 20;
+    Name => "AccessEngineDataMem[16]",
+    RegMem => "Mem",
+    Address => "2130",
+    Description => "Access Engine Data Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E189:E189,M188,F189,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "8",
+    MemLogicalWidth => "32",
+    AccessEngineDataMemField8 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 8; ArrayLocationInName: 25;
+      Name => "AccessEngineDataMemField[n]",
+      RegMem => "MemField",
+      Description => "Data Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F188,E189,TRUE)
+    },
+  },
+  AccessEngineDataMem9 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 9; ArrayLocationInName: 20;
+    Name => "AccessEngineDataMem[16]",
+    RegMem => "Mem",
+    Address => "2530",
+    Description => "Access Engine Data Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E189:E189,M188,F189,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "9",
+    MemLogicalWidth => "32",
+    AccessEngineDataMemField9 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 9; ArrayLocationInName: 25;
+      Name => "AccessEngineDataMemField[n]",
+      RegMem => "MemField",
+      Description => "Data Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F188,E189,TRUE)
+    },
+  },
+  AccessEngineDataMem10 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 10; ArrayLocationInName: 20;
+    Name => "AccessEngineDataMem[16]",
+    RegMem => "Mem",
+    Address => "2930",
+    Description => "Access Engine Data Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E189:E189,M188,F189,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "10",
+    MemLogicalWidth => "32",
+    AccessEngineDataMemField10 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 10; ArrayLocationInName: 25;
+      Name => "AccessEngineDataMemField[n]",
+      RegMem => "MemField",
+      Description => "Data Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F188,E189,TRUE)
+    },
+  },
+  AccessEngineDataMem11 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 11; ArrayLocationInName: 20;
+    Name => "AccessEngineDataMem[16]",
+    RegMem => "Mem",
+    Address => "2D30",
+    Description => "Access Engine Data Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E189:E189,M188,F189,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "11",
+    MemLogicalWidth => "32",
+    AccessEngineDataMemField11 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 11; ArrayLocationInName: 25;
+      Name => "AccessEngineDataMemField[n]",
+      RegMem => "MemField",
+      Description => "Data Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F188,E189,TRUE)
+    },
+  },
+  AccessEngineDataMem12 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 12; ArrayLocationInName: 20;
+    Name => "AccessEngineDataMem[16]",
+    RegMem => "Mem",
+    Address => "3130",
+    Description => "Access Engine Data Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E189:E189,M188,F189,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "12",
+    MemLogicalWidth => "32",
+    AccessEngineDataMemField12 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 12; ArrayLocationInName: 25;
+      Name => "AccessEngineDataMemField[n]",
+      RegMem => "MemField",
+      Description => "Data Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F188,E189,TRUE)
+    },
+  },
+  AccessEngineDataMem13 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 13; ArrayLocationInName: 20;
+    Name => "AccessEngineDataMem[16]",
+    RegMem => "Mem",
+    Address => "3530",
+    Description => "Access Engine Data Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E189:E189,M188,F189,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "13",
+    MemLogicalWidth => "32",
+    AccessEngineDataMemField13 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 13; ArrayLocationInName: 25;
+      Name => "AccessEngineDataMemField[n]",
+      RegMem => "MemField",
+      Description => "Data Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F188,E189,TRUE)
+    },
+  },
+  AccessEngineDataMem14 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 14; ArrayLocationInName: 20;
+    Name => "AccessEngineDataMem[16]",
+    RegMem => "Mem",
+    Address => "3930",
+    Description => "Access Engine Data Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E189:E189,M188,F189,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "14",
+    MemLogicalWidth => "32",
+    AccessEngineDataMemField14 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 14; ArrayLocationInName: 25;
+      Name => "AccessEngineDataMemField[n]",
+      RegMem => "MemField",
+      Description => "Data Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F188,E189,TRUE)
+    },
+  },
+  AccessEngineDataMem15 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 15; ArrayLocationInName: 20;
+    Name => "AccessEngineDataMem[16]",
+    RegMem => "Mem",
+    Address => "3D30",
+    Description => "Access Engine Data Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E189:E189,M188,F189,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "15",
+    MemLogicalWidth => "32",
+    AccessEngineDataMemField15 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 15; ArrayLocationInName: 25;
+      Name => "AccessEngineDataMemField[n]",
+      RegMem => "MemField",
+      Description => "Data Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F188,E189,TRUE)
+    },
+  },
+  AccessEngineCommandMem0 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 0; ArrayLocationInName: 23;
+    Name => "AccessEngineCommandMem[16]",
+    RegMem => "Mem",
+    Address => "4130", # Excel Formula: =calc_reg_address(C188,A188,G185, K188)
+    Description => "Access Engine Command Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E191:E191,M190,F191,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "0",
+    MemLogicalWidth => "32",
+    AccessEngineCommandMemField0 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 0; ArrayLocationInName: 28;
+      Name => "AccessEngineCommandMemField[n]",
+      RegMem => "MemField",
+      Description => "Command Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F190,E191,TRUE)
+    },
+  },
+  AccessEngineCommandMem1 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 1; ArrayLocationInName: 23;
+    Name => "AccessEngineCommandMem[16]",
+    RegMem => "Mem",
+    Address => "4530",
+    Description => "Access Engine Command Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E191:E191,M190,F191,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "1",
+    MemLogicalWidth => "32",
+    AccessEngineCommandMemField1 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 1; ArrayLocationInName: 28;
+      Name => "AccessEngineCommandMemField[n]",
+      RegMem => "MemField",
+      Description => "Command Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F190,E191,TRUE)
+    },
+  },
+  AccessEngineCommandMem2 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 2; ArrayLocationInName: 23;
+    Name => "AccessEngineCommandMem[16]",
+    RegMem => "Mem",
+    Address => "4930",
+    Description => "Access Engine Command Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E191:E191,M190,F191,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "2",
+    MemLogicalWidth => "32",
+    AccessEngineCommandMemField2 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 2; ArrayLocationInName: 28;
+      Name => "AccessEngineCommandMemField[n]",
+      RegMem => "MemField",
+      Description => "Command Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F190,E191,TRUE)
+    },
+  },
+  AccessEngineCommandMem3 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 3; ArrayLocationInName: 23;
+    Name => "AccessEngineCommandMem[16]",
+    RegMem => "Mem",
+    Address => "4D30",
+    Description => "Access Engine Command Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E191:E191,M190,F191,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "3",
+    MemLogicalWidth => "32",
+    AccessEngineCommandMemField3 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 3; ArrayLocationInName: 28;
+      Name => "AccessEngineCommandMemField[n]",
+      RegMem => "MemField",
+      Description => "Command Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F190,E191,TRUE)
+    },
+  },
+  AccessEngineCommandMem4 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 4; ArrayLocationInName: 23;
+    Name => "AccessEngineCommandMem[16]",
+    RegMem => "Mem",
+    Address => "5130",
+    Description => "Access Engine Command Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E191:E191,M190,F191,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "4",
+    MemLogicalWidth => "32",
+    AccessEngineCommandMemField4 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 4; ArrayLocationInName: 28;
+      Name => "AccessEngineCommandMemField[n]",
+      RegMem => "MemField",
+      Description => "Command Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F190,E191,TRUE)
+    },
+  },
+  AccessEngineCommandMem5 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 5; ArrayLocationInName: 23;
+    Name => "AccessEngineCommandMem[16]",
+    RegMem => "Mem",
+    Address => "5530",
+    Description => "Access Engine Command Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E191:E191,M190,F191,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "5",
+    MemLogicalWidth => "32",
+    AccessEngineCommandMemField5 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 5; ArrayLocationInName: 28;
+      Name => "AccessEngineCommandMemField[n]",
+      RegMem => "MemField",
+      Description => "Command Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F190,E191,TRUE)
+    },
+  },
+  AccessEngineCommandMem6 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 6; ArrayLocationInName: 23;
+    Name => "AccessEngineCommandMem[16]",
+    RegMem => "Mem",
+    Address => "5930",
+    Description => "Access Engine Command Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E191:E191,M190,F191,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "6",
+    MemLogicalWidth => "32",
+    AccessEngineCommandMemField6 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 6; ArrayLocationInName: 28;
+      Name => "AccessEngineCommandMemField[n]",
+      RegMem => "MemField",
+      Description => "Command Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F190,E191,TRUE)
+    },
+  },
+  AccessEngineCommandMem7 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 7; ArrayLocationInName: 23;
+    Name => "AccessEngineCommandMem[16]",
+    RegMem => "Mem",
+    Address => "5D30",
+    Description => "Access Engine Command Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E191:E191,M190,F191,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "7",
+    MemLogicalWidth => "32",
+    AccessEngineCommandMemField7 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 7; ArrayLocationInName: 28;
+      Name => "AccessEngineCommandMemField[n]",
+      RegMem => "MemField",
+      Description => "Command Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F190,E191,TRUE)
+    },
+  },
+  AccessEngineCommandMem8 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 8; ArrayLocationInName: 23;
+    Name => "AccessEngineCommandMem[16]",
+    RegMem => "Mem",
+    Address => "6130",
+    Description => "Access Engine Command Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E191:E191,M190,F191,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "8",
+    MemLogicalWidth => "32",
+    AccessEngineCommandMemField8 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 8; ArrayLocationInName: 28;
+      Name => "AccessEngineCommandMemField[n]",
+      RegMem => "MemField",
+      Description => "Command Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F190,E191,TRUE)
+    },
+  },
+  AccessEngineCommandMem9 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 9; ArrayLocationInName: 23;
+    Name => "AccessEngineCommandMem[16]",
+    RegMem => "Mem",
+    Address => "6530",
+    Description => "Access Engine Command Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E191:E191,M190,F191,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "9",
+    MemLogicalWidth => "32",
+    AccessEngineCommandMemField9 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 9; ArrayLocationInName: 28;
+      Name => "AccessEngineCommandMemField[n]",
+      RegMem => "MemField",
+      Description => "Command Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F190,E191,TRUE)
+    },
+  },
+  AccessEngineCommandMem10 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 10; ArrayLocationInName: 23;
+    Name => "AccessEngineCommandMem[16]",
+    RegMem => "Mem",
+    Address => "6930",
+    Description => "Access Engine Command Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E191:E191,M190,F191,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "10",
+    MemLogicalWidth => "32",
+    AccessEngineCommandMemField10 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 10; ArrayLocationInName: 28;
+      Name => "AccessEngineCommandMemField[n]",
+      RegMem => "MemField",
+      Description => "Command Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F190,E191,TRUE)
+    },
+  },
+  AccessEngineCommandMem11 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 11; ArrayLocationInName: 23;
+    Name => "AccessEngineCommandMem[16]",
+    RegMem => "Mem",
+    Address => "6D30",
+    Description => "Access Engine Command Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E191:E191,M190,F191,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "11",
+    MemLogicalWidth => "32",
+    AccessEngineCommandMemField11 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 11; ArrayLocationInName: 28;
+      Name => "AccessEngineCommandMemField[n]",
+      RegMem => "MemField",
+      Description => "Command Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F190,E191,TRUE)
+    },
+  },
+  AccessEngineCommandMem12 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 12; ArrayLocationInName: 23;
+    Name => "AccessEngineCommandMem[16]",
+    RegMem => "Mem",
+    Address => "7130",
+    Description => "Access Engine Command Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E191:E191,M190,F191,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "12",
+    MemLogicalWidth => "32",
+    AccessEngineCommandMemField12 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 12; ArrayLocationInName: 28;
+      Name => "AccessEngineCommandMemField[n]",
+      RegMem => "MemField",
+      Description => "Command Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F190,E191,TRUE)
+    },
+  },
+  AccessEngineCommandMem13 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 13; ArrayLocationInName: 23;
+    Name => "AccessEngineCommandMem[16]",
+    RegMem => "Mem",
+    Address => "7530",
+    Description => "Access Engine Command Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E191:E191,M190,F191,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "13",
+    MemLogicalWidth => "32",
+    AccessEngineCommandMemField13 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 13; ArrayLocationInName: 28;
+      Name => "AccessEngineCommandMemField[n]",
+      RegMem => "MemField",
+      Description => "Command Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F190,E191,TRUE)
+    },
+  },
+  AccessEngineCommandMem14 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 14; ArrayLocationInName: 23;
+    Name => "AccessEngineCommandMem[16]",
+    RegMem => "Mem",
+    Address => "7930",
+    Description => "Access Engine Command Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E191:E191,M190,F191,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "14",
+    MemLogicalWidth => "32",
+    AccessEngineCommandMemField14 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 14; ArrayLocationInName: 28;
+      Name => "AccessEngineCommandMemField[n]",
+      RegMem => "MemField",
+      Description => "Command Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F190,E191,TRUE)
+    },
+  },
+  AccessEngineCommandMem15 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 15; ArrayLocationInName: 23;
+    Name => "AccessEngineCommandMem[16]",
+    RegMem => "Mem",
+    Address => "7D30",
+    Description => "Access Engine Command Memory [n]",
+    Width => "39", # Excel Formula: =calc_mem_width(E191:E191,M190,F191,-1)
+    Type => "Dynamic",
+    UsedBy => "SBIF",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EvenOddBanks",
+    ArrayLength => "16",
+    ArrayIndex => "15",
+    MemLogicalWidth => "32",
+    AccessEngineCommandMemField15 => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 15; ArrayLocationInName: 28;
+      Name => "AccessEngineCommandMemField[n]",
+      RegMem => "MemField",
+      Description => "Command Memory field",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F190,E191,TRUE)
+    },
+  },
+};

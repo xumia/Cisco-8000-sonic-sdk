@@ -1,0 +1,8 @@
+12-05-2021 18:24:09.560 - APP        [PROGRESS] NPLC version number: 1.76.2 (0 seconds) (line=> /cad/leaba/npsuite/releases/npsuite-1.76.2-simulator/bin/nplc.py:348)
+12-05-2021 18:24:09.561 - APP        [PROGRESS] NPLC build date and time: 2021-05-10 14:25:52  $DIFF_IGNORE$ (0 seconds) (line=> /cad/leaba/npsuite/releases/npsuite-1.76.2-simulator/bin/nplc.py:349)
+12-05-2021 18:24:09.561 - APP        [PROGRESS] NPLC version was built on: csi-hw-1252.cisco.com (0 seconds) (line=> /cad/leaba/npsuite/releases/npsuite-1.76.2-simulator/bin/nplc.py:350)
+12-05-2021 18:24:09.571 - APP        [PROGRESS] NPLC started at 2021-05-12 18:24:09 on devsrv15.leaba.local  $DIFF_IGNORE$ (0 seconds) (line=> /cad/leaba/npsuite/releases/npsuite-1.76.2-simulator/bin/nplc.py:363)
+12-05-2021 18:24:09.571 - APP        [PROGRESS] Main NPL program is /local/jenkins/workspace/sdk-release@2/npl/cisco_router/main.npl (0 seconds) (line=> /cad/leaba/npsuite/releases/npsuite-1.76.2-simulator/bin/nplc.py:364)
+12-05-2021 18:24:09.572 - APP        [PROGRESS] Directory setup complete (0 seconds) (line=> /cad/leaba/npsuite/releases/npsuite-1.76.2-simulator/bin/nplc.py:366)
+12-05-2021 18:24:09.665 - APP        [INFO    ] Overriding leaba defined files with files located at: /local/jenkins/workspace/sdk-release@2/devices/pacific/leaba_defined (line=> /cad/leaba/npsuite/releases/npsuite-1.76.2-simulator/bin/nplc.py:394)
+12-05-2021 18:24:09.665 - APP        [PROGRESS] Parsing begins (0 seconds) (line=> /cad/leaba/npsuite/releases/npsuite-1.76.2-simulator/bin/nplc.py:414)

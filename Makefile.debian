@@ -1,0 +1,125 @@
+# BEGIN_LEGAL
+#
+# Copyright (c) 2016-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+# Set up some variables
+PID := pid.$(shell $(UNLOGGED) echo $$$$)
+SYSTEM_DATE := $(shell $(UNLOGGED) date -R)
+SYSTEM_TIME := `date +'%y.%m.%d-%H.%M.%S'`
+USERID := $(shell $(UNLOGGED) id -un)
+
+# DEBIAN_BUILD flag is used to bypass the need
+# for NPSUITE path to be provided. Part of the
+# debian build is to download the correct NPSUITE
+DEBIAN_BUILD ?= 1
+# Used to create unique image names per job in Jenkins environment
+IMAGE_NAME_EXT ?=
+
+# FLAG to indicated that this is a customer tar-ball
+DEBIAN_CUSTOMER ?= 0
+
+# Determine which project to build debians
+DEBIAN_PROJECT ?= 'pacific gibraltar'
+
+# Allow user to set number of jobs
+JOBS := $(JOBS)
+SDK_NAME := $(shell $(UNLOGGED) basename ${PWD})
+
+DOCKER_RUN := docker run \
+	--rm \
+	--privileged \
+	-v "$${PWD}/../:/deb_build" \
+	-w /deb_build/${SDK_NAME} \
+	-h debian \
+	-i \
+	-e http_proxy=$(http_proxy) \
+	-e https_proxy=$(https_proxy) \
+	-e no_proxy=$(no_proxy) \
+	-e TERM=$${TERM} \
+	-e NPSUITE_VER=$(NPSUITE_VER) \
+	-e DEBIAN_BUILD=$(DEBIAN_BUILD) \
+	-e JOBS=$(JOBS) \
+	-e NPSUITE=$(NPSUITE_ROOT) \
+	-e DEBIAN_CUSTOMER=$(DEBIAN_CUSTOMER) \
+	-e DEBIAN_PROJECT=$(DEBIAN_PROJECT)
+
+.PHONY: stretch buster
+stretch:
+	$(MAKE) SILICON-ONE_IMAGE=silicon_one-slave-stretch$(IMAGE_NAME_EXT) DEBIAN_CODENAME=stretch deb-build
+
+buster:
+	$(MAKE) SILICON-ONE_IMAGE=silicon_one-slave-buster$(IMAGE_NAME_EXT) DEBIAN_CODENAME=buster deb-build
+
+
+include docker/Makefile.inc
+
+.PHONY: deb-build
+deb-build: .stamp $(SILICON-ONE_SLAVE) debian/copyright debian/changelog debian/control sai/res/release_info debian/sdk_ver.mk
+	script -qfec "time $(DOCKER_RUN) $(SILICON-ONE_IMAGE)-$(USER):latest bash -c \
+	'dpkg-buildpackage -b -us -uc --changes-option=-m\"${USERID} <${USERID}@cisco.com>\"'" \
+	dpkg-buildpackage.log
+
+.PHONY: stretch.shell buster.shell _shell
+stretch.shell:
+	@$(MAKE) SILICON-ONE_IMAGE=silicon_one-slave-stretch$(IMAGE_NAME_EXT) DEBIAN_CODENAME=stretch _shell
+
+buster.shell:
+	@$(MAKE) SILICON-ONE_IMAGE=silicon_one-slave-buster$(IMAGE_NAME_EXT) DEBIAN_CODENAME=buster _shell
+
+_shell: .extract.stamp $(SILICON-ONE_SLAVE)
+	$(DOCKER_RUN) -t $(SILICON-ONE_IMAGE)-$(USER):latest bash
+
+.stamp: .patch.stamp
+	touch $@
+
+.extract.stamp: $(SILICON-ONE_SLAVE)
+	(cd debian/patches && cp -f series.$(DEBIAN_CODENAME) series)
+	touch $@
+
+.patch.stamp: .extract.stamp
+	$(DOCKER_RUN) $(SILICON-ONE_IMAGE)-$(USER):latest bash -c \
+	'export QUILT_PATCHES=debian/patches \
+	&& quilt push -a || true'
+	touch $@
+
+sai/res/release_info:
+	-rm -f $@
+	{ echo sdk-version := $(VERSION); \
+	echo npsuite-version := $(NPSUITE_VER); \
+	} > $@
+
+debian/sdk_ver.mk: Makefile
+	-rm -f $@
+	{ echo SAI_VERSION := $(sai-ver); \
+	} > $@
+
+tmp/gen/template.yaml:
+	rm -f $@ $@.$(PID) && \
+	mkdir -p $(@D) && \
+	(echo SDK_VER: \"$(subst _,-,$(VERSION_PREFIX)$(VERSION))\" && \
+	echo SYSTEM_DATE: \"$(SYSTEM_DATE)\" && \
+	echo SYSTEM_TIME: \"$(SYSTEM_TIME)\" && \
+	echo USERID: \"$(USERID)\" && \
+	echo PROJECT:  \"$(DEBIAN_PROJECT)\" && \
+	echo TIMESTAMP: \"$$(date)\") > $@.$(PID) && \
+	mv $@.$(PID) $@
+
+debian/copyright debian/changelog debian/control: debian/%: Makefile debian/%.template tmp/gen/template.yaml
+	rm -f $@ $@.$(PID) && \
+	j2 $@.template tmp/gen/template.yaml > $@.$(PID) && \
+	mv $@.$(PID) $@

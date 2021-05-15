@@ -1,0 +1,3058 @@
+$block{cdb_cache} = {
+  Defines_db => "Z:\\Development\\trunk\\Moriah\\ASIC\\design\\NPU\\CDB\\central_tcam\\ctm_defines.v",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "1",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_1bErrInterrupt",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_2bErrInterrupt",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks ParityErrInterrupt",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "10",
+    Type => "Config",
+    splitter_cache_age_memEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "splitter_cache_age_memEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    splitter_cache_activity_memEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "splitter_cache_activity_memEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    splitter_cache_tcam_memEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "splitter_cache_tcam_memEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    lpm_cache_age_memEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "lpm_cache_age_memEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    lpm_cache_activity_memEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "lpm_cache_activity_memEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    lpm_cache_tcam_memEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "lpm_cache_tcam_memEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    splitter_cache_msb_emVerifierEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "splitter_cache_msb_emVerifierEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    splitter_cache_lsb_emVerifierEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "splitter_cache_lsb_emVerifierEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    lpm_cache_msb_emVerifierEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "lpm_cache_msb_emVerifierEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    lpm_cache_lsb_emVerifierEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "lpm_cache_lsb_emVerifierEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "10",
+    Type => "Config",
+    splitter_cache_age_memEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "splitter_cache_age_memEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    splitter_cache_activity_memEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "splitter_cache_activity_memEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    splitter_cache_tcam_memEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "splitter_cache_tcam_memEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    lpm_cache_age_memEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "lpm_cache_age_memEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    lpm_cache_activity_memEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "lpm_cache_activity_memEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    lpm_cache_tcam_memEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "lpm_cache_tcam_memEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    splitter_cache_msb_emVerifierEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "splitter_cache_msb_emVerifierEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    splitter_cache_lsb_emVerifierEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "splitter_cache_lsb_emVerifierEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    lpm_cache_msb_emVerifierEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "lpm_cache_msb_emVerifierEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    lpm_cache_lsb_emVerifierEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "lpm_cache_lsb_emVerifierEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  ParityErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "ParityErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "5",
+    Description => "Parity Error Interrupt Mask Register",
+    Width => "2",
+    Type => "Config",
+    splitter_cache_tcamParityErrInterruptMask => { #Structure Type: RegField;
+      Name => "splitter_cache_tcamParityErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    lpm_cache_tcamParityErrInterruptMask => { #Structure Type: RegField;
+      Name => "lpm_cache_tcamParityErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "10",
+    Type => "Config",
+    splitter_cache_age_memEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "splitter_cache_age_memEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    splitter_cache_activity_memEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "splitter_cache_activity_memEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    splitter_cache_tcam_memEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "splitter_cache_tcam_memEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    lpm_cache_age_memEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "lpm_cache_age_memEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    lpm_cache_activity_memEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "lpm_cache_activity_memEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    lpm_cache_tcam_memEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "lpm_cache_tcam_memEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    splitter_cache_msb_emVerifierEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "splitter_cache_msb_emVerifierEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    splitter_cache_lsb_emVerifierEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "splitter_cache_lsb_emVerifierEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    lpm_cache_msb_emVerifierEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "lpm_cache_msb_emVerifierEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    lpm_cache_lsb_emVerifierEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "lpm_cache_lsb_emVerifierEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "10",
+    Type => "Config",
+    splitter_cache_age_memEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "splitter_cache_age_memEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    splitter_cache_activity_memEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "splitter_cache_activity_memEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    splitter_cache_tcam_memEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "splitter_cache_tcam_memEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    lpm_cache_age_memEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "lpm_cache_age_memEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    lpm_cache_activity_memEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "lpm_cache_activity_memEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    lpm_cache_tcam_memEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "lpm_cache_tcam_memEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    splitter_cache_msb_emVerifierEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "splitter_cache_msb_emVerifierEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    splitter_cache_lsb_emVerifierEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "splitter_cache_lsb_emVerifierEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    lpm_cache_msb_emVerifierEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "lpm_cache_msb_emVerifierEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    lpm_cache_lsb_emVerifierEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "lpm_cache_lsb_emVerifierEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  ParityErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "ParityErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "32",
+    Description => "Parity Error Initiator Register",
+    Width => "2",
+    Type => "Config",
+    splitter_cache_tcamParityErrInitiate => { #Structure Type: RegField;
+      Name => "splitter_cache_tcamParityErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    lpm_cache_tcamParityErrInitiate => { #Structure Type: RegField;
+      Name => "lpm_cache_tcamParityErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectErrStatus",
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "12",
+    Type => "ReadOnly",
+    splitter_cache_age_memErrInt => { #Structure Type: RegField;
+      Name => "splitter_cache_age_memErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    splitter_cache_activity_memErrInt => { #Structure Type: RegField;
+      Name => "splitter_cache_activity_memErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "1",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    splitter_cache_tcam_memErrInt => { #Structure Type: RegField;
+      Name => "splitter_cache_tcam_memErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "2",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    splitter_cache_tcamErrInt => { #Structure Type: RegField;
+      Name => "splitter_cache_tcamErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "3",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    lpm_cache_age_memErrInt => { #Structure Type: RegField;
+      Name => "lpm_cache_age_memErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "4",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    lpm_cache_activity_memErrInt => { #Structure Type: RegField;
+      Name => "lpm_cache_activity_memErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "5",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    lpm_cache_tcam_memErrInt => { #Structure Type: RegField;
+      Name => "lpm_cache_tcam_memErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "6",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    lpm_cache_tcamErrInt => { #Structure Type: RegField;
+      Name => "lpm_cache_tcamErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "7",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    splitter_cache_msb_emVerifierErrInt => { #Structure Type: RegField;
+      Name => "splitter_cache_msb_emVerifierErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "8",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    splitter_cache_lsb_emVerifierErrInt => { #Structure Type: RegField;
+      Name => "splitter_cache_lsb_emVerifierErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "9",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    lpm_cache_msb_emVerifierErrInt => { #Structure Type: RegField;
+      Name => "lpm_cache_msb_emVerifierErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "10",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    lpm_cache_lsb_emVerifierErrInt => { #Structure Type: RegField;
+      Name => "lpm_cache_lsb_emVerifierErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "11",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    Name => "SelectedSerErrorInfo",
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "14",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      Name => "MemErrAddr",
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "12",
+      Position => "11:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      Name => "MemErrType",
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "13:12",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SerErrorDebugConfiguration",
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "5",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      Name => "ErroneousMemorySelector",
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "4",
+      Position => "3:0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      Name => "ResetMemoryErrors",
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrDebug",
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_1bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrDebug",
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_2bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  ParityErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "ParityErrDebug",
+    RegMem => "Reg",
+    Address => "38",
+    Description => "Parity Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    ParityErrCounter => { #Structure Type: RegField;
+      Name => "ParityErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of Parity errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  MbistPassStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistPassStatus",
+    RegMem => "Reg",
+    Address => "39",
+    Description => "MBIST pass status",
+    Width => "46",
+    Type => "ReadOnly",
+    BistDonePassOut => { #Structure Type: RegField;
+      Name => "BistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST passed",
+      Width => "46",
+      Position => "45:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+  MbistFailStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistFailStatus",
+    RegMem => "Reg",
+    Address => "3A",
+    Description => "MBIST fail status",
+    Width => "46",
+    Type => "ReadOnly",
+    BistDoneFailOut => { #Structure Type: RegField;
+      Name => "BistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST failed",
+      Width => "46",
+      Position => "45:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+  TcamBistStatus => { #Structure Type: Reg; Skip Register;
+    Name => "TcamBistStatus",
+    RegMem => "Reg",
+    Address => "3B",
+    Description => "TCAM BIST pass fail status",
+    Width => "48",
+    Type => "ReadOnly",
+    TcamBistDonePassOut => { #Structure Type: RegField;
+      Name => "TcamBistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, TCAM BIST passed",
+      Width => "24",
+      Position => "23:0",
+      Type => "Status",
+      UsedBy => "TCAM",
+    },
+    TcamBistDoneFailOut => { #Structure Type: RegField;
+      Name => "TcamBistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, TCAM BIST failed",
+      Width => "24",
+      Position => "47:24",
+      Type => "Status",
+      UsedBy => "TCAM",
+    },
+  },
+  TcamScanPeriodCfg => { #Structure Type: Reg; Skip Register;
+    Name => "TcamScanPeriodCfg",
+    RegMem => "Reg",
+    Address => "3C",
+    Description => "Configures period of TCAM scan for SER, set 0 to disable",
+    Width => "32",
+    Type => "Config",
+    TcamScanPeriod => { #Structure Type: RegField;
+      Name => "TcamScanPeriod",
+      RegMem => "RegField",
+      Description => "",
+      Width => "32",
+      Position => "31:0",
+      Type => "Config",
+      UsedBy => "TCAM",
+      DefaultValue => "d120000000",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DefaultValue => "b0",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "3", # Excel Formula: =calc_reg_width(E25:E27,F27)
+    Type => "Config",
+    CoreBistRprMode => { #Structure Type: RegField;
+      Name => "CoreBistRprMode",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistRun => { #Structure Type: RegField;
+      Name => "CoreBistRun",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistPtrnFill => { #Structure Type: RegField;
+      Name => "CoreBistPtrnFill",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E29:E29,F29)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C28,A28,G28)
+    Description => "Power Down Configuration for the block",
+    Width => "128", # Excel Formula: =calc_reg_width(E31:E31,F31)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C30,A30,G30)
+    Width => "39", # Excel Formula: =calc_reg_width(E33:E37,F37)
+    Type => "Config",
+    PmroExecute => { #Structure Type: RegField;
+      Name => "PmroExecute",
+      RegMem => "RegField",
+      Description => "0->1: execute pmro command.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F32,E33,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroCmd => { #Structure Type: RegField;
+      Name => "PmroCmd",
+      RegMem => "RegField",
+      Description => "Pmro command to execute:
+0: reset.
+1: write.
+2: read.
+3: invalid.",
+      Width => "2",
+      Position => "2:1", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroSbusReset => { #Structure Type: RegField;
+      Name => "PmroSbusReset",
+      RegMem => "RegField",
+      Description => "Reset pmro sbus chain. Need to set to 0 before starting access to pmro registers.",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroAddr => { #Structure Type: RegField;
+      Name => "PmroAddr",
+      RegMem => "RegField",
+      Description => "PMRO register address:
+0 - control register, 8b, def: 0x0.
+1 - SVT Configuration Register, 16b, def: 0xFFFF.
+2 - LVT Configuration Register, 16b, def: 0xFFFF.
+3 - ULVT Configuration Register, 16b, def: 0xFFFF.
+4 - Interconnect Configuration Register, 16b, def: 0xFFFF.
+5 - Reference Clock Counter Register, 24b, def: 0xFFF000.
+6 - Oscillator Counter Register, 24b, def: 0x000000.
+7 - SBus ID register, read as 0x0B.
+Set to '0' on reset command.",
+      Width => "3",
+      Position => "6:4", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroData => { #Structure Type: RegField;
+      Name => "PmroData",
+      RegMem => "RegField",
+      Description => "PMRO data, set to 0x0 on reset and read command.",
+      Width => "32",
+      Position => "38:7", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C32,A32,G32)
+    Width => "34", # Excel Formula: =calc_reg_width(E39:E41,F41)
+    Type => "ReadOnly",
+    PmroRdata => { #Structure Type: RegField;
+      Name => "PmroRdata",
+      RegMem => "RegField",
+      Description => "Read data from pmro. Valid when PmroFinish=1 and PmroFailed=0.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F38,E39,TRUE)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFailed => { #Structure Type: RegField;
+      Name => "PmroFailed",
+      RegMem => "RegField",
+      Description => "Pmro command failed. Valid only when PmroFinish=1.",
+      Width => "1",
+      Position => "32", # Excel Formula: =calc_position(F39,E40)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFinish => { #Structure Type: RegField;
+      Name => "PmroFinish",
+      RegMem => "RegField",
+      Description => "Pmro command finished.",
+      Width => "1",
+      Position => "33", # Excel Formula: =calc_position(F40,E41)
+      Type => "Event",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C38,A38,G38)
+    Description => "aaa",
+    Width => "11", # Excel Formula: =calc_reg_width(E43:E44,F44)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F42,E43,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C42,A42,G42)
+    Description => "aaa",
+    Width => "32", # Excel Formula: =calc_reg_width(E46:E46,F46)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C45,A45,G45)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E48:E48,F48)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F47,E48,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  splitter_cache_disable_cache_tcam_register => { #Structure Type: Reg;
+    Name => "splitter_cache_disable_cache_tcam_register",
+    RegMem => "Reg",
+    Address => "100",
+    Description => "rxpp lookups in the cache tcam will always result in a miss when this bit is set ",
+    Width => "1", # Excel Formula: =calc_reg_width(E8:E8,F8)
+    Type => "Config",
+    DocName => "SplitterCacheDisableCacheTcamRegister",
+    splitter_cache_disable_cache_tcam => { #Structure Type: RegField;
+      Name => "splitter_cache_disable_cache_tcam",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache",
+      DefaultValue => "h0",
+      DocName => "SplitterCacheDisableCacheTcam",
+    },
+  },
+  splitter_cache_disable_cache_em_register => { #Structure Type: Reg;
+    Name => "splitter_cache_disable_cache_em_register",
+    RegMem => "Reg",
+    Address => "101", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "rxpp lookups in the cache em will always result in a miss when this bit is set ",
+    Width => "1", # Excel Formula: =calc_reg_width(E10:E10,F10)
+    Type => "Config",
+    DocName => "SplitterCacheDisableCacheEmRegister",
+    splitter_cache_disable_cache_em => { #Structure Type: RegField;
+      Name => "splitter_cache_disable_cache_em",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache",
+      DefaultValue => "h0",
+      DocName => "SplitterCacheDisableCacheEm",
+    },
+  },
+  splitter_cache_insert_period_register => { #Structure Type: Reg;
+    Name => "splitter_cache_insert_period_register",
+    RegMem => "Reg",
+    Address => "102", # Excel Formula: =calc_reg_address(C9,A9,G9)
+    Description => "number of clocks the insert machine will stall between attempts to insert new data to cache.",
+    Width => "10", # Excel Formula: =calc_reg_width(E12:E12,F12)
+    Type => "Config",
+    DocName => "SplitterCacheInsertPeriodRegister",
+    splitter_cache_insert_period => { #Structure Type: RegField;
+      Name => "splitter_cache_insert_period",
+      RegMem => "RegField",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F11,E12,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache",
+      DefaultValue => "h5",
+      DocName => "SplitterCacheInsertPeriod",
+    },
+  },
+  splitter_cache_scan_period_register => { #Structure Type: Reg;
+    Name => "splitter_cache_scan_period_register",
+    RegMem => "Reg",
+    Address => "103", # Excel Formula: =calc_reg_address(C11,A11,G11)
+    Description => "number of clocks the scanner machine will stall between attempts todelete data from the cache.",
+    Width => "10", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "Config",
+    DocName => "SplitterCacheScanPeriodRegister",
+    splitter_cache_scan_period => { #Structure Type: RegField;
+      Name => "splitter_cache_scan_period",
+      RegMem => "RegField",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache",
+      DefaultValue => "h5",
+      DocName => "SplitterCacheScanPeriod",
+    },
+  },
+  splitter_cache_age_threshold_register => { #Structure Type: Reg;
+    Name => "splitter_cache_age_threshold_register",
+    RegMem => "Reg",
+    Address => "104", # Excel Formula: =calc_reg_address(C13,A13,G13)
+    Description => "entries with age older than this value will be removed by the scanner.",
+    Width => "2", # Excel Formula: =calc_reg_width(E16:E16,F16)
+    Type => "Config",
+    DocName => "SplitterCacheAgeThresholdRegister",
+    splitter_cache_age_threshold => { #Structure Type: RegField;
+      Name => "splitter_cache_age_threshold",
+      RegMem => "RegField",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache",
+      DefaultValue => "h2",
+      DocName => "SplitterCacheAgeThreshold",
+    },
+  },
+  splitter_cache_activity_threshold_register => { #Structure Type: Reg;
+    Name => "splitter_cache_activity_threshold_register",
+    RegMem => "Reg",
+    Address => "105", # Excel Formula: =calc_reg_address(C15,A15,G15)
+    Description => "entries with activity time stamp older than this value will be removed by the scanner.",
+    Width => "6", # Excel Formula: =calc_reg_width(E18:E18,F18)
+    Type => "Config",
+    DocName => "SplitterCacheActivityThresholdRegister",
+    splitter_cache_activity_threshold => { #Structure Type: RegField;
+      Name => "splitter_cache_activity_threshold",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F17,E18,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache",
+      DefaultValue => "h4",
+      DocName => "SplitterCacheActivityThreshold",
+    },
+  },
+  splitter_cache_age_offset_register => { #Structure Type: Reg;
+    Name => "splitter_cache_age_offset_register",
+    RegMem => "Reg",
+    Address => "106", # Excel Formula: =calc_reg_address(C17,A17,G17)
+    Description => "the age timestamp is driven from a 32bit register. This value determines the start point from which the age timestamp is taken.",
+    Width => "3", # Excel Formula: =calc_reg_width(E20:E20,F20)
+    Type => "Config",
+    DocName => "SplitterCacheAgeOffsetRegister",
+    splitter_cache_age_offset => { #Structure Type: RegField;
+      Name => "splitter_cache_age_offset",
+      RegMem => "RegField",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F19,E20,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache",
+      DefaultValue => "h3",
+      DocName => "SplitterCacheAgeOffset",
+    },
+  },
+  splitter_cache_activity_offset_register => { #Structure Type: Reg;
+    Name => "splitter_cache_activity_offset_register",
+    RegMem => "Reg",
+    Address => "107", # Excel Formula: =calc_reg_address(C19,A19,G19)
+    Description => "the activity timestamp is driven from a 32bit register. This value determines the start point from which the activity timestamp is taken.",
+    Width => "2", # Excel Formula: =calc_reg_width(E22:E22,F22)
+    Type => "Config",
+    DocName => "SplitterCacheActivityOffsetRegister",
+    splitter_cache_activity_offset => { #Structure Type: RegField;
+      Name => "splitter_cache_activity_offset",
+      RegMem => "RegField",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F21,E22,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache",
+      DefaultValue => "h1",
+      DocName => "SplitterCacheActivityOffset",
+    },
+  },
+  splitter_cache_candidates_shift_period_register => { #Structure Type: Reg;
+    Name => "splitter_cache_candidates_shift_period_register",
+    RegMem => "Reg",
+    Address => "108", # Excel Formula: =calc_reg_address(C21,A21,G21)
+    Description => "number of clocks the cache-candidates-to-be-written LIFO will stall between shifiting the candidates by 1.",
+    Width => "10", # Excel Formula: =calc_reg_width(E24:E24,F24)
+    Type => "Config",
+    DocName => "SplitterCacheCandidatesShiftPeriodRegister",
+    splitter_cache_candidates_shift_period => { #Structure Type: RegField;
+      Name => "splitter_cache_candidates_shift_period",
+      RegMem => "RegField",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F23,E24,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache",
+      DefaultValue => "h10",
+      DocName => "SplitterCacheCandidatesShiftPeriod",
+    },
+  },
+  splitter_cache_hash_cfg_register => { #Structure Type: Reg;
+    Name => "splitter_cache_hash_cfg_register",
+    RegMem => "Reg",
+    Address => "109", # Excel Formula: =calc_reg_address(C23,A23,G23)
+    Description => "configures the hash of the EM-s in the cache",
+    Width => "284", # Excel Formula: =calc_reg_width(E26:E26,F26)
+    Type => "Config",
+    DocName => "SplitterCacheHashCfgRegister",
+    splitter_cache_hash_cfg => { #Structure Type: RegField;
+      Name => "splitter_cache_hash_cfg",
+      RegMem => "RegField",
+      Width => "284", # Excel Formula: =142*2
+      Position => "283:0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache",
+      DefaultValue => "h0",
+      DocName => "SplitterCacheHashCfg",
+    },
+  },
+  splitter_cache_random_delete_on_hit_entry_register => { #Structure Type: Reg;
+    Name => "splitter_cache_random_delete_on_hit_entry_register",
+    RegMem => "Reg",
+    Address => "10A", # Excel Formula: =calc_reg_address(C25,A25,G25)
+    Description => "when a cache entry is hit by rxpp lookup, and an lfsr output value equale to this value - the entry will be deleted.
+Setting this value to 0 will disable the feature.",
+    Width => "8", # Excel Formula: =calc_reg_width(E28:E28,F28)
+    Type => "Config",
+    DocName => "SplitterCacheRandomDeleteOnHitEntryRegister",
+    splitter_cache_random_delete_value => { #Structure Type: RegField;
+      Name => "splitter_cache_random_delete_value",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F27,E28,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache",
+      DefaultValue => "h0",
+      DocName => "SplitterCacheRandomDeleteValue",
+    },
+  },
+  splitter_cache_static_tcam_entry_register => { #Structure Type: Reg;
+    Name => "splitter_cache_static_tcam_entry_register",
+    RegMem => "Reg",
+    Address => "10B", # Excel Formula: =calc_reg_address(C27,A27,G27)
+    Description => "when a cache entry is hit by rxpp lookup, and an lfsr output value equale to this value - the entry will be deleted.
+Setting this value to 0 will disable the feature.",
+    Width => "128", # Excel Formula: =calc_reg_width(E30:E30,F30)
+    Type => "Config",
+    DocName => "SplitterCacheStaticTcamEntryRegister",
+    splitter_cache_static_tcam_entry => { #Structure Type: RegField;
+      Name => "splitter_cache_static_tcam_entry",
+      RegMem => "RegField",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F29,E30,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache",
+      DefaultValue => "h0",
+      DocName => "SplitterCacheStaticTcamEntry",
+    },
+  },
+  splitter_cache_em_crc_polynom_reg => { #Structure Type: Reg;
+    Name => "splitter_cache_em_crc_polynom_reg",
+    RegMem => "Reg",
+    Address => "10C", # Excel Formula: =calc_reg_address(C29,A29,G29)
+    Description => "This is configuration for the EM. Whether it's hash should use a primitive polynom in the CRC or not",
+    Width => "1", # Excel Formula: =calc_reg_width(E32:E32,F32)
+    Type => "Config",
+    DocName => "SplitterCacheEmCrcPolynomReg",
+    splitter_cache_em_use_primit_poly_cfg => { #Structure Type: RegField;
+      Name => "splitter_cache_em_use_primit_poly_cfg",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F31,E32,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache",
+      DefaultValue => "h0",
+      DocName => "SplitterCacheEmUsePrimitPolyCfg",
+    },
+  },
+  splitter_cache_mask_reg => { #Structure Type: Reg;
+    Name => "splitter_cache_mask_reg",
+    RegMem => "Reg",
+    Address => "10D", # Excel Formula: =calc_reg_address(C31,A31,G31)
+    Description => "masking for key on insertion and lkp, satrts from lsb of the key",
+    Width => "17", # Excel Formula: =calc_reg_width(E34:E35,F35)
+    Type => "Config",
+    DocName => "SplitterCacheMaskReg",
+    splitter_cache_use_mask => { #Structure Type: RegField;
+      Name => "splitter_cache_use_mask",
+      RegMem => "RegField",
+      Description => "1- use this feature",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F33,E34,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache",
+      DefaultValue => "h0",
+      DocName => "SplitterCacheUseMask",
+    },
+    splitter_cache_mask_n => { #Structure Type: RegField;
+      Name => "splitter_cache_mask_n",
+      RegMem => "RegField",
+      Description => "0 - bit of key is masked",
+      Width => "16",
+      Position => "16:1", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "splitter_cache",
+      DefaultValue => "h0",
+      DocName => "SplitterCacheMaskN",
+    },
+  },
+  splitter_cache_full_len_hit => { #Structure Type: Reg;
+    Name => "splitter_cache_full_len_hit",
+    RegMem => "Reg",
+    Address => "10E", # Excel Formula: =calc_reg_address(C33,A33,G33)
+    Description => "defines what is full hit len for ipv4 and ipv6. 
+entries that came back from cdb with full hit len are initially inserted to the EM. If EM is full, inserted to the TCAM.",
+    Width => "14", # Excel Formula: =calc_reg_width(E37:E38,F38)
+    Type => "Config",
+    DocName => "SplitterCacheFullLenHit",
+    splitter_ipv4_full_len_hit => { #Structure Type: RegField;
+      Name => "splitter_ipv4_full_len_hit",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F36,E37,TRUE)
+      Type => "Config",
+      UsedBy => "cdc",
+      DefaultValue => "h0",
+      DocName => "SplitterIpv4FullLenHit",
+    },
+    splitter_ipv6_full_len_hit => { #Structure Type: RegField;
+      Name => "splitter_ipv6_full_len_hit",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "13:6", # Excel Formula: =calc_position(F37,E38)
+      Type => "Config",
+      UsedBy => "cdc",
+      DefaultValue => "h0",
+      DocName => "SplitterIpv6FullLenHit",
+    },
+  },
+  splitter_cache_ignore_cem_reply_reg => { #Structure Type: Reg;
+    Name => "splitter_cache_ignore_cem_reply_reg",
+    RegMem => "Reg",
+    Address => "10F", # Excel Formula: =calc_reg_address(C36,A36,G36)
+    Description => "when set cem replies will not be insertetd to the cach",
+    Width => "1", # Excel Formula: =calc_reg_width(E40:E40,F40)
+    Type => "Config",
+    DocName => "SplitterCacheIgnoreCemReplyReg",
+    splitter_cache_ignore_cem_reply => { #Structure Type: RegField;
+      Name => "splitter_cache_ignore_cem_reply",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F39,E40,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache",
+      DefaultValue => "h0",
+      DocName => "SplitterCacheIgnoreCemReply",
+    },
+  },
+  lpm_cache_disable_cache_tcam_register => { #Structure Type: Reg;
+    Name => "lpm_cache_disable_cache_tcam_register",
+    RegMem => "Reg",
+    Address => "110", # Excel Formula: =calc_reg_address(C39,A39,G39)
+    Description => "rxpp lookups in the cache tcam will always result in a miss when this bit is set ",
+    Width => "1", # Excel Formula: =calc_reg_width(E42:E42,F42)
+    Type => "Config",
+    DocName => "LpmCacheDisableCacheTcamRegister",
+    lpm_cache_disable_cache_tcam => { #Structure Type: RegField;
+      Name => "lpm_cache_disable_cache_tcam",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F41,E42,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache",
+      DefaultValue => "h0",
+      DocName => "LpmCacheDisableCacheTcam",
+    },
+  },
+  lpm_cache_disable_cache_em_register => { #Structure Type: Reg;
+    Name => "lpm_cache_disable_cache_em_register",
+    RegMem => "Reg",
+    Address => "111", # Excel Formula: =calc_reg_address(C41,A41,G41)
+    Description => "rxpp lookups in the cache em will always result in a miss when this bit is set ",
+    Width => "1", # Excel Formula: =calc_reg_width(E44:E44,F44)
+    Type => "Config",
+    DocName => "LpmCacheDisableCacheEmRegister",
+    lpm_cache_disable_cache_em => { #Structure Type: RegField;
+      Name => "lpm_cache_disable_cache_em",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F43,E44,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache",
+      DefaultValue => "h0",
+      DocName => "LpmCacheDisableCacheEm",
+    },
+  },
+  lpm_cache_insert_period_register => { #Structure Type: Reg;
+    Name => "lpm_cache_insert_period_register",
+    RegMem => "Reg",
+    Address => "112", # Excel Formula: =calc_reg_address(C43,A43,G43)
+    Description => "number of clocks the insert machine will stall between attempts to insert new data to cache.",
+    Width => "10", # Excel Formula: =calc_reg_width(E46:E46,F46)
+    Type => "Config",
+    DocName => "LpmCacheInsertPeriodRegister",
+    lpm_cache_insert_period => { #Structure Type: RegField;
+      Name => "lpm_cache_insert_period",
+      RegMem => "RegField",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache",
+      DefaultValue => "h5",
+      DocName => "LpmCacheInsertPeriod",
+    },
+  },
+  lpm_cache_scan_period_register => { #Structure Type: Reg;
+    Name => "lpm_cache_scan_period_register",
+    RegMem => "Reg",
+    Address => "113", # Excel Formula: =calc_reg_address(C45,A45,G45)
+    Description => "number of clocks the scanner machine will stall between attempts todelete data from the cache.",
+    Width => "10", # Excel Formula: =calc_reg_width(E48:E48,F48)
+    Type => "Config",
+    DocName => "LpmCacheScanPeriodRegister",
+    lpm_cache_scan_period => { #Structure Type: RegField;
+      Name => "lpm_cache_scan_period",
+      RegMem => "RegField",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F47,E48,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache",
+      DefaultValue => "h5",
+      DocName => "LpmCacheScanPeriod",
+    },
+  },
+  lpm_cache_age_threshold_register => { #Structure Type: Reg;
+    Name => "lpm_cache_age_threshold_register",
+    RegMem => "Reg",
+    Address => "114", # Excel Formula: =calc_reg_address(C47,A47,G47)
+    Description => "entries with age older than this value will be removed by the scanner.",
+    Width => "2", # Excel Formula: =calc_reg_width(E50:E50,F50)
+    Type => "Config",
+    DocName => "LpmCacheAgeThresholdRegister",
+    lpm_cache_age_threshold => { #Structure Type: RegField;
+      Name => "lpm_cache_age_threshold",
+      RegMem => "RegField",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F49,E50,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache",
+      DefaultValue => "h2",
+      DocName => "LpmCacheAgeThreshold",
+    },
+  },
+  lpm_cache_activity_threshold_register => { #Structure Type: Reg;
+    Name => "lpm_cache_activity_threshold_register",
+    RegMem => "Reg",
+    Address => "115", # Excel Formula: =calc_reg_address(C49,A49,G49)
+    Description => "entries with activity time stamp older than this value will be removed by the scanner.",
+    Width => "6", # Excel Formula: =calc_reg_width(E52:E52,F52)
+    Type => "Config",
+    DocName => "LpmCacheActivityThresholdRegister",
+    lpm_cache_activity_threshold => { #Structure Type: RegField;
+      Name => "lpm_cache_activity_threshold",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F51,E52,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache",
+      DefaultValue => "h4",
+      DocName => "LpmCacheActivityThreshold",
+    },
+  },
+  lpm_cache_age_offset_register => { #Structure Type: Reg;
+    Name => "lpm_cache_age_offset_register",
+    RegMem => "Reg",
+    Address => "116", # Excel Formula: =calc_reg_address(C51,A51,G51)
+    Description => "the age timestamp is driven from a 32bit register. This value determines the start point from which the age timestamp is taken.",
+    Width => "3", # Excel Formula: =calc_reg_width(E54:E54,F54)
+    Type => "Config",
+    DocName => "LpmCacheAgeOffsetRegister",
+    lpm_cache_age_offset => { #Structure Type: RegField;
+      Name => "lpm_cache_age_offset",
+      RegMem => "RegField",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache",
+      DefaultValue => "h3",
+      DocName => "LpmCacheAgeOffset",
+    },
+  },
+  lpm_cache_activity_offset_register => { #Structure Type: Reg;
+    Name => "lpm_cache_activity_offset_register",
+    RegMem => "Reg",
+    Address => "117", # Excel Formula: =calc_reg_address(C53,A53,G53)
+    Description => "the activity timestamp is driven from a 32bit register. This value determines the start point from which the activity timestamp is taken.",
+    Width => "2", # Excel Formula: =calc_reg_width(E56:E56,F56)
+    Type => "Config",
+    DocName => "LpmCacheActivityOffsetRegister",
+    lpm_cache_activity_offset => { #Structure Type: RegField;
+      Name => "lpm_cache_activity_offset",
+      RegMem => "RegField",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F55,E56,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache",
+      DefaultValue => "h1",
+      DocName => "LpmCacheActivityOffset",
+    },
+  },
+  lpm_cache_candidates_shift_period_register => { #Structure Type: Reg;
+    Name => "lpm_cache_candidates_shift_period_register",
+    RegMem => "Reg",
+    Address => "118", # Excel Formula: =calc_reg_address(C55,A55,G55)
+    Description => "number of clocks the cache-candidates-to-be-written LIFO will stall between shifiting the candidates by 1.",
+    Width => "10", # Excel Formula: =calc_reg_width(E58:E58,F58)
+    Type => "Config",
+    DocName => "LpmCacheCandidatesShiftPeriodRegister",
+    lpm_cache_candidates_shift_period => { #Structure Type: RegField;
+      Name => "lpm_cache_candidates_shift_period",
+      RegMem => "RegField",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache",
+      DefaultValue => "h10",
+      DocName => "LpmCacheCandidatesShiftPeriod",
+    },
+  },
+  lpm_cache_hash_cfg_register => { #Structure Type: Reg;
+    Name => "lpm_cache_hash_cfg_register",
+    RegMem => "Reg",
+    Address => "119", # Excel Formula: =calc_reg_address(C57,A57,G57)
+    Description => "configures the hash of the EM-s in the cache",
+    Width => "284", # Excel Formula: =calc_reg_width(E60:E60,F60)
+    Type => "Config",
+    DocName => "LpmCacheHashCfgRegister",
+    lpm_cache_hash_cfg => { #Structure Type: RegField;
+      Name => "lpm_cache_hash_cfg",
+      RegMem => "RegField",
+      Width => "284", # Excel Formula: =142*2
+      Position => "283:0", # Excel Formula: =calc_position(F59,E60,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache",
+      DefaultValue => "h0",
+      DocName => "LpmCacheHashCfg",
+    },
+  },
+  lpm_cache_random_delete_on_hit_entry_register => { #Structure Type: Reg;
+    Name => "lpm_cache_random_delete_on_hit_entry_register",
+    RegMem => "Reg",
+    Address => "11A", # Excel Formula: =calc_reg_address(C59,A59,G59)
+    Description => "when a cache entry is hit by rxpp lookup, and an lfsr output value equale to this value - the entry will be deleted.
+Setting this value to 0 will disable the feature.",
+    Width => "8", # Excel Formula: =calc_reg_width(E62:E62,F62)
+    Type => "Config",
+    DocName => "LpmCacheRandomDeleteOnHitEntryRegister",
+    lpm_cache_random_delete_value => { #Structure Type: RegField;
+      Name => "lpm_cache_random_delete_value",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F61,E62,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache",
+      DefaultValue => "h0",
+      DocName => "LpmCacheRandomDeleteValue",
+    },
+  },
+  lpm_cache_static_tcam_entry_register => { #Structure Type: Reg;
+    Name => "lpm_cache_static_tcam_entry_register",
+    RegMem => "Reg",
+    Address => "11B", # Excel Formula: =calc_reg_address(C61,A61,G61)
+    Description => "when a cache entry is hit by rxpp lookup, and an lfsr output value equale to this value - the entry will be deleted.
+Setting this value to 0 will disable the feature.",
+    Width => "128", # Excel Formula: =calc_reg_width(E64:E64,F64)
+    Type => "Config",
+    DocName => "LpmCacheStaticTcamEntryRegister",
+    lpm_cache_static_tcam_entry => { #Structure Type: RegField;
+      Name => "lpm_cache_static_tcam_entry",
+      RegMem => "RegField",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F63,E64,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache",
+      DefaultValue => "h0",
+      DocName => "LpmCacheStaticTcamEntry",
+    },
+  },
+  lpm_cache_em_crc_polynom_reg => { #Structure Type: Reg;
+    Name => "lpm_cache_em_crc_polynom_reg",
+    RegMem => "Reg",
+    Address => "11C", # Excel Formula: =calc_reg_address(C63,A63,G63)
+    Description => "This is configuration for the EM. Whether it's hash should use a primitive polynom in the CRC or not",
+    Width => "1", # Excel Formula: =calc_reg_width(E66:E66,F66)
+    Type => "Config",
+    DocName => "LpmCacheEmCrcPolynomReg",
+    lpm_cache_em_use_primit_poly_cfg => { #Structure Type: RegField;
+      Name => "lpm_cache_em_use_primit_poly_cfg",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F65,E66,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache",
+      DefaultValue => "h0",
+      DocName => "LpmCacheEmUsePrimitPolyCfg",
+    },
+  },
+  lpm_cache_Mask_reg => { #Structure Type: Reg;
+    Name => "lpm_cache_Mask_reg",
+    RegMem => "Reg",
+    Address => "11D", # Excel Formula: =calc_reg_address(C65,A65,G65)
+    Description => "masking for key on insertion and lkp, satrts from lsb of the key",
+    Width => "17", # Excel Formula: =calc_reg_width(E68:E69,F69)
+    Type => "Config",
+    DocName => "LpmCache_MaskReg",
+    lpm_cache_use_mask => { #Structure Type: RegField;
+      Name => "lpm_cache_use_mask",
+      RegMem => "RegField",
+      Description => "1- use this feature",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache",
+      DefaultValue => "h0",
+      DocName => "LpmCacheUseMask",
+    },
+    lpm_cache_mask_n => { #Structure Type: RegField;
+      Name => "lpm_cache_mask_n",
+      RegMem => "RegField",
+      Description => "0 - bit of key is masked",
+      Width => "16",
+      Position => "16:1", # Excel Formula: =calc_position(F68,E69)
+      Type => "Config",
+      UsedBy => "lpm_cache",
+      DefaultValue => "h0",
+      DocName => "LpmCacheMaskN",
+    },
+  },
+  lpm_cache_full_len_hit => { #Structure Type: Reg;
+    Name => "lpm_cache_full_len_hit",
+    RegMem => "Reg",
+    Address => "11E", # Excel Formula: =calc_reg_address(C67,A67,G67)
+    Description => "defines what is full hit len for ipv4 and ipv6. 
+entries that came back from cdb with full hit len are initially inserted to the EM. If EM is full, inserted to the TCAM.",
+    Width => "14", # Excel Formula: =calc_reg_width(E71:E72,F72)
+    Type => "Config",
+    DocName => "LpmCacheFullLenHit",
+    lpm_IPv4_full_len_hit => { #Structure Type: RegField;
+      Name => "lpm_IPv4_full_len_hit",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F70,E71,TRUE)
+      Type => "Config",
+      UsedBy => "cdc",
+      DefaultValue => "h0",
+      DocName => "Lpm_IPv4FullLenHit",
+    },
+    lpm_IPv6_full_len_hit => { #Structure Type: RegField;
+      Name => "lpm_IPv6_full_len_hit",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "13:6", # Excel Formula: =calc_position(F71,E72)
+      Type => "Config",
+      UsedBy => "cdc",
+      DefaultValue => "h0",
+      DocName => "Lpm_IPv6FullLenHit",
+    },
+  },
+  lpm_cache_stats_cnt => { #Structure Type: Reg;
+    Name => "lpm_cache_stats_cnt",
+    RegMem => "Reg",
+    Address => "11F", # Excel Formula: =calc_reg_address(C70,A70,G70)
+    Width => "192", # Excel Formula: =calc_reg_width(E74:E76,F76)
+    Type => "ReadOnly",
+    DocName => "LpmCacheStatsCnt",
+    lpm_cache_tcam_hit_cnt => { #Structure Type: RegField;
+      Name => "lpm_cache_tcam_hit_cnt",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "63:0", # Excel Formula: =calc_position(F73,E74,TRUE)
+      Type => "Counter",
+      UsedBy => "cdc",
+      DocName => "LpmCacheTcamHitCnt",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    lpm_cache_em_hit_cnt => { #Structure Type: RegField;
+      Name => "lpm_cache_em_hit_cnt",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "127:64", # Excel Formula: =calc_position(F74,E75)
+      Type => "Counter",
+      UsedBy => "cdc",
+      DocName => "LpmCacheEmHitCnt",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    lpm_cache_miss_cnt => { #Structure Type: RegField;
+      Name => "lpm_cache_miss_cnt",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "191:128", # Excel Formula: =calc_position(F75,E76)
+      Type => "Counter",
+      UsedBy => "cdc",
+      DocName => "LpmCacheMissCnt",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  splitter_cache_stats_cnt => { #Structure Type: Reg;
+    Name => "splitter_cache_stats_cnt",
+    RegMem => "Reg",
+    Address => "120", # Excel Formula: =calc_reg_address(C73,A73,G73)
+    Width => "192", # Excel Formula: =calc_reg_width(E78:E80,F80)
+    Type => "ReadOnly",
+    DocName => "SplitterCacheStatsCnt",
+    splitter_cache_tcam_hit_cnt => { #Structure Type: RegField;
+      Name => "splitter_cache_tcam_hit_cnt",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "63:0", # Excel Formula: =calc_position(F77,E78,TRUE)
+      Type => "Counter",
+      UsedBy => "cdc",
+      DocName => "SplitterCacheTcamHitCnt",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    splitter_cache_em_hit_cnt => { #Structure Type: RegField;
+      Name => "splitter_cache_em_hit_cnt",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "127:64", # Excel Formula: =calc_position(F78,E79)
+      Type => "Counter",
+      UsedBy => "cdc",
+      DocName => "SplitterCacheEmHitCnt",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    splitter_cache_miss_cnt => { #Structure Type: RegField;
+      Name => "splitter_cache_miss_cnt",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "191:128", # Excel Formula: =calc_position(F79,E80)
+      Type => "Counter",
+      UsedBy => "cdc",
+      DocName => "SplitterCacheMissCnt",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  splitter_cache_tcam_valid_entries_reg => { #Structure Type: Reg;
+    Name => "splitter_cache_tcam_valid_entries_reg",
+    RegMem => "Reg",
+    Address => "121", # Excel Formula: =calc_reg_address(C77,A77,G77)
+    Width => "128", # Excel Formula: =calc_reg_width(E82:E82,F82)
+    Type => "ReadOnly",
+    DocName => "SplitterCacheTcamValidEntriesReg",
+    splitter_cache_tcam_valid_entries => { #Structure Type: RegField;
+      Name => "splitter_cache_tcam_valid_entries",
+      RegMem => "RegField",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F81,E82,TRUE)
+      Type => "Status",
+      UsedBy => "cdc",
+      DocName => "SplitterCacheTcamValidEntries",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  lpm_cache_tcam_valid_entries_reg => { #Structure Type: Reg;
+    Name => "lpm_cache_tcam_valid_entries_reg",
+    RegMem => "Reg",
+    Address => "122", # Excel Formula: =calc_reg_address(C81,A81,G81)
+    Width => "128", # Excel Formula: =calc_reg_width(E84:E84,F84)
+    Type => "ReadOnly",
+    DocName => "LpmCacheTcamValidEntriesReg",
+    lpm_cache_tcam_valid_entries => { #Structure Type: RegField;
+      Name => "lpm_cache_tcam_valid_entries",
+      RegMem => "RegField",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F83,E84,TRUE)
+      Type => "Status",
+      UsedBy => "cdc",
+      DocName => "LpmCacheTcamValidEntries",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  splitter_cache_msb_em => { #Structure Type: Mem;
+    Name => "splitter_cache_msb_em",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "lsb of ipv6 em. ",
+    Width => "54", # Excel Formula: =calc_mem_width(E86:E86,M85,F86,-1)
+    Type => "DocOnly",
+    UsedBy => "splitter_cache",
+    MemEntries => "1024",
+    MemWrapper => "EM",
+    MemProtect => "None",
+    AdditionalInfo => "KeyWidth=76,SourceIdWidth=1,NumberOfBanks=1,NumberOfCamEntries=2,FlexibleKey=Enabled,NumberOfKeySizeOptions=2,KeySize2=46,QuickInsert=Enabled,BinSize=2,SkipHash=Enabled,VerifierSampleReadBeforeProt=1,VrfWriteActivityFactor=0,VrfReadActivityFactor=100,ValidSampleReadBeforeProt=1,VldWriteActivityFactor=30,VldReadActivityFactor=100",
+    MemLogicalWidth => "54",
+    cache_msb_emField => { #Structure Type: MemField;
+      Name => "cache_msb_emField",
+      RegMem => "MemField",
+      Description => "Some desc for mem0 field0",
+      Width => "54",
+      Position => "53:0", # Excel Formula: =calc_position(F85,E86,TRUE)
+    },
+  },
+  splitter_cache_lsb_em => { #Structure Type: Mem;
+    Name => "splitter_cache_lsb_em",
+    RegMem => "Mem",
+    Address => "100000", # Excel Formula: =calc_mem_address(C85,A85,G87,L87)
+    Description => "msb of ipv6 em",
+    Width => "54", # Excel Formula: =calc_mem_width(E88:E88,M87,F88,-1)
+    Type => "DocOnly",
+    UsedBy => "splitter_cache",
+    MemEntries => "1024",
+    MemWrapper => "EM",
+    MemProtect => "None",
+    AdditionalInfo => "KeyWidth=76,SourceIdWidth=1,NumberOfBanks=1,NumberOfCamEntries=2,FlexibleKey=Enabled,NumberOfKeySizeOptions=2,KeySize2=46,QuickInsert=Enabled,BinSize=2,SkipHash=Enabled,VerifierSampleReadBeforeProt=1,VrfWriteActivityFactor=0,VrfReadActivityFactor=100,ValidSampleReadBeforeProt=1,VldWriteActivityFactor=30,VldReadActivityFactor=100",
+    MemLogicalWidth => "54",
+    cache_lsb_emField => { #Structure Type: MemField;
+      Name => "cache_lsb_emField",
+      RegMem => "MemField",
+      Description => "Some desc for mem0 field0",
+      Width => "54",
+      Position => "53:0", # Excel Formula: =calc_position(F87,E88,TRUE)
+    },
+  },
+  splitter_cache_age_mem => { #Structure Type: Mem;
+    Name => "splitter_cache_age_mem",
+    RegMem => "Mem",
+    Address => "200000", # Excel Formula: =calc_mem_address(C85,A85,G89,L89)
+    Description => "age of entries that resides in one of the EM wrappers.
+Each mem line holds the following stat per 4 entries :
+valid(1),type(1,v6 or v4),couple_v6_entry_bin(1),age(2). 
+Bits [19:15],[14:10] of mem line is for bin1,bin0 in the msb_em, and bits [9:5],[4:0] for bin1,bin0 in the lsb_em.",
+    Width => "26", # Excel Formula: =calc_mem_width(E90:E90,M89,F90,-1)
+    Type => "Dynamic",
+    UsedBy => "splitter_cache",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,WriteActivityFactor=50,ReadActivityFactor=50,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    MemLogicalWidth => "20",
+    cache_age_emField => { #Structure Type: MemField;
+      Name => "cache_age_emField",
+      RegMem => "MemField",
+      Description => "Some desc for mem0 field0",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F89,E90,TRUE)
+    },
+  },
+  splitter_cache_activity_mem => { #Structure Type: Mem;
+    Name => "splitter_cache_activity_mem",
+    RegMem => "Mem",
+    Address => "300000", # Excel Formula: =calc_mem_address(C89,A89,G91,L91)
+    Description => "holds the activity timesstamp(last time the entry was hit) per entry in the cache. There are  1k*2 + 1k*2+ 128 entries in the cache",
+    Width => "11", # Excel Formula: =calc_mem_width(E92:E92,M91,F92,-1)
+    Type => "Dynamic",
+    UsedBy => "splitter_cache",
+    MemEntries => "2176", # Excel Formula: =2048+128
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,WriteActivityFactor=50,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    MemLogicalWidth => "6",
+    cache_active_ield => { #Structure Type: MemField;
+      Name => "cache_active_ield",
+      RegMem => "MemField",
+      Description => "Some desc for mem0 field0",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F91,E92,TRUE)
+    },
+  },
+  splitter_cache_tcam_mem => { #Structure Type: Mem;
+    Name => "splitter_cache_tcam_mem",
+    RegMem => "Mem",
+    Address => "400000", # Excel Formula: =calc_mem_address(C91,A91,G93,L93)
+    Description => "associated data of the TCAM",
+    Width => "92", # Excel Formula: =calc_mem_width(E94:E94,M93,F94,-1)
+    Type => "Dynamic",
+    UsedBy => "splitter_cache",
+    MemEntries => "128",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,PortErrPropagate=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    MemLogicalWidth => "84",
+    cache_tcam_mem_field => { #Structure Type: MemField;
+      Name => "cache_tcam_mem_field",
+      RegMem => "MemField",
+      Description => "Some desc for mem0 field0",
+      Width => "84",
+      Position => "83:0", # Excel Formula: =calc_position(F93,E94,TRUE)
+    },
+  },
+  splitter_cache_tcam => { #Structure Type: Mem;
+    Name => "splitter_cache_tcam",
+    RegMem => "Mem",
+    Address => "500000", # Excel Formula: =calc_mem_address(C93,A93,G95,L95)
+    Description => "TCAM",
+    Width => "143", # Excel Formula: =calc_mem_width(E96:E97,"None",F97,-1)
+    Type => "Dynamic",
+    UsedBy => "splitter_cache",
+    MemEntries => "128",
+    MemWrapper => "TCAM",
+    MemProtect => "Parity",
+    AdditionalInfo => "NumOfKeys=1,OutputHitIndex=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100",
+    MemLogicalWidth => "143",
+    splitter_cache_tcam_key => { #Structure Type: MemField;
+      Name => "splitter_cache_tcam_key",
+      RegMem => "MemField",
+      Description => "width of key to be searched",
+      Width => "142",
+      Position => "141:0", # Excel Formula: =calc_position(F95,E96,TRUE)
+    },
+    splitter_cache_tcam_delete => { #Structure Type: MemField;
+      Name => "splitter_cache_tcam_delete",
+      RegMem => "MemField",
+      Description => "set to 1 inorder to delete entry with cpu.",
+      Width => "1",
+      Position => "142", # Excel Formula: =calc_position(F96,E97)
+    },
+  },
+  lpm_cache_msb_em => { #Structure Type: Mem;
+    Name => "lpm_cache_msb_em",
+    RegMem => "Mem",
+    Address => "500000", # Excel Formula: =calc_mem_address(C95,A95,G98,L98)
+    Description => "lsb of ipv6 em. ",
+    Width => "20", # Excel Formula: =calc_mem_width(E99:E99,M98,F99,-1)
+    Type => "DocOnly",
+    UsedBy => "lpm_cache",
+    MemEntries => "1024",
+    MemWrapper => "EM",
+    MemProtect => "None",
+    AdditionalInfo => "KeyWidth=46,SourceIdWidth=1,NumberOfBanks=1,NumberOfCamEntries=2,NumberOfKeySizeOptions=2,KeySize2=46,QuickInsert=Enabled,BinSize=2,SkipHash=Enabled,VerifierSampleReadBeforeProt=1,VrfWriteActivityFactor=0,VrfReadActivityFactor=100,ValidSampleReadBeforeProt=1,VldWriteActivityFactor=30,VldReadActivityFactor=100",
+    MemLogicalWidth => "20",
+    cache_msb_emField => { #Structure Type: MemField;
+      Name => "cache_msb_emField",
+      RegMem => "MemField",
+      Description => "Some desc for mem0 field0",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F98,E99,TRUE)
+    },
+  },
+  lpm_cache_lsb_em => { #Structure Type: Mem;
+    Name => "lpm_cache_lsb_em",
+    RegMem => "Mem",
+    Address => "500000", # Excel Formula: =calc_mem_address(C95,A95,G100,L100)
+    Description => "msb of ipv6 em",
+    Width => "1", # Excel Formula: =calc_mem_width(E101:E101,M100,F101,-1)
+    Type => "DocOnly",
+    UsedBy => "lpm_cache",
+    MemEntries => "1024",
+    MemWrapper => "EM",
+    MemProtect => "None",
+    AdditionalInfo => "KeyWidth=106,SourceIdWidth=1,NumberOfBanks=1,NumberOfCamEntries=2,FlexibleKey=Enabled,NumberOfKeySizeOptions=2,KeySize2=46,QuickInsert=Enabled,BinSize=2,SkipHash=Enabled,VerifierSampleReadBeforeProt=1,VrfWriteActivityFactor=0,VrfReadActivityFactor=100,ValidSampleReadBeforeProt=1,VldWriteActivityFactor=30,VldReadActivityFactor=100",
+    MemLogicalWidth => "1",
+    cache_lsb_emField => { #Structure Type: MemField;
+      Name => "cache_lsb_emField",
+      RegMem => "MemField",
+      Description => "Some desc for mem0 field0",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F100,E101,TRUE)
+    },
+  },
+  lpm_cache_age_mem => { #Structure Type: Mem;
+    Name => "lpm_cache_age_mem",
+    RegMem => "Mem",
+    Address => "600000", # Excel Formula: =calc_mem_address(C95,A95,G102,L102)
+    Description => "age of entries that resides in one of the EM wrappers.
+Each mem line holds the following stat per 4 entries :
+valid(1),type(1,v6 or v4),couple_v6_entry_bin(1),age(2). 
+Bits [19:15],[14:10] of mem line is for bin1,bin0 in the msb_em, and bits [9:5],[4:0] for bin1,bin0 in the lsb_em.",
+    Width => "26", # Excel Formula: =calc_mem_width(E103:E103,M102,F103,-1)
+    Type => "Dynamic",
+    UsedBy => "lpm_cache",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,WriteActivityFactor=50,ReadActivityFactor=50,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    MemLogicalWidth => "20",
+    cache_age_emField => { #Structure Type: MemField;
+      Name => "cache_age_emField",
+      RegMem => "MemField",
+      Description => "Some desc for mem0 field0",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F102,E103,TRUE)
+    },
+  },
+  lpm_cache_activity_mem => { #Structure Type: Mem;
+    Name => "lpm_cache_activity_mem",
+    RegMem => "Mem",
+    Address => "700000", # Excel Formula: =calc_mem_address(C102,A102,G104,L104)
+    Description => "holds the activity timesstamp(last time the entry was hit) per entry in the cache. There are  1k*2 + 1k*2+ 128 entries in the cache",
+    Width => "11", # Excel Formula: =calc_mem_width(E105:E105,M104,F105,-1)
+    Type => "Dynamic",
+    UsedBy => "lpm_cache",
+    MemEntries => "2176", # Excel Formula: =2048+128
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,WriteActivityFactor=50,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    MemLogicalWidth => "6",
+    cache_active_ield => { #Structure Type: MemField;
+      Name => "cache_active_ield",
+      RegMem => "MemField",
+      Description => "Some desc for mem0 field0",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F104,E105,TRUE)
+    },
+  },
+  lpm_cache_tcam_mem => { #Structure Type: Mem;
+    Name => "lpm_cache_tcam_mem",
+    RegMem => "Mem",
+    Address => "800000", # Excel Formula: =calc_mem_address(C104,A104,G106,L106)
+    Description => "associated data of the TCAM",
+    Width => "26", # Excel Formula: =calc_mem_width(E107:E107,M106,F107,-1)
+    Type => "Dynamic",
+    UsedBy => "lpm_cache",
+    MemEntries => "128",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,PortErrPropagate=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    MemLogicalWidth => "20",
+    cache_tcam_mem_field => { #Structure Type: MemField;
+      Name => "cache_tcam_mem_field",
+      RegMem => "MemField",
+      Description => "Some desc for mem0 field0",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F106,E107,TRUE)
+    },
+  },
+  lpm_cache_tcam => { #Structure Type: Mem;
+    Name => "lpm_cache_tcam",
+    RegMem => "Mem",
+    Address => "900000", # Excel Formula: =calc_mem_address(C106,A106,G108,L108)
+    Description => "TCAM",
+    Width => "143", # Excel Formula: =calc_mem_width(E109:E110,"None",F110,-1)
+    Type => "Dynamic",
+    UsedBy => "lpm_cache",
+    MemEntries => "128",
+    MemWrapper => "TCAM",
+    MemProtect => "Parity",
+    AdditionalInfo => "NumOfKeys=1,OutputHitIndex=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100",
+    MemLogicalWidth => "143",
+    lpm_cache_tcam_key => { #Structure Type: MemField;
+      Name => "lpm_cache_tcam_key",
+      RegMem => "MemField",
+      Description => "width of key to be searched",
+      Width => "142",
+      Position => "141:0", # Excel Formula: =calc_position(F108,E109,TRUE)
+    },
+    lpm_cache_tcam_delete => { #Structure Type: MemField;
+      Name => "lpm_cache_tcam_delete",
+      RegMem => "MemField",
+      Description => "set to 1 inorder to delete entry with cpu.",
+      Width => "1",
+      Position => "142", # Excel Formula: =calc_position(F109,E110)
+    },
+  },
+  splitter_cache_msb_emVerifier => { #Structure Type: Mem; Skip Register;
+    Name => "splitter_cache_msb_emVerifier",
+    RegMem => "Mem",
+    Address => "A00000", # Excel Formula: =calc_mem_address(C108,A108,G111,L111)
+    Width => "262", # Excel Formula: =calc_mem_width(E112:E112,M111,F112,-1)
+    Type => "Dynamic",
+    UsedBy => "splitter_cache_msb_em",
+    MemEntries => "512",
+    MemWrapper => "1P WriteMask",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "262",
+    splitter_cache_msb_emVerifierData => { #Structure Type: MemField;
+      Name => "splitter_cache_msb_emVerifierData",
+      RegMem => "MemField",
+      Width => "262",
+      Position => "261:0", # Excel Formula: =calc_position(F111,E112,TRUE)
+    },
+  },
+  splitter_cache_msb_emValid => { #Structure Type: Mem; Skip Register;
+    Name => "splitter_cache_msb_emValid",
+    RegMem => "Mem",
+    Address => "B00000", # Excel Formula: =calc_mem_address(C111,A111,G113,L113)
+    Width => "2", # Excel Formula: =calc_mem_width(E114:E114,M113,F114,-1)
+    Type => "Dynamic",
+    UsedBy => "splitter_cache_msb_em",
+    MemEntries => "512",
+    MemWrapper => "1R1W WriteMask",
+    MemProtect => "None",
+    AdditionalInfo => "SampleReadBeforeProt=1,WriteActivityFactor=30,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "2",
+    splitter_cache_msb_emValidData => { #Structure Type: MemField;
+      Name => "splitter_cache_msb_emValidData",
+      RegMem => "MemField",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F113,E114,TRUE)
+    },
+  },
+  splitter_cache_msb_emPerBankReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 32; Skip Register;
+    Name => "splitter_cache_msb_emPerBankReg[1]",
+    RegMem => "Reg",
+    Address => "123", # Excel Formula: =calc_reg_address(C83,A83,G83)
+    Width => "154", # Excel Formula: =calc_reg_width(E116:E118,F118)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    splitter_cache_msb_emActiveBanks0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 33;
+      Name => "splitter_cache_msb_emActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F115,E116,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache_msb_em",
+      DefaultValue => "d1",
+    },
+    splitter_cache_msb_emHashKey0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 29;
+      Name => "splitter_cache_msb_emHashKey[n]",
+      RegMem => "RegField",
+      Width => "152",
+      Position => "152:1", # Excel Formula: =calc_position(F116,E117)
+      Type => "Config",
+      UsedBy => "splitter_cache_msb_em",
+      DefaultValue => "h0",
+    },
+    splitter_cache_msb_emUsePrimitiveCrc0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 37;
+      Name => "splitter_cache_msb_emUsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "153", # Excel Formula: =calc_position(F117,E118)
+      Type => "Config",
+      UsedBy => "splitter_cache_msb_em",
+      DefaultValue => "h0",
+    },
+  },
+  splitter_cache_msb_emPerEmReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 30; Skip Register;
+    Name => "splitter_cache_msb_emPerEmReg[1]",
+    RegMem => "Reg",
+    Address => "124", # Excel Formula: =calc_reg_address(C115,A115,G115)
+    Width => "33", # Excel Formula: =calc_reg_width(E120:E122,F122)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    splitter_cache_msb_emKeyWidth0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 30;
+      Name => "splitter_cache_msb_emKeyWidth[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F119,E120,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache_msb_em",
+      DefaultValue => "h0",
+    },
+    splitter_cache_msb_emAutoBubbleReq0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 35;
+      Name => "splitter_cache_msb_emAutoBubbleReq[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F120,E121)
+      Type => "Config",
+      UsedBy => "splitter_cache_msb_em",
+      DefaultValue => "h0",
+    },
+    splitter_cache_msb_emBubbleReqThreshold0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 40;
+      Name => "splitter_cache_msb_emBubbleReqThreshold[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "32:17", # Excel Formula: =calc_position(F121,E122)
+      Type => "Config",
+      UsedBy => "splitter_cache_msb_em",
+      DefaultValue => "h0",
+    },
+  },
+  splitter_cache_msb_emCamWmMaxReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 33; Skip Register;
+    Name => "splitter_cache_msb_emCamWmMaxReg[1]",
+    RegMem => "Reg",
+    Address => "125", # Excel Formula: =calc_reg_address(C119,A119,G119)
+    Width => "8", # Excel Formula: =calc_reg_width(E124:E124,F124)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    splitter_cache_msb_emCamWmMax0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 30;
+      Name => "splitter_cache_msb_emCamWmMax[n]",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F123,E124,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "emdb",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  splitter_cache_msb_emBankWriteCntrReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 38; Skip Register;
+    Name => "splitter_cache_msb_emBankWriteCntrReg[1]",
+    RegMem => "Reg",
+    Address => "126", # Excel Formula: =calc_reg_address(C123,A123,G123)
+    Width => "64", # Excel Formula: =calc_reg_width(E126:E126,F126)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    splitter_cache_msb_emBankWriteCntr0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 35;
+      Name => "splitter_cache_msb_emBankWriteCntr[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "63:0", # Excel Formula: =calc_position(F125,E126,TRUE)
+      Type => "Counter",
+      UsedBy => "emdb",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  splitter_cache_msb_emCam => { #Structure Type: Mem; Skip Register;
+    Name => "splitter_cache_msb_emCam",
+    RegMem => "Mem",
+    Address => "C00000", # Excel Formula: =calc_mem_address(C113,A113,G127,L127)
+    Width => "161", # Excel Formula: =calc_mem_width(E128:E130,"None",F130,-1)
+    Type => "Dynamic",
+    UsedBy => "splitter_cache_msb_em",
+    MemEntries => "2",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,RegTcamPayloadWidth=84,CAM=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "161",
+    splitter_cache_msb_emCam_key => { #Structure Type: MemField;
+      Name => "splitter_cache_msb_emCam_key",
+      RegMem => "MemField",
+      Width => "76",
+      Position => "75:0", # Excel Formula: =calc_position(F127,E128,TRUE)
+    },
+    splitter_cache_msb_emCam_payload => { #Structure Type: MemField;
+      Name => "splitter_cache_msb_emCam_payload",
+      RegMem => "MemField",
+      Width => "84",
+      Position => "159:76", # Excel Formula: =calc_position(F128,E129)
+    },
+    splitter_cache_msb_emCam_valid => { #Structure Type: MemField;
+      Name => "splitter_cache_msb_emCam_valid",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "160", # Excel Formula: =calc_position(F129,E130)
+    },
+  },
+  splitter_cache_lsb_emVerifier => { #Structure Type: Mem; Skip Register;
+    Name => "splitter_cache_lsb_emVerifier",
+    RegMem => "Mem",
+    Address => "D00000", # Excel Formula: =calc_mem_address(C127,A127,G131,L131)
+    Width => "262", # Excel Formula: =calc_mem_width(E132:E132,M131,F132,-1)
+    Type => "Dynamic",
+    UsedBy => "splitter_cache_lsb_em",
+    MemEntries => "512",
+    MemWrapper => "1P WriteMask",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "262",
+    splitter_cache_lsb_emVerifierData => { #Structure Type: MemField;
+      Name => "splitter_cache_lsb_emVerifierData",
+      RegMem => "MemField",
+      Width => "262",
+      Position => "261:0", # Excel Formula: =calc_position(F131,E132,TRUE)
+    },
+  },
+  splitter_cache_lsb_emValid => { #Structure Type: Mem; Skip Register;
+    Name => "splitter_cache_lsb_emValid",
+    RegMem => "Mem",
+    Address => "E00000", # Excel Formula: =calc_mem_address(C131,A131,G133,L133)
+    Width => "2", # Excel Formula: =calc_mem_width(E134:E134,M133,F134,-1)
+    Type => "Dynamic",
+    UsedBy => "splitter_cache_lsb_em",
+    MemEntries => "512",
+    MemWrapper => "1R1W WriteMask",
+    MemProtect => "None",
+    AdditionalInfo => "SampleReadBeforeProt=1,WriteActivityFactor=30,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "2",
+    splitter_cache_lsb_emValidData => { #Structure Type: MemField;
+      Name => "splitter_cache_lsb_emValidData",
+      RegMem => "MemField",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F133,E134,TRUE)
+    },
+  },
+  splitter_cache_lsb_emPerBankReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 32; Skip Register;
+    Name => "splitter_cache_lsb_emPerBankReg[1]",
+    RegMem => "Reg",
+    Address => "127", # Excel Formula: =calc_reg_address(C125,A125,G125)
+    Width => "154", # Excel Formula: =calc_reg_width(E136:E138,F138)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    splitter_cache_lsb_emActiveBanks0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 33;
+      Name => "splitter_cache_lsb_emActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F135,E136,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache_lsb_em",
+      DefaultValue => "d1",
+    },
+    splitter_cache_lsb_emHashKey0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 29;
+      Name => "splitter_cache_lsb_emHashKey[n]",
+      RegMem => "RegField",
+      Width => "152",
+      Position => "152:1", # Excel Formula: =calc_position(F136,E137)
+      Type => "Config",
+      UsedBy => "splitter_cache_lsb_em",
+      DefaultValue => "h0",
+    },
+    splitter_cache_lsb_emUsePrimitiveCrc0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 37;
+      Name => "splitter_cache_lsb_emUsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "153", # Excel Formula: =calc_position(F137,E138)
+      Type => "Config",
+      UsedBy => "splitter_cache_lsb_em",
+      DefaultValue => "h0",
+    },
+  },
+  splitter_cache_lsb_emPerEmReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 30; Skip Register;
+    Name => "splitter_cache_lsb_emPerEmReg[1]",
+    RegMem => "Reg",
+    Address => "128", # Excel Formula: =calc_reg_address(C135,A135,G135)
+    Width => "33", # Excel Formula: =calc_reg_width(E140:E142,F142)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    splitter_cache_lsb_emKeyWidth0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 30;
+      Name => "splitter_cache_lsb_emKeyWidth[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F139,E140,TRUE)
+      Type => "Config",
+      UsedBy => "splitter_cache_lsb_em",
+      DefaultValue => "h0",
+    },
+    splitter_cache_lsb_emAutoBubbleReq0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 35;
+      Name => "splitter_cache_lsb_emAutoBubbleReq[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F140,E141)
+      Type => "Config",
+      UsedBy => "splitter_cache_lsb_em",
+      DefaultValue => "h0",
+    },
+    splitter_cache_lsb_emBubbleReqThreshold0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 40;
+      Name => "splitter_cache_lsb_emBubbleReqThreshold[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "32:17", # Excel Formula: =calc_position(F141,E142)
+      Type => "Config",
+      UsedBy => "splitter_cache_lsb_em",
+      DefaultValue => "h0",
+    },
+  },
+  splitter_cache_lsb_emCamWmMaxReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 33; Skip Register;
+    Name => "splitter_cache_lsb_emCamWmMaxReg[1]",
+    RegMem => "Reg",
+    Address => "129", # Excel Formula: =calc_reg_address(C139,A139,G139)
+    Width => "8", # Excel Formula: =calc_reg_width(E144:E144,F144)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    splitter_cache_lsb_emCamWmMax0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 30;
+      Name => "splitter_cache_lsb_emCamWmMax[n]",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F143,E144,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "emdb",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  splitter_cache_lsb_emBankWriteCntrReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 38; Skip Register;
+    Name => "splitter_cache_lsb_emBankWriteCntrReg[1]",
+    RegMem => "Reg",
+    Address => "12A", # Excel Formula: =calc_reg_address(C143,A143,G143)
+    Width => "64", # Excel Formula: =calc_reg_width(E146:E146,F146)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    splitter_cache_lsb_emBankWriteCntr0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 35;
+      Name => "splitter_cache_lsb_emBankWriteCntr[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "63:0", # Excel Formula: =calc_position(F145,E146,TRUE)
+      Type => "Counter",
+      UsedBy => "emdb",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  splitter_cache_lsb_emCam => { #Structure Type: Mem; Skip Register;
+    Name => "splitter_cache_lsb_emCam",
+    RegMem => "Mem",
+    Address => "F00000", # Excel Formula: =calc_mem_address(C133,A133,G147,L147)
+    Width => "161", # Excel Formula: =calc_mem_width(E148:E150,"None",F150,-1)
+    Type => "Dynamic",
+    UsedBy => "splitter_cache_lsb_em",
+    MemEntries => "2",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,RegTcamPayloadWidth=84,CAM=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "161",
+    splitter_cache_lsb_emCam_key => { #Structure Type: MemField;
+      Name => "splitter_cache_lsb_emCam_key",
+      RegMem => "MemField",
+      Width => "76",
+      Position => "75:0", # Excel Formula: =calc_position(F147,E148,TRUE)
+    },
+    splitter_cache_lsb_emCam_payload => { #Structure Type: MemField;
+      Name => "splitter_cache_lsb_emCam_payload",
+      RegMem => "MemField",
+      Width => "84",
+      Position => "159:76", # Excel Formula: =calc_position(F148,E149)
+    },
+    splitter_cache_lsb_emCam_valid => { #Structure Type: MemField;
+      Name => "splitter_cache_lsb_emCam_valid",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "160", # Excel Formula: =calc_position(F149,E150)
+    },
+  },
+  lpm_cache_msb_emVerifier => { #Structure Type: Mem; Skip Register;
+    Name => "lpm_cache_msb_emVerifier",
+    RegMem => "Mem",
+    Address => "1000000", # Excel Formula: =calc_mem_address(C147,A147,G151,L151)
+    Width => "128", # Excel Formula: =calc_mem_width(E152:E152,M151,F152,-1)
+    Type => "Dynamic",
+    UsedBy => "lpm_cache_msb_em",
+    MemEntries => "512",
+    MemWrapper => "1P WriteMask",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "128",
+    lpm_cache_msb_emVerifierData => { #Structure Type: MemField;
+      Name => "lpm_cache_msb_emVerifierData",
+      RegMem => "MemField",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F151,E152,TRUE)
+    },
+  },
+  lpm_cache_msb_emValid => { #Structure Type: Mem; Skip Register;
+    Name => "lpm_cache_msb_emValid",
+    RegMem => "Mem",
+    Address => "1100000", # Excel Formula: =calc_mem_address(C151,A151,G153,L153)
+    Width => "2", # Excel Formula: =calc_mem_width(E154:E154,M153,F154,-1)
+    Type => "Dynamic",
+    UsedBy => "lpm_cache_msb_em",
+    MemEntries => "512",
+    MemWrapper => "1R1W WriteMask",
+    MemProtect => "None",
+    AdditionalInfo => "SampleReadBeforeProt=1,WriteActivityFactor=30,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "2",
+    lpm_cache_msb_emValidData => { #Structure Type: MemField;
+      Name => "lpm_cache_msb_emValidData",
+      RegMem => "MemField",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F153,E154,TRUE)
+    },
+  },
+  lpm_cache_msb_emPerBankReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 27; Skip Register;
+    Name => "lpm_cache_msb_emPerBankReg[1]",
+    RegMem => "Reg",
+    Address => "12B", # Excel Formula: =calc_reg_address(C145,A145,G145)
+    Width => "94", # Excel Formula: =calc_reg_width(E156:E158,F158)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    lpm_cache_msb_emActiveBanks0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 28;
+      Name => "lpm_cache_msb_emActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F155,E156,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache_msb_em",
+      DefaultValue => "d1",
+    },
+    lpm_cache_msb_emHashKey0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 24;
+      Name => "lpm_cache_msb_emHashKey[n]",
+      RegMem => "RegField",
+      Width => "92",
+      Position => "92:1", # Excel Formula: =calc_position(F156,E157)
+      Type => "Config",
+      UsedBy => "lpm_cache_msb_em",
+      DefaultValue => "h0",
+    },
+    lpm_cache_msb_emUsePrimitiveCrc0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 32;
+      Name => "lpm_cache_msb_emUsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "93", # Excel Formula: =calc_position(F157,E158)
+      Type => "Config",
+      UsedBy => "lpm_cache_msb_em",
+      DefaultValue => "h0",
+    },
+  },
+  lpm_cache_msb_emPerEmReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 25; Skip Register;
+    Name => "lpm_cache_msb_emPerEmReg[1]",
+    RegMem => "Reg",
+    Address => "12C", # Excel Formula: =calc_reg_address(C155,A155,G155)
+    Width => "33", # Excel Formula: =calc_reg_width(E160:E162,F162)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    lpm_cache_msb_emKeyWidth0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "lpm_cache_msb_emKeyWidth[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F159,E160,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache_msb_em",
+      DefaultValue => "h0",
+    },
+    lpm_cache_msb_emAutoBubbleReq0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 30;
+      Name => "lpm_cache_msb_emAutoBubbleReq[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F160,E161)
+      Type => "Config",
+      UsedBy => "lpm_cache_msb_em",
+      DefaultValue => "h0",
+    },
+    lpm_cache_msb_emBubbleReqThreshold0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 35;
+      Name => "lpm_cache_msb_emBubbleReqThreshold[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "32:17", # Excel Formula: =calc_position(F161,E162)
+      Type => "Config",
+      UsedBy => "lpm_cache_msb_em",
+      DefaultValue => "h0",
+    },
+  },
+  lpm_cache_msb_emCamWmMaxReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 28; Skip Register;
+    Name => "lpm_cache_msb_emCamWmMaxReg[1]",
+    RegMem => "Reg",
+    Address => "12D", # Excel Formula: =calc_reg_address(C159,A159,G159)
+    Width => "8", # Excel Formula: =calc_reg_width(E164:E164,F164)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    lpm_cache_msb_emCamWmMax0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "lpm_cache_msb_emCamWmMax[n]",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F163,E164,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "emdb",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  lpm_cache_msb_emBankWriteCntrReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 33; Skip Register;
+    Name => "lpm_cache_msb_emBankWriteCntrReg[1]",
+    RegMem => "Reg",
+    Address => "12E", # Excel Formula: =calc_reg_address(C163,A163,G163)
+    Width => "64", # Excel Formula: =calc_reg_width(E166:E166,F166)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    lpm_cache_msb_emBankWriteCntr0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 30;
+      Name => "lpm_cache_msb_emBankWriteCntr[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "63:0", # Excel Formula: =calc_position(F165,E166,TRUE)
+      Type => "Counter",
+      UsedBy => "emdb",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  lpm_cache_msb_emCam => { #Structure Type: Mem; Skip Register;
+    Name => "lpm_cache_msb_emCam",
+    RegMem => "Mem",
+    Address => "1200000", # Excel Formula: =calc_mem_address(C153,A153,G167,L167)
+    Width => "67", # Excel Formula: =calc_mem_width(E168:E170,"None",F170,-1)
+    Type => "Dynamic",
+    UsedBy => "lpm_cache_msb_em",
+    MemEntries => "2",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,RegTcamPayloadWidth=20,CAM=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "67",
+    lpm_cache_msb_emCam_key => { #Structure Type: MemField;
+      Name => "lpm_cache_msb_emCam_key",
+      RegMem => "MemField",
+      Width => "46",
+      Position => "45:0", # Excel Formula: =calc_position(F167,E168,TRUE)
+    },
+    lpm_cache_msb_emCam_payload => { #Structure Type: MemField;
+      Name => "lpm_cache_msb_emCam_payload",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "65:46", # Excel Formula: =calc_position(F168,E169)
+    },
+    lpm_cache_msb_emCam_valid => { #Structure Type: MemField;
+      Name => "lpm_cache_msb_emCam_valid",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "66", # Excel Formula: =calc_position(F169,E170)
+    },
+  },
+  lpm_cache_lsb_emVerifier => { #Structure Type: Mem; Skip Register;
+    Name => "lpm_cache_lsb_emVerifier",
+    RegMem => "Mem",
+    Address => "1300000", # Excel Formula: =calc_mem_address(C167,A167,G171,L171)
+    Width => "214", # Excel Formula: =calc_mem_width(E172:E172,M171,F172,-1)
+    Type => "Dynamic",
+    UsedBy => "lpm_cache_lsb_em",
+    MemEntries => "512",
+    MemWrapper => "1P WriteMask",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "214",
+    lpm_cache_lsb_emVerifierData => { #Structure Type: MemField;
+      Name => "lpm_cache_lsb_emVerifierData",
+      RegMem => "MemField",
+      Width => "214",
+      Position => "213:0", # Excel Formula: =calc_position(F171,E172,TRUE)
+    },
+  },
+  lpm_cache_lsb_emValid => { #Structure Type: Mem; Skip Register;
+    Name => "lpm_cache_lsb_emValid",
+    RegMem => "Mem",
+    Address => "1400000", # Excel Formula: =calc_mem_address(C171,A171,G173,L173)
+    Width => "2", # Excel Formula: =calc_mem_width(E174:E174,M173,F174,-1)
+    Type => "Dynamic",
+    UsedBy => "lpm_cache_lsb_em",
+    MemEntries => "512",
+    MemWrapper => "1R1W WriteMask",
+    MemProtect => "None",
+    AdditionalInfo => "SampleReadBeforeProt=1,WriteActivityFactor=30,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "2",
+    lpm_cache_lsb_emValidData => { #Structure Type: MemField;
+      Name => "lpm_cache_lsb_emValidData",
+      RegMem => "MemField",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F173,E174,TRUE)
+    },
+  },
+  lpm_cache_lsb_emPerBankReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 27; Skip Register;
+    Name => "lpm_cache_lsb_emPerBankReg[1]",
+    RegMem => "Reg",
+    Address => "12F", # Excel Formula: =calc_reg_address(C165,A165,G165)
+    Width => "214", # Excel Formula: =calc_reg_width(E176:E178,F178)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    lpm_cache_lsb_emActiveBanks0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 28;
+      Name => "lpm_cache_lsb_emActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F175,E176,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache_lsb_em",
+      DefaultValue => "d1",
+    },
+    lpm_cache_lsb_emHashKey0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 24;
+      Name => "lpm_cache_lsb_emHashKey[n]",
+      RegMem => "RegField",
+      Width => "212",
+      Position => "212:1", # Excel Formula: =calc_position(F176,E177)
+      Type => "Config",
+      UsedBy => "lpm_cache_lsb_em",
+      DefaultValue => "h0",
+    },
+    lpm_cache_lsb_emUsePrimitiveCrc0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 32;
+      Name => "lpm_cache_lsb_emUsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "213", # Excel Formula: =calc_position(F177,E178)
+      Type => "Config",
+      UsedBy => "lpm_cache_lsb_em",
+      DefaultValue => "h0",
+    },
+  },
+  lpm_cache_lsb_emPerEmReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 25; Skip Register;
+    Name => "lpm_cache_lsb_emPerEmReg[1]",
+    RegMem => "Reg",
+    Address => "130", # Excel Formula: =calc_reg_address(C175,A175,G175)
+    Width => "33", # Excel Formula: =calc_reg_width(E180:E182,F182)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    lpm_cache_lsb_emKeyWidth0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "lpm_cache_lsb_emKeyWidth[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F179,E180,TRUE)
+      Type => "Config",
+      UsedBy => "lpm_cache_lsb_em",
+      DefaultValue => "h0",
+    },
+    lpm_cache_lsb_emAutoBubbleReq0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 30;
+      Name => "lpm_cache_lsb_emAutoBubbleReq[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F180,E181)
+      Type => "Config",
+      UsedBy => "lpm_cache_lsb_em",
+      DefaultValue => "h0",
+    },
+    lpm_cache_lsb_emBubbleReqThreshold0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 35;
+      Name => "lpm_cache_lsb_emBubbleReqThreshold[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "32:17", # Excel Formula: =calc_position(F181,E182)
+      Type => "Config",
+      UsedBy => "lpm_cache_lsb_em",
+      DefaultValue => "h0",
+    },
+  },
+  lpm_cache_lsb_emCamWmMaxReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 28; Skip Register;
+    Name => "lpm_cache_lsb_emCamWmMaxReg[1]",
+    RegMem => "Reg",
+    Address => "131", # Excel Formula: =calc_reg_address(C179,A179,G179)
+    Width => "8", # Excel Formula: =calc_reg_width(E184:E184,F184)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    lpm_cache_lsb_emCamWmMax0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "lpm_cache_lsb_emCamWmMax[n]",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F183,E184,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "emdb",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  lpm_cache_lsb_emBankWriteCntrReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 33; Skip Register;
+    Name => "lpm_cache_lsb_emBankWriteCntrReg[1]",
+    RegMem => "Reg",
+    Address => "132", # Excel Formula: =calc_reg_address(C183,A183,G183)
+    Width => "64", # Excel Formula: =calc_reg_width(E186:E186,F186)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    lpm_cache_lsb_emBankWriteCntr0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 30;
+      Name => "lpm_cache_lsb_emBankWriteCntr[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "63:0", # Excel Formula: =calc_position(F185,E186,TRUE)
+      Type => "Counter",
+      UsedBy => "emdb",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  lpm_cache_lsb_emCam => { #Structure Type: Mem; Skip Register;
+    Name => "lpm_cache_lsb_emCam",
+    RegMem => "Mem",
+    Address => "1500000", # Excel Formula: =calc_mem_address(C173,A173,G187,L187)
+    Width => "168", # Excel Formula: =calc_mem_width(E188:E190,"None",F190,-1)
+    Type => "Dynamic",
+    UsedBy => "lpm_cache_lsb_em",
+    MemEntries => "2",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,RegTcamPayloadWidth=61,CAM=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "168",
+    lpm_cache_lsb_emCam_key => { #Structure Type: MemField;
+      Name => "lpm_cache_lsb_emCam_key",
+      RegMem => "MemField",
+      Width => "106",
+      Position => "105:0", # Excel Formula: =calc_position(F187,E188,TRUE)
+    },
+    lpm_cache_lsb_emCam_payload => { #Structure Type: MemField;
+      Name => "lpm_cache_lsb_emCam_payload",
+      RegMem => "MemField",
+      Width => "61",
+      Position => "166:106", # Excel Formula: =calc_position(F188,E189)
+    },
+    lpm_cache_lsb_emCam_valid => { #Structure Type: MemField;
+      Name => "lpm_cache_lsb_emCam_valid",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "167", # Excel Formula: =calc_position(F189,E190)
+    },
+  },
+};

@@ -1,0 +1,35 @@
+{
+    "real_ports": [
+        {
+            "pif": ["0x508", "0x608"],
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "an": false,
+            "admin_state": true
+        }
+    ],
+    "sw_ports": [
+        {
+            "pif": 8,
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "an": false,
+            "admin_state": true
+        }
+    ],
+    "rt_ports": [
+        {
+            "pif": "0x308",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "an": false,
+            "admin_state": true
+        }
+    ]
+}

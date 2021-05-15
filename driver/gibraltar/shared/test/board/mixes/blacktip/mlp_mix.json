@@ -1,0 +1,74 @@
+{
+    "external_ports":
+    [
+        {
+            "slice": 2,
+            "ifg": 1,
+            "serdes": 0,
+            "serdes_count": 8,
+            "speed": 400,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops": 1,
+            "an": false
+        }
+    ],
+    "loopback_ports":
+    [
+        {
+            "slice": 0,
+            "ifg": 0,
+            "serdes": 8,
+            "serdes_count": 16,
+            "speed": 800,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops": 1,
+            "an": false
+        },
+        {
+            "slice": 0,
+            "ifg": 1,
+            "serdes": 0,
+            "serdes_count": 16,
+            "speed": 800,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops": 1,
+            "an": false
+        },
+        {
+            "slice": [3, 4],
+            "ifg": [0, 1],
+            "serdes": 0,
+            "serdes_count": 16,
+            "speed": 800,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops": 1,
+            "an": false
+        },
+        {
+            "slice": 5,
+            "ifg": 0,
+            "serdes": 8,
+            "serdes_count": 16,
+            "speed": 800,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops": 1,
+            "an": false
+        },
+        {
+            "slice": 5,
+            "ifg": 1,
+            "serdes": 0,
+            "serdes_count": 16,
+            "speed": 800,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops": 1,
+            "an": false
+        }
+    ]
+}

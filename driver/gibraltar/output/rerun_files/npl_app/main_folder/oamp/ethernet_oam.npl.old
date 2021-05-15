@@ -1,0 +1,1071 @@
+// BEGIN_LEGAL
+//
+// Copyright (c) 2016-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+//
+// This file and all technical concepts, proprietary knowledge, algorithms and
+// intellectual property rights it contains (collectively the "Confidential Information"),
+// are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+// You shall not disclose the Confidential Information to any third party and you
+// shall use it solely in connection with operating and/or maintaining of Cisco's
+// products and pursuant to the terms and conditions of the license agreement you
+// entered into with Cisco.
+//
+// THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+// IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+// AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+// THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+// END_LEGAL
+
+
+// macro:  ethernet_oam_receive_macro
+//
+// assigns mp (mep or mip) and rmep ids and reads their attributes (collappsed)
+
+
+
+
+
+// tst/sat receive and transmit are handled in auxilary db
+//
+// transmit
+//
+// scanner generate tst messages in configurable rate.
+// Up to 8 concurrent sessions.
+//
+// receive
+//
+// map tst received packet to a record with three entries:
+// - expected_seq_number
+// - receive_packet_counter
+// - out_of_order_counter
+//
+// On received packet execute the following
+// - inc receive_packet_counter
+// - if receive_seq_number < expected_seq_number then
+//      inc out_of_order_counter
+//   else
+//      expected_seq_number <-- receive_seq_number + 1
+//
+
+
+
+
+
+
+// mep attributes required only for packet generation/inject
+header_type eth_mep_tx_attributes_t {
+  fields {
+     //common transmit
+     unicast_da_ptr		: 13;
+     inner_vlan_cmd		: eth_oam_vlan_cmd_t;
+     outer_vlan_cmd		: eth_oam_vlan_cmd_t;
+     tc_dp			: 5;	// (tc_dp[4] == 1) ? (tc : tc_dp[3:1]; dp: tc_dp[0]) : map packet fields
+
+    //ccm transmit
+    mep_id			: 13;
+    tx_rdi			: 1;
+    ccm_da			: eth_oam_da_e;	 // multicat or unicast
+
+    // dm transmit
+    one_dm_period		: 3;
+    dmm_period			: 3;
+
+    //lm transmit
+    lmm_period			: 3;
+  }
+}
+
+
+// mep attributes required for both oam receive handling and oam transmot/inject
+header_type eth_mep_shared_attributes_t {
+  fields {
+    //common receive + transmit
+    eth_mp_type			: eth_mp_type_e;
+    meg_level			: 3;
+    mep_address_lsb		: 16;//ELIDO: compiler does not support assignment to subfields
+    mep_address_ptr		: 8; //ELIDO: use pointer instead to local table as workarround
+    mep_address_prefix		: 2;
+    npp				: 14;	// down mep: destination npp; up mep: source npp
+
+
+    //ccm receive + transmit
+    meg_id_format		: meg_id_format_e;
+    ccm_period			: 3;
+    //ELIDO uncomment ccm_lm			: 1;		// if set indicates that CCM packets used for LM
+
+
+    // ELIDO: move lmdm attributes to aux db
+    //lm receive + transmit
+    lm_mode			: 3;    // placeholder for single ended, dual ended counter width etc
+    lmr_da			: eth_oam_da_e;	 // multicat or unicast    
+    per_tc_count		: 1;   // indicates if counter pointer should be shifted by tc
+    counter_ptr			: 20;  // pointer to counter in system counter block that np engine should stamp on the packet
+    hierarchical_lm		: 1;   // indicates if hierarchical lm is supported
+    lower_level_ptr		: 14;  // pointer to a MEP in a lower level on the same logical port for hiararchical lm
+    				      // 14'h3fff indicates null
+    
+    //ELIDO: uncomment tx_base_counter_ptr		: 12;  // pointer to a counter in external db that its value is stamped on inject header in LMM and LMR
+    				       // packets. This value is added by tx npu to npu counter and stamped on the oam packet in order
+				       // to support hiararchical LM
+    
+    // ELIDO: uncomment rx_base_counter_ptr		: 12;  // pointer to a counter in external db that its value is added to the stampped value by the npu
+    				       // in received LMM and LMR packets to support hiararchical LM
+				       // this value is stampped on the packet instead of the value stamped by the npu
+				       
+    counter_record_ptr		: 10;  // pointer to counter record in aux DB (1) 4x32b counters (2)lmm counter (3)lmr counter
+    				       // (4)loss sum counter (5) min loss (6) max loss
+				       // pointers for lm dbs can alternatively be algorithmically calculated
+    //dm
+    //ELIDO: uncomment dm_mode			: 3;    // placeholder for single ended, dual ended time format etc    
+    dmr_da			: eth_oam_da_e;	 // multicat or unicast        
+    //ELIDO incomment delay_record_ptr		: 10; // (1) 1dm_rx_counter (2) dmm_counter (3)dmr_counter (4) min_delay (5) max_delay (6) fdv
+    				      // pointers for dm dbs can alternatively be algorithmically calculated
+				     
+    //tst
+    //ELIDO: uncomment tst_record_ptr		: 10; // pointer to tst record in aux db. Responsible for generation and reception of tst packets
+  }
+}
+
+// eth mep attributes
+// seperate the attributes used for tx only to reduce the payload returned to np engine upon receive processing
+header_type eth_mep_attributes_t {
+  fields {
+     tx_attributes	: eth_mep_tx_attributes_t;		// used only for packet generation
+     shared_attributes	: eth_mep_shared_attributes_t;		// used for receive processing and packet generation
+  }
+}
+
+
+
+header_type eth_rmep_attributes_t {
+  fields {
+      //ccm receive
+      rmep_ptr			: 16;  // pointer to rmep table. used to update time stamp in next macro
+      rmep_rdi			: 1;   // rdi state of remote mep
+      rmep_loc			: 1;   // loc state of remote mep
+      padding			: 2;
+      timeout_period		: 4;   // indicates the time required to indicate LOC. Used by scanner only and not by npe
+  }
+}
+
+enum_type eth_mp_type_e {
+  AC_DOWN_MEP = 3'd0;
+  AC_UP_MEP   = 3'd1;
+  BVID_MEP    = 3'd2;
+  ISID_MEP    = 3'd3;
+  AC_MIP      = 3'd4;
+}
+
+
+enum_type meg_id_format_e {
+  MEG_ID_FORMAT_ICC;
+  MEG_ID_FORMAT_ICC_AND_CC;
+}
+
+
+enum_type eth_oam_da_e {
+  ETH_OAM_DA_UC;
+  ETH_OAM_DA_MC;
+}
+
+enum_type eth_mep_mapping_selector_e {
+  MEP_MAPPING_SELECTOR_CCM;
+  MEP_MAPPING_SELECTOR_NOT_CCM;
+}
+
+header_type eth_oam_vlan_cmd_t {
+  fields {
+    tpid_ptr			: 5;	// pointer to tpid value. 31 means to vlan tag
+    vlan_tag			: 16;   // vlan id + pcp + dei
+  }
+}
+
+
+header_type eth_mp_location_t {
+  fields {
+    eth_mp_type		: eth_mp_type_e;	
+    padding		: 5;
+    id			: 24;		// id representing the location of the mp.
+    			  		//used to build a key to map Ethernet OAM packet to MEP/MIP and RMEP ids. 
+					// can be: {6'b0, l2_slp_id} or {6'b0, l2_dlp_id} or {12'b0, bvid} or  isid
+  }
+}
+
+
+header_type eth_oam_local_vars_t {
+  fields {
+    mp_table_payload		: mp_table_payload_t;		// mp table payload returned to npe for receive processing
+    meg_id			: 120;				// max meg id value is 15B
+    rmep_attributes		: eth_rmep_attributes_t;
+    mep_mapping_selector	: eth_mep_mapping_selector_e;   // determines if mep id is part of the mapping key (CCM)
+    mep_mac_address_prefix	: 32;
+    meg_level			: 3;				//ELIDO: remove; temp key to mc da inject table
+    mep_address_ptr		: 8;				//ELIDO: remove; temp key to sa inject table    
+  }
+}
+
+metadata eth_oam_local_vars_t	eth_oam_local_vars;
+metadata mp_table_payload_t 	temp_mp_table_payload;
+metadata meg_id_t               temp_meg_id;
+metadata trap_t               	temp_trap;
+metadata eth_rmep_attributes_t  temp_rmep_attributes;	
+
+header_type meg_id_t {
+  fields {
+    id : 120;
+  }
+}
+
+
+header_type trap_t {
+  fields {
+    set : 1;
+  }
+}
+
+// lookup MP mapping to assign ethernet MEP or MIP id and their attributes
+// CCM MEP key includes sending mep id from packet
+control  eth_oam_mp_and_rmep_assignment {
+
+  // default value
+  apply() {modify_field (eth_oam_local_vars.mep_mapping_selector, MEP_MAPPING_SELECTOR_CCM);};
+
+  // oamp maps ethernet OAM packet to a MIP & MEP
+  // if the punt header extenssion does not contain the mp location (AC(up/down), BVID, ISID)
+  // then oamp can't map it
+  //ELIDO: bitwise and is not supported yet
+//  if ((pd.punt_header_extenssions & ETHERNET_MP_LOCATION) == 8'd0) {
+  if (pd.punt_header_extenssions[7] == 1'b0) {  
+     apply() { modify_field(traps.oamp.eth_oam_no_mp_location, 1); };
+  }
+  
+  else if (pd.punt_header.punt_reason ==  ETHERNET_OAM_AC_MIP) {
+     //apply (eth_mip_mapping_table); //ELIDO: fix mip handling. most likely trap to cpu. Can be trapped by npu and bypass oamp
+     	     			      //       optionally implement LBM receive and LBR inject by oamp
+     apply () {modify_field(traps.oamp.eth_mip, 1); };
+  }
+  
+  else if ((pd.punt_header.punt_reason ==  ETHERNET_OAM_AC_DOWN_MEP) ||
+       	   (pd.punt_header.punt_reason ==  ETHERNET_OAM_AC_UP_MEP)   ||
+	   (pd.punt_header.punt_reason ==  ETHERNET_OAM_BVID_MEP)    ||
+	   (pd.punt_header.punt_reason ==  ETHERNET_OAM_ISID_MEP)) {
+	   
+  	if (pd.header_format[2].eth_oam_header.opcode == OAM_OPCODE_CCM) {
+     	   apply() {modify_field (eth_oam_local_vars.mep_mapping_selector, MEP_MAPPING_SELECTOR_CCM);};
+  	}
+  	else {
+    	   apply() {modify_field (eth_oam_local_vars.mep_mapping_selector, MEP_MAPPING_SELECTOR_NOT_CCM);};
+  	}
+
+  } else {
+        apply() { modify_field(traps.oamp.eth_unknown_punt_reason, 1); };
+  }
+
+  //ELIDO: mep_mapping_table is defined as TCAM since compiler does not support default value on EM
+  apply (eth_mep_mapping_table);
+
+  apply() {
+    modify_field(eth_oam_local_vars.rmep_attributes, temp_rmep_attributes);
+    modify_field(eth_oam_local_vars.meg_id, temp_meg_id);      
+    modify_field(eth_oam_local_vars.mp_table_payload, temp_mp_table_payload);
+    modify_field(traps.oamp.eth_mep_mapping_failed, temp_trap);    
+  };
+
+  // update values on PD to be used in processing, validity or redirect  macros
+  apply() {modify_field(pd.oamp_receive.rmep_attributes, eth_oam_local_vars.rmep_attributes); };
+  apply() {modify_field(pd.oamp_receive.meg_id, eth_oam_local_vars.meg_id); };  
+  apply() {modify_field(pd.oamp_receive.mp_table_payload, eth_oam_local_vars.mp_table_payload); };
+  apply() {modify_field (pd.oamp_receive.oamp_event, OAMP_EVENT_NONE); }; // default: no events
+	
+
+}
+
+
+
+// process received oam packet
+control  eth_oam_receive_process {
+
+  // MEP validity tests
+  if ((pd.punt_header.punt_reason == ETHERNET_OAM_AC_DOWN_MEP) ||  //ELIDO: if only MIP is bypassed oamp can remove the if
+       (pd.punt_header.punt_reason == ETHERNET_OAM_AC_UP_MEP)   ||
+       (pd.punt_header.punt_reason == ETHERNET_OAM_BVID_MEP)    ||
+       (pd.punt_header.punt_reason == ETHERNET_OAM_ISID_MEP)) {
+
+    // ++++++++++++++++++++++++++++++++++++++
+    // common MEP validity tests 
+    // ++++++++++++++++++++++++++++++++++++++
+
+    //check that the MEP type is ethernet
+    if (eth_oam_local_vars.mp_table_payload.mp_type != ETH_MEP) {
+       apply() {modify_field(traps.oamp.eth_wrong_mep_type, 1); };
+    }
+
+    //check if ethernet mep type matches punt header
+    else if (pd.mp_info.eth_mp_location.eth_mp_type != eth_oam_local_vars.mp_table_payload.attributes.eth_mep.eth_mp_type) {
+       apply() {modify_field(traps.oamp.eth_mep_type_mismatch, 1); };
+    }
+
+    //test MEG level
+   else if (eth_oam_local_vars.mp_table_payload.attributes.eth_mep.meg_level != pd.protocol_layer[2].header_format[0].eth_oam_header.meg_level ) {
+       apply() {modify_field(traps.oamp.eth_meg_level_mismatch, 1); };
+    }
+    // ++++++++++++++++++++++++++++++++++++++
+    // validity tests per OAM opcode
+    // ++++++++++++++++++++++++++++++++++++++
+    if (pd.protocol_layer[2].header_format[0].eth_oam_header.opcode == OAM_OPCODE_CCM) {  // CCM validity tests
+
+
+	// some of the CCM validity tests are implemented in the ethernet oam receive macro
+	// in order the releif the load on the process_ccm macro which cannot map all required
+	// validity tests before the trap table	
+	eth_ccm_validity_tests_part_1();
+	
+       // next macro is process CCM if no trap was identified
+       // process ccm  continues validity tests
+
+       apply() {set_next_macro(ethernet_oam_process_ccm, FALSE, PL_INC_ONCE); }; // protocol-layer advance; 
+    }
+
+    else if (pd.protocol_layer[2].header_format[0].eth_oam_header.opcode == OAM_OPCODE_LMM) {  
+
+    	apply() {set_next_macro(ethernet_oam_process_lmm, FALSE, PL_INC_ONCE); }; // protocol-layer advance; 
+    }
+
+    else if (pd.protocol_layer[2].header_format[0].eth_oam_header.opcode == OAM_OPCODE_DMM) {
+
+    	apply() {set_next_macro(ethernet_oam_process_dmm, FALSE, PL_INC_ONCE); }; // protocol-layer advance; 
+    }
+
+    // trap on not supported opcodes 
+    else  {  
+       apply() {modify_field(traps.oamp.eth_not_supported_oam_opcode, 1); };
+    }
+  }
+  
+  // messages to MIP always sent to CPU.
+//  else if (pd.punt_header.punt_reason == ETHERNET_OAM_AC_MIP)  {
+//       apply() {modify_field(traps.oamp.eth_mip, 1); };
+//  }
+  
+}
+
+
+// some of the CCM validity tests are implemented in the ethernet oam receive macro
+// in order the releif the load on the process_ccm macro which cannot map all required
+// validity tests before the trap table
+control eth_ccm_validity_tests_part_1 {
+
+// if unicast DA, must match the mep address
+  if (pd.protocol_layer[1].ethernet_header.da[40] == 0) {
+     //ELIDO compare 16b lsb and 16b msb instead of 32 becasue compiler fails
+//     if ((pd.ethernet_header.da[31:16] != eth_oam_local_vars.mep_mac_address_prefix[15:0]) ||
+//         (pd.ethernet_header.da[47:32] != eth_oam_local_vars.mep_mac_address_prefix[31:16]) ||
+      if (pd.protocol_layer[1].ethernet_header.da[15:0] != pd.oamp_receive.mp_table_payload.attributes.eth_mep.mep_address_lsb ) {
+
+
+	 apply() {modify_field(traps.oamp.eth_unicast_da_no_match, 1); };
+     }
+  // test multicast da   
+  } else if ((pd.protocol_layer[1].ethernet_header.da[47:8] != 0x_01_80_C2_00_00) ||
+             (pd.protocol_layer[1].ethernet_header.da[7:4] != 4'd3)) {
+
+	 apply() {modify_field(traps.oamp.eth_multicast_da_no_match, 1); };
+  }
+
+  // test ccm period
+  else if (eth_oam_local_vars.mp_table_payload.attributes.eth_mep.ccm_period != pd.protocol_layer[2].header_format[0].eth_oam_header.flags[2:0]) {
+     apply() {modify_field(traps.oamp.eth_ccm_period_no_match, 1); };
+  }
+
+  // test no tlv's on the packet
+  else if (pd.protocol_layer[2].header_format[0].eth_oam_header.tlv_offset != 8'd70) {
+     apply() {modify_field(traps.oamp.eth_ccm_tlv_no_match, 1); };
+  }
+}
+
+
+// test validity of the received CCM packet and trap if not valid
+control  eth_ccm_validity_tests_part_2 {
+ // extract MEP address 32b msb
+ // apply(mep_address_prefix_table);
+/*
+  // if unicast DA, must match the mep address
+  if (pd.ethernet_header.da[40] == 0) {
+     //ELIDO compare 16b lsb and 16b msb instead of 32 becasue compiler fails
+//     if ((pd.ethernet_header.da[31:16] != eth_oam_local_vars.mep_mac_address_prefix[15:0]) ||
+//         (pd.ethernet_header.da[47:32] != eth_oam_local_vars.mep_mac_address_prefix[31:16]) ||
+      if (pd.ethernet_header.da[15:0] != pd.oamp_receive.mp_table_payload.attributes.eth_mep.mep_address_lsb ) {
+
+
+	 apply() {modify_field(traps.oamp.eth_unicast_da_no_match, 1); };
+     }
+  // test multicast da   
+  } else if ((pd.ethernet_header.da[47:8] != 0x_01_80_C2_00_00) ||
+             (pd.ethernet_header.da[7:4] != 4'd3)) {
+
+	 apply() {modify_field(traps.oamp.eth_multicast_da_no_match, 1); };
+  }
+
+*/
+  //test MEG id
+  if (pd.protocol_layer[2].header_format[1].eth_oam_ccm.md_name_format != 8'd01) {
+      
+      apply() {modify_field(traps.oamp.eth_bad_md_name_format, 1);};
+  }
+
+
+  else if ((pd.oamp_receive.mp_table_payload.attributes.eth_mep.meg_id_format == MEG_ID_FORMAT_ICC) &&
+           ((pd.protocol_layer[2].header_format[1].eth_oam_ccm.meg_id_format != 8'd32) ||
+            (pd.protocol_layer[2].header_format[1].eth_oam_ccm.meg_id_length != 8'd13))) {
+	       
+           apply() {modify_field(traps.oamp.eth_wrong_meg_id_format, 1); };
+  }
+
+
+
+  else if ((pd.oamp_receive.mp_table_payload.attributes.eth_mep.meg_id_format == MEG_ID_FORMAT_ICC) &&
+
+     // (pd.protocol_layer[2].header_format[1].eth_oam_ccm.meg_id_value[119:16] != eth_oam_local_vars.meg_id[119:16])) {
+     //ELIDO: need to compare 119:16
+      ((pd.protocol_layer[2].header_format[1].eth_oam_ccm.meg_id_value[63:16] != pd.oamp_receive.meg_id[63:16]) || 
+       (pd.protocol_layer[2].header_format[1].eth_oam_ccm.meg_id_value[95:64] != pd.oamp_receive.meg_id[95:64]) ||
+       (pd.protocol_layer[2].header_format[1].eth_oam_ccm.meg_id_value[119:104] != pd.oamp_receive.meg_id[119:104]))) {
+	  
+          apply() {modify_field(traps.oamp.eth_meg_id_no_match, 1);};
+  }
+
+  else if ((pd.oamp_receive.mp_table_payload.attributes.eth_mep.meg_id_format == MEG_ID_FORMAT_ICC_AND_CC) &&
+           ((pd.protocol_layer[2].header_format[1].eth_oam_ccm.meg_id_format != 8'd33) ||
+            (pd.protocol_layer[2].header_format[1].eth_oam_ccm.meg_id_length != 8'd15))) {
+	       
+           apply() {modify_field(traps.oamp.eth_wrong_meg_id_format, 1); };
+  }
+
+  else if ((pd.oamp_receive.mp_table_payload.attributes.eth_mep.meg_id_format == MEG_ID_FORMAT_ICC_AND_CC) &&
+
+     // ELIDO: need to compare all 120b
+     // (pd.protocol_layer[2].header_format[1].eth_oam_ccm.meg_id_value != eth_oam_local_vars.meg_id)) {
+      ((pd.protocol_layer[2].header_format[1].eth_oam_ccm.meg_id_value[15:0] != pd.oamp_receive.meg_id[15:0]) ||
+       (pd.protocol_layer[2].header_format[1].eth_oam_ccm.meg_id_value[63:16] != pd.oamp_receive.meg_id[63:16]) || 
+       (pd.protocol_layer[2].header_format[1].eth_oam_ccm.meg_id_value[95:64] != pd.oamp_receive.meg_id[95:64]) ||
+       (pd.protocol_layer[2].header_format[1].eth_oam_ccm.meg_id_value[119:104] != pd.oamp_receive.meg_id[119:104]))) {
+	  
+          apply() {modify_field(traps.oamp.eth_meg_id_no_match, 1);};
+ }
+
+/*
+  // test ccm period
+  else if (pd.oamp_receive.mp_table_payload.attributes.eth_mep.ccm_period != pd.protocol_layer[2].header_format[0].eth_oam_header.flags[2:0]) {
+     apply() {modify_field(traps.oamp.eth_ccm_period_no_match, 1); };
+  }
+
+  // test no tlv's on the packet
+  else if (pd.protocol_layer[2].header_format[0].eth_oam_header.tlv_offset != 8'd70) {
+     apply() {modify_field(traps.oamp.eth_ccm_tlv_no_match, 1); };
+  }
+*/
+  //send message to CPU if received CCM from rmep in LOC state
+  else if (pd.oamp_receive.rmep_attributes.rmep_loc == 1'b1) {
+      
+     apply() {modify_field(pd.oamp_receive.oamp_event, OAMP_EVENT_CCM_FROM_MEP_IN_LOC); };
+  }
+
+  //send message to CPU if rmep rdi state had changed
+  else if (pd.oamp_receive.rmep_attributes.rmep_rdi != pd.header_format[2].eth_oam_header.flags[7]) {
+     apply() {modify_field(pd.oamp_receive.oamp_event, OAMP_EVENT_RDI_STATE_CHANGE); };
+  }
+
+
+}
+
+
+
+
+// generate lmr message from received lmm
+control inject_lmr {
+
+  //------------------------------------------------------------------------
+  // build lmr ethernet header and overwrite header on received lmm packet
+  //-----------------------------------------------------------------------
+
+  //build lmr sa
+  //ELIDO: compiler does not support assignment to subfields. use local table instead
+  //apply(){
+    //modify_field(ethernet_header.sa[15:0], eth_oam_local_vars.mp_table_payload.attributes.eth_mep.mep_address_lsb);
+    //modify_field(ethernet_header.sa[47:16], eth_oam_local_vars.mep_mac_address_prefix);
+  //};
+
+
+  apply() {modify_field(eth_oam_local_vars.mep_address_ptr, pd.oamp_receive.mp_table_payload.attributes.eth_mep.mep_address_ptr); }; 
+  apply(ethernet_sa_inject_table);
+
+//  apply() {modify_field(eth_oam_local_vars.meg_level, pd.oamp_receive.mp_table_payload.attributes.eth_mep.meg_level); }; 
+//  apply(mc_da_inject_table);
+
+ // if (pd.oamp_receive.mp_table_payload.attributes.eth_mep.lmr_da == ETH_OAM_DA_UC) {
+     apply() {modify_field(ethernet_header.da ,pd.ethernet_header.sa);};
+ // }
+
+
+/*
+//ELIDO: remove comment after compiler fix
+  //build lmr da
+  if (pd.oamp_receive.mp_table_payload.attributes.eth_mep.lmr_da == ETH_OAM_DA_MC) {
+     //ELIDO: compiler does not support assignment to subfields. use local table instead
+     //apply() {
+     //  modify_field(ethernet_header.da[47:8], 0x_01_80_C2_00_00);
+     //  modify_field(ethernet_header.da[7:3], 5'd6);		// 3 in first nible and 0 in msb of second nible
+     //  modify_field(ethernet_header.da[2:0], eth_oam_local_vars.mp_table_payload.attributes.eth_mep.meg_level);
+     //};
+
+
+
+  } else { // use sa from packet as da
+     apply() {modify_field(ethernet_header.da ,pd.ethernet_header.sa);};
+  }
+
+*/
+
+//  apply() {modify_field(ethernet_header.da, pd.ethernet_header.sa);};
+  
+  apply() {
+  
+    //ELIDO: expand each header since compiler does not support updating a structure
+    //       after initializing its fields seperately
+    // update packet ethernet header on pd
+    // modify_field(pd.header_format[1].ethernet_header, ethernet_header);
+    modify_field(pd.ethernet_header.da, ethernet_header.da);
+    modify_field(pd.ethernet_header.sa, ethernet_header.sa);
+
+    // update oam opcode on PD
+    modify_field(pd.protocol_layer[current+1].header_format[0].eth_oam_header.opcode, OAM_OPCODE_LMR);
+
+    //RxFcf was stammped on the packet by the NPU so no need to update
+  
+
+    // -------------------------------------
+    // build inject header
+    // ---------------------------------------
+    modify_field (pd.oamp_receive.inject_header.inject_source, INJECT_SRC_OAMP);
+    modify_field (pd.oamp_receive.inject_header.npp, pd.oamp_receive.mp_table_payload.attributes.eth_mep.npp);
+    modify_field (pd.oamp_receive.inject_header.source.oamp.inject_packet_type, INJECT_ETH_LMR);
+    modify_field (pd.oamp_receive.inject_header.source.mep_type, pd.oamp_receive.mp_table_payload.attributes.eth_mep.eth_mp_type);
+    modify_field (pd.oamp_receive.inject_header.source.oamp.tc_dp, 5'd0); // use from packet (lmm)
+    modify_field (pd.oamp_receive.inject_header.source.oamp.counter_stamp_cmd.counter_base, 16'b0); // ELIDO: add with hierarchical lm support
+    modify_field (pd.oamp_receive.inject_header.source.oamp.counter_stamp_cmd.counter_ptr,pd.oamp_receive.mp_table_payload.attributes.eth_mep.counter_ptr);
+    
+    // remove punt_header.oam_pdu_offset bytes from start of packet on pd
+    // Fo ethernet OAM punt_header.oam_pdu_offset points to the ethernet header
+    modify_field(pd.oamp_ene_macro_id0, remove_punt_header_ene_macro_id);
+
+    // push inject header on the packet
+    modify_field(pd.oamp_ene_macro_id1, push_inject_header_ene_macro_id);
+
+    // signal no more encap macros
+    modify_field(pd.oamp_ene_macro_id2, last_ene_macro_id);
+
+
+  };
+}
+
+
+//validity tests for lmm packet
+control  eth_lmm_validity_tests {
+  //current  protocol layer is ethernet
+  
+  // extract MEP address 32b msb
+  apply(mep_address_prefix_table);
+
+  // if unicast DA, must match the mep address
+  if (pd.ethernet_header.da[40] == 0) {
+     //ELIDO compare only 15b instead of 32 becasue compiler fails
+     if ((pd.ethernet_header.da[31:16] != eth_oam_local_vars.mep_mac_address_prefix[15:0]) ||
+         (pd.ethernet_header.da[47:32] != eth_oam_local_vars.mep_mac_address_prefix[31:16]) ||
+       (pd.ethernet_header.da[15:0] != pd.oamp_receive.mp_table_payload.attributes.eth_mep.mep_address_lsb )) {
+
+	 apply() {modify_field(traps.oamp.eth_unicast_da_no_match, 1); };
+     }
+  // test multicast da   
+  } else if ((pd.ethernet_header.da[47:8] != 0x_01_80_C2_00_00) ||
+             (pd.ethernet_header.da[7:4] != 4'd3)) {
+
+	 apply() {modify_field(traps.oamp.eth_multicast_da_no_match, 1); };
+  }
+
+  // test no tlv's on the packet
+  else if (pd.protocol_layer[2].header_format[0].eth_oam_header.tlv_offset != 8'd12) {
+    apply() {modify_field(traps.oamp.eth_lmm_tlv_no_match, 1); };
+  }
+
+}
+
+
+
+// generate dmr message from received lmm
+control inject_dmr {
+
+  //------------------------------------------------------------------------
+  // build dmr ethernet header and overwrite header on received dmm packet
+  //-----------------------------------------------------------------------
+
+
+
+  //build dmr sa
+  //ELIDO: compiler does not support assignment to subfields. use local table instead
+  //apply(){
+    //modify_field(ethernet_header.sa[15:0], eth_oam_local_vars.mp_table_payload.attributes.eth_mep.mep_address_lsb);
+    //modify_field(ethernet_header.sa[47:16], eth_oam_local_vars.mep_mac_address_prefix);
+  //};
+
+
+  apply() {modify_field(eth_oam_local_vars.mep_address_ptr, pd.oamp_receive.mp_table_payload.attributes.eth_mep.mep_address_ptr); }; 
+  apply(ethernet_sa_inject_table);
+
+/*
+//ELIDO: remove comment after compiler fix
+  //build lmr da
+  if (pd.oamp_receive.mp_table_payload.attributes.eth_mep.dmr_da == ETH_OAM_DA_MC) {
+     //ELIDO: compiler does not support assignment to subfields. use local table instead
+     //apply() {
+     //  modify_field(ethernet_header.da[47:8], 0x_01_80_C2_00_00);
+     //  modify_field(ethernet_header.da[7:3], 5'd6);		// 3 in first nible and 0 in msb of second nible
+     //  modify_field(ethernet_header.da[2:0], eth_oam_local_vars.mp_table_payload.attributes.eth_mep.meg_level);
+     //};
+
+     apply() {modify_field(eth_oam_local_vars.meg_level, pd.oamp_receive.mp_table_payload.attributes.eth_mep.meg_level); }; 
+     apply(mc_da_inject_table);
+
+  } else { // use sa from packet as da
+     apply() {modify_field(ethernet_header.da ,pd.ethernet_header.sa);};
+  }
+
+*/
+
+  apply() {modify_field(ethernet_header.da, pd.ethernet_header.sa);};
+  
+  apply() {
+  
+    // build oam ethertype
+
+    //ELIDO: expand each header since compiler does not support updating a structure
+    //       after initializing its fields seperately
+    // update packet ethernet header on pd
+    // modify_field(pd.header_format[1].ethernet_header, ethernet_header);
+    modify_field(pd.ethernet_header.da, ethernet_header.da);
+    modify_field(pd.ethernet_header.sa, ethernet_header.sa);
+    //modify_field(pd.ethernet_header.ether_type_or_tpid, ethernet_header.ether_type_or_tpid);    
+
+    // update oam opcode on PD
+    modify_field(pd.protocol_layer[current+1].header_format[0].eth_oam_header.opcode, OAM_OPCODE_DMR);
+
+    //RxFcf was stammped on the packet by the NPU so no need to update
+  
+
+    // -------------------------------------
+    // build inject header
+    // ---------------------------------------
+    modify_field (pd.oamp_receive.inject_header.inject_source, INJECT_SRC_OAMP);
+    modify_field (pd.oamp_receive.inject_header.npp, pd.oamp_receive.mp_table_payload.attributes.eth_mep.npp);
+    modify_field (pd.oamp_receive.inject_header.source.oamp.inject_packet_type, INJECT_ETH_DMR);
+    modify_field (pd.oamp_receive.inject_header.source.mep_type, pd.oamp_receive.mp_table_payload.attributes.eth_mep.eth_mp_type);
+    modify_field (pd.oamp_receive.inject_header.source.oamp.tc_dp, 5'd0); // use from packet (lmm)
+    modify_field (pd.oamp_receive.inject_header.source.oamp.counter_stamp_cmd.counter_base, 16'b0); // ELIDO: add with hierarchical lm support
+    modify_field (pd.oamp_receive.inject_header.source.oamp.counter_stamp_cmd.counter_ptr,pd.oamp_receive.mp_table_payload.attributes.eth_mep.counter_ptr);
+    
+    // remove punt_header.oam_pdu_offset bytes from start of packet on pd
+    // Fo ethernet OAM punt_header.oam_pdu_offset points to the ethernet header
+    modify_field(pd.oamp_ene_macro_id0, remove_punt_header_ene_macro_id);
+
+    // push inject header on the packet
+    modify_field(pd.oamp_ene_macro_id1, push_inject_header_ene_macro_id);
+
+    // signal no more encap macros
+    modify_field(pd.oamp_ene_macro_id2, last_ene_macro_id);
+
+
+  };
+}
+
+
+//validity tests for dmm packet
+control  eth_dmm_validity_tests {
+
+  //current  protocol layer is ethernet
+ 
+  // extract MEP address 32b msb
+  apply(mep_address_prefix_table);
+
+  // if unicast DA, must match the mep address
+  if (pd.ethernet_header.da[40] == 0) {
+     //ELIDO compare only 15b instead of 32 becasue compiler fails
+     if ((pd.ethernet_header.da[31:16] != eth_oam_local_vars.mep_mac_address_prefix[15:0]) ||
+         (pd.ethernet_header.da[47:32] != eth_oam_local_vars.mep_mac_address_prefix[31:16]) ||
+       (pd.ethernet_header.da[15:0] != pd.oamp_receive.mp_table_payload.attributes.eth_mep.mep_address_lsb )) {
+
+	 apply() {modify_field(traps.oamp.eth_unicast_da_no_match, 1); };
+     }
+  // test multicast da   
+  } else if ((pd.ethernet_header.da[47:8] != 0x_01_80_C2_00_00) ||
+             (pd.ethernet_header.da[7:4] != 4'd3)) {
+
+	 apply() {modify_field(traps.oamp.eth_multicast_da_no_match, 1); };
+  }
+
+  // test no tlv's on the packet
+  else if (pd.protocol_layer[2].header_format[0].eth_oam_header.tlv_offset != 8'd32) {
+    apply() {modify_field(traps.oamp.eth_lmm_tlv_no_match, 1); };
+  }
+
+}
+
+metadata  inject_header_t	inject_header;
+metadata  ethernet_header_t	ethernet_header;
+metadata  eth_oam_header_t	eth_oam_header;
+metadata  eth_oam_ccm_t		eth_oam_ccm;
+
+
+
+control ethernet_oam_inject_ccm_part_2 #MACRO(oam) {
+  // -------------------------------------
+  // build inject header
+  // ---------------------------------------
+  apply() {
+     modify_field (inject_header.inject_source, INJECT_SRC_OAMP);
+     modify_field (inject_header.npp, pd.oamp_transmit.mep.attributes.eth.shared_attributes.npp);
+     //ELIDO: assuming np engine macro is resolved by FI based on inject_packet_type on PD
+     //       can add test to trap if different from INJECT_ETH_CCM
+     modify_field (inject_header.source.oamp.inject_packet_type, pd.oamp_transmit.transmit_packet_type);
+     modify_field (inject_header.source.oamp.mep_type, pd.oamp_transmit.mep.attributes.eth.shared_attributes.eth_mp_type);
+     modify_field (inject_header.source.oamp.tc_dp, pd.oamp_transmit.mep.attributes.eth.tx_attributes.tc_dp);
+     modify_field (inject_header.source.oamp.counter_stamp_cmd.counter_base, 16'b0); // ELIDO: add with hierarchical lm support
+     modify_field (inject_header.source.oamp.counter_stamp_cmd.counter_ptr, pd.oamp_transmit.mep.attributes.eth.shared_attributes.counter_ptr);   
+  
+
+
+
+
+    // -------------------------------------
+    // build inject header
+    // ---------------------------------------
+    modify_field (pd.oamp_transmit.inject_header.inject_source, INJECT_SRC_OAMP);
+    modify_field (pd.oamp_transmit.inject_header.npp, pd.oamp_receive.mp_table_payload.attributes.eth_mep.npp);
+    modify_field (pd.oamp_transmit.inject_header.source.oamp.inject_packet_type, INJECT_ETH_LMR);
+    modify_field (pd.oamp_transmit.inject_header.source.mep_type, pd.oamp_receive.mp_table_payload.attributes.eth_mep.eth_mp_type);
+    modify_field (pd.oamp_transmit.inject_header.source.oamp.tc_dp, 5'd0); // use from packet (lmm)
+    modify_field (pd.oamp_transmit.inject_header.source.oamp.counter_stamp_cmd.counter_base, 16'b0); // ELIDO: add with hierarchical lm support
+    modify_field (pd.oamp_transmit.inject_header.source.oamp.counter_stamp_cmd.counter_ptr,pd.oamp_receive.mp_table_payload.attributes.eth_mep.counter_ptr);
+    
+
+  // push inject header on the packet
+  modify_field(pd.oamp_ene_macro_id0, push_inject_header_ene_macro_id);
+
+  };
+
+  if (pd.oamp_transmit.mep.attributes.eth.tx_attributes.inner_vlan_cmd.tpid_ptr != 5'd31) {
+     apply(inner_tpid_table);
+     apply() {modify_field(pd.oamp_ene_macro_id0, eth_oam_add_inner_vlan_ene_macro_id);};
+     apply() {modify_field(pd.oamp_ene_macro_id1, push_inject_header_ene_macro_id);};
+     apply() {modify_field(pd.oamp_ene_macro_id2, last_ene_macro_id);};     
+     
+     if (pd.oamp_transmit.mep.attributes.eth.tx_attributes.outer_vlan_cmd.tpid_ptr != 5'd31) {
+        apply(outer_tpid_table);
+     	apply() {modify_field(pd.oamp_ene_macro_id1, eth_oam_add_outer_vlan_ene_macro_id); };
+     	apply() {modify_field(pd.oamp_ene_macro_id2, push_inject_header_ene_macro_id); };	
+	apply() {modify_field(pd.oamp_ene_macro_id3, last_ene_macro_id); };
+     } 
+  }
+
+
+
+}
+
+
+// inject CCM message
+control ethernet_oam_inject_ccm_part_1 #MACRO(oam) {
+
+
+
+  // ---------------------------------------------------
+  // build ethernet header
+  // ---------------------------------------------------
+
+  // build da
+  if (pd.oamp_transmit.mep.attributes.eth.tx_attributes.ccm_da == ETH_OAM_DA_MC) {
+     //ELIDO: compiler does not support assignment to subfields. use local table instead
+     //apply() {
+     //  modify_field(ethernet_header.da[47:8], 0x_01_80_C2_00_00);
+     //  modify_field(ethernet_header.da[7:3], 5'd6);		// 3 in first nible and 0 in msb of second nible
+     //  modify_field(ethernet_header.da[2:0], pd.mep.attributes.eth.shared_attributes.meg_level);
+     //};
+
+     //ELIDO: fix assignment to ethernet header da
+     //apply() {modify_field(eth_oam_local_vars.meg_level,pd.mep.attributes.eth.shared_attributes.meg_level); }; 
+     //apply(mc_da_inject_table);
+     apply() {modify_field(ethernet_header.da, 0x_01_80_C2_00_00_30);};
+
+  } else { // get unicast da from aux db
+    apply(eth_oam_uc_da_table);
+  }
+
+  //ELIDO: compiler does not support assignment to subfields. use local table instead
+  // build SA
+  //apply(inject_sa_prefix_table);  // build sa 32 msb
+  apply() {modify_field(eth_oam_local_vars.mep_address_ptr, pd.mep.attributes.eth.shared_attributes.mep_address_ptr); }; 
+  apply(ethernet_sa_inject_table);
+
+  // build oam ethertype
+  apply() {modify_field(ethernet_header.ether_type_or_tpid, 0x_89_02);};
+
+
+
+  //ELIDO: use of ccm flags table instead of flag subfield assignment below
+  apply(ccm_flags_table);
+
+  apply() {
+  //ELIDO: compiler does not support assignment to subfields. use local table instead
+  //  modify_field(ethernet_header.sa[15:0], pd.mep.attributes.eth.shared_attributes.mep_address_lsb);
+
+
+
+    // ----------------------------------------
+    // build oam header
+    // ----------------------------------------
+    modify_field(eth_oam_header.meg_level, pd.mep.attributes.eth.shared_attributes.meg_level);
+    modify_field(eth_oam_header.version, 5'd0);
+    modify_field(eth_oam_header.opcode, OAM_OPCODE_CCM);
+
+    //ELIDO: use ccm_flags table instead of assignment to flag subfields
+    //modify_field(eth_oam_header.flags[7], pd.mep.attributes.eth.tx_attributes.tx_rdi);
+    //modify_field(eth_oam_header.flags[6:3], 4'b0);
+    //modify_field(eth_oam_header.flags[2:0], pd.mep.attributes.eth.shared_attributes.ccm_period);
+    
+    modify_field(eth_oam_header.tlv_offset, 8'd70);
+  
+
+
+    // ----------------------------------------
+    // build CCM header
+    // ----------------------------------------
+    modify_field(eth_oam_ccm.sequence_number, 32'b0);
+    modify_field(eth_oam_ccm.mep_id_padding, 3'b0);
+    modify_field(eth_oam_ccm.mep_id, pd.oamp_transmit.mep.attributes.eth.tx_attributes.mep_id);
+    modify_field(eth_oam_ccm.md_name_format, 8'd1);
+  };
+  if (pd.oamp_transmit.mep.attributes.eth.shared_attributes.meg_id_format == MEG_ID_FORMAT_ICC) {
+     apply() {
+       modify_field(eth_oam_ccm.meg_id_format, 8'd32);
+       modify_field(eth_oam_ccm.meg_id_length, 8'd13);
+       modify_field(eth_oam_ccm.meg_id_value, pd.oamp_transmit.meg_id);
+     };
+  }
+  else { // meg_id_format is ICC_AND_CC
+     apply() {
+       modify_field(eth_oam_ccm.meg_id_format, 8'd33);
+       modify_field(eth_oam_ccm.meg_id_length, 8'd15);
+       modify_field(eth_oam_ccm.meg_id_value, pd.oamp_transmit.meg_id);
+       // ELIDI: on need to initialize since assumed received zero on injected PD
+       //modify_field(eth_oam_ccm.meg_id_value[239:0], 240'b0);
+     };
+  }
+
+
+  apply() {
+
+   //------------------------------
+    // build Ethernet header on pd
+    //-----------------------------
+    modify_field (pd.eth_oam_ccm_pdu.ethernet_header.da, ethernet_header.da);
+    modify_field (pd.eth_oam_ccm_pdu.ethernet_header.sa, ethernet_header.sa);
+    modify_field (pd.eth_oam_ccm_pdu.ethernet_header.ether_type_or_tpid, ethernet_header.ether_type_or_tpid);	
+
+    //-----------------------------------
+    // build Ethernet oam  header on pd
+    //-----------------------------------
+    modify_field(pd.eth_oam_ccm_pdu.eth_oam_header.meg_level, eth_oam_header.meg_level);
+    modify_field(pd.eth_oam_ccm_pdu.eth_oam_header.version, eth_oam_header.version);
+    modify_field(pd.eth_oam_ccm_pdu.eth_oam_header.opcode, eth_oam_header.opcode);
+    modify_field(pd.eth_oam_ccm_pdu.eth_oam_header.flags, eth_oam_header.flags);
+    modify_field(pd.eth_oam_ccm_pdu.eth_oam_header.tlv_offset, eth_oam_header.tlv_offset);
+
+    //---------------------------
+    //build ccm header on pd
+    //--------------------------
+    modify_field(pd.eth_oam_ccm_pdu.eth_oam_ccm.sequence_number, eth_oam_ccm.sequence_number);
+    modify_field(pd.eth_oam_ccm_pdu.eth_oam_ccm.mep_id_padding, eth_oam_ccm.mep_id_padding);
+    modify_field(pd.eth_oam_ccm_pdu.eth_oam_ccm.mep_id, eth_oam_ccm.mep_id);
+    modify_field(pd.eth_oam_ccm_pdu.eth_oam_ccm.md_name_format, eth_oam_ccm.md_name_format);
+    modify_field(pd.eth_oam_ccm_pdu.eth_oam_ccm.meg_id_format, eth_oam_ccm.meg_id_format);
+    modify_field(pd.eth_oam_ccm_pdu.eth_oam_ccm.meg_id_length, eth_oam_ccm.meg_id_length);
+    modify_field(pd.eth_oam_ccm_pdu.eth_oam_ccm.meg_id_value, eth_oam_ccm.meg_id_value);    
+  };
+
+  apply() {set_next_macro(ethernet_oam_process_ccm, FALSE, PL_INC_NONE); }; // no protocol-layer advance; 
+}
+
+
+table eth_mep_mapping_table {
+  reads_options {
+    selector : eth_oam_local_vars.mep_mapping_selector;
+
+    MEP_MAPPING_SELECTOR_CCM {
+      pd.punt_header.mp_info.eth_mp_location				: exact; // key: slp_id; dlp_id ; bvid or isid
+      pd.protocol_layer[2].header_format[0].eth_oam_header.meg_level    : exact;
+      pd.protocol_layer[2].header_format[1].eth_oam_ccm.mep_id   	: exact;
+    }
+
+    MEP_MAPPING_SELECTOR_NOT_CCM {
+      pd.punt_header.mp_info.eth_mp_location				: exact; // key: slp_id; dlp_id ; bvid or isid
+      pd.protocol_layer[2].header_format[0].eth_oam_header.meg_level    : exact;
+    }
+  }
+  actions {
+     update_mep_attributes;
+  }
+
+  default_action: update_mep_attributes(120'b0, 120'b0, 24'b0, 1'b1);
+
+  database: EXTERNAL_MP_MAPPING_DB;
+  outgoing_interface: OUTGOING_MP_MAPPING_DB;
+}
+
+action update_mep_attributes(mp_table_payload, meg_id, rmep_attributes, trap) {
+      modify_field(temp_mp_table_payload, mp_table_payload);
+      modify_field(temp_meg_id, meg_id);
+      modify_field(temp_rmep_attributes, rmep_attributes);
+      modify_field(temp_trap, trap);      
+}
+
+/* ELIDO: mip mapping not needed, since all mesages to mip are sent to cpu
+// maps ethernet OAM packet to mip id and attributes
+table eth_mip_mapping_table {
+  reads {
+    pd.punt_header.mp_info.eth_mp_location		: exact;
+    pd.header_format[2].eth_oam_header.md_level       	: exact;
+  }
+  actions {
+    update_mip_attributes(mip_attributes) {
+      modify_field(eth_oam_mip_attributes, mip_attributes);
+    };
+
+    miss() {
+      modify_field(traps.oamp.eth_mip_mapping_failed, 1);
+    };
+  }
+  database: EXTERNAL_MP_MAPPING_DB;
+  outgoing_interface: OUTGOING_MP_MAPPING_DB;
+}
+*/
+
+// maps ethernet mep address prefix
+table mep_address_prefix_table {
+  reads {
+    pd.oamp_receive.mp_table_payload.mep_address_prefix	:exact;
+  }
+  actions {
+    update_mac_prefix(prefix) {
+      modify_field(eth_oam_local_vars.mep_mac_address_prefix, prefix);
+    };
+  }
+}
+
+
+//ELIDO: compiler does not support assignment to subfields. use local table instead
+// generates inject sa msb
+//table inject_sa_prefix_table {
+//  reads {
+//    pd.mep.attributes.eth.shared_attributes.mac_address_prefix	:exact;
+//  }
+//  actions {
+//    update_sa_prefix(prefix) {
+//      modify_field(ethernet_header.sa[48:16], prefix);
+//    };
+//  }
+//}
+
+
+// get uc da for ethernet oam
+table eth_oam_uc_da_table {
+  reads {
+    pd.mep.attributes.eth.tx_attributes.unicast_da_ptr		:exact;
+  }
+  writes ethernet_header.da;
+  database: EXTERNAL_UC_DA_TABLE;  
+  outgoing_interface: OUTGOING_UC_DA_TABLE;  
+}
+
+
+
+// map inner tpid pointer to tpid value
+table inner_tpid_table {
+  reads {
+    pd.mep.attributes.eth.tx_attributes.inner_vlan_cmd.tpid_ptr	:exact;
+  }
+  writes pd.inner_vlan_tpid;
+}
+
+
+// map outer tpid pointer to tpid value
+table outer_tpid_table {
+  reads {
+    pd.mep.attributes.eth.tx_attributes.outer_vlan_cmd.tpid_ptr	:exact;
+  }
+  writes pd.outer_vlan_tpid;
+}
+
+
+// push entry to OAMP message queue
+table oamp_event_queue_table {
+  reads {
+    pd.oamp_receive.oamp_event				:exact;
+    pd.oamp_receive.rmep_attributes.rmep_ptr				:exact;
+    pd.oamp_receive.mp_table_payload.mp_table_index	:exact;
+  }
+  actions {
+    no_op;
+  }
+  database: EXTERNAL_OAMP_MESSAGE_QUEUE;  
+  outgoing_interface: OUTGOING_OAMP_MESSAGE_QUEUE;  
+}
+
+// write last ccm time to rmep db
+table rmep_last_ccm_time_table {
+  reads {
+    pd.oamp_time					:exact;
+    pd.oamp_receive.rmep_attributes.rmep_ptr		:exact;
+  }
+  actions {
+    no_op;
+  }
+  database: EXTERNAL_LAST_CCM_TIME_TABLE;  
+  outgoing_interface: OUTGOING_LAST_CCM_TIME_TABLE;  
+}
+
+
+// map meg level to multicast DA
+table mc_da_inject_table {
+  reads {
+    eth_oam_local_vars.meg_level		:exact;
+  }
+  writes ethernet_header.da;
+}
+
+
+// map sa_ptr to inject packet sa
+table ethernet_sa_inject_table {
+  reads {
+    eth_oam_local_vars.mep_address_ptr	:exact;
+  }
+  writes ethernet_header.sa;
+}
+
+
+// map rdi and period to ccm flags field
+table ccm_flags_table {
+  reads {
+    pd.mep.attributes.eth.tx_attributes.tx_rdi			: exact;
+    pd.mep.attributes.eth.shared_attributes.ccm_period		: exact;
+  }
+  writes eth_oam_header.flags;
+}
+

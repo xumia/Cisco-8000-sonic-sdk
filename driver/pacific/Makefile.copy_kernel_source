@@ -1,0 +1,57 @@
+# BEGIN_LEGAL
+#
+# Copyright (c) 2018-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+leaba-module-source-dir := $(SHARED_BASE_ROOT)/src/kernel
+leaba-module-source-files := $(wildcard $(leaba-module-source-dir)/*) $(SHARED_BASE_ROOT)/include/lld/leaba_kernel_types.h
+leaba-module-copy-dir := $(MOD_OUTPUT_DIR)/leaba_module
+leaba-module-copied = $(BASE_OUTPUT_DIR)/build/.leaba_module_copy_done
+
+ifeq ("$(VERSION)","dev")
+	LEABA_MODULE_VERSION := $(VERSION).$(shell $(UNLOGGED) git rev-parse --short HEAD)
+else
+	LEABA_MODULE_VERSION := $(VERSION)
+endif
+
+.PHONY: leaba-module-copy leaba-module-clean
+
+leaba-module-copy: $(leaba-module-copied)
+
+$(leaba-module-copied): | $(SHARED_BASE_ROOT)/include/lld/leaba_kernel_types.h \
+	$(SHARED_BASE_ROOT)/src/kernel/gibraltar_leaba_registers.h \
+	$(SHARED_BASE_ROOT)/src/kernel/leaba_main.c \
+	$(SHARED_BASE_ROOT)/src/kernel/leaba_module.h \
+	$(SHARED_BASE_ROOT)/src/kernel/leaba_nic.c \
+	$(SHARED_BASE_ROOT)/src/kernel/leaba_packet_headers.h \
+	$(SHARED_BASE_ROOT)/src/kernel/leaba_registers.h \
+	$(SHARED_BASE_ROOT)/src/kernel/pacific_leaba_registers.h \
+	$(SHARED_BASE_ROOT)/src/kernel/packet_dma_wa.c
+
+$(leaba-module-copied): $(leaba-module-copy-dir)
+	@echo "Buildable source of kernel module is ready. Run 'make -C $(leaba-module-copy-dir)' on target machine to complete the build."
+	$(SILNET)$(MKDIR) -p $(@D)
+	$(SILENT)touch $@
+
+$(leaba-module-copy-dir): $(leaba-module-source-files)
+	$(SILENT)$(RM) -rf $@
+	$(SILENT)$(MKDIR) -p $@
+	$(SILENT)$(CP) -r $^ $@
+	$(SILENT)cat $(leaba-module-source-dir)/leaba_main.c | sed 's/.*define.*LEABA_MODULE_VERSION.*/#define LEABA_MODULE_VERSION "$(LEABA_MODULE_VERSION)"/g' > $@/leaba_main.c
+
+leaba-module-clean:
+	@$(RM) -rf $(leaba-module-copy-dir)

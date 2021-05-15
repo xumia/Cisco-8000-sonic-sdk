@@ -1,0 +1,110 @@
+# BEGIN_LEGAL
+#
+# Copyright (c) 2020-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+FROM {PYTHON_BASE_IMAGE}
+
+ENV DEBIAN_FRONTEND=noninteractive
+SHELL ["/bin/bash", "-c"]
+RUN groupadd -f -r docker
+RUN apt-get update && apt-get install -y \
+    make \
+    build-essential \
+    zlib1g-dev \
+    libbz2-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    wget \
+    curl \
+    llvm \
+    libtinfo5 \
+    libncurses5-dev \
+    libncursesw5-dev \
+    xz-utils \
+    tk-dev \
+    libffi-dev \
+    liblzma-dev \
+    python-openssl \
+    git \
+    vim \
+    quilt \
+    zlibc \
+    debhelper \
+    sudo \
+    libpcre3-dev \
+    libpcre++-dev \
+    libgdbm-dev \
+    libc6-dev \
+    libboost-all-dev \
+    unzip \
+    clang-7 \
+    libclang-7-dev \
+    llvm-7-dev \
+    libcereal-dev \
+    libnl-3-dev \
+    libnl-genl-3-dev
+
+RUN cat /etc/debian_version
+RUN if [[ $(cat /etc/debian_version) =~ 9\..* ]]; then \
+        apt-get install -y \
+            libssl-dev; \
+    else \
+        ( cd /tmp && \
+            wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz && \
+            tar xvf openssl-1.1.1c.tar.gz && \
+            cd openssl-1.1.1c && \
+            ./config --prefix=/usr && \
+            make && \
+            make test && \
+            make install ); \
+    fi
+
+#   swig
+
+#   Alternative of libreadline-dev: libedit-dev
+
+#RUN echo deb http://ftp.us.debian.org/debian unstable main contrib non-free > /etc/apt/sources.list.d/unstable.list && \
+#    apt-get update && \
+#    apt-get install -y -t unstable python3.7 binutils && \
+#    rm -f /etc/apt/sources.list.d/unstable.list && \
+#    apt-get update
+
+RUN cd /tmp && wget http://prdownloads.sourceforge.net/swig/swig-3.0.12.tar.gz && \
+    tar xvf swig-3.0.12.tar.gz && \
+    cd swig-3.0.12 && \
+    ./configure --prefix=/usr && \
+    make && \
+    make install
+
+RUN cd /tmp && wget https://www.python.org/ftp/python/{PYTHON_VER}/Python-{PYTHON_VER}{PYTHON_RC}.tgz && \
+    tar xvf Python-{PYTHON_VER}{PYTHON_RC}.tgz && \
+    cd Python-{PYTHON_VER}{PYTHON_RC} && \
+    ./configure && \
+    make && \
+    make altinstall
+
+RUN pip3.8 install --upgrade pip
+RUN pip3.8 install tabulate
+
+RUN apt-get update
+RUN apt-get install -y locales locales-all
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+
+#   ./configure --enable-optimizations

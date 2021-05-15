@@ -1,0 +1,20 @@
+Index: src/submodules/3rd-party/packages/jansson/2.12/value.c
+===================================================================
+--- src.orig/submodules/3rd-party/packages/jansson/2.12/value.c
++++ src/submodules/3rd-party/packages/jansson/2.12/value.c
+@@ -28,6 +28,7 @@
+ #include "utf.h"
+
+ /* Work around nonstandard isnan() and isinf() implementations */
++#if 0
+ #ifndef isnan
+ #ifndef __sun
+ static JSON_INLINE int isnan(double x) { return x != x; }
+@@ -36,6 +37,7 @@ static JSON_INLINE int isnan(double x) {
+ #ifndef isinf
+ static JSON_INLINE int isinf(double x) { return !isnan(x) && isnan(x - x); }
+ #endif
++#endif
+
+ static JSON_INLINE void json_init(json_t *json, json_type type)
+ {

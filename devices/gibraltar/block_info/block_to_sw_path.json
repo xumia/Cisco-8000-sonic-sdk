@@ -1,0 +1,494 @@
+[
+    {
+        "ignored_text":         "this config, for example, will match blockname: EXAMPLE7_SUB11_UID, and will put it in path: gibraltar_tree.first_num_div_by_two[3].first_num_mod_two[1].second_num[11]",
+        "match_str":            "EXAMPLE(\d+)_SUB(\d+)_UID",
+        "sw_path_calc_values":  ["\1/2", "\1%2", "\2"],
+        "sw_path":              "gibraltar_tree.first_num_div_by_two[\1].first_num_mod_two[\2].second_num[\3]",
+        "lbr_block_name":       "chain_blk"
+    },
+    {
+        "match_str":            "SBIF_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.sbif",
+        "lbr_block_name":       "sbif",
+        "has_sbus":              true
+    },
+    {
+        "match_str":            "IFG([0-9,A-B])_IFGB_UID",
+        "sw_path_calc_values":  ["0x\1/2", "0x\1%2"],
+        "sw_path":              "gibraltar_tree.slice[\1].ifg[\2].ifgb",
+        "lbr_block_name":       "ifgb_24p"
+    },
+    {
+        "match_str":            "IFG([0-9,A-B])_MAC_POOL8_0_UID",
+        "sw_path_calc_values":  ["0x\1/2", "0x\1%2"],
+        "sw_path":              "gibraltar_tree.slice[\1].ifg[\2].mac_pool8[0]",
+        "lbr_block_name":       "mac_pool8"
+    },
+    {
+        "match_str":            "IFG([0-9,A-B])_MAC_POOL8_1_UID",
+        "sw_path_calc_values":  ["0x\1/2", "0x\1%2"],
+        "sw_path":              "gibraltar_tree.slice[\1].ifg[\2].mac_pool8[1]",
+        "lbr_block_name":       "mac_pool8"
+    },
+    {
+        "match_str":            "IFG([0,1,2,5,6,9,A,B])_MAC_POOL8_2_UID",
+        "sw_path_calc_values":  ["0x\1/2", "0x\1%2"],
+        "sw_path":              "gibraltar_tree.slice[\1].ifg[\2].mac_pool8[2]",
+        "lbr_block_name":       "mac_pool8"
+    },
+    {
+        "match_str":            "IFG([3,4,7,8])_SERDES_POOL_UID",
+        "sw_path_calc_values":  ["0x\1/2", "0x\1%2"],
+        "sw_path":              "gibraltar_tree.slice[\1].ifg[\2].serdes_pool16",
+        "lbr_block_name":       "serdes_pool16",
+        "has_sbus":             true
+    },
+    {
+        "match_str":            "IFG([0,1,2,5,6,9,A,B])_SERDES_POOL_UID",
+        "sw_path_calc_values":  ["0x\1/2", "0x\1%2"],
+        "sw_path":              "gibraltar_tree.slice[\1].ifg[\2].serdes_pool24",
+        "lbr_block_name":       "serdes_pool24",
+        "has_sbus":             true
+    },
+    {
+        "match_str":            "TOP_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.top_regfile",
+        "lbr_block_name":       "top"
+    },
+    {
+        "match_str":            "SIM_ACCESS_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.sim_access",
+        "lbr_block_name":       "sim_access"
+    },
+    {
+        "match_str":            "SCH_TOP_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.sch_top",
+        "lbr_block_name":       "sch_top"
+    },
+    {
+        "match_str":            "SCH(\d|\d[0-1])_UID",
+        "sw_path_calc_values":  ["\1/2", "\1%2"],
+        "sw_path":              "gibraltar_tree.slice[\1].ifg[\2].sch",
+        "lbr_block_name":       "sch"
+    },
+    {
+        "match_str":            "RXPP([0-5])_TERM_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].npu.rxpp_term.top",
+        "lbr_block_name":       "rxpp_term"
+    },
+    {
+        "match_str":            "RXPP([0-5])_FI_STAGE_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].npu.rxpp_term.fi_stage",
+        "lbr_block_name":       "fi_stage"
+    },
+    {
+        "match_str":            "RXPP([0-5])_SNA_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].npu.rxpp_term.sna",
+        "lbr_block_name":       "slice_sna"
+    },
+    {
+        "match_str":            "RXPP([0-5])_NPE([0-2])_UID",
+        "sw_path_calc_values":  ["\1", "\2"],
+        "sw_path":              "gibraltar_tree.slice[\1].npu.rxpp_term.npe[\2]",
+        "lbr_block_name":       "npe"
+    },
+    {
+        "match_str":            "RXPP([0-5])_FWD_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].npu.rxpp_fwd.top",
+        "lbr_block_name":       "rxpp_fwd"
+    },
+    {
+        "match_str":            "RXPP([0-5])_NPE([3-5])_UID",
+        "sw_path_calc_values":  ["\1", "\2-3"],
+        "sw_path":              "gibraltar_tree.slice[\1].npu.rxpp_fwd.npe[\2]",
+        "lbr_block_name":       "npe"
+    },
+    {
+        "match_str":            "RXPP([0-5])_CDB_CACHE_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].npu.rxpp_fwd.cdb_cache",
+        "lbr_block_name":       "cdb_cache"
+    },
+    {
+        "match_str":            "RXPP([0-5])_FI_ENG([0-7])_UID",
+        "sw_path_calc_values":  ["\1", "\2"],
+        "sw_path":              "gibraltar_tree.slice[\1].npu.rxpp_term.fi_eng[\2]",
+        "lbr_block_name":       "fi"
+    },
+    {
+        "match_str":            "RXPP([0-5])_FLC_DB_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].npu.rxpp_term.flc_db",
+        "lbr_block_name":       "flc_db"
+    },
+    {
+        "match_str":            "RXPP([0-5])_FLC_QUEUES_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].npu.rxpp_fwd.flc_queues",
+        "lbr_block_name":       "flc_queues"
+    },
+    {
+        "match_str":            "CDB_TOP_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.cdb.top",
+        "lbr_block_name":       "cdb_top"
+    },
+    {
+        "match_str":            "CDB_CORE([0-7])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.cdb.core[\1]",
+        "lbr_block_name":       "cdb_core"
+    },
+    {
+        "match_str":            "TXPP([0-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].npu.txpp.top",
+        "lbr_block_name":       "txpp"
+    },
+    {
+        "match_str":            "TXPP([0-5])_CLUSTER([0-1])_UID",
+        "sw_path_calc_values":  ["\1", "\2"],
+        "sw_path":              "gibraltar_tree.slice[\1].npu.txpp.ene_cluster[\2]",
+        "lbr_block_name":       "ene_cluster"
+    },
+    {
+        "match_str":            "TXPP([0-5])_NPE([0-1])_UID",
+        "sw_path_calc_values":  ["\1", "\2"],
+        "sw_path":              "gibraltar_tree.slice[\1].npu.txpp.npe[\2]",
+        "lbr_block_name":       "npe"
+    },
+    {
+        "match_str":            "IDB([0-2])_RES_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice_pair[\1].idb.res",
+        "lbr_block_name":       "res"
+    },
+    {
+        "match_str":            "IDB([0-2])_ENCDB_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice_pair[\1].idb.encdb",
+        "lbr_block_name":       "idb_encdb"
+    },
+    {
+        "match_str":            "IDB([0-2])_MACDB_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice_pair[\1].idb.macdb",
+        "lbr_block_name":       "idb_macdb"
+    },
+    {
+        "match_str":            "NPUH_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.npuh.host",
+        "lbr_block_name":       "npu_host"
+    },
+    {
+        "match_str":            "DICS_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.dics",
+        "lbr_block_name":       "dics"
+    },
+    {
+        "match_str":            "CSMS_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.csms",
+        "lbr_block_name":       "csms"
+    },
+    {
+        "match_str":            "FDLL([0-7])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.fdll[\1]",
+        "lbr_block_name":       "fdll"
+    },
+    {
+        "match_str":            "FDLL_SHARED_MEM_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.fdll_shared_mem",
+        "lbr_block_name":       "fdll_shared_mem"
+    },
+    {
+        "match_str":            "FRM_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.dmc.frm",
+        "lbr_block_name":       "frm"
+    },
+    {
+        "match_str":            "FTE_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.dmc.fte",
+        "lbr_block_name":       "fte"
+    },
+    {
+        "match_str":            "PIER_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.dmc.pier",
+        "lbr_block_name":       "pier"
+    },
+    {
+        "match_str":            "MRB_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.dmc.mrb",
+        "lbr_block_name":       "mrb"
+    },
+    {
+        "match_str":            "HBMLO_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.hbm.db[0]",
+        "lbr_block_name":       "hbm"
+    },
+    {
+        "match_str":            "DVOQ_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.dvoq",
+        "lbr_block_name":       "dvoq"
+    },
+    {
+        "match_str":            "TX_CGM_TOP_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.tx_cgm_top",
+        "lbr_block_name":       "txcgm_top"
+    },
+    {
+        "match_str":            "TX_CGM([0-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].tx.cgm",
+        "lbr_block_name":       "txcgm"
+    },
+    {
+        "match_str":            "TS_MS([0-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].ts_ms",
+        "lbr_block_name":       "tsms"
+    },
+    {
+        "match_str":            "TX_PDR([0-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].tx.pdr",
+        "lbr_block_name":       "txpdr"
+    },
+    {
+        "match_str":            "ICS_TOP_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.ics_top",
+        "lbr_block_name":       "ics_top"
+    },
+    {
+        "match_str":            "ICS_SLICE([0-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].ics",
+        "lbr_block_name":       "ics_slice"
+    },
+    {
+        "match_str":            "PDVOQ_SLICE([0-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].pdvoq",
+        "lbr_block_name":       "pdvoq_slice"
+    },
+    {
+        "match_str":            "PDVOQ_SHARED_MMA_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.pdvoq_shared_mma",
+        "lbr_block_name":       "pdvoq_shared_mma"
+    },
+    {
+        "match_str":            "PDVOQ_EMPD(\d|1[0-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.pdvoq.empd[\1]",
+        "lbr_block_name":       "pdvoq_empd"
+    },
+    {
+        "match_str":            "RX_CGM_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.rx_cgm",
+        "lbr_block_name":       "rx_cgm"
+    },
+    {
+        "match_str":            "RX_PDR_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.rx_pdr",
+        "lbr_block_name":       "rx_pdr"
+    },
+    {
+        "match_str":            "RX_PDR_2_SLICES([0-2])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice_pair[\1].rx_pdr",
+        "lbr_block_name":       "rx_pdr_2_slices"
+    },
+    {
+        "match_str":            "RX_PDR_SHARED([0-1])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.rx_pdr_mc_db[\1]",
+        "lbr_block_name":       "rx_pdr_shared_db"
+    },
+    {
+        "match_str":            "TS_MON_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.ts_mon",
+        "lbr_block_name":       "ts_mon"
+    },
+    {
+        "match_str":            "NW_REORDER_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.nw_reorder",
+        "lbr_block_name":       "nw_reorder"
+    },
+    {
+        "match_str":            "NW_REORDER_BLOCK([0-5])_UID",
+        "sw_path_calc_values":  ["\1/2 + 3", "\1%2"],
+        "sw_path":              "gibraltar_tree.slice[\1].nw_reorder_block[\2]",
+        "lbr_block_name":       "nw_reorder_block"
+    },
+    {
+        "match_str":            "PP_REORDER_SLICE([0-2])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].pp_reorder",
+        "lbr_block_name":       "pp_reorder_slice"
+    },
+    {
+        "match_str":            "HBMHI_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.hbm.db[1]",
+        "lbr_block_name":       "hbm"
+    },
+    {
+        "match_str":            "PDOQ_SHARED_MEM_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.pdoq_shared_mem",
+        "lbr_block_name":       "pdoq_shared_mem"
+    },
+    {
+        "match_str":            "PDOQ([0-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].pdoq.top",
+        "lbr_block_name":       "pdoq"
+    },
+    {
+        "match_str":            "PDOQ_EMPD(\d|1[0-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.pdoq.empd[\1]",
+        "lbr_block_name":       "pdoq_empd"
+    },
+    {
+        "match_str":            "PDOQ_FDOQ([0-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].pdoq.fdoq",
+        "lbr_block_name":       "pdoq_fdoq"
+    },
+    {
+        "match_str":            "MMU_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.mmu",
+        "lbr_block_name":       "mmu"
+    },
+    {
+        "match_str":            "MMU_BUFF_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.mmu_buff",
+        "lbr_block_name":       "mmu_buff"
+    },
+    {
+        "match_str":            "MMU_HBM_CHNL_(\d+)_(\d+)_UID",
+        "sw_path_calc_values":  ["\1/2"],
+        "sw_path":              "gibraltar_tree.hbm.chnl[\1]",
+        "lbr_block_name":       "hbm_chnl_4x_tall"
+    },
+    {
+        "match_str":            "FLLB_SLICE([0-4])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].fllb",
+        "lbr_block_name":       "fllb"
+    },
+    {
+        "match_str":            "FLLB_SLICE([5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].fabric_fllb",
+        "lbr_block_name":       "fllb_fabric_slice"
+    },
+    {
+        "match_str":            "FILB_SLICE([0-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.slice[\1].filb",
+        "lbr_block_name":       "filb_slice"
+    },
+    {
+        "match_str":            "RX_COUNTERS_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.rx_counters",
+        "lbr_block_name":       "rx_counters"
+    },
+    {
+        "match_str":            "REASSEMBLY_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.reassembly",
+        "lbr_block_name":       "reassembly"
+    },
+    {
+        "match_str":            "RX_METER_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.rx_meter.top",
+        "lbr_block_name":       "rx_meter"
+    },
+    {
+        "match_str":            "RX_METER_BLOCK([0-4])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.rx_meter.block[\1]",
+        "lbr_block_name":       "rx_meter_block"
+    },
+    {
+        "match_str":            "SMS_QUAD([0-3])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.sms_quad[\1]",
+        "lbr_block_name":       "sms_quad"
+    },
+    {
+        "match_str":            "SMS_MAIN_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.sms_main",
+        "lbr_block_name":       "sms_main"
+    },
+    {
+        "match_str":            "COUNTERS_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.counters.top",
+        "lbr_block_name":       "counters"
+    },
+    {
+        "match_str":            "COUNTERS_BANK_GROUP(\d|[1-2]\d|3[0-1])_UID",
+        "ignored_text":         "match COUNTER_BANK_GROUP(0..31)",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "gibraltar_tree.counters.bank_8k[\1]",
+        "lbr_block_name":       "counters_bank_group"
+    },
+    {
+        "match_str":            "COUNTERS_BANK_GROUP(3[2-5])_UID",
+        "sw_path_calc_values":  ["\1 - 32"],
+        "sw_path":              "gibraltar_tree.counters.bank_6k[\1]",
+        "lbr_block_name":       "counters_bank_group_6k"
+    },
+    {
+        "match_str":            "NPUH_FI_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.npuh.fi",
+        "lbr_block_name":       "fi"
+    },
+    {
+        "match_str":            "NPUH_NPE_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.npuh.npe",
+        "lbr_block_name":       "npe"
+    },
+    {
+        "match_str":            "DRAM_CGM_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "gibraltar_tree.dram_cgm",
+        "lbr_block_name":       "dram_cgm"
+    }
+]
+

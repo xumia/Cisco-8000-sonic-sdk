@@ -1,0 +1,5 @@
+silicon-one-sdk-src ({{SYSTEM_TIME}}-{{SDK_VER}}-1) unstable; urgency=medium
+
+  * Initial Debian/9 build
+
+ -- {{USERID}} <{{USERID}}@cisco.com>  {{SYSTEM_DATE}}

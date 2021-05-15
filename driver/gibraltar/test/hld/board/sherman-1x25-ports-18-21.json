@@ -1,0 +1,20 @@
+[
+    {
+        "slice": 2,
+        "ifg": 0,
+        "serdes_list": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+        "serdes_count": 1,
+        "speed": "sdk.la_mac_port.port_speed_e_E_25G",
+        "fc": "sdk.la_mac_port.fc_mode_e_NONE",
+        "fec": "sdk.la_mac_port.fec_mode_e_RS_KR4" 
+    },
+    {
+        "slice": 1,
+        "ifg": 1,
+        "serdes_list": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+        "serdes_count": 1,
+        "speed": "sdk.la_mac_port.port_speed_e_E_25G",
+        "fc": "sdk.la_mac_port.fc_mode_e_NONE",
+        "fec": "sdk.la_mac_port.fec_mode_e_RS_KR4" 
+    }
+]

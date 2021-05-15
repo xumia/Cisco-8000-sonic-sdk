@@ -1,0 +1,53 @@
+{
+    "traffic_gen_port": [
+        {
+            "pif": "0x508",
+            "Description": "Spirent Traffic Gen port 1/41 connected to gb_alt card P33, 2/1/8",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mtu_size": 9600,
+            "media_type": "COPPER",
+            "an": false
+        }
+    ],
+    "skipped_external_port2port": [
+        {
+            "pif": ["0xa08", "0xa10"],
+            "Description": "A pair of ports connected by cable externally. 100G QSFP28, port P1<->P2",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "NONE",
+            "mtu_size": 9600,
+            "media_type": "COPPER",
+            "an": false
+        }
+    ],
+    "loopback_ports":
+    [
+        {
+            "pif": ["0x204", "0x20c", "0x300", "0x304", "0x308", "0x30c", "0x400", "0x404", "0x408", "0x40c"],
+            "Description": "These are the serdes loopback ports. For external loopback, use loopback cables and set mac_lpbk=NONE.",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "PHY",
+            "mtu_size": 9600,
+            "an": false
+        },
+        {
+            "pif": ["0x700", "0x708"],
+            "pif_counts": 8,
+            "speed": 400000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "PHY",
+            "mtu_size": 9600,
+            "an": false
+        }
+    ]
+}

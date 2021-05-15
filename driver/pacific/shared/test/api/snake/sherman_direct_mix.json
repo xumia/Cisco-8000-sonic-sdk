@@ -1,0 +1,15 @@
+{
+    "loopback_ports":
+    [
+        {
+            "slice": [1,2,3,4],
+            "ifg": [0,1],
+            "serdes": [ 0, 8],
+            "serdes_count": 8,
+            "speed": 400,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops": 1
+        }
+    ]
+}

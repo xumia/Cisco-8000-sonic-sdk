@@ -1,0 +1,20 @@
+[
+    {
+        "slice": 2,
+        "ifg": 0,
+        "serdes_list": [ 0, 8],
+        "serdes_count": 8,
+        "speed": "sdk.la_mac_port.port_speed_e_E_400G",
+        "fc": "sdk.la_mac_port.fc_mode_e_NONE",
+        "fec": "sdk.la_mac_port.fec_mode_e_RS_KP4" 
+    },
+    {
+        "slice": 1,
+        "ifg": 1,
+        "serdes_list": [ 0, 8],
+        "serdes_count": 8,
+        "speed": "sdk.la_mac_port.port_speed_e_E_400G",
+        "fc": "sdk.la_mac_port.fc_mode_e_NONE",
+        "fec": "sdk.la_mac_port.fec_mode_e_RS_KP4" 
+    }
+]

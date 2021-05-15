@@ -1,0 +1,74 @@
+// Driver API conventions
+
+/// @page api_conventions_page API conventions
+///
+/// This page covers common paradigms used in the Leaba API design.
+///
+/// All types, enumerations, objects, functions and filenames are prefixed by \b la_, denoting <b>Leaba API</b>.
+///
+/// @section api_conventions_headers_section Headers
+///
+/// Header files declare and define types, enumerations and functions.
+///
+/// Types and enumerations are defined under the \b types directory. Type headers are grouped by categories such as Common, Ethernet, IP, QOS etc.\n
+/// Functions declarations are grouped per object. Each header file contains API-s for one object: VRF API-s (#silicon_one::la_vrf) will be grouped under la_vrf.h,
+/// Next Hop API-s (#silicon_one::la_next_hop) under la_next_hop.h, etc.
+///
+/// @section api_conventions_data_types Data types
+///
+/// @subsection api_conventions_types_subsection Types
+///
+/// Types represent basic data types used when interacting with the API. All types are postfixed with _t.
+/// These include both generic types (#la_uint_t) and networking building blocks (#silicon_one::la_ipv4_addr_t).
+///
+/// @subsection api_conventions_indices_subsection Indices
+///
+/// Indices are used to enable efficient synchronization in multi-device systems.
+/// The application must ensure coherent ID-s are used across different devices, as the data plane uses those
+/// for efficiently communicating between different devices.
+///
+/// Global ID types are named \b la_<object>_gid_t.
+/// Whenever GID-s are used, it is the application's responsibility to use the same GID for the same element
+/// across all devices.
+///
+/// @subsection api_conventions_enumerators_subsection Enumerators
+///
+/// Enumerators are used to represent a single option in small, discrete ranges. All enumerators are postfixed with _e.
+/// Example enumerators are #la_l3_protocol_e and #la_port_security_mode_e.\n
+/// Enumerator values are always uppercased, and scoepd inside an enum class.
+/// For example, values for #la_l3_protocol_e are of the form la_l3_protocol_e::*, i.e. #la_l3_protocol_e::IPV4_UC.
+///
+/// @subsection api_conventions_handles_subsection Handles
+///
+/// Handles are implemented as opaque types.
+/// Driver internals are not exposed through the API. All handles are postfixed with _t.
+/// 
+/// Handle definition uses a mix of forward declarations and pointers, as follows:
+///
+///	@code
+/// struct la_switch_s;
+///
+/// typedef struct la_switch_s* la_switch_t;
+/// @endcode
+///
+/// This enables several features:
+/// 
+/// * <b>Decoupling</b>. API definition and implementation are fully decoupled.
+/// * <b>Type safety</b>. Handles are not cast from one type to another implicitly.
+/// * <b>Binary compatibility</b>. Changes to driver internals do not usually require changes to application.
+///
+/// Handles are acquired during object creation, or fetched by object ID.\n
+/// The can be used to query, manipulate or destroy the underlying object.
+///
+/// @section api_conventions_functions_section Functions
+///
+/// Each object has a set of creation, querying, manipulation and destruction functions.\n
+/// Function names follow this convention:
+/// * \b la_device_create_<object>. Create object for the given device.
+/// * \b la_<object>_<action>_<property>. Perform action on object.
+/// * \b la_device_destroy_<object>. Destroy object.
+///
+/// Most functions return a status indication of type #la_status.
+/// The status indicates whether the requested operation completed successfully, and a reason for the error if not.\n
+/// Output arguments are passed by pointer, and always placed last in the arguments' list.
+///

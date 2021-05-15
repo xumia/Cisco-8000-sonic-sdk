@@ -1,0 +1,13 @@
+*** serdes/pmd.c	2019-04-16 13:08:00.000000000 -0700
+--- serdes/pmd.c.new	2019-09-16 17:55:28.823799000 -0700
+***************
+*** 224,229 ****
+--- 224,231 ----
+          }
+          if (mode_control->clause == AVAGO_PMD_FC16G)
+              serdes_pmd_16gfc_lane_config(aapl,sbus_addr,mode_control);
++         if (mode_control->clause == AVAGO_PMD_CL72)
++             avago_spico_int(aapl, sbus_addr, 0x3d, 0x3004);   /* Selecting Clause 72 PRBS Sequence */
+      } /* train_mode != AVAGO_PMD_RESTART */
+  
+      /* Execute Training */

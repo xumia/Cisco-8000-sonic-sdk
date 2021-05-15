@@ -1,0 +1,3441 @@
+$block{mmu_buff} = {
+  Defines_db => "W:\\design\\mmu\\verilog\\mmu_defines.v",
+  ProjectName => "Gibraltar",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "1",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt test register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "16",
+    Type => "Config",
+    mmu_buffer_allocator0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator3Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator3Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator4Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator4Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator5Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator5Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator6Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator6Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator7Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator7Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator8Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator8Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator9Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator9Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator10Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator10Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator11Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator11Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator12Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator12Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator13Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator13Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator14Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator14Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator15Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator15Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "16",
+    Type => "Config",
+    mmu_buffer_allocator0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator3Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator3Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator4Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator4Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator5Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator5Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator6Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator6Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator7Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator7Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator8Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator8Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator9Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator9Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator10Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator10Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator11Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator11Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator12Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator12Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator13Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator13Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator14Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator14Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mmu_buffer_allocator15Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator15Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "16",
+    Type => "Config",
+    mmu_buffer_allocator0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator3Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator3Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator4Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator4Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator5Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator5Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator6Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator6Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator7Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator7Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator8Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator8Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator9Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator9Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator10Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator10Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator11Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator11Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator12Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator12Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator13Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator13Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator14Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator14Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator15Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator15Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "16",
+    Type => "Config",
+    mmu_buffer_allocator0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator3Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator3Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator4Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator4Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator5Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator5Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator6Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator6Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator7Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator7Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator8Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator8Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator9Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator9Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator10Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator10Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator11Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator11Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator12Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator12Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator13Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator13Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator14Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator14Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mmu_buffer_allocator15Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator15Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectErrStatus",
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "16",
+    Type => "ReadOnly",
+    mmu_buffer_allocator0ErrInt => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    mmu_buffer_allocator1ErrInt => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "1",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    mmu_buffer_allocator2ErrInt => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "2",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    mmu_buffer_allocator3ErrInt => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator3ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "3",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    mmu_buffer_allocator4ErrInt => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator4ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "4",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    mmu_buffer_allocator5ErrInt => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator5ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "5",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    mmu_buffer_allocator6ErrInt => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator6ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "6",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    mmu_buffer_allocator7ErrInt => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator7ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "7",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    mmu_buffer_allocator8ErrInt => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator8ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "8",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    mmu_buffer_allocator9ErrInt => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator9ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "9",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    mmu_buffer_allocator10ErrInt => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator10ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "10",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    mmu_buffer_allocator11ErrInt => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator11ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "11",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    mmu_buffer_allocator12ErrInt => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator12ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "12",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    mmu_buffer_allocator13ErrInt => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator13ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "13",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    mmu_buffer_allocator14ErrInt => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator14ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "14",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    mmu_buffer_allocator15ErrInt => { #Structure Type: RegField;
+      Name => "mmu_buffer_allocator15ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "15",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    Name => "SelectedSerErrorInfo",
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "11",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      Name => "MemErrAddr",
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "9",
+      Position => "8:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      Name => "MemErrType",
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "10:9",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SerErrorDebugConfiguration",
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "5",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      Name => "ErroneousMemorySelector",
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "4",
+      Position => "3:0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      Name => "ResetMemoryErrors",
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrDebug",
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_1bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrDebug",
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_2bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "73", # Excel Formula: =calc_reg_width(E25:E53,F53)
+    Type => "Config",
+    SACR1P_RME => { #Structure Type: RegField;
+      Name => "SACR1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACR1P_RM => { #Structure Type: RegField;
+      Name => "SACR1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "4:1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACU2P_RME => { #Structure Type: RegField;
+      Name => "SACU2P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACU2P_RM => { #Structure Type: RegField;
+      Name => "SACU2P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "9:6", # Excel Formula: =calc_position(F27,E28)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADC1P_RME => { #Structure Type: RegField;
+      Name => "SADC1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F28,E29)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADC1P_RM => { #Structure Type: RegField;
+      Name => "SADC1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "14:11", # Excel Formula: =calc_position(F29,E30)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMEA => { #Structure Type: RegField;
+      Name => "SADR2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F30,E31)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMA => { #Structure Type: RegField;
+      Name => "SADR2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "19:16", # Excel Formula: =calc_position(F31,E32)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMEB => { #Structure Type: RegField;
+      Name => "SADR2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "20", # Excel Formula: =calc_position(F32,E33)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMB => { #Structure Type: RegField;
+      Name => "SADR2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "24:21", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMEA => { #Structure Type: RegField;
+      Name => "SADS2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMA => { #Structure Type: RegField;
+      Name => "SADS2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "29:26", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMEB => { #Structure Type: RegField;
+      Name => "SADS2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "30", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMB => { #Structure Type: RegField;
+      Name => "SADS2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "34:31", # Excel Formula: =calc_position(F37,E38)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASR1P_RME => { #Structure Type: RegField;
+      Name => "SASR1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "35", # Excel Formula: =calc_position(F38,E39)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASR1P_RM => { #Structure Type: RegField;
+      Name => "SASR1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "39:36", # Excel Formula: =calc_position(F39,E40)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS1P_RME => { #Structure Type: RegField;
+      Name => "SASS1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "40", # Excel Formula: =calc_position(F40,E41)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS1P_RM => { #Structure Type: RegField;
+      Name => "SASS1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "44:41", # Excel Formula: =calc_position(F41,E42)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMEA => { #Structure Type: RegField;
+      Name => "SASS2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "45", # Excel Formula: =calc_position(F42,E43)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMA => { #Structure Type: RegField;
+      Name => "SASS2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "49:46", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMEB => { #Structure Type: RegField;
+      Name => "SASS2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "50", # Excel Formula: =calc_position(F44,E45)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMB => { #Structure Type: RegField;
+      Name => "SASS2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "54:51", # Excel Formula: =calc_position(F45,E46)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASU2P_RME => { #Structure Type: RegField;
+      Name => "SASU2P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "55", # Excel Formula: =calc_position(F46,E47)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASU2P_RM => { #Structure Type: RegField;
+      Name => "SASU2P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "59:56", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_RME => { #Structure Type: RegField;
+      Name => "SADU1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "60", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_RM => { #Structure Type: RegField;
+      Name => "SADU1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "64:61", # Excel Formula: =calc_position(F49,E50)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RA => { #Structure Type: RegField;
+      Name => "SADS2P_RA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Assist for Dual port",
+      Width => "2",
+      Position => "66:65", # Excel Formula: =calc_position(F50,E51)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_WA => { #Structure Type: RegField;
+      Name => "SADU1P_WA",
+      RegMem => "RegField",
+      Description => "Write-Assist configuration for the SP SADU compiler",
+      Width => "3",
+      Position => "69:67", # Excel Formula: =calc_position(F51,E52)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d5",
+    },
+    SADU1P_WPULSE => { #Structure Type: RegField;
+      Name => "SADU1P_WPULSE",
+      RegMem => "RegField",
+      Description => "Write-Assist-Pulse configuration for the SP SADU compiler",
+      Width => "3",
+      Position => "72:70", # Excel Formula: =calc_position(F52,E53)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E55:E55,F55)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F54,E55,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C54,A54,G54)
+    Description => "Spare register",
+    Width => "128", # Excel Formula: =calc_reg_width(E57:E57,F57)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "Spare register ",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F56,E57,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C56,A56,G56)
+    Description => "PMRO controller configuration",
+    Width => "32", # Excel Formula: =calc_reg_width(E59:E63,F63)
+    Type => "Config",
+    PmroRstn => { #Structure Type: RegField;
+      Name => "PmroRstn",
+      RegMem => "RegField",
+      Description => "PMRO reset, active low",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F58,E59,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroConfigEn => { #Structure Type: RegField;
+      Name => "PmroConfigEn",
+      RegMem => "RegField",
+      Description => "Enable pmro configuration, when equals to 0 configurations are locked",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F59,E60)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroStart => { #Structure Type: RegField;
+      Name => "PmroStart",
+      RegMem => "RegField",
+      Description => "Start the pmro operation",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F60,E61)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroRingEn => { #Structure Type: RegField;
+      Name => "PmroRingEn",
+      RegMem => "RegField",
+      Description => "Determines which PMRO ring to activate, should be configured as one hot",
+      Width => "7",
+      Position => "9:3", # Excel Formula: =calc_position(F61,E62)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroCntPeriod => { #Structure Type: RegField;
+      Name => "PmroCntPeriod",
+      RegMem => "RegField",
+      Description => "Number of core clock cycles on which PMRO is measured",
+      Width => "22",
+      Position => "31:10", # Excel Formula: =calc_position(F62,E63)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "h3FFFFF",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C58,A58,G58)
+    Description => "PMRO status configuration",
+    Width => "23", # Excel Formula: =calc_reg_width(E65:E66,F66)
+    Type => "ReadOnly",
+    PmroCountOut => { #Structure Type: RegField;
+      Name => "PmroCountOut",
+      RegMem => "RegField",
+      Description => "The ring oscilator counter value.",
+      Width => "22",
+      Position => "21:0", # Excel Formula: =calc_position(F64,E65,TRUE)
+      Type => "Status",
+      UsedBy => "pmro",
+    },
+    PmroDone => { #Structure Type: RegField;
+      Name => "PmroDone",
+      RegMem => "RegField",
+      Description => "Pmro operation done, PmroCountOut is valid.",
+      Width => "1",
+      Position => "22", # Excel Formula: =calc_position(F65,E66)
+      Type => "Status",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C64,A64,G64)
+    Description => "Mirror Bus configurations",
+    Width => "11", # Excel Formula: =calc_reg_width(E68:E69,F69)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "Enable Mirror Bus",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "Mirror Bus selector",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F68,E69)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C67,A67,G67)
+    Description => "Mirror Bus status result",
+    Width => "32", # Excel Formula: =calc_reg_width(E71:E71,F71)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "Mirror Bus status result",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F70,E71,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C70,A70,G70)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E73:E73,F73)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F72,E73,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  BufferAllocMode => { #Structure Type: Reg;
+    Name => "BufferAllocMode",
+    RegMem => "Reg",
+    Address => "100",
+    Width => "17", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    FlexibleBufferAlloc => { #Structure Type: RegField;
+      Name => "FlexibleBufferAlloc",
+      RegMem => "RegField",
+      Description => "Make buffer-allocator memories CPU configurable
+One bit per memory, LSB for memory0
+0 - Buffer allocator is reset to all 1s internally after reset
+1 - Buffer allocator works in flexible mode. CPU MUST configure them before starting to work with MMU",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "mmu_buffer_allocator",
+      DefaultValue => "d0",
+      DocName => " ",
+    },
+    UseOldBufferScheme => { #Structure Type: RegField;
+      Name => "UseOldBufferScheme",
+      RegMem => "RegField",
+      Description => "0 : Buffers will be allocated where bit 16 of the buffer number will change quickly. Functional mode
+1 : Buffers will be allocated where bits 3:0 come from the memory bank number and change quickly. DEBUG ONLY",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "mmu_buffer_allocator",
+      DefaultValue => "d0",
+      DocName => " ",
+    },
+  },
+  CpuOccupyBuffers0 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 0; ArrayLocationInName: 17;
+    Name => "CpuOccupyBuffers[16]",
+    RegMem => "Reg",
+    Address => "101", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "CPU designates certain buffers not be used by buffer allocator by doing CPU write to buffer allocator memories. Afterwards, CPU must write 1 or 0 per memory line if there are available buffers in that line. Also, total number of free buffers in that memory must be configured",
+    Width => "529", # Excel Formula: =calc_reg_width(E11:E12,F12)
+    Type => "External",
+    UsedBy => "mmu_buffer_allocator",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "0",
+    TotalFreeBuffers0 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 0; ArrayLocationInName: 17;
+      Name => "TotalFreeBuffers[n]",
+      RegMem => "RegField",
+      Description => "Total number of useable buffers in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DocName => "TotalUseableBuffers[n]",
+    },
+    ValidMemoryLines0 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 0; ArrayLocationInName: 17;
+      Name => "ValidMemoryLines[n]",
+      RegMem => "RegField",
+      Description => "Each row of buffer allocator memory mapped to one bit in this register.
+0 - no useable buffers (i.e. no 1s in memory) for that memory row
+1 - at least 1 useable buffer for that memory row",
+      Width => "512",
+      Position => "528:17", # Excel Formula: =calc_position(F11,E12)
+      Type => "External",
+      DocName => "UseableMemoryLines[n]",
+    },
+  },
+  CpuOccupyBuffers1 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 1; ArrayLocationInName: 17;
+    Name => "CpuOccupyBuffers[16]",
+    RegMem => "Reg",
+    Address => "102",
+    Description => "CPU designates certain buffers not be used by buffer allocator by doing CPU write to buffer allocator memories. Afterwards, CPU must write 1 or 0 per memory line if there are available buffers in that line. Also, total number of free buffers in that memory must be configured",
+    Width => "529", # Excel Formula: =calc_reg_width(E11:E12,F12)
+    Type => "External",
+    UsedBy => "mmu_buffer_allocator",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "1",
+    TotalFreeBuffers1 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 1; ArrayLocationInName: 17;
+      Name => "TotalFreeBuffers[n]",
+      RegMem => "RegField",
+      Description => "Total number of useable buffers in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DocName => "TotalUseableBuffers[n]",
+    },
+    ValidMemoryLines1 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 1; ArrayLocationInName: 17;
+      Name => "ValidMemoryLines[n]",
+      RegMem => "RegField",
+      Description => "Each row of buffer allocator memory mapped to one bit in this register.
+0 - no useable buffers (i.e. no 1s in memory) for that memory row
+1 - at least 1 useable buffer for that memory row",
+      Width => "512",
+      Position => "528:17", # Excel Formula: =calc_position(F11,E12)
+      Type => "External",
+      DocName => "UseableMemoryLines[n]",
+    },
+  },
+  CpuOccupyBuffers2 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 2; ArrayLocationInName: 17;
+    Name => "CpuOccupyBuffers[16]",
+    RegMem => "Reg",
+    Address => "103",
+    Description => "CPU designates certain buffers not be used by buffer allocator by doing CPU write to buffer allocator memories. Afterwards, CPU must write 1 or 0 per memory line if there are available buffers in that line. Also, total number of free buffers in that memory must be configured",
+    Width => "529", # Excel Formula: =calc_reg_width(E11:E12,F12)
+    Type => "External",
+    UsedBy => "mmu_buffer_allocator",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "2",
+    TotalFreeBuffers2 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 2; ArrayLocationInName: 17;
+      Name => "TotalFreeBuffers[n]",
+      RegMem => "RegField",
+      Description => "Total number of useable buffers in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DocName => "TotalUseableBuffers[n]",
+    },
+    ValidMemoryLines2 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 2; ArrayLocationInName: 17;
+      Name => "ValidMemoryLines[n]",
+      RegMem => "RegField",
+      Description => "Each row of buffer allocator memory mapped to one bit in this register.
+0 - no useable buffers (i.e. no 1s in memory) for that memory row
+1 - at least 1 useable buffer for that memory row",
+      Width => "512",
+      Position => "528:17", # Excel Formula: =calc_position(F11,E12)
+      Type => "External",
+      DocName => "UseableMemoryLines[n]",
+    },
+  },
+  CpuOccupyBuffers3 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 3; ArrayLocationInName: 17;
+    Name => "CpuOccupyBuffers[16]",
+    RegMem => "Reg",
+    Address => "104",
+    Description => "CPU designates certain buffers not be used by buffer allocator by doing CPU write to buffer allocator memories. Afterwards, CPU must write 1 or 0 per memory line if there are available buffers in that line. Also, total number of free buffers in that memory must be configured",
+    Width => "529", # Excel Formula: =calc_reg_width(E11:E12,F12)
+    Type => "External",
+    UsedBy => "mmu_buffer_allocator",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "3",
+    TotalFreeBuffers3 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 3; ArrayLocationInName: 17;
+      Name => "TotalFreeBuffers[n]",
+      RegMem => "RegField",
+      Description => "Total number of useable buffers in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DocName => "TotalUseableBuffers[n]",
+    },
+    ValidMemoryLines3 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 3; ArrayLocationInName: 17;
+      Name => "ValidMemoryLines[n]",
+      RegMem => "RegField",
+      Description => "Each row of buffer allocator memory mapped to one bit in this register.
+0 - no useable buffers (i.e. no 1s in memory) for that memory row
+1 - at least 1 useable buffer for that memory row",
+      Width => "512",
+      Position => "528:17", # Excel Formula: =calc_position(F11,E12)
+      Type => "External",
+      DocName => "UseableMemoryLines[n]",
+    },
+  },
+  CpuOccupyBuffers4 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 4; ArrayLocationInName: 17;
+    Name => "CpuOccupyBuffers[16]",
+    RegMem => "Reg",
+    Address => "105",
+    Description => "CPU designates certain buffers not be used by buffer allocator by doing CPU write to buffer allocator memories. Afterwards, CPU must write 1 or 0 per memory line if there are available buffers in that line. Also, total number of free buffers in that memory must be configured",
+    Width => "529", # Excel Formula: =calc_reg_width(E11:E12,F12)
+    Type => "External",
+    UsedBy => "mmu_buffer_allocator",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "4",
+    TotalFreeBuffers4 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 4; ArrayLocationInName: 17;
+      Name => "TotalFreeBuffers[n]",
+      RegMem => "RegField",
+      Description => "Total number of useable buffers in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DocName => "TotalUseableBuffers[n]",
+    },
+    ValidMemoryLines4 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 4; ArrayLocationInName: 17;
+      Name => "ValidMemoryLines[n]",
+      RegMem => "RegField",
+      Description => "Each row of buffer allocator memory mapped to one bit in this register.
+0 - no useable buffers (i.e. no 1s in memory) for that memory row
+1 - at least 1 useable buffer for that memory row",
+      Width => "512",
+      Position => "528:17", # Excel Formula: =calc_position(F11,E12)
+      Type => "External",
+      DocName => "UseableMemoryLines[n]",
+    },
+  },
+  CpuOccupyBuffers5 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 5; ArrayLocationInName: 17;
+    Name => "CpuOccupyBuffers[16]",
+    RegMem => "Reg",
+    Address => "106",
+    Description => "CPU designates certain buffers not be used by buffer allocator by doing CPU write to buffer allocator memories. Afterwards, CPU must write 1 or 0 per memory line if there are available buffers in that line. Also, total number of free buffers in that memory must be configured",
+    Width => "529", # Excel Formula: =calc_reg_width(E11:E12,F12)
+    Type => "External",
+    UsedBy => "mmu_buffer_allocator",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "5",
+    TotalFreeBuffers5 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 5; ArrayLocationInName: 17;
+      Name => "TotalFreeBuffers[n]",
+      RegMem => "RegField",
+      Description => "Total number of useable buffers in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DocName => "TotalUseableBuffers[n]",
+    },
+    ValidMemoryLines5 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 5; ArrayLocationInName: 17;
+      Name => "ValidMemoryLines[n]",
+      RegMem => "RegField",
+      Description => "Each row of buffer allocator memory mapped to one bit in this register.
+0 - no useable buffers (i.e. no 1s in memory) for that memory row
+1 - at least 1 useable buffer for that memory row",
+      Width => "512",
+      Position => "528:17", # Excel Formula: =calc_position(F11,E12)
+      Type => "External",
+      DocName => "UseableMemoryLines[n]",
+    },
+  },
+  CpuOccupyBuffers6 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 6; ArrayLocationInName: 17;
+    Name => "CpuOccupyBuffers[16]",
+    RegMem => "Reg",
+    Address => "107",
+    Description => "CPU designates certain buffers not be used by buffer allocator by doing CPU write to buffer allocator memories. Afterwards, CPU must write 1 or 0 per memory line if there are available buffers in that line. Also, total number of free buffers in that memory must be configured",
+    Width => "529", # Excel Formula: =calc_reg_width(E11:E12,F12)
+    Type => "External",
+    UsedBy => "mmu_buffer_allocator",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "6",
+    TotalFreeBuffers6 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 6; ArrayLocationInName: 17;
+      Name => "TotalFreeBuffers[n]",
+      RegMem => "RegField",
+      Description => "Total number of useable buffers in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DocName => "TotalUseableBuffers[n]",
+    },
+    ValidMemoryLines6 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 6; ArrayLocationInName: 17;
+      Name => "ValidMemoryLines[n]",
+      RegMem => "RegField",
+      Description => "Each row of buffer allocator memory mapped to one bit in this register.
+0 - no useable buffers (i.e. no 1s in memory) for that memory row
+1 - at least 1 useable buffer for that memory row",
+      Width => "512",
+      Position => "528:17", # Excel Formula: =calc_position(F11,E12)
+      Type => "External",
+      DocName => "UseableMemoryLines[n]",
+    },
+  },
+  CpuOccupyBuffers7 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 7; ArrayLocationInName: 17;
+    Name => "CpuOccupyBuffers[16]",
+    RegMem => "Reg",
+    Address => "108",
+    Description => "CPU designates certain buffers not be used by buffer allocator by doing CPU write to buffer allocator memories. Afterwards, CPU must write 1 or 0 per memory line if there are available buffers in that line. Also, total number of free buffers in that memory must be configured",
+    Width => "529", # Excel Formula: =calc_reg_width(E11:E12,F12)
+    Type => "External",
+    UsedBy => "mmu_buffer_allocator",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "7",
+    TotalFreeBuffers7 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 7; ArrayLocationInName: 17;
+      Name => "TotalFreeBuffers[n]",
+      RegMem => "RegField",
+      Description => "Total number of useable buffers in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DocName => "TotalUseableBuffers[n]",
+    },
+    ValidMemoryLines7 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 7; ArrayLocationInName: 17;
+      Name => "ValidMemoryLines[n]",
+      RegMem => "RegField",
+      Description => "Each row of buffer allocator memory mapped to one bit in this register.
+0 - no useable buffers (i.e. no 1s in memory) for that memory row
+1 - at least 1 useable buffer for that memory row",
+      Width => "512",
+      Position => "528:17", # Excel Formula: =calc_position(F11,E12)
+      Type => "External",
+      DocName => "UseableMemoryLines[n]",
+    },
+  },
+  CpuOccupyBuffers8 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 8; ArrayLocationInName: 17;
+    Name => "CpuOccupyBuffers[16]",
+    RegMem => "Reg",
+    Address => "109",
+    Description => "CPU designates certain buffers not be used by buffer allocator by doing CPU write to buffer allocator memories. Afterwards, CPU must write 1 or 0 per memory line if there are available buffers in that line. Also, total number of free buffers in that memory must be configured",
+    Width => "529", # Excel Formula: =calc_reg_width(E11:E12,F12)
+    Type => "External",
+    UsedBy => "mmu_buffer_allocator",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "8",
+    TotalFreeBuffers8 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 8; ArrayLocationInName: 17;
+      Name => "TotalFreeBuffers[n]",
+      RegMem => "RegField",
+      Description => "Total number of useable buffers in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DocName => "TotalUseableBuffers[n]",
+    },
+    ValidMemoryLines8 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 8; ArrayLocationInName: 17;
+      Name => "ValidMemoryLines[n]",
+      RegMem => "RegField",
+      Description => "Each row of buffer allocator memory mapped to one bit in this register.
+0 - no useable buffers (i.e. no 1s in memory) for that memory row
+1 - at least 1 useable buffer for that memory row",
+      Width => "512",
+      Position => "528:17", # Excel Formula: =calc_position(F11,E12)
+      Type => "External",
+      DocName => "UseableMemoryLines[n]",
+    },
+  },
+  CpuOccupyBuffers9 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 9; ArrayLocationInName: 17;
+    Name => "CpuOccupyBuffers[16]",
+    RegMem => "Reg",
+    Address => "10A",
+    Description => "CPU designates certain buffers not be used by buffer allocator by doing CPU write to buffer allocator memories. Afterwards, CPU must write 1 or 0 per memory line if there are available buffers in that line. Also, total number of free buffers in that memory must be configured",
+    Width => "529", # Excel Formula: =calc_reg_width(E11:E12,F12)
+    Type => "External",
+    UsedBy => "mmu_buffer_allocator",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "9",
+    TotalFreeBuffers9 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 9; ArrayLocationInName: 17;
+      Name => "TotalFreeBuffers[n]",
+      RegMem => "RegField",
+      Description => "Total number of useable buffers in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DocName => "TotalUseableBuffers[n]",
+    },
+    ValidMemoryLines9 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 9; ArrayLocationInName: 17;
+      Name => "ValidMemoryLines[n]",
+      RegMem => "RegField",
+      Description => "Each row of buffer allocator memory mapped to one bit in this register.
+0 - no useable buffers (i.e. no 1s in memory) for that memory row
+1 - at least 1 useable buffer for that memory row",
+      Width => "512",
+      Position => "528:17", # Excel Formula: =calc_position(F11,E12)
+      Type => "External",
+      DocName => "UseableMemoryLines[n]",
+    },
+  },
+  CpuOccupyBuffers10 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 10; ArrayLocationInName: 17;
+    Name => "CpuOccupyBuffers[16]",
+    RegMem => "Reg",
+    Address => "10B",
+    Description => "CPU designates certain buffers not be used by buffer allocator by doing CPU write to buffer allocator memories. Afterwards, CPU must write 1 or 0 per memory line if there are available buffers in that line. Also, total number of free buffers in that memory must be configured",
+    Width => "529", # Excel Formula: =calc_reg_width(E11:E12,F12)
+    Type => "External",
+    UsedBy => "mmu_buffer_allocator",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "10",
+    TotalFreeBuffers10 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 10; ArrayLocationInName: 17;
+      Name => "TotalFreeBuffers[n]",
+      RegMem => "RegField",
+      Description => "Total number of useable buffers in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DocName => "TotalUseableBuffers[n]",
+    },
+    ValidMemoryLines10 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 10; ArrayLocationInName: 17;
+      Name => "ValidMemoryLines[n]",
+      RegMem => "RegField",
+      Description => "Each row of buffer allocator memory mapped to one bit in this register.
+0 - no useable buffers (i.e. no 1s in memory) for that memory row
+1 - at least 1 useable buffer for that memory row",
+      Width => "512",
+      Position => "528:17", # Excel Formula: =calc_position(F11,E12)
+      Type => "External",
+      DocName => "UseableMemoryLines[n]",
+    },
+  },
+  CpuOccupyBuffers11 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 11; ArrayLocationInName: 17;
+    Name => "CpuOccupyBuffers[16]",
+    RegMem => "Reg",
+    Address => "10C",
+    Description => "CPU designates certain buffers not be used by buffer allocator by doing CPU write to buffer allocator memories. Afterwards, CPU must write 1 or 0 per memory line if there are available buffers in that line. Also, total number of free buffers in that memory must be configured",
+    Width => "529", # Excel Formula: =calc_reg_width(E11:E12,F12)
+    Type => "External",
+    UsedBy => "mmu_buffer_allocator",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "11",
+    TotalFreeBuffers11 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 11; ArrayLocationInName: 17;
+      Name => "TotalFreeBuffers[n]",
+      RegMem => "RegField",
+      Description => "Total number of useable buffers in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DocName => "TotalUseableBuffers[n]",
+    },
+    ValidMemoryLines11 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 11; ArrayLocationInName: 17;
+      Name => "ValidMemoryLines[n]",
+      RegMem => "RegField",
+      Description => "Each row of buffer allocator memory mapped to one bit in this register.
+0 - no useable buffers (i.e. no 1s in memory) for that memory row
+1 - at least 1 useable buffer for that memory row",
+      Width => "512",
+      Position => "528:17", # Excel Formula: =calc_position(F11,E12)
+      Type => "External",
+      DocName => "UseableMemoryLines[n]",
+    },
+  },
+  CpuOccupyBuffers12 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 12; ArrayLocationInName: 17;
+    Name => "CpuOccupyBuffers[16]",
+    RegMem => "Reg",
+    Address => "10D",
+    Description => "CPU designates certain buffers not be used by buffer allocator by doing CPU write to buffer allocator memories. Afterwards, CPU must write 1 or 0 per memory line if there are available buffers in that line. Also, total number of free buffers in that memory must be configured",
+    Width => "529", # Excel Formula: =calc_reg_width(E11:E12,F12)
+    Type => "External",
+    UsedBy => "mmu_buffer_allocator",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "12",
+    TotalFreeBuffers12 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 12; ArrayLocationInName: 17;
+      Name => "TotalFreeBuffers[n]",
+      RegMem => "RegField",
+      Description => "Total number of useable buffers in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DocName => "TotalUseableBuffers[n]",
+    },
+    ValidMemoryLines12 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 12; ArrayLocationInName: 17;
+      Name => "ValidMemoryLines[n]",
+      RegMem => "RegField",
+      Description => "Each row of buffer allocator memory mapped to one bit in this register.
+0 - no useable buffers (i.e. no 1s in memory) for that memory row
+1 - at least 1 useable buffer for that memory row",
+      Width => "512",
+      Position => "528:17", # Excel Formula: =calc_position(F11,E12)
+      Type => "External",
+      DocName => "UseableMemoryLines[n]",
+    },
+  },
+  CpuOccupyBuffers13 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 13; ArrayLocationInName: 17;
+    Name => "CpuOccupyBuffers[16]",
+    RegMem => "Reg",
+    Address => "10E",
+    Description => "CPU designates certain buffers not be used by buffer allocator by doing CPU write to buffer allocator memories. Afterwards, CPU must write 1 or 0 per memory line if there are available buffers in that line. Also, total number of free buffers in that memory must be configured",
+    Width => "529", # Excel Formula: =calc_reg_width(E11:E12,F12)
+    Type => "External",
+    UsedBy => "mmu_buffer_allocator",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "13",
+    TotalFreeBuffers13 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 13; ArrayLocationInName: 17;
+      Name => "TotalFreeBuffers[n]",
+      RegMem => "RegField",
+      Description => "Total number of useable buffers in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DocName => "TotalUseableBuffers[n]",
+    },
+    ValidMemoryLines13 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 13; ArrayLocationInName: 17;
+      Name => "ValidMemoryLines[n]",
+      RegMem => "RegField",
+      Description => "Each row of buffer allocator memory mapped to one bit in this register.
+0 - no useable buffers (i.e. no 1s in memory) for that memory row
+1 - at least 1 useable buffer for that memory row",
+      Width => "512",
+      Position => "528:17", # Excel Formula: =calc_position(F11,E12)
+      Type => "External",
+      DocName => "UseableMemoryLines[n]",
+    },
+  },
+  CpuOccupyBuffers14 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 14; ArrayLocationInName: 17;
+    Name => "CpuOccupyBuffers[16]",
+    RegMem => "Reg",
+    Address => "10F",
+    Description => "CPU designates certain buffers not be used by buffer allocator by doing CPU write to buffer allocator memories. Afterwards, CPU must write 1 or 0 per memory line if there are available buffers in that line. Also, total number of free buffers in that memory must be configured",
+    Width => "529", # Excel Formula: =calc_reg_width(E11:E12,F12)
+    Type => "External",
+    UsedBy => "mmu_buffer_allocator",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "14",
+    TotalFreeBuffers14 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 14; ArrayLocationInName: 17;
+      Name => "TotalFreeBuffers[n]",
+      RegMem => "RegField",
+      Description => "Total number of useable buffers in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DocName => "TotalUseableBuffers[n]",
+    },
+    ValidMemoryLines14 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 14; ArrayLocationInName: 17;
+      Name => "ValidMemoryLines[n]",
+      RegMem => "RegField",
+      Description => "Each row of buffer allocator memory mapped to one bit in this register.
+0 - no useable buffers (i.e. no 1s in memory) for that memory row
+1 - at least 1 useable buffer for that memory row",
+      Width => "512",
+      Position => "528:17", # Excel Formula: =calc_position(F11,E12)
+      Type => "External",
+      DocName => "UseableMemoryLines[n]",
+    },
+  },
+  CpuOccupyBuffers15 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 15; ArrayLocationInName: 17;
+    Name => "CpuOccupyBuffers[16]",
+    RegMem => "Reg",
+    Address => "110",
+    Description => "CPU designates certain buffers not be used by buffer allocator by doing CPU write to buffer allocator memories. Afterwards, CPU must write 1 or 0 per memory line if there are available buffers in that line. Also, total number of free buffers in that memory must be configured",
+    Width => "529", # Excel Formula: =calc_reg_width(E11:E12,F12)
+    Type => "External",
+    UsedBy => "mmu_buffer_allocator",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "15",
+    TotalFreeBuffers15 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 15; ArrayLocationInName: 17;
+      Name => "TotalFreeBuffers[n]",
+      RegMem => "RegField",
+      Description => "Total number of useable buffers in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DocName => "TotalUseableBuffers[n]",
+    },
+    ValidMemoryLines15 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 15; ArrayLocationInName: 17;
+      Name => "ValidMemoryLines[n]",
+      RegMem => "RegField",
+      Description => "Each row of buffer allocator memory mapped to one bit in this register.
+0 - no useable buffers (i.e. no 1s in memory) for that memory row
+1 - at least 1 useable buffer for that memory row",
+      Width => "512",
+      Position => "528:17", # Excel Formula: =calc_position(F11,E12)
+      Type => "External",
+      DocName => "UseableMemoryLines[n]",
+    },
+  },
+  BufferAllocStatus0 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 0; ArrayLocationInName: 18;
+    Name => "BufferAllocStatus[16]",
+    RegMem => "Reg",
+    Address => "111", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Total number of free buffers remaining per buffer allocator memory",
+    Width => "17", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    ArrayLength => "16",
+    ArrayIndex => "0",
+    FreeBuffersLeft0 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 0; ArrayLocationInName: 16;
+      Name => "FreeBuffersLeft[n]",
+      RegMem => "RegField",
+      Description => "Total number of free buffers remaining in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "mmu_buffer_allocator",
+    },
+  },
+  BufferAllocStatus1 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 1; ArrayLocationInName: 18;
+    Name => "BufferAllocStatus[16]",
+    RegMem => "Reg",
+    Address => "112",
+    Description => "Total number of free buffers remaining per buffer allocator memory",
+    Width => "17", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    ArrayLength => "16",
+    ArrayIndex => "1",
+    FreeBuffersLeft1 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 1; ArrayLocationInName: 16;
+      Name => "FreeBuffersLeft[n]",
+      RegMem => "RegField",
+      Description => "Total number of free buffers remaining in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "mmu_buffer_allocator",
+    },
+  },
+  BufferAllocStatus2 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 2; ArrayLocationInName: 18;
+    Name => "BufferAllocStatus[16]",
+    RegMem => "Reg",
+    Address => "113",
+    Description => "Total number of free buffers remaining per buffer allocator memory",
+    Width => "17", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    ArrayLength => "16",
+    ArrayIndex => "2",
+    FreeBuffersLeft2 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 2; ArrayLocationInName: 16;
+      Name => "FreeBuffersLeft[n]",
+      RegMem => "RegField",
+      Description => "Total number of free buffers remaining in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "mmu_buffer_allocator",
+    },
+  },
+  BufferAllocStatus3 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 3; ArrayLocationInName: 18;
+    Name => "BufferAllocStatus[16]",
+    RegMem => "Reg",
+    Address => "114",
+    Description => "Total number of free buffers remaining per buffer allocator memory",
+    Width => "17", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    ArrayLength => "16",
+    ArrayIndex => "3",
+    FreeBuffersLeft3 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 3; ArrayLocationInName: 16;
+      Name => "FreeBuffersLeft[n]",
+      RegMem => "RegField",
+      Description => "Total number of free buffers remaining in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "mmu_buffer_allocator",
+    },
+  },
+  BufferAllocStatus4 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 4; ArrayLocationInName: 18;
+    Name => "BufferAllocStatus[16]",
+    RegMem => "Reg",
+    Address => "115",
+    Description => "Total number of free buffers remaining per buffer allocator memory",
+    Width => "17", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    ArrayLength => "16",
+    ArrayIndex => "4",
+    FreeBuffersLeft4 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 4; ArrayLocationInName: 16;
+      Name => "FreeBuffersLeft[n]",
+      RegMem => "RegField",
+      Description => "Total number of free buffers remaining in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "mmu_buffer_allocator",
+    },
+  },
+  BufferAllocStatus5 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 5; ArrayLocationInName: 18;
+    Name => "BufferAllocStatus[16]",
+    RegMem => "Reg",
+    Address => "116",
+    Description => "Total number of free buffers remaining per buffer allocator memory",
+    Width => "17", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    ArrayLength => "16",
+    ArrayIndex => "5",
+    FreeBuffersLeft5 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 5; ArrayLocationInName: 16;
+      Name => "FreeBuffersLeft[n]",
+      RegMem => "RegField",
+      Description => "Total number of free buffers remaining in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "mmu_buffer_allocator",
+    },
+  },
+  BufferAllocStatus6 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 6; ArrayLocationInName: 18;
+    Name => "BufferAllocStatus[16]",
+    RegMem => "Reg",
+    Address => "117",
+    Description => "Total number of free buffers remaining per buffer allocator memory",
+    Width => "17", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    ArrayLength => "16",
+    ArrayIndex => "6",
+    FreeBuffersLeft6 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 6; ArrayLocationInName: 16;
+      Name => "FreeBuffersLeft[n]",
+      RegMem => "RegField",
+      Description => "Total number of free buffers remaining in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "mmu_buffer_allocator",
+    },
+  },
+  BufferAllocStatus7 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 7; ArrayLocationInName: 18;
+    Name => "BufferAllocStatus[16]",
+    RegMem => "Reg",
+    Address => "118",
+    Description => "Total number of free buffers remaining per buffer allocator memory",
+    Width => "17", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    ArrayLength => "16",
+    ArrayIndex => "7",
+    FreeBuffersLeft7 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 7; ArrayLocationInName: 16;
+      Name => "FreeBuffersLeft[n]",
+      RegMem => "RegField",
+      Description => "Total number of free buffers remaining in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "mmu_buffer_allocator",
+    },
+  },
+  BufferAllocStatus8 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 8; ArrayLocationInName: 18;
+    Name => "BufferAllocStatus[16]",
+    RegMem => "Reg",
+    Address => "119",
+    Description => "Total number of free buffers remaining per buffer allocator memory",
+    Width => "17", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    ArrayLength => "16",
+    ArrayIndex => "8",
+    FreeBuffersLeft8 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 8; ArrayLocationInName: 16;
+      Name => "FreeBuffersLeft[n]",
+      RegMem => "RegField",
+      Description => "Total number of free buffers remaining in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "mmu_buffer_allocator",
+    },
+  },
+  BufferAllocStatus9 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 9; ArrayLocationInName: 18;
+    Name => "BufferAllocStatus[16]",
+    RegMem => "Reg",
+    Address => "11A",
+    Description => "Total number of free buffers remaining per buffer allocator memory",
+    Width => "17", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    ArrayLength => "16",
+    ArrayIndex => "9",
+    FreeBuffersLeft9 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 9; ArrayLocationInName: 16;
+      Name => "FreeBuffersLeft[n]",
+      RegMem => "RegField",
+      Description => "Total number of free buffers remaining in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "mmu_buffer_allocator",
+    },
+  },
+  BufferAllocStatus10 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 10; ArrayLocationInName: 18;
+    Name => "BufferAllocStatus[16]",
+    RegMem => "Reg",
+    Address => "11B",
+    Description => "Total number of free buffers remaining per buffer allocator memory",
+    Width => "17", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    ArrayLength => "16",
+    ArrayIndex => "10",
+    FreeBuffersLeft10 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 10; ArrayLocationInName: 16;
+      Name => "FreeBuffersLeft[n]",
+      RegMem => "RegField",
+      Description => "Total number of free buffers remaining in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "mmu_buffer_allocator",
+    },
+  },
+  BufferAllocStatus11 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 11; ArrayLocationInName: 18;
+    Name => "BufferAllocStatus[16]",
+    RegMem => "Reg",
+    Address => "11C",
+    Description => "Total number of free buffers remaining per buffer allocator memory",
+    Width => "17", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    ArrayLength => "16",
+    ArrayIndex => "11",
+    FreeBuffersLeft11 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 11; ArrayLocationInName: 16;
+      Name => "FreeBuffersLeft[n]",
+      RegMem => "RegField",
+      Description => "Total number of free buffers remaining in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "mmu_buffer_allocator",
+    },
+  },
+  BufferAllocStatus12 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 12; ArrayLocationInName: 18;
+    Name => "BufferAllocStatus[16]",
+    RegMem => "Reg",
+    Address => "11D",
+    Description => "Total number of free buffers remaining per buffer allocator memory",
+    Width => "17", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    ArrayLength => "16",
+    ArrayIndex => "12",
+    FreeBuffersLeft12 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 12; ArrayLocationInName: 16;
+      Name => "FreeBuffersLeft[n]",
+      RegMem => "RegField",
+      Description => "Total number of free buffers remaining in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "mmu_buffer_allocator",
+    },
+  },
+  BufferAllocStatus13 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 13; ArrayLocationInName: 18;
+    Name => "BufferAllocStatus[16]",
+    RegMem => "Reg",
+    Address => "11E",
+    Description => "Total number of free buffers remaining per buffer allocator memory",
+    Width => "17", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    ArrayLength => "16",
+    ArrayIndex => "13",
+    FreeBuffersLeft13 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 13; ArrayLocationInName: 16;
+      Name => "FreeBuffersLeft[n]",
+      RegMem => "RegField",
+      Description => "Total number of free buffers remaining in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "mmu_buffer_allocator",
+    },
+  },
+  BufferAllocStatus14 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 14; ArrayLocationInName: 18;
+    Name => "BufferAllocStatus[16]",
+    RegMem => "Reg",
+    Address => "11F",
+    Description => "Total number of free buffers remaining per buffer allocator memory",
+    Width => "17", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    ArrayLength => "16",
+    ArrayIndex => "14",
+    FreeBuffersLeft14 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 14; ArrayLocationInName: 16;
+      Name => "FreeBuffersLeft[n]",
+      RegMem => "RegField",
+      Description => "Total number of free buffers remaining in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "mmu_buffer_allocator",
+    },
+  },
+  BufferAllocStatus15 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 15; ArrayLocationInName: 18;
+    Name => "BufferAllocStatus[16]",
+    RegMem => "Reg",
+    Address => "120",
+    Description => "Total number of free buffers remaining per buffer allocator memory",
+    Width => "17", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    ArrayLength => "16",
+    ArrayIndex => "15",
+    FreeBuffersLeft15 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 15; ArrayLocationInName: 16;
+      Name => "FreeBuffersLeft[n]",
+      RegMem => "RegField",
+      Description => "Total number of free buffers remaining in memory (max of 64k)",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "mmu_buffer_allocator",
+    },
+  },
+  CpuOverrideBuffers0 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 0; ArrayLocationInName: 19;
+    Name => "CpuOverrideBuffers[16]",
+    RegMem => "Reg",
+    Address => "121", # Excel Formula: =calc_reg_address(C13,A13,G13)
+    Description => "CPU access to free up buffers in the buffer allocator.
+The 4 LSBs of the buffer number serve as selector for buffer allocator , and the other 16b are written here",
+    Width => "17", # Excel Formula: =calc_reg_width(E16:E17,F17)
+    Type => "External",
+    UsedBy => "mmu_cpu_if",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "0",
+    CpuBuffer0 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 0; ArrayLocationInName: 10;
+      Name => "CpuBuffer[n]",
+      RegMem => "RegField",
+      Description => "Buffer number to free 
+[15:7] memory row
+[6:0] memory column",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "External",
+    },
+    CpuFreeBuffer0 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 0; ArrayLocationInName: 14;
+      Name => "CpuFreeBuffer[n]",
+      RegMem => "RegField",
+      Description => "Free the buffer above. Write 1 to issue command. Do not need to wait for it to be cleared. Always reads 0",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F16,E17)
+      Type => "External",
+    },
+  },
+  CpuOverrideBuffers1 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 1; ArrayLocationInName: 19;
+    Name => "CpuOverrideBuffers[16]",
+    RegMem => "Reg",
+    Address => "122",
+    Description => "CPU access to free up buffers in the buffer allocator.
+The 4 LSBs of the buffer number serve as selector for buffer allocator , and the other 16b are written here",
+    Width => "17", # Excel Formula: =calc_reg_width(E16:E17,F17)
+    Type => "External",
+    UsedBy => "mmu_cpu_if",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "1",
+    CpuBuffer1 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 1; ArrayLocationInName: 10;
+      Name => "CpuBuffer[n]",
+      RegMem => "RegField",
+      Description => "Buffer number to free 
+[15:7] memory row
+[6:0] memory column",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "External",
+    },
+    CpuFreeBuffer1 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 1; ArrayLocationInName: 14;
+      Name => "CpuFreeBuffer[n]",
+      RegMem => "RegField",
+      Description => "Free the buffer above. Write 1 to issue command. Do not need to wait for it to be cleared. Always reads 0",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F16,E17)
+      Type => "External",
+    },
+  },
+  CpuOverrideBuffers2 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 2; ArrayLocationInName: 19;
+    Name => "CpuOverrideBuffers[16]",
+    RegMem => "Reg",
+    Address => "123",
+    Description => "CPU access to free up buffers in the buffer allocator.
+The 4 LSBs of the buffer number serve as selector for buffer allocator , and the other 16b are written here",
+    Width => "17", # Excel Formula: =calc_reg_width(E16:E17,F17)
+    Type => "External",
+    UsedBy => "mmu_cpu_if",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "2",
+    CpuBuffer2 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 2; ArrayLocationInName: 10;
+      Name => "CpuBuffer[n]",
+      RegMem => "RegField",
+      Description => "Buffer number to free 
+[15:7] memory row
+[6:0] memory column",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "External",
+    },
+    CpuFreeBuffer2 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 2; ArrayLocationInName: 14;
+      Name => "CpuFreeBuffer[n]",
+      RegMem => "RegField",
+      Description => "Free the buffer above. Write 1 to issue command. Do not need to wait for it to be cleared. Always reads 0",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F16,E17)
+      Type => "External",
+    },
+  },
+  CpuOverrideBuffers3 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 3; ArrayLocationInName: 19;
+    Name => "CpuOverrideBuffers[16]",
+    RegMem => "Reg",
+    Address => "124",
+    Description => "CPU access to free up buffers in the buffer allocator.
+The 4 LSBs of the buffer number serve as selector for buffer allocator , and the other 16b are written here",
+    Width => "17", # Excel Formula: =calc_reg_width(E16:E17,F17)
+    Type => "External",
+    UsedBy => "mmu_cpu_if",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "3",
+    CpuBuffer3 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 3; ArrayLocationInName: 10;
+      Name => "CpuBuffer[n]",
+      RegMem => "RegField",
+      Description => "Buffer number to free 
+[15:7] memory row
+[6:0] memory column",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "External",
+    },
+    CpuFreeBuffer3 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 3; ArrayLocationInName: 14;
+      Name => "CpuFreeBuffer[n]",
+      RegMem => "RegField",
+      Description => "Free the buffer above. Write 1 to issue command. Do not need to wait for it to be cleared. Always reads 0",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F16,E17)
+      Type => "External",
+    },
+  },
+  CpuOverrideBuffers4 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 4; ArrayLocationInName: 19;
+    Name => "CpuOverrideBuffers[16]",
+    RegMem => "Reg",
+    Address => "125",
+    Description => "CPU access to free up buffers in the buffer allocator.
+The 4 LSBs of the buffer number serve as selector for buffer allocator , and the other 16b are written here",
+    Width => "17", # Excel Formula: =calc_reg_width(E16:E17,F17)
+    Type => "External",
+    UsedBy => "mmu_cpu_if",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "4",
+    CpuBuffer4 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 4; ArrayLocationInName: 10;
+      Name => "CpuBuffer[n]",
+      RegMem => "RegField",
+      Description => "Buffer number to free 
+[15:7] memory row
+[6:0] memory column",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "External",
+    },
+    CpuFreeBuffer4 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 4; ArrayLocationInName: 14;
+      Name => "CpuFreeBuffer[n]",
+      RegMem => "RegField",
+      Description => "Free the buffer above. Write 1 to issue command. Do not need to wait for it to be cleared. Always reads 0",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F16,E17)
+      Type => "External",
+    },
+  },
+  CpuOverrideBuffers5 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 5; ArrayLocationInName: 19;
+    Name => "CpuOverrideBuffers[16]",
+    RegMem => "Reg",
+    Address => "126",
+    Description => "CPU access to free up buffers in the buffer allocator.
+The 4 LSBs of the buffer number serve as selector for buffer allocator , and the other 16b are written here",
+    Width => "17", # Excel Formula: =calc_reg_width(E16:E17,F17)
+    Type => "External",
+    UsedBy => "mmu_cpu_if",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "5",
+    CpuBuffer5 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 5; ArrayLocationInName: 10;
+      Name => "CpuBuffer[n]",
+      RegMem => "RegField",
+      Description => "Buffer number to free 
+[15:7] memory row
+[6:0] memory column",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "External",
+    },
+    CpuFreeBuffer5 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 5; ArrayLocationInName: 14;
+      Name => "CpuFreeBuffer[n]",
+      RegMem => "RegField",
+      Description => "Free the buffer above. Write 1 to issue command. Do not need to wait for it to be cleared. Always reads 0",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F16,E17)
+      Type => "External",
+    },
+  },
+  CpuOverrideBuffers6 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 6; ArrayLocationInName: 19;
+    Name => "CpuOverrideBuffers[16]",
+    RegMem => "Reg",
+    Address => "127",
+    Description => "CPU access to free up buffers in the buffer allocator.
+The 4 LSBs of the buffer number serve as selector for buffer allocator , and the other 16b are written here",
+    Width => "17", # Excel Formula: =calc_reg_width(E16:E17,F17)
+    Type => "External",
+    UsedBy => "mmu_cpu_if",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "6",
+    CpuBuffer6 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 6; ArrayLocationInName: 10;
+      Name => "CpuBuffer[n]",
+      RegMem => "RegField",
+      Description => "Buffer number to free 
+[15:7] memory row
+[6:0] memory column",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "External",
+    },
+    CpuFreeBuffer6 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 6; ArrayLocationInName: 14;
+      Name => "CpuFreeBuffer[n]",
+      RegMem => "RegField",
+      Description => "Free the buffer above. Write 1 to issue command. Do not need to wait for it to be cleared. Always reads 0",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F16,E17)
+      Type => "External",
+    },
+  },
+  CpuOverrideBuffers7 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 7; ArrayLocationInName: 19;
+    Name => "CpuOverrideBuffers[16]",
+    RegMem => "Reg",
+    Address => "128",
+    Description => "CPU access to free up buffers in the buffer allocator.
+The 4 LSBs of the buffer number serve as selector for buffer allocator , and the other 16b are written here",
+    Width => "17", # Excel Formula: =calc_reg_width(E16:E17,F17)
+    Type => "External",
+    UsedBy => "mmu_cpu_if",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "7",
+    CpuBuffer7 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 7; ArrayLocationInName: 10;
+      Name => "CpuBuffer[n]",
+      RegMem => "RegField",
+      Description => "Buffer number to free 
+[15:7] memory row
+[6:0] memory column",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "External",
+    },
+    CpuFreeBuffer7 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 7; ArrayLocationInName: 14;
+      Name => "CpuFreeBuffer[n]",
+      RegMem => "RegField",
+      Description => "Free the buffer above. Write 1 to issue command. Do not need to wait for it to be cleared. Always reads 0",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F16,E17)
+      Type => "External",
+    },
+  },
+  CpuOverrideBuffers8 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 8; ArrayLocationInName: 19;
+    Name => "CpuOverrideBuffers[16]",
+    RegMem => "Reg",
+    Address => "129",
+    Description => "CPU access to free up buffers in the buffer allocator.
+The 4 LSBs of the buffer number serve as selector for buffer allocator , and the other 16b are written here",
+    Width => "17", # Excel Formula: =calc_reg_width(E16:E17,F17)
+    Type => "External",
+    UsedBy => "mmu_cpu_if",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "8",
+    CpuBuffer8 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 8; ArrayLocationInName: 10;
+      Name => "CpuBuffer[n]",
+      RegMem => "RegField",
+      Description => "Buffer number to free 
+[15:7] memory row
+[6:0] memory column",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "External",
+    },
+    CpuFreeBuffer8 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 8; ArrayLocationInName: 14;
+      Name => "CpuFreeBuffer[n]",
+      RegMem => "RegField",
+      Description => "Free the buffer above. Write 1 to issue command. Do not need to wait for it to be cleared. Always reads 0",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F16,E17)
+      Type => "External",
+    },
+  },
+  CpuOverrideBuffers9 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 9; ArrayLocationInName: 19;
+    Name => "CpuOverrideBuffers[16]",
+    RegMem => "Reg",
+    Address => "12A",
+    Description => "CPU access to free up buffers in the buffer allocator.
+The 4 LSBs of the buffer number serve as selector for buffer allocator , and the other 16b are written here",
+    Width => "17", # Excel Formula: =calc_reg_width(E16:E17,F17)
+    Type => "External",
+    UsedBy => "mmu_cpu_if",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "9",
+    CpuBuffer9 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 9; ArrayLocationInName: 10;
+      Name => "CpuBuffer[n]",
+      RegMem => "RegField",
+      Description => "Buffer number to free 
+[15:7] memory row
+[6:0] memory column",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "External",
+    },
+    CpuFreeBuffer9 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 9; ArrayLocationInName: 14;
+      Name => "CpuFreeBuffer[n]",
+      RegMem => "RegField",
+      Description => "Free the buffer above. Write 1 to issue command. Do not need to wait for it to be cleared. Always reads 0",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F16,E17)
+      Type => "External",
+    },
+  },
+  CpuOverrideBuffers10 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 10; ArrayLocationInName: 19;
+    Name => "CpuOverrideBuffers[16]",
+    RegMem => "Reg",
+    Address => "12B",
+    Description => "CPU access to free up buffers in the buffer allocator.
+The 4 LSBs of the buffer number serve as selector for buffer allocator , and the other 16b are written here",
+    Width => "17", # Excel Formula: =calc_reg_width(E16:E17,F17)
+    Type => "External",
+    UsedBy => "mmu_cpu_if",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "10",
+    CpuBuffer10 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 10; ArrayLocationInName: 10;
+      Name => "CpuBuffer[n]",
+      RegMem => "RegField",
+      Description => "Buffer number to free 
+[15:7] memory row
+[6:0] memory column",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "External",
+    },
+    CpuFreeBuffer10 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 10; ArrayLocationInName: 14;
+      Name => "CpuFreeBuffer[n]",
+      RegMem => "RegField",
+      Description => "Free the buffer above. Write 1 to issue command. Do not need to wait for it to be cleared. Always reads 0",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F16,E17)
+      Type => "External",
+    },
+  },
+  CpuOverrideBuffers11 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 11; ArrayLocationInName: 19;
+    Name => "CpuOverrideBuffers[16]",
+    RegMem => "Reg",
+    Address => "12C",
+    Description => "CPU access to free up buffers in the buffer allocator.
+The 4 LSBs of the buffer number serve as selector for buffer allocator , and the other 16b are written here",
+    Width => "17", # Excel Formula: =calc_reg_width(E16:E17,F17)
+    Type => "External",
+    UsedBy => "mmu_cpu_if",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "11",
+    CpuBuffer11 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 11; ArrayLocationInName: 10;
+      Name => "CpuBuffer[n]",
+      RegMem => "RegField",
+      Description => "Buffer number to free 
+[15:7] memory row
+[6:0] memory column",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "External",
+    },
+    CpuFreeBuffer11 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 11; ArrayLocationInName: 14;
+      Name => "CpuFreeBuffer[n]",
+      RegMem => "RegField",
+      Description => "Free the buffer above. Write 1 to issue command. Do not need to wait for it to be cleared. Always reads 0",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F16,E17)
+      Type => "External",
+    },
+  },
+  CpuOverrideBuffers12 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 12; ArrayLocationInName: 19;
+    Name => "CpuOverrideBuffers[16]",
+    RegMem => "Reg",
+    Address => "12D",
+    Description => "CPU access to free up buffers in the buffer allocator.
+The 4 LSBs of the buffer number serve as selector for buffer allocator , and the other 16b are written here",
+    Width => "17", # Excel Formula: =calc_reg_width(E16:E17,F17)
+    Type => "External",
+    UsedBy => "mmu_cpu_if",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "12",
+    CpuBuffer12 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 12; ArrayLocationInName: 10;
+      Name => "CpuBuffer[n]",
+      RegMem => "RegField",
+      Description => "Buffer number to free 
+[15:7] memory row
+[6:0] memory column",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "External",
+    },
+    CpuFreeBuffer12 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 12; ArrayLocationInName: 14;
+      Name => "CpuFreeBuffer[n]",
+      RegMem => "RegField",
+      Description => "Free the buffer above. Write 1 to issue command. Do not need to wait for it to be cleared. Always reads 0",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F16,E17)
+      Type => "External",
+    },
+  },
+  CpuOverrideBuffers13 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 13; ArrayLocationInName: 19;
+    Name => "CpuOverrideBuffers[16]",
+    RegMem => "Reg",
+    Address => "12E",
+    Description => "CPU access to free up buffers in the buffer allocator.
+The 4 LSBs of the buffer number serve as selector for buffer allocator , and the other 16b are written here",
+    Width => "17", # Excel Formula: =calc_reg_width(E16:E17,F17)
+    Type => "External",
+    UsedBy => "mmu_cpu_if",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "13",
+    CpuBuffer13 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 13; ArrayLocationInName: 10;
+      Name => "CpuBuffer[n]",
+      RegMem => "RegField",
+      Description => "Buffer number to free 
+[15:7] memory row
+[6:0] memory column",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "External",
+    },
+    CpuFreeBuffer13 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 13; ArrayLocationInName: 14;
+      Name => "CpuFreeBuffer[n]",
+      RegMem => "RegField",
+      Description => "Free the buffer above. Write 1 to issue command. Do not need to wait for it to be cleared. Always reads 0",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F16,E17)
+      Type => "External",
+    },
+  },
+  CpuOverrideBuffers14 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 14; ArrayLocationInName: 19;
+    Name => "CpuOverrideBuffers[16]",
+    RegMem => "Reg",
+    Address => "12F",
+    Description => "CPU access to free up buffers in the buffer allocator.
+The 4 LSBs of the buffer number serve as selector for buffer allocator , and the other 16b are written here",
+    Width => "17", # Excel Formula: =calc_reg_width(E16:E17,F17)
+    Type => "External",
+    UsedBy => "mmu_cpu_if",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "14",
+    CpuBuffer14 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 14; ArrayLocationInName: 10;
+      Name => "CpuBuffer[n]",
+      RegMem => "RegField",
+      Description => "Buffer number to free 
+[15:7] memory row
+[6:0] memory column",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "External",
+    },
+    CpuFreeBuffer14 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 14; ArrayLocationInName: 14;
+      Name => "CpuFreeBuffer[n]",
+      RegMem => "RegField",
+      Description => "Free the buffer above. Write 1 to issue command. Do not need to wait for it to be cleared. Always reads 0",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F16,E17)
+      Type => "External",
+    },
+  },
+  CpuOverrideBuffers15 => { #Structure Type: Reg; ArrayLength: 16; ArrayIndex: 15; ArrayLocationInName: 19;
+    Name => "CpuOverrideBuffers[16]",
+    RegMem => "Reg",
+    Address => "130",
+    Description => "CPU access to free up buffers in the buffer allocator.
+The 4 LSBs of the buffer number serve as selector for buffer allocator , and the other 16b are written here",
+    Width => "17", # Excel Formula: =calc_reg_width(E16:E17,F17)
+    Type => "External",
+    UsedBy => "mmu_cpu_if",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    ArrayLength => "16",
+    ArrayIndex => "15",
+    CpuBuffer15 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 15; ArrayLocationInName: 10;
+      Name => "CpuBuffer[n]",
+      RegMem => "RegField",
+      Description => "Buffer number to free 
+[15:7] memory row
+[6:0] memory column",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "External",
+    },
+    CpuFreeBuffer15 => { #Structure Type: RegField; ArrayLength: 16; ArrayIndex: 15; ArrayLocationInName: 14;
+      Name => "CpuFreeBuffer[n]",
+      RegMem => "RegField",
+      Description => "Free the buffer above. Write 1 to issue command. Do not need to wait for it to be cleared. Always reads 0",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F16,E17)
+      Type => "External",
+    },
+  },
+  mmu_buffer_allocator0 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 0; ArrayLocationInName: 21;
+    Name => "mmu_buffer_allocator[16]",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "MMU Free buffer allocator memories",
+    Width => "137", # Excel Formula: =calc_mem_width(E19:E19,M18,F19,-1)
+    Type => "Dynamic",
+    UsedBy => "alloc",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10",
+    ArrayLength => "16",
+    ArrayIndex => "0",
+    MemLogicalWidth => "128",
+    mmu_buffer_allocator0Data => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 0; ArrayLocationInName: 21;
+      Name => "mmu_buffer_allocator[n]Data",
+      RegMem => "MemField",
+      Description => "One memory bit per DRAM buffer. 
+0 - buffer is occupied or not useable
+1- buffer is useable and free
+Memory index is bits 3:0 of buffer number
+Memory column is bits 10:4 of buffer number 
+Memory row is bits 19:11 of buffer number",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+    },
+  },
+  mmu_buffer_allocator1 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 1; ArrayLocationInName: 21;
+    Name => "mmu_buffer_allocator[16]",
+    RegMem => "Mem",
+    Address => "200000",
+    Description => "MMU Free buffer allocator memories",
+    Width => "137", # Excel Formula: =calc_mem_width(E19:E19,M18,F19,-1)
+    Type => "Dynamic",
+    UsedBy => "alloc",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10",
+    ArrayLength => "16",
+    ArrayIndex => "1",
+    MemLogicalWidth => "128",
+    mmu_buffer_allocator1Data => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 1; ArrayLocationInName: 21;
+      Name => "mmu_buffer_allocator[n]Data",
+      RegMem => "MemField",
+      Description => "One memory bit per DRAM buffer. 
+0 - buffer is occupied or not useable
+1- buffer is useable and free
+Memory index is bits 3:0 of buffer number
+Memory column is bits 10:4 of buffer number 
+Memory row is bits 19:11 of buffer number",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+    },
+  },
+  mmu_buffer_allocator2 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 2; ArrayLocationInName: 21;
+    Name => "mmu_buffer_allocator[16]",
+    RegMem => "Mem",
+    Address => "300000",
+    Description => "MMU Free buffer allocator memories",
+    Width => "137", # Excel Formula: =calc_mem_width(E19:E19,M18,F19,-1)
+    Type => "Dynamic",
+    UsedBy => "alloc",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10",
+    ArrayLength => "16",
+    ArrayIndex => "2",
+    MemLogicalWidth => "128",
+    mmu_buffer_allocator2Data => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 2; ArrayLocationInName: 21;
+      Name => "mmu_buffer_allocator[n]Data",
+      RegMem => "MemField",
+      Description => "One memory bit per DRAM buffer. 
+0 - buffer is occupied or not useable
+1- buffer is useable and free
+Memory index is bits 3:0 of buffer number
+Memory column is bits 10:4 of buffer number 
+Memory row is bits 19:11 of buffer number",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+    },
+  },
+  mmu_buffer_allocator3 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 3; ArrayLocationInName: 21;
+    Name => "mmu_buffer_allocator[16]",
+    RegMem => "Mem",
+    Address => "400000",
+    Description => "MMU Free buffer allocator memories",
+    Width => "137", # Excel Formula: =calc_mem_width(E19:E19,M18,F19,-1)
+    Type => "Dynamic",
+    UsedBy => "alloc",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10",
+    ArrayLength => "16",
+    ArrayIndex => "3",
+    MemLogicalWidth => "128",
+    mmu_buffer_allocator3Data => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 3; ArrayLocationInName: 21;
+      Name => "mmu_buffer_allocator[n]Data",
+      RegMem => "MemField",
+      Description => "One memory bit per DRAM buffer. 
+0 - buffer is occupied or not useable
+1- buffer is useable and free
+Memory index is bits 3:0 of buffer number
+Memory column is bits 10:4 of buffer number 
+Memory row is bits 19:11 of buffer number",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+    },
+  },
+  mmu_buffer_allocator4 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 4; ArrayLocationInName: 21;
+    Name => "mmu_buffer_allocator[16]",
+    RegMem => "Mem",
+    Address => "500000",
+    Description => "MMU Free buffer allocator memories",
+    Width => "137", # Excel Formula: =calc_mem_width(E19:E19,M18,F19,-1)
+    Type => "Dynamic",
+    UsedBy => "alloc",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10",
+    ArrayLength => "16",
+    ArrayIndex => "4",
+    MemLogicalWidth => "128",
+    mmu_buffer_allocator4Data => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 4; ArrayLocationInName: 21;
+      Name => "mmu_buffer_allocator[n]Data",
+      RegMem => "MemField",
+      Description => "One memory bit per DRAM buffer. 
+0 - buffer is occupied or not useable
+1- buffer is useable and free
+Memory index is bits 3:0 of buffer number
+Memory column is bits 10:4 of buffer number 
+Memory row is bits 19:11 of buffer number",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+    },
+  },
+  mmu_buffer_allocator5 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 5; ArrayLocationInName: 21;
+    Name => "mmu_buffer_allocator[16]",
+    RegMem => "Mem",
+    Address => "600000",
+    Description => "MMU Free buffer allocator memories",
+    Width => "137", # Excel Formula: =calc_mem_width(E19:E19,M18,F19,-1)
+    Type => "Dynamic",
+    UsedBy => "alloc",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10",
+    ArrayLength => "16",
+    ArrayIndex => "5",
+    MemLogicalWidth => "128",
+    mmu_buffer_allocator5Data => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 5; ArrayLocationInName: 21;
+      Name => "mmu_buffer_allocator[n]Data",
+      RegMem => "MemField",
+      Description => "One memory bit per DRAM buffer. 
+0 - buffer is occupied or not useable
+1- buffer is useable and free
+Memory index is bits 3:0 of buffer number
+Memory column is bits 10:4 of buffer number 
+Memory row is bits 19:11 of buffer number",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+    },
+  },
+  mmu_buffer_allocator6 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 6; ArrayLocationInName: 21;
+    Name => "mmu_buffer_allocator[16]",
+    RegMem => "Mem",
+    Address => "700000",
+    Description => "MMU Free buffer allocator memories",
+    Width => "137", # Excel Formula: =calc_mem_width(E19:E19,M18,F19,-1)
+    Type => "Dynamic",
+    UsedBy => "alloc",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10",
+    ArrayLength => "16",
+    ArrayIndex => "6",
+    MemLogicalWidth => "128",
+    mmu_buffer_allocator6Data => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 6; ArrayLocationInName: 21;
+      Name => "mmu_buffer_allocator[n]Data",
+      RegMem => "MemField",
+      Description => "One memory bit per DRAM buffer. 
+0 - buffer is occupied or not useable
+1- buffer is useable and free
+Memory index is bits 3:0 of buffer number
+Memory column is bits 10:4 of buffer number 
+Memory row is bits 19:11 of buffer number",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+    },
+  },
+  mmu_buffer_allocator7 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 7; ArrayLocationInName: 21;
+    Name => "mmu_buffer_allocator[16]",
+    RegMem => "Mem",
+    Address => "800000",
+    Description => "MMU Free buffer allocator memories",
+    Width => "137", # Excel Formula: =calc_mem_width(E19:E19,M18,F19,-1)
+    Type => "Dynamic",
+    UsedBy => "alloc",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10",
+    ArrayLength => "16",
+    ArrayIndex => "7",
+    MemLogicalWidth => "128",
+    mmu_buffer_allocator7Data => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 7; ArrayLocationInName: 21;
+      Name => "mmu_buffer_allocator[n]Data",
+      RegMem => "MemField",
+      Description => "One memory bit per DRAM buffer. 
+0 - buffer is occupied or not useable
+1- buffer is useable and free
+Memory index is bits 3:0 of buffer number
+Memory column is bits 10:4 of buffer number 
+Memory row is bits 19:11 of buffer number",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+    },
+  },
+  mmu_buffer_allocator8 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 8; ArrayLocationInName: 21;
+    Name => "mmu_buffer_allocator[16]",
+    RegMem => "Mem",
+    Address => "900000",
+    Description => "MMU Free buffer allocator memories",
+    Width => "137", # Excel Formula: =calc_mem_width(E19:E19,M18,F19,-1)
+    Type => "Dynamic",
+    UsedBy => "alloc",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10",
+    ArrayLength => "16",
+    ArrayIndex => "8",
+    MemLogicalWidth => "128",
+    mmu_buffer_allocator8Data => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 8; ArrayLocationInName: 21;
+      Name => "mmu_buffer_allocator[n]Data",
+      RegMem => "MemField",
+      Description => "One memory bit per DRAM buffer. 
+0 - buffer is occupied or not useable
+1- buffer is useable and free
+Memory index is bits 3:0 of buffer number
+Memory column is bits 10:4 of buffer number 
+Memory row is bits 19:11 of buffer number",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+    },
+  },
+  mmu_buffer_allocator9 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 9; ArrayLocationInName: 21;
+    Name => "mmu_buffer_allocator[16]",
+    RegMem => "Mem",
+    Address => "A00000",
+    Description => "MMU Free buffer allocator memories",
+    Width => "137", # Excel Formula: =calc_mem_width(E19:E19,M18,F19,-1)
+    Type => "Dynamic",
+    UsedBy => "alloc",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10",
+    ArrayLength => "16",
+    ArrayIndex => "9",
+    MemLogicalWidth => "128",
+    mmu_buffer_allocator9Data => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 9; ArrayLocationInName: 21;
+      Name => "mmu_buffer_allocator[n]Data",
+      RegMem => "MemField",
+      Description => "One memory bit per DRAM buffer. 
+0 - buffer is occupied or not useable
+1- buffer is useable and free
+Memory index is bits 3:0 of buffer number
+Memory column is bits 10:4 of buffer number 
+Memory row is bits 19:11 of buffer number",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+    },
+  },
+  mmu_buffer_allocator10 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 10; ArrayLocationInName: 21;
+    Name => "mmu_buffer_allocator[16]",
+    RegMem => "Mem",
+    Address => "B00000",
+    Description => "MMU Free buffer allocator memories",
+    Width => "137", # Excel Formula: =calc_mem_width(E19:E19,M18,F19,-1)
+    Type => "Dynamic",
+    UsedBy => "alloc",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10",
+    ArrayLength => "16",
+    ArrayIndex => "10",
+    MemLogicalWidth => "128",
+    mmu_buffer_allocator10Data => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 10; ArrayLocationInName: 21;
+      Name => "mmu_buffer_allocator[n]Data",
+      RegMem => "MemField",
+      Description => "One memory bit per DRAM buffer. 
+0 - buffer is occupied or not useable
+1- buffer is useable and free
+Memory index is bits 3:0 of buffer number
+Memory column is bits 10:4 of buffer number 
+Memory row is bits 19:11 of buffer number",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+    },
+  },
+  mmu_buffer_allocator11 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 11; ArrayLocationInName: 21;
+    Name => "mmu_buffer_allocator[16]",
+    RegMem => "Mem",
+    Address => "C00000",
+    Description => "MMU Free buffer allocator memories",
+    Width => "137", # Excel Formula: =calc_mem_width(E19:E19,M18,F19,-1)
+    Type => "Dynamic",
+    UsedBy => "alloc",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10",
+    ArrayLength => "16",
+    ArrayIndex => "11",
+    MemLogicalWidth => "128",
+    mmu_buffer_allocator11Data => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 11; ArrayLocationInName: 21;
+      Name => "mmu_buffer_allocator[n]Data",
+      RegMem => "MemField",
+      Description => "One memory bit per DRAM buffer. 
+0 - buffer is occupied or not useable
+1- buffer is useable and free
+Memory index is bits 3:0 of buffer number
+Memory column is bits 10:4 of buffer number 
+Memory row is bits 19:11 of buffer number",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+    },
+  },
+  mmu_buffer_allocator12 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 12; ArrayLocationInName: 21;
+    Name => "mmu_buffer_allocator[16]",
+    RegMem => "Mem",
+    Address => "D00000",
+    Description => "MMU Free buffer allocator memories",
+    Width => "137", # Excel Formula: =calc_mem_width(E19:E19,M18,F19,-1)
+    Type => "Dynamic",
+    UsedBy => "alloc",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10",
+    ArrayLength => "16",
+    ArrayIndex => "12",
+    MemLogicalWidth => "128",
+    mmu_buffer_allocator12Data => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 12; ArrayLocationInName: 21;
+      Name => "mmu_buffer_allocator[n]Data",
+      RegMem => "MemField",
+      Description => "One memory bit per DRAM buffer. 
+0 - buffer is occupied or not useable
+1- buffer is useable and free
+Memory index is bits 3:0 of buffer number
+Memory column is bits 10:4 of buffer number 
+Memory row is bits 19:11 of buffer number",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+    },
+  },
+  mmu_buffer_allocator13 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 13; ArrayLocationInName: 21;
+    Name => "mmu_buffer_allocator[16]",
+    RegMem => "Mem",
+    Address => "E00000",
+    Description => "MMU Free buffer allocator memories",
+    Width => "137", # Excel Formula: =calc_mem_width(E19:E19,M18,F19,-1)
+    Type => "Dynamic",
+    UsedBy => "alloc",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10",
+    ArrayLength => "16",
+    ArrayIndex => "13",
+    MemLogicalWidth => "128",
+    mmu_buffer_allocator13Data => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 13; ArrayLocationInName: 21;
+      Name => "mmu_buffer_allocator[n]Data",
+      RegMem => "MemField",
+      Description => "One memory bit per DRAM buffer. 
+0 - buffer is occupied or not useable
+1- buffer is useable and free
+Memory index is bits 3:0 of buffer number
+Memory column is bits 10:4 of buffer number 
+Memory row is bits 19:11 of buffer number",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+    },
+  },
+  mmu_buffer_allocator14 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 14; ArrayLocationInName: 21;
+    Name => "mmu_buffer_allocator[16]",
+    RegMem => "Mem",
+    Address => "F00000",
+    Description => "MMU Free buffer allocator memories",
+    Width => "137", # Excel Formula: =calc_mem_width(E19:E19,M18,F19,-1)
+    Type => "Dynamic",
+    UsedBy => "alloc",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10",
+    ArrayLength => "16",
+    ArrayIndex => "14",
+    MemLogicalWidth => "128",
+    mmu_buffer_allocator14Data => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 14; ArrayLocationInName: 21;
+      Name => "mmu_buffer_allocator[n]Data",
+      RegMem => "MemField",
+      Description => "One memory bit per DRAM buffer. 
+0 - buffer is occupied or not useable
+1- buffer is useable and free
+Memory index is bits 3:0 of buffer number
+Memory column is bits 10:4 of buffer number 
+Memory row is bits 19:11 of buffer number",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+    },
+  },
+  mmu_buffer_allocator15 => { #Structure Type: Mem; ArrayLength: 16; ArrayIndex: 15; ArrayLocationInName: 21;
+    Name => "mmu_buffer_allocator[16]",
+    RegMem => "Mem",
+    Address => "1000000",
+    Description => "MMU Free buffer allocator memories",
+    Width => "137", # Excel Formula: =calc_mem_width(E19:E19,M18,F19,-1)
+    Type => "Dynamic",
+    UsedBy => "alloc",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10",
+    ArrayLength => "16",
+    ArrayIndex => "15",
+    MemLogicalWidth => "128",
+    mmu_buffer_allocator15Data => { #Structure Type: MemField; ArrayLength: 16; ArrayIndex: 15; ArrayLocationInName: 21;
+      Name => "mmu_buffer_allocator[n]Data",
+      RegMem => "MemField",
+      Description => "One memory bit per DRAM buffer. 
+0 - buffer is occupied or not useable
+1- buffer is useable and free
+Memory index is bits 3:0 of buffer number
+Memory column is bits 10:4 of buffer number 
+Memory row is bits 19:11 of buffer number",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+    },
+  },
+};

@@ -1,0 +1,257 @@
+// Doxygen section definitions
+
+/// @defgroup OBJECT Object API
+/// @brief Defines API-s for managing #silicon_one::la_object.
+
+/// @defgroup SYSTEM System API
+/// @brief Defines API-s for managing System objects.
+
+/// @defgroup PACKET Packet Punt/Inject API
+/// @brief Defines API-s for Packet punt/inject.
+
+/// @defgroup PORT Port API
+/// @brief Defines API-s for managing Port objects.
+
+/// @defgroup PORT_MAC MAC Port API
+/// @brief Defines API-s for managing MAC port object.
+/// @ingroup PORT
+
+/// @defgroup PORT_SYSTEM System Port API
+/// @brief Defines API-s for managing System port object.
+/// @ingroup PORT
+
+/// @defgroup PORT_SPA SPA Port API
+/// @brief Defines API-s for managing System Port Aggregate port object.
+/// @ingroup PORT
+
+/// @defgroup NPU NPU Port API
+/// @brief Defines API-s for managing Network Processing Unit Port objects.
+
+/// @defgroup L2TYPES L2 types
+/// @brief Defines common Layer 2 types.
+
+/// @defgroup L2PORT L2 port API
+/// @brief Defines API-s for managing Layer 2 ports.
+
+/// @defgroup L2PORT_AC Attachment Circuit API
+/// @brief Defines API-s for managing Attachment Circuit profiles.
+/// @ingroup L2PORT
+
+/// @defgroup L2PORT_ETH L2 Ethernet port API
+/// @brief Defines API-s for managing Layer 2 Ethernet port.
+/// @ingroup L2PORT
+
+/// @defgroup L2PORT_SRV L2 Service port API
+/// @brief Defines API-s for managing Layer 2 service ports.
+/// @ingroup L2PORT
+
+/// @defgroup L2PORT_VLAN_SET VLAN Set API
+/// @brief Defines API-s for managing a set of VLAN ID-s.
+/// @ingroup L2PORT_ETH
+
+/// @defgroup L2DEST L2 destination API
+/// @brief Defines API-s for managing Layer 2 destinations.
+
+/// @defgroup L2DEST_LAG L2 LAG API
+/// @brief Defines API-s for managing Layer 2 Link Aggregate Group.
+/// @ingroup L2DEST
+
+/// @defgroup L2DEST_PROTECT L2 protection group API
+/// @brief Defines API-s for managing Layer 2 Protection Group.
+/// @ingroup L2DEST
+
+/// @defgroup L2SWITCH L2 Switch API
+/// @brief Defines API-s for managing Layer 2 switching.
+
+/// @defgroup L2SWITCH_ERPS ERPS profile API
+/// @brief Defines API-s for managing Ethernet Ring Protection Switching (ERPS) profile.
+/// @ingroup L2SWITCH
+
+/// @defgroup L2SWITCH_FILTER Filter group API
+/// @brief Defines API-s for managing Filter groups.
+///
+/// Filter groups are used to allow/block traffic between given ports.
+/// For each pair of source, destination filter groups, the user can define whether the source group can
+/// send traffic to the destination group.
+/// @ingroup L2SWITCH
+
+/// @defgroup L2SWITCH_MAC_ITER MAC table iteration API
+/// @brief Defines API-s for MAC table iteration.
+/// @ingroup L2SWITCH
+
+/// @defgroup L2SWITCH_SEC L2 Port Security API
+/// @brief Defines API-s for managing Layer 2 port security.
+/// @ingroup L2SWITCH
+
+/// @defgroup L2SWITCH_STP STP profile API
+/// @brief Defines API-s for managing Spanning Tree Protocol profiles.
+/// @ingroup L2SWITCH
+
+/// @defgroup L2SWITCH_VLAN_EDT VLAN Editor API
+/// @brief Defines API-s for managing VLAN Editor.
+///
+/// The editor can later be applied to ports, editing ingress/egress traffic.
+/// @ingroup L2SWITCH
+
+/// @defgroup L3PORT L3 port API
+/// @brief Defines API-s for managing Layer 3 ports.
+/// @dot
+/// digraph l3_port_t {
+///     splines="polyline";
+///     node[shape = box, style="bold, rounded", fontname = "Helvetica:bold", fontsize = 10];
+///     edge [tailport="s", headport="n"];
+///     l3_port->{ l3_ethernet_port, svi, mpls_tunnel, ip_tunnel, ip_gre_tunnel };
+/// }
+/// @enddot
+
+/// @defgroup L3PORT_AC L3 AC port API
+/// @brief Defines API-s for managing Layer 3 AC port.
+/// @ingroup L3PORT
+
+/// @defgroup L3PORT_SVI L3 SVI port API
+/// @brief Defines API-s for managing Layer 3 Switch VLAN Interface port.
+/// @ingroup L3PORT
+
+/// @defgroup L3DEST L3 destination API
+/// @brief Defines API-s for managing Layer 3 destinations.
+
+/// @defgroup L3DEST_ECMP L3 ECMP API
+/// @brief Defines API-s for managing Layer 3 Equal Cost Multi-Path groups.
+/// @ingroup L3DEST
+
+/// @defgroup L3DEST_FEC L3 FEC API
+/// @brief Defines API-s for managing Layer 3 Forward Equivalence Classes.
+/// @ingroup L3DEST
+
+/// @defgroup L3DEST_NEXT_HOP L3 Next Hop API
+/// @brief Defines API-s for managing Layer 3 Next Hop object.
+///
+/// Layer 3 next hop object is composed of a Layer 3 port, and a destination MAC. 
+/// @ingroup L3DEST
+
+/// @defgroup L3DEST_PROTECT L3 Protection group API
+/// @brief Defines API-s for managing Layer 3 Protection groups.
+/// @ingroup L3DEST
+
+/// @defgroup VRF VRF API
+/// @brief Defines API-s for managing VRF objects.
+
+/// @defgroup MPLS MPLS API
+/// @brief Defines API-s for managing MPLS.
+
+/// @defgroup MPLS_ILM MPLS ILM API
+/// @brief Defines API-s for managing MPLS Incoming Label Map.
+/// @ingroup MPLS
+
+/// @defgroup MPLS_NHLFE MPLS NHLFE API
+/// @brief Defines API-s for managing MPLS Next Hop Label Forwarding Entries.
+/// @ingroup MPLS
+
+/// @defgroup MULTICAST Multicast API
+/// @brief Defines API-s for managing Multicast groups.
+
+/// @defgroup MULTICAST_L2 Switch Multicast API
+/// @brief Defines API-s for managing a set of Layer 2 destinations as switch multicast group.
+/// @ingroup MULTICAST
+
+/// @defgroup MULTICAST_IP IP Multicast API
+/// @brief Defines API-s for managing IP Multicast groups.
+/// @ingroup MULTICAST
+
+/// @defgroup MULTICAST_MPLS MPLS Multicast API
+/// @brief Defines API-s for managing MPLS Multicast groups.
+/// @ingroup MULTICAST
+
+/// @defgroup PROTECT_MONITOR Protection Monitor API
+/// @brief Defines API-s for managing Protection Monitors.
+///
+/// Protection monitors are used to select primary/protection paths on L2/IP/MPLS protection groups.
+/// A triggered monitor state means the protection path is currently used.
+///
+/// One monitor can be used for multiple protection groups.
+
+/// @defgroup QOS QoS API
+/// @brief Defines API-s for managing QoS.
+
+/// @defgroup QOS_TYPES QoS types
+/// @brief Defines basic QoS types.
+/// @ingroup QOS
+
+/// @defgroup INGRESS_QOS_PROFILE Ingress QoS profile API
+/// @brief Defines API-s for managing an Ingress QoS profile.
+/// @ingroup QOS
+
+/// @defgroup EGRESS_QOS_PROFILE Egress QoS profile API
+/// @brief Defines API-s for managing an Egress QoS profile.
+/// @ingroup QOS
+
+/// @defgroup TUNNEL Tunnels API
+/// @brief Defines API-s for managing tunnels.
+
+/// @defgroup TUNNEL_IP IP Tunnel API
+/// @brief Defines API-s for managing non-GRE IPv4/IPv6 tunnels.
+/// @ingroup TUNNEL
+
+/// @defgroup TUNNEL_IP_GRE IP GRE Tunnel API
+/// @brief Defines API-s for managing GRE IPv4/IPv6 tunnels.
+/// @ingroup TUNNEL
+
+/// @defgroup TUNNEL_MPLS MPLS Tunnel API
+/// @brief Defines API-s for managing MPLS tunnels.
+/// @ingroup TUNNEL
+
+/// @defgroup TUNNEL_PBB PBB API
+/// @brief Defines API-s for managing Provider Backbone Bridge.
+/// @ingroup TUNNEL
+
+/// @defgroup TUNNEL_VXLAN VXLAN Tunnel API
+/// @brief Defines API-s for managing VXLAN endpoints and tunnels.
+/// @ingroup TUNNEL
+
+/// @defgroup TUNNEL Tunnels API
+/// @brief Defines API-s for managing tunnels.
+
+/// @defgroup ACL ACL API
+/// @brief Defines API-s for managing ACL rules.
+
+/// @defgroup FE FE device management API-s
+/// @brief Defines API-s for configuring an FE device's objects.
+
+/// @defgroup TM Traffic management API-s
+/// @brief Defines API-s for configuring a device's traffic management systems.
+
+/// @defgroup TM_TYPES Traffic management types
+/// @brief Defines basic traffic management types.
+/// @ingroup TM
+
+/// @defgroup TM_SCH Traffic management scheduler API
+/// @brief Defines API-s for managing traffic management's schedulers.
+/// @ingroup TM
+
+/// @defgroup TM_VOQ Virtual Output Queue API
+/// @brief Defines API-s for managing a Virtual Output Queue.
+/// @ingroup TM
+
+/// @defgroup TM_TC_PROFILE Traffic Class profile API 
+/// @brief Defines API-s for managing a TC profile. 
+/// @ingroup TM
+
+/// @defgroup CGM Congestion management API-s
+/// @brief Defines API-s for configuring the device's congestion management systems.
+
+/// @defgroup CGM_TYPES Congestion management types
+/// @brief Defines basic congestion management types.
+/// @ingroup CGM
+
+/// @defgroup CGM_VOQ_PROFILE VOQ Congestion management profile API
+/// @brief Defines API-s for a VOQ Congestion Management profile.
+/// @ingroup CGM
+
+/// @defgroup UTILS Utilities
+/// @brief Various utilities to manipulate API structures.
+
+/// @defgroup EVENTS Trap/Snoop API
+/// @brief Defines API-s for configuring trap/snoop behavior.
+
+/// @defgroup METER Meter API-s
+/// @brief Defines API-s for managing a Meter.

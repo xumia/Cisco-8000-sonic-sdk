@@ -1,0 +1,1185 @@
+$block{SCH_TOP} = {
+  Defines_db => "..\\verilog\\sch_defines.v",
+  ProjectName => "Gibraltar",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "2",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+    SchIfgInterruptSummary => { #Structure Type: RegField;
+      Name => "SchIfgInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, SchIfgInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt test register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+
+
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "73", # Excel Formula: =calc_reg_width(E25:E53,F53)
+    Type => "Config",
+    SACR1P_RME => { #Structure Type: RegField;
+      Name => "SACR1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACR1P_RM => { #Structure Type: RegField;
+      Name => "SACR1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "4:1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACU2P_RME => { #Structure Type: RegField;
+      Name => "SACU2P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACU2P_RM => { #Structure Type: RegField;
+      Name => "SACU2P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "9:6", # Excel Formula: =calc_position(F27,E28)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADC1P_RME => { #Structure Type: RegField;
+      Name => "SADC1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F28,E29)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADC1P_RM => { #Structure Type: RegField;
+      Name => "SADC1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "14:11", # Excel Formula: =calc_position(F29,E30)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMEA => { #Structure Type: RegField;
+      Name => "SADR2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F30,E31)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMA => { #Structure Type: RegField;
+      Name => "SADR2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "19:16", # Excel Formula: =calc_position(F31,E32)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMEB => { #Structure Type: RegField;
+      Name => "SADR2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "20", # Excel Formula: =calc_position(F32,E33)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMB => { #Structure Type: RegField;
+      Name => "SADR2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "24:21", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMEA => { #Structure Type: RegField;
+      Name => "SADS2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMA => { #Structure Type: RegField;
+      Name => "SADS2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "29:26", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMEB => { #Structure Type: RegField;
+      Name => "SADS2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "30", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMB => { #Structure Type: RegField;
+      Name => "SADS2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "34:31", # Excel Formula: =calc_position(F37,E38)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASR1P_RME => { #Structure Type: RegField;
+      Name => "SASR1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "35", # Excel Formula: =calc_position(F38,E39)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASR1P_RM => { #Structure Type: RegField;
+      Name => "SASR1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "39:36", # Excel Formula: =calc_position(F39,E40)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS1P_RME => { #Structure Type: RegField;
+      Name => "SASS1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "40", # Excel Formula: =calc_position(F40,E41)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS1P_RM => { #Structure Type: RegField;
+      Name => "SASS1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "44:41", # Excel Formula: =calc_position(F41,E42)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMEA => { #Structure Type: RegField;
+      Name => "SASS2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "45", # Excel Formula: =calc_position(F42,E43)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMA => { #Structure Type: RegField;
+      Name => "SASS2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "49:46", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMEB => { #Structure Type: RegField;
+      Name => "SASS2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "50", # Excel Formula: =calc_position(F44,E45)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMB => { #Structure Type: RegField;
+      Name => "SASS2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "54:51", # Excel Formula: =calc_position(F45,E46)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASU2P_RME => { #Structure Type: RegField;
+      Name => "SASU2P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "55", # Excel Formula: =calc_position(F46,E47)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASU2P_RM => { #Structure Type: RegField;
+      Name => "SASU2P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "59:56", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_RME => { #Structure Type: RegField;
+      Name => "SADU1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "60", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_RM => { #Structure Type: RegField;
+      Name => "SADU1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "64:61", # Excel Formula: =calc_position(F49,E50)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RA => { #Structure Type: RegField;
+      Name => "SADS2P_RA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Assist for Dual port",
+      Width => "2",
+      Position => "66:65", # Excel Formula: =calc_position(F50,E51)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_WA => { #Structure Type: RegField;
+      Name => "SADU1P_WA",
+      RegMem => "RegField",
+      Description => "Write-Assist configuration for the SP SADU compiler",
+      Width => "3",
+      Position => "69:67", # Excel Formula: =calc_position(F51,E52)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d5",
+    },
+    SADU1P_WPULSE => { #Structure Type: RegField;
+      Name => "SADU1P_WPULSE",
+      RegMem => "RegField",
+      Description => "Write-Assist-Pulse configuration for the SP SADU compiler",
+      Width => "3",
+      Position => "72:70", # Excel Formula: =calc_position(F52,E53)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E55:E55,F55)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F54,E55,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C54,A54,G54)
+    Description => "Spare register",
+    Width => "128", # Excel Formula: =calc_reg_width(E57:E57,F57)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "Spare register ",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F56,E57,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C56,A56,G56)
+    Description => "PMRO controller configuration",
+    Width => "32", # Excel Formula: =calc_reg_width(E59:E63,F63)
+    Type => "Config",
+    PmroRstn => { #Structure Type: RegField;
+      Name => "PmroRstn",
+      RegMem => "RegField",
+      Description => "PMRO reset, active low",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F58,E59,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroConfigEn => { #Structure Type: RegField;
+      Name => "PmroConfigEn",
+      RegMem => "RegField",
+      Description => "Enable pmro configuration, when equals to 0 configurations are locked",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F59,E60)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroStart => { #Structure Type: RegField;
+      Name => "PmroStart",
+      RegMem => "RegField",
+      Description => "Start the pmro operation",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F60,E61)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroRingEn => { #Structure Type: RegField;
+      Name => "PmroRingEn",
+      RegMem => "RegField",
+      Description => "Determines which PMRO ring to activate, should be configured as one hot",
+      Width => "7",
+      Position => "9:3", # Excel Formula: =calc_position(F61,E62)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroCntPeriod => { #Structure Type: RegField;
+      Name => "PmroCntPeriod",
+      RegMem => "RegField",
+      Description => "Number of core clock cycles on which PMRO is measured",
+      Width => "22",
+      Position => "31:10", # Excel Formula: =calc_position(F62,E63)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "h3FFFFF",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C58,A58,G58)
+    Description => "PMRO status configuration",
+    Width => "23", # Excel Formula: =calc_reg_width(E65:E66,F66)
+    Type => "ReadOnly",
+    PmroCountOut => { #Structure Type: RegField;
+      Name => "PmroCountOut",
+      RegMem => "RegField",
+      Description => "The ring oscilator counter value.",
+      Width => "22",
+      Position => "21:0", # Excel Formula: =calc_position(F64,E65,TRUE)
+      Type => "Status",
+      UsedBy => "pmro",
+    },
+    PmroDone => { #Structure Type: RegField;
+      Name => "PmroDone",
+      RegMem => "RegField",
+      Description => "Pmro operation done, PmroCountOut is valid.",
+      Width => "1",
+      Position => "22", # Excel Formula: =calc_position(F65,E66)
+      Type => "Status",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C64,A64,G64)
+    Description => "Mirror Bus configurations",
+    Width => "11", # Excel Formula: =calc_reg_width(E68:E69,F69)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "Enable Mirror Bus",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "Mirror Bus selector",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F68,E69)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C67,A67,G67)
+    Description => "Mirror Bus status result",
+    Width => "32", # Excel Formula: =calc_reg_width(E71:E71,F71)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "Mirror Bus status result",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F70,E71,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C70,A70,G70)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E73:E73,F73)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F72,E73,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  SchIfgInterrupt => { #Structure Type: Reg;
+    Name => "SchIfgInterrupt",
+    RegMem => "Reg",
+    Address => "100",
+    Description => "Per SCH IFG interrupt register",
+    Width => "12", # Excel Formula: =calc_reg_width(E8:E19,F19)
+    Type => "Interrupt",
+    Ifg0Interrupt => { #Structure Type: RegField;
+      Name => "Ifg0Interrupt",
+      RegMem => "RegField",
+      Description => "Interrupt summary for SCH IFG 0",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Interrupt",
+      UsedBy => "IFG",
+    },
+    Ifg1Interrupt => { #Structure Type: RegField;
+      Name => "Ifg1Interrupt",
+      RegMem => "RegField",
+      Description => "Interrupt summary for SCH IFG 1",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Interrupt",
+      UsedBy => "IFG",
+    },
+    Ifg2Interrupt => { #Structure Type: RegField;
+      Name => "Ifg2Interrupt",
+      RegMem => "RegField",
+      Description => "Interrupt summary for SCH IFG 2",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F9,E10)
+      Type => "Interrupt",
+      UsedBy => "IFG",
+    },
+    Ifg3Interrupt => { #Structure Type: RegField;
+      Name => "Ifg3Interrupt",
+      RegMem => "RegField",
+      Description => "Interrupt summary for SCH IFG 3",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F10,E11)
+      Type => "Interrupt",
+      UsedBy => "IFG",
+    },
+    Ifg4Interrupt => { #Structure Type: RegField;
+      Name => "Ifg4Interrupt",
+      RegMem => "RegField",
+      Description => "Interrupt summary for SCH IFG 4",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F11,E12)
+      Type => "Interrupt",
+      UsedBy => "IFG",
+    },
+    Ifg5Interrupt => { #Structure Type: RegField;
+      Name => "Ifg5Interrupt",
+      RegMem => "RegField",
+      Description => "Interrupt summary for SCH IFG 5",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F12,E13)
+      Type => "Interrupt",
+      UsedBy => "IFG",
+    },
+    Ifg6Interrupt => { #Structure Type: RegField;
+      Name => "Ifg6Interrupt",
+      RegMem => "RegField",
+      Description => "Interrupt summary for SCH IFG 6",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F13,E14)
+      Type => "Interrupt",
+      UsedBy => "IFG",
+    },
+    Ifg7Interrupt => { #Structure Type: RegField;
+      Name => "Ifg7Interrupt",
+      RegMem => "RegField",
+      Description => "Interrupt summary for SCH IFG 7",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F14,E15)
+      Type => "Interrupt",
+      UsedBy => "IFG",
+    },
+    Ifg8Interrupt => { #Structure Type: RegField;
+      Name => "Ifg8Interrupt",
+      RegMem => "RegField",
+      Description => "Interrupt summary for SCH IFG 8",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F15,E16)
+      Type => "Interrupt",
+      UsedBy => "IFG",
+    },
+    Ifg9Interrupt => { #Structure Type: RegField;
+      Name => "Ifg9Interrupt",
+      RegMem => "RegField",
+      Description => "Interrupt summary for SCH IFG 9",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F16,E17)
+      Type => "Interrupt",
+      UsedBy => "IFG",
+    },
+    Ifg10Interrupt => { #Structure Type: RegField;
+      Name => "Ifg10Interrupt",
+      RegMem => "RegField",
+      Description => "Interrupt summary for SCH IFG 10",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F17,E18)
+      Type => "Interrupt",
+      UsedBy => "IFG",
+    },
+    Ifg11Interrupt => { #Structure Type: RegField;
+      Name => "Ifg11Interrupt",
+      RegMem => "RegField",
+      Description => "Interrupt summary for SCH IFG 11",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F18,E19)
+      Type => "Interrupt",
+      UsedBy => "IFG",
+    },
+  },
+  SchIfgInterruptMask => { #Structure Type: Reg; Skip Register;
+    Name => "SchIfgInterruptMask",
+    RegMem => "Reg",
+    Address => "101",
+    Description => "This register masks SchIfgInterrupt interrupt register",
+    Width => "12", # Excel Formula: =calc_reg_width(E8:E19,F19)
+    Type => "InterruptMask",
+    Ifg0InterruptMask => { #Structure Type: RegField;
+      Name => "Ifg0InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks Ifg0Interrupt interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    Ifg1InterruptMask => { #Structure Type: RegField;
+      Name => "Ifg1InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks Ifg1Interrupt interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    Ifg2InterruptMask => { #Structure Type: RegField;
+      Name => "Ifg2InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks Ifg2Interrupt interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F9,E10)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    Ifg3InterruptMask => { #Structure Type: RegField;
+      Name => "Ifg3InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks Ifg3Interrupt interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F10,E11)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    Ifg4InterruptMask => { #Structure Type: RegField;
+      Name => "Ifg4InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks Ifg4Interrupt interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F11,E12)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    Ifg5InterruptMask => { #Structure Type: RegField;
+      Name => "Ifg5InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks Ifg5Interrupt interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F12,E13)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    Ifg6InterruptMask => { #Structure Type: RegField;
+      Name => "Ifg6InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks Ifg6Interrupt interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F13,E14)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    Ifg7InterruptMask => { #Structure Type: RegField;
+      Name => "Ifg7InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks Ifg7Interrupt interrupt",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F14,E15)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    Ifg8InterruptMask => { #Structure Type: RegField;
+      Name => "Ifg8InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks Ifg8Interrupt interrupt",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F15,E16)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    Ifg9InterruptMask => { #Structure Type: RegField;
+      Name => "Ifg9InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks Ifg9Interrupt interrupt",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F16,E17)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    Ifg10InterruptMask => { #Structure Type: RegField;
+      Name => "Ifg10InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks Ifg10Interrupt interrupt",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F17,E18)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    Ifg11InterruptMask => { #Structure Type: RegField;
+      Name => "Ifg11InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks Ifg11Interrupt interrupt",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F18,E19)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  SchIfgInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "SchIfgInterruptTest",
+    RegMem => "Reg",
+    Address => "102",
+    Description => "This register tests SchIfgInterrupt interrupt register",
+    Width => "12", # Excel Formula: =calc_reg_width(E8:E19,F19)
+    Type => "InterruptTest",
+    Ifg0InterruptTest => { #Structure Type: RegField;
+      Name => "Ifg0InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests Ifg0Interrupt interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ifg1InterruptTest => { #Structure Type: RegField;
+      Name => "Ifg1InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests Ifg1Interrupt interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ifg2InterruptTest => { #Structure Type: RegField;
+      Name => "Ifg2InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests Ifg2Interrupt interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F9,E10)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ifg3InterruptTest => { #Structure Type: RegField;
+      Name => "Ifg3InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests Ifg3Interrupt interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F10,E11)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ifg4InterruptTest => { #Structure Type: RegField;
+      Name => "Ifg4InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests Ifg4Interrupt interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F11,E12)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ifg5InterruptTest => { #Structure Type: RegField;
+      Name => "Ifg5InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests Ifg5Interrupt interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F12,E13)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ifg6InterruptTest => { #Structure Type: RegField;
+      Name => "Ifg6InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests Ifg6Interrupt interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F13,E14)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ifg7InterruptTest => { #Structure Type: RegField;
+      Name => "Ifg7InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests Ifg7Interrupt interrupt",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F14,E15)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ifg8InterruptTest => { #Structure Type: RegField;
+      Name => "Ifg8InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests Ifg8Interrupt interrupt",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F15,E16)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ifg9InterruptTest => { #Structure Type: RegField;
+      Name => "Ifg9InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests Ifg9Interrupt interrupt",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F16,E17)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ifg10InterruptTest => { #Structure Type: RegField;
+      Name => "Ifg10InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests Ifg10Interrupt interrupt",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F17,E18)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ifg11InterruptTest => { #Structure Type: RegField;
+      Name => "Ifg11InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests Ifg11Interrupt interrupt",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F18,E19)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  FrlValidLinksMapping => { #Structure Type: Reg;
+    Name => "FrlValidLinksMapping",
+    RegMem => "Reg",
+    Address => "103", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Fabric Rate Limiter Valid Links Mapping",
+    Width => "130", # Excel Formula: =calc_reg_width(E21:E21,F21)
+    Type => "Config",
+    ValidLinksMap => { #Structure Type: RegField;
+      Name => "ValidLinksMap",
+      RegMem => "RegField",
+      Description => "For each valid links value of 0-64, returns 2 bits map value",
+      Width => "130",
+      Position => "129:0", # Excel Formula: =calc_position(F20,E21,TRUE)
+      Type => "Config",
+      UsedBy => "FRL",
+      DefaultValue => "d0",
+      ArrayItemWidth => "2",
+    },
+  },
+  FrlCongestedLinksMapping => { #Structure Type: Reg;
+    Name => "FrlCongestedLinksMapping",
+    RegMem => "Reg",
+    Address => "104", # Excel Formula: =calc_reg_address(C20,A20,G20)
+    Description => "Fabric Rate Limiter Congested Links Mapping",
+    Width => "130", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    CongestedLinksMap => { #Structure Type: RegField;
+      Name => "CongestedLinksMap",
+      RegMem => "RegField",
+      Description => "For each congested links value of 0-64, returns 2 bits map value",
+      Width => "130",
+      Position => "129:0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "FRL",
+      DefaultValue => "d0",
+      ArrayItemWidth => "2",
+      InitValueLcNwk => "item == 0 ? 0 :
+item == 1 ? 0 :
+item == 2 ? 1 :
+item == 3 ? 1:
+item == 4 ? 2 :
+item == 5 ? 2 : 3",
+    },
+  },
+  FrlRateMapping => { #Structure Type: Reg;
+    Name => "FrlRateMapping",
+    RegMem => "Reg",
+    Address => "105", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "Fabric Rate Limiter rate mappings",
+    Width => "127", # Excel Formula: =calc_reg_width(E25:E29,F29)
+    Type => "Config",
+    FabricRateLimiterEnable => { #Structure Type: RegField;
+      Name => "FabricRateLimiterEnable",
+      RegMem => "RegField",
+      Description => "If set, fabric rate limiter is applied by rate mapped by failed and congested fabric links, otherwise the rate limiter is disabled, should be set in LC device",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "FRL",
+      DefaultValue => "b1",
+      InitValueSa => "0",
+      InitValueLcNwk => "1",
+      InitValueLcFab => "0",
+      InitValueFe => "0",
+    },
+    EligibleLinksMap => { #Structure Type: RegField;
+      Name => "EligibleLinksMap",
+      RegMem => "RegField",
+      Description => "For each ValidLinksMap and CongestedLinksMap values (16 options), return 2b pointer to NumLinksToRateMap",
+      Width => "32", # Excel Formula: =POWER(calc_field_width_define("SCH_NUM_LINKS_MAP_WIDTH")+calc_field_width_define("SCH_NUM_LINKS_MAP_WIDTH"),2)*calc_field_width_define("SCH_NUM_LINKS_MAP_WIDTH")
+      Position => "32:1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "FRL",
+      DefaultValue => "d0",
+      ArrayItemWidth => "2",
+      InitValueLcNwk => "item < 4 ? item : 1",
+    },
+    NumLinksToRateMap => { #Structure Type: RegField;
+      Name => "NumLinksToRateMap",
+      RegMem => "RegField",
+      Description => "For each result of valid and congested mapped values (2b), defines rate for the rate limiter (14b)",
+      Width => "56", # Excel Formula: =calc_field_width_define("SCH_FRL_RATE_WIDTH")*calc_field_width_define("SCH_NUM_LINKS_MAPPINGS")
+      Position => "88:33", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "FRL",
+      DefaultValue => "d27",
+      ArrayItemWidth => "14",
+      InitValueLcNwk => "item == 0 ? credit_in_bytes*8*16*frequency/(5200*1000) :
+item == 1 ? credit_in_bytes*8*16*frequency/(4800*1000) :
+item == 2 ? credit_in_bytes*8*16*frequency/(4000*1000) : 
+                       credit_in_bytes*8*16*frequency/(3000*1000)",
+    },
+    NumLinksToMaxBucketMap => { #Structure Type: RegField;
+      Name => "NumLinksToMaxBucketMap",
+      RegMem => "RegField",
+      Description => "For each result of valid and congested mapped values (2b), defines max bucket for the rate limiter (7b)",
+      Width => "28", # Excel Formula: =calc_field_width_define("SCH_FRL_MAX_BUCKET_WIDTH")*calc_field_width_define("SCH_NUM_LINKS_MAPPINGS")
+      Position => "116:89", # Excel Formula: =calc_position(F27,E28)
+      Type => "Config",
+      UsedBy => "FRL",
+      DefaultValue => "d12",
+      ArrayItemWidth => "7",
+      InitValueAllModes => "12",
+    },
+    NetworkSchBitmap => { #Structure Type: RegField;
+      Name => "NetworkSchBitmap",
+      RegMem => "RegField",
+      Description => "Defines which IFG scheduler is network IFG",
+      Width => "10",
+      Position => "126:117", # Excel Formula: =calc_position(F28,E29)
+      Type => "Config",
+      UsedBy => "FRL",
+      DefaultValue => "h3f",
+      InitValueSa => "0",
+      InitValueLcNwk => "63",
+      InitValueLcFab => "0",
+      InitValueFe => "0",
+    },
+  },
+  FrlDebug => { #Structure Type: Reg;
+    Name => "FrlDebug",
+    RegMem => "Reg",
+    Address => "106", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Fabric rate limiter debug indications",
+    Width => "15", # Excel Formula: =calc_reg_width(E31:E33,F33)
+    Type => "ReadOnly",
+    FrmGlobalCongestion => { #Structure Type: RegField;
+      Name => "FrmGlobalCongestion",
+      RegMem => "RegField",
+      Description => "Global congestion sticky indication from FRM",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Event",
+      UsedBy => "FRL",
+    },
+    FrmCongestedLinksWmk => { #Structure Type: RegField;
+      Name => "FrmCongestedLinksWmk",
+      RegMem => "RegField",
+      Description => "Max watermark of congested links",
+      Width => "7",
+      Position => "7:1", # Excel Formula: =calc_position(F31,E32)
+      Type => "MaxWmk",
+      UsedBy => "FRL",
+    },
+    FrmActiveLinksWmk => { #Structure Type: RegField;
+      Name => "FrmActiveLinksWmk",
+      RegMem => "RegField",
+      Description => "Min watermark of active links",
+      Width => "7",
+      Position => "14:8", # Excel Formula: =calc_position(F32,E33)
+      Type => "MinWmk",
+      UsedBy => "FRL",
+    },
+  },
+};

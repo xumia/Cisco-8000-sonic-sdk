@@ -1,0 +1,139 @@
+#!/usr/bin/make -f
+# BEGIN_LEGAL
+#
+# Copyright (c) 2020-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#export DH_VERBOSE = 1
+
+include debian/sdk_ver.mk
+-include debian/internal_flags.mk
+
+BUILD_ROOT := $(shell pwd)
+
+ifeq ($(JOBS),)
+    JOBS := $(shell nproc)
+else
+    JOBS := $(JOBS)
+endif
+
+# The following two variable are the same.
+# BUILD_PROJECT got ' ' around the content of the variable.
+# This is done in order to pass through the Make command later.
+BUILD_PROJECT := '${DEBIAN_PROJECT}'
+
+# Same variable as above witout the ' ' around the content in order
+# for the FOR loop below to work.
+#DEBIAN_PROJECT := $(DEBIAN_PROJECT)
+
+# Calling debian package main function
+%:
+	dh $@
+
+ifeq ($(DEBIAN_CUSTOMER), 1)
+    NPSUITE_ROOT := $(shell find . -name npsuite -print -quit)
+    NPSUITE_ROOT := $(shell echo $(NPSUITE_ROOT) | cut -c 3-)
+    NPSUITE_PATH := prebuilt/npsuite
+    DEBIAN_BUILD_FIRMWARE := 0
+else
+    NPSUITE_PATH := $(BUILD_ROOT)/tmp/npsuite-$(NPSUITE_VER)
+    NPSUITE_ROOT := $(NPSUITE_PATH)
+    NPSUITE_TGZ := $(notdir $(NPSUITE_URL))
+    DEBIAN_BUILD_FIRMWARE := 1
+endif
+
+LOCAL_MAKEFLAGS := \
+    VERBOSE=1 \
+    PERMISSIVE=1 \
+    BUILD_FIRMWARE=1 \
+    GCC_DIR=/usr \
+    GCC47_DIR=/usr \
+    PYTHON_VER=3.8 \
+    PYTHON_DIR=/usr/bin \
+    PYTHON_BIN=/usr/local/bin/python3.8 \
+    PYTHON_CONFIG=/usr/bin/python3-config \
+    PYTHON_LINK_FLAGS=$(PYTHON_CONFIG) \
+    SWIG=/usr/bin/swig \
+    DOXYGEN=/usr/bin/doxygen \
+    CLANG_DIR=/usr/lib/llvm-7/bin \
+    LLVM_BASE_DIR=/usr/lib/llvm-7 \
+    GIT_DIR=/usr/bin \
+    BOOST_INC_DIR=/usr/include \
+    BOOST_LIB_DIR=/usr/lib/python3/dist-packages \
+    DOT=/usr/bin/dot \
+    ZLIB_INC_DIR=/usr/include \
+    ZLIB_LINK_DIR=/usr/lib/x86_64-linux-gnu \
+    LIBNL3_INC_DIR=/usr/include/libnl3/ \
+    LIBNL3_LINK_DIR=/lib/x86_64-linux-gnu/ \
+    NPSUITE_ROOT=$(NPSUITE_PATH) \
+    FW_MW_DIR=/ARC/MetaWare/arc/bin \
+    DEBIAN_BUILD=$(DEBIAN_BUILD) \
+    BUILD_FIRMWARE=$(DEBIAN_BUILD_FIRMWARE) \
+    PROJECTS=$(BUILD_PROJECT) \
+    SERIALIZATION_TOOL_FORCE_OLD_ABI=0 \
+    SERIALIZATION_TOOL_FORCE_NEW_ABI=1 \
+    sai-ver=$(SAI_VERSION) \
+    OPT=3 \
+    DEBUG=0
+
+# for development build, need to pull the NPSUITE
+ifeq ($(DEBIAN_CUSTOMER),0)
+# Pull and extract the NPSUITE if it already not there
+   ifeq (,$(wildcard $(NPSUITE_PATH)))
+      $(shell mkdir -p tmp && wget $(NPSUITE_URL) -P tmp)
+      $(shell tar xf tmp/$(NPSUITE_TGZ) -C tmp)
+   endif
+endif
+
+override_dh_auto_build:
+	dh_auto_build -- ${LOCAL_MAKEFLAGS} GENERATE_DOCS=0 -j$(JOBS) driver
+	dh_auto_build -- ${LOCAL_MAKEFLAGS} GENERATE_DOCS=0 -j$(JOBS) scripts
+	dh_auto_build -- ${LOCAL_MAKEFLAGS} GENERATE_DOCS=0 -j$(JOBS) build
+ifeq ($(DEBIAN_CUSTOMER),0)
+	dh_auto_build -- ${LOCAL_MAKEFLAGS} GENERATE_DOCS=0 -j$(JOBS) npl
+endif
+	dh_auto_build -- ${LOCAL_MAKEFLAGS} GENERATE_DOCS=0 -j$(JOBS) sai
+
+override_dh_auto_test:
+	#-dh_auto_build -- ${LOCAL_MAKEFLAGS} -k driver-test
+
+override_dh_auto_clean:
+#	dh_auto_build -- ${LOCAL_MAKEFLAGS} clean
+
+override_dh_strip:
+	-dh_strip -X/res/ -X.elf
+
+override_dh_link:
+# Loop through all the projects and create the nessary sim-links
+	for project in $$DEBIAN_PROJECT ; \
+	do cd ${BUILD_ROOT}/debian/cisco-$$project/usr/lib && ln -sf cisco/* ./ ; \
+	done
+
+override_dh_install:
+# Check if libdsim.so exists under tmp directory
+# if it does not exist then copy it over since it
+# is needed for the install files
+ifeq (,$(wildcard tmp/libdsim.so))
+	mkdir -p tmp
+	$(eval LIBDSIM = $(shell find . -name "libdsim.so" -print -quit))
+	cp -f $(LIBDSIM) tmp/
+endif
+	dh_install
+
+

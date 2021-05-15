@@ -1,0 +1,77 @@
+// Pacific Packet Processing theory Processing model page
+
+/// @page pacific_processing_model Pacific processing model
+///
+/// @section pacific_processing_model_termination Termination
+///
+/// Each received packet goes through the termination stage.
+/// During termination, a packet's headers are tested to check whether they're destined towards the device.\n
+/// For example, a packet received by a bridge-router will be terminated if its DA matches the relevant router port's MAC address; its Ethernet header will then be stripped, and
+/// it will be passed to the router for routing.\n
+/// Similarly, a packet reaching a tunnel endpoint will terminate the tunnel header.
+///
+/// Termination is a serial process; first, the outer header is checked to see whether it should be terminated.
+/// If so, the header is stripped, and the same process is run on the next header. Otherwise, termination is done.
+///
+///
+/// @section pacific_processing_model_forwarding Forwarding
+///
+/// Forwarding is the process of selecting a destination for a packet.
+/// The first non-terminated header is used for making the forwarding decision.
+///
+/// For Ethernet headers, forwarding uses the header's DA to perform a MAC table lookup.\n
+/// For unicast IP headers, the LPM (Longest Prefix Match) table is searched based on the header's DIP address.\n
+/// For MPLS headers, the ILM (Incoming Label Map) is searched based on the header's MPLS label.
+///
+/// Forwarding results in an L2/L3/MPLS destination object.
+///
+///
+/// @section pacific_processing_model_resolution Resolution
+///
+/// Destinations in the Pacific architecture are logical objects.\n
+/// Complex destinations such as LAG groups, ECMP groups and Protection groups often contain multiple destinations;
+/// during forwarding, a single destination is chosen from the group, based on load-balancing algorithms and protection state.
+///
+/// Physical ports can also be aggregated: a System Port Aggregate Port (#silicon_one::la_spa_port) is a group of System Ports (#silicon_one::la_system_port).
+/// During forwarding, a single system port is chosen from the group, based on load-balancing algorithms.
+///
+/// Resolution is the process of selecting a single destination system port from an L2/L3 destination object, using load-balancing algorithms and protection states.
+/// During resolution, a Pacific device hierarchically selects a single destination for each aggregation/group.\n
+/// Figure 5 shows a resolution example for a protection port on top of several aggregation levels.
+/// Blue arrows mark selected edges in cases where resolution is required.
+///
+/// @dot
+/// digraph l2_resolution_graph {
+///		label = "Figure 5: L2 resolution of Protection and LAG"
+///     node[shape = record, style="bold, rounded", fontname = "Helvetica:bold", fontsize = 10];
+///
+///		protected_port[label = "Protected AC port"]
+///		primary_ac_port[label = "Primary AC port"]
+///		protection_ac_port[label = "Backup AC port"]
+///
+///		lag_port[label = "LAG port"]
+///		ethernet_port1[label = "Ethernet port"]
+///		ethernet_port2[label = "Ethernet port"]
+///		ethernet_port3[label = "Ethernet port"]
+///		ethernet_port4[label = "Ethernet port"]
+///
+///		protected_port->primary_ac_port[color = "blue"]
+///		protected_port->protection_ac_port
+///		primary_ac_port->lag_port
+///		lag_port->ethernet_port1 
+///		lag_port->ethernet_port2 [color="blue"]
+///		lag_port->ethernet_port3
+///		protection_ac_port->ethernet_port4
+/// }
+/// @enddot
+///
+///
+/// @section pacific_processing_model_editing_and_encapsulation Editing and Encapsulation
+///
+/// Once resolution is done, the packet gets prepared for transmittion.\n
+/// First, editing actions are applied to the packet. Editing includes modifying existing packet headers, such as rewriting VLAN tags and changing QoS settings.\n
+/// Then, encapsulation adds new headers to the packet. Encapsulation includes applying any new header, such as tunnel headers, Ethernet headers, IP headers etc.
+///
+/// For example, an IP packet being routed has its Ethernet header stripped during the Termination stage.
+/// During encapsulation, a new Ethernet header for the Next Hop is added to the packet.
+///

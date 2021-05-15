@@ -1,0 +1,2086 @@
+$block{slice_sna} = {
+  Defines_db => " ../../../global/rxpp_pd_defines.v,../../../mact_learning/learning_defines.v,../../../format_identifier/fi_defines.v,../../../sna/sna_defines.v, ../../shared/verilog/rxpp_defines.v, ../../../../idb/idb_defines.v, ../../../idb/mems/idb_cif_defines.v, ../../../idb/mems/idb_em_defines.v",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "2",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+    sna_interrupt_arraySummary => { #Structure Type: RegField;
+      Name => "sna_interrupt_arraySummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, sna_interrupt_array has asserted interrupt",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_1bErrInterrupt",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_2bErrInterrupt",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks ParityErrInterrupt",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "5",
+    Type => "Config",
+    pp_psn_tableEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "pp_psn_tableEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    pp_local_id_tableEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "pp_local_id_tableEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    sna_lu_tableEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "sna_lu_tableEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    slice_sna_order_fifo_ifg0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "slice_sna_order_fifo_ifg0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    slice_sna_order_fifo_ifg1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "slice_sna_order_fifo_ifg1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "5",
+    Type => "Config",
+    pp_psn_tableEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "pp_psn_tableEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    pp_local_id_tableEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "pp_local_id_tableEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    sna_lu_tableEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "sna_lu_tableEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    slice_sna_order_fifo_ifg0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "slice_sna_order_fifo_ifg0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    slice_sna_order_fifo_ifg1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "slice_sna_order_fifo_ifg1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "5",
+    Type => "Config",
+    pp_psn_tableEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "pp_psn_tableEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    pp_local_id_tableEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "pp_local_id_tableEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    sna_lu_tableEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "sna_lu_tableEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    slice_sna_order_fifo_ifg0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "slice_sna_order_fifo_ifg0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    slice_sna_order_fifo_ifg1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "slice_sna_order_fifo_ifg1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "5",
+    Type => "Config",
+    pp_psn_tableEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "pp_psn_tableEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    pp_local_id_tableEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "pp_local_id_tableEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    sna_lu_tableEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "sna_lu_tableEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    slice_sna_order_fifo_ifg0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "slice_sna_order_fifo_ifg0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    slice_sna_order_fifo_ifg1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "slice_sna_order_fifo_ifg1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectErrStatus",
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "5",
+    Type => "ReadOnly",
+    pp_psn_tableErrInt => { #Structure Type: RegField;
+      Name => "pp_psn_tableErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    pp_local_id_tableErrInt => { #Structure Type: RegField;
+      Name => "pp_local_id_tableErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "1",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    sna_lu_tableErrInt => { #Structure Type: RegField;
+      Name => "sna_lu_tableErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "2",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    slice_sna_order_fifo_ifg0ErrInt => { #Structure Type: RegField;
+      Name => "slice_sna_order_fifo_ifg0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "3",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    slice_sna_order_fifo_ifg1ErrInt => { #Structure Type: RegField;
+      Name => "slice_sna_order_fifo_ifg1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "4",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    Name => "SelectedSerErrorInfo",
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "13",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      Name => "MemErrAddr",
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "11",
+      Position => "10:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      Name => "MemErrType",
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "12:11",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SerErrorDebugConfiguration",
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "4",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      Name => "ErroneousMemorySelector",
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "3",
+      Position => "2:0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      Name => "ResetMemoryErrors",
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrDebug",
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_1bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrDebug",
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_2bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  MbistPassStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistPassStatus",
+    RegMem => "Reg",
+    Address => "39",
+    Description => "MBIST pass status",
+    Width => "16",
+    Type => "ReadOnly",
+    BistDonePassOut => { #Structure Type: RegField;
+      Name => "BistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST passed",
+      Width => "16",
+      Position => "15:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+  MbistFailStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistFailStatus",
+    RegMem => "Reg",
+    Address => "3A",
+    Description => "MBIST fail status",
+    Width => "16",
+    Type => "ReadOnly",
+    BistDoneFailOut => { #Structure Type: RegField;
+      Name => "BistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST failed",
+      Width => "16",
+      Position => "15:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+  TcamBistStatus => { #Structure Type: Reg; Skip Register;
+    Name => "TcamBistStatus",
+    RegMem => "Reg",
+    Address => "3B",
+    Description => "TCAM BIST pass fail status",
+    Width => "16",
+    Type => "ReadOnly",
+    TcamBistDonePassOut => { #Structure Type: RegField;
+      Name => "TcamBistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, TCAM BIST passed",
+      Width => "8",
+      Position => "7:0",
+      Type => "Status",
+      UsedBy => "TCAM",
+    },
+    TcamBistDoneFailOut => { #Structure Type: RegField;
+      Name => "TcamBistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, TCAM BIST failed",
+      Width => "8",
+      Position => "15:8",
+      Type => "Status",
+      UsedBy => "TCAM",
+    },
+  },
+  TcamScanPeriodCfg => { #Structure Type: Reg; Skip Register;
+    Name => "TcamScanPeriodCfg",
+    RegMem => "Reg",
+    Address => "3C",
+    Description => "Configures period of TCAM scan for SER, set 0 to disable",
+    Width => "32",
+    Type => "Config",
+    TcamScanPeriod => { #Structure Type: RegField;
+      Name => "TcamScanPeriod",
+      RegMem => "RegField",
+      Description => "",
+      Width => "32",
+      Position => "31:0",
+      Type => "Config",
+      UsedBy => "TCAM",
+      DefaultValue => "d120000000",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DefaultValue => "b0",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "3", # Excel Formula: =calc_reg_width(E25:E27,F27)
+    Type => "Config",
+    CoreBistRprMode => { #Structure Type: RegField;
+      Name => "CoreBistRprMode",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistRun => { #Structure Type: RegField;
+      Name => "CoreBistRun",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistPtrnFill => { #Structure Type: RegField;
+      Name => "CoreBistPtrnFill",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E29:E29,F29)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C28,A28,G28)
+    Description => "Power Down Configuration for the block",
+    Width => "128", # Excel Formula: =calc_reg_width(E31:E31,F31)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C30,A30,G30)
+    Width => "39", # Excel Formula: =calc_reg_width(E33:E37,F37)
+    Type => "Config",
+    PmroExecute => { #Structure Type: RegField;
+      Name => "PmroExecute",
+      RegMem => "RegField",
+      Description => "0->1: execute pmro command.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F32,E33,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroCmd => { #Structure Type: RegField;
+      Name => "PmroCmd",
+      RegMem => "RegField",
+      Description => "Pmro command to execute:
+0: reset.
+1: write.
+2: read.
+3: invalid.",
+      Width => "2",
+      Position => "2:1", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroSbusReset => { #Structure Type: RegField;
+      Name => "PmroSbusReset",
+      RegMem => "RegField",
+      Description => "Reset pmro sbus chain. Need to set to 0 before starting access to pmro registers.",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroAddr => { #Structure Type: RegField;
+      Name => "PmroAddr",
+      RegMem => "RegField",
+      Description => "PMRO register address:
+0 - control register, 8b, def: 0x0.
+1 - SVT Configuration Register, 16b, def: 0xFFFF.
+2 - LVT Configuration Register, 16b, def: 0xFFFF.
+3 - ULVT Configuration Register, 16b, def: 0xFFFF.
+4 - Interconnect Configuration Register, 16b, def: 0xFFFF.
+5 - Reference Clock Counter Register, 24b, def: 0xFFF000.
+6 - Oscillator Counter Register, 24b, def: 0x000000.
+7 - SBus ID register, read as 0x0B.
+Set to '0' on reset command.",
+      Width => "3",
+      Position => "6:4", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroData => { #Structure Type: RegField;
+      Name => "PmroData",
+      RegMem => "RegField",
+      Description => "PMRO data, set to 0x0 on reset and read command.",
+      Width => "32",
+      Position => "38:7", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C32,A32,G32)
+    Width => "34", # Excel Formula: =calc_reg_width(E39:E41,F41)
+    Type => "ReadOnly",
+    PmroRdata => { #Structure Type: RegField;
+      Name => "PmroRdata",
+      RegMem => "RegField",
+      Description => "Read data from pmro. Valid when PmroFinish=1 and PmroFailed=0.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F38,E39,TRUE)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFailed => { #Structure Type: RegField;
+      Name => "PmroFailed",
+      RegMem => "RegField",
+      Description => "Pmro command failed. Valid only when PmroFinish=1.",
+      Width => "1",
+      Position => "32", # Excel Formula: =calc_position(F39,E40)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFinish => { #Structure Type: RegField;
+      Name => "PmroFinish",
+      RegMem => "RegField",
+      Description => "Pmro command finished.",
+      Width => "1",
+      Position => "33", # Excel Formula: =calc_position(F40,E41)
+      Type => "Event",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C38,A38,G38)
+    Description => "aaa",
+    Width => "11", # Excel Formula: =calc_reg_width(E43:E44,F44)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F42,E43,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C42,A42,G42)
+    Description => "aaa",
+    Width => "32", # Excel Formula: =calc_reg_width(E46:E46,F46)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C45,A45,G45)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E48:E48,F48)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F47,E48,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  init_done_status_register => { #Structure Type: Reg;
+    Name => "init_done_status_register",
+    RegMem => "Reg",
+    Address => "100",
+    Description => "The PSN-Table is being initialized by the design after soft-reset. This register contains the status of the init-sequence.",
+    Width => "1", # Excel Formula: =calc_reg_width(E8:E8,F8)
+    Type => "ReadOnly",
+    init_done_status_r => { #Structure Type: RegField;
+      Name => "init_done_status_r",
+      RegMem => "RegField",
+      Description => "When set, it The PSN-Table has finished the init sequence, and the block is ready to use.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Status",
+      UsedBy => "sna",
+      Comments => "default value is 10 (dec) i.e. ~1usec",
+    },
+  },
+  program_selection_field_select_instraction0 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 43;
+    Name => "program_selection_field_select_instraction[6]",
+    RegMem => "Reg",
+    Address => "101", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "6 field-select-instructions to extract data required to construct the key for the program-selection-reg-tcam",
+    Width => "9", # Excel Formula: =calc_reg_width(E10:E10,F10)
+    Type => "Config",
+    Comments => "msb is timer_is_active
+lsbs are {Cache-group-id, Next-group-size}.
+Cpu-write-cmd will start the timer if not currently running",
+    ArrayLength => "6",
+    ArrayIndex => "0",
+    program_selection_fs_instraction0 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 33;
+      Name => "program_selection_fs_instraction[n]",
+      RegMem => "RegField",
+      Description => "The key for the program-selection-tcam on these 6 configurable instructions. 
+Each instruction is: {offset (5b), valid-bits (4b)}
+Input is {PD.port, PD.FI-Header-data} = { {2'h0, input_pif, input_ifg}, fi_format_9, …fi_format_1,fi_format_0}
+* NOTE: FI-header-format includes also 5bits header-type.",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d0",
+    },
+  },
+  program_selection_field_select_instraction1 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 43;
+    Name => "program_selection_field_select_instraction[6]",
+    RegMem => "Reg",
+    Address => "102",
+    Description => "6 field-select-instructions to extract data required to construct the key for the program-selection-reg-tcam",
+    Width => "9", # Excel Formula: =calc_reg_width(E10:E10,F10)
+    Type => "Config",
+    Comments => "msb is timer_is_active
+lsbs are {Cache-group-id, Next-group-size}.
+Cpu-write-cmd will start the timer if not currently running",
+    ArrayLength => "6",
+    ArrayIndex => "1",
+    program_selection_fs_instraction1 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 33;
+      Name => "program_selection_fs_instraction[n]",
+      RegMem => "RegField",
+      Description => "The key for the program-selection-tcam on these 6 configurable instructions. 
+Each instruction is: {offset (5b), valid-bits (4b)}
+Input is {PD.port, PD.FI-Header-data} = { {2'h0, input_pif, input_ifg}, fi_format_9, …fi_format_1,fi_format_0}
+* NOTE: FI-header-format includes also 5bits header-type.",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d0",
+    },
+  },
+  program_selection_field_select_instraction2 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 43;
+    Name => "program_selection_field_select_instraction[6]",
+    RegMem => "Reg",
+    Address => "103",
+    Description => "6 field-select-instructions to extract data required to construct the key for the program-selection-reg-tcam",
+    Width => "9", # Excel Formula: =calc_reg_width(E10:E10,F10)
+    Type => "Config",
+    Comments => "msb is timer_is_active
+lsbs are {Cache-group-id, Next-group-size}.
+Cpu-write-cmd will start the timer if not currently running",
+    ArrayLength => "6",
+    ArrayIndex => "2",
+    program_selection_fs_instraction2 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 33;
+      Name => "program_selection_fs_instraction[n]",
+      RegMem => "RegField",
+      Description => "The key for the program-selection-tcam on these 6 configurable instructions. 
+Each instruction is: {offset (5b), valid-bits (4b)}
+Input is {PD.port, PD.FI-Header-data} = { {2'h0, input_pif, input_ifg}, fi_format_9, …fi_format_1,fi_format_0}
+* NOTE: FI-header-format includes also 5bits header-type.",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d0",
+    },
+  },
+  program_selection_field_select_instraction3 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 43;
+    Name => "program_selection_field_select_instraction[6]",
+    RegMem => "Reg",
+    Address => "104",
+    Description => "6 field-select-instructions to extract data required to construct the key for the program-selection-reg-tcam",
+    Width => "9", # Excel Formula: =calc_reg_width(E10:E10,F10)
+    Type => "Config",
+    Comments => "msb is timer_is_active
+lsbs are {Cache-group-id, Next-group-size}.
+Cpu-write-cmd will start the timer if not currently running",
+    ArrayLength => "6",
+    ArrayIndex => "3",
+    program_selection_fs_instraction3 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 33;
+      Name => "program_selection_fs_instraction[n]",
+      RegMem => "RegField",
+      Description => "The key for the program-selection-tcam on these 6 configurable instructions. 
+Each instruction is: {offset (5b), valid-bits (4b)}
+Input is {PD.port, PD.FI-Header-data} = { {2'h0, input_pif, input_ifg}, fi_format_9, …fi_format_1,fi_format_0}
+* NOTE: FI-header-format includes also 5bits header-type.",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d0",
+    },
+  },
+  program_selection_field_select_instraction4 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 43;
+    Name => "program_selection_field_select_instraction[6]",
+    RegMem => "Reg",
+    Address => "105",
+    Description => "6 field-select-instructions to extract data required to construct the key for the program-selection-reg-tcam",
+    Width => "9", # Excel Formula: =calc_reg_width(E10:E10,F10)
+    Type => "Config",
+    Comments => "msb is timer_is_active
+lsbs are {Cache-group-id, Next-group-size}.
+Cpu-write-cmd will start the timer if not currently running",
+    ArrayLength => "6",
+    ArrayIndex => "4",
+    program_selection_fs_instraction4 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 33;
+      Name => "program_selection_fs_instraction[n]",
+      RegMem => "RegField",
+      Description => "The key for the program-selection-tcam on these 6 configurable instructions. 
+Each instruction is: {offset (5b), valid-bits (4b)}
+Input is {PD.port, PD.FI-Header-data} = { {2'h0, input_pif, input_ifg}, fi_format_9, …fi_format_1,fi_format_0}
+* NOTE: FI-header-format includes also 5bits header-type.",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d0",
+    },
+  },
+  program_selection_field_select_instraction5 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 43;
+    Name => "program_selection_field_select_instraction[6]",
+    RegMem => "Reg",
+    Address => "106",
+    Description => "6 field-select-instructions to extract data required to construct the key for the program-selection-reg-tcam",
+    Width => "9", # Excel Formula: =calc_reg_width(E10:E10,F10)
+    Type => "Config",
+    Comments => "msb is timer_is_active
+lsbs are {Cache-group-id, Next-group-size}.
+Cpu-write-cmd will start the timer if not currently running",
+    ArrayLength => "6",
+    ArrayIndex => "5",
+    program_selection_fs_instraction5 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 33;
+      Name => "program_selection_fs_instraction[n]",
+      RegMem => "RegField",
+      Description => "The key for the program-selection-tcam on these 6 configurable instructions. 
+Each instruction is: {offset (5b), valid-bits (4b)}
+Input is {PD.port, PD.FI-Header-data} = { {2'h0, input_pif, input_ifg}, fi_format_9, …fi_format_1,fi_format_0}
+* NOTE: FI-header-format includes also 5bits header-type.",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d0",
+    },
+  },
+  per_slice_cfg_for_sna_modes_selection => { #Structure Type: Reg;
+    Name => "per_slice_cfg_for_sna_modes_selection",
+    RegMem => "Reg",
+    Address => "107", # Excel Formula: =calc_reg_address(C9,A9,G9)
+    Description => "SNA has few modes of operation:
+Slice-mode: for calculation the Sequence-number
+SNR-Outgoing-IF: calculation is defferent according to the mode.
+This register contains the general-slice-mode and snr-outgoing-if mode in which the slice is being used",
+    Width => "6", # Excel Formula: =calc_reg_width(E12:E14,F14)
+    Type => "Config",
+    Comments => "msb is timer_is_active
+lsbs are {Cache-group-id, Next-group-size}.
+Cpu-write-cmd will start the timer if not currently running",
+    slice_mode => { #Structure Type: RegField;
+      Name => "slice_mode",
+      RegMem => "RegField",
+      Description => "Select the General-Slice-Mode:
+0: Disable-Central-SNA - Default. SNA-Mode will be always Port x Priority
+1: CRF-Fabric-slice - Access through central-sna. First packet-header is Fabric-header -> PLB can be done. 
+2: TOR-SLB-Slice -  Access through central-sna. First-packet-header is a network-header -> SLB can be done",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F11,E12,TRUE)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d0",
+    },
+    tor_slb_slice_snr_outgoing_if_mode => { #Structure Type: RegField;
+      Name => "tor_slb_slice_snr_outgoing_if_mode",
+      RegMem => "RegField",
+      Description => "SNR-Outgoing-IF mode:
+0: Constant
+2: Flow-sig-XOR (map of XOR(flow-sig[2:0])
+3: Flow-sig-mod (map of flow-sig % 3)
+* NOTE: 1 (Extracted) is not valid for tor-slb slices",
+      Width => "2",
+      Position => "3:2", # Excel Formula: =calc_position(F12,E13)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d0",
+    },
+    constant_snr_outgoing_if => { #Structure Type: RegField;
+      Name => "constant_snr_outgoing_if",
+      RegMem => "RegField",
+      Description => "Contains the value of the snr-outgoing-if for the case of (snr-outgoing-if-calculation-mode == 0 {constant} )",
+      Width => "2",
+      Position => "5:4", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d0",
+    },
+  },
+  per_slice_cfg_for_pp_sna_mode => { #Structure Type: Reg;
+    Name => "per_slice_cfg_for_pp_sna_mode",
+    RegMem => "Reg",
+    Address => "108", # Excel Formula: =calc_reg_address(C11,A11,G11)
+    Description => "Specific configuration for {Port x Priority}-SNA-Mode",
+    Width => "34", # Excel Formula: =calc_reg_width(E16:E18,F18)
+    Type => "Config",
+    Comments => "msb is timer_is_active
+lsbs are {Cache-group-id, Next-group-size}.
+Cpu-write-cmd will start the timer if not currently running",
+    first_usable_reorder_context_id_in_slice => { #Structure Type: RegField;
+      Name => "first_usable_reorder_context_id_in_slice",
+      RegMem => "RegField",
+      Description => "first_usable_reorder_context_id_in_slice",
+      Width => "13", # Excel Formula: =calc_field_width_define("RXPP_PD_REORDER_CONTEXT_ID_WIDTH")
+      Position => "12:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "h0",
+    },
+    max_valid_psn => { #Structure Type: RegField;
+      Name => "max_valid_psn",
+      RegMem => "RegField",
+      Description => "Not Used!",
+      Width => "20", # Excel Formula: =calc_field_width_define("RXPP_PD_PACKET_SEQUENCE_NUMBER_WIDTH")
+      Position => "32:13", # Excel Formula: =calc_position(F16,E17)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "hfffff",
+    },
+    use_flow_sig_lsbs_as_reorder_context => { #Structure Type: RegField;
+      Name => "use_flow_sig_lsbs_as_reorder_context",
+      RegMem => "RegField",
+      Description => "when set, and mode is PP, than instead of using {Port x Priority} as the reorder-context, The reorder-context is calculated by:
+Reorder-context = flow-signature[12:0]",
+      Width => "1",
+      Position => "33", # Excel Formula: =calc_position(F17,E18)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "h0",
+    },
+  },
+  per_slice_cfg_for_plb_sna_mode => { #Structure Type: Reg;
+    Name => "per_slice_cfg_for_plb_sna_mode",
+    RegMem => "Reg",
+    Address => "109", # Excel Formula: =calc_reg_address(C15,A15,G15)
+    Description => "Specific configuration for {SN-PLB}-SNA-Mode
+* Valid only on CRF-Fabric-Slices",
+    Width => "10", # Excel Formula: =calc_reg_width(E20:E21,F21)
+    Type => "Config",
+    Comments => "msb is timer_is_active
+lsbs are {Cache-group-id, Next-group-size}.
+Cpu-write-cmd will start the timer if not currently running",
+    fabric_header_offset_to_source_identifier_field_in_nibbles => { #Structure Type: RegField;
+      Name => "fabric_header_offset_to_source_identifier_field_in_nibbles",
+      RegMem => "RegField",
+      Description => "offset to plb-src-identifier in fabric-header",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F19,E20,TRUE)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d1",
+    },
+    fabric_header_offset_to_psn_field_in_nibbles => { #Structure Type: RegField;
+      Name => "fabric_header_offset_to_psn_field_in_nibbles",
+      RegMem => "RegField",
+      Description => "offset to plb-psn in fabric-header",
+      Width => "5",
+      Position => "9:5", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d4",
+    },
+  },
+  fs_mode_cfg => { #Structure Type: Reg;
+    Name => "fs_mode_cfg",
+    RegMem => "Reg",
+    Address => "10A", # Excel Formula: =calc_reg_address(C19,A19,G19)
+    Description => "According to the Flow-signature, the flow signature is constructed from the flow-vector-hash0 and flow-vector-hash1",
+    Width => "2", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    fs_mode => { #Structure Type: RegField;
+      Name => "fs_mode",
+      RegMem => "RegField",
+      Description => "0: use hash0
+1: use hash1 
+2: use hash0 + hash1
+3 : use hash0^hash1",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d2",
+      DefaultSvConstraint => "d2",
+    },
+  },
+  per_slice_cfg_for_sna => { #Structure Type: Reg;
+    Name => "per_slice_cfg_for_sna",
+    RegMem => "Reg",
+    Address => "10B", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "General cfg",
+    Width => "2", # Excel Formula: =calc_reg_width(E25:E26,F26)
+    Type => "Config",
+    use_flow_vector_lsbs_as_flow_signature => { #Structure Type: RegField;
+      Name => "use_flow_vector_lsbs_as_flow_signature",
+      RegMem => "RegField",
+      Description => "when set, flow-signature = flow-vector[35:0] (not using the flow-vector hashing)",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d0",
+      DefaultSvConstraint => "d0",
+    },
+    truncate_reorder_context_lsb => { #Structure Type: RegField;
+      Name => "truncate_reorder_context_lsb",
+      RegMem => "RegField",
+      Description => "when set, out-reorder-context = local-context[8:1] + cfg-offset. Otherwise, out-reorder-context = local-context[8:0] + cfg-offset",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d1",
+      DefaultSvConstraint => "d1",
+    },
+  },
+  per_slice_cfg_for_slb_sna_mode => { #Structure Type: Reg;
+    Name => "per_slice_cfg_for_slb_sna_mode",
+    RegMem => "Reg",
+    Address => "10C", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Specific configuration for {SLB}-SNA-Mode
+* Valid only on TOR-SLB-Slices",
+    Width => "99", # Excel Formula: =calc_reg_width(E28:E32,F32)
+    Type => "Config",
+    Comments => "msb is timer_is_active
+lsbs are {Cache-group-id, Next-group-size}.
+Cpu-write-cmd will start the timer if not currently running",
+    dual_homing_mode => { #Structure Type: RegField;
+      Name => "dual_homing_mode",
+      RegMem => "RegField",
+      Description => "0: No dual-homing
+1: Conditional-Dual-homing: use-dual-homing only when  ('Packet-header.is-slb' & 'Packet-Header.use-dual-homing')
+2: All dual-homing: use-dual-homing when ('Packet-header.is-slb')",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F27,E28,TRUE)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d0",
+    },
+    dual_homing_flow_sig_lsb_bit => { #Structure Type: RegField;
+      Name => "dual_homing_flow_sig_lsb_bit",
+      RegMem => "RegField",
+      Description => "according to the Flow-sig's lsb, the packet will continue with slb-logic, or get 'use-pp' and will be sent to the adjacent device.
+For example: 
+if 
+  (SNA-Mode is SLB) &&
+  (dual_homing_mode == 'all-dual-homing') &&
+  (dual_homing_flow_sig_lsb_bit == 1'b0) && 
+  input-packet.flow-signature[0] == 1'b0) 
+than
+  Process packet in SLB-mode
+Else
+  Process packet in PP-Mode",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F28,E29)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d0",
+    },
+    per_port_slb_enable => { #Structure Type: RegField;
+      Name => "per_port_slb_enable",
+      RegMem => "RegField",
+      Description => "Per Port = {pif(5b), ifg(1b)} Enable SLB-mode.
+For example: One can disable SLB-mode for packets from pif=19 (Recycle) ",
+      Width => "64",
+      Position => "66:3", # Excel Formula: =calc_position(F29,E30)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "hffffffffffffffff",
+    },
+    is_slb_mask => { #Structure Type: RegField;
+      Name => "is_slb_mask",
+      RegMem => "RegField",
+      Description => "selected-SLB-data is extracted using the result of slb_data_extraxtion_reg_tcam. After extracting that, enabling slb-mode is done by:
+selected-SLB-data[15:0] & cfg-is-slb-mask[15:0] == cfg-is-slb-value[15:0]",
+      Width => "16",
+      Position => "82:67", # Excel Formula: =calc_position(F30,E31)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d0",
+    },
+    is_slb_value => { #Structure Type: RegField;
+      Name => "is_slb_value",
+      RegMem => "RegField",
+      Description => "selected-SLB-data is extracted using the result of slb_data_extraxtion_reg_tcam. After extracting that, enabling slb-mode is done by:
+selected-SLB-data[15:0] & cfg-is-slb-mask[15:0] == cfg-is-slb-value[15:0]",
+      Width => "16",
+      Position => "98:83", # Excel Formula: =calc_position(F31,E32)
+      Type => "Config",
+      UsedBy => "sna",
+      DefaultValue => "d0",
+    },
+  },
+  sna_interrupt_array => { #Structure Type: Reg;
+    Name => "sna_interrupt_array",
+    RegMem => "Reg",
+    Address => "10D", # Excel Formula: =calc_reg_address(C27,A27,G27)
+    Description => "sna_interrupt_array",
+    Width => "1", # Excel Formula: =calc_reg_width(E34:E34,F34)
+    Type => "Interrupt",
+    Comments => "msb is timer_is_active
+lsbs are {Cache-group-id, Next-group-size}.
+Cpu-write-cmd will start the timer if not currently running",
+    program_selection_reg_tcam_miss => { #Structure Type: RegField;
+      Name => "program_selection_reg_tcam_miss",
+      RegMem => "RegField",
+      Description => "Set when no hit in program-selection-tcam (miss-configuration)",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F33,E34,TRUE)
+      Type => "Interrupt",
+      UsedBy => "sna",
+    },
+  },
+  sna_interrupt_arrayMask => { #Structure Type: Reg; Skip Register;
+    Name => "sna_interrupt_arrayMask",
+    RegMem => "Reg",
+    Address => "10E",
+    Description => "This register masks sna_interrupt_array interrupt register",
+    Width => "1", # Excel Formula: =calc_reg_width(E34:E34,F34)
+    Type => "InterruptMask",
+    Comments => "msb is timer_is_active
+lsbs are {Cache-group-id, Next-group-size}.
+Cpu-write-cmd will start the timer if not currently running",
+    program_selection_reg_tcam_missMask => { #Structure Type: RegField;
+      Name => "program_selection_reg_tcam_missMask",
+      RegMem => "RegField",
+      Description => "This field masks program_selection_reg_tcam_miss interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F33,E34,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  sna_interrupt_arrayTest => { #Structure Type: Reg; Skip Register;
+    Name => "sna_interrupt_arrayTest",
+    RegMem => "Reg",
+    Address => "10F",
+    Description => "This register tests sna_interrupt_array interrupt register",
+    Width => "1", # Excel Formula: =calc_reg_width(E34:E34,F34)
+    Type => "InterruptTest",
+    Comments => "msb is timer_is_active
+lsbs are {Cache-group-id, Next-group-size}.
+Cpu-write-cmd will start the timer if not currently running",
+    program_selection_reg_tcam_missTest => { #Structure Type: RegField;
+      Name => "program_selection_reg_tcam_missTest",
+      RegMem => "RegField",
+      Description => "This field tests program_selection_reg_tcam_miss interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F33,E34,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  debug_fifos_water_marks_register => { #Structure Type: Reg;
+    Name => "debug_fifos_water_marks_register",
+    RegMem => "Reg",
+    Address => "110", # Excel Formula: =calc_reg_address(C33,A33,G33)
+    Description => "This register contains the watermark indication for the order-fifos",
+    Width => "20", # Excel Formula: =calc_reg_width(E36:E37,F37)
+    Type => "ReadOnly",
+    slice_sna_order_fifo_ifg0_wm => { #Structure Type: RegField;
+      Name => "slice_sna_order_fifo_ifg0_wm",
+      RegMem => "RegField",
+      Description => "max number of entries in the fifo",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F35,E36,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "sna",
+    },
+    slice_sna_order_fifo_ifg1_wm => { #Structure Type: RegField;
+      Name => "slice_sna_order_fifo_ifg1_wm",
+      RegMem => "RegField",
+      Description => "max number of entries in the fifo",
+      Width => "10",
+      Position => "19:10", # Excel Formula: =calc_position(F36,E37)
+      Type => "MaxWmk",
+      UsedBy => "sna",
+    },
+  },
+  map_fabric_header_type_to_crf_fabric_slice_sna_mode => { #Structure Type: Mem;
+    Name => "map_fabric_header_type_to_crf_fabric_slice_sna_mode",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "Per fabric-header, there are 3 valid sna-mode. This register maps the fabric-header-type to this mode
+* Valid only on CRF-Fabric-slices",
+    Width => "2", # Excel Formula: =calc_mem_width(E39:E39,M38,F39,-1)
+    Type => "Config",
+    UsedBy => "sna",
+    MemEntries => "16",
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "2",
+    crf_fabric_slice_sna_mode => { #Structure Type: MemField;
+      Name => "crf_fabric_slice_sna_mode",
+      RegMem => "MemField",
+      Description => "0: Port x priority
+2: SN-PLB
+3: No-Reorder
+* NOTE: 1 (SLB) is not valid for crf-fabric slices",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F38,E39,TRUE)
+    },
+  },
+  map_tm_header_type => { #Structure Type: Mem;
+    Name => "map_tm_header_type",
+    RegMem => "Mem",
+    Address => "200000", # Excel Formula: =calc_mem_address(C38,A38,G40,L40)
+    Description => "per tm-header-type, snr-outgoing-if mode and offset to dest-slice
+* Valid only on CRF-Fabric-slices",
+    Width => "7", # Excel Formula: =calc_mem_width(E41:E42,M40,F42,-1)
+    Type => "Config",
+    UsedBy => "sna",
+    MemEntries => "4",
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "7",
+    crf_fabric_slice_snr_outgoing_if_mode => { #Structure Type: MemField;
+      Name => "crf_fabric_slice_snr_outgoing_if_mode",
+      RegMem => "MemField",
+      Description => "0: Constant
+1: Extracted",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F40,E41,TRUE)
+    },
+    crf_fabric_slice_offset_to_dest_slice_inside_tm_header_in_bits => { #Structure Type: MemField;
+      Name => "crf_fabric_slice_offset_to_dest_slice_inside_tm_header_in_bits",
+      RegMem => "MemField",
+      Description => "offset to destination-slice inside the tm-header (valid only if mode is 'Extracted'",
+      Width => "6",
+      Position => "6:1", # Excel Formula: =calc_position(F41,E42)
+    },
+  },
+  map_destination_slice_to_snr_outgoing_if => { #Structure Type: Mem;
+    Name => "map_destination_slice_to_snr_outgoing_if",
+    RegMem => "Mem",
+    Address => "300000", # Excel Formula: =calc_mem_address(C40,A40,G43,L43)
+    Description => "per fabric-header.dest-slice (3b), holds snr-outgoing-interface
+* Valid only on CRF-Fabric-slices, when mode is 'Extracted'",
+    Width => "2", # Excel Formula: =calc_mem_width(E44:E44,M43,F44,-1)
+    Type => "Config",
+    UsedBy => "sna",
+    MemEntries => "8",
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "2",
+    crf_fabric_slice_mapped_snr_outgoing_if => { #Structure Type: MemField;
+      Name => "crf_fabric_slice_mapped_snr_outgoing_if",
+      RegMem => "MemField",
+      Description => "snr-outgoing interface",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F43,E44,TRUE)
+    },
+  },
+  map_flow_sig_mod_to_snr_outgoing_if => { #Structure Type: Mem;
+    Name => "map_flow_sig_mod_to_snr_outgoing_if",
+    RegMem => "Mem",
+    Address => "400000", # Excel Formula: =calc_mem_address(C43,A43,G45,L45)
+    Description => "per ('flow-sig % 3') (2b), holds snr-outgoing-interface
+* Valid only on TOR-SLB-slices, when mode is 'Flow-sig-Mod'",
+    Width => "2", # Excel Formula: =calc_mem_width(E46:E46,M45,F46,-1)
+    Type => "Config",
+    UsedBy => "sna",
+    MemEntries => "4",
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "2",
+    tor_slb_slice_mapped_snr_outgoing_if => { #Structure Type: MemField;
+      Name => "tor_slb_slice_mapped_snr_outgoing_if",
+      RegMem => "MemField",
+      Description => "snr-outgoing interface",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+    },
+  },
+  map_flow_sig_xor_to_snr_outgoing_if => { #Structure Type: Mem;
+    Name => "map_flow_sig_xor_to_snr_outgoing_if",
+    RegMem => "Mem",
+    Address => "500000", # Excel Formula: =calc_mem_address(C45,A45,G47,L47)
+    Description => "per (^flow-sig[2:0]) (1b), holds snr-outgoing-interface
+* Valid only on TOR-SLB-slices, when mode is 'Flow-sig-Xor'",
+    Width => "2", # Excel Formula: =calc_mem_width(E48:E48,M47,F48,-1)
+    Type => "Config",
+    UsedBy => "sna",
+    MemEntries => "2",
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "2",
+    tor_slb_slice_mapped_snr_outgoing_if => { #Structure Type: MemField;
+      Name => "tor_slb_slice_mapped_snr_outgoing_if",
+      RegMem => "MemField",
+      Description => "snr-outgoing interface",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F47,E48,TRUE)
+    },
+  },
+  slb_data_extraxtion_reg_tcam => { #Structure Type: Mem;
+    Name => "slb_data_extraxtion_reg_tcam",
+    RegMem => "Mem",
+    Address => "600000", # Excel Formula: =calc_mem_address(C47,A47,G49,L49)
+    Description => "SLB data extraction reg-tcam",
+    Width => "65", # Excel Formula: =calc_mem_width(E50:E52,"None",F52,-1)
+    Type => "Config",
+    UsedBy => "sna",
+    MemEntries => "16",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "RegTcam=Enabled,RegTcamPayloadWidth=33,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "65",
+    slb_data_extraxtion_reg_tcam_mask => { #Structure Type: MemField;
+      Name => "slb_data_extraxtion_reg_tcam_mask",
+      RegMem => "MemField",
+      Description => "Reg-tcam-mask: 
+If key[i] is valid, than mask[i] should be 1'b1.
+If key[i] is don't-care, than mask[i] must be 1'b0.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F49,E50,TRUE)
+    },
+    slb_data_extraxtion_reg_tcam_key => { #Structure Type: MemField;
+      Name => "slb_data_extraxtion_reg_tcam_key",
+      RegMem => "MemField",
+      Description => "key is 4*first-header-formats of 8 bits, i.e. fi-array[0..3].format",
+      Width => "32",
+      Position => "63:32", # Excel Formula: =calc_position(F50,E51)
+    },
+    slb_data_extraxtion_reg_tcam_delete => { #Structure Type: MemField;
+      Name => "slb_data_extraxtion_reg_tcam_delete",
+      RegMem => "MemField",
+      Description => "delete bit for the reg-tcam",
+      Width => "1",
+      Position => "64", # Excel Formula: =calc_position(F51,E52)
+    },
+  },
+  slb_data_extraxtion_reg_tcam_mem => { #Structure Type: Mem;
+    Name => "slb_data_extraxtion_reg_tcam_mem",
+    RegMem => "Mem",
+    Address => "700000", # Excel Formula: =calc_mem_address(C49,A49,G53,L53)
+    Description => "SLB data extraction reg-tcam-associated-data: contains the sna-mode and packet-offsets to the slb-required-fields",
+    Width => "33", # Excel Formula: =calc_mem_width(E54:E60,M53,F60,-1)
+    Type => "Config",
+    UsedBy => "sna",
+    MemEntries => "16",
+    MemWrapper => "1P",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,FfBased=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "33",
+    tor_slb_slice_sna_mode => { #Structure Type: MemField;
+      Name => "tor_slb_slice_sna_mode",
+      RegMem => "MemField",
+      Description => "0: Port x priority
+1: SN-SLB",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F53,E54,TRUE)
+    },
+    base_offset_in_bytes => { #Structure Type: MemField;
+      Name => "base_offset_in_bytes",
+      RegMem => "MemField",
+      Description => "offset to the slb-data in packet-header",
+      Width => "7",
+      Position => "7:1", # Excel Formula: =calc_position(F54,E55)
+    },
+    additional_offset_for_is_slb_field_in_bits => { #Structure Type: MemField;
+      Name => "additional_offset_for_is_slb_field_in_bits",
+      RegMem => "MemField",
+      Description => "additional offset for 'is-slb' extraction",
+      Width => "5",
+      Position => "12:8", # Excel Formula: =calc_position(F55,E56)
+    },
+    additional_offset_for_ssn_field_in_bits => { #Structure Type: MemField;
+      Name => "additional_offset_for_ssn_field_in_bits",
+      RegMem => "MemField",
+      Description => "additional offset for 'ssn' extraction",
+      Width => "5",
+      Position => "17:13", # Excel Formula: =calc_position(F56,E57)
+    },
+    additional_offset_for_eos_field_in_bits => { #Structure Type: MemField;
+      Name => "additional_offset_for_eos_field_in_bits",
+      RegMem => "MemField",
+      Description => "additional offset for 'eos' extraction",
+      Width => "5",
+      Position => "22:18", # Excel Formula: =calc_position(F57,E58)
+    },
+    additional_offset_for_cps_field_in_bits => { #Structure Type: MemField;
+      Name => "additional_offset_for_cps_field_in_bits",
+      RegMem => "MemField",
+      Description => "additional offset for 'cps' extraction",
+      Width => "5",
+      Position => "27:23", # Excel Formula: =calc_position(F58,E59)
+    },
+    additional_offset_for_is_dual_homing_field_in_bits => { #Structure Type: MemField;
+      Name => "additional_offset_for_is_dual_homing_field_in_bits",
+      RegMem => "MemField",
+      Description => "additional offset for 'is_dual_homing' extraction",
+      Width => "5",
+      Position => "32:28", # Excel Formula: =calc_position(F59,E60)
+    },
+  },
+  pp_psn_table => { #Structure Type: Mem;
+    Name => "pp_psn_table",
+    RegMem => "Mem",
+    Address => "800000", # Excel Formula: =calc_mem_address(C53,A53,G61,L61)
+    Description => "PP-psn-memory. Used in {Port-Prority} mode",
+    Width => "26", # Excel Formula: =calc_mem_width(E62:E62,M61,F62,-1)
+    Type => "Dynamic",
+    UsedBy => "sna",
+    MemEntries => "512",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=100,ReadActivityFactor=100",
+    MemLogicalWidth => "20",
+    PSN => { #Structure Type: MemField;
+      Name => "PSN",
+      RegMem => "MemField",
+      Description => "PSN",
+      Width => "20", # Excel Formula: =calc_field_width_define("RXPP_PD_PACKET_SEQUENCE_NUMBER_WIDTH")
+      Position => "19:0", # Excel Formula: =calc_position(F61,E62,TRUE)
+    },
+  },
+  pp_local_id_table => { #Structure Type: Mem;
+    Name => "pp_local_id_table",
+    RegMem => "Mem",
+    Address => "900000", # Excel Formula: =calc_mem_address(C61,A61,G63,L63)
+    Description => "On PP-mode, the {Port x priority} is mapped to local-id by this table",
+    Width => "14", # Excel Formula: =calc_mem_width(E64:E64,M63,F64,-1)
+    Type => "Config",
+    UsedBy => "sna",
+    MemEntries => "512", # Excel Formula: =2^9
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100",
+    MemLogicalWidth => "9",
+    local_id => { #Structure Type: MemField;
+      Name => "local_id",
+      RegMem => "MemField",
+      Description => "local id is the local-context-id in the slice",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F63,E64,TRUE)
+    },
+  },
+  fls_calculation_program_selection_reg_tcam => { #Structure Type: Mem;
+    Name => "fls_calculation_program_selection_reg_tcam",
+    RegMem => "Mem",
+    Address => "A00000", # Excel Formula: =calc_mem_address(C63,A63,G65,L65)
+    Description => "Flow-signatur cauculation: Program-selection-reg-tcam",
+    Width => "81", # Excel Formula: =calc_mem_width(E66:E68,"None",F68,-1)
+    Type => "Config",
+    UsedBy => "sna",
+    MemEntries => "32",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "RegTcam=Enabled,RegTcamPayloadWidth=152,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "81",
+    fls_calculation_program_selection_reg_tcam_mask => { #Structure Type: MemField;
+      Name => "fls_calculation_program_selection_reg_tcam_mask",
+      RegMem => "MemField",
+      Description => "Reg-tcam-mask: 
+If key[i] is valid, than mask[i] should be 1'b1.
+If key[i] is don't-care, than mask[i] must be 1'b0.",
+      Width => "40",
+      Position => "39:0", # Excel Formula: =calc_position(F65,E66,TRUE)
+    },
+    fls_calculation_program_selection_reg_tcam_key => { #Structure Type: MemField;
+      Name => "fls_calculation_program_selection_reg_tcam_key",
+      RegMem => "MemField",
+      Description => "The key for the program-selection-tcam on these 6 configurable instructions program_selection_fs_instraction[n], which selects the data from data-bus which contains: {PD.port, PD.FI-Header-data}",
+      Width => "40",
+      Position => "79:40", # Excel Formula: =calc_position(F66,E67)
+    },
+    fls_calculation_program_selection_reg_tcam_delete => { #Structure Type: MemField;
+      Name => "fls_calculation_program_selection_reg_tcam_delete",
+      RegMem => "MemField",
+      Description => "delete bit for the reg-tcam",
+      Width => "1",
+      Position => "80", # Excel Formula: =calc_position(F67,E68)
+    },
+  },
+  fls_calculation_program_selection_reg_tcam_mem => { #Structure Type: Mem;
+    Name => "fls_calculation_program_selection_reg_tcam_mem",
+    RegMem => "Mem",
+    Address => "B00000", # Excel Formula: =calc_mem_address(C65,A65,G69,L69)
+    Description => "
+Flow-signatur cauculation: Program-selection-reg-tcam-associated-data: contains 8 field-select instructions: 
+• 4 byte resolution – 32b output
+• 4 nibble resolution – 16b output
+",
+    Width => "152", # Excel Formula: =calc_mem_width(E70:E77,M69,F77,-1)
+    Type => "Config",
+    UsedBy => "sna",
+    MemEntries => "32",
+    MemWrapper => "1P",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,FfBased=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "152",
+    layer_fs_intruction0 => { #Structure Type: MemField;
+      Name => "layer_fs_intruction0",
+      RegMem => "MemField",
+      Description => "Instruction for field-select of nibble resolution, and output width of 16b: 
+{Selected-layer (3b), selected-header(4b), Header-additional-offset (7b), valid-bits (5b)}",
+      Width => "19",
+      Position => "18:0", # Excel Formula: =calc_position(F69,E70,TRUE)
+    },
+    layer_fs_intruction1 => { #Structure Type: MemField;
+      Name => "layer_fs_intruction1",
+      RegMem => "MemField",
+      Description => "Instruction for field-select of nibble resolution, and output width of 16b: 
+{Selected-layer (3b), selected-header(4b), Header-additional-offset (7b), valid-bits (5b)}",
+      Width => "19",
+      Position => "37:19", # Excel Formula: =calc_position(F70,E71)
+    },
+    layer_fs_intruction2 => { #Structure Type: MemField;
+      Name => "layer_fs_intruction2",
+      RegMem => "MemField",
+      Description => "Instruction for field-select of byte resolution, and output width of 32b: 
+{Selected-layer (3b), selected-header(4b), Header-additional-offset (6b), valid-bits (6b)}",
+      Width => "19",
+      Position => "56:38", # Excel Formula: =calc_position(F71,E72)
+    },
+    layer_fs_intruction3 => { #Structure Type: MemField;
+      Name => "layer_fs_intruction3",
+      RegMem => "MemField",
+      Description => "Instruction for field-select of byte resolution, and output width of 32b: 
+{Selected-layer (3b), selected-header(4b), Header-additional-offset (6b), valid-bits (6b)}",
+      Width => "19",
+      Position => "75:57", # Excel Formula: =calc_position(F72,E73)
+    },
+    layer_fs_intruction4 => { #Structure Type: MemField;
+      Name => "layer_fs_intruction4",
+      RegMem => "MemField",
+      Description => "Instruction for field-select of nibble resolution, and output width of 16b: 
+{Selected-layer (3b), selected-header(4b), Header-additional-offset (7b), valid-bits (5b)}",
+      Width => "19",
+      Position => "94:76", # Excel Formula: =calc_position(F73,E74)
+    },
+    layer_fs_intruction5 => { #Structure Type: MemField;
+      Name => "layer_fs_intruction5",
+      RegMem => "MemField",
+      Description => "Instruction for field-select of nibble resolution, and output width of 16b: 
+{Selected-layer (3b), selected-header(4b), Header-additional-offset (7b), valid-bits (5b)}",
+      Width => "19",
+      Position => "113:95", # Excel Formula: =calc_position(F74,E75)
+    },
+    layer_fs_intruction6 => { #Structure Type: MemField;
+      Name => "layer_fs_intruction6",
+      RegMem => "MemField",
+      Description => "Instruction for field-select of byte resolution, and output width of 32b: 
+{Selected-layer (3b), selected-header(4b), Header-additional-offset (6b), valid-bits (6b)}",
+      Width => "19",
+      Position => "132:114", # Excel Formula: =calc_position(F75,E76)
+    },
+    layer_fs_intruction7 => { #Structure Type: MemField;
+      Name => "layer_fs_intruction7",
+      RegMem => "MemField",
+      Description => "Instruction for field-select of byte resolution, and output width of 32b: 
+{Selected-layer (3b), selected-header(4b), Header-additional-offset (6b), valid-bits (6b)}",
+      Width => "19",
+      Position => "151:133", # Excel Formula: =calc_position(F76,E77)
+    },
+  },
+  sna_lu_table => { #Structure Type: Mem;
+    Name => "sna_lu_table",
+    RegMem => "Mem",
+    Address => "C00000", # Excel Formula: =calc_mem_address(C69,A69,G78,L78)
+    Description => "This table is used to store the extracted sna-data untill the context if in the head of the ifg-order-fifos",
+    Width => "94", # Excel Formula: =calc_mem_width(E79:E90,M78,F90,-1)
+    Type => "Dynamic",
+    UsedBy => "sna",
+    MemEntries => "1200",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,PortErrPropagate=Enabled,WriteActivityFactor=100,ReadActivityFactor=100,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    MemLogicalWidth => "86",
+    sna_mode => { #Structure Type: MemField;
+      Name => "sna_mode",
+      RegMem => "MemField",
+      Description => "0: Port x priority
+1: SLB
+2: SN-PLB
+3: No-Reorder",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F78,E79,TRUE)
+    },
+    flow_signature => { #Structure Type: MemField;
+      Name => "flow_signature",
+      RegMem => "MemField",
+      Description => "Calculated flow-signature",
+      Width => "36",
+      Position => "37:2", # Excel Formula: =calc_position(F79,E80)
+    },
+    SNR_Outgoing_interface => { #Structure Type: MemField;
+      Name => "SNR_Outgoing_interface",
+      RegMem => "MemField",
+      Description => "Reorder target slice. Relevent only when central-sna is used (SLB/PLB)",
+      Width => "2",
+      Position => "39:38", # Excel Formula: =calc_position(F80,E81)
+    },
+    pif => { #Structure Type: MemField;
+      Name => "pif",
+      RegMem => "MemField",
+      Description => "packet.input-pif",
+      Width => "5", # Excel Formula: =calc_field_width_define("RXPP_PD_PORT_WIDTH")
+      Position => "44:40", # Excel Formula: =calc_position(F81,E82)
+    },
+    ifg => { #Structure Type: MemField;
+      Name => "ifg",
+      RegMem => "MemField",
+      Description => "packet.input-ifg",
+      Width => "1",
+      Position => "45", # Excel Formula: =calc_position(F82,E83)
+    },
+    prior => { #Structure Type: MemField;
+      Name => "prior",
+      RegMem => "MemField",
+      Description => "packet.initial-TC",
+      Width => "3", # Excel Formula: =calc_field_width_define("RXPP_PD_MAC_PRIORITY_WIDTH")
+      Position => "48:46", # Excel Formula: =calc_position(F83,E84)
+    },
+    plb_source_identifier => { #Structure Type: MemField;
+      Name => "plb_source_identifier",
+      RegMem => "MemField",
+      Description => "plb-source-identifier - valid only if sna-mode is SN-PLB",
+      Width => "12",
+      Position => "60:49", # Excel Formula: =calc_position(F84,E85)
+    },
+    plb_psn => { #Structure Type: MemField;
+      Name => "plb_psn",
+      RegMem => "MemField",
+      Description => "plb-psn - valid only if sna-mode is SN-PLB",
+      Width => "20", # Excel Formula: =calc_field_width_define("RXPP_PD_PACKET_SEQUENCE_NUMBER_WIDTH")
+      Position => "80:61", # Excel Formula: =calc_position(F85,E86)
+    },
+    slb_ssn => { #Structure Type: MemField;
+      Name => "slb_ssn",
+      RegMem => "MemField",
+      Description => "Extracted SLB-Segment-sequence-number - valid only if sna-mode is SLB",
+      Width => "2",
+      Position => "82:81", # Excel Formula: =calc_position(F86,E87)
+    },
+    slb_eos => { #Structure Type: MemField;
+      Name => "slb_eos",
+      RegMem => "MemField",
+      Description => "Extracted SLB-End-of-segment indication - valid only if sna-mode is SLB",
+      Width => "1",
+      Position => "83", # Excel Formula: =calc_position(F87,E88)
+    },
+    slb_close_prev_segment => { #Structure Type: MemField;
+      Name => "slb_close_prev_segment",
+      RegMem => "MemField",
+      Description => "Extracted SLB-Close-previous-sequece - valid only if sna-mode is SLB",
+      Width => "1",
+      Position => "84", # Excel Formula: =calc_position(F88,E89)
+    },
+    slb_dual_homing_redirect => { #Structure Type: MemField;
+      Name => "slb_dual_homing_redirect",
+      RegMem => "MemField",
+      Description => "When set, redirect this packet to Dual-homing slice",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F89,E90)
+    },
+  },
+  slice_sna_order_fifo_ifg0 => { #Structure Type: Mem; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 25;
+    Name => "slice_sna_order_fifo_ifg[2]",
+    RegMem => "Mem",
+    Address => "D00000", # Excel Formula: =calc_mem_address(C78,A78,G91,L91)
+    Description => "rxpp_order_fifo (one per each IFG)",
+    Width => "15", # Excel Formula: =calc_mem_width(E92:E92,M91,F92,-1)
+    Type => "Dynamic",
+    UsedBy => "sna",
+    MemEntries => "598",
+    MemWrapper => "Fifo",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,PortErrPropagate=Enabled,WriteActivityFactor=50,ReadActivityFactor=50,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "Fifo-ram-with-prepetch -> for mem-latency of 3, 
+Num-of-entries is: FIFO-DEPTH - (MEM-LATENCY+1)",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    MemLogicalWidth => "10",
+    slice_sna_order_fifo_ifg0_entry => { #Structure Type: MemField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "slice_sna_order_fifo_ifg[n]_entry",
+      RegMem => "MemField",
+      Description => "Equals to: Rxpp-top-mem-addr[8:0]
+NOTE: Ifg = Rxpp-top-mem-addr[9]",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F91,E92,TRUE)
+    },
+  },
+  slice_sna_order_fifo_ifg1 => { #Structure Type: Mem; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 25;
+    Name => "slice_sna_order_fifo_ifg[2]",
+    RegMem => "Mem",
+    Address => "E00000",
+    Description => "rxpp_order_fifo (one per each IFG)",
+    Width => "15", # Excel Formula: =calc_mem_width(E92:E92,M91,F92,-1)
+    Type => "Dynamic",
+    UsedBy => "sna",
+    MemEntries => "598",
+    MemWrapper => "Fifo",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,PortErrPropagate=Enabled,WriteActivityFactor=50,ReadActivityFactor=50,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    Comments => "Fifo-ram-with-prepetch -> for mem-latency of 3, 
+Num-of-entries is: FIFO-DEPTH - (MEM-LATENCY+1)",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    MemLogicalWidth => "10",
+    slice_sna_order_fifo_ifg1_entry => { #Structure Type: MemField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 25;
+      Name => "slice_sna_order_fifo_ifg[n]_entry",
+      RegMem => "MemField",
+      Description => "Equals to: Rxpp-top-mem-addr[8:0]
+NOTE: Ifg = Rxpp-top-mem-addr[9]",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F91,E92,TRUE)
+    },
+  },
+  sna_result_table => { #Structure Type: Mem;
+    Name => "sna_result_table",
+    RegMem => "Mem",
+    Address => "D00000", # Excel Formula: =calc_mem_address(C91,A91,G93,L93)
+    Description => "This table is used to store the SNA-result ",
+    Width => "84", # Excel Formula: =calc_mem_width(E94:E102,M93,F102,-1)
+    Type => "DocOnly",
+    UsedBy => "sna",
+    MemEntries => "1200",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,PortErrPropagate=Enabled,IgnoreInstance=Enabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    MemLogicalWidth => "76",
+    Flow_signature => { #Structure Type: MemField;
+      Name => "Flow_signature",
+      RegMem => "MemField",
+      Description => "Flow_signature",
+      Width => "36",
+      Position => "35:0", # Excel Formula: =calc_position(F93,E94,TRUE)
+    },
+    SNR_Outgoing_interface => { #Structure Type: MemField;
+      Name => "SNR_Outgoing_interface",
+      RegMem => "MemField",
+      Description => "Reorder target slice. Relevent only when central-sna is used (SLB/PLB)",
+      Width => "2",
+      Position => "37:36", # Excel Formula: =calc_position(F94,E95)
+    },
+    Reorder_context_id => { #Structure Type: MemField;
+      Name => "Reorder_context_id",
+      RegMem => "MemField",
+      Description => "Reorder_context_id",
+      Width => "13", # Excel Formula: =calc_field_width_define("RXPP_PD_REORDER_CONTEXT_ID_WIDTH")
+      Position => "50:38", # Excel Formula: =calc_position(F95,E96)
+    },
+    Packet_sequence_number => { #Structure Type: MemField;
+      Name => "Packet_sequence_number",
+      RegMem => "MemField",
+      Description => "Packet_sequence_number",
+      Width => "20", # Excel Formula: =calc_field_width_define("RXPP_PD_PACKET_SEQUENCE_NUMBER_WIDTH")
+      Position => "70:51", # Excel Formula: =calc_position(F96,E97)
+    },
+    Packet_is_EOS => { #Structure Type: MemField;
+      Name => "Packet_is_EOS",
+      RegMem => "MemField",
+      Description => "Packet_is_EOS",
+      Width => "1",
+      Position => "71", # Excel Formula: =calc_position(F97,E98)
+    },
+    Close_prev_segment => { #Structure Type: MemField;
+      Name => "Close_prev_segment",
+      RegMem => "MemField",
+      Description => "Close_prev_segment",
+      Width => "1",
+      Position => "72", # Excel Formula: =calc_position(F98,E99)
+    },
+    Dual_homing_redirect => { #Structure Type: MemField;
+      Name => "Dual_homing_redirect",
+      RegMem => "MemField",
+      Description => "When set, redirect this packet to Dual-homing slice",
+      Width => "1",
+      Position => "73", # Excel Formula: =calc_position(F99,E100)
+    },
+    is_slb => { #Structure Type: MemField;
+      Name => "is_slb",
+      RegMem => "MemField",
+      Description => "when set, indicates that the 'is-slb' was set for the input-packet 
+NOTE: this is regardless to the resolved SN logic which may have been eventually according to {Port x Priority} due to some other conditions in the central-SNA etc.
+For example: an SLB packet that enterred the SNA -> logic raised 'is-slb' bit -> Central-sna tried to allocate an SLB-Reorder-context but the pool was empty -> packet got {Port-Priority} mode",
+      Width => "1",
+      Position => "74", # Excel Formula: =calc_position(F100,E101)
+    },
+    err => { #Structure Type: MemField;
+      Name => "err",
+      RegMem => "MemField",
+      Description => "When set, SNA result has error (due to ecc-error in one of the pipe's tables)",
+      Width => "1",
+      Position => "75", # Excel Formula: =calc_position(F101,E102)
+    },
+  },
+};

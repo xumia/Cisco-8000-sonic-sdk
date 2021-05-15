@@ -1,0 +1,26 @@
+README
+------
+This driver is used for enabling only, and is not intended for use in production systems. It is under the GPL license.
+
+In the 16nm test chip, we created a SPI interface. In Pacific, the SPI interface has been replaced
+with standard I2C iterface.
+Also, in the mezzanine board we have, there was no SPI interface but multiple GPIOs.
+
+Hence, the driver in this directory enables connecting to the 16nm TC SPI connector via GPIOs pins.
+
+We used spi-gpio-custom.c from OpenWRT (see license in the file) and to load it we used
+insmod with parameters.
+i.e.
+insmod spi-gpio-custom.ko bus0=2,0,1,4,0,1000000,2
+
+Creating SPIDEV device /dev/spidev2.0, using GPIO pins 0 (sck), 1 (MOSI), 4 (MISO), 
+0 (mode - see below), 1000000 (max 1MHz), 2 (GPIO pin for CS).
+
+SPI modes (from spi.h):
+#define SPI_CPHA        0x01                    /* clock phase */
+#define SPI_CPOL        0x02                    /* clock polarity */
+#define SPI_MODE_0      (0|0)                   /* (original MicroWire) */
+#define SPI_MODE_1      (0|SPI_CPHA)
+#define SPI_MODE_2      (SPI_CPOL|0)
+#define SPI_MODE_3      (SPI_CPOL|SPI_CPHA)
+

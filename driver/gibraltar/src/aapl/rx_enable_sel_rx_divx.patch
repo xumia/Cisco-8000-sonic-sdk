@@ -1,0 +1,13 @@
+*** serdes/serdes_core.c	Tue Apr 16 13:08:00 2019
+--- serdes/serdes_core.c.new	Thu Jan 14 19:13:30 2021
+***************
+*** 645,650 ****
+--- 645,652 ----
+  
+              if( (serdes_get_int01_bits(aapl, lane_addr, mask) & mask) != mask )
+                  not_ok++;
++             else if (rx && (aapl_get_ip_type(aapl, lane_addr) == AVAGO_M4) && ((avago_serdes_mem_rd(aapl, lane_addr, AVAGO_LSB, 0xf0) & 1) == 0))
++                 avago_serdes_mem_rmw(aapl, lane_addr, AVAGO_LSB, 0xf0, 0x1, 0x1); /* if this is a CM4, the RX has just been enabled, and SEL_RX_DIVX is not set, then set it */
+          }
+  
+          if( not_ok == 0 )

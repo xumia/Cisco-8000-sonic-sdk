@@ -1,0 +1,2725 @@
+$block{ics_top} = {
+  Defines_db => "Y:\\svn2\\trunk\\Moriah\\ASIC\\design\\ics\\verilog\\ics_defines.v,Y:\\svn2\\trunk\\Moriah\\ASIC\\design\\defines\\pd_fd_defines.v,Y:\\svn2\\trunk\\Moriah\\ASIC\\design\\defines\\control_common_defines.v,Y:\\svn2\\trunk\\Moriah\\ASIC\\design\\voq_cgm\\verilog\\voq_cgm_defines.v",
+  ProjectName => "Pacific",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "2",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+    GeneralInterruptRegisterSummary => { #Structure Type: RegField;
+      Name => "GeneralInterruptRegisterSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, GeneralInterruptRegister has asserted interrupt",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_1bErrInterrupt",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_2bErrInterrupt",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks ParityErrInterrupt",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "13",
+    Type => "Config",
+    DramContextPoolEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramContextPoolEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramDecCnt0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramDecCnt0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramDecCnt1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramDecCnt1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramDecCnt2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramDecCnt2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramDecCnt3Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramDecCnt3Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramDecCnt4Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramDecCnt4Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramDecCnt5Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramDecCnt5Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramIncCnt0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramIncCnt0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramIncCnt1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramIncCnt1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramIncCnt2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramIncCnt2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramIncCnt3Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramIncCnt3Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramIncCnt4Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramIncCnt4Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramIncCnt5Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramIncCnt5Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "13",
+    Type => "Config",
+    DramContextPoolEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramContextPoolEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramDecCnt0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramDecCnt0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramDecCnt1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramDecCnt1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramDecCnt2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramDecCnt2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramDecCnt3Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramDecCnt3Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramDecCnt4Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramDecCnt4Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramDecCnt5Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramDecCnt5Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramIncCnt0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramIncCnt0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramIncCnt1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramIncCnt1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramIncCnt2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramIncCnt2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramIncCnt3Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramIncCnt3Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramIncCnt4Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramIncCnt4Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DramIncCnt5Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DramIncCnt5Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "13",
+    Type => "Config",
+    DramContextPoolEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DramContextPoolEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramDecCnt0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DramDecCnt0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramDecCnt1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DramDecCnt1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramDecCnt2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DramDecCnt2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramDecCnt3Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DramDecCnt3Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramDecCnt4Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DramDecCnt4Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramDecCnt5Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DramDecCnt5Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramIncCnt0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DramIncCnt0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramIncCnt1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DramIncCnt1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramIncCnt2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DramIncCnt2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramIncCnt3Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DramIncCnt3Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramIncCnt4Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DramIncCnt4Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramIncCnt5Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DramIncCnt5Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "13",
+    Type => "Config",
+    DramContextPoolEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DramContextPoolEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramDecCnt0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DramDecCnt0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramDecCnt1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DramDecCnt1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramDecCnt2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DramDecCnt2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramDecCnt3Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DramDecCnt3Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramDecCnt4Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DramDecCnt4Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramDecCnt5Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DramDecCnt5Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramIncCnt0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DramIncCnt0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramIncCnt1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DramIncCnt1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramIncCnt2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DramIncCnt2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramIncCnt3Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DramIncCnt3Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramIncCnt4Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DramIncCnt4Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DramIncCnt5Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DramIncCnt5Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectErrStatus",
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "13",
+    Type => "ReadOnly",
+    DramContextPoolErrInt => { #Structure Type: RegField;
+      Name => "DramContextPoolErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DramDecCnt0ErrInt => { #Structure Type: RegField;
+      Name => "DramDecCnt0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "1",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DramDecCnt1ErrInt => { #Structure Type: RegField;
+      Name => "DramDecCnt1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "2",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DramDecCnt2ErrInt => { #Structure Type: RegField;
+      Name => "DramDecCnt2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "3",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DramDecCnt3ErrInt => { #Structure Type: RegField;
+      Name => "DramDecCnt3ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "4",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DramDecCnt4ErrInt => { #Structure Type: RegField;
+      Name => "DramDecCnt4ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "5",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DramDecCnt5ErrInt => { #Structure Type: RegField;
+      Name => "DramDecCnt5ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "6",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DramIncCnt0ErrInt => { #Structure Type: RegField;
+      Name => "DramIncCnt0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "7",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DramIncCnt1ErrInt => { #Structure Type: RegField;
+      Name => "DramIncCnt1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "8",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DramIncCnt2ErrInt => { #Structure Type: RegField;
+      Name => "DramIncCnt2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "9",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DramIncCnt3ErrInt => { #Structure Type: RegField;
+      Name => "DramIncCnt3ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "10",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DramIncCnt4ErrInt => { #Structure Type: RegField;
+      Name => "DramIncCnt4ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "11",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DramIncCnt5ErrInt => { #Structure Type: RegField;
+      Name => "DramIncCnt5ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "12",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    Name => "SelectedSerErrorInfo",
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "14",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      Name => "MemErrAddr",
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "12",
+      Position => "11:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      Name => "MemErrType",
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "13:12",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SerErrorDebugConfiguration",
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "5",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      Name => "ErroneousMemorySelector",
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "4",
+      Position => "3:0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      Name => "ResetMemoryErrors",
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrDebug",
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_1bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrDebug",
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_2bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  MbistPassStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistPassStatus",
+    RegMem => "Reg",
+    Address => "39",
+    Description => "MBIST pass status",
+    Width => "74",
+    Type => "ReadOnly",
+    BistDonePassOut => { #Structure Type: RegField;
+      Name => "BistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST passed",
+      Width => "74",
+      Position => "73:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+  MbistFailStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistFailStatus",
+    RegMem => "Reg",
+    Address => "3A",
+    Description => "MBIST fail status",
+    Width => "74",
+    Type => "ReadOnly",
+    BistDoneFailOut => { #Structure Type: RegField;
+      Name => "BistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST failed",
+      Width => "74",
+      Position => "73:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DefaultValue => "b0",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "3", # Excel Formula: =calc_reg_width(E25:E27,F27)
+    Type => "Config",
+    CoreBistRprMode => { #Structure Type: RegField;
+      Name => "CoreBistRprMode",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistRun => { #Structure Type: RegField;
+      Name => "CoreBistRun",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistPtrnFill => { #Structure Type: RegField;
+      Name => "CoreBistPtrnFill",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E29:E29,F29)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C28,A28,G28)
+    Description => "Power Down Configuration for the block",
+    Width => "128", # Excel Formula: =calc_reg_width(E31:E31,F31)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C30,A30,G30)
+    Width => "39", # Excel Formula: =calc_reg_width(E33:E37,F37)
+    Type => "Config",
+    PmroExecute => { #Structure Type: RegField;
+      Name => "PmroExecute",
+      RegMem => "RegField",
+      Description => "0->1: execute pmro command.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F32,E33,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroCmd => { #Structure Type: RegField;
+      Name => "PmroCmd",
+      RegMem => "RegField",
+      Description => "Pmro command to execute:
+0: reset.
+1: write.
+2: read.
+3: invalid.",
+      Width => "2",
+      Position => "2:1", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroSbusReset => { #Structure Type: RegField;
+      Name => "PmroSbusReset",
+      RegMem => "RegField",
+      Description => "Reset pmro sbus chain. Need to set to 0 before starting access to pmro registers.",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroAddr => { #Structure Type: RegField;
+      Name => "PmroAddr",
+      RegMem => "RegField",
+      Description => "PMRO register address:
+0 - control register, 8b, def: 0x0.
+1 - SVT Configuration Register, 16b, def: 0xFFFF.
+2 - LVT Configuration Register, 16b, def: 0xFFFF.
+3 - ULVT Configuration Register, 16b, def: 0xFFFF.
+4 - Interconnect Configuration Register, 16b, def: 0xFFFF.
+5 - Reference Clock Counter Register, 24b, def: 0xFFF000.
+6 - Oscillator Counter Register, 24b, def: 0x000000.
+7 - SBus ID register, read as 0x0B.
+Set to '0' on reset command.",
+      Width => "3",
+      Position => "6:4", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroData => { #Structure Type: RegField;
+      Name => "PmroData",
+      RegMem => "RegField",
+      Description => "PMRO data, set to 0x0 on reset and read command.",
+      Width => "32",
+      Position => "38:7", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C32,A32,G32)
+    Width => "34", # Excel Formula: =calc_reg_width(E39:E41,F41)
+    Type => "ReadOnly",
+    PmroRdata => { #Structure Type: RegField;
+      Name => "PmroRdata",
+      RegMem => "RegField",
+      Description => "Read data from pmro. Valid when PmroFinish=1 and PmroFailed=0.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F38,E39,TRUE)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFailed => { #Structure Type: RegField;
+      Name => "PmroFailed",
+      RegMem => "RegField",
+      Description => "Pmro command failed. Valid only when PmroFinish=1.",
+      Width => "1",
+      Position => "32", # Excel Formula: =calc_position(F39,E40)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFinish => { #Structure Type: RegField;
+      Name => "PmroFinish",
+      RegMem => "RegField",
+      Description => "Pmro command finished.",
+      Width => "1",
+      Position => "33", # Excel Formula: =calc_position(F40,E41)
+      Type => "Event",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C38,A38,G38)
+    Description => "aaa",
+    Width => "11", # Excel Formula: =calc_reg_width(E43:E44,F44)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F42,E43,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C42,A42,G42)
+    Description => "aaa",
+    Width => "32", # Excel Formula: =calc_reg_width(E46:E46,F46)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C45,A45,G45)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E48:E48,F48)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F47,E48,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  GeneralInterruptRegister => { #Structure Type: Reg;
+    Name => "GeneralInterruptRegister",
+    RegMem => "Reg",
+    Address => "100",
+    Description => "Interrupt",
+    Width => "14", # Excel Formula: =calc_reg_width(E8:E21,F21)
+    Type => "Interrupt",
+    IcsSlice0Interrupt => { #Structure Type: RegField;
+      Name => "IcsSlice0Interrupt",
+      RegMem => "RegField",
+      Description => "ICS slice raised interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Interrupt",
+      UsedBy => "EXT",
+    },
+    IcsSlice1Interrupt => { #Structure Type: RegField;
+      Name => "IcsSlice1Interrupt",
+      RegMem => "RegField",
+      Description => "ICS slice raised interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Interrupt",
+      UsedBy => "EXT",
+    },
+    IcsSlice2Interrupt => { #Structure Type: RegField;
+      Name => "IcsSlice2Interrupt",
+      RegMem => "RegField",
+      Description => "ICS slice raised interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F9,E10)
+      Type => "Interrupt",
+      UsedBy => "EXT",
+    },
+    IcsSlice3Interrupt => { #Structure Type: RegField;
+      Name => "IcsSlice3Interrupt",
+      RegMem => "RegField",
+      Description => "ICS slice raised interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F10,E11)
+      Type => "Interrupt",
+      UsedBy => "EXT",
+    },
+    IcsSlice4Interrupt => { #Structure Type: RegField;
+      Name => "IcsSlice4Interrupt",
+      RegMem => "RegField",
+      Description => "ICS slice raised interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F11,E12)
+      Type => "Interrupt",
+      UsedBy => "EXT",
+    },
+    IcsSlice5Interrupt => { #Structure Type: RegField;
+      Name => "IcsSlice5Interrupt",
+      RegMem => "RegField",
+      Description => "ICS slice raised interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F12,E13)
+      Type => "Interrupt",
+      UsedBy => "EXT",
+    },
+    FilbSlice0Interrupt => { #Structure Type: RegField;
+      Name => "FilbSlice0Interrupt",
+      RegMem => "RegField",
+      Description => "FILB slice raised interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F13,E14)
+      Type => "Interrupt",
+      UsedBy => "EXT",
+    },
+    FilbSlice1Interrupt => { #Structure Type: RegField;
+      Name => "FilbSlice1Interrupt",
+      RegMem => "RegField",
+      Description => "FILB slice raised interrupt",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F14,E15)
+      Type => "Interrupt",
+      UsedBy => "EXT",
+    },
+    FilbSlice2Interrupt => { #Structure Type: RegField;
+      Name => "FilbSlice2Interrupt",
+      RegMem => "RegField",
+      Description => "FILB slice raised interrupt",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F15,E16)
+      Type => "Interrupt",
+      UsedBy => "EXT",
+    },
+    FilbSlice3Interrupt => { #Structure Type: RegField;
+      Name => "FilbSlice3Interrupt",
+      RegMem => "RegField",
+      Description => "FILB slice raised interrupt",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F16,E17)
+      Type => "Interrupt",
+      UsedBy => "EXT",
+    },
+    FilbSlice4Interrupt => { #Structure Type: RegField;
+      Name => "FilbSlice4Interrupt",
+      RegMem => "RegField",
+      Description => "FILB slice raised interrupt",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F17,E18)
+      Type => "Interrupt",
+      UsedBy => "EXT",
+    },
+    FilbSlice5Interrupt => { #Structure Type: RegField;
+      Name => "FilbSlice5Interrupt",
+      RegMem => "RegField",
+      Description => "FILB slice raised interrupt",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F18,E19)
+      Type => "Interrupt",
+      UsedBy => "EXT",
+    },
+    dram_pack_pref_fifo_overf => { #Structure Type: RegField;
+      Name => "dram_pack_pref_fifo_overf",
+      RegMem => "RegField",
+      Description => "dram pack fifo overflow ",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F19,E20)
+      Type => "Interrupt",
+      UsedBy => "PREF",
+    },
+    dram_delete_pref_fifo_overf => { #Structure Type: RegField;
+      Name => "dram_delete_pref_fifo_overf",
+      RegMem => "RegField",
+      Description => "dram delete fifo overflow",
+      Width => "1",
+      Position => "13", # Excel Formula: =calc_position(F20,E21)
+      Type => "Interrupt",
+      UsedBy => "PREF",
+    },
+  },
+  GeneralInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "GeneralInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "101",
+    Description => "This register masks GeneralInterruptRegister interrupt register",
+    Width => "14", # Excel Formula: =calc_reg_width(E8:E21,F21)
+    Type => "InterruptMask",
+    IcsSlice0InterruptMask => { #Structure Type: RegField;
+      Name => "IcsSlice0InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks IcsSlice0Interrupt interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    IcsSlice1InterruptMask => { #Structure Type: RegField;
+      Name => "IcsSlice1InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks IcsSlice1Interrupt interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    IcsSlice2InterruptMask => { #Structure Type: RegField;
+      Name => "IcsSlice2InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks IcsSlice2Interrupt interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F9,E10)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    IcsSlice3InterruptMask => { #Structure Type: RegField;
+      Name => "IcsSlice3InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks IcsSlice3Interrupt interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F10,E11)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    IcsSlice4InterruptMask => { #Structure Type: RegField;
+      Name => "IcsSlice4InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks IcsSlice4Interrupt interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F11,E12)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    IcsSlice5InterruptMask => { #Structure Type: RegField;
+      Name => "IcsSlice5InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks IcsSlice5Interrupt interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F12,E13)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    FilbSlice0InterruptMask => { #Structure Type: RegField;
+      Name => "FilbSlice0InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks FilbSlice0Interrupt interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F13,E14)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    FilbSlice1InterruptMask => { #Structure Type: RegField;
+      Name => "FilbSlice1InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks FilbSlice1Interrupt interrupt",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F14,E15)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    FilbSlice2InterruptMask => { #Structure Type: RegField;
+      Name => "FilbSlice2InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks FilbSlice2Interrupt interrupt",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F15,E16)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    FilbSlice3InterruptMask => { #Structure Type: RegField;
+      Name => "FilbSlice3InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks FilbSlice3Interrupt interrupt",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F16,E17)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    FilbSlice4InterruptMask => { #Structure Type: RegField;
+      Name => "FilbSlice4InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks FilbSlice4Interrupt interrupt",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F17,E18)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    FilbSlice5InterruptMask => { #Structure Type: RegField;
+      Name => "FilbSlice5InterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks FilbSlice5Interrupt interrupt",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F18,E19)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    dram_pack_pref_fifo_overfMask => { #Structure Type: RegField;
+      Name => "dram_pack_pref_fifo_overfMask",
+      RegMem => "RegField",
+      Description => "This field masks dram_pack_pref_fifo_overf interrupt",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F19,E20)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    dram_delete_pref_fifo_overfMask => { #Structure Type: RegField;
+      Name => "dram_delete_pref_fifo_overfMask",
+      RegMem => "RegField",
+      Description => "This field masks dram_delete_pref_fifo_overf interrupt",
+      Width => "1",
+      Position => "13", # Excel Formula: =calc_position(F20,E21)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  GeneralInterruptRegisterTest => { #Structure Type: Reg; Skip Register;
+    Name => "GeneralInterruptRegisterTest",
+    RegMem => "Reg",
+    Address => "102",
+    Description => "This register tests GeneralInterruptRegister interrupt register",
+    Width => "14", # Excel Formula: =calc_reg_width(E8:E21,F21)
+    Type => "InterruptTest",
+    IcsSlice0InterruptTest => { #Structure Type: RegField;
+      Name => "IcsSlice0InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests IcsSlice0Interrupt interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    IcsSlice1InterruptTest => { #Structure Type: RegField;
+      Name => "IcsSlice1InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests IcsSlice1Interrupt interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    IcsSlice2InterruptTest => { #Structure Type: RegField;
+      Name => "IcsSlice2InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests IcsSlice2Interrupt interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F9,E10)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    IcsSlice3InterruptTest => { #Structure Type: RegField;
+      Name => "IcsSlice3InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests IcsSlice3Interrupt interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F10,E11)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    IcsSlice4InterruptTest => { #Structure Type: RegField;
+      Name => "IcsSlice4InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests IcsSlice4Interrupt interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F11,E12)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    IcsSlice5InterruptTest => { #Structure Type: RegField;
+      Name => "IcsSlice5InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests IcsSlice5Interrupt interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F12,E13)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    FilbSlice0InterruptTest => { #Structure Type: RegField;
+      Name => "FilbSlice0InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests FilbSlice0Interrupt interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F13,E14)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    FilbSlice1InterruptTest => { #Structure Type: RegField;
+      Name => "FilbSlice1InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests FilbSlice1Interrupt interrupt",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F14,E15)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    FilbSlice2InterruptTest => { #Structure Type: RegField;
+      Name => "FilbSlice2InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests FilbSlice2Interrupt interrupt",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F15,E16)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    FilbSlice3InterruptTest => { #Structure Type: RegField;
+      Name => "FilbSlice3InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests FilbSlice3Interrupt interrupt",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F16,E17)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    FilbSlice4InterruptTest => { #Structure Type: RegField;
+      Name => "FilbSlice4InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests FilbSlice4Interrupt interrupt",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F17,E18)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    FilbSlice5InterruptTest => { #Structure Type: RegField;
+      Name => "FilbSlice5InterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests FilbSlice5Interrupt interrupt",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F18,E19)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    dram_pack_pref_fifo_overfTest => { #Structure Type: RegField;
+      Name => "dram_pack_pref_fifo_overfTest",
+      RegMem => "RegField",
+      Description => "This field tests dram_pack_pref_fifo_overf interrupt",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F19,E20)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    dram_delete_pref_fifo_overfTest => { #Structure Type: RegField;
+      Name => "dram_delete_pref_fifo_overfTest",
+      RegMem => "RegField",
+      Description => "This field tests dram_delete_pref_fifo_overf interrupt",
+      Width => "1",
+      Position => "13", # Excel Formula: =calc_position(F20,E21)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  CounterReg => { #Structure Type: Reg;
+    Name => "CounterReg",
+    RegMem => "Reg",
+    Address => "103", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "TO BE REMOVED  - no one use it",
+    Width => "33", # Excel Formula: =calc_reg_width(E23:E25,F25)
+    Type => "External",
+    UsedBy => "CNT",
+    CounterAddress => { #Structure Type: RegField;
+      Name => "CounterAddress",
+      RegMem => "RegField",
+      Description => "unused",
+      Width => "12", # Excel Formula: =calc_field_width_define("ICS_DRAM_QNUM_WIDTH")
+      Position => "11:0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "External",
+    },
+    CounterData => { #Structure Type: RegField;
+      Name => "CounterData",
+      RegMem => "RegField",
+      Description => "unused",
+      Width => "20", # Excel Formula: =calc_field_width_define("ICS_DRAM_CNT_WIDTH")
+      Position => "31:12", # Excel Formula: =calc_position(F23,E24)
+      Type => "External",
+    },
+    Wr1Rd0 => { #Structure Type: RegField;
+      Name => "Wr1Rd0",
+      RegMem => "RegField",
+      Description => "unused",
+      Width => "1",
+      Position => "32", # Excel Formula: =calc_position(F24,E25)
+      Type => "External",
+    },
+  },
+  AlmostFullConf => { #Structure Type: Reg;
+    Name => "AlmostFullConf",
+    RegMem => "Reg",
+    Address => "104", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "Almost full onfiguration register
+This register was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+    Width => "48", # Excel Formula: =calc_reg_width(E27:E31,F31)
+    Type => "Config",
+    DecFifoAlmFullTh => { #Structure Type: RegField;
+      Name => "DecFifoAlmFullTh",
+      RegMem => "RegField",
+      Description => "dram count decrement fifo almost full threshold",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F26,E27,TRUE)
+      Type => "Config",
+      UsedBy => "DRAMCNT",
+      DefaultValue => "d8",
+    },
+    return_dram_context_alm_full_cfg => { #Structure Type: RegField;
+      Name => "return_dram_context_alm_full_cfg",
+      RegMem => "RegField",
+      Description => "return to dram pool fifo almost full threshold",
+      Width => "4",
+      Position => "7:4", # Excel Formula: =calc_position(F27,E28)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d8",
+    },
+    pre_ics_fifo_alm_full_cfg => { #Structure Type: RegField;
+      Name => "pre_ics_fifo_alm_full_cfg",
+      RegMem => "RegField",
+      Description => "prefetch dram context from dram pool to ics slice fifo almost full threshold",
+      Width => "3",
+      Position => "10:8", # Excel Formula: =calc_position(F28,E29)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d2",
+    },
+    cbt_alm_full_cfg => { #Structure Type: RegField;
+      Name => "cbt_alm_full_cfg",
+      RegMem => "RegField",
+      Description => "CBT from ICS to EGR of dram slice threshold",
+      Width => "5",
+      Position => "15:11", # Excel Formula: =calc_position(F29,E30)
+      Type => "Config",
+      UsedBy => "DRAMARB",
+      DefaultValue => "d0",
+    },
+    global_sms_data_above_th => { #Structure Type: RegField;
+      Name => "global_sms_data_above_th",
+      RegMem => "RegField",
+      Description => "unused",
+      Width => "32",
+      Position => "47:16", # Excel Formula: =calc_position(F30,E31)
+      Type => "Config",
+      UsedBy => "DRAM",
+      DefaultValue => "d999999",
+    },
+  },
+  FifosDebugReg => { #Structure Type: Reg;
+    Name => "FifosDebugReg",
+    RegMem => "Reg",
+    Address => "105", # Excel Formula: =calc_reg_address(C26,A26,G26)
+    Width => "6", # Excel Formula: =calc_reg_width(E33:E33,F33)
+    Type => "ReadOnly",
+    cbt_credit_count => { #Structure Type: RegField;
+      Name => "cbt_credit_count",
+      RegMem => "RegField",
+      Description => "credit count of the CBT from ICS to EGR of dram slice",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F32,E33,TRUE)
+      Type => "Status",
+      UsedBy => "DRAMARB",
+    },
+  },
+  DramPoolFbmConf => { #Structure Type: Reg;
+    Name => "DramPoolFbmConf",
+    RegMem => "Reg",
+    Address => "106", # Excel Formula: =calc_reg_address(C32,A32,G32)
+    Description => "This register was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+    Width => "77", # Excel Formula: =calc_reg_width(E35:E36,F36)
+    Type => "Config",
+    DramPoolFbmTotalFreeBuf => { #Structure Type: RegField;
+      Name => "DramPoolFbmTotalFreeBuf",
+      RegMem => "RegField",
+      Description => "Total number of free buffers in the context allocation free buffer manager",
+      Width => "13", # Excel Formula: =calc_field_width_define("CONTEXT_WIDTH") +1
+      Position => "12:0", # Excel Formula: =calc_position(F34,E35,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d4096",
+    },
+    DramPoolFbmNotEmptyEntry => { #Structure Type: RegField;
+      Name => "DramPoolFbmNotEmptyEntry",
+      RegMem => "RegField",
+      Description => "Per entry of contextfbmBmp : '1' -this entry contains at least one free buffer",
+      Width => "64", # Excel Formula: =K69
+      Position => "76:13", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "hFFFF_FFFF_FFFF_FFFF",
+    },
+  },
+  DebugReg => { #Structure Type: Reg;
+    Name => "DebugReg",
+    RegMem => "Reg",
+    Address => "107", # Excel Formula: =calc_reg_address(C34,A34,G34)
+    Description => "This register was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+    Width => "1", # Excel Formula: =calc_reg_width(E38:E38,F38)
+    Type => "Config",
+    EvictEnWhenEligMeterAbove => { #Structure Type: RegField;
+      Name => "EvictEnWhenEligMeterAbove",
+      RegMem => "RegField",
+      Description => "When '1' enable evict to dram even if the eligible meter is abothe threshold",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F37,E38,TRUE)
+      Type => "Config",
+      UsedBy => "DRAMARB",
+      DefaultValue => "d0",
+    },
+  },
+  FifoStatusReg0 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 14;
+    Name => "FifoStatusReg[6]",
+    RegMem => "Reg",
+    Address => "108", # Excel Formula: =calc_reg_address(C37,A37,G37)
+    Description => "Status",
+    Width => "24", # Excel Formula: =calc_reg_width(E40:E44,F44)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "6",
+    ArrayIndex => "0",
+    DecFifoStatus0 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 14;
+      Name => "DecFifoStatus[n]",
+      RegMem => "RegField",
+      Description => "dram count decrement fifo status",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F39,E40,TRUE)
+      Type => "Status",
+      UsedBy => "DRAMCNT",
+    },
+    return_dram_context_status0 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 27;
+      Name => "return_dram_context_status[n]",
+      RegMem => "RegField",
+      Description => "return to dram pool fifo status",
+      Width => "5",
+      Position => "9:5", # Excel Formula: =calc_position(F40,E41)
+      Type => "Status",
+      UsedBy => "POOL",
+    },
+    pre_ics_fifo_status0 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "pre_ics_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "prefetch dram context from dram pool to ics slice fifo status",
+      Width => "4",
+      Position => "13:10", # Excel Formula: =calc_position(F41,E42)
+      Type => "Status",
+      UsedBy => "POOL",
+    },
+    dram_pack_pref_fifo_status0 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 27;
+      Name => "dram_pack_pref_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "dram pack fifo status",
+      Width => "5",
+      Position => "18:14", # Excel Formula: =calc_position(F42,E43)
+      Type => "Status",
+      UsedBy => "PREF",
+    },
+    dram_delete_pref_fifo_status0 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 29;
+      Name => "dram_delete_pref_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "dram delete fifo status",
+      Width => "5",
+      Position => "23:19", # Excel Formula: =calc_position(F43,E44)
+      Type => "Status",
+      UsedBy => "PREF",
+    },
+  },
+  FifoStatusReg1 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 14;
+    Name => "FifoStatusReg[6]",
+    RegMem => "Reg",
+    Address => "109",
+    Description => "Status",
+    Width => "24", # Excel Formula: =calc_reg_width(E40:E44,F44)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "6",
+    ArrayIndex => "1",
+    DecFifoStatus1 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 14;
+      Name => "DecFifoStatus[n]",
+      RegMem => "RegField",
+      Description => "dram count decrement fifo status",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F39,E40,TRUE)
+      Type => "Status",
+      UsedBy => "DRAMCNT",
+    },
+    return_dram_context_status1 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 27;
+      Name => "return_dram_context_status[n]",
+      RegMem => "RegField",
+      Description => "return to dram pool fifo status",
+      Width => "5",
+      Position => "9:5", # Excel Formula: =calc_position(F40,E41)
+      Type => "Status",
+      UsedBy => "POOL",
+    },
+    pre_ics_fifo_status1 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 20;
+      Name => "pre_ics_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "prefetch dram context from dram pool to ics slice fifo status",
+      Width => "4",
+      Position => "13:10", # Excel Formula: =calc_position(F41,E42)
+      Type => "Status",
+      UsedBy => "POOL",
+    },
+    dram_pack_pref_fifo_status1 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 27;
+      Name => "dram_pack_pref_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "dram pack fifo status",
+      Width => "5",
+      Position => "18:14", # Excel Formula: =calc_position(F42,E43)
+      Type => "Status",
+      UsedBy => "PREF",
+    },
+    dram_delete_pref_fifo_status1 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 29;
+      Name => "dram_delete_pref_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "dram delete fifo status",
+      Width => "5",
+      Position => "23:19", # Excel Formula: =calc_position(F43,E44)
+      Type => "Status",
+      UsedBy => "PREF",
+    },
+  },
+  FifoStatusReg2 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 14;
+    Name => "FifoStatusReg[6]",
+    RegMem => "Reg",
+    Address => "10A",
+    Description => "Status",
+    Width => "24", # Excel Formula: =calc_reg_width(E40:E44,F44)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "6",
+    ArrayIndex => "2",
+    DecFifoStatus2 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 14;
+      Name => "DecFifoStatus[n]",
+      RegMem => "RegField",
+      Description => "dram count decrement fifo status",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F39,E40,TRUE)
+      Type => "Status",
+      UsedBy => "DRAMCNT",
+    },
+    return_dram_context_status2 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 27;
+      Name => "return_dram_context_status[n]",
+      RegMem => "RegField",
+      Description => "return to dram pool fifo status",
+      Width => "5",
+      Position => "9:5", # Excel Formula: =calc_position(F40,E41)
+      Type => "Status",
+      UsedBy => "POOL",
+    },
+    pre_ics_fifo_status2 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 20;
+      Name => "pre_ics_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "prefetch dram context from dram pool to ics slice fifo status",
+      Width => "4",
+      Position => "13:10", # Excel Formula: =calc_position(F41,E42)
+      Type => "Status",
+      UsedBy => "POOL",
+    },
+    dram_pack_pref_fifo_status2 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 27;
+      Name => "dram_pack_pref_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "dram pack fifo status",
+      Width => "5",
+      Position => "18:14", # Excel Formula: =calc_position(F42,E43)
+      Type => "Status",
+      UsedBy => "PREF",
+    },
+    dram_delete_pref_fifo_status2 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 29;
+      Name => "dram_delete_pref_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "dram delete fifo status",
+      Width => "5",
+      Position => "23:19", # Excel Formula: =calc_position(F43,E44)
+      Type => "Status",
+      UsedBy => "PREF",
+    },
+  },
+  FifoStatusReg3 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 14;
+    Name => "FifoStatusReg[6]",
+    RegMem => "Reg",
+    Address => "10B",
+    Description => "Status",
+    Width => "24", # Excel Formula: =calc_reg_width(E40:E44,F44)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "6",
+    ArrayIndex => "3",
+    DecFifoStatus3 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 14;
+      Name => "DecFifoStatus[n]",
+      RegMem => "RegField",
+      Description => "dram count decrement fifo status",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F39,E40,TRUE)
+      Type => "Status",
+      UsedBy => "DRAMCNT",
+    },
+    return_dram_context_status3 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 27;
+      Name => "return_dram_context_status[n]",
+      RegMem => "RegField",
+      Description => "return to dram pool fifo status",
+      Width => "5",
+      Position => "9:5", # Excel Formula: =calc_position(F40,E41)
+      Type => "Status",
+      UsedBy => "POOL",
+    },
+    pre_ics_fifo_status3 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 20;
+      Name => "pre_ics_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "prefetch dram context from dram pool to ics slice fifo status",
+      Width => "4",
+      Position => "13:10", # Excel Formula: =calc_position(F41,E42)
+      Type => "Status",
+      UsedBy => "POOL",
+    },
+    dram_pack_pref_fifo_status3 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 27;
+      Name => "dram_pack_pref_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "dram pack fifo status",
+      Width => "5",
+      Position => "18:14", # Excel Formula: =calc_position(F42,E43)
+      Type => "Status",
+      UsedBy => "PREF",
+    },
+    dram_delete_pref_fifo_status3 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 29;
+      Name => "dram_delete_pref_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "dram delete fifo status",
+      Width => "5",
+      Position => "23:19", # Excel Formula: =calc_position(F43,E44)
+      Type => "Status",
+      UsedBy => "PREF",
+    },
+  },
+  FifoStatusReg4 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 14;
+    Name => "FifoStatusReg[6]",
+    RegMem => "Reg",
+    Address => "10C",
+    Description => "Status",
+    Width => "24", # Excel Formula: =calc_reg_width(E40:E44,F44)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "6",
+    ArrayIndex => "4",
+    DecFifoStatus4 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 14;
+      Name => "DecFifoStatus[n]",
+      RegMem => "RegField",
+      Description => "dram count decrement fifo status",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F39,E40,TRUE)
+      Type => "Status",
+      UsedBy => "DRAMCNT",
+    },
+    return_dram_context_status4 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 27;
+      Name => "return_dram_context_status[n]",
+      RegMem => "RegField",
+      Description => "return to dram pool fifo status",
+      Width => "5",
+      Position => "9:5", # Excel Formula: =calc_position(F40,E41)
+      Type => "Status",
+      UsedBy => "POOL",
+    },
+    pre_ics_fifo_status4 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 20;
+      Name => "pre_ics_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "prefetch dram context from dram pool to ics slice fifo status",
+      Width => "4",
+      Position => "13:10", # Excel Formula: =calc_position(F41,E42)
+      Type => "Status",
+      UsedBy => "POOL",
+    },
+    dram_pack_pref_fifo_status4 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 27;
+      Name => "dram_pack_pref_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "dram pack fifo status",
+      Width => "5",
+      Position => "18:14", # Excel Formula: =calc_position(F42,E43)
+      Type => "Status",
+      UsedBy => "PREF",
+    },
+    dram_delete_pref_fifo_status4 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 29;
+      Name => "dram_delete_pref_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "dram delete fifo status",
+      Width => "5",
+      Position => "23:19", # Excel Formula: =calc_position(F43,E44)
+      Type => "Status",
+      UsedBy => "PREF",
+    },
+  },
+  FifoStatusReg5 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 14;
+    Name => "FifoStatusReg[6]",
+    RegMem => "Reg",
+    Address => "10D",
+    Description => "Status",
+    Width => "24", # Excel Formula: =calc_reg_width(E40:E44,F44)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "6",
+    ArrayIndex => "5",
+    DecFifoStatus5 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 14;
+      Name => "DecFifoStatus[n]",
+      RegMem => "RegField",
+      Description => "dram count decrement fifo status",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F39,E40,TRUE)
+      Type => "Status",
+      UsedBy => "DRAMCNT",
+    },
+    return_dram_context_status5 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 27;
+      Name => "return_dram_context_status[n]",
+      RegMem => "RegField",
+      Description => "return to dram pool fifo status",
+      Width => "5",
+      Position => "9:5", # Excel Formula: =calc_position(F40,E41)
+      Type => "Status",
+      UsedBy => "POOL",
+    },
+    pre_ics_fifo_status5 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 20;
+      Name => "pre_ics_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "prefetch dram context from dram pool to ics slice fifo status",
+      Width => "4",
+      Position => "13:10", # Excel Formula: =calc_position(F41,E42)
+      Type => "Status",
+      UsedBy => "POOL",
+    },
+    dram_pack_pref_fifo_status5 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 27;
+      Name => "dram_pack_pref_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "dram pack fifo status",
+      Width => "5",
+      Position => "18:14", # Excel Formula: =calc_position(F42,E43)
+      Type => "Status",
+      UsedBy => "PREF",
+    },
+    dram_delete_pref_fifo_status5 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 29;
+      Name => "dram_delete_pref_fifo_status[n]",
+      RegMem => "RegField",
+      Description => "dram delete fifo status",
+      Width => "5",
+      Position => "23:19", # Excel Formula: =calc_position(F43,E44)
+      Type => "Status",
+      UsedBy => "PREF",
+    },
+  },
+  DramWriteMeter => { #Structure Type: Reg;
+    Name => "DramWriteMeter",
+    RegMem => "Reg",
+    Address => "10E", # Excel Formula: =calc_reg_address(C39,A39,G39)
+    Description => "control eviction of new queues to dram
+This register was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+    Width => "112", # Excel Formula: =calc_reg_width(E46:E49,F49)
+    Type => "Config",
+    DramWriteMeterRate => { #Structure Type: RegField;
+      Name => "DramWriteMeterRate",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+      Type => "Config",
+      UsedBy => "DRAM",
+      DefaultValue => "d1",
+    },
+    DramWriteMeterIncValue => { #Structure Type: RegField;
+      Name => "DramWriteMeterIncValue",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F46,E47)
+      Type => "Config",
+      UsedBy => "DRAM",
+      DefaultValue => "d1",
+    },
+    DramWriteMeterMaxBucket => { #Structure Type: RegField;
+      Name => "DramWriteMeterMaxBucket",
+      RegMem => "RegField",
+      Width => "40",
+      Position => "71:32", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "DRAM",
+      DefaultValue => "h100000",
+    },
+    DramWriteMeterMaxBucketTh => { #Structure Type: RegField;
+      Name => "DramWriteMeterMaxBucketTh",
+      RegMem => "RegField",
+      Width => "40",
+      Position => "111:72", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "DRAM",
+      DefaultValue => "h80000",
+    },
+  },
+  DramWriteEligibleMeter => { #Structure Type: Reg;
+    Name => "DramWriteEligibleMeter",
+    RegMem => "Reg",
+    Address => "10F", # Excel Formula: =calc_reg_address(C45,A45,G45)
+    Description => "control the rate of traffic to the dram- bucket size ~4MB
+rate is 50% - epsilon (on large time average - large bucket to allow bursts)
+This register was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+    Width => "112", # Excel Formula: =calc_reg_width(E51:E54,F54)
+    Type => "Config",
+    DramWriteEligMeterRate => { #Structure Type: RegField;
+      Name => "DramWriteEligMeterRate",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F50,E51,TRUE)
+      Type => "Config",
+      UsedBy => "DRAM",
+      DefaultValue => "d1",
+    },
+    DramWriteEligMeterIncValue => { #Structure Type: RegField;
+      Name => "DramWriteEligMeterIncValue",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F51,E52)
+      Type => "Config",
+      UsedBy => "DRAM",
+      DefaultValue => "d1",
+    },
+    DramWriteEligMeterMaxBucket => { #Structure Type: RegField;
+      Name => "DramWriteEligMeterMaxBucket",
+      RegMem => "RegField",
+      Width => "40",
+      Position => "71:32", # Excel Formula: =calc_position(F52,E53)
+      Type => "Config",
+      UsedBy => "DRAM",
+      DefaultValue => "h40000000",
+    },
+    DramWriteEligMeterMaxBucketTh => { #Structure Type: RegField;
+      Name => "DramWriteEligMeterMaxBucketTh",
+      RegMem => "RegField",
+      Width => "40",
+      Position => "111:72", # Excel Formula: =calc_position(F53,E54)
+      Type => "Config",
+      UsedBy => "DRAM",
+      DefaultValue => "h10000000",
+    },
+  },
+  DramDiscardMeter => { #Structure Type: Reg;
+    Name => "DramDiscardMeter",
+    RegMem => "Reg",
+    Address => "110", # Excel Formula: =calc_reg_address(C50,A50,G50)
+    Description => "may decide that packets targetted to the dram are discarded- rate is 50% - epsillon - the idea is to limit the burst allowed by DramWriteEligiblleMeter
+This register was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+    Width => "112", # Excel Formula: =calc_reg_width(E56:E59,F59)
+    Type => "Config",
+    DramDiscardMeterRate => { #Structure Type: RegField;
+      Name => "DramDiscardMeterRate",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F55,E56,TRUE)
+      Type => "Config",
+      UsedBy => "DRAM",
+      DefaultValue => "d16",
+    },
+    DramDiscardMeterIncValue => { #Structure Type: RegField;
+      Name => "DramDiscardMeterIncValue",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F56,E57)
+      Type => "Config",
+      UsedBy => "DRAM",
+      DefaultValue => "d1",
+    },
+    DramDiscardMeterMaxBucket => { #Structure Type: RegField;
+      Name => "DramDiscardMeterMaxBucket",
+      RegMem => "RegField",
+      Width => "40",
+      Position => "71:32", # Excel Formula: =calc_position(F57,E58)
+      Type => "Config",
+      UsedBy => "DRAM",
+      DefaultValue => "h100000",
+    },
+    DramDiscardMeterMaxBucketTh => { #Structure Type: RegField;
+      Name => "DramDiscardMeterMaxBucketTh",
+      RegMem => "RegField",
+      Width => "40",
+      Position => "111:72", # Excel Formula: =calc_position(F58,E59)
+      Type => "Config",
+      UsedBy => "DRAM",
+      DefaultValue => "h80000",
+    },
+  },
+  InternalFifoAlmFull => { #Structure Type: Reg;
+    Name => "InternalFifoAlmFull",
+    RegMem => "Reg",
+    Address => "111", # Excel Formula: =calc_reg_address(C55,A55,G55)
+    Description => "Packing parameters
+This register was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+    Width => "8", # Excel Formula: =calc_reg_width(E61:E62,F62)
+    Type => "Config",
+    DramPackPrefAlmFull => { #Structure Type: RegField;
+      Name => "DramPackPrefAlmFull",
+      RegMem => "RegField",
+      Description => "dram pack fifo almost full threshold",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F60,E61,TRUE)
+      Type => "Config",
+      UsedBy => "DRAM",
+      DefaultValue => "d4",
+    },
+    DramDelPrefAlmFull => { #Structure Type: RegField;
+      Name => "DramDelPrefAlmFull",
+      RegMem => "RegField",
+      Description => "dram delete fifo almost full threshold",
+      Width => "4",
+      Position => "7:4", # Excel Formula: =calc_position(F61,E62)
+      Type => "Config",
+      UsedBy => "DRAM",
+      DefaultValue => "d3",
+    },
+  },
+  DramContextPoolAlmEmpty => { #Structure Type: Reg;
+    Name => "DramContextPoolAlmEmpty",
+    RegMem => "Reg",
+    Address => "112", # Excel Formula: =calc_reg_address(C60,A60,G60)
+    Description => "dram context pool almost empty threshold
+This register was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+    Width => "12", # Excel Formula: =calc_reg_width(E64:E64,F64)
+    Type => "Config",
+    DramContextPoolAlmEmptyTh => { #Structure Type: RegField;
+      Name => "DramContextPoolAlmEmptyTh",
+      RegMem => "RegField",
+      Description => "Threshold of dram context pool size - below this threshold send indication to voq cgm",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F63,E64,TRUE)
+      Type => "Config",
+      UsedBy => "DRAM",
+      DefaultValue => "d1000",
+    },
+  },
+  DramPoolStat => { #Structure Type: Reg;
+    Name => "DramPoolStat",
+    RegMem => "Reg",
+    Address => "113", # Excel Formula: =calc_reg_address(C63,A63,G63)
+    Description => "Status of the dram context pool",
+    Width => "13", # Excel Formula: =calc_reg_width(E66:E66,F66)
+    Type => "ReadOnly",
+    DramPoolStatus => { #Structure Type: RegField;
+      Name => "DramPoolStatus",
+      RegMem => "RegField",
+      Width => "13", # Excel Formula: =1+calc_field_width_define("DRAM_QUEUE_WIDTH")
+      Position => "12:0", # Excel Formula: =calc_position(F65,E66,TRUE)
+      Type => "Status",
+      UsedBy => "DRAM",
+    },
+  },
+  SmsBytesDirectedToDramReg => { #Structure Type: Reg;
+    Name => "SmsBytesDirectedToDramReg",
+    RegMem => "Reg",
+    Address => "114", # Excel Formula: =calc_reg_address(C65,A65,G65)
+    Description => "unused",
+    Width => "32", # Excel Formula: =calc_reg_width(E68:E68,F68)
+    Type => "ReadOnly",
+    SmsBytesDirectedToDram => { #Structure Type: RegField;
+      Name => "SmsBytesDirectedToDram",
+      RegMem => "RegField",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Status",
+      UsedBy => "DRAM",
+    },
+  },
+  DramContextPool => { #Structure Type: Mem;
+    Name => "DramContextPool",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "dram context pool memory",
+    Width => "72", # Excel Formula: =calc_mem_width(E70:E70,M69,F70,-1)
+    Type => "Dynamic",
+    UsedBy => "POOL",
+    MemEntries => "64", # Excel Formula: =calc_field_width_define("NUM_DRAM_QUEUES")/E70
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleWriteBeforeProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,CpuReadEccDisable=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    Comments => "Note that FBM memory must be eq3 ",
+    MemLogicalWidth => "64",
+    DramContextPoolBmp => { #Structure Type: MemField;
+      Name => "DramContextPoolBmp",
+      RegMem => "MemField",
+      Width => "64",
+      Position => "63:0", # Excel Formula: =calc_position(F69,E70,TRUE)
+    },
+  },
+  DramDecCnt0 => { #Structure Type: Mem; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 11;
+    Name => "DramDecCnt[6]",
+    RegMem => "Mem",
+    Address => "200000", # Excel Formula: =calc_mem_address(C69,A69,G71,L71)
+    Description => "dram count decrement memory",
+    Width => "26", # Excel Formula: =calc_mem_width(E72:E72,M71,F72,-1)
+    Type => "Dynamic",
+    UsedBy => "CNTPIPE",
+    MemEntries => "4096", # Excel Formula: =calc_field_width_define("NUM_DRAM_QUEUES")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    ArrayLength => "6",
+    ArrayIndex => "0",
+    MemLogicalWidth => "20",
+    DramDecCntData0 => { #Structure Type: MemField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 15;
+      Name => "DramDecCntData[n]",
+      RegMem => "MemField",
+      Width => "20", # Excel Formula: =calc_field_width_define("ICS_DRAM_CNT_WIDTH")
+      Position => "19:0", # Excel Formula: =calc_position(F71,E72,TRUE)
+    },
+  },
+  DramDecCnt1 => { #Structure Type: Mem; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 11;
+    Name => "DramDecCnt[6]",
+    RegMem => "Mem",
+    Address => "300000",
+    Description => "dram count decrement memory",
+    Width => "26", # Excel Formula: =calc_mem_width(E72:E72,M71,F72,-1)
+    Type => "Dynamic",
+    UsedBy => "CNTPIPE",
+    MemEntries => "4096", # Excel Formula: =calc_field_width_define("NUM_DRAM_QUEUES")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    ArrayLength => "6",
+    ArrayIndex => "1",
+    MemLogicalWidth => "20",
+    DramDecCntData1 => { #Structure Type: MemField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 15;
+      Name => "DramDecCntData[n]",
+      RegMem => "MemField",
+      Width => "20", # Excel Formula: =calc_field_width_define("ICS_DRAM_CNT_WIDTH")
+      Position => "19:0", # Excel Formula: =calc_position(F71,E72,TRUE)
+    },
+  },
+  DramDecCnt2 => { #Structure Type: Mem; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 11;
+    Name => "DramDecCnt[6]",
+    RegMem => "Mem",
+    Address => "400000",
+    Description => "dram count decrement memory",
+    Width => "26", # Excel Formula: =calc_mem_width(E72:E72,M71,F72,-1)
+    Type => "Dynamic",
+    UsedBy => "CNTPIPE",
+    MemEntries => "4096", # Excel Formula: =calc_field_width_define("NUM_DRAM_QUEUES")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    ArrayLength => "6",
+    ArrayIndex => "2",
+    MemLogicalWidth => "20",
+    DramDecCntData2 => { #Structure Type: MemField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 15;
+      Name => "DramDecCntData[n]",
+      RegMem => "MemField",
+      Width => "20", # Excel Formula: =calc_field_width_define("ICS_DRAM_CNT_WIDTH")
+      Position => "19:0", # Excel Formula: =calc_position(F71,E72,TRUE)
+    },
+  },
+  DramDecCnt3 => { #Structure Type: Mem; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 11;
+    Name => "DramDecCnt[6]",
+    RegMem => "Mem",
+    Address => "500000",
+    Description => "dram count decrement memory",
+    Width => "26", # Excel Formula: =calc_mem_width(E72:E72,M71,F72,-1)
+    Type => "Dynamic",
+    UsedBy => "CNTPIPE",
+    MemEntries => "4096", # Excel Formula: =calc_field_width_define("NUM_DRAM_QUEUES")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    ArrayLength => "6",
+    ArrayIndex => "3",
+    MemLogicalWidth => "20",
+    DramDecCntData3 => { #Structure Type: MemField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 15;
+      Name => "DramDecCntData[n]",
+      RegMem => "MemField",
+      Width => "20", # Excel Formula: =calc_field_width_define("ICS_DRAM_CNT_WIDTH")
+      Position => "19:0", # Excel Formula: =calc_position(F71,E72,TRUE)
+    },
+  },
+  DramDecCnt4 => { #Structure Type: Mem; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 11;
+    Name => "DramDecCnt[6]",
+    RegMem => "Mem",
+    Address => "600000",
+    Description => "dram count decrement memory",
+    Width => "26", # Excel Formula: =calc_mem_width(E72:E72,M71,F72,-1)
+    Type => "Dynamic",
+    UsedBy => "CNTPIPE",
+    MemEntries => "4096", # Excel Formula: =calc_field_width_define("NUM_DRAM_QUEUES")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    ArrayLength => "6",
+    ArrayIndex => "4",
+    MemLogicalWidth => "20",
+    DramDecCntData4 => { #Structure Type: MemField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 15;
+      Name => "DramDecCntData[n]",
+      RegMem => "MemField",
+      Width => "20", # Excel Formula: =calc_field_width_define("ICS_DRAM_CNT_WIDTH")
+      Position => "19:0", # Excel Formula: =calc_position(F71,E72,TRUE)
+    },
+  },
+  DramDecCnt5 => { #Structure Type: Mem; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 11;
+    Name => "DramDecCnt[6]",
+    RegMem => "Mem",
+    Address => "700000",
+    Description => "dram count decrement memory",
+    Width => "26", # Excel Formula: =calc_mem_width(E72:E72,M71,F72,-1)
+    Type => "Dynamic",
+    UsedBy => "CNTPIPE",
+    MemEntries => "4096", # Excel Formula: =calc_field_width_define("NUM_DRAM_QUEUES")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    ArrayLength => "6",
+    ArrayIndex => "5",
+    MemLogicalWidth => "20",
+    DramDecCntData5 => { #Structure Type: MemField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 15;
+      Name => "DramDecCntData[n]",
+      RegMem => "MemField",
+      Width => "20", # Excel Formula: =calc_field_width_define("ICS_DRAM_CNT_WIDTH")
+      Position => "19:0", # Excel Formula: =calc_position(F71,E72,TRUE)
+    },
+  },
+  DramIncCnt0 => { #Structure Type: Mem; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 11;
+    Name => "DramIncCnt[6]",
+    RegMem => "Mem",
+    Address => "800000", # Excel Formula: =calc_mem_address(C71,A71,G73,L73)
+    Description => "dram count increment memory",
+    Width => "26", # Excel Formula: =calc_mem_width(E74:E74,M73,F74,-1)
+    Type => "Dynamic",
+    UsedBy => "cntinc: Write,cntinc: Read0 ,cntdec: Read1",
+    MemEntries => "4096", # Excel Formula: =calc_field_width_define("NUM_DRAM_QUEUES")
+    MemWrapper => "2R1W Fast Write",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    ArrayLength => "6",
+    ArrayIndex => "0",
+    MemLogicalWidth => "20",
+    DramIncCntData0 => { #Structure Type: MemField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 15;
+      Name => "DramIncCntData[n]",
+      RegMem => "MemField",
+      Width => "20", # Excel Formula: =calc_field_width_define("ICS_DRAM_CNT_WIDTH")
+      Position => "19:0", # Excel Formula: =calc_position(F73,E74,TRUE)
+    },
+  },
+  DramIncCnt1 => { #Structure Type: Mem; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 11;
+    Name => "DramIncCnt[6]",
+    RegMem => "Mem",
+    Address => "900000",
+    Description => "dram count increment memory",
+    Width => "26", # Excel Formula: =calc_mem_width(E74:E74,M73,F74,-1)
+    Type => "Dynamic",
+    UsedBy => "cntinc: Write,cntinc: Read0 ,cntdec: Read1",
+    MemEntries => "4096", # Excel Formula: =calc_field_width_define("NUM_DRAM_QUEUES")
+    MemWrapper => "2R1W Fast Write",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    ArrayLength => "6",
+    ArrayIndex => "1",
+    MemLogicalWidth => "20",
+    DramIncCntData1 => { #Structure Type: MemField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 15;
+      Name => "DramIncCntData[n]",
+      RegMem => "MemField",
+      Width => "20", # Excel Formula: =calc_field_width_define("ICS_DRAM_CNT_WIDTH")
+      Position => "19:0", # Excel Formula: =calc_position(F73,E74,TRUE)
+    },
+  },
+  DramIncCnt2 => { #Structure Type: Mem; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 11;
+    Name => "DramIncCnt[6]",
+    RegMem => "Mem",
+    Address => "A00000",
+    Description => "dram count increment memory",
+    Width => "26", # Excel Formula: =calc_mem_width(E74:E74,M73,F74,-1)
+    Type => "Dynamic",
+    UsedBy => "cntinc: Write,cntinc: Read0 ,cntdec: Read1",
+    MemEntries => "4096", # Excel Formula: =calc_field_width_define("NUM_DRAM_QUEUES")
+    MemWrapper => "2R1W Fast Write",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    ArrayLength => "6",
+    ArrayIndex => "2",
+    MemLogicalWidth => "20",
+    DramIncCntData2 => { #Structure Type: MemField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 15;
+      Name => "DramIncCntData[n]",
+      RegMem => "MemField",
+      Width => "20", # Excel Formula: =calc_field_width_define("ICS_DRAM_CNT_WIDTH")
+      Position => "19:0", # Excel Formula: =calc_position(F73,E74,TRUE)
+    },
+  },
+  DramIncCnt3 => { #Structure Type: Mem; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 11;
+    Name => "DramIncCnt[6]",
+    RegMem => "Mem",
+    Address => "B00000",
+    Description => "dram count increment memory",
+    Width => "26", # Excel Formula: =calc_mem_width(E74:E74,M73,F74,-1)
+    Type => "Dynamic",
+    UsedBy => "cntinc: Write,cntinc: Read0 ,cntdec: Read1",
+    MemEntries => "4096", # Excel Formula: =calc_field_width_define("NUM_DRAM_QUEUES")
+    MemWrapper => "2R1W Fast Write",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    ArrayLength => "6",
+    ArrayIndex => "3",
+    MemLogicalWidth => "20",
+    DramIncCntData3 => { #Structure Type: MemField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 15;
+      Name => "DramIncCntData[n]",
+      RegMem => "MemField",
+      Width => "20", # Excel Formula: =calc_field_width_define("ICS_DRAM_CNT_WIDTH")
+      Position => "19:0", # Excel Formula: =calc_position(F73,E74,TRUE)
+    },
+  },
+  DramIncCnt4 => { #Structure Type: Mem; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 11;
+    Name => "DramIncCnt[6]",
+    RegMem => "Mem",
+    Address => "C00000",
+    Description => "dram count increment memory",
+    Width => "26", # Excel Formula: =calc_mem_width(E74:E74,M73,F74,-1)
+    Type => "Dynamic",
+    UsedBy => "cntinc: Write,cntinc: Read0 ,cntdec: Read1",
+    MemEntries => "4096", # Excel Formula: =calc_field_width_define("NUM_DRAM_QUEUES")
+    MemWrapper => "2R1W Fast Write",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    ArrayLength => "6",
+    ArrayIndex => "4",
+    MemLogicalWidth => "20",
+    DramIncCntData4 => { #Structure Type: MemField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 15;
+      Name => "DramIncCntData[n]",
+      RegMem => "MemField",
+      Width => "20", # Excel Formula: =calc_field_width_define("ICS_DRAM_CNT_WIDTH")
+      Position => "19:0", # Excel Formula: =calc_position(F73,E74,TRUE)
+    },
+  },
+  DramIncCnt5 => { #Structure Type: Mem; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 11;
+    Name => "DramIncCnt[6]",
+    RegMem => "Mem",
+    Address => "D00000",
+    Description => "dram count increment memory",
+    Width => "26", # Excel Formula: =calc_mem_width(E74:E74,M73,F74,-1)
+    Type => "Dynamic",
+    UsedBy => "cntinc: Write,cntinc: Read0 ,cntdec: Read1",
+    MemEntries => "4096", # Excel Formula: =calc_field_width_define("NUM_DRAM_QUEUES")
+    MemWrapper => "2R1W Fast Write",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    ArrayLength => "6",
+    ArrayIndex => "5",
+    MemLogicalWidth => "20",
+    DramIncCntData5 => { #Structure Type: MemField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 15;
+      Name => "DramIncCntData[n]",
+      RegMem => "MemField",
+      Width => "20", # Excel Formula: =calc_field_width_define("ICS_DRAM_CNT_WIDTH")
+      Position => "19:0", # Excel Formula: =calc_position(F73,E74,TRUE)
+    },
+  },
+};

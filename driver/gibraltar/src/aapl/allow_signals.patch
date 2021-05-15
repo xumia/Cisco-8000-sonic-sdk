@@ -1,0 +1,12 @@
+--- include/aapl.h        2018-01-30 19:24:43.000000000 +0200
++++ include/aapl.h.new    2018-03-05 11:40:48.241479328 +0200
+@@ -47,7 +47,7 @@
+ #define AAPL_ALLOW_GPIO_JTAG           1  /**< Set to 0 to remove the built-in GPIO based JTAG communication functions. */
+ #define AAPL_ALLOW_THREAD_SUPPORT      1  /**< Set to 1 to enable mutex locking for certain functions to help make AAPL more thread safe */
+ #define AAPL_ALLOW_ANSI_COLORS         1  /**< Set to 1 to enable ANSI color codes in log messages */
+-#define AAPL_ALLOW_SIGNALS             1  /**< Set to 1 to enable AAPL to trap SIGINT system signals */
++#define AAPL_ALLOW_SIGNALS             0  /**< Set to 1 to enable AAPL to trap SIGINT system signals */
+
+ /* Set value to 0 to disable corresponding feature support: */
+ #define AAPL_ENABLE_DIAG               1  /**< Enable diagnostics. */
+

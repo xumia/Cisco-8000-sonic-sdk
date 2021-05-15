@@ -1,0 +1,19 @@
+*** serdes/pmd.c	2019-04-16 13:08:00.000000000 -0700
+--- serdes/pmd.c_new	2019-08-22 14:54:02.945573000 -0700
+***************
+*** 105,111 ****
+      }
+      /* Configure Cl136 specified training behavior */
+      avago_spico_int(aapl,sbus_addr,0x3d,0x3008|lane);           /* Configure PRBS 13 pattern */
+!     avago_spico_int(aapl,sbus_addr,0x3d,0x4000|(seed*0x7ff));   /* Configure PRBS seed lower 11 bits */
+      avago_spico_int(aapl,sbus_addr,0x3d,0x4800|((seed>>11)&3)); /* Configure PRBS seed upper  2 bits */
+      avago_spico_int(aapl,sbus_addr,0x3d,0x2000|0x01);           /* Configure Repeating PRBS pattern */
+  }
+--- 105,111 ----
+      }
+      /* Configure Cl136 specified training behavior */
+      avago_spico_int(aapl,sbus_addr,0x3d,0x3008|lane);           /* Configure PRBS 13 pattern */
+!     avago_spico_int(aapl,sbus_addr,0x3d,0x4000|(seed&0x7ff));   /* Configure PRBS seed lower 11 bits */
+      avago_spico_int(aapl,sbus_addr,0x3d,0x4800|((seed>>11)&3)); /* Configure PRBS seed upper  2 bits */
+      avago_spico_int(aapl,sbus_addr,0x3d,0x2000|0x01);           /* Configure Repeating PRBS pattern */
+  }

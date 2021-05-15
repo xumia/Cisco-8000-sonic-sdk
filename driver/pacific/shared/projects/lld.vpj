@@ -1,0 +1,372 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
+<Project
+    Version="10.0"
+    VendorName="SlickEdit"
+    TemplateName="GNU C/C++"
+    WorkingDir=".">
+    <Config
+        Name="Debug"
+        Type="gnuc"
+        DebugCallbackName="gdb"
+        Version="1"
+        OutputFile="%bdlld.a"
+        CompilerConfigName="Latest Version">
+        <Menu>
+            <Target
+                Name="Compile"
+                MenuCaption="&amp;Compile"
+                Dialog="_gnuc_options_form Compile"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                OutputExts="*.o"
+                SaveOption="SaveCurrent"
+                RunFromDir="%rw">
+                <Exec CmdLine='g++ -c %xup  %defd -g -o "%bd%n%oe" %i "%f"'/>
+            </Target>
+            <Target
+                Name="Link"
+                MenuCaption="&amp;Link"
+                ShowOnMenu="Never"
+                Dialog="_gnuc_options_form Link"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveCurrent"
+                RunFromDir="%rw">
+                <Exec CmdLine='ar -rs %xup "%o" %f'/>
+            </Target>
+            <Target
+                Name="Build"
+                MenuCaption="&amp;Build"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw/..">
+                <Exec CmdLine="make %rn BUILD_TYPE=%bn"/>
+            </Target>
+            <Target
+                Name="Rebuild"
+                MenuCaption="&amp;Rebuild"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw/..">
+                <Exec CmdLine="make clean BUILD_TYPE=%bn ; make %rn BUILD_TYPE=%bn"/>
+            </Target>
+            <Target
+                Name="Debug"
+                MenuCaption="&amp;Debug"
+                Dialog="_gnuc_options_form Run/Debug"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveNone"
+                RunFromDir="%rw">
+                <Exec CmdLine=""/>
+            </Target>
+            <Target
+                Name="Execute"
+                MenuCaption="E&amp;xecute"
+                Dialog="_gnuc_options_form Run/Debug"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine=""/>
+            </Target>
+            <Target
+                Name="dash"
+                MenuCaption="-"
+                Deletable="0">
+                <Exec/>
+            </Target>
+            <Target
+                Name="GNU C Options"
+                MenuCaption="GNU C &amp;Options..."
+                ShowOnMenu="HideIfNoCmdLine"
+                Deletable="0"
+                SaveOption="SaveNone">
+                <Exec
+                    CmdLine="gnucoptions"
+                    Type="Slick-C"/>
+            </Target>
+        </Menu>
+        <Rules Name="Compile">
+            <Rule
+                InputExts="*.ada"
+                OutputExts="*.o"
+                LinkObject="1">
+                <Exec CmdLine='gnat -g -c -o "%bd%n.o" "%f"'/>
+            </Rule>
+            <Rule
+                InputExts="*.adb"
+                OutputExts="*.o"
+                LinkObject="1">
+                <Exec CmdLine='gnat -g -c -o "%bd%n.o" "%f"'/>
+            </Rule>
+            <Rule
+                InputExts="*.f"
+                OutputExts="*.o"
+                LinkObject="1">
+                <Exec CmdLine='gfortran -c -g -o "%bd%n.o" "%f"'/>
+            </Rule>
+            <Rule
+                InputExts="*.f90"
+                OutputExts="*.o"
+                LinkObject="1">
+                <Exec CmdLine='gfortran -c -g -o "%bd%n.o" "%f"'/>
+            </Rule>
+            <Rule
+                InputExts="*.d"
+                OutputExts="*.o"
+                LinkObject="1">
+                <Exec CmdLine='gdc -c -g -o "%bd%n.o" "%f"'/>
+            </Rule>
+        </Rules>
+        <List Name="GNUC Options">
+            <Item
+                Name="LinkerOutputType"
+                Value="StaticLibrary"/>
+        </List>
+    </Config>
+    <Config
+        Name="Release"
+        Type="gnuc"
+        DebugCallbackName="gdb"
+        Version="1"
+        OutputFile="%bdlld.a"
+        CompilerConfigName="Latest Version">
+        <Menu>
+            <Target
+                Name="Compile"
+                MenuCaption="&amp;Compile"
+                Dialog="_gnuc_options_form Compile"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                OutputExts="*.o"
+                SaveOption="SaveCurrent"
+                RunFromDir="%rw">
+                <Exec CmdLine='g++ -c %xup %defd -o "%bd%n%oe" %i "%f"'/>
+            </Target>
+            <Target
+                Name="Link"
+                MenuCaption="&amp;Link"
+                ShowOnMenu="Never"
+                Dialog="_gnuc_options_form Link"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveCurrent"
+                RunFromDir="%rw">
+                <Exec CmdLine='ar -rs %xup "%o" %f'/>
+            </Target>
+            <Target
+                Name="Build"
+                MenuCaption="&amp;Build"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw/..">
+                <Exec CmdLine="make %rn BUILD_TYPE=%bn"/>
+            </Target>
+            <Target
+                Name="Rebuild"
+                MenuCaption="&amp;Rebuild"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw/..">
+                <Exec CmdLine="make clean BUILD_TYPE=%bn ; make %rn BUILD_TYPE=%bn"/>
+            </Target>
+            <Target
+                Name="Debug"
+                MenuCaption="&amp;Debug"
+                Dialog="_gnuc_options_form Run/Debug"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveNone"
+                RunFromDir="%rw">
+                <Exec CmdLine=""/>
+            </Target>
+            <Target
+                Name="Execute"
+                MenuCaption="E&amp;xecute"
+                Dialog="_gnuc_options_form Run/Debug"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                Deletable="0"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine=""/>
+            </Target>
+            <Target
+                Name="dash"
+                MenuCaption="-"
+                Deletable="0">
+                <Exec/>
+            </Target>
+            <Target
+                Name="GNU C Options"
+                MenuCaption="GNU C &amp;Options..."
+                ShowOnMenu="HideIfNoCmdLine"
+                Deletable="0"
+                SaveOption="SaveNone">
+                <Exec
+                    CmdLine="gnucoptions"
+                    Type="Slick-C"/>
+            </Target>
+        </Menu>
+        <Rules Name="Compile">
+            <Rule
+                InputExts="*.ada"
+                OutputExts="*.o"
+                LinkObject="1">
+                <Exec CmdLine='gnat -O -c -o "%bd%n.o" "%f"'/>
+            </Rule>
+            <Rule
+                InputExts="*.adb"
+                OutputExts="*.o"
+                LinkObject="1">
+                <Exec CmdLine='gnat -O -c -o "%bd%n.o" "%f"'/>
+            </Rule>
+            <Rule
+                InputExts="*.f"
+                OutputExts="*.o"
+                LinkObject="1">
+                <Exec CmdLine='gfortran -O -g -o "%bd%n.o" "%f"'/>
+            </Rule>
+            <Rule
+                InputExts="*.f90"
+                OutputExts="*.o"
+                LinkObject="1">
+                <Exec CmdLine='gfortran -O -g -o "%bd%n.o" "%f"'/>
+            </Rule>
+            <Rule
+                InputExts="*.d"
+                OutputExts="*.o"
+                LinkObject="1">
+                <Exec CmdLine='gdc -c -g -o "%bd%n.o" "%f"'/>
+            </Rule>
+        </Rules>
+        <List Name="GNUC Options">
+            <Item
+                Name="LinkerOutputType"
+                Value="StaticLibrary"/>
+        </List>
+    </Config>
+    <Files>
+        <Folder
+            Name="Source Files"
+            Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go"
+            GUID="{75FE583F-9734-46CC-ACE7-9737A3CBECD4}">
+            <F
+                N="../src/lld/*.c"
+                Recurse="1"
+                Excludes=""/>
+            <F
+                N="../src/lld/*.cpp"
+                Recurse="1"
+                Excludes=""/>
+            <F
+                N="../src/lld/*.h"
+                Recurse="1"
+                Excludes=""/>
+        </Folder>
+        <Folder
+            Name="Header Files"
+            Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
+            GUID="{1BAAF9F2-20BD-40B2-A8D3-4490D0821B33}">
+            <F
+                N="../include/lld/*.c"
+                Recurse="1"
+                Excludes=""/>
+            <F
+                N="../include/lld/*.cpp"
+                Recurse="1"
+                Excludes=""/>
+            <F
+                N="../include/lld/*.h"
+                Recurse="1"
+                Excludes=""/>
+        </Folder>
+        <Folder
+            Name="Other Files"
+            Filters=""
+            GUID="{761C3370-6791-4B49-9B16-B230D7764380}">
+            <F N="../src/lld/*.py"/>
+            <F N="../src/lld/*.i"/>
+            <F N="../src/lld/*.json"/>
+            <F
+                N="../src/lld/Makefile*"
+                Recurse="1"/>
+            <F
+                N="%(SHARED_TO_ASIC_PATH)/out/noopt-debug/build/shared/src/lld/*.json"
+                Recurse="1"
+                Excludes=""/>
+            <F
+                N="%(SHARED_TO_ASIC_PATH)/out/noopt-debug/build/shared/src/lld/*.v"
+                Recurse="1"
+                Excludes=""/>
+            <F
+                N="%(SHARED_TO_ASIC_PATH)/test/lld/*.i"
+                Recurse="1"
+                Excludes=""/>
+            <F
+                N="%(SHARED_TO_ASIC_PATH)/test/lld/Makefile*"
+                Recurse="1"
+                Excludes=""/>
+            <F
+                N="../../../devices/*.json"
+                Recurse="1"
+                Excludes="leaba_defined/"/>
+
+
+        </Folder>
+        <Folder
+            Name="Auto-generated Files"
+            Filters=""
+            GUID="{D899EF84-CC9C-44D0-AB60-9B76166E54F3}">
+            <F
+                N="%(SHARED_TO_ASIC_PATH)/out/noopt-debug/build/shared/src/lld/*.c"
+                Recurse="1"
+                Excludes=""/>
+            <F
+                N="%(SHARED_TO_ASIC_PATH)/out/noopt-debug/build/shared/src/lld/*.cpp"
+                Recurse="1"
+                Excludes=""/>
+            <F
+                N="%(SHARED_TO_ASIC_PATH)/out/noopt-debug/build/shared/src/lld/*.h"
+                Recurse="1"
+                Excludes=""/>
+            <F
+                N="%(SHARED_TO_ASIC_PATH)/out/noopt-debug/build/shared/src/lld/*.i"
+                Recurse="1"
+                Excludes=""/>
+            <F
+                N="%(SHARED_TO_ASIC_PATH)/out/noopt-debug/build/test/lld/swig_wrap.cxx"
+                Recurse="1"
+                Excludes=""/>
+            <F
+                N="%(SHARED_TO_ASIC_PATH)/out/noopt-debug/build/shared/src/lld/swig_wrap.cxx"
+                Recurse="1"
+                Excludes=""/>
+        </Folder>
+        <Folder
+            Name="Test"
+            Filters=""
+            GUID="{58019636-E9ED-457E-9E07-148478140CEF}">
+            <F
+                N="%(SHARED_TO_ASIC_PATH)/test/lld/*.cpp"
+                Recurse="1"
+                Excludes=""/>
+            <F
+                N="%(SHARED_TO_ASIC_PATH)/test/lld/*.h"
+                Recurse="1"
+                Excludes=""/>
+            <F
+                N="%(SHARED_TO_ASIC_PATH)/test/lld/*.py"
+                Recurse="1"
+                Excludes=""/>
+        </Folder>
+    </Files>
+</Project>

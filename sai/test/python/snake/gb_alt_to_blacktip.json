@@ -1,0 +1,94 @@
+{
+    "Description": "GB ALT board snake test port configurations. All 100G ports. Test all qdd-ports. q56-p47 to blacktip IFG5[20] & [21]",
+    "traffic_gen_port": [
+        {
+            "pif": "0x508",
+            "Description": "Spirent Traffic Gen port 1/41 connected to gb_alt card P33, 2/1/8",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mtu_size": 9600,
+            "media_type": "COPPER",
+            "an": false
+        }
+    ],
+    "skipped_external_port2port":
+    [
+        {
+            "pif": [
+                "0x000", "0x001", "0x002", "0x003",
+                "0x004", "0x005", "0x006", "0x007",
+                "0x30c", "0x30d", "0x30e", "0x30f",
+                "0x308", "0x309", "0x30a", "0x30b",
+                "0x208", "0x209", "0x20a", "0x20b",
+                "0x20c", "0x20d", "0x20e", "0x20f",
+                "0x204", "0x205", "0x206", "0x207",
+                "0x200", "0x201", "0x202", "0x203"
+            ],
+            "Description": "Q56-p39 ~ p46, 4x 10G breakout Ports. Testing for 10G connection only, Not Connected. ",
+            "pif_counts": 1,
+            "speed": 10000,
+            "fc": "disable",
+            "fec": "NONE",
+            "mac_lpbk": "NONE",
+            "mtu_size": 9600,
+            "an": false
+        }
+    ], 
+    "external_port2port":
+    [
+        {
+            "pif": [
+                "0xa08", "0xa10", "0xa0c", "0xa14", "0x908", "0x80c", "0x90c", "0x808",
+                "0xb00", "0xb14", "0xb04", "0xb10", "0x708", "0x608", "0x70c", "0x60c",
+                "0x514", "0x504", "0x510", "0x500", "0x014", "0x00c", "0x010", "0x008",
+                "0x300", "0x214", "0x304", "0x210", "0x114", "0x100", "0x110", "0x104"
+            ],
+            "Description": "QDD-p1~p16, 4 lanes Ports, 100G. External port-to-port connection. Need 8 lanes cable.",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "NONE",
+            "mtu_size": 9600,
+            "an": false
+        },
+        {
+            "pif": ["0x10d", "0x10e"],
+            "Description": "Q56-p47, QSFP->4x SFP breakout cable. Connected to blacktip IFG5[20:21]. 0x10c and 0x10f are not connected.",
+            "pif_counts": 1,
+            "speed": 10000,
+            "fc": "disable",
+            "fec": "NONE",
+            "mac_lpbk": "NONE",
+            "mtu_size": 9600,
+            "an": false
+        },
+        {
+            "pif": [ "0x400", "0x108" ],
+            "Description": "Q56-p38 <-> Q56-p48, 4 lanes Ports, 100G. External port-to-port connection.",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "NONE",
+            "mtu_size": 9600,
+            "an": false
+        }
+    ],
+    "loopback_ports":
+    [
+        {
+            "pif": [ "0x610", "0x614", "0x700", "0x704" ],
+            "Description": "4 lanes Ports, 100G .These are the serdes loopback ports. For external loopback, use loopback modules and set mac_lpbk=NONE.",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "PHY",
+            "mtu_size": 9600,
+            "an": false
+        }
+    ]
+}

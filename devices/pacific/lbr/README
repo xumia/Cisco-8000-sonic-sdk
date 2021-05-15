@@ -1,0 +1,49 @@
+The following list details the source (revision and SVN path) for each of the LBR directories.
+
+
+mem_wrapper_data	-r33040 https://svn.leaba.local/leaba/branches/16nm_tc/16nm_tc/ASIC/design/mem_wrapper/data
+
+counters_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/counters/data
+dics_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/dics/data
+dmc_csms_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/dmc/csms/data
+dmc_frm_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/dmc/frm/data
+dmc_fte_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/dmc/fte/data
+dmc_mrb_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/dmc/mrb/data
+dmc_pier_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/dmc/pier/data
+dmc_sbif_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/dmc/sbif/data
+	+ patched with the addition of CssMem* from Moriah/ASIC/design/dmc/css/data/css_mem_db.lbr
+dvoq_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/dvoq/data
+fdll_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/fdll/data
+filb_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/filb/data
+fllb_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/fllb/data
+hbm_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/hbm/data
+ics_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/ics/data
+ifgb_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/ifg/ifgb/data
+mac_pool2_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/ifg/mac_pool2/data
+mac_pool8_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/ifg/mac_pool8/data
+serdes_pool_data	-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/ifg/serdes_pool/data
+mmu_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/mmu/data
+npu_cdb_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/npu/cdb/data
+npu_format_identifier_data	-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/npu/format_identifier/lbr
+npu_idb_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/npu/idb/data
+npu_npu_host_data	-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/npu/npu_host/data
+npu_rxpp_fwd_data	-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/npu/rxpp/rxpp_fwd/data
+npu_rxpp_term_data	-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/npu/rxpp/rxpp_term/data
+npu_sdb_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/npu/sdb/data
+npu_txpp_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/npu/txpp/data
+npu_npe_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/npu/npe/data
+pdoq_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/pdoq/data
+pdvoq_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/pdvoq/data
+reassembly_data	 	-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/reassembly/data
+reorder_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/reorder/data
+rx_cgm_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/rx_cgm/data
+rx_meter_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/rx_meter/data
+rx_pdr_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/rx_pdr/data
+sch_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/sch/data
+sms_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/sms/data
+ts_mon_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/ts_mon/data
+tsms_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/tsms/data
+txcgm_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/txcgm/data
+txpdr_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/txpdr/data
+voq_cgm_data		-r33040 https://svn.leaba.local/leaba/trunk/Moriah/ASIC/design/voq_cgm/data
+

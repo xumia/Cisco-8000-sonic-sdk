@@ -1,0 +1,35 @@
+#$(PKG)-py-dead-or-alive-tests-status := $(patsubst %.py, $(BUILD_OUTPUT_DIR)%.doa_passed, $(wildcard $(PKG-PATH)/test_*.py $(PKG-PATH)/*/test_*.py $(PKG-PATH)/*/*/test_*.py))
+
+# Run a set of predefined tests
+DOA-TESTS := test_l2_p2p_xconnect.py;\
+	mac_port/test_mac_port_create_and_lookup.py;\
+	mac_port/test_mac_pool_all_configs.py;\
+	qos_profile/test_qos_profile.py;\
+	l2_vlan_editing/test_l2_vlan_editing.py;\
+	npu_getters/test_l2_punt_destination.py;\
+	npu_getters/test_l2_service_port_getters.py;\
+	npu_getters/test_get_egress_vlan_tag_l3.py;\
+	mac_port/test_mac_port_counters.py;\
+	voq_counters/test_voq_counters.py;\
+	ip_routing/test_ipv4_l3_ac_routing.py;\
+	ip_routing/test_ipv6_l3_ac_routing.py;\
+	erspan/test_ipv6_l3_ac_erspan.py;\
+	erspan/test_ipv4_svi_erspan.py;\
+	ipv4_lpts/test_lpts_scale.py;
+
+define PARSE_TEST_LIST
+	DOA-TEST-FILE := $(word 1,$(subst :, ,$(1)))
+	DOA-TEST-CASES := $(word 2,$(subst :, ,$(1)))
+	DOA-TEST-FILES := $$(DOA-TEST-FILES) $$(DOA-TEST-FILE)
+	$$(DOA-TEST-FILE)-TEST-CASES := $$(subst -, ,$$(DOA-TEST-CASES))
+endef
+
+
+$(foreach line,$(subst ;, ,$(DOA-TESTS)),$(eval $(call PARSE_TEST_LIST,$(line))))
+DOA_PASSED_EXT := doa_passed
+TEST_DOA_MESSAGE := "\n ************** running the following tests: ************** \n    $(subst ;, ,$(DOA-TESTS))  **************\n\n"
+print-test-dead-or-alive:
+	@printf $(TEST_DOA_MESSAGE) 
+DEAD_OR_ALIVE_TESTS := $(patsubst %.py, $(BUILD_OUTPUT_DIR)$(PKG-PATH)/%.$(DOA_PASSED_EXT), $(DOA-TEST-FILES))
+
+#DEAD_OR_ALIVE_TESTS:= $(patsubst %.py, $(BUILD_OUTPUT_DIR)%.doa_passed, $(wildcard $(PKG-PATH)/test_*.py $(PKG-PATH)/*/test_*.py $(PKG-PATH)/*/*/test_*.py))

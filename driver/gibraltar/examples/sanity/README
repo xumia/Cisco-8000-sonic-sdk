@@ -1,0 +1,68 @@
+Overview
+--------
+
+This is a reference application for building a basic workable configuration using the Pacific SDK.
+It contains several snake reference applications:
+
+  - L2 P2P snake application:
+
+    108 1x25G ports (18 per slice).
+    Each port has a single tagged L2 AC port associated with it.
+    Ports are daisy-chained to one another in P2P manner, so port connectivity is as follows:
+
+        0:0:0 (slice:ifg:physical interface) -> 0:0:2 -> 0:0:4 -> ... -> 0:0:16 -> 0:1:0 -> 0:1:2 -> ... -> 5:1:14 -> 5:1:16 -> 0:0:0
+
+  - L2 bridging application:
+
+    Same topology as above. Connectivity between ports is created by creating a separate bridging domain (la_switch) per L2 AC port, and
+    configuring that domain's MAC table to point traffic to the next port in the chain.
+
+  - L3 routing application:
+
+    Same topology. Connectivity is created using a similar approach, with a VRF (la_vrf) per L3 AC port.
+
+Currently, only the P2P snake application is verified.
+
+Usage
+-----
+
+1. Load the Pacific kernel module.
+   This will typically be done using these commands:
+
+      modprobe uio
+      insmod leaba_module.ko
+
+2. Launch a python shell, and import the test_hldcli module.
+   Make sure to have the reference application's directory as part of the PYTHONPATH.
+
+3. Create an la_device:
+
+      import device_utils
+      dev = device_utils.hw_device_with_npu_host(1)
+
+   Note: this wraps la_create_device for reference application purpopses only, and will be deprecated in future releases.
+         You can use la_create_device('/dev/uioX', y /* device id */) instead if you're not interested in test packet injection capabilities.
+
+4. Configure the basic topology:
+
+      import sanity
+
+      first_slice = 0
+      first_ifg = 0
+      first_pif = 0
+
+      sanity.configure_base_topology(dev, first_slice, first_ifg, first_pif)
+      sanity.configure_p2p(dev)
+
+5. Run a packet through the topology:
+
+      import sanity_test
+      sanity_test.run_p2p(dev, first_slice, first_ifg, first_pif, 1)
+
+6. Print counters to ensure packet passed through successfully (you will need to include the relevant directories under driver/external/lab_env in your PYTHONPATH):
+
+      import general_imports
+      from general_imports import *
+
+      get_ocounters()
+

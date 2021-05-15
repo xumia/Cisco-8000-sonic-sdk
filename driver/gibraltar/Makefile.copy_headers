@@ -1,0 +1,105 @@
+# BEGIN_LEGAL
+#
+# Copyright (c) 2017-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+api-prereqs := $(nplapi-configured) $(vendor-srm-configured) $(vendor-esilicon-configured)
+
+shared-api-copy-include-src := $(SHARED_BASE_ROOT)/include
+shared-api-copy-include-files := $(filter %.h %.i,$(call rwildcard, $(shared-api-copy-include-src), *))
+shared-api-copy-include-built := $(patsubst $(SHARED_BASE_ROOT)/%, $(BASE_OUTPUT_DIR)/%, $(shared-api-copy-include-files))
+
+prebuild-dir := prebuilt/build/shared/src/nplapi
+
+# Auto generated files
+api-generated-api-include-src := $(nplapi-build-dir)/compiled/api/include/nplapi
+api-generated-api-include-built := $(INCLUDE_OUTPUT_DIR)/api/types/.built-api
+
+api-generated-nplapi-include-src := $(nplapi-build-dir)/compiled/api/include/nplapi
+api-generated-nplapi-include-built := $(INCLUDE_OUTPUT_DIR)/nplapi/.built-nplapi
+
+api-generated-srm-include-src := $(vendor-srm-src-dir)
+api-generated-srm-include-built := $(INCLUDE_OUTPUT_DIR)/srm/.built-srm
+
+api-generated-esilicon-include-built := $(INCLUDE_OUTPUT_DIR)/esilicon/.built-esilicon
+
+api-built := $(shared-api-copy-include-built) $(api-generated-api-include-built)
+
+# Copy include
+$(shared-api-copy-include-built): SRC-DIR:=$(shared-api-copy-include-src)
+$(shared-api-copy-include-built): $(BASE_OUTPUT_DIR)/%: $(SHARED_BASE_ROOT)/%
+	@$(MKDIR) -p $(@D)
+	@$(CP) $< $@
+
+# Generated API include
+ifeq ($(PREBUILT_DEPENDS), 0)
+$(api-generated-api-include-built): SRC-DIR:=$(api-generated-api-include-src)
+else
+$(api-generated-api-include-built): SRC-DIR:=$(prebuild-dir)/compiled/api/include/nplapi
+endif
+$(api-generated-api-include-built): $(api-prereqs)
+	@echo Copying auto-generated API to $(INCLUDE_OUTPUT_DIR)/api
+	@$(MKDIR) -p $(@D)
+	@$(CP) $(SRC-DIR)/la_*.h $(@D)
+	@touch $@
+
+# Generated NPLAPI include
+ifeq ($(PREBUILT_DEPENDS), 0)
+$(api-generated-nplapi-include-built): SRC-DIR:=$(nplapi-build-dir)
+else
+$(api-generated-nplapi-include-built): SRC-DIR:=$(prebuild-dir)
+endif
+$(api-generated-nplapi-include-built): $(api-prereqs)
+	@echo Copying auto-generated NPLAPI to $(INCLUDE_OUTPUT_DIR)/nplapi
+	@$(MKDIR) -p $(@D)
+	@$(CP) $(SRC-DIR)/npl*.h $(@D)
+	@$(CP) $(SRC-DIR)/compiled/api/include/nplapi/npl*.h $(@D)
+	@touch $@
+
+# Generated SRM include
+ifeq ($(PREBUILT_DEPENDS), 0)
+$(api-generated-srm-include-built): SRC-DIR := $(vendor-srm-src-dir)
+else
+$(api-generated-srm-include-built): SRC-DIR := prebuilt/include/srm
+endif
+$(api-generated-srm-include-built): $(api-prereqs)
+	@echo Copying auto-generated SRM to $(INCLUDE_OUTPUT_DIR)/srm
+	@$(MKDIR) -p $(@D)
+	@$(CP) $(SRC-DIR)/*.h $(@D)
+	@$(CP) $(SRC-DIR)/platform/*.h $(@D)
+	@touch $@
+
+$(api-generated-esilicon-include-built): SRC-DIR := $(vendor-esilicon-include-dir)
+$(api-generated-esilicon-include-built): $(api-prereqs)
+	@echo Copying auto-generated eSilicon to $(INCLUDE_OUTPUT_DIR)/esilicon
+	@$(MKDIR) -p $(@D)
+	@$(CP) $(SRC-DIR)/*.h $(@D)
+	@touch $@
+
+.PHONY: api-include
+api-include: $(shared-api-copy-include-built) $(api-generated-api-include-built) $(api-generated-nplapi-include-built)
+api-include: $(api-generated-srm-include-built)
+ifeq ($(PREBUILT_DEPENDS), 0)
+api-include: $(api-generated-esilicon-include-built)
+endif
+
+.PHONY: api-include-clean
+
+api-include-clean:
+	@echo api clean
+	@$(RM) -rf $(INCLUDE_OUTPUT_DIR)
+

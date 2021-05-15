@@ -1,0 +1,13 @@
+# 1090	Release Notes
+1	Added iCal effort 0x10 that provides better performance than effort 0 and still meet IEEE / FC link training time
+2	Fixed an issue causing RXFFE BFHF to get reset to 0 overriding user programmed value
+3	Added feature to use firmware filtered EID and option to oscillate signal_ok while signal is present
+4	Fixes issue that caused fixed LF to be set forever if DVOS/vernier delta cal failed
+5	Fixes frequency lock issue if Tx is enabled after Rx
+6	Fixed infinite loop in rare case causing CDR failing to lock to 
+7	Added feature to adapt remote TX cursor during link training
+8	Added user configurable parameter to avoid over-emphesis out of iCal tune for NRZ mode with short channel and no TX attenuation
+9	To avoid potential burst changed pCal to only move one parameter at a time and option to move two parameters at a time
+10	Added option to extend TX Post range removing TX Pre2
+11	Added option to use BFLF instead of LF to compansate for level change during pCal
+

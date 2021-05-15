@@ -1,0 +1,104 @@
+NP1 Name                                                                         NP2 Name                                                               Method                                   Comment                                 
+========                                                                         ========                                                               ======                                   =======                                 
+Rx.fabric.is_keep_alive                                                          rx.fabric.is_keep_alive                                                match
+Rx.fabric.plb_header_type                                                        rx.fabric.plb_header_type                                              match
+Rx.fabric.plb_ctx_ts                                                             rx.fabric.plb_ctx_ts                                                   match
+Rx.fabric.ts_or_time.fabric_ts                                                   TBD             
+Rx.fabric.ts_or_time.fabric_time                                                 TBD
+Rx.fabric.vmd_fabric_context                                                     rx.fabric.vmd_fabric_context                                           match
+Rx.fabric.first_packet_size_round_up_in_8_bytes_granularity                      rx.fabric.first_packet_size_round_up_in_8_bytes_granularity            match 
+
+Rx.nw.leaba_fields.counter_header_indexes                                        pd.rx_counter_compensation_index                                       only pacific using                       TBD
+Rx.nw.leaba_fields.npu_header.encap_or_term                                      pd.npu_header.npu_header_cont.encap_app_definedd                       simple mapping                           None
+Rx.nw.leaba_fields.npu_header                                                    rxpp_npu_header_on_pd                                                                                          
+
+Rx.common_rx_leaba_fields.dst_or_redirect.temp_redirect_code                     
+Rx.common_rx_leaba_fields.dst_or_redirect.destination                            rxpp_inout_data_on_pd.destination                                      simple alias                                                    
+Rx.common_rx_leaba_fields.flow_signature_on_npuh                                 rxpp_inout_data_on_pd.flow_signature_on_npuh                           match                                    No need for alias
+Rx.common_rx_leaba_fields.fllb_control_code                                      rxpp_forwarding_output_data_on_pd.fllb_control_code                    match                                    No need for alias
+Rx.common_rx_leaba_fields.packet_learn_enable                                    rxpp_termination_output_data_on_pd.learn_command.type[0]               no reference in application 
+Rx.common_rx_leaba_fields.lb_profile                                             rxpp_termination_output_data_on_pd.lb_command                          size change from 2 to 4 bits             TBD
+Rx.common_rx_leaba_fields.phb                                                    rxpp_inout_data_on_pd.phb                                              simple alias                             
+Rx.common_rx_leaba_fields.ecn                                                    TBD
+Rx.common_rx_leaba_fields.ethernet_rate_limiter_type                             rxpp_forwarding_output_data_on_pd.ethernet_rate_limiter_type           simple alias  
+Rx.common_rx_leaba_fields.source_if                                              rxpp_inout_data_on_pd.slice_source_system_port                         alias .. field names missing             ifg, pif mapping - TBD
+Rx.common_rx_leaba_fields.fragment_index                                         pd.packet_id                                                           size change alias                        needs review - TBD
+Rx.common_rx_leaba_fields.single_fragment_packet                                 rxpp_inout_data_on_pd.single_fragment_packet                           match                                    No need for alias                       
+
+Tx.common_tx_leaba_fields.invert_crc                                             pd.error_flag                                                          simple alias                                             
+Tx.common_tx_leaba_fields.slb                                                    N.A                                                                    N.A                                      no ref in application
+Tx.common_tx_leaba_fields.bytes_to_remove_or_dlp_profile.ene_bytes_to_remove     txpp_transmit_output1_data_on_pd.bytes_to_remove                       simple alias                             None             
+Tx.common_tx_leaba_fields.bytes_to_remove_or_dlp_profile.dlp_profile             txpp_transmit_output1_data_on_pd.bytes_to_remove                       simple alias                             Union with bytes_to_remove
+Tx.common_tx_leaba_fields.start_packing                                          txpp_inout_data_on_pd.start_packing                                    simple alias                             none                     
+Tx.common_tx_leaba_fields.tc                                                     txpp_transmit_input_data_on_pd.traffic_class                           simple alias                              
+Tx.common_tx_leaba_fields.out_color                                              txpp_inout_data_on_pd.color                                            simple alias                             
+Tx.common_tx_leaba_fields.omd_txpp.(union)                                       txpp_inout_data_on_pd.omd                                              alias with size change                    
+Tx.common_tx_leaba_fields.second_packet                                          txpp_transmit_input_data_on_pd.is_second_packet                        simple alias                             none
+Tx.common_tx_leaba_fields.cong_on                                                txpp_transmit_input_data_on_pd.congested                               simple alias                              
+Tx.common_tx_leaba_fields.lm_cnt_tx_idx                                          pd.txpp_inout_data_on_pd.lm_cache_index                                simple alias
+Tx.common_tx_leaba_fields.lm_cnt_tx_idx[4:2]                                     txpp_inout_data_on_pd.source_slice                                     simple alias
+Tx.common_tx_npu_host_leaba_fields.ene_macro_ids[4]                              txpp_transmit_output1_data_on_pd.ene_macro_ids                         simple alias                             end is included as last element 
+Tx.common_tx_leaba_fields.is_mc                                                  txpp_transmit_input_data_on_pd.is_multicast                            simple alias                             
+Tx.tx_nw_or_fabric.nw.leaba_fields.eve_cmd                                       txpp_transmit_output2_data_on_pd.eve_command                           alias with field name differences        no ref in application
+Tx.common_tx_leaba_fields.time_and_cntr_stamp_cmd.lm_command                     txpp_transmit_output_data_on_pd.lm_command                             match                                    split from ts command  
+Tx.common_tx_leaba_fields.time_and_cntr_stamp_cmd.ts_command                     txpp_transmit_output_data_on_pd.timestamp_command                      simple alias                             split from lm command   
+Tx.common_tx_leaba_fields.voq_congestion_level_and_source_if.voq_congestion_level
+Tx.common_tx_leaba_fields.voq_congestion_level_and_source_if.tx_source_if
+Tx.common_tx_leaba_fields.eop                                                    N.A                                                                    Not needed in PD                          
+Tx.common_tx_leaba_fields.mark_ecn                                               txpp_inout_data_on_pd.voq_congestion_level                             indirect. need design                    
+Tx.common_tx_leaba_fields.dest_pif                                               txpp_inout_data_on_pd.destination_interface                            alias with size difference               split to ifg/pif
+Tx.common_tx_leaba_fields.armeter                                                txpp_transmit_output1_data_on_pd.apply_tx_rate_counter                 simple alias                              
+Tx.common_tx_leaba_fields.word_size                                              txpp_inout_data_on_pd.packet_data_valid_bytes                          Simple Alias                             Not exactly the same. [Not relavant for now for P4]
+Tx.common_tx_leaba_fields.elephant_flow                                          txpp_transmit_input_data_on_pd.is_elephant_flow                        simple alias                             none                 
+Tx.common_tx_leaba_fields.hw_termination_size                                    N.A                                                                    N.A                                      Feature not supported 
+Tx.common_tx_leaba_fields.context_id                                             pd.packet_id                                                           alias with size change                    
+Tx.common_tx_leaba_fields.access_lm_req_cache                                    txpp_inout_data_on_pd.access_lm_cache                                  simple alias                             none  
+Tx.common_tx_npu_host_leaba_fields.pkt_size                                      pd.packet_size                                                         simple alias                             moved to main common 
+Tx.common_tx_npu_host_leaba_fields.end_of_ene_macro_ids                          txpp_transmit_output_data_on_pd.ene_macro_ids                          simple alias                             end is included as last element         
+
+Tx.fabric.leaba_fields.tx_cud                                                    txpp_transmit_input_data_on_pd.cud                                     alias with size change
+Tx.fabric.leaba_fields.slice_mode_data.vmd.vmd_dest.vmd_dest_device              txpp_transmit_input_data_on_pd.vmd.dest_device                         simple alias
+Tx.fabric.leaba_fields.slice_mode_data.vmd.vmd_dest.vmd_dest_slice               txpp_transmit_input_data_on_pd.vmd.dest_slice                          simple alias
+Tx.fabric.leaba_fields.slice_mode_data.vmd.vmd_dest.vmd_dest_oq                  txpp_transmit_input_data_on_pd.vmd.dest_oq                             simple alias
+Tx.fabric.leaba_fields.slice_mode_data.vmd.vmd_snr_demux                         txpp_transmit_input_data_on_pd.vmd.dest_device                         simple alias
+Tx.fabric.leaba_fields.is_keepalive                                              txpp_transmit_input_data_on_pd.is_keepalive                            simple alias  
+Tx.fabric.leaba_fields.pld_header_type                                           txpp_transmit_input_data_on_pd.plb_context_ts                          simple alias
+Tx.fabric.leaba_fields.pld_ctxt_ts                                               txpp_transmit_input_data_on_pd.plb_header_type                         simple alias
+
+Tx.npu_host.pd_npu_host_inject_fields.message_type                               npu_host_input_data_on_pd.message_type                                 match
+Tx.npu_host.pd_npu_host_inject_fields.sat_message_type                           npu_host_input_data_on_pd.sat_type                                     simple alias
+Tx.npu_host.pd_npu_host_inject_fields.sat_sequence_number                        npu_host_input_data_on_pd.sat_sequence_number                          simple alias
+Tx.npu_host.pd_npu_host_inject_fields.mp_index                                   npu_host_input_data_on_pd.mp_index                                     simple alias
+Tx.npu_host.pd_npu_host_inject_fields.mp_data  (180b)                            npu_host_input_data_on_pd.mp_data.mp_type                              match
+Tx.npu_host.pd_npu_host_inject_fields.aux_data (160b)                            npu_host_input_data_on_pd.aux_data_app_defined
+Tx.npu_host.pd_npu_host_inject_fields.aux_ptr                                    npu_host_input_data_on_pd.aux_pointer
+
+Tx.npu_host.pd_npu_host_learn_fields.records_num                                 npu_host_inout_data_on_pd.number_of_learn_records                      simple alias                            no ref in application
+
+Tx.npu_host.pd_npu_host_common_leaba_fields.device_time
+Tx.npu_host.pd_npu_host_common_leaba_fields.current_time                         npu_host_input_data_on_pd.npu_host_time                                simple alias
+Tx.npu_host.pd_npu_host_common_leaba_fields.drop_packet                          npu_host_inout_data_on_pd.npu_host_drop                                simple alias
+Tx.npu_host.pd_npu_host_common_leaba_fields.is_lro                               npu_host_output_data_on_pd.is_learn_received_packet                    simple alias
+Tx.npu_host.pd_npu_host_common_leaba_fields.inject_ifg                           pd_npu_host_inject_fields.incoming_ifg                                 simple alias
+Tx.npu_host.packet_data_required                                                 npu_host_output_data_on_pd.add_additional_data                         simple alias
+Tx.npu_host.packet_data_address_increment                                        npu_host_output_data_on_pd.additional_data_read_type                   simple alias                             need to double check again - TBD  
+Tx.npu_host.packet_data_read_start_adress                                        npu_host_output_data_on_pd.additional_data_start_address               simple alias
+Tx.npu_host.packet_data_read_amount_of_entries                                   npu_host_output_data_on_pd.additional_data_number_of_entries_to_read   name and size change
+
+common_leaba_fields.redirect_or_mirror.redirect_code                             pd.redirect_code                                                       match                                                                            
+common_leaba_fields.redirect_or_mirror.mirror_code                               pd.mirror_bitmap                                                       complex .. need h/w assist for this                                              
+common_leaba_fields.current_protocol_layer_index                                 pd.current_layer_index                                                 simple alias                                                                     
+common_leaba_fields.counters_or_tx_cud.pd_tx_cud                                 txpp_transmit_input_data_on_pd.cud                                     simple alias size change                                                         
+common_leaba_fields.counters_or_tx_cud.counters                                  pd.counter_data                                                        simple alias                             no direct ref in application
+common_leaba_fields.user_flow_cache                                                                                                                                                                                                             
+common_leaba_fields.flow_cache_validity                                                                                                                                                                                                         
+common_leaba_fields.issu_codespace                                               pd.issu_codespace                                                      match
+common_leaba_fields.ser                                                          pd.error_flag                                                          simple alias                             NP2 sets this flag based on h/w errors observed
+common_leaba_fields.tx_dlp_map_hit                                                                                                                                                                                                             
+common_leaba_fields.lmbu.layer_bitmap_u                                          pd.layer_bitmap                                                        simple alias                             TBD?
+common_leaba_fields.lmbu.layer_bitmap_u.is_protocol_layer_t                      TBD?
+common_leaba_fields.recycle_data.snoop_or_rcy_data.snoop_code                    pd.mirror_bitmap                                                       complex                                  merged with mirror bitmap.              
+common_leaba_fields.lbmu.(union)                                                 pd.layer_bitmap                                                        simple alias                                                                     
+common_leaba_fields.header_info_and_ssp_dlp.header_info_array[10]                pd.header_info.array                                                   simple alias                                                                     
+common_leaba_fields.header_info_and_ssp_dlp.app_fi_soft_npuh                                                                                                                                                                             
+common_leaba_fields.header_info_and_ssp_dlp.common_rx_leaba_fields                                                                                                                                                                       

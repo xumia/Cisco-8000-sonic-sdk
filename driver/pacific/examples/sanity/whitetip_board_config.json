@@ -1,0 +1,120 @@
+{
+    "device_bool_properties": [
+        { "name" : "POLL_MSI", "value": false }
+    ],
+    "board_settings": [
+        {
+            "slice": 0,
+            "ifg": 0,
+            "ifg_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "rx_polarity": [],
+            "tx_polarity": []
+        },
+        {
+            "slice": 0,
+            "ifg": 1,
+            "ifg_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 14, 13,12],
+            "rx_polarity": [],
+            "tx_polarity": []
+        },
+        {
+            "slice": 1,
+            "ifg": 0,
+            "ifg_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "rx_polarity": [],
+            "tx_polarity": []
+        },
+        {
+            "slice": 1,
+            "ifg": 1,
+            "ifg_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "rx_polarity": [],
+            "tx_polarity": []
+        },
+        {
+            "slice": 2,
+            "ifg": 0,
+            "ifg_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "rx_polarity": [],
+            "tx_polarity": []
+        },
+        {
+            "slice": 2,
+            "ifg": 1,
+            "ifg_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "rx_polarity": [],
+            "tx_polarity": []
+        },
+        {
+            "slice": 3,
+            "ifg": 0,
+            "ifg_swaps": [3, 1, 2, 0, 4, 5, 6, 7, 8, 9, 10, 11, 14, 13, 12, 15],
+            "rx_polarity": [],
+            "tx_polarity": []
+        },
+        {
+            "slice": 3,
+            "ifg": 1,
+            "ifg_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "rx_polarity": [],
+            "tx_polarity": []
+        },
+        {
+            "slice": 4,
+            "ifg": 0,
+            "ifg_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "rx_polarity": [],
+            "tx_polarity": []
+        },
+        {
+            "slice": 4,
+            "ifg": 1,
+            "ifg_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "rx_polarity": [],
+            "tx_polarity": []
+        },
+        {
+            "slice": 5,
+            "ifg": 0,
+            "ifg_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "rx_polarity": [],
+            "tx_polarity": []
+        },
+        {
+            "slice": 5,
+            "ifg": 1,
+            "ifg_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "rx_polarity": [],
+            "tx_polarity": []
+        },
+        {
+            "slice": 6,
+            "ifg": 0,
+            "ifg_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "rx_polarity": [],
+            "tx_polarity": []
+        },
+        {
+            "slice": 6,
+            "ifg": 1,
+            "ifg_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "rx_polarity": [],
+            "tx_polarity": []
+        },
+        {
+            "slice": 7,
+            "ifg": 0,
+            "ifg_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "rx_polarity": [],
+            "tx_polarity": []
+        },
+        {
+            "slice": 7,
+            "ifg": 1,
+            "ifg_swaps": [0, 1, 2, 4, 3, 5, 6, 7, 8, 9, 10, 11, 14, 15, 12, 13],
+            "rx_polarity": [],
+            "tx_polarity": []
+        }
+    ]
+}
+

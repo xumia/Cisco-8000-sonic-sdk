@@ -1,0 +1,17 @@
+{
+    "VERSION": "Pershing P3 Serdes Settings.",
+    "default_pll": {
+        "RX_PLL_BB": 1,
+        "RX_PLL_IFLT": 6,
+        "RX_PLL_INT": 8,
+        "TX_PLL_BB": 25,
+        "TX_PLL_IFLT": 1,
+        "TX_PLL_INT": 7
+    },
+    "default_params": {
+        "RX_FFE_BFGLF": 1,
+        "RX_FFE_BFGHF": 4,
+        "EID_THRESHOLD": 2,
+        "RX_CTLE_LF": 0
+    }
+}

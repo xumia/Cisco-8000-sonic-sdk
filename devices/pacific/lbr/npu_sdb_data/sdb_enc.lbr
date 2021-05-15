@@ -1,0 +1,3816 @@
+$block{sdb_enc} = {
+  Defines_db => "../sdb_idb_defines.v",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "2",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+    EmResponseInterruptSummary => { #Structure Type: RegField;
+      Name => "EmResponseInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, EmResponseInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_1bErrInterrupt",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_2bErrInterrupt",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks ParityErrInterrupt",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "16",
+    Type => "Config",
+    LargeEncDB0Verifier0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB0Verifier1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB0Verifier2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB0Verifier3Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier3Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB1Verifier0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB1Verifier1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB1Verifier2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB1Verifier3Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier3Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB2Verifier0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB2Verifier1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB2Verifier2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB2Verifier3Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier3Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB3Verifier0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB3Verifier1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB3Verifier2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB3Verifier3Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier3Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "16",
+    Type => "Config",
+    LargeEncDB0Verifier0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB0Verifier1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB0Verifier2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB0Verifier3Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier3Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB1Verifier0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB1Verifier1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB1Verifier2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB1Verifier3Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier3Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB2Verifier0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB2Verifier1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB2Verifier2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB2Verifier3Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier3Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB3Verifier0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB3Verifier1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB3Verifier2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LargeEncDB3Verifier3Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier3Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "16",
+    Type => "Config",
+    LargeEncDB0Verifier0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB0Verifier1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB0Verifier2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB0Verifier3Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier3Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB1Verifier0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB1Verifier1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB1Verifier2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB1Verifier3Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier3Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB2Verifier0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB2Verifier1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB2Verifier2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB2Verifier3Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier3Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB3Verifier0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB3Verifier1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB3Verifier2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB3Verifier3Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier3Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "16",
+    Type => "Config",
+    LargeEncDB0Verifier0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB0Verifier1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB0Verifier2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB0Verifier3Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier3Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB1Verifier0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB1Verifier1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB1Verifier2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB1Verifier3Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier3Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB2Verifier0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB2Verifier1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB2Verifier2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB2Verifier3Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier3Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB3Verifier0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB3Verifier1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB3Verifier2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    LargeEncDB3Verifier3Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier3Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectErrStatus",
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "16",
+    Type => "ReadOnly",
+    LargeEncDB0Verifier0ErrInt => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    LargeEncDB0Verifier1ErrInt => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "1",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    LargeEncDB0Verifier2ErrInt => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "2",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    LargeEncDB0Verifier3ErrInt => { #Structure Type: RegField;
+      Name => "LargeEncDB0Verifier3ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "3",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    LargeEncDB1Verifier0ErrInt => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "4",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    LargeEncDB1Verifier1ErrInt => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "5",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    LargeEncDB1Verifier2ErrInt => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "6",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    LargeEncDB1Verifier3ErrInt => { #Structure Type: RegField;
+      Name => "LargeEncDB1Verifier3ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "7",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    LargeEncDB2Verifier0ErrInt => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "8",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    LargeEncDB2Verifier1ErrInt => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "9",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    LargeEncDB2Verifier2ErrInt => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "10",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    LargeEncDB2Verifier3ErrInt => { #Structure Type: RegField;
+      Name => "LargeEncDB2Verifier3ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "11",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    LargeEncDB3Verifier0ErrInt => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "12",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    LargeEncDB3Verifier1ErrInt => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "13",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    LargeEncDB3Verifier2ErrInt => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "14",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    LargeEncDB3Verifier3ErrInt => { #Structure Type: RegField;
+      Name => "LargeEncDB3Verifier3ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "15",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    Name => "SelectedSerErrorInfo",
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "16",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      Name => "MemErrAddr",
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "14",
+      Position => "13:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      Name => "MemErrType",
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "15:14",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SerErrorDebugConfiguration",
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "5",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      Name => "ErroneousMemorySelector",
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "4",
+      Position => "3:0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      Name => "ResetMemoryErrors",
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrDebug",
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_1bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrDebug",
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_2bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  MbistPassStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistPassStatus",
+    RegMem => "Reg",
+    Address => "39",
+    Description => "MBIST pass status",
+    Width => "872",
+    Type => "ReadOnly",
+    BistDonePassOut => { #Structure Type: RegField;
+      Name => "BistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST passed",
+      Width => "872",
+      Position => "871:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+  MbistFailStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistFailStatus",
+    RegMem => "Reg",
+    Address => "3A",
+    Description => "MBIST fail status",
+    Width => "872",
+    Type => "ReadOnly",
+    BistDoneFailOut => { #Structure Type: RegField;
+      Name => "BistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST failed",
+      Width => "872",
+      Position => "871:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+  TcamBistStatus => { #Structure Type: Reg; Skip Register;
+    Name => "TcamBistStatus",
+    RegMem => "Reg",
+    Address => "3B",
+    Description => "TCAM BIST pass fail status",
+    Width => "32",
+    Type => "ReadOnly",
+    TcamBistDonePassOut => { #Structure Type: RegField;
+      Name => "TcamBistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, TCAM BIST passed",
+      Width => "16",
+      Position => "15:0",
+      Type => "Status",
+      UsedBy => "TCAM",
+    },
+    TcamBistDoneFailOut => { #Structure Type: RegField;
+      Name => "TcamBistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, TCAM BIST failed",
+      Width => "16",
+      Position => "31:16",
+      Type => "Status",
+      UsedBy => "TCAM",
+    },
+  },
+  TcamScanPeriodCfg => { #Structure Type: Reg; Skip Register;
+    Name => "TcamScanPeriodCfg",
+    RegMem => "Reg",
+    Address => "3C",
+    Description => "Configures period of TCAM scan for SER, set 0 to disable",
+    Width => "32",
+    Type => "Config",
+    TcamScanPeriod => { #Structure Type: RegField;
+      Name => "TcamScanPeriod",
+      RegMem => "RegField",
+      Description => "",
+      Width => "32",
+      Position => "31:0",
+      Type => "Config",
+      UsedBy => "TCAM",
+      DefaultValue => "d120000000",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DefaultValue => "b0",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "3", # Excel Formula: =calc_reg_width(E25:E27,F27)
+    Type => "Config",
+    CoreBistRprMode => { #Structure Type: RegField;
+      Name => "CoreBistRprMode",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistRun => { #Structure Type: RegField;
+      Name => "CoreBistRun",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistPtrnFill => { #Structure Type: RegField;
+      Name => "CoreBistPtrnFill",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E29:E29,F29)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C28,A28,G28)
+    Description => "Power Down Configuration for the block",
+    Width => "128", # Excel Formula: =calc_reg_width(E31:E31,F31)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C30,A30,G30)
+    Width => "39", # Excel Formula: =calc_reg_width(E33:E37,F37)
+    Type => "Config",
+    PmroExecute => { #Structure Type: RegField;
+      Name => "PmroExecute",
+      RegMem => "RegField",
+      Description => "0->1: execute pmro command.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F32,E33,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroCmd => { #Structure Type: RegField;
+      Name => "PmroCmd",
+      RegMem => "RegField",
+      Description => "Pmro command to execute:
+0: reset.
+1: write.
+2: read.
+3: invalid.",
+      Width => "2",
+      Position => "2:1", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroSbusReset => { #Structure Type: RegField;
+      Name => "PmroSbusReset",
+      RegMem => "RegField",
+      Description => "Reset pmro sbus chain. Need to set to 0 before starting access to pmro registers.",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroAddr => { #Structure Type: RegField;
+      Name => "PmroAddr",
+      RegMem => "RegField",
+      Description => "PMRO register address:
+0 - control register, 8b, def: 0x0.
+1 - SVT Configuration Register, 16b, def: 0xFFFF.
+2 - LVT Configuration Register, 16b, def: 0xFFFF.
+3 - ULVT Configuration Register, 16b, def: 0xFFFF.
+4 - Interconnect Configuration Register, 16b, def: 0xFFFF.
+5 - Reference Clock Counter Register, 24b, def: 0xFFF000.
+6 - Oscillator Counter Register, 24b, def: 0x000000.
+7 - SBus ID register, read as 0x0B.
+Set to '0' on reset command.",
+      Width => "3",
+      Position => "6:4", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroData => { #Structure Type: RegField;
+      Name => "PmroData",
+      RegMem => "RegField",
+      Description => "PMRO data, set to 0x0 on reset and read command.",
+      Width => "32",
+      Position => "38:7", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C32,A32,G32)
+    Width => "34", # Excel Formula: =calc_reg_width(E39:E41,F41)
+    Type => "ReadOnly",
+    PmroRdata => { #Structure Type: RegField;
+      Name => "PmroRdata",
+      RegMem => "RegField",
+      Description => "Read data from pmro. Valid when PmroFinish=1 and PmroFailed=0.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F38,E39,TRUE)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFailed => { #Structure Type: RegField;
+      Name => "PmroFailed",
+      RegMem => "RegField",
+      Description => "Pmro command failed. Valid only when PmroFinish=1.",
+      Width => "1",
+      Position => "32", # Excel Formula: =calc_position(F39,E40)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFinish => { #Structure Type: RegField;
+      Name => "PmroFinish",
+      RegMem => "RegField",
+      Description => "Pmro command finished.",
+      Width => "1",
+      Position => "33", # Excel Formula: =calc_position(F40,E41)
+      Type => "Event",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C38,A38,G38)
+    Description => "aaa",
+    Width => "11", # Excel Formula: =calc_reg_width(E43:E44,F44)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F42,E43,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C42,A42,G42)
+    Description => "aaa",
+    Width => "32", # Excel Formula: =calc_reg_width(E46:E46,F46)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C45,A45,G45)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E48:E48,F48)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F47,E48,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  init_done_status_register => { #Structure Type: Reg;
+    Name => "init_done_status_register",
+    RegMem => "Reg",
+    Address => "100",
+    Description => "This block contains some memories which are being initialized by the design after soft-reset (for example: xor-memories, EMDBs). This register contains the status of the init-sequence.",
+    Width => "1", # Excel Formula: =calc_reg_width(E8:E8,F8)
+    Type => "ReadOnly",
+    DocName => "InitDoneStatusRegister",
+    init_done => { #Structure Type: RegField;
+      Name => "init_done",
+      RegMem => "RegField",
+      Description => "When set, it all dynamic memories in of this block had finished init sequence.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Status",
+      UsedBy => "encdb",
+      DocName => "InitDone",
+    },
+  },
+  debug_data_bus_register => { #Structure Type: Reg;
+    Name => "debug_data_bus_register",
+    RegMem => "Reg",
+    Address => "101", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "This register will contain selected-data-bus for debug. The selected data is taken from a full data-bus which can be seen in sdb_enc_dbg.v file. ",
+    Width => "32", # Excel Formula: =calc_reg_width(E10:E10,F10)
+    Type => "ReadOnly",
+    DocName => "DebugDataBusRegister",
+    debug_data_bus => { #Structure Type: RegField;
+      Name => "debug_data_bus",
+      RegMem => "RegField",
+      Description => "Selected debug-data from offset according to the 'debug_data_select' register.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "Status",
+      UsedBy => "sdb_enc",
+      DocName => "DebugDataBus",
+    },
+  },
+  debug_data_select_register => { #Structure Type: Reg;
+    Name => "debug_data_select_register",
+    RegMem => "Reg",
+    Address => "102", # Excel Formula: =calc_reg_address(C9,A9,G9)
+    Description => "This reg is the selector of the debug_data_bus",
+    Width => "10", # Excel Formula: =calc_reg_width(E12:E12,F12)
+    Type => "Config",
+    DocName => "DebugDataSelectRegister",
+    debug_data_select => { #Structure Type: RegField;
+      Name => "debug_data_select",
+      RegMem => "RegField",
+      Description => "debug_data_select",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F11,E12,TRUE)
+      Type => "Config",
+      UsedBy => "sdb_enc",
+      DefaultValue => "d0",
+      DocName => "DebugDataSelect",
+    },
+  },
+  large_enc_per_em_core_selected_access_index_cfg0 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 48;
+    Name => "large_enc_per_em_core_selected_access_index_cfg[8]",
+    RegMem => "Reg",
+    Address => "103", # Excel Formula: =calc_reg_address(C11,A11,G11)
+    Description => "The encapsulation large EM table is composed of two 16K entry and two 32K entry 2-read-port exact match pipes. A 16K exact match pipe is composed of four 4K banks. A 32K exact match pipe is composed of four 8K banks. 
+This register controls for each slice-key, which EM-pipe will be accessed",
+    Width => "3", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "Config",
+    DocName => "LargeEncPerEmCoreSelectedAccessIndexCfg[8]",
+    ArrayLength => "8",
+    ArrayIndex => "0",
+    large_enc_per_em_core_selected_access_index0 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 44;
+      Name => "large_enc_per_em_core_selected_access_index[n]",
+      RegMem => "RegField",
+      Description => "Num-of-EM-Cores: 8, Num-of-access: 6
+Valid values are [0..5]
+Selected-index = 0 -> Slice-0
+Selected-index = 1 -> Slice-1
+…
+Selected-index = 5 -> Slice-5",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Config",
+      UsedBy => "encdb",
+      DefaultValue => "d0",
+      DocName => "LargeEncPerEmCoreSelectedAccessIndex[n]",
+    },
+  },
+  large_enc_per_em_core_selected_access_index_cfg1 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 48;
+    Name => "large_enc_per_em_core_selected_access_index_cfg[8]",
+    RegMem => "Reg",
+    Address => "104",
+    Description => "The encapsulation large EM table is composed of two 16K entry and two 32K entry 2-read-port exact match pipes. A 16K exact match pipe is composed of four 4K banks. A 32K exact match pipe is composed of four 8K banks. 
+This register controls for each slice-key, which EM-pipe will be accessed",
+    Width => "3", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "Config",
+    DocName => "LargeEncPerEmCoreSelectedAccessIndexCfg[8]",
+    ArrayLength => "8",
+    ArrayIndex => "1",
+    large_enc_per_em_core_selected_access_index1 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 44;
+      Name => "large_enc_per_em_core_selected_access_index[n]",
+      RegMem => "RegField",
+      Description => "Num-of-EM-Cores: 8, Num-of-access: 6
+Valid values are [0..5]
+Selected-index = 0 -> Slice-0
+Selected-index = 1 -> Slice-1
+…
+Selected-index = 5 -> Slice-5",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Config",
+      UsedBy => "encdb",
+      DefaultValue => "d0",
+      DocName => "LargeEncPerEmCoreSelectedAccessIndex[n]",
+    },
+  },
+  large_enc_per_em_core_selected_access_index_cfg2 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 48;
+    Name => "large_enc_per_em_core_selected_access_index_cfg[8]",
+    RegMem => "Reg",
+    Address => "105",
+    Description => "The encapsulation large EM table is composed of two 16K entry and two 32K entry 2-read-port exact match pipes. A 16K exact match pipe is composed of four 4K banks. A 32K exact match pipe is composed of four 8K banks. 
+This register controls for each slice-key, which EM-pipe will be accessed",
+    Width => "3", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "Config",
+    DocName => "LargeEncPerEmCoreSelectedAccessIndexCfg[8]",
+    ArrayLength => "8",
+    ArrayIndex => "2",
+    large_enc_per_em_core_selected_access_index2 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 44;
+      Name => "large_enc_per_em_core_selected_access_index[n]",
+      RegMem => "RegField",
+      Description => "Num-of-EM-Cores: 8, Num-of-access: 6
+Valid values are [0..5]
+Selected-index = 0 -> Slice-0
+Selected-index = 1 -> Slice-1
+…
+Selected-index = 5 -> Slice-5",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Config",
+      UsedBy => "encdb",
+      DefaultValue => "d0",
+      DocName => "LargeEncPerEmCoreSelectedAccessIndex[n]",
+    },
+  },
+  large_enc_per_em_core_selected_access_index_cfg3 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 48;
+    Name => "large_enc_per_em_core_selected_access_index_cfg[8]",
+    RegMem => "Reg",
+    Address => "106",
+    Description => "The encapsulation large EM table is composed of two 16K entry and two 32K entry 2-read-port exact match pipes. A 16K exact match pipe is composed of four 4K banks. A 32K exact match pipe is composed of four 8K banks. 
+This register controls for each slice-key, which EM-pipe will be accessed",
+    Width => "3", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "Config",
+    DocName => "LargeEncPerEmCoreSelectedAccessIndexCfg[8]",
+    ArrayLength => "8",
+    ArrayIndex => "3",
+    large_enc_per_em_core_selected_access_index3 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 44;
+      Name => "large_enc_per_em_core_selected_access_index[n]",
+      RegMem => "RegField",
+      Description => "Num-of-EM-Cores: 8, Num-of-access: 6
+Valid values are [0..5]
+Selected-index = 0 -> Slice-0
+Selected-index = 1 -> Slice-1
+…
+Selected-index = 5 -> Slice-5",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Config",
+      UsedBy => "encdb",
+      DefaultValue => "d0",
+      DocName => "LargeEncPerEmCoreSelectedAccessIndex[n]",
+    },
+  },
+  large_enc_per_em_core_selected_access_index_cfg4 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 48;
+    Name => "large_enc_per_em_core_selected_access_index_cfg[8]",
+    RegMem => "Reg",
+    Address => "107",
+    Description => "The encapsulation large EM table is composed of two 16K entry and two 32K entry 2-read-port exact match pipes. A 16K exact match pipe is composed of four 4K banks. A 32K exact match pipe is composed of four 8K banks. 
+This register controls for each slice-key, which EM-pipe will be accessed",
+    Width => "3", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "Config",
+    DocName => "LargeEncPerEmCoreSelectedAccessIndexCfg[8]",
+    ArrayLength => "8",
+    ArrayIndex => "4",
+    large_enc_per_em_core_selected_access_index4 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 44;
+      Name => "large_enc_per_em_core_selected_access_index[n]",
+      RegMem => "RegField",
+      Description => "Num-of-EM-Cores: 8, Num-of-access: 6
+Valid values are [0..5]
+Selected-index = 0 -> Slice-0
+Selected-index = 1 -> Slice-1
+…
+Selected-index = 5 -> Slice-5",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Config",
+      UsedBy => "encdb",
+      DefaultValue => "d0",
+      DocName => "LargeEncPerEmCoreSelectedAccessIndex[n]",
+    },
+  },
+  large_enc_per_em_core_selected_access_index_cfg5 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 48;
+    Name => "large_enc_per_em_core_selected_access_index_cfg[8]",
+    RegMem => "Reg",
+    Address => "108",
+    Description => "The encapsulation large EM table is composed of two 16K entry and two 32K entry 2-read-port exact match pipes. A 16K exact match pipe is composed of four 4K banks. A 32K exact match pipe is composed of four 8K banks. 
+This register controls for each slice-key, which EM-pipe will be accessed",
+    Width => "3", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "Config",
+    DocName => "LargeEncPerEmCoreSelectedAccessIndexCfg[8]",
+    ArrayLength => "8",
+    ArrayIndex => "5",
+    large_enc_per_em_core_selected_access_index5 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 44;
+      Name => "large_enc_per_em_core_selected_access_index[n]",
+      RegMem => "RegField",
+      Description => "Num-of-EM-Cores: 8, Num-of-access: 6
+Valid values are [0..5]
+Selected-index = 0 -> Slice-0
+Selected-index = 1 -> Slice-1
+…
+Selected-index = 5 -> Slice-5",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Config",
+      UsedBy => "encdb",
+      DefaultValue => "d0",
+      DocName => "LargeEncPerEmCoreSelectedAccessIndex[n]",
+    },
+  },
+  large_enc_per_em_core_selected_access_index_cfg6 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 48;
+    Name => "large_enc_per_em_core_selected_access_index_cfg[8]",
+    RegMem => "Reg",
+    Address => "109",
+    Description => "The encapsulation large EM table is composed of two 16K entry and two 32K entry 2-read-port exact match pipes. A 16K exact match pipe is composed of four 4K banks. A 32K exact match pipe is composed of four 8K banks. 
+This register controls for each slice-key, which EM-pipe will be accessed",
+    Width => "3", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "Config",
+    DocName => "LargeEncPerEmCoreSelectedAccessIndexCfg[8]",
+    ArrayLength => "8",
+    ArrayIndex => "6",
+    large_enc_per_em_core_selected_access_index6 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 44;
+      Name => "large_enc_per_em_core_selected_access_index[n]",
+      RegMem => "RegField",
+      Description => "Num-of-EM-Cores: 8, Num-of-access: 6
+Valid values are [0..5]
+Selected-index = 0 -> Slice-0
+Selected-index = 1 -> Slice-1
+…
+Selected-index = 5 -> Slice-5",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Config",
+      UsedBy => "encdb",
+      DefaultValue => "d0",
+      DocName => "LargeEncPerEmCoreSelectedAccessIndex[n]",
+    },
+  },
+  large_enc_per_em_core_selected_access_index_cfg7 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 48;
+    Name => "large_enc_per_em_core_selected_access_index_cfg[8]",
+    RegMem => "Reg",
+    Address => "10A",
+    Description => "The encapsulation large EM table is composed of two 16K entry and two 32K entry 2-read-port exact match pipes. A 16K exact match pipe is composed of four 4K banks. A 32K exact match pipe is composed of four 8K banks. 
+This register controls for each slice-key, which EM-pipe will be accessed",
+    Width => "3", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "Config",
+    DocName => "LargeEncPerEmCoreSelectedAccessIndexCfg[8]",
+    ArrayLength => "8",
+    ArrayIndex => "7",
+    large_enc_per_em_core_selected_access_index7 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 44;
+      Name => "large_enc_per_em_core_selected_access_index[n]",
+      RegMem => "RegField",
+      Description => "Num-of-EM-Cores: 8, Num-of-access: 6
+Valid values are [0..5]
+Selected-index = 0 -> Slice-0
+Selected-index = 1 -> Slice-1
+…
+Selected-index = 5 -> Slice-5",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Config",
+      UsedBy => "encdb",
+      DefaultValue => "d0",
+      DocName => "LargeEncPerEmCoreSelectedAccessIndex[n]",
+    },
+  },
+  LargeEncDB0 => { #Structure Type: Mem;
+    Name => "LargeEncDB0",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "Large Encapsulation EM database",
+    Width => "104", # Excel Formula: =calc_mem_width(E16:E16,M15,F16,-1)
+    Type => "DocOnly",
+    UsedBy => "encdb",
+    DocName => "LargeEncDB0",
+    MemEntries => "16384", # Excel Formula: =2^14
+    MemWrapper => "EM",
+    MemProtect => "None",
+    AdditionalInfo => "KeyWidth=42,SourceIdWidth=13,NumberOfBanks=4,NumberOfCamEntries=32,FlexibleKey=Enabled,NumberOfKeySizeOptions=2,KeySize2=26,NumberOfParallelBanks=4,2PMemory=Enabled,VerifierSampleReadAccess=1,VerifierSampleReadBeforeProt=3,VerifierSamplePhysicalMem=2,VerifierSampleWriteAfterProt=1,VerifierXorBankSample=1,VerifierCpuReadAccess=Enabled,VerifierCpuWriteAccess=Enabled,VrfWriteActivityFactor=0,VrfReadActivityFactor=66,VrfDisableSameAddressErr=Enabled,VrfEnableNonCpuRdWrSameAddress=Enabled,VldWriteActivityFactor=0,VldReadActivityFactor=66",
+    MemLogicalWidth => "104",
+    EncdbLargeEncPayload => { #Structure Type: MemField;
+      Name => "EncdbLargeEncPayload",
+      RegMem => "MemField",
+      Description => "Large-EM payload
+when access as compound with further access to DIP index table, 11 lsbs are the Index to the DIP-index-mapping-table",
+      Width => "104",
+      Position => "103:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      DocName => "EncdbLargeEncPayload",
+      Comments => "Key/result options:
+42->104
+26->120
+",
+    },
+  },
+  LargeEncDB1 => { #Structure Type: Mem;
+    Name => "LargeEncDB1",
+    RegMem => "Mem",
+    Address => "100000", # Excel Formula: =calc_mem_address(C15,A15,G17,L17)
+    Description => "Large Encapsulation EM database",
+    Width => "104", # Excel Formula: =calc_mem_width(E18:E18,M17,F18,-1)
+    Type => "DocOnly",
+    UsedBy => "encdb",
+    DocName => "LargeEncDB1",
+    MemEntries => "32768", # Excel Formula: =2^15
+    MemWrapper => "EM",
+    MemProtect => "None",
+    AdditionalInfo => "KeyWidth=42,SourceIdWidth=13,NumberOfBanks=4,NumberOfCamEntries=32,FlexibleKey=Enabled,NumberOfKeySizeOptions=2,KeySize2=26,NumberOfParallelBanks=4,2PMemory=Enabled,VerifierSampleReadAccess=1,VerifierSampleReadBeforeProt=3,VerifierSamplePhysicalMem=2,VerifierSampleWriteAfterProt=1,VerifierXorBankSample=1,VerifierCpuReadAccess=Enabled,VerifierCpuWriteAccess=Enabled,VrfWriteActivityFactor=0,VrfReadActivityFactor=66,VrfDisableSameAddressErr=Enabled,VrfEnableNonCpuRdWrSameAddress=Enabled,VldWriteActivityFactor=0,VldReadActivityFactor=66",
+    MemLogicalWidth => "104",
+    EncdbLargeEncPayload => { #Structure Type: MemField;
+      Name => "EncdbLargeEncPayload",
+      RegMem => "MemField",
+      Description => "Large-EM payload
+when access as compound with further access to DIP index table, 11 lsbs are the Index to the DIP-index-mapping-table",
+      Width => "104",
+      Position => "103:0", # Excel Formula: =calc_position(F17,E18,TRUE)
+      DocName => "EncdbLargeEncPayload",
+      Comments => "Key/result options:
+42->104
+26->120
+",
+    },
+  },
+  LargeEncDB2 => { #Structure Type: Mem;
+    Name => "LargeEncDB2",
+    RegMem => "Mem",
+    Address => "100000", # Excel Formula: =calc_mem_address(C15,A15,G19,L19)
+    Description => "when access as compound with further access to DIP index table, 11 lsbs are the Index to the DIP-index-mapping-table",
+    Width => "104", # Excel Formula: =calc_mem_width(E20:E20,M19,F20,-1)
+    Type => "DocOnly",
+    UsedBy => "encdb",
+    DocName => "LargeEncDB2",
+    MemEntries => "32768", # Excel Formula: =2^15
+    MemWrapper => "EM",
+    MemProtect => "None",
+    AdditionalInfo => "KeyWidth=42,SourceIdWidth=13,NumberOfBanks=4,NumberOfCamEntries=32,FlexibleKey=Enabled,NumberOfKeySizeOptions=2,KeySize2=26,NumberOfParallelBanks=4,2PMemory=Enabled,VerifierSampleReadAccess=1,VerifierSampleReadBeforeProt=3,VerifierSamplePhysicalMem=2,VerifierSampleWriteAfterProt=1,VerifierXorBankSample=1,VerifierCpuReadAccess=Enabled,VerifierCpuWriteAccess=Enabled,VrfWriteActivityFactor=0,VrfReadActivityFactor=66,VrfDisableSameAddressErr=Enabled,VrfEnableNonCpuRdWrSameAddress=Enabled,VldWriteActivityFactor=0,VldReadActivityFactor=66",
+    MemLogicalWidth => "104",
+    EncdbLargeEncPayload => { #Structure Type: MemField;
+      Name => "EncdbLargeEncPayload",
+      RegMem => "MemField",
+      Description => "Large-EM payload
+when access as compound with further access to DIP index table, 11 lsbs are the Index to the DIP-index-mapping-table",
+      Width => "104",
+      Position => "103:0", # Excel Formula: =calc_position(F19,E20,TRUE)
+      DocName => "EncdbLargeEncPayload",
+      Comments => "Key/result options:
+42->104
+26->120
+",
+    },
+  },
+  LargeEncDB3 => { #Structure Type: Mem;
+    Name => "LargeEncDB3",
+    RegMem => "Mem",
+    Address => "100000", # Excel Formula: =calc_mem_address(C15,A15,G21,L21)
+    Description => "when access as compound with further access to DIP index table, 11 lsbs are the Index to the DIP-index-mapping-table",
+    Width => "104", # Excel Formula: =calc_mem_width(E22:E22,M21,F22,-1)
+    Type => "DocOnly",
+    UsedBy => "encdb",
+    DocName => "LargeEncDB3",
+    MemEntries => "16384", # Excel Formula: =2^14
+    MemWrapper => "EM",
+    MemProtect => "None",
+    AdditionalInfo => "KeyWidth=42,SourceIdWidth=13,NumberOfBanks=4,NumberOfCamEntries=32,FlexibleKey=Enabled,NumberOfKeySizeOptions=2,KeySize2=26,NumberOfParallelBanks=4,2PMemory=Enabled,VerifierSampleReadAccess=1,VerifierSampleReadBeforeProt=3,VerifierSamplePhysicalMem=2,VerifierSampleWriteAfterProt=1,VerifierXorBankSample=1,VerifierCpuReadAccess=Enabled,VerifierCpuWriteAccess=Enabled,VrfWriteActivityFactor=0,VrfReadActivityFactor=66,VrfDisableSameAddressErr=Enabled,VrfEnableNonCpuRdWrSameAddress=Enabled,VldWriteActivityFactor=0,VldReadActivityFactor=66",
+    MemLogicalWidth => "104",
+    EncdbLargeEncPayload => { #Structure Type: MemField;
+      Name => "EncdbLargeEncPayload",
+      RegMem => "MemField",
+      Description => "Large-EM payload
+when accessing DIP index table, 11 lsbs are the Index to the DIP-index-mapping-table",
+      Width => "104",
+      Position => "103:0", # Excel Formula: =calc_position(F21,E22,TRUE)
+      DocName => "EncdbLargeEncPayload",
+      Comments => "Key/result options:
+42->104
+26->120
+",
+    },
+  },
+  LargeEncDB0Verifier0 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB0Verifier[4]",
+    RegMem => "Mem",
+    Address => "200000", # Excel Formula: =calc_mem_address(C15,A15,G23,L23)
+    Width => "145", # Excel Formula: =calc_mem_width(E24:E24,M23,F24,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB0",
+    MemEntries => "4096",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,XorBankSample=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=66,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    MemLogicalWidth => "145",
+    LargeEncDB0Verifier0Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "LargeEncDB0Verifier[n]Data",
+      RegMem => "MemField",
+      Width => "145",
+      Position => "144:0", # Excel Formula: =calc_position(F23,E24,TRUE)
+    },
+  },
+  LargeEncDB0Verifier1 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB0Verifier[4]",
+    RegMem => "Mem",
+    Address => "300000",
+    Width => "145", # Excel Formula: =calc_mem_width(E24:E24,M23,F24,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB0",
+    MemEntries => "4096",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,XorBankSample=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=66,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    MemLogicalWidth => "145",
+    LargeEncDB0Verifier1Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20;
+      Name => "LargeEncDB0Verifier[n]Data",
+      RegMem => "MemField",
+      Width => "145",
+      Position => "144:0", # Excel Formula: =calc_position(F23,E24,TRUE)
+    },
+  },
+  LargeEncDB0Verifier2 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB0Verifier[4]",
+    RegMem => "Mem",
+    Address => "400000",
+    Width => "145", # Excel Formula: =calc_mem_width(E24:E24,M23,F24,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB0",
+    MemEntries => "4096",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,XorBankSample=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=66,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    MemLogicalWidth => "145",
+    LargeEncDB0Verifier2Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20;
+      Name => "LargeEncDB0Verifier[n]Data",
+      RegMem => "MemField",
+      Width => "145",
+      Position => "144:0", # Excel Formula: =calc_position(F23,E24,TRUE)
+    },
+  },
+  LargeEncDB0Verifier3 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB0Verifier[4]",
+    RegMem => "Mem",
+    Address => "500000",
+    Width => "145", # Excel Formula: =calc_mem_width(E24:E24,M23,F24,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB0",
+    MemEntries => "4096",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,XorBankSample=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=66,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    MemLogicalWidth => "145",
+    LargeEncDB0Verifier3Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20;
+      Name => "LargeEncDB0Verifier[n]Data",
+      RegMem => "MemField",
+      Width => "145",
+      Position => "144:0", # Excel Formula: =calc_position(F23,E24,TRUE)
+    },
+  },
+  LargeEncDB0PerBankReg0 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 22; Skip Register;
+    Name => "LargeEncDB0PerBankReg[4]",
+    RegMem => "Reg",
+    Address => "10B", # Excel Formula: =calc_reg_address(C13,A13,G13)
+    Width => "86", # Excel Formula: =calc_reg_width(E26:E28,F28)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    LargeEncDB0ActiveBanks0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 23;
+      Name => "LargeEncDB0ActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB0",
+      DefaultValue => "d1",
+    },
+    LargeEncDB0HashKey0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 19;
+      Name => "LargeEncDB0HashKey[n]",
+      RegMem => "RegField",
+      Width => "84",
+      Position => "84:1", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "LargeEncDB0",
+      DefaultValue => "h0",
+    },
+    LargeEncDB0UsePrimitiveCrc0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 27;
+      Name => "LargeEncDB0UsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F27,E28)
+      Type => "Config",
+      UsedBy => "LargeEncDB0",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB0PerBankReg1 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 22; Skip Register;
+    Name => "LargeEncDB0PerBankReg[4]",
+    RegMem => "Reg",
+    Address => "10C",
+    Width => "86", # Excel Formula: =calc_reg_width(E26:E28,F28)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    LargeEncDB0ActiveBanks1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 23;
+      Name => "LargeEncDB0ActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB0",
+      DefaultValue => "d1",
+    },
+    LargeEncDB0HashKey1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 19;
+      Name => "LargeEncDB0HashKey[n]",
+      RegMem => "RegField",
+      Width => "84",
+      Position => "84:1", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "LargeEncDB0",
+      DefaultValue => "h0",
+    },
+    LargeEncDB0UsePrimitiveCrc1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 27;
+      Name => "LargeEncDB0UsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F27,E28)
+      Type => "Config",
+      UsedBy => "LargeEncDB0",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB0PerBankReg2 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 22; Skip Register;
+    Name => "LargeEncDB0PerBankReg[4]",
+    RegMem => "Reg",
+    Address => "10D",
+    Width => "86", # Excel Formula: =calc_reg_width(E26:E28,F28)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    LargeEncDB0ActiveBanks2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 23;
+      Name => "LargeEncDB0ActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB0",
+      DefaultValue => "d1",
+    },
+    LargeEncDB0HashKey2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 19;
+      Name => "LargeEncDB0HashKey[n]",
+      RegMem => "RegField",
+      Width => "84",
+      Position => "84:1", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "LargeEncDB0",
+      DefaultValue => "h0",
+    },
+    LargeEncDB0UsePrimitiveCrc2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 27;
+      Name => "LargeEncDB0UsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F27,E28)
+      Type => "Config",
+      UsedBy => "LargeEncDB0",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB0PerBankReg3 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 22; Skip Register;
+    Name => "LargeEncDB0PerBankReg[4]",
+    RegMem => "Reg",
+    Address => "10E",
+    Width => "86", # Excel Formula: =calc_reg_width(E26:E28,F28)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    LargeEncDB0ActiveBanks3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 23;
+      Name => "LargeEncDB0ActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB0",
+      DefaultValue => "d1",
+    },
+    LargeEncDB0HashKey3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 19;
+      Name => "LargeEncDB0HashKey[n]",
+      RegMem => "RegField",
+      Width => "84",
+      Position => "84:1", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "LargeEncDB0",
+      DefaultValue => "h0",
+    },
+    LargeEncDB0UsePrimitiveCrc3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 27;
+      Name => "LargeEncDB0UsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F27,E28)
+      Type => "Config",
+      UsedBy => "LargeEncDB0",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB0PerEmReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB0PerEmReg[1]",
+    RegMem => "Reg",
+    Address => "10F", # Excel Formula: =calc_reg_address(C25,A25,G25)
+    Width => "33", # Excel Formula: =calc_reg_width(E30:E32,F32)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    LargeEncDB0KeyWidth0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "LargeEncDB0KeyWidth[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F29,E30,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB0",
+      DefaultValue => "h0",
+    },
+    LargeEncDB0AutoBubbleReq0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "LargeEncDB0AutoBubbleReq[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F30,E31)
+      Type => "Config",
+      UsedBy => "LargeEncDB0",
+      DefaultValue => "h0",
+    },
+    LargeEncDB0BubbleReqThreshold0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 30;
+      Name => "LargeEncDB0BubbleReqThreshold[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "32:17", # Excel Formula: =calc_position(F31,E32)
+      Type => "Config",
+      UsedBy => "LargeEncDB0",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB0CamWmMaxReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 23; Skip Register;
+    Name => "LargeEncDB0CamWmMaxReg[1]",
+    RegMem => "Reg",
+    Address => "110", # Excel Formula: =calc_reg_address(C29,A29,G29)
+    Width => "8", # Excel Formula: =calc_reg_width(E34:E34,F34)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    LargeEncDB0CamWmMax0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "LargeEncDB0CamWmMax[n]",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F33,E34,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "emdb",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  LargeEncDB0AccessRegister0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 26; Skip Register;
+    Name => "LargeEncDB0AccessRegister[1]",
+    RegMem => "Reg",
+    Address => "111", # Excel Formula: =calc_reg_address(C33,A33,G33)
+    Width => "183", # Excel Formula: =calc_reg_width(E36:E36,F36)
+    Type => "External",
+    UsedBy => "em_top",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    LargeEncDB0AccessReg0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 21;
+      Name => "LargeEncDB0AccessReg[n]",
+      RegMem => "RegField",
+      Width => "183",
+      Position => "182:0", # Excel Formula: =calc_position(F35,E36,TRUE)
+      Type => "External",
+    },
+  },
+  LargeEncDB0ResponseRegister0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 28; Skip Register;
+    Name => "LargeEncDB0ResponseRegister[1]",
+    RegMem => "Reg",
+    Address => "112", # Excel Formula: =calc_reg_address(C35,A35,G35)
+    Width => "183", # Excel Formula: =calc_reg_width(E38:E39,F39)
+    Type => "ReadOnly",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    LargeEncDB0ResponseValid0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "LargeEncDB0ResponseValid[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F37,E38,TRUE)
+      Type => "Event",
+      UsedBy => "emdb",
+    },
+    LargeEncDB0ResponseReg0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 23;
+      Name => "LargeEncDB0ResponseReg[n]",
+      RegMem => "RegField",
+      Width => "182",
+      Position => "182:1", # Excel Formula: =calc_position(F38,E39)
+      Type => "Capture",
+      UsedBy => "emdb",
+    },
+  },
+  LargeEncDB0Cam => { #Structure Type: Mem; Skip Register;
+    Name => "LargeEncDB0Cam",
+    RegMem => "Mem",
+    Address => "600000", # Excel Formula: =calc_mem_address(C23,A23,G40,L40)
+    Width => "163", # Excel Formula: =calc_mem_width(E41:E43,"None",F43,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB0",
+    MemEntries => "32",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,RegTcamPayloadWidth=120,CAM=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,NumCamLookupClients=2",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "163",
+    LargeEncDB0Cam_key => { #Structure Type: MemField;
+      Name => "LargeEncDB0Cam_key",
+      RegMem => "MemField",
+      Width => "42",
+      Position => "41:0", # Excel Formula: =calc_position(F40,E41,TRUE)
+    },
+    LargeEncDB0Cam_payload => { #Structure Type: MemField;
+      Name => "LargeEncDB0Cam_payload",
+      RegMem => "MemField",
+      Width => "120",
+      Position => "161:42", # Excel Formula: =calc_position(F41,E42)
+    },
+    LargeEncDB0Cam_valid => { #Structure Type: MemField;
+      Name => "LargeEncDB0Cam_valid",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "162", # Excel Formula: =calc_position(F42,E43)
+    },
+  },
+  LargeEncDB1Verifier0 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB1Verifier[4]",
+    RegMem => "Mem",
+    Address => "700000", # Excel Formula: =calc_mem_address(C40,A40,G44,L44)
+    Width => "144", # Excel Formula: =calc_mem_width(E45:E45,M44,F45,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB1",
+    MemEntries => "8192",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,XorBankSample=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=66,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    MemLogicalWidth => "144",
+    LargeEncDB1Verifier0Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "LargeEncDB1Verifier[n]Data",
+      RegMem => "MemField",
+      Width => "144",
+      Position => "143:0", # Excel Formula: =calc_position(F44,E45,TRUE)
+    },
+  },
+  LargeEncDB1Verifier1 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB1Verifier[4]",
+    RegMem => "Mem",
+    Address => "800000",
+    Width => "144", # Excel Formula: =calc_mem_width(E45:E45,M44,F45,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB1",
+    MemEntries => "8192",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,XorBankSample=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=66,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    MemLogicalWidth => "144",
+    LargeEncDB1Verifier1Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20;
+      Name => "LargeEncDB1Verifier[n]Data",
+      RegMem => "MemField",
+      Width => "144",
+      Position => "143:0", # Excel Formula: =calc_position(F44,E45,TRUE)
+    },
+  },
+  LargeEncDB1Verifier2 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB1Verifier[4]",
+    RegMem => "Mem",
+    Address => "900000",
+    Width => "144", # Excel Formula: =calc_mem_width(E45:E45,M44,F45,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB1",
+    MemEntries => "8192",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,XorBankSample=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=66,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    MemLogicalWidth => "144",
+    LargeEncDB1Verifier2Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20;
+      Name => "LargeEncDB1Verifier[n]Data",
+      RegMem => "MemField",
+      Width => "144",
+      Position => "143:0", # Excel Formula: =calc_position(F44,E45,TRUE)
+    },
+  },
+  LargeEncDB1Verifier3 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB1Verifier[4]",
+    RegMem => "Mem",
+    Address => "A00000",
+    Width => "144", # Excel Formula: =calc_mem_width(E45:E45,M44,F45,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB1",
+    MemEntries => "8192",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,XorBankSample=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=66,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    MemLogicalWidth => "144",
+    LargeEncDB1Verifier3Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20;
+      Name => "LargeEncDB1Verifier[n]Data",
+      RegMem => "MemField",
+      Width => "144",
+      Position => "143:0", # Excel Formula: =calc_position(F44,E45,TRUE)
+    },
+  },
+  LargeEncDB1PerBankReg0 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 22; Skip Register;
+    Name => "LargeEncDB1PerBankReg[4]",
+    RegMem => "Reg",
+    Address => "113", # Excel Formula: =calc_reg_address(C37,A37,G37)
+    Width => "86", # Excel Formula: =calc_reg_width(E47:E49,F49)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    LargeEncDB1ActiveBanks0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 23;
+      Name => "LargeEncDB1ActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F46,E47,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB1",
+      DefaultValue => "d1",
+    },
+    LargeEncDB1HashKey0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 19;
+      Name => "LargeEncDB1HashKey[n]",
+      RegMem => "RegField",
+      Width => "84",
+      Position => "84:1", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "LargeEncDB1",
+      DefaultValue => "h0",
+    },
+    LargeEncDB1UsePrimitiveCrc0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 27;
+      Name => "LargeEncDB1UsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "LargeEncDB1",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB1PerBankReg1 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 22; Skip Register;
+    Name => "LargeEncDB1PerBankReg[4]",
+    RegMem => "Reg",
+    Address => "114",
+    Width => "86", # Excel Formula: =calc_reg_width(E47:E49,F49)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    LargeEncDB1ActiveBanks1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 23;
+      Name => "LargeEncDB1ActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F46,E47,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB1",
+      DefaultValue => "d1",
+    },
+    LargeEncDB1HashKey1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 19;
+      Name => "LargeEncDB1HashKey[n]",
+      RegMem => "RegField",
+      Width => "84",
+      Position => "84:1", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "LargeEncDB1",
+      DefaultValue => "h0",
+    },
+    LargeEncDB1UsePrimitiveCrc1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 27;
+      Name => "LargeEncDB1UsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "LargeEncDB1",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB1PerBankReg2 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 22; Skip Register;
+    Name => "LargeEncDB1PerBankReg[4]",
+    RegMem => "Reg",
+    Address => "115",
+    Width => "86", # Excel Formula: =calc_reg_width(E47:E49,F49)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    LargeEncDB1ActiveBanks2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 23;
+      Name => "LargeEncDB1ActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F46,E47,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB1",
+      DefaultValue => "d1",
+    },
+    LargeEncDB1HashKey2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 19;
+      Name => "LargeEncDB1HashKey[n]",
+      RegMem => "RegField",
+      Width => "84",
+      Position => "84:1", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "LargeEncDB1",
+      DefaultValue => "h0",
+    },
+    LargeEncDB1UsePrimitiveCrc2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 27;
+      Name => "LargeEncDB1UsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "LargeEncDB1",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB1PerBankReg3 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 22; Skip Register;
+    Name => "LargeEncDB1PerBankReg[4]",
+    RegMem => "Reg",
+    Address => "116",
+    Width => "86", # Excel Formula: =calc_reg_width(E47:E49,F49)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    LargeEncDB1ActiveBanks3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 23;
+      Name => "LargeEncDB1ActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F46,E47,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB1",
+      DefaultValue => "d1",
+    },
+    LargeEncDB1HashKey3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 19;
+      Name => "LargeEncDB1HashKey[n]",
+      RegMem => "RegField",
+      Width => "84",
+      Position => "84:1", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "LargeEncDB1",
+      DefaultValue => "h0",
+    },
+    LargeEncDB1UsePrimitiveCrc3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 27;
+      Name => "LargeEncDB1UsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "LargeEncDB1",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB1PerEmReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB1PerEmReg[1]",
+    RegMem => "Reg",
+    Address => "117", # Excel Formula: =calc_reg_address(C46,A46,G46)
+    Width => "33", # Excel Formula: =calc_reg_width(E51:E53,F53)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    LargeEncDB1KeyWidth0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "LargeEncDB1KeyWidth[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F50,E51,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB1",
+      DefaultValue => "h0",
+    },
+    LargeEncDB1AutoBubbleReq0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "LargeEncDB1AutoBubbleReq[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F51,E52)
+      Type => "Config",
+      UsedBy => "LargeEncDB1",
+      DefaultValue => "h0",
+    },
+    LargeEncDB1BubbleReqThreshold0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 30;
+      Name => "LargeEncDB1BubbleReqThreshold[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "32:17", # Excel Formula: =calc_position(F52,E53)
+      Type => "Config",
+      UsedBy => "LargeEncDB1",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB1CamWmMaxReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 23; Skip Register;
+    Name => "LargeEncDB1CamWmMaxReg[1]",
+    RegMem => "Reg",
+    Address => "118", # Excel Formula: =calc_reg_address(C50,A50,G50)
+    Width => "8", # Excel Formula: =calc_reg_width(E55:E55,F55)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    LargeEncDB1CamWmMax0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "LargeEncDB1CamWmMax[n]",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F54,E55,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "emdb",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  LargeEncDB1AccessRegister0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 26; Skip Register;
+    Name => "LargeEncDB1AccessRegister[1]",
+    RegMem => "Reg",
+    Address => "119", # Excel Formula: =calc_reg_address(C54,A54,G54)
+    Width => "184", # Excel Formula: =calc_reg_width(E57:E57,F57)
+    Type => "External",
+    UsedBy => "em_top",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    LargeEncDB1AccessReg0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 21;
+      Name => "LargeEncDB1AccessReg[n]",
+      RegMem => "RegField",
+      Width => "184",
+      Position => "183:0", # Excel Formula: =calc_position(F56,E57,TRUE)
+      Type => "External",
+    },
+  },
+  LargeEncDB1ResponseRegister0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 28; Skip Register;
+    Name => "LargeEncDB1ResponseRegister[1]",
+    RegMem => "Reg",
+    Address => "11A", # Excel Formula: =calc_reg_address(C56,A56,G56)
+    Width => "184", # Excel Formula: =calc_reg_width(E59:E60,F60)
+    Type => "ReadOnly",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    LargeEncDB1ResponseValid0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "LargeEncDB1ResponseValid[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F58,E59,TRUE)
+      Type => "Event",
+      UsedBy => "emdb",
+    },
+    LargeEncDB1ResponseReg0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 23;
+      Name => "LargeEncDB1ResponseReg[n]",
+      RegMem => "RegField",
+      Width => "183",
+      Position => "183:1", # Excel Formula: =calc_position(F59,E60)
+      Type => "Capture",
+      UsedBy => "emdb",
+    },
+  },
+  LargeEncDB1Cam => { #Structure Type: Mem; Skip Register;
+    Name => "LargeEncDB1Cam",
+    RegMem => "Mem",
+    Address => "B00000", # Excel Formula: =calc_mem_address(C44,A44,G61,L61)
+    Width => "163", # Excel Formula: =calc_mem_width(E62:E64,"None",F64,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB1",
+    MemEntries => "32",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,RegTcamPayloadWidth=120,CAM=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,NumCamLookupClients=2",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "163",
+    LargeEncDB1Cam_key => { #Structure Type: MemField;
+      Name => "LargeEncDB1Cam_key",
+      RegMem => "MemField",
+      Width => "42",
+      Position => "41:0", # Excel Formula: =calc_position(F61,E62,TRUE)
+    },
+    LargeEncDB1Cam_payload => { #Structure Type: MemField;
+      Name => "LargeEncDB1Cam_payload",
+      RegMem => "MemField",
+      Width => "120",
+      Position => "161:42", # Excel Formula: =calc_position(F62,E63)
+    },
+    LargeEncDB1Cam_valid => { #Structure Type: MemField;
+      Name => "LargeEncDB1Cam_valid",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "162", # Excel Formula: =calc_position(F63,E64)
+    },
+  },
+  LargeEncDB2Verifier0 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB2Verifier[4]",
+    RegMem => "Mem",
+    Address => "C00000", # Excel Formula: =calc_mem_address(C61,A61,G65,L65)
+    Width => "144", # Excel Formula: =calc_mem_width(E66:E66,M65,F66,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB2",
+    MemEntries => "8192",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,XorBankSample=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=66,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    MemLogicalWidth => "144",
+    LargeEncDB2Verifier0Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "LargeEncDB2Verifier[n]Data",
+      RegMem => "MemField",
+      Width => "144",
+      Position => "143:0", # Excel Formula: =calc_position(F65,E66,TRUE)
+    },
+  },
+  LargeEncDB2Verifier1 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB2Verifier[4]",
+    RegMem => "Mem",
+    Address => "D00000",
+    Width => "144", # Excel Formula: =calc_mem_width(E66:E66,M65,F66,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB2",
+    MemEntries => "8192",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,XorBankSample=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=66,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    MemLogicalWidth => "144",
+    LargeEncDB2Verifier1Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20;
+      Name => "LargeEncDB2Verifier[n]Data",
+      RegMem => "MemField",
+      Width => "144",
+      Position => "143:0", # Excel Formula: =calc_position(F65,E66,TRUE)
+    },
+  },
+  LargeEncDB2Verifier2 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB2Verifier[4]",
+    RegMem => "Mem",
+    Address => "E00000",
+    Width => "144", # Excel Formula: =calc_mem_width(E66:E66,M65,F66,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB2",
+    MemEntries => "8192",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,XorBankSample=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=66,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    MemLogicalWidth => "144",
+    LargeEncDB2Verifier2Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20;
+      Name => "LargeEncDB2Verifier[n]Data",
+      RegMem => "MemField",
+      Width => "144",
+      Position => "143:0", # Excel Formula: =calc_position(F65,E66,TRUE)
+    },
+  },
+  LargeEncDB2Verifier3 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB2Verifier[4]",
+    RegMem => "Mem",
+    Address => "F00000",
+    Width => "144", # Excel Formula: =calc_mem_width(E66:E66,M65,F66,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB2",
+    MemEntries => "8192",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,XorBankSample=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=66,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    MemLogicalWidth => "144",
+    LargeEncDB2Verifier3Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20;
+      Name => "LargeEncDB2Verifier[n]Data",
+      RegMem => "MemField",
+      Width => "144",
+      Position => "143:0", # Excel Formula: =calc_position(F65,E66,TRUE)
+    },
+  },
+  LargeEncDB2PerBankReg0 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 22; Skip Register;
+    Name => "LargeEncDB2PerBankReg[4]",
+    RegMem => "Reg",
+    Address => "11B", # Excel Formula: =calc_reg_address(C58,A58,G58)
+    Width => "86", # Excel Formula: =calc_reg_width(E68:E70,F70)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    LargeEncDB2ActiveBanks0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 23;
+      Name => "LargeEncDB2ActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB2",
+      DefaultValue => "d1",
+    },
+    LargeEncDB2HashKey0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 19;
+      Name => "LargeEncDB2HashKey[n]",
+      RegMem => "RegField",
+      Width => "84",
+      Position => "84:1", # Excel Formula: =calc_position(F68,E69)
+      Type => "Config",
+      UsedBy => "LargeEncDB2",
+      DefaultValue => "h0",
+    },
+    LargeEncDB2UsePrimitiveCrc0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 27;
+      Name => "LargeEncDB2UsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F69,E70)
+      Type => "Config",
+      UsedBy => "LargeEncDB2",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB2PerBankReg1 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 22; Skip Register;
+    Name => "LargeEncDB2PerBankReg[4]",
+    RegMem => "Reg",
+    Address => "11C",
+    Width => "86", # Excel Formula: =calc_reg_width(E68:E70,F70)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    LargeEncDB2ActiveBanks1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 23;
+      Name => "LargeEncDB2ActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB2",
+      DefaultValue => "d1",
+    },
+    LargeEncDB2HashKey1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 19;
+      Name => "LargeEncDB2HashKey[n]",
+      RegMem => "RegField",
+      Width => "84",
+      Position => "84:1", # Excel Formula: =calc_position(F68,E69)
+      Type => "Config",
+      UsedBy => "LargeEncDB2",
+      DefaultValue => "h0",
+    },
+    LargeEncDB2UsePrimitiveCrc1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 27;
+      Name => "LargeEncDB2UsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F69,E70)
+      Type => "Config",
+      UsedBy => "LargeEncDB2",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB2PerBankReg2 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 22; Skip Register;
+    Name => "LargeEncDB2PerBankReg[4]",
+    RegMem => "Reg",
+    Address => "11D",
+    Width => "86", # Excel Formula: =calc_reg_width(E68:E70,F70)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    LargeEncDB2ActiveBanks2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 23;
+      Name => "LargeEncDB2ActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB2",
+      DefaultValue => "d1",
+    },
+    LargeEncDB2HashKey2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 19;
+      Name => "LargeEncDB2HashKey[n]",
+      RegMem => "RegField",
+      Width => "84",
+      Position => "84:1", # Excel Formula: =calc_position(F68,E69)
+      Type => "Config",
+      UsedBy => "LargeEncDB2",
+      DefaultValue => "h0",
+    },
+    LargeEncDB2UsePrimitiveCrc2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 27;
+      Name => "LargeEncDB2UsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F69,E70)
+      Type => "Config",
+      UsedBy => "LargeEncDB2",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB2PerBankReg3 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 22; Skip Register;
+    Name => "LargeEncDB2PerBankReg[4]",
+    RegMem => "Reg",
+    Address => "11E",
+    Width => "86", # Excel Formula: =calc_reg_width(E68:E70,F70)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    LargeEncDB2ActiveBanks3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 23;
+      Name => "LargeEncDB2ActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB2",
+      DefaultValue => "d1",
+    },
+    LargeEncDB2HashKey3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 19;
+      Name => "LargeEncDB2HashKey[n]",
+      RegMem => "RegField",
+      Width => "84",
+      Position => "84:1", # Excel Formula: =calc_position(F68,E69)
+      Type => "Config",
+      UsedBy => "LargeEncDB2",
+      DefaultValue => "h0",
+    },
+    LargeEncDB2UsePrimitiveCrc3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 27;
+      Name => "LargeEncDB2UsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F69,E70)
+      Type => "Config",
+      UsedBy => "LargeEncDB2",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB2PerEmReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB2PerEmReg[1]",
+    RegMem => "Reg",
+    Address => "11F", # Excel Formula: =calc_reg_address(C67,A67,G67)
+    Width => "33", # Excel Formula: =calc_reg_width(E72:E74,F74)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    LargeEncDB2KeyWidth0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "LargeEncDB2KeyWidth[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F71,E72,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB2",
+      DefaultValue => "h0",
+    },
+    LargeEncDB2AutoBubbleReq0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "LargeEncDB2AutoBubbleReq[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F72,E73)
+      Type => "Config",
+      UsedBy => "LargeEncDB2",
+      DefaultValue => "h0",
+    },
+    LargeEncDB2BubbleReqThreshold0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 30;
+      Name => "LargeEncDB2BubbleReqThreshold[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "32:17", # Excel Formula: =calc_position(F73,E74)
+      Type => "Config",
+      UsedBy => "LargeEncDB2",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB2CamWmMaxReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 23; Skip Register;
+    Name => "LargeEncDB2CamWmMaxReg[1]",
+    RegMem => "Reg",
+    Address => "120", # Excel Formula: =calc_reg_address(C71,A71,G71)
+    Width => "8", # Excel Formula: =calc_reg_width(E76:E76,F76)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    LargeEncDB2CamWmMax0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "LargeEncDB2CamWmMax[n]",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F75,E76,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "emdb",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  LargeEncDB2AccessRegister0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 26; Skip Register;
+    Name => "LargeEncDB2AccessRegister[1]",
+    RegMem => "Reg",
+    Address => "121", # Excel Formula: =calc_reg_address(C75,A75,G75)
+    Width => "184", # Excel Formula: =calc_reg_width(E78:E78,F78)
+    Type => "External",
+    UsedBy => "em_top",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    LargeEncDB2AccessReg0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 21;
+      Name => "LargeEncDB2AccessReg[n]",
+      RegMem => "RegField",
+      Width => "184",
+      Position => "183:0", # Excel Formula: =calc_position(F77,E78,TRUE)
+      Type => "External",
+    },
+  },
+  LargeEncDB2ResponseRegister0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 28; Skip Register;
+    Name => "LargeEncDB2ResponseRegister[1]",
+    RegMem => "Reg",
+    Address => "122", # Excel Formula: =calc_reg_address(C77,A77,G77)
+    Width => "184", # Excel Formula: =calc_reg_width(E80:E81,F81)
+    Type => "ReadOnly",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    LargeEncDB2ResponseValid0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "LargeEncDB2ResponseValid[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F79,E80,TRUE)
+      Type => "Event",
+      UsedBy => "emdb",
+    },
+    LargeEncDB2ResponseReg0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 23;
+      Name => "LargeEncDB2ResponseReg[n]",
+      RegMem => "RegField",
+      Width => "183",
+      Position => "183:1", # Excel Formula: =calc_position(F80,E81)
+      Type => "Capture",
+      UsedBy => "emdb",
+    },
+  },
+  LargeEncDB2Cam => { #Structure Type: Mem; Skip Register;
+    Name => "LargeEncDB2Cam",
+    RegMem => "Mem",
+    Address => "1000000", # Excel Formula: =calc_mem_address(C65,A65,G82,L82)
+    Width => "163", # Excel Formula: =calc_mem_width(E83:E85,"None",F85,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB2",
+    MemEntries => "32",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,RegTcamPayloadWidth=120,CAM=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,NumCamLookupClients=2",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "163",
+    LargeEncDB2Cam_key => { #Structure Type: MemField;
+      Name => "LargeEncDB2Cam_key",
+      RegMem => "MemField",
+      Width => "42",
+      Position => "41:0", # Excel Formula: =calc_position(F82,E83,TRUE)
+    },
+    LargeEncDB2Cam_payload => { #Structure Type: MemField;
+      Name => "LargeEncDB2Cam_payload",
+      RegMem => "MemField",
+      Width => "120",
+      Position => "161:42", # Excel Formula: =calc_position(F83,E84)
+    },
+    LargeEncDB2Cam_valid => { #Structure Type: MemField;
+      Name => "LargeEncDB2Cam_valid",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "162", # Excel Formula: =calc_position(F84,E85)
+    },
+  },
+  LargeEncDB3Verifier0 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB3Verifier[4]",
+    RegMem => "Mem",
+    Address => "1100000", # Excel Formula: =calc_mem_address(C82,A82,G86,L86)
+    Width => "145", # Excel Formula: =calc_mem_width(E87:E87,M86,F87,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB3",
+    MemEntries => "4096",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,XorBankSample=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=66,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    MemLogicalWidth => "145",
+    LargeEncDB3Verifier0Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "LargeEncDB3Verifier[n]Data",
+      RegMem => "MemField",
+      Width => "145",
+      Position => "144:0", # Excel Formula: =calc_position(F86,E87,TRUE)
+    },
+  },
+  LargeEncDB3Verifier1 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB3Verifier[4]",
+    RegMem => "Mem",
+    Address => "1200000",
+    Width => "145", # Excel Formula: =calc_mem_width(E87:E87,M86,F87,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB3",
+    MemEntries => "4096",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,XorBankSample=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=66,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    MemLogicalWidth => "145",
+    LargeEncDB3Verifier1Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20;
+      Name => "LargeEncDB3Verifier[n]Data",
+      RegMem => "MemField",
+      Width => "145",
+      Position => "144:0", # Excel Formula: =calc_position(F86,E87,TRUE)
+    },
+  },
+  LargeEncDB3Verifier2 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB3Verifier[4]",
+    RegMem => "Mem",
+    Address => "1300000",
+    Width => "145", # Excel Formula: =calc_mem_width(E87:E87,M86,F87,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB3",
+    MemEntries => "4096",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,XorBankSample=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=66,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    MemLogicalWidth => "145",
+    LargeEncDB3Verifier2Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20;
+      Name => "LargeEncDB3Verifier[n]Data",
+      RegMem => "MemField",
+      Width => "145",
+      Position => "144:0", # Excel Formula: =calc_position(F86,E87,TRUE)
+    },
+  },
+  LargeEncDB3Verifier3 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB3Verifier[4]",
+    RegMem => "Mem",
+    Address => "1400000",
+    Width => "145", # Excel Formula: =calc_mem_width(E87:E87,M86,F87,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB3",
+    MemEntries => "4096",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,XorBankSample=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=66,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    MemLogicalWidth => "145",
+    LargeEncDB3Verifier3Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20;
+      Name => "LargeEncDB3Verifier[n]Data",
+      RegMem => "MemField",
+      Width => "145",
+      Position => "144:0", # Excel Formula: =calc_position(F86,E87,TRUE)
+    },
+  },
+  LargeEncDB3PerBankReg0 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 22; Skip Register;
+    Name => "LargeEncDB3PerBankReg[4]",
+    RegMem => "Reg",
+    Address => "123", # Excel Formula: =calc_reg_address(C79,A79,G79)
+    Width => "86", # Excel Formula: =calc_reg_width(E89:E91,F91)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    LargeEncDB3ActiveBanks0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 23;
+      Name => "LargeEncDB3ActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F88,E89,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB3",
+      DefaultValue => "d1",
+    },
+    LargeEncDB3HashKey0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 19;
+      Name => "LargeEncDB3HashKey[n]",
+      RegMem => "RegField",
+      Width => "84",
+      Position => "84:1", # Excel Formula: =calc_position(F89,E90)
+      Type => "Config",
+      UsedBy => "LargeEncDB3",
+      DefaultValue => "h0",
+    },
+    LargeEncDB3UsePrimitiveCrc0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 27;
+      Name => "LargeEncDB3UsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F90,E91)
+      Type => "Config",
+      UsedBy => "LargeEncDB3",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB3PerBankReg1 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 22; Skip Register;
+    Name => "LargeEncDB3PerBankReg[4]",
+    RegMem => "Reg",
+    Address => "124",
+    Width => "86", # Excel Formula: =calc_reg_width(E89:E91,F91)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    LargeEncDB3ActiveBanks1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 23;
+      Name => "LargeEncDB3ActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F88,E89,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB3",
+      DefaultValue => "d1",
+    },
+    LargeEncDB3HashKey1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 19;
+      Name => "LargeEncDB3HashKey[n]",
+      RegMem => "RegField",
+      Width => "84",
+      Position => "84:1", # Excel Formula: =calc_position(F89,E90)
+      Type => "Config",
+      UsedBy => "LargeEncDB3",
+      DefaultValue => "h0",
+    },
+    LargeEncDB3UsePrimitiveCrc1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 27;
+      Name => "LargeEncDB3UsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F90,E91)
+      Type => "Config",
+      UsedBy => "LargeEncDB3",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB3PerBankReg2 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 22; Skip Register;
+    Name => "LargeEncDB3PerBankReg[4]",
+    RegMem => "Reg",
+    Address => "125",
+    Width => "86", # Excel Formula: =calc_reg_width(E89:E91,F91)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    LargeEncDB3ActiveBanks2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 23;
+      Name => "LargeEncDB3ActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F88,E89,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB3",
+      DefaultValue => "d1",
+    },
+    LargeEncDB3HashKey2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 19;
+      Name => "LargeEncDB3HashKey[n]",
+      RegMem => "RegField",
+      Width => "84",
+      Position => "84:1", # Excel Formula: =calc_position(F89,E90)
+      Type => "Config",
+      UsedBy => "LargeEncDB3",
+      DefaultValue => "h0",
+    },
+    LargeEncDB3UsePrimitiveCrc2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 27;
+      Name => "LargeEncDB3UsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F90,E91)
+      Type => "Config",
+      UsedBy => "LargeEncDB3",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB3PerBankReg3 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 22; Skip Register;
+    Name => "LargeEncDB3PerBankReg[4]",
+    RegMem => "Reg",
+    Address => "126",
+    Width => "86", # Excel Formula: =calc_reg_width(E89:E91,F91)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    LargeEncDB3ActiveBanks3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 23;
+      Name => "LargeEncDB3ActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F88,E89,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB3",
+      DefaultValue => "d1",
+    },
+    LargeEncDB3HashKey3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 19;
+      Name => "LargeEncDB3HashKey[n]",
+      RegMem => "RegField",
+      Width => "84",
+      Position => "84:1", # Excel Formula: =calc_position(F89,E90)
+      Type => "Config",
+      UsedBy => "LargeEncDB3",
+      DefaultValue => "h0",
+    },
+    LargeEncDB3UsePrimitiveCrc3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 27;
+      Name => "LargeEncDB3UsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "85", # Excel Formula: =calc_position(F90,E91)
+      Type => "Config",
+      UsedBy => "LargeEncDB3",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB3PerEmReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB3PerEmReg[1]",
+    RegMem => "Reg",
+    Address => "127", # Excel Formula: =calc_reg_address(C88,A88,G88)
+    Width => "33", # Excel Formula: =calc_reg_width(E93:E95,F95)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    LargeEncDB3KeyWidth0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "LargeEncDB3KeyWidth[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F92,E93,TRUE)
+      Type => "Config",
+      UsedBy => "LargeEncDB3",
+      DefaultValue => "h0",
+    },
+    LargeEncDB3AutoBubbleReq0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "LargeEncDB3AutoBubbleReq[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F93,E94)
+      Type => "Config",
+      UsedBy => "LargeEncDB3",
+      DefaultValue => "h0",
+    },
+    LargeEncDB3BubbleReqThreshold0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 30;
+      Name => "LargeEncDB3BubbleReqThreshold[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "32:17", # Excel Formula: =calc_position(F94,E95)
+      Type => "Config",
+      UsedBy => "LargeEncDB3",
+      DefaultValue => "h0",
+    },
+  },
+  LargeEncDB3CamWmMaxReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 23; Skip Register;
+    Name => "LargeEncDB3CamWmMaxReg[1]",
+    RegMem => "Reg",
+    Address => "128", # Excel Formula: =calc_reg_address(C92,A92,G92)
+    Width => "8", # Excel Formula: =calc_reg_width(E97:E97,F97)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    LargeEncDB3CamWmMax0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "LargeEncDB3CamWmMax[n]",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F96,E97,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "emdb",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  LargeEncDB3AccessRegister0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 26; Skip Register;
+    Name => "LargeEncDB3AccessRegister[1]",
+    RegMem => "Reg",
+    Address => "129", # Excel Formula: =calc_reg_address(C96,A96,G96)
+    Width => "183", # Excel Formula: =calc_reg_width(E99:E99,F99)
+    Type => "External",
+    UsedBy => "em_top",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    LargeEncDB3AccessReg0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 21;
+      Name => "LargeEncDB3AccessReg[n]",
+      RegMem => "RegField",
+      Width => "183",
+      Position => "182:0", # Excel Formula: =calc_position(F98,E99,TRUE)
+      Type => "External",
+    },
+  },
+  LargeEncDB3ResponseRegister0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 28; Skip Register;
+    Name => "LargeEncDB3ResponseRegister[1]",
+    RegMem => "Reg",
+    Address => "12A", # Excel Formula: =calc_reg_address(C98,A98,G98)
+    Width => "183", # Excel Formula: =calc_reg_width(E101:E102,F102)
+    Type => "ReadOnly",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    LargeEncDB3ResponseValid0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "LargeEncDB3ResponseValid[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F100,E101,TRUE)
+      Type => "Event",
+      UsedBy => "emdb",
+    },
+    LargeEncDB3ResponseReg0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 23;
+      Name => "LargeEncDB3ResponseReg[n]",
+      RegMem => "RegField",
+      Width => "182",
+      Position => "182:1", # Excel Formula: =calc_position(F101,E102)
+      Type => "Capture",
+      UsedBy => "emdb",
+    },
+  },
+  LargeEncDB3Cam => { #Structure Type: Mem; Skip Register;
+    Name => "LargeEncDB3Cam",
+    RegMem => "Mem",
+    Address => "1500000", # Excel Formula: =calc_mem_address(C86,A86,G103,L103)
+    Width => "163", # Excel Formula: =calc_mem_width(E104:E106,"None",F106,-1)
+    Type => "Dynamic",
+    UsedBy => "LargeEncDB3",
+    MemEntries => "32",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,RegTcamPayloadWidth=120,CAM=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,NumCamLookupClients=2",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "163",
+    LargeEncDB3Cam_key => { #Structure Type: MemField;
+      Name => "LargeEncDB3Cam_key",
+      RegMem => "MemField",
+      Width => "42",
+      Position => "41:0", # Excel Formula: =calc_position(F103,E104,TRUE)
+    },
+    LargeEncDB3Cam_payload => { #Structure Type: MemField;
+      Name => "LargeEncDB3Cam_payload",
+      RegMem => "MemField",
+      Width => "120",
+      Position => "161:42", # Excel Formula: =calc_position(F104,E105)
+    },
+    LargeEncDB3Cam_valid => { #Structure Type: MemField;
+      Name => "LargeEncDB3Cam_valid",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "162", # Excel Formula: =calc_position(F105,E106)
+    },
+  },
+  EmResponseInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "EmResponseInterrupt",
+    RegMem => "Reg",
+    Address => "12B", # Excel Formula: =calc_reg_address(C100,A100,G100)
+    Width => "4", # Excel Formula: =calc_reg_width(E108:E111,F111)
+    Type => "Interrupt",
+    Comments => "EM Skip Reg",
+    LargeEncDB0Resp => { #Structure Type: RegField;
+      Name => "LargeEncDB0Resp",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F107,E108,TRUE)
+      Type => "Interrupt",
+      UsedBy => "emdb",
+    },
+    LargeEncDB1Resp => { #Structure Type: RegField;
+      Name => "LargeEncDB1Resp",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F108,E109)
+      Type => "Interrupt",
+      UsedBy => "emdb",
+    },
+    LargeEncDB2Resp => { #Structure Type: RegField;
+      Name => "LargeEncDB2Resp",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F109,E110)
+      Type => "Interrupt",
+      UsedBy => "emdb",
+    },
+    LargeEncDB3Resp => { #Structure Type: RegField;
+      Name => "LargeEncDB3Resp",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F110,E111)
+      Type => "Interrupt",
+      UsedBy => "emdb",
+    },
+  },
+  EmResponseInterruptMask => { #Structure Type: Reg; Skip Register; Skip Register;
+    Name => "EmResponseInterruptMask",
+    RegMem => "Reg",
+    Address => "12C",
+    Width => "4", # Excel Formula: =calc_reg_width(E108:E111,F111)
+    Type => "InterruptMask",
+    Comments => "EM Skip Reg",
+    LargeEncDB0RespMask => { #Structure Type: RegField;
+      Name => "LargeEncDB0RespMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F107,E108,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    LargeEncDB1RespMask => { #Structure Type: RegField;
+      Name => "LargeEncDB1RespMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F108,E109)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    LargeEncDB2RespMask => { #Structure Type: RegField;
+      Name => "LargeEncDB2RespMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F109,E110)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    LargeEncDB3RespMask => { #Structure Type: RegField;
+      Name => "LargeEncDB3RespMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F110,E111)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  EmResponseInterruptTest => { #Structure Type: Reg; Skip Register; Skip Register;
+    Name => "EmResponseInterruptTest",
+    RegMem => "Reg",
+    Address => "12D",
+    Width => "4", # Excel Formula: =calc_reg_width(E108:E111,F111)
+    Type => "InterruptTest",
+    Comments => "EM Skip Reg",
+    LargeEncDB0RespTest => { #Structure Type: RegField;
+      Name => "LargeEncDB0RespTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F107,E108,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    LargeEncDB1RespTest => { #Structure Type: RegField;
+      Name => "LargeEncDB1RespTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F108,E109)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    LargeEncDB2RespTest => { #Structure Type: RegField;
+      Name => "LargeEncDB2RespTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F109,E110)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    LargeEncDB3RespTest => { #Structure Type: RegField;
+      Name => "LargeEncDB3RespTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F110,E111)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  LargeEncDB0Verifier0BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB0Verifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "12E", # Excel Formula: =calc_reg_address(C107,A107,G107)
+    Width => "16", # Excel Formula: =calc_reg_width(E113:E113,F113)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    LargeEncDB0Verifier0BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "LargeEncDB0Verifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F112,E113,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  LargeEncDB0Verifier1BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB0Verifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "12F",
+    Width => "16", # Excel Formula: =calc_reg_width(E113:E113,F113)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    LargeEncDB0Verifier1BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20;
+      Name => "LargeEncDB0Verifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F112,E113,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  LargeEncDB0Verifier2BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB0Verifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "130",
+    Width => "16", # Excel Formula: =calc_reg_width(E113:E113,F113)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    LargeEncDB0Verifier2BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20;
+      Name => "LargeEncDB0Verifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F112,E113,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  LargeEncDB0Verifier3BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB0Verifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "131",
+    Width => "16", # Excel Formula: =calc_reg_width(E113:E113,F113)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    LargeEncDB0Verifier3BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20;
+      Name => "LargeEncDB0Verifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F112,E113,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  LargeEncDB1Verifier0BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB1Verifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "132", # Excel Formula: =calc_reg_address(C112,A112,G112)
+    Width => "16", # Excel Formula: =calc_reg_width(E115:E115,F115)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    LargeEncDB1Verifier0BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "LargeEncDB1Verifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F114,E115,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  LargeEncDB1Verifier1BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB1Verifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "133",
+    Width => "16", # Excel Formula: =calc_reg_width(E115:E115,F115)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    LargeEncDB1Verifier1BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20;
+      Name => "LargeEncDB1Verifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F114,E115,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  LargeEncDB1Verifier2BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB1Verifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "134",
+    Width => "16", # Excel Formula: =calc_reg_width(E115:E115,F115)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    LargeEncDB1Verifier2BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20;
+      Name => "LargeEncDB1Verifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F114,E115,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  LargeEncDB1Verifier3BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB1Verifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "135",
+    Width => "16", # Excel Formula: =calc_reg_width(E115:E115,F115)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    LargeEncDB1Verifier3BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20;
+      Name => "LargeEncDB1Verifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F114,E115,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  LargeEncDB2Verifier0BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB2Verifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "136", # Excel Formula: =calc_reg_address(C114,A114,G114)
+    Width => "16", # Excel Formula: =calc_reg_width(E117:E117,F117)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    LargeEncDB2Verifier0BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "LargeEncDB2Verifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F116,E117,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  LargeEncDB2Verifier1BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB2Verifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "137",
+    Width => "16", # Excel Formula: =calc_reg_width(E117:E117,F117)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    LargeEncDB2Verifier1BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20;
+      Name => "LargeEncDB2Verifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F116,E117,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  LargeEncDB2Verifier2BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB2Verifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "138",
+    Width => "16", # Excel Formula: =calc_reg_width(E117:E117,F117)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    LargeEncDB2Verifier2BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20;
+      Name => "LargeEncDB2Verifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F116,E117,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  LargeEncDB2Verifier3BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB2Verifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "139",
+    Width => "16", # Excel Formula: =calc_reg_width(E117:E117,F117)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    LargeEncDB2Verifier3BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20;
+      Name => "LargeEncDB2Verifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F116,E117,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  LargeEncDB3Verifier0BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB3Verifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "13A", # Excel Formula: =calc_reg_address(C116,A116,G116)
+    Width => "16", # Excel Formula: =calc_reg_width(E119:E119,F119)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    LargeEncDB3Verifier0BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "LargeEncDB3Verifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F118,E119,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  LargeEncDB3Verifier1BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB3Verifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "13B",
+    Width => "16", # Excel Formula: =calc_reg_width(E119:E119,F119)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    LargeEncDB3Verifier1BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20;
+      Name => "LargeEncDB3Verifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F118,E119,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  LargeEncDB3Verifier2BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB3Verifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "13C",
+    Width => "16", # Excel Formula: =calc_reg_width(E119:E119,F119)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    LargeEncDB3Verifier2BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20;
+      Name => "LargeEncDB3Verifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F118,E119,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  LargeEncDB3Verifier3BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20; Skip Register;
+    Name => "LargeEncDB3Verifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "13D",
+    Width => "16", # Excel Formula: =calc_reg_width(E119:E119,F119)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    LargeEncDB3Verifier3BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20;
+      Name => "LargeEncDB3Verifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F118,E119,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+};

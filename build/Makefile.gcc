@@ -1,0 +1,187 @@
+# BEGIN_LEGAL
+#
+# Copyright (c) 2015-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+RH_RELEASE_FILE=/etc/redhat-release
+ifeq ($(wildcard $(RH_RELEASE_FILE)),)
+    OS_RELEASE=$(shell $(UNLOGGED) sed -e "s/ //g" -e "s/(.*)//g" -e "s/[a-z]//g" $(RH_RELEASE_FILE))
+else
+    OS_RELEASE=lin64
+endif
+
+MAKEFILE_DIR := $(dir $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST)))
+include $(MAKEFILE_DIR)/Makefile.envsetup
+
+ifeq ($(origin CLANG_TOOLING_INCLUDE_DIR), undefined)
+    CLANG_TOOLING_INCLUDE_DIR := $$($(CLANG_DIR)/llvm-config --libdir)/clang/$(CLANG_VERSION)/include
+endif
+
+ifneq ($(USER_CC),)
+    CC = $(USER_CC)
+endif
+
+ifneq ($(USER_CXX),)
+    CXX = $(USER_CXX)
+endif
+
+ifeq ($(ZLIB_INC_DIR),)
+    $(error Please define ZLIB_INC_DIR)
+endif
+
+ifeq ($(ZLIB_LINK_DIR),)
+    $(error Please define ZLIB_LINK_DIR)
+endif
+
+ifeq ($(BOOST_INC_DIR),)
+    $(error Please define BOOST_INC_DIR)
+endif
+
+ifeq ($(LIBNL3_LINK_DIR),)
+    $(error Please define LIBNL3_LINK_DIR)
+endif
+
+ifeq ($(LIBNL3_INC_DIR),)
+    $(error Please define LIBNL3_INC_DIR)
+endif
+
+AR=ar
+LINK = $(CXX)
+
+# GCC/GXX default to CC/CXX. Used for avago build.
+ifeq ($(USE_CLANG), 1)
+    # Clang 4.0.1 is not supported for avago build.
+    # Setup GCC/GXX with simply expanded CC/CXX
+    GCC := $(CC)
+    GXX := $(CXX)
+else
+    GCC ?= $(CC)
+    GXX ?= $(CXX)
+endif
+
+# Setup for build with clang
+GCC_TOOLCHAIN_FLAG_FOR_CLANG := --gcc-toolchain=$(GCC_DIR)
+ifeq ($(USE_CLANG), 1)
+    CC := $(CLANG_DIR)/clang
+    CXX := $(CLANG_DIR)/clang++
+    CFLAGS += $(GCC_TOOLCHAIN_FLAG_FOR_CLANG)
+    CXXFLAGS += $(GCC_TOOLCHAIN_FLAG_FOR_CLANG)
+    LINK_FLAGS += $(GCC_TOOLCHAIN_FLAG_FOR_CLANG)
+endif
+
+# additional python flags for compiling python extensions
+PYTHON_CONFIG ?= $(PYTHON_DIR)/bin/python3-config
+PYTHON_INC_FLAGS ?= $(shell $(UNLOGGED) $(PYTHON_CONFIG) --includes)
+PYTHON_LINK_FLAGS ?= $(shell $(UNLOGGED) py_config_out="$$($(PYTHON_CONFIG) --ldflags --embed)"; if test $$? -eq 0 ; then echo "$$py_config_out"; else $(PYTHON_CONFIG) --ldflags; fi)
+PYTHON_LINK_DIR ?= $(shell $(UNLOGGED) $(PYTHON_CONFIG) --configdir)/../
+# Don't depend on a specific python version -lpython3.XX, just strip the minor version from the library name
+PYTHON_LINK_FLAGS := $(patsubst -lpython3%,-lpython3,$(PYTHON_LINK_FLAGS))
+
+ifeq ($(ARM_BUILD), 1)
+    ifeq ($(PYTHON_DIR_ARM),)
+        $(error Python ARM directory not set!)
+    endif
+    PYTHON_INC_FLAGS := $(subst $(PYTHON_DIR),$(PYTHON_DIR_ARM),$(PYTHON_INC_FLAGS))
+    # TODO - This is a workaround until we have libpython3.so shipped in the ARM python release
+    # Uncomment the following once this library is available
+    # PYTHON_LINK_FLAGS := $(subst $(PYTHON_DIR),$(PYTHON_DIR_ARM),$(PYTHON_LINK_FLAGS))
+    PYTHON_LINK_FLAGS := $(PYTHON_DIR_ARM)/lib/libpython3.6m.a
+endif
+
+LEX=flex
+YACC=bison
+GCOV=$(GCC_DIR)/bin/gcov
+GCOVR=$(PYTHON_DIR)/bin/gcovr --gcov-executable=$(GCOV)
+
+FORMAT_ENV_PATH=env PATH=$(GIT_DIR):$(CLANG_DIR):$(PYTHON_DIR)/bin:$(PATH) LD_LIBRARY_PATH=$(GCC_DIR)/lib64
+
+RES_FOLDER_RESOURCES=$(shell $(UNLOGGED) find res -print)
+
+INC_FLAG=-I
+SWIG_INC_FLAG=-I
+COMPILE_FLAG=-c
+DEPENDS_FLAGS=-MT $@ -MMD -MP -MF $(patsubst %.o, %.Td, $@)
+AR_FLAGS=rv
+AR_OUTPUT_FLAG=
+LINK_DYNAMIC_FLAG=-shared
+LINK_OUTPUT_FLAG=-o
+LINK_LIBPATH_FLAG=-L
+LINK_LIB_FLAG=-l
+LINK_GROUP_START=-Wl,--start-group
+LINK_GROUP_END=-Wl,--end-group
+
+OBJ_OUTPUT_FLAG=-o
+
+MKDIR=mkdir
+RM=rm
+CP=cp
+ARM_SUFIX=-arm
+OBJ_EXT=.o
+ARCHIVE_EXT=.a
+DYNLIB_EXT=.so
+PYLIB_EXT=.so
+ARM_ARCHITECTURE:= aarch64
+
+SWIG_DEPENDS_FLAGS=-MT $@ -MMD -MP -MF $(DEP_OUTPUT_DIR)/swig_wrap.cxx.Td
+
+CFLAGS     += -O$(OPT) -fPIC -fno-strict-aliasing -fdiagnostics-color=always
+CXXFLAGS   += -O$(OPT) -fPIC -std=c++11 -fno-strict-aliasing -fdiagnostics-color=always
+LINK_FLAGS += -Wl,-rpath,$(GCC_DIR)/lib64 -Wl,-rpath,$(ZLIB_LINK_DIR) -Wl,-rpath,$(DLIB_OUTPUT_DIR) -Wl,-rpath,$(BOOST_LIB_DIR) -Wl,-rpath,$(LIBNL3_LINK_DIR)
+
+VALGRIND-BASE-FLAGS := --leak-check=full --show-leak-kinds=definite --error-exitcode=1 --errors-for-leak-kinds=definite --gen-suppressions=all  --error-limit=no
+VALGRIND-FAST-FLAGS := $(VALGRIND-BASE-FLAGS) --track-origins=no
+VALGRIND-FLAGS := $(VALGRIND-BASE-FLAGS) --track-origins=yes
+
+VALGRIND-PY-BASE-FLAGS := --suppressions=$(SHARED_BASE_ROOT)/test/valgrind/valgrind-python.supp --suppressions=$(SHARED_BASE_ROOT)/test/valgrind/sdk.supp.definite_leak
+VALGRIND-PY-FLAGS := $(VALGRIND-FLAGS) $(VALGRIND-PY-BASE-FLAGS)
+VALGRIND-PY-FAST-FLAGS := $(VALGRIND-FAST-FLAGS) $(VALGRIND-PY-BASE-FLAGS)
+
+ifeq ($(PERMISSIVE), 0)
+    CFLAGS   += -Wall -Werror -Wno-unused-function -Wextra -Wno-unused-parameter
+    CXXFLAGS += -Wall -Werror -Wextra -Wnon-virtual-dtor -Wno-missing-field-initializers -Wno-unused-parameter -Wno-predefined-identifier-outside-function
+    CXXFLAGS += -Wno-address-of-packed-member #When building with Clang 4.0.1
+
+    CXXFLAGS += -Wno-unused-function
+    ifneq (,$(findstring clang,$(CXX)))
+        # additional suppressions for clang
+        CFLAGS += -Wno-sometimes-uninitialized # jansson
+        CXXFLAGS += -Wno-address-of-array-temporary -Wno-sometimes-uninitialized -Wno-unused-private-field -Wno-unused-const-variable
+    endif
+endif
+
+ifeq ($(DEBUG), 1)
+    CFLAGS     += -gdwarf-2
+    CXXFLAGS   += -gdwarf-2 -DLEABA_DEBUG
+    LINK_FLAGS += -gdwarf-2
+endif
+
+ifeq ($(COVERAGE), 1)
+    CFLAGS += --coverage
+    CXXFLAGS += --coverage
+    LINK_FLAGS += --coverage
+endif
+
+# separate per user gcda from common gcno files
+ifdef COV_PROFILE_DIR
+   CFLAGS     += -fprofile-dir=$(COV_PROFILE_DIR)
+   CXXFLAGS   += -fprofile-dir=$(COV_PROFILE_DIR)
+   LINK_FLAGS += -fprofile-dir=$(COV_PROFILE_DIR)
+endif
+
+ifeq ($(SIMULATOR), 1)
+    CXXFLAGS  += -DSIMULATOR
+endif

@@ -1,0 +1,151 @@
+tmux
+
+tcsh
+mount -a
+mount /home/yzach/
+source /home/yzach/Work/setenv.tcsh
+echo 0 > /proc/sys/net/ipv6/conf/default/router_solicitations
+echo 0 > /proc/sys/net/ipv6/conf/all/router_solicitations
+
+cd ${SDK_VER}/driver/out/noopt-debug/modules/leaba_module
+modprobe uio
+make
+insmod leaba_module.ko
+
+
+cd ${SDK_VER}/driver/test/hld/board/mc
+
+cat /sys/class/uio/uio0/device/leaba_nic0
+
+##########################################################
+import general_imports
+from general_imports import *
+import smbus_wa
+import stingray_utils
+from fpga_global import *
+from stingray_utils import *
+from smbus_wa import *
+import ifg_buffers
+from leaba import sdk
+from leaba.debug_tools import debug_utils
+
+
+#sdk.la_set_logging_level(device_id, sdk.la_logger_level_e_DEBUG)
+
+import mc_inject
+dev = mc_inject.hw_device(device_id=1)
+
+lb_global.ll_device = dev.la_dev.get_ll_device()
+ll_device = lb_global.ll_device
+lb_global.pacific_tree = lb_global.ll_device.get_pacific_tree()
+pacific_tree = lb_global.pacific_tree
+debug_device = debug_utils.debug_device(dev.la_dev)
+lb_global.debug_device = debug_device
+#ll_device.set_shadow_read_enabled(False)
+
+# read (and clear) HW counters
+get_counters()
+print_npe_counters_table("all", 7)
+
+mc_inject.configure(dev)
+
+dev.open_sockets()
+
+mc_inject.inject(dev)
+mc_inject.extract(dev)
+
+packet_count, byte_count = mc_inject.cfg.counters[0].read(0, True, True)
+print('ingress counter packets=%d' % packet_count)
+
+for i in range(1, len(mc_inject.cfg.counters)):
+    packet_count, byte_count = mc_inject.cfg.counters[i].read(0, True, True)
+    print('egress counter packets=%d' % packet_count)
+
+for i in range(100):
+    mc_inject.inject(dev)
+    mc_inject.extract(dev)
+
+dev.close_sockets()
+mc_inject.teardown(dev)
+quit()
+
+# read (and clear) HW counters
+get_counters()
+print_npe_counters_table("all", 7)
+
+import control_last_pd_debug
+control_last_pd_debug.last_control_pd_debug(pacific_tree.ts_mon, 3)
+
+
+# enable IFG debug capture
+ifg_buffers.set_ifgb_rx_debug_buffer_capture_enable(slice_id=0, ifg_id=0, type='CAPTURE')
+ifg_buffers.set_ifgb_rx_debug_buffer_capture_all(slice_id=0, ifg_id=0, enable=1)
+
+# Show IFG debug capture
+rxpp_pkt = ifg_buffers.ifg2rxpp_packet()
+rxpp_pkt = ifg_buffers.read_packet_from_rx_debug_buffer(0,0,88)
+
+# PD at termination
+nppd_input_to_termination = get_npu_debug_bus_field("npe", "termination",0,0,"incoming_or_loopback_nppd")
+hex(nppd_input_to_termination)
+
+# PD at Tx
+nppd_transmit = get_npu_debug_bus_field("npe", "transmit",0,0,"incoming_or_loopback_nppd")
+hex(nppd_transmit)
+
+# output PIF
+nppd_transmit = get_npu_debug_bus_field("npe", "transmit",0,0,"incoming_or_loopback_nppd")
+nppd_desctiptor = device_buses_debug_tools.nppd_fields_info()
+print_parsed_npe_data(nppd_desctiptor, nppd_transmit, "pif",1)
+
+# last macro
+macro_id = get_npu_debug_bus_field("npe", "transmit",0,0,"macro_id")
+device_buses_debug_tools.get_macro_name('network', 'transmit', macro_id)
+
+ll_device.read_register(pacific_tree.sbif.ext_dma_pd_ptr_reg[0])
+ll_device.read_register(pacific_tree.dmc.pier.inb_ifg_extract_map_reg)
+
+
+ll_device.read_register(pacific_tree.sbif.ext_dma_wr_pd_ptr_reg[0])
+ll_device.read_register(pacific_tree.sbif.ext_dma_wr_data_ptr_reg[0])
+ll_device.read_register(pacific_tree.sbif.dma_done_interrupt_reg)
+ll_device.read_register(pacific_tree.sbif.dma_err_interrupt_reg)
+ll_device.read_register(pacific_tree.dmc.pier.pier_inb_ext_counter_reg)
+ll_device.read_register(pacific_tree.dmc.pier.pier_inb_inj_counter_reg)
+
+
+ll_device.write_register(pacific_tree.sbif.inj_dma_cfg_reg[0],3)
+ll_device.write_register(pacific_tree.sbif.ext_dma_cfg_reg[0],0x22041)
+
+
+
+hex(ll_device.read_register(pacific_tree.sbif.reset_reg)[1])
+# show the punt/inject registers
+ll_device.read_register(pacific_tree.sbif.dma_done_interrupt_reg)
+ll_device.read_register(pacific_tree.sbif.dma_err_interrupt_reg)
+ll_device.read_register(pacific_tree.sbif.inj_dma_cfg_reg[0])
+ll_device.read_register(pacific_tree.sbif.ext_dma_cfg_reg[0])
+
+ll_device.read_register(pacific_tree.sbif.inj_dma_wr_pd_ptr_reg[0])
+ll_device.read_register(pacific_tree.sbif.inj_dma_rd_pd_ptr_reg[0])
+ll_device.read_register(pacific_tree.sbif.ext_dma_wr_pd_ptr_reg[0])
+ll_device.read_register(pacific_tree.sbif.ext_dma_pd_ptr_reg[0])
+ll_device.read_register(pacific_tree.sbif.ext_dma_wr_data_ptr_reg[0])
+ll_device.read_register(pacific_tree.sbif.ext_dma_rd_data_ptr_reg[0])
+
+ll_device.read_register(pacific_tree.sbif.inj_dma_pd_base_lsb_reg[0])
+ll_device.read_register(pacific_tree.sbif.inj_dma_pd_base_msb_reg[0])
+ll_device.read_register(pacific_tree.sbif.inj_dma_pd_length_reg[0])
+
+# print IFGB counters
+import ifg_buffers
+ifg_buffers.read_ifgb_counters(0,0)
+ifg_buffers.read_ifgb_status_regs(0,0)
+
+# TM tests
+import control_last_pd_debug
+from control_last_pd_debug import *
+last_control_pd_debug(pacific_tree.slice_pair[0].rx_pdr, 0)
+last_control_pd_debug(pacific_tree.reassembly, 0, "reas_fwd_destination")
+pacific_end_of_test()
+

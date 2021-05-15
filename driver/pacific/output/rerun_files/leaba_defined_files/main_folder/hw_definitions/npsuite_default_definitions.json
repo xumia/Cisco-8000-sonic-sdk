@@ -1,0 +1,151 @@
+{
+    "npsuite_definitions": {
+        "num_simulation_seconds_per_hw_second" :  6.66 ,
+        "simulator_timer_resolution_miliseconds" : 100,
+        "place_condition_resolving_tables_at_reg_tcam_and_sram__sram_max_key_width": 5, // 0 => only reg_tcam
+        "per_engine_features": {
+            "contexts": {
+                "default": {
+                    "engines": {
+                        "termination": {
+                            "npe_sram_mapping": {
+                                "level_1_interface_to_sram_index_mapping": {
+                                    "0": 3,
+                                    "1": 5,
+                                    "2": 2
+                                },
+                                "level_2_interface_to_sram_index_mapping": {
+                                    "0": 1,
+                                    "2": 4
+                                },
+                                "level_6_interface_to_sram_index_mapping": {
+                                    "2": 6
+                                },
+                                "level_7_interface_to_sram_index_mapping": {
+                                    "0": 0
+                                }
+                            },
+                            "default_per_engine_for_lookup_result_buffering": {
+                                "buffering_disabled": false
+                            },
+                            "oversubscribed_interfaces": {
+                                "interfaces": [
+                                    // { "id": "OUTGOING_MAC_TERMINATION_TCAM_COMPOUND" }
+                                ]
+                            },
+                            "error_macro": {
+                                "macro": "npu_rx_nop_fwd_macro"
+                                // "assign_macro_id_zero": true
+                            }
+                        },
+                        "forwarding": {
+                            "npe_sram_mapping": {
+                                "level_1_interface_to_sram_index_mapping": {
+                                    "0": 4,
+                                    "1": 5,
+                                    "2": 6
+                                },
+                                "level_2_interface_to_sram_index_mapping": {
+                                    "0": 1,
+                                    "2": 3
+                                },
+                                "level_6_interface_to_sram_index_mapping": {
+                                    "2": 0
+                                },
+                                "level_7_interface_to_sram_index_mapping": {
+                                    "0": 2
+                                }
+                            },
+                            "default_per_engine_for_lookup_result_buffering": {
+                                "buffering_disabled": false
+                            },
+                            "oversubscribed_interfaces": {
+                                "interfaces": [
+
+                                ]
+                            },
+                            "error_macro": {
+                                "macro": "forwarding_done"
+                                // "assign_macro_id_zero": true
+                            }
+                        },
+                        "transmit": {
+                            "npe_sram_mapping": {
+                                "level_1_interface_to_sram_index_mapping": {
+                                    "0": 3,
+                                    "1": 5
+                                },
+                                "level_2_interface_to_sram_index_mapping": {
+                                    "0": 1
+                                },
+                                "level_6_interface_to_sram_index_mapping": {
+                                    "0": 2,
+                                    "2": 6
+                                },
+                                "level_7_interface_to_sram_index_mapping": {
+                                    "0": 0,
+                                    "1": 4
+                                }
+                            },
+                            "default_per_engine_for_lookup_result_buffering": {
+                                "buffering_disabled": false
+                            },
+                            "oversubscribed_interfaces": {
+                                "interfaces": [
+
+                                ]
+                            },
+                            "error_macro": {
+                                "macro": "tx_drop_packet_macro"
+                                // "assign_macro_id_zero": true
+                            }
+                        },
+                        "npu_host": {
+                            "npe_sram_mapping": {
+                                "level_1_interface_to_sram_index_mapping": {
+                                    "0": 3,
+                                    "1": 5
+                                },
+                                "level_2_interface_to_sram_index_mapping": {
+                                    "0": 1,
+                                    "1": 4
+                                },
+                                "level_6_interface_to_sram_index_mapping": {
+                                    "0": 2,
+                                    "2": 6
+                                },
+                                "level_7_interface_to_sram_index_mapping": {
+                                    "0": 0
+                                }
+                            },
+                            "oversubscribed_interfaces": {
+                                "interfaces": [
+
+                                ]
+                            },
+                            "error_macro": {
+                                "macro": "npu_host_drop_packet_macro"
+                                // "assign_macro_id_zero": true
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "per_macro_features": {
+            "macros": {
+                "default": {
+                    "const_buffer_optimization": {
+                        "max_bits_per_alu": 8,
+                        "max_bits_per_macro": 16,
+                        "constant_width_resolution":8
+					          }
+                },
+                "network_rx_mac_af_and_termination_macro": {
+                    "prioritize_using_mini_scoper_cma" : true
+                }
+            }
+        }
+
+    }
+}

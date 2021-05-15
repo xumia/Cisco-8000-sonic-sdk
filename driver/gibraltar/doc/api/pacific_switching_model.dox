@@ -1,0 +1,86 @@
+// Pacific Packet Processing theory L2 switching model page
+
+/// @page pacific_l2_switching L2 switching
+///
+/// Layer 2 switching is made up of the following steps:
+///
+/// * <b>Switch selection</b>: identifies which virtual switch should handle the packet. Typically based on receiving port, protocol type, VLAN headers etc.
+/// * <b>Learning</b>: packet's source MAC address is associated with a destination, based on receiving port's learning settings.
+///                    Typically, learning destination is the receiving port.\n
+///					   Learning happens independently of other steps.
+/// * <b>Forwarding</b>: selects an L2 destination (#silicon_one::la_l2_destination) for the packet, based on its Destination MAC Address.
+///	                     L2 destinations include L2 Ports, Protection groups, Multicast groups, VXLAN/PWE tunnels, etc.
+/// * <b>Resolution</b>: destination port is resolved from the L2 forwarding destination.
+/// * <b>Editing</b>: packet is manipulated, potentially modifying its VLAN tags and QoS fields.
+/// * <b>Encapsulation</b>: new headers are applied, i.e. tunnel headers.
+///
+/// @dot
+/// digraph l2_switching_graph {
+///     rankdir=LR;
+///		label = "Figure 6: L2 switching process"
+///     node[shape = record, style="bold, rounded", fontname = "Helvetica:bold", fontsize = 10];
+///     edge [tailport="e", headport="w"];
+///
+///		receive[label = "Receive"]
+///		switch_selection[label = "Virtual Switch selection"]
+///		forwarding[label = "Forwarding"]
+///		resolution[label = "Resolution"]
+///		editing[label = "Editing"]
+///		encapsulation[label = "Encapsulation"]
+///		transmit[label = "Transmit"]
+///
+///		learning[label = "Learning"]
+///
+///		receive->switch_selection
+///		switch_selection->{forwarding learning}
+///		forwarding->resolution->editing->encapsulation->transmit
+/// }
+/// @enddot
+///
+/// @section l2_switching_switch_selection_section Virtual switch selection
+///
+/// Virtual switch selection is the process of identifying the VLAN domain an Ethernet packet should be switched at.
+///
+/// Simple Ethernet ports use a global mapping between a VLAN ID (located in the packet's VLAN tag) to virtual switch.
+/// More complex ports (e.g. Ethernet attachment circuits, tunnels) map received packets to a virtual switch using a combination of VLAN tags and service identifiers.
+///
+/// These parameters impact the virtual switch selection:
+///
+/// * <b>Receive port</b>: Ethernet ports are configured as either Simple or Attachment Circuit (AC) network ports.
+///						   Packets with no VLAN tag are directed to the port's default VLAN.
+/// * <b>VLAN tags</b>:	   Packets received on Ethernet ports configured to AC mode select their VLAN
+///						   based on the receive port, and the packet's VLAN tags (up to two tags).
+/// * <b>Service Identifiers</b>: Tunneled packets select their virtual switch by the packet's configuration.\n
+///								  Tunnels are either associated with a specific virtual switch (i.e. an IPv4 tunnel),
+///								  or else rely on service identifiers such as VNI (for VXLAN tunnels) or MPLS labels (for PWE tunnels).
+///
+/// @section l2_switching_forwarding_section Forwarding
+///
+/// A virtual switch forwards packets to an L2 destination based on their Destination Address (DA), which is an L2 MAC address.
+///
+/// The switch's <b>MAC table</b> maps MAC addresses to L2 destinations; if the DA is found in the MAC table,
+/// the packet will be forwarded to the \ref pacific_l2_object_model_l2_destination "L2 destination" stored in the table.
+///
+/// Each switch has two special destinations associated with it: <b>Broadcast</b> and <b>Unknown flood</b>.\n
+/// Packets sent to the Broadcast address (0xFFFFFFFFFFFF) are directed to the broadcast destination, configured by the user; it is typically a multicast group containing all ports on the switch.\n
+/// Packets whose DA address is not found in the MAC table are sent to the Unknown flood destination, configured by the user; it is typically the same as the broadcast destination.
+/// 
+/// @section l2_switching_resolution_editing_encapsulation_section Resolution, Editing, Encapsulation
+///
+/// Once an L2 destination has been chosen for a packet, \ref pacific_processing_model_resolution "Resolution",
+/// \ref pacific_processing_model_editing_and_encapsulation "Editing and Encapsulation" take place.
+///
+/// @section l2_switching_learning_section Learning
+///
+/// A switch ensures all packets arrive at their destination by flooding packets with no entry in the MAC table to the unknown flood group.
+/// This has a side effect of significantly increasing traffic.
+///
+/// To avoid excessive floods, the switch can automatically learn MAC addresses and update its MAC table accordingly.
+/// Each received packet's source MAC address is checked; if it does not exist in the MAC table, or exists with a different L2 destination,
+/// the MAC table is updated accordingly.\n
+/// This causes subsequent packets to be sent only on that interface, avoiding further floods.
+///
+/// Learned addresses typically have an aging time associated with them. MAC table entries that have aged out are cleared,
+/// and packets to those addresses are flooded until they are again learned.
+///
+///

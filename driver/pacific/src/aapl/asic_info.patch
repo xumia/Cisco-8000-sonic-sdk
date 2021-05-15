@@ -1,0 +1,10 @@
+--- include/asic_info.h	2018-01-30 19:24:41.000000000 +0200
++++ include/asic_info.h.new 2018-02-27 08:43:46.433623102 +0200
+@@ -72,6 +72,7 @@
+     {0x1a0c357f, "\x4d\x63\x43\x68\x69\x70",                                 "1",    AVAGO_TSMC_07, 1},
+     {0x19ca357f, "\x54\x43\x48\x49\x50",                                     "1",    AVAGO_TSMC_07, 7},
+
++    {0x4510100f, "Redstone",                                                 "1",    AVAGO_TSMC_16, 1},
+     {0x19d6357f, "\x41\x70\x70\x6c\x65                                       River", "1", AVAGO_TSMC_16, 2},
+     {0x19d3157f, "\x41\x76\x69\x61\x74\x6f\x72",                             "1",    AVAGO_TSMC_16, 1},
+     {0x19a1657f, "\x42\x65\x76\x65\x72\x6c\x79",                             "1",    AVAGO_TSMC_16, 1},

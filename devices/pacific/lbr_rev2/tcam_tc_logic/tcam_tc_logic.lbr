@@ -1,0 +1,593 @@
+$block{tcam_tc_logic} = {
+  Defines_db => "",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "1",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "This field masks Ecc_1bErrInterrupt",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "This field masks Ecc_2bErrInterrupt",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "This field masks ParityErrInterrupt",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "1",
+    Type => "Config",
+    tcam_memEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "1",
+    Type => "Config",
+    tcam_memEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "1",
+    Type => "Config",
+    tcam_memEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "1",
+    Type => "Config",
+    tcam_memEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "1",
+    Type => "ReadOnly",
+    tcam_memErrInt => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "11",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "9",
+      Position => "8:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "10:9",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "2",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DefaultValue => "b0",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12)
+    Description => "Config Top broadcast parameters",
+    Width => "8", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b1",
+    },
+  },
+  start_test_reg => { #Structure Type: Reg;
+    Name => "start_test_reg",
+    RegMem => "Reg",
+    Address => "100",
+    Description => "start tcam test ",
+    Width => "1", # Excel Formula: =calc_reg_width(E8:E8,F8)
+    Type => "Config",
+    start_test => { #Structure Type: RegField;
+      Name => "start_test",
+      RegMem => "RegField",
+      Description => "when set , Tcam will intiate the self-test procedure.
+Inorder to start new test, unset this bit  and then set it again.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "tcam_tc_logic",
+      DefaultValue => "h0",
+    },
+  },
+  between_compare_period_reg => { #Structure Type: Reg;
+    Name => "between_compare_period_reg",
+    RegMem => "Reg",
+    Address => "101", # Excel Formula: =calc_reg_address(C7,A7)
+    Description => "number of cycles to wait between two consecutive copmare operations",
+    Width => "32", # Excel Formula: =calc_reg_width(E10:E10,F10)
+    Type => "Config",
+    between_compare_period => { #Structure Type: RegField;
+      Name => "between_compare_period",
+      RegMem => "RegField",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "Config",
+      UsedBy => "tcam_tc_logic",
+      DefaultValue => "h0",
+    },
+  },
+  compare_loops_reg => { #Structure Type: Reg;
+    Name => "compare_loops_reg",
+    RegMem => "Reg",
+    Address => "102", # Excel Formula: =calc_reg_address(C9,A9)
+    Description => "number of times the each TCAM line will be accessed",
+    Width => "32", # Excel Formula: =calc_reg_width(E12:E12,F12)
+    Type => "Config",
+    compare_loops => { #Structure Type: RegField;
+      Name => "compare_loops",
+      RegMem => "RegField",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F11,E12,TRUE)
+      Type => "Config",
+      UsedBy => "tcam_tc_logic",
+      DefaultValue => "h0",
+    },
+  },
+  test_res_reg => { #Structure Type: Reg;
+    Name => "test_res_reg",
+    RegMem => "Reg",
+    Address => "103", # Excel Formula: =calc_reg_address(C11,A11)
+    Description => "test_result",
+    Width => "1", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    test_failed => { #Structure Type: RegField;
+      Name => "test_failed",
+      RegMem => "RegField",
+      Description => "1 - test failed. 
+Resets when start test changes from 0 to 1.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Status",
+      UsedBy => "tcam_tc_logic",
+      DefaultValue => "h0",
+    },
+  },
+  failed_index_reg => { #Structure Type: Reg;
+    Name => "failed_index_reg",
+    RegMem => "Reg",
+    Address => "104", # Excel Formula: =calc_reg_address(C13,A13)
+    Description => "test_result",
+    Width => "9", # Excel Formula: =calc_reg_width(E16:E16,F16)
+    Type => "ReadOnly",
+    failed_index => { #Structure Type: RegField;
+      Name => "failed_index",
+      RegMem => "RegField",
+      Description => "1 - test passed. 
+Resets when start test changes from 0 to 1.",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "Status",
+      UsedBy => "tcam_tc_logic",
+      DefaultValue => "h0",
+    },
+  },
+  failed_mem_line_reg => { #Structure Type: Reg;
+    Name => "failed_mem_line_reg",
+    RegMem => "Reg",
+    Address => "105", # Excel Formula: =calc_reg_address(C15,A15)
+    Description => "test_result",
+    Width => "9", # Excel Formula: =calc_reg_width(E18:E18,F18)
+    Type => "ReadOnly",
+    failed_mem_line => { #Structure Type: RegField;
+      Name => "failed_mem_line",
+      RegMem => "RegField",
+      Description => "1 - test passed. 
+Resets when start test changes from 0 to 1.",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F17,E18,TRUE)
+      Type => "Status",
+      UsedBy => "tcam_tc_logic",
+      DefaultValue => "h0",
+    },
+  },
+  test_finished_reg => { #Structure Type: Reg;
+    Name => "test_finished_reg",
+    RegMem => "Reg",
+    Address => "106", # Excel Formula: =calc_reg_address(C17,A17)
+    Description => "test_result",
+    Width => "1", # Excel Formula: =calc_reg_width(E20:E20,F20)
+    Type => "ReadOnly",
+    test_finished => { #Structure Type: RegField;
+      Name => "test_finished",
+      RegMem => "RegField",
+      Description => "1 - test passed. 
+Resets when start test changes from 0 to 1.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F19,E20,TRUE)
+      Type => "Status",
+      UsedBy => "tcam_tc_logic",
+      DefaultValue => "h0",
+    },
+  },
+  tcam => { #Structure Type: Mem;
+    Name => "tcam",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "tcam",
+    Width => "82", # Excel Formula: =calc_mem_width(E22:E24,M21,F24)
+    Type => "Config",
+    UsedBy => "tcam_tc_logic",
+    MemEntries => "512",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,OutputHitIndex=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "82",
+    tcam_delete => { #Structure Type: MemField;
+      Name => "tcam_delete",
+      RegMem => "MemField",
+      Description => "tcam",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F21,E22,TRUE)
+    },
+    tcam_access_y => { #Structure Type: MemField;
+      Name => "tcam_access_y",
+      RegMem => "MemField",
+      Description => "tcam",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F22,E23)
+    },
+    tcam_key => { #Structure Type: MemField;
+      Name => "tcam_key",
+      RegMem => "MemField",
+      Description => "tcam",
+      Width => "80",
+      Position => "81:2", # Excel Formula: =calc_position(F23,E24)
+    },
+  },
+  tcam_mem => { #Structure Type: Mem;
+    Name => "tcam_mem",
+    RegMem => "Mem",
+    Address => "200000", # Excel Formula: =calc_mem_address(C21,A21,G25,L25)
+    Description => "tcam",
+    Width => "97", # Excel Formula: =calc_mem_width(E26:E27,M25,F27)
+    Type => "Config",
+    UsedBy => "tcam_tc_logic",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "89",
+    tcam_key => { #Structure Type: MemField;
+      Name => "tcam_key",
+      RegMem => "MemField",
+      Description => "tcam",
+      Width => "80",
+      Position => "79:0", # Excel Formula: =calc_position(F25,E26,TRUE)
+    },
+    tcam_expected_hit_index => { #Structure Type: MemField;
+      Name => "tcam_expected_hit_index",
+      RegMem => "MemField",
+      Description => "tcam",
+      Width => "9",
+      Position => "88:80", # Excel Formula: =calc_position(F26,E27)
+    },
+  },
+};

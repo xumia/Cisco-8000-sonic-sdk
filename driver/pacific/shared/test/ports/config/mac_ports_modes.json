@@ -1,0 +1,79 @@
+{
+    "gibraltar" : {
+        "1x25G_NONE": {"serdes_per_port": 1,
+                       "speed": 25,
+                       "fec_mode": "NONE",
+                       "fc_mode": "NONE"},
+
+        "1x25G_KR": {"serdes_per_port": 1,
+                     "speed": 25,
+                     "fec_mode": "KR",
+                     "fc_mode": "NONE"},
+
+        "1x25G_KR4": {"serdes_per_port": 1,
+                      "speed": 25,
+                      "fec_mode": "RS_KR4",
+                      "fc_mode": "NONE"},
+
+        "2x25G_KR4": {"serdes_per_port": 2,
+                      "speed": 50,
+                      "fec_mode": "RS_KR4",
+                      "fc_mode": "NONE"},
+
+        "4x25G_KR4": {"serdes_per_port": 4,
+                      "speed": 100,
+                      "fec_mode": "RS_KR4",
+                      "fc_mode": "NONE"},
+
+        "1x50G_KP4": {"serdes_per_port": 1,
+                      "speed": 50,
+                      "fec_mode": "RS_KP4",
+                      "fc_mode": "NONE"},
+
+        "2x50G_KP4": {"serdes_per_port": 2,
+                      "speed": 100,
+                      "fec_mode": "RS_KP4",
+                      "fc_mode": "NONE"},
+
+        "4x50G_KP4": {"serdes_per_port": 4,
+                      "speed": 200,
+                      "fec_mode": "RS_KP4",
+                      "fc_mode": "NONE"},
+
+        "8x50G_KP4": {"serdes_per_port": 8,
+                      "speed": 400,
+                      "fec_mode": "RS_KP4",
+                      "fc_mode": "NONE"},
+
+        "16x50G_KP4": {"serdes_per_port": 16,
+                       "speed": 800,
+                       "fec_mode": "RS_KP4",
+                       "fc_mode": "NONE"},
+
+        "1x10G_NONE": {"serdes_per_port": 1,
+                       "speed": 10,
+                       "fec_mode": "NONE",
+                       "fc_mode": "NONE"},
+
+        "1x10G_KR": {"serdes_per_port": 1,
+                     "speed": 10,
+                     "fec_mode": "KR",
+                     "fc_mode": "NONE"},
+
+        "4x10G_NONE": {"serdes_per_port": 4,
+                       "speed": 40,
+                       "fec_mode": "NONE",
+                       "fc_mode": "NONE"},
+
+        "4x10G_KR": {"serdes_per_port": 4,
+                     "speed": 40,
+                     "fec_mode": "KR",
+                     "fc_mode": "NONE"},
+
+        "2x20G_NONE": {"serdes_per_port": 2,
+                       "speed": 40,
+                       "fec_mode": "NONE",
+                       "fc_mode": "NONE"}
+    }
+}
+

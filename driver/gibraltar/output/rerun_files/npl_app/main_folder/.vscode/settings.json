@@ -1,0 +1,9 @@
+{
+    "npl.Npsuite.projectLeabaDefined": {
+        "pacific": "../../devices/pacific/leaba_defined",
+        "gibraltar": "../../devices/gibraltar/leaba_defined",
+        "palladium": "../../devices/akpg/palladium/leaba_defined",
+       "graphene": "../../devices/akpg/graphene/leaba_defined"
+    },
+    "npl.Npsuite.currentLeabaDefined": "pacific"
+}

@@ -1,0 +1,75 @@
+#!/usr/bin/env python3
+# BEGIN_LEGAL
+#
+# Copyright (c) 2016-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+from global_vrf_base import *
+import sys
+import unittest
+from leaba import sdk
+import packet_test_utils as U
+import scapy.all as S
+import decor
+import topology as T
+import ip_test_base
+
+
+class test_ipv6_l3_ac(global_vrf_base):
+    l3_port_impl_class = T.ip_l3_ac_base
+    ip_impl_class = ip_test_base.ipv6_test_base
+    SIP = T.ipv6_addr('2222:0db8:0a0b:12f0:0000:0000:0000:2222')
+    DIP = T.ipv6_addr('1111:0db8:0a0b:12f0:0000:0000:0000:1111')
+
+    INPUT_PACKET = \
+        S.Ether(dst=T.RX_L3_AC_MAC.addr_str, src=global_vrf_base.SA.addr_str, type=U.Ethertype.QinQ.value) / \
+        S.Dot1Q(vlan=T.RX_L3_AC_PORT_VID1, type=U.Ethertype.Dot1Q.value) / \
+        S.Dot1Q(vlan=T.RX_L3_AC_PORT_VID2) / \
+        S.IPv6(src=SIP.addr_str, dst=DIP.addr_str, hlim=global_vrf_base.TTL, plen=40)
+
+    EXPECTED_OUTPUT_PACKET = \
+        S.Ether(dst=T.NH_L3_AC_REG_MAC.addr_str, src=T.TX_L3_AC_REG_MAC.addr_str) / \
+        S.IPv6(src=SIP.addr_str, dst=DIP.addr_str, hlim=global_vrf_base.TTL - 1, plen=40)
+
+    EXPECTED_DEFAULT_OUTPUT_PACKET = \
+        S.Ether(dst=T.NH_L3_AC_DEF_MAC.addr_str, src=T.TX_L3_AC_DEF_MAC.addr_str) / \
+        S.IPv6(src=SIP.addr_str, dst=DIP.addr_str, hlim=global_vrf_base.TTL - 1, plen=40)
+
+    EXPECTED_EXTRA_OUTPUT_PACKET = \
+        S.Ether(dst=T.NH_L3_AC_EXT_MAC.addr_str, src=T.TX_L3_AC_EXT_MAC.addr_str) / \
+        S.IPv6(src=SIP.addr_str, dst=DIP.addr_str, hlim=global_vrf_base.TTL - 1, plen=40)
+
+    @unittest.skipIf(decor.is_gibraltar(), "Test is not yet enabled on GB")
+    def test_enable_disable_global_vrf(self):
+        self._test_enable_disable_global_vrf()
+
+    def test_existing_route_with_global_vrf(self):
+        self._test_existing_route_with_global_vrf()
+
+    def test_get_global_vrf(self):
+        self._test_get_global_vrf()
+
+    @unittest.skipIf(decor.is_gibraltar(), "Test is not yet enabled on GB")
+    def test_route_with_global_vrf(self):
+        self._test_route_with_global_vrf()
+
+    def test_route_without_global_vrf(self):
+        self._test_route_without_global_vrf()
+
+
+if __name__ == '__main__':
+    unittest.main()

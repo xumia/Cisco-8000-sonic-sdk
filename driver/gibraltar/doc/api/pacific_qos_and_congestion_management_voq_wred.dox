@@ -1,0 +1,237 @@
+// QoS and Congestion managenent - VOQ WRED architecture
+
+/// @page pacific_qos_and_congestion_management_voq_wred QoS and Congestion managenent - VOQ WRED architecture
+///
+/// This chapter explains the behavior of VOQ packet storage when a VOQ buffer is evicted to the HBM.
+///
+/// A VOQ buffering decision results in:
+/// * Whether to drop or store (and perhaps ECN-mark) the packet.
+/// * Whether to store the packet in the SMS, or evict the VOQ to the HBM and send for storage processing in the HBM.
+///
+/// A VOQ buffer in the HBM has two parameters that affect whether the packet will be dropped, stored or stored and ECN-marked:
+/// * The average size of the VOQ buffer in the HBM, used by WRED to signal a congestion (by droppping or ECN-marking) with an increasing (with queue size) probability.
+/// * The instantaneous size of the VOQ buffer in the HBM, used to set the maximal size the VOQ buffer can reach by deterministically dropping packets that cause the VOQ to overflow.
+///
+/// @section wred_general WRED
+/// A VOQ buffer in the HBM supports WRED - the ability to drop/mark packets statistically.
+/// The goal of this mechanism is detecting congestion earlier than reaching to full queue state. It identifies the average queue size while smoothing instantaneous bursts and randomly signals the end-hosts either by ECN or by packet drop on a congestion state.
+/// WRED reacts to the average VOQ size - the larger the queue, the higher the probability to signal congestion.
+///
+/// @subsection wred_average Average queue size
+/// WRED measures the average VOQ size using Exponential Moving Average, i.e., \f$\overline{Q}_n = \alpha Q_n+(1-\alpha)\overline{Q}_{n-1}\f$, where \f$Q\f$ and \f$\overline{Q}\f$ are the quueue size and average quueue size respectively, and \f$\alpha\f$ is the exponential moving average coefficient.
+/// 
+/// @subsection numerical_state_quantization Numerical properties' quantization
+/// The average VOQ buffer size is a "continuous" value. However the congestion signalling probability is defined for quantized values of the queue size.
+///
+/// @subsection hbm_pool_association HBM pool association
+/// Logically the HBM is divided into two (potententially overlapping) pools, to allow higher QoS control and utilization of the HBM. The specific pool a VOQ is evicted to in the HBM is defined in the VOQ-profile.
+///
+/// @section voq_in_hbm_storage_flow VOQ in HBM storage flow diagram
+/// The following diagram depicts the process a packet undergoes when it is sent to HBM storage processing.
+///
+/// @dot
+/// digraph G {
+///    rankdir="LR";
+///    fontname="sans-serif";
+///    splines="true";
+///    penwidth="0.1";
+///    edge [comment="Wildcard edge", 
+///          fontname="sans-serif", 
+///          fontsize=10, 
+///          colorscheme="blues3", 
+///          color=2, 
+///          fontcolor=3];
+///    node [fontname="serif", 
+///          colorscheme="blues4", 
+///          color="2", 
+///          style="bold, rounded", 
+///          shape="box", 
+///          fontsize=13, 
+///          fillcolor="1", 
+///          fontcolor="4"];
+///    subgraph "state_inputs" {
+///        rank=same;
+///        label="first_level";
+///        edge [comment="Wildcard node added automatic in EG."];
+///        node [comment="Wildcard node added automatic in EG."];
+///        "hbm_pool_0" [shape="box", 
+///                      style="bold, rounded", 
+///                      label="HBM pool 0"];
+///        "hbm_pool_1" [style="bold, rounded", 
+///                      label="HBM pool 1"];
+///        "voq_in_hbm" [style="bold, rounded", 
+///                      label="VOQ in HBM"];
+///        "voq_storage_process" [style="bold, rounded", 
+///                               label="VOQ storage process"];
+///    }
+///
+///
+///    "voq_in_hbm" -> "voq_avg_size_in_blocks_quantization"  [headport="w", 
+///                                                            label="Avg. size in blocks"];
+///    "drop_store_mark" [shape="diamond", 
+///                       style="bold, rounded", 
+///                       label="Drop,\nstore or mark"];
+///    "voq_storage_process" -> "drop_store_mark"  [label="Color"];
+///    "voq_storage_process" -> "drop_store_mark"  [style="dotted", 
+///                                                 label="Packet"];
+///    "hbm_pool_0" -> "hbm_pool_0_avail_quantization"  [label="Available size in blocks"];
+///    "hbm_pool_1" -> "hbm_pool_1_avail_quantization"  [label="Available size in blocks"];
+///    "voq_in_hbm" -> "voq_instantaneous_size_in_blocks_quantization"  [headport="w", 
+///                                                                      label="Instantaneous size in blocks"];
+///    subgraph cluster1 {
+///        label="Deterministic congestion control";
+///        edge [comment="subgraph edge wildcard"];
+///        node [comment="subgraph node wildcard"];
+///        "associated_pool" [style="bold, filled", 
+///                          fillcolor="gold", 
+///                          colorscheme="svg", 
+///                          color="lightblue", 
+///                          fontcolor="royalblue", 
+///                          label="Associated pool"];
+///        "hbm_pool_size_mux" [shape="trapezium", 
+///                             style="solid", 
+///                             orientation="270.0", 
+///                             label="Mux"];
+///        "associated_pool" -> "hbm_pool_size_mux"  [tailport="e", 
+///                                                  headport="s"];
+///        "voq_hbm_size_in_blocks_behavior" [style="bold, filled", 
+///                                           fillcolor="gold", 
+///                                           colorscheme="svg", 
+///                                           color="lightblue", 
+///                                           fontcolor="royalblue", 
+///                                           label="Size in blocks behavior"];
+///        "voq_instantaneous_size_in_blocks_quantization" -> "voq_hbm_size_in_blocks_behavior";
+///        "hbm_pool_0_avail_quantization" -> "hbm_pool_size_mux";
+///        "hbm_pool_1_avail_quantization" -> "hbm_pool_size_mux";
+///        "hbm_pool_size_mux" -> "voq_hbm_size_in_blocks_behavior"  [tailport="e", 
+///                                                                   label="Pool# avail. size"];
+///        subgraph "quantization_level" {
+///            rank="same";
+///            edge [comment="subgraph edge wildcard"];
+///            node [comment="subgraph node wildcard"];
+///            "hbm_pool_0_avail_quantization" [style="bold, filled", 
+///                                             fillcolor="beige", 
+///                                             colorscheme="svg", 
+///                                             color="lightblue", 
+///                                             fontcolor="royalblue", 
+///                                             label="Pool 0 avail. size in blocks quantization"];
+///            "hbm_pool_1_avail_quantization" [style="bold, filled", 
+///                                             fillcolor="beige", 
+///                                             colorscheme="svg", 
+///                                             color="lightblue", 
+///                                             fontcolor="royalblue", 
+///                                             label="Pool 1 avail. size in blocks quantization"];
+///            "voq_instantaneous_size_in_blocks_quantization" [style="bold, filled", 
+///                                                             fillcolor="beige", 
+///                                                             colorscheme="svg", 
+///                                                             color="lightblue", 
+///                                                             fontcolor="royalblue", 
+///                                                             label="VOQ instantaneous size in blocks quantization"];
+///        }
+///
+///    }
+///
+///    "voq_hbm_size_in_blocks_behavior" -> "drop_store_mark"  [label="Drop yellow/green,\nmark"];
+///    subgraph cluster0 {
+///        label="Probabilistic congestion control";
+///        edge [comment="subgraph edge wildcard"];
+///        node [comment="subgraph node wildcard"];
+///        "congestion_indication_probability" [style="bold, filled", 
+///                                             fillcolor="gold", 
+///                                             colorscheme="svg", 
+///                                             color="lightblue", 
+///                                             fontcolor="royalblue", 
+///                                             label="Congestion indication probability"];
+///        "voq_avg_size_in_blocks_quantization" -> "congestion_indication_probability"  [label="Avg. size region"];
+///        "congestion_indication_action" [style="bold, filled", 
+///                                        fillcolor="gold", 
+///                                        colorscheme="svg", 
+///                                        color="lightblue", 
+///                                        fontcolor="royalblue", 
+///                                        label="Congestion indication action"];
+///        "wred_probabilistic_effect" [label="WRED probabilistic effect"];
+///        "congestion_indication_action" -> "wred_probabilistic_effect"  [label="Drop, mark"];
+///        "congestion_indication_probability" -> "wred_probabilistic_effect";
+///        "voq_avg_size_in_blocks_quantization" [style="bold, filled", 
+///                                               fillcolor="gold", 
+///                                               colorscheme="svg", 
+///                                               color="lightblue", 
+///                                               fontcolor="royalblue", 
+///                                               label="VOQ avg. size in blocks quantization"];
+///    }
+///
+///    "wred_probabilistic_effect" -> "drop_store_mark"  [headport="_", 
+///                                                       label="Drop, mark"];
+///}
+///
+///
+/// @enddot 
+///
+/// @section fcn_marking FCN marking
+/// Classic WRED marks ECN congestion when packets enter the VOQ buffer. If the buffer is long, it will take time until this congestion-indicated packet egress the buffer (and then the device).
+/// In order to expedite the cogestion notification to the end-host, Pacific provides a Forward Congestion Notification (FCN) capability.
+/// In FCN, WRED checks and marking is performed also on packets that egress the buffer, which saves the packet-in-buffer propagation time.
+/// FCN marking is probabilistic based on the average VOQ size. At packet level the FCN mark sets ECN.
+///
+/// @subsection fcn_marking_flow FCN marking flow diagram
+/// The following diagram depicts the process a packet undergoes when it egress the HBM storage.
+///
+/// @dot
+///
+/// digraph G {
+///    rankdir="LR";
+///    fontname="sans-serif";
+///    splines="true";
+///    penwidth="0.1";
+///    edge [comment="Wildcard edge", 
+///          fontname="sans-serif", 
+///          fontsize=10, 
+///          colorscheme="blues3", 
+///          color=2, 
+///          fontcolor=3];
+///    node [fontname="serif", 
+///          colorscheme="blues4", 
+///          color="2", 
+///          style="bold, rounded", 
+///          shape="box", 
+///          fontsize=13, 
+///          fillcolor="1", 
+///          fontcolor="4"];
+///    "voq_in_hbm" [style="bold, rounded", 
+///                  label="VOQ in HBM"];
+///    "voq_in_hbm" -> "voq_avg_size_in_blocks_quantization"  [label="Avg. size in blocks"];
+///    "drop_store_mark" [shape="diamond", 
+///                       style="bold, rounded", 
+///                       label="Pass, mark"];
+///    subgraph cluster0 {
+///        label="FCN probabilistic congestion control";
+///        edge [comment="subgraph edge wildcard"];
+///        node [comment="subgraph node wildcard"];
+///        "fcn_congestion_indication_probability" [style="bold, filled", 
+///                                                 fillcolor="gold", 
+///                                                 colorscheme="svg", 
+///                                                 color="lightblue", 
+///                                                 fontcolor="royalblue", 
+///                                                 label="FCN congestion indication probability"];
+///        "voq_avg_size_in_blocks_quantization" -> "fcn_congestion_indication_probability"  [label="Avg. size region"];
+///        "wred_probabilistic_effect" [label="WRED probabilistic effect"];
+///        "fcn_congestion_indication_probability" -> "wred_probabilistic_effect";
+///        "voq_avg_size_in_blocks_quantization" [style="bold, filled", 
+///                                               fillcolor="gold", 
+///                                               colorscheme="svg", 
+///                                               color="lightblue", 
+///                                               fontcolor="royalblue", 
+///                                               label="VOQ avg. size in blocks quantization"];
+///    }
+///
+///    "wred_probabilistic_effect" -> "drop_store_mark"  [headport="_", 
+///                                                       label="FCN mark"];
+///     "voq_in_hbm" -> "drop_store_mark"  [style="dotted", 
+///                                           label="Dequeuing packet"];
+/// }
+///
+/// @enddot 
+///
+
+
+

@@ -1,0 +1,2534 @@
+$block{counters_bank_group} = {
+  Defines_db => "Z:\\leaba_reg_db_example\\defines.v",
+  ProjectName => "Gibraltar",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "4",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+    InterruptReg0Summary => { #Structure Type: RegField;
+      Name => "InterruptReg0Summary",
+      RegMem => "RegField",
+      Description => "When this bit is set, InterruptReg0 has asserted interrupt",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+    },
+    InterruptReg1Summary => { #Structure Type: RegField;
+      Name => "InterruptReg1Summary",
+      RegMem => "RegField",
+      Description => "When this bit is set, InterruptReg1 has asserted interrupt",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+    },
+    InterruptReg2Summary => { #Structure Type: RegField;
+      Name => "InterruptReg2Summary",
+      RegMem => "RegField",
+      Description => "When this bit is set, InterruptReg2 has asserted interrupt",
+      Width => "1",
+      Position => "3",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt test register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "6",
+    Type => "Config",
+    CountersTable0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "CountersTable0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    CountersTable1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "CountersTable1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    CountersTable2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "CountersTable2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    CountersAuxTable0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "CountersAuxTable0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    CountersAuxTable1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "CountersAuxTable1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    CountersAuxTable2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "CountersAuxTable2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "6",
+    Type => "Config",
+    CountersTable0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "CountersTable0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    CountersTable1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "CountersTable1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    CountersTable2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "CountersTable2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    CountersAuxTable0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "CountersAuxTable0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    CountersAuxTable1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "CountersAuxTable1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    CountersAuxTable2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "CountersAuxTable2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "6",
+    Type => "Config",
+    CountersTable0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "CountersTable0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CountersTable1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "CountersTable1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CountersTable2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "CountersTable2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CountersAuxTable0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "CountersAuxTable0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CountersAuxTable1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "CountersAuxTable1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CountersAuxTable2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "CountersAuxTable2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "6",
+    Type => "Config",
+    CountersTable0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "CountersTable0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CountersTable1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "CountersTable1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CountersTable2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "CountersTable2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CountersAuxTable0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "CountersAuxTable0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CountersAuxTable1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "CountersAuxTable1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CountersAuxTable2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "CountersAuxTable2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectErrStatus",
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "6",
+    Type => "ReadOnly",
+    CountersTable0ErrInt => { #Structure Type: RegField;
+      Name => "CountersTable0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    CountersTable1ErrInt => { #Structure Type: RegField;
+      Name => "CountersTable1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "1",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    CountersTable2ErrInt => { #Structure Type: RegField;
+      Name => "CountersTable2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "2",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    CountersAuxTable0ErrInt => { #Structure Type: RegField;
+      Name => "CountersAuxTable0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "3",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    CountersAuxTable1ErrInt => { #Structure Type: RegField;
+      Name => "CountersAuxTable1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "4",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    CountersAuxTable2ErrInt => { #Structure Type: RegField;
+      Name => "CountersAuxTable2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "5",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    Name => "SelectedSerErrorInfo",
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "14",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      Name => "MemErrAddr",
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "12",
+      Position => "11:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      Name => "MemErrType",
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "13:12",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SerErrorDebugConfiguration",
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "4",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      Name => "ErroneousMemorySelector",
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "3",
+      Position => "2:0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      Name => "ResetMemoryErrors",
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrDebug",
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_1bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrDebug",
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_2bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "73", # Excel Formula: =calc_reg_width(E25:E53,F53)
+    Type => "Config",
+    SACR1P_RME => { #Structure Type: RegField;
+      Name => "SACR1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACR1P_RM => { #Structure Type: RegField;
+      Name => "SACR1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "4:1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACU2P_RME => { #Structure Type: RegField;
+      Name => "SACU2P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACU2P_RM => { #Structure Type: RegField;
+      Name => "SACU2P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "9:6", # Excel Formula: =calc_position(F27,E28)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADC1P_RME => { #Structure Type: RegField;
+      Name => "SADC1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F28,E29)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADC1P_RM => { #Structure Type: RegField;
+      Name => "SADC1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "14:11", # Excel Formula: =calc_position(F29,E30)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMEA => { #Structure Type: RegField;
+      Name => "SADR2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F30,E31)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMA => { #Structure Type: RegField;
+      Name => "SADR2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "19:16", # Excel Formula: =calc_position(F31,E32)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMEB => { #Structure Type: RegField;
+      Name => "SADR2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "20", # Excel Formula: =calc_position(F32,E33)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMB => { #Structure Type: RegField;
+      Name => "SADR2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "24:21", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMEA => { #Structure Type: RegField;
+      Name => "SADS2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMA => { #Structure Type: RegField;
+      Name => "SADS2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "29:26", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMEB => { #Structure Type: RegField;
+      Name => "SADS2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "30", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMB => { #Structure Type: RegField;
+      Name => "SADS2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "34:31", # Excel Formula: =calc_position(F37,E38)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASR1P_RME => { #Structure Type: RegField;
+      Name => "SASR1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "35", # Excel Formula: =calc_position(F38,E39)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASR1P_RM => { #Structure Type: RegField;
+      Name => "SASR1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "39:36", # Excel Formula: =calc_position(F39,E40)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS1P_RME => { #Structure Type: RegField;
+      Name => "SASS1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "40", # Excel Formula: =calc_position(F40,E41)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS1P_RM => { #Structure Type: RegField;
+      Name => "SASS1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "44:41", # Excel Formula: =calc_position(F41,E42)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMEA => { #Structure Type: RegField;
+      Name => "SASS2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "45", # Excel Formula: =calc_position(F42,E43)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMA => { #Structure Type: RegField;
+      Name => "SASS2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "49:46", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMEB => { #Structure Type: RegField;
+      Name => "SASS2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "50", # Excel Formula: =calc_position(F44,E45)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMB => { #Structure Type: RegField;
+      Name => "SASS2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "54:51", # Excel Formula: =calc_position(F45,E46)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASU2P_RME => { #Structure Type: RegField;
+      Name => "SASU2P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "55", # Excel Formula: =calc_position(F46,E47)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASU2P_RM => { #Structure Type: RegField;
+      Name => "SASU2P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "59:56", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_RME => { #Structure Type: RegField;
+      Name => "SADU1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "60", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_RM => { #Structure Type: RegField;
+      Name => "SADU1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "64:61", # Excel Formula: =calc_position(F49,E50)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RA => { #Structure Type: RegField;
+      Name => "SADS2P_RA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Assist for Dual port",
+      Width => "2",
+      Position => "66:65", # Excel Formula: =calc_position(F50,E51)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_WA => { #Structure Type: RegField;
+      Name => "SADU1P_WA",
+      RegMem => "RegField",
+      Description => "Write-Assist configuration for the SP SADU compiler",
+      Width => "3",
+      Position => "69:67", # Excel Formula: =calc_position(F51,E52)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d5",
+    },
+    SADU1P_WPULSE => { #Structure Type: RegField;
+      Name => "SADU1P_WPULSE",
+      RegMem => "RegField",
+      Description => "Write-Assist-Pulse configuration for the SP SADU compiler",
+      Width => "3",
+      Position => "72:70", # Excel Formula: =calc_position(F52,E53)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E55:E55,F55)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F54,E55,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C54,A54,G54)
+    Description => "Spare register",
+    Width => "128", # Excel Formula: =calc_reg_width(E57:E57,F57)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "Spare register ",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F56,E57,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C56,A56,G56)
+    Description => "PMRO controller configuration",
+    Width => "32", # Excel Formula: =calc_reg_width(E59:E63,F63)
+    Type => "Config",
+    PmroRstn => { #Structure Type: RegField;
+      Name => "PmroRstn",
+      RegMem => "RegField",
+      Description => "PMRO reset, active low",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F58,E59,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroConfigEn => { #Structure Type: RegField;
+      Name => "PmroConfigEn",
+      RegMem => "RegField",
+      Description => "Enable pmro configuration, when equals to 0 configurations are locked",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F59,E60)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroStart => { #Structure Type: RegField;
+      Name => "PmroStart",
+      RegMem => "RegField",
+      Description => "Start the pmro operation",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F60,E61)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroRingEn => { #Structure Type: RegField;
+      Name => "PmroRingEn",
+      RegMem => "RegField",
+      Description => "Determines which PMRO ring to activate, should be configured as one hot",
+      Width => "7",
+      Position => "9:3", # Excel Formula: =calc_position(F61,E62)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroCntPeriod => { #Structure Type: RegField;
+      Name => "PmroCntPeriod",
+      RegMem => "RegField",
+      Description => "Number of core clock cycles on which PMRO is measured",
+      Width => "22",
+      Position => "31:10", # Excel Formula: =calc_position(F62,E63)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "h3FFFFF",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C58,A58,G58)
+    Description => "PMRO status configuration",
+    Width => "23", # Excel Formula: =calc_reg_width(E65:E66,F66)
+    Type => "ReadOnly",
+    PmroCountOut => { #Structure Type: RegField;
+      Name => "PmroCountOut",
+      RegMem => "RegField",
+      Description => "The ring oscilator counter value.",
+      Width => "22",
+      Position => "21:0", # Excel Formula: =calc_position(F64,E65,TRUE)
+      Type => "Status",
+      UsedBy => "pmro",
+    },
+    PmroDone => { #Structure Type: RegField;
+      Name => "PmroDone",
+      RegMem => "RegField",
+      Description => "Pmro operation done, PmroCountOut is valid.",
+      Width => "1",
+      Position => "22", # Excel Formula: =calc_position(F65,E66)
+      Type => "Status",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C64,A64,G64)
+    Description => "Mirror Bus configurations",
+    Width => "11", # Excel Formula: =calc_reg_width(E68:E69,F69)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "Enable Mirror Bus",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "Mirror Bus selector",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F68,E69)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C67,A67,G67)
+    Description => "Mirror Bus status result",
+    Width => "32", # Excel Formula: =calc_reg_width(E71:E71,F71)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "Mirror Bus status result",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F70,E71,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C70,A70,G70)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E73:E73,F73)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F72,E73,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  BankConfig0 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 11;
+    Name => "BankConfig[3]",
+    RegMem => "Reg",
+    Address => "100",
+    Description => "Configurations per bank",
+    Width => "24", # Excel Formula: =calc_reg_width(E8:E16,F16)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    BankSliceAllocation0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "BankSliceAllocation[n]",
+      RegMem => "RegField",
+      Description => "Allocation to a slice (0-5)",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "d0",
+    },
+    BankClientAllocation0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 21;
+      Name => "BankClientAllocation[n]",
+      RegMem => "RegField",
+      Description => "Allocation to a pipe client (RX, TX, VOQ)
+Should be configured indentically to the global counters configuration
+0 - CLIENT_RX
+1 - CLIENT_TX
+2 - CLIENT_VOQ",
+      Width => "2",
+      Position => "4:3", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "d0",
+    },
+    CpuReadCcWaitBeforeCreateBubble0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 32;
+      Name => "CpuReadCcWaitBeforeCreateBubble[n]",
+      RegMem => "RegField",
+      Description => "Number of cc CPU Read is delayed before creating a bubble - in multiplies of 32",
+      Width => "6",
+      Position => "10:5", # Excel Formula: =calc_position(F9,E10)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "d2",
+      Comments => "Design resolution parameter - CPU_READ_DELAY_COUNTER_RESOLUTION
+wait time should be at least the time it takes the bubble to reach counters block, otherwise another bubble will be created",
+    },
+    Wraparound0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 11;
+      Name => "Wraparound[n]",
+      RegMem => "RegField",
+      Description => "Should counters wrap-around when reaching max value or remain at all 1s (both packet and byte count)
+0 - Remain at 1s
+1 - Wrap-around",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F10,E11)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "b1",
+    },
+    IgnorePdCompensation0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 21;
+      Name => "IgnorePdCompensation[n]",
+      RegMem => "RegField",
+      Description => "Whether to decrease the compensation value received on the PD (from RXPP)
+0 - Decrease
+1- Ignore (don't decrease)",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F11,E12)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "b0",
+    },
+    Compensation0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 13;
+      Name => "Compensation[n]",
+      RegMem => "RegField",
+      Description => "Packet Size Compensation value to reduce from the received packet size (Bytes)",
+      Width => "7",
+      Position => "19:13", # Excel Formula: =calc_position(F12,E13)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "h0",
+    },
+    BankCounterType0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 16;
+      Name => "BankCounterType[n]",
+      RegMem => "RegField",
+      Description => "Counter type
+0 - 29b PC + 35b BC
+1 - 64b PC
+2 - 64b PC + 64b BC
+3 - 32 PC (For VOQ counting)
+PC - Packet Count / BC - Byte Count",
+      Width => "2",
+      Position => "21:20", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "d0",
+      Comments => "enum:
+0 - PC29_BC35
+1 - PC64
+2 - PC64_BC64
+3 - PC32",
+    },
+    ResetOnMaxCounterRead0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 22;
+      Name => "ResetOnMaxCounterRead[n]",
+      RegMem => "RegField",
+      Description => "Whether to reset the max counter that is read on max-counters-read (of read with reset bit turned on)
+Should be turned off for banks which are used for LM in order not to reset the LM value returned because of max-counters-read (which is sent to all banks including LM)
+0 - Don't reset on max-counter-read
+1 - Reset on max-counter-read (with reset turned on)",
+      Width => "1",
+      Position => "22", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "b1",
+    },
+    LmCountAndRead0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 15;
+      Name => "LmCountAndRead[n]",
+      RegMem => "RegField",
+      Description => "Whether LM Read command also count
+0 - Read only
+1 - Count and read",
+      Width => "1",
+      Position => "23", # Excel Formula: =calc_position(F15,E16)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "b0",
+    },
+  },
+  BankConfig1 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 11;
+    Name => "BankConfig[3]",
+    RegMem => "Reg",
+    Address => "101",
+    Description => "Configurations per bank",
+    Width => "24", # Excel Formula: =calc_reg_width(E8:E16,F16)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    BankSliceAllocation1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 20;
+      Name => "BankSliceAllocation[n]",
+      RegMem => "RegField",
+      Description => "Allocation to a slice (0-5)",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "d0",
+    },
+    BankClientAllocation1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 21;
+      Name => "BankClientAllocation[n]",
+      RegMem => "RegField",
+      Description => "Allocation to a pipe client (RX, TX, VOQ)
+Should be configured indentically to the global counters configuration
+0 - CLIENT_RX
+1 - CLIENT_TX
+2 - CLIENT_VOQ",
+      Width => "2",
+      Position => "4:3", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "d0",
+    },
+    CpuReadCcWaitBeforeCreateBubble1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 32;
+      Name => "CpuReadCcWaitBeforeCreateBubble[n]",
+      RegMem => "RegField",
+      Description => "Number of cc CPU Read is delayed before creating a bubble - in multiplies of 32",
+      Width => "6",
+      Position => "10:5", # Excel Formula: =calc_position(F9,E10)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "d2",
+      Comments => "Design resolution parameter - CPU_READ_DELAY_COUNTER_RESOLUTION
+wait time should be at least the time it takes the bubble to reach counters block, otherwise another bubble will be created",
+    },
+    Wraparound1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 11;
+      Name => "Wraparound[n]",
+      RegMem => "RegField",
+      Description => "Should counters wrap-around when reaching max value or remain at all 1s (both packet and byte count)
+0 - Remain at 1s
+1 - Wrap-around",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F10,E11)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "b1",
+    },
+    IgnorePdCompensation1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 21;
+      Name => "IgnorePdCompensation[n]",
+      RegMem => "RegField",
+      Description => "Whether to decrease the compensation value received on the PD (from RXPP)
+0 - Decrease
+1- Ignore (don't decrease)",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F11,E12)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "b0",
+    },
+    Compensation1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 13;
+      Name => "Compensation[n]",
+      RegMem => "RegField",
+      Description => "Packet Size Compensation value to reduce from the received packet size (Bytes)",
+      Width => "7",
+      Position => "19:13", # Excel Formula: =calc_position(F12,E13)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "h0",
+    },
+    BankCounterType1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 16;
+      Name => "BankCounterType[n]",
+      RegMem => "RegField",
+      Description => "Counter type
+0 - 29b PC + 35b BC
+1 - 64b PC
+2 - 64b PC + 64b BC
+3 - 32 PC (For VOQ counting)
+PC - Packet Count / BC - Byte Count",
+      Width => "2",
+      Position => "21:20", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "d0",
+      Comments => "enum:
+0 - PC29_BC35
+1 - PC64
+2 - PC64_BC64
+3 - PC32",
+    },
+    ResetOnMaxCounterRead1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 22;
+      Name => "ResetOnMaxCounterRead[n]",
+      RegMem => "RegField",
+      Description => "Whether to reset the max counter that is read on max-counters-read (of read with reset bit turned on)
+Should be turned off for banks which are used for LM in order not to reset the LM value returned because of max-counters-read (which is sent to all banks including LM)
+0 - Don't reset on max-counter-read
+1 - Reset on max-counter-read (with reset turned on)",
+      Width => "1",
+      Position => "22", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "b1",
+    },
+    LmCountAndRead1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 15;
+      Name => "LmCountAndRead[n]",
+      RegMem => "RegField",
+      Description => "Whether LM Read command also count
+0 - Read only
+1 - Count and read",
+      Width => "1",
+      Position => "23", # Excel Formula: =calc_position(F15,E16)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "b0",
+    },
+  },
+  BankConfig2 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 11;
+    Name => "BankConfig[3]",
+    RegMem => "Reg",
+    Address => "102",
+    Description => "Configurations per bank",
+    Width => "24", # Excel Formula: =calc_reg_width(E8:E16,F16)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    BankSliceAllocation2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 20;
+      Name => "BankSliceAllocation[n]",
+      RegMem => "RegField",
+      Description => "Allocation to a slice (0-5)",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "d0",
+    },
+    BankClientAllocation2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 21;
+      Name => "BankClientAllocation[n]",
+      RegMem => "RegField",
+      Description => "Allocation to a pipe client (RX, TX, VOQ)
+Should be configured indentically to the global counters configuration
+0 - CLIENT_RX
+1 - CLIENT_TX
+2 - CLIENT_VOQ",
+      Width => "2",
+      Position => "4:3", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "d0",
+    },
+    CpuReadCcWaitBeforeCreateBubble2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 32;
+      Name => "CpuReadCcWaitBeforeCreateBubble[n]",
+      RegMem => "RegField",
+      Description => "Number of cc CPU Read is delayed before creating a bubble - in multiplies of 32",
+      Width => "6",
+      Position => "10:5", # Excel Formula: =calc_position(F9,E10)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "d2",
+      Comments => "Design resolution parameter - CPU_READ_DELAY_COUNTER_RESOLUTION
+wait time should be at least the time it takes the bubble to reach counters block, otherwise another bubble will be created",
+    },
+    Wraparound2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 11;
+      Name => "Wraparound[n]",
+      RegMem => "RegField",
+      Description => "Should counters wrap-around when reaching max value or remain at all 1s (both packet and byte count)
+0 - Remain at 1s
+1 - Wrap-around",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F10,E11)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "b1",
+    },
+    IgnorePdCompensation2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 21;
+      Name => "IgnorePdCompensation[n]",
+      RegMem => "RegField",
+      Description => "Whether to decrease the compensation value received on the PD (from RXPP)
+0 - Decrease
+1- Ignore (don't decrease)",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F11,E12)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "b0",
+    },
+    Compensation2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 13;
+      Name => "Compensation[n]",
+      RegMem => "RegField",
+      Description => "Packet Size Compensation value to reduce from the received packet size (Bytes)",
+      Width => "7",
+      Position => "19:13", # Excel Formula: =calc_position(F12,E13)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "h0",
+    },
+    BankCounterType2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 16;
+      Name => "BankCounterType[n]",
+      RegMem => "RegField",
+      Description => "Counter type
+0 - 29b PC + 35b BC
+1 - 64b PC
+2 - 64b PC + 64b BC
+3 - 32 PC (For VOQ counting)
+PC - Packet Count / BC - Byte Count",
+      Width => "2",
+      Position => "21:20", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "d0",
+      Comments => "enum:
+0 - PC29_BC35
+1 - PC64
+2 - PC64_BC64
+3 - PC32",
+    },
+    ResetOnMaxCounterRead2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 22;
+      Name => "ResetOnMaxCounterRead[n]",
+      RegMem => "RegField",
+      Description => "Whether to reset the max counter that is read on max-counters-read (of read with reset bit turned on)
+Should be turned off for banks which are used for LM in order not to reset the LM value returned because of max-counters-read (which is sent to all banks including LM)
+0 - Don't reset on max-counter-read
+1 - Reset on max-counter-read (with reset turned on)",
+      Width => "1",
+      Position => "22", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "b1",
+    },
+    LmCountAndRead2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 15;
+      Name => "LmCountAndRead[n]",
+      RegMem => "RegField",
+      Description => "Whether LM Read command also count
+0 - Read only
+1 - Count and read",
+      Width => "1",
+      Position => "23", # Excel Formula: =calc_position(F15,E16)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "b0",
+    },
+  },
+  BankGroupConfig => { #Structure Type: Reg;
+    Name => "BankGroupConfig",
+    RegMem => "Reg",
+    Address => "103", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Bank group configuration",
+    Width => "2", # Excel Formula: =calc_reg_width(E18:E18,F18)
+    Type => "Config",
+    TxLmReadResultDelay => { #Structure Type: RegField;
+      Name => "TxLmReadResultDelay",
+      RegMem => "RegField",
+      Description => "Half the number of clock cycles from receiving an LM Read request until outputing it to the X-Bar, in order to avoid colision based on the bank group's position on the X-Bar
+This field should be configured to:
+0 - for bank groups 8,9,10,11 & 20,21,22,23
+1 - for bank groups 4,5,6,7 & 24,25,26,27
+2 - for bank groups 0,1,2,3 & 28,29,30,31
+(The rest of the bank groups don't support LM Read)
+This field was used for tuning parameters during the design phase. The values of this field detailed here are optimized for the current silicon, thus the user is not expected to change these values unless instructed by Cisco Systems, Inc.",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F17,E18,TRUE)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "d0",
+      InitValueAllModes => "(((block >= 8) && (block <= 11))||((block >= 20) && (block <= 23))) ? 0 :
+(((block >= 4) && (block <= 7))||((block >= 24) && (block <= 27))) ? 1 : 2",
+    },
+  },
+  BankInterruptConfig0 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 20;
+    Name => "BankInterruptConfig[3]",
+    RegMem => "Reg",
+    Address => "104", # Excel Formula: =calc_reg_address(C17,A17,G17)
+    Description => "Bank interrupt configuration",
+    Width => "64", # Excel Formula: =calc_reg_width(E20:E20,F20)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    MaxCounterInterruptThreshold0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 29;
+      Name => "MaxCounterInterruptThreshold[n]",
+      RegMem => "RegField",
+      Description => "Raise interrupt when max counter crosses this threshold (strictly greater)
+Disable by configuring all bits to 1 (i.e. 2^64 - 1)",
+      Width => "64",
+      Position => "63:0", # Excel Formula: =calc_position(F19,E20,TRUE)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "hFFFFFFFFFFFFFFFF",
+    },
+  },
+  BankInterruptConfig1 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 20;
+    Name => "BankInterruptConfig[3]",
+    RegMem => "Reg",
+    Address => "105",
+    Description => "Bank interrupt configuration",
+    Width => "64", # Excel Formula: =calc_reg_width(E20:E20,F20)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    MaxCounterInterruptThreshold1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 29;
+      Name => "MaxCounterInterruptThreshold[n]",
+      RegMem => "RegField",
+      Description => "Raise interrupt when max counter crosses this threshold (strictly greater)
+Disable by configuring all bits to 1 (i.e. 2^64 - 1)",
+      Width => "64",
+      Position => "63:0", # Excel Formula: =calc_position(F19,E20,TRUE)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "hFFFFFFFFFFFFFFFF",
+    },
+  },
+  BankInterruptConfig2 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 20;
+    Name => "BankInterruptConfig[3]",
+    RegMem => "Reg",
+    Address => "106",
+    Description => "Bank interrupt configuration",
+    Width => "64", # Excel Formula: =calc_reg_width(E20:E20,F20)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    MaxCounterInterruptThreshold2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 29;
+      Name => "MaxCounterInterruptThreshold[n]",
+      RegMem => "RegField",
+      Description => "Raise interrupt when max counter crosses this threshold (strictly greater)
+Disable by configuring all bits to 1 (i.e. 2^64 - 1)",
+      Width => "64",
+      Position => "63:0", # Excel Formula: =calc_position(F19,E20,TRUE)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "hFFFFFFFFFFFFFFFF",
+    },
+  },
+  InterruptReg0 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 13;
+    Name => "InterruptReg[3]",
+    RegMem => "Reg",
+    Address => "107", # Excel Formula: =calc_reg_address(C19,A19,G19)
+    Description => "Bank interrupt register",
+    Width => "3", # Excel Formula: =calc_reg_width(E22:E24,F24)
+    Type => "Interrupt",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    MaxCounterCrossedThreshold0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 27;
+      Name => "MaxCounterCrossedThreshold[n]",
+      RegMem => "RegField",
+      Description => "One of the banks' max counters crossed configured threshold (MaxCounterInterruptThreshold)",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F21,E22,TRUE)
+      Type => "Interrupt",
+      UsedBy => "DSN",
+    },
+    PdConfigMismatch0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 17;
+      Name => "PdConfigMismatch[n]",
+      RegMem => "RegField",
+      Description => "This is triggered when a bank receives PDs faster than 1/2cc, should not be possible unless the bank receives PDs from both IFGs of the slice hence the high throughput (using IncBankForIfgB in RX/TX counters configuration should prevent this)",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F22,E23)
+      Type => "Interrupt",
+      UsedBy => "DSN",
+    },
+    LmResultFifoOverflow0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 21;
+      Name => "LmResultFifoOverflow[n]",
+      RegMem => "RegField",
+      Description => "Triggered when the LM result FIFO overflowed
+Should not be possible",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F23,E24)
+      Type => "Interrupt",
+      UsedBy => "update_lm",
+      Comments => "From previous decsription - when this happens an LM request was discarded and an invalid reply will be sent
+Should not be possible to reach this because:
+RX - Since FIFO depth is 4 and there are 4 indices per slice
+TX - TXPP guarantees not to send more than 1 request each 4 cc (packed I/F time)",
+    },
+  },
+  InterruptReg1 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 13;
+    Name => "InterruptReg[3]",
+    RegMem => "Reg",
+    Address => "108",
+    Description => "Bank interrupt register",
+    Width => "3", # Excel Formula: =calc_reg_width(E22:E24,F24)
+    Type => "Interrupt",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    MaxCounterCrossedThreshold1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 27;
+      Name => "MaxCounterCrossedThreshold[n]",
+      RegMem => "RegField",
+      Description => "One of the banks' max counters crossed configured threshold (MaxCounterInterruptThreshold)",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F21,E22,TRUE)
+      Type => "Interrupt",
+      UsedBy => "DSN",
+    },
+    PdConfigMismatch1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 17;
+      Name => "PdConfigMismatch[n]",
+      RegMem => "RegField",
+      Description => "This is triggered when a bank receives PDs faster than 1/2cc, should not be possible unless the bank receives PDs from both IFGs of the slice hence the high throughput (using IncBankForIfgB in RX/TX counters configuration should prevent this)",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F22,E23)
+      Type => "Interrupt",
+      UsedBy => "DSN",
+    },
+    LmResultFifoOverflow1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 21;
+      Name => "LmResultFifoOverflow[n]",
+      RegMem => "RegField",
+      Description => "Triggered when the LM result FIFO overflowed
+Should not be possible",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F23,E24)
+      Type => "Interrupt",
+      UsedBy => "update_lm",
+      Comments => "From previous decsription - when this happens an LM request was discarded and an invalid reply will be sent
+Should not be possible to reach this because:
+RX - Since FIFO depth is 4 and there are 4 indices per slice
+TX - TXPP guarantees not to send more than 1 request each 4 cc (packed I/F time)",
+    },
+  },
+  InterruptReg2 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 13;
+    Name => "InterruptReg[3]",
+    RegMem => "Reg",
+    Address => "109",
+    Description => "Bank interrupt register",
+    Width => "3", # Excel Formula: =calc_reg_width(E22:E24,F24)
+    Type => "Interrupt",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    MaxCounterCrossedThreshold2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 27;
+      Name => "MaxCounterCrossedThreshold[n]",
+      RegMem => "RegField",
+      Description => "One of the banks' max counters crossed configured threshold (MaxCounterInterruptThreshold)",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F21,E22,TRUE)
+      Type => "Interrupt",
+      UsedBy => "DSN",
+    },
+    PdConfigMismatch2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 17;
+      Name => "PdConfigMismatch[n]",
+      RegMem => "RegField",
+      Description => "This is triggered when a bank receives PDs faster than 1/2cc, should not be possible unless the bank receives PDs from both IFGs of the slice hence the high throughput (using IncBankForIfgB in RX/TX counters configuration should prevent this)",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F22,E23)
+      Type => "Interrupt",
+      UsedBy => "DSN",
+    },
+    LmResultFifoOverflow2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 21;
+      Name => "LmResultFifoOverflow[n]",
+      RegMem => "RegField",
+      Description => "Triggered when the LM result FIFO overflowed
+Should not be possible",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F23,E24)
+      Type => "Interrupt",
+      UsedBy => "update_lm",
+      Comments => "From previous decsription - when this happens an LM request was discarded and an invalid reply will be sent
+Should not be possible to reach this because:
+RX - Since FIFO depth is 4 and there are 4 indices per slice
+TX - TXPP guarantees not to send more than 1 request each 4 cc (packed I/F time)",
+    },
+  },
+  InterruptReg0Mask => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 13; Skip Register;
+    Name => "InterruptReg[3]Mask",
+    RegMem => "Reg",
+    Address => "10A",
+    Description => "This register masks InterruptReg[3] interrupt register",
+    Width => "3", # Excel Formula: =calc_reg_width(E22:E24,F24)
+    Type => "InterruptMask",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    MaxCounterCrossedThreshold0Mask => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 27;
+      Name => "MaxCounterCrossedThreshold[n]Mask",
+      RegMem => "RegField",
+      Description => "This field masks MaxCounterCrossedThreshold[n] interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F21,E22,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PdConfigMismatch0Mask => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 17;
+      Name => "PdConfigMismatch[n]Mask",
+      RegMem => "RegField",
+      Description => "This field masks PdConfigMismatch[n] interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F22,E23)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    LmResultFifoOverflow0Mask => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 21;
+      Name => "LmResultFifoOverflow[n]Mask",
+      RegMem => "RegField",
+      Description => "This field masks LmResultFifoOverflow[n] interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F23,E24)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+      Comments => "From previous decsription - when this happens an LM request was discarded and an invalid reply will be sent
+Should not be possible to reach this because:
+RX - Since FIFO depth is 4 and there are 4 indices per slice
+TX - TXPP guarantees not to send more than 1 request each 4 cc (packed I/F time)",
+    },
+  },
+  InterruptReg1Mask => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 13; Skip Register;
+    Name => "InterruptReg[3]Mask",
+    RegMem => "Reg",
+    Address => "10B",
+    Description => "This register masks InterruptReg[3] interrupt register",
+    Width => "3", # Excel Formula: =calc_reg_width(E22:E24,F24)
+    Type => "InterruptMask",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    MaxCounterCrossedThreshold1Mask => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 27;
+      Name => "MaxCounterCrossedThreshold[n]Mask",
+      RegMem => "RegField",
+      Description => "This field masks MaxCounterCrossedThreshold[n] interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F21,E22,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PdConfigMismatch1Mask => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 17;
+      Name => "PdConfigMismatch[n]Mask",
+      RegMem => "RegField",
+      Description => "This field masks PdConfigMismatch[n] interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F22,E23)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    LmResultFifoOverflow1Mask => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 21;
+      Name => "LmResultFifoOverflow[n]Mask",
+      RegMem => "RegField",
+      Description => "This field masks LmResultFifoOverflow[n] interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F23,E24)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+      Comments => "From previous decsription - when this happens an LM request was discarded and an invalid reply will be sent
+Should not be possible to reach this because:
+RX - Since FIFO depth is 4 and there are 4 indices per slice
+TX - TXPP guarantees not to send more than 1 request each 4 cc (packed I/F time)",
+    },
+  },
+  InterruptReg2Mask => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 13; Skip Register;
+    Name => "InterruptReg[3]Mask",
+    RegMem => "Reg",
+    Address => "10C",
+    Description => "This register masks InterruptReg[3] interrupt register",
+    Width => "3", # Excel Formula: =calc_reg_width(E22:E24,F24)
+    Type => "InterruptMask",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    MaxCounterCrossedThreshold2Mask => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 27;
+      Name => "MaxCounterCrossedThreshold[n]Mask",
+      RegMem => "RegField",
+      Description => "This field masks MaxCounterCrossedThreshold[n] interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F21,E22,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    PdConfigMismatch2Mask => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 17;
+      Name => "PdConfigMismatch[n]Mask",
+      RegMem => "RegField",
+      Description => "This field masks PdConfigMismatch[n] interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F22,E23)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    LmResultFifoOverflow2Mask => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 21;
+      Name => "LmResultFifoOverflow[n]Mask",
+      RegMem => "RegField",
+      Description => "This field masks LmResultFifoOverflow[n] interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F23,E24)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+      Comments => "From previous decsription - when this happens an LM request was discarded and an invalid reply will be sent
+Should not be possible to reach this because:
+RX - Since FIFO depth is 4 and there are 4 indices per slice
+TX - TXPP guarantees not to send more than 1 request each 4 cc (packed I/F time)",
+    },
+  },
+  InterruptReg0Test => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 13; Skip Register;
+    Name => "InterruptReg[3]Test",
+    RegMem => "Reg",
+    Address => "10D",
+    Description => "This register tests InterruptReg[3] interrupt register",
+    Width => "3", # Excel Formula: =calc_reg_width(E22:E24,F24)
+    Type => "InterruptTest",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    MaxCounterCrossedThreshold0Test => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 27;
+      Name => "MaxCounterCrossedThreshold[n]Test",
+      RegMem => "RegField",
+      Description => "This field tests MaxCounterCrossedThreshold[n] interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F21,E22,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PdConfigMismatch0Test => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 17;
+      Name => "PdConfigMismatch[n]Test",
+      RegMem => "RegField",
+      Description => "This field tests PdConfigMismatch[n] interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F22,E23)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    LmResultFifoOverflow0Test => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 21;
+      Name => "LmResultFifoOverflow[n]Test",
+      RegMem => "RegField",
+      Description => "This field tests LmResultFifoOverflow[n] interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F23,E24)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+      Comments => "From previous decsription - when this happens an LM request was discarded and an invalid reply will be sent
+Should not be possible to reach this because:
+RX - Since FIFO depth is 4 and there are 4 indices per slice
+TX - TXPP guarantees not to send more than 1 request each 4 cc (packed I/F time)",
+    },
+  },
+  InterruptReg1Test => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 13; Skip Register;
+    Name => "InterruptReg[3]Test",
+    RegMem => "Reg",
+    Address => "10E",
+    Description => "This register tests InterruptReg[3] interrupt register",
+    Width => "3", # Excel Formula: =calc_reg_width(E22:E24,F24)
+    Type => "InterruptTest",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    MaxCounterCrossedThreshold1Test => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 27;
+      Name => "MaxCounterCrossedThreshold[n]Test",
+      RegMem => "RegField",
+      Description => "This field tests MaxCounterCrossedThreshold[n] interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F21,E22,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PdConfigMismatch1Test => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 17;
+      Name => "PdConfigMismatch[n]Test",
+      RegMem => "RegField",
+      Description => "This field tests PdConfigMismatch[n] interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F22,E23)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    LmResultFifoOverflow1Test => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 21;
+      Name => "LmResultFifoOverflow[n]Test",
+      RegMem => "RegField",
+      Description => "This field tests LmResultFifoOverflow[n] interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F23,E24)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+      Comments => "From previous decsription - when this happens an LM request was discarded and an invalid reply will be sent
+Should not be possible to reach this because:
+RX - Since FIFO depth is 4 and there are 4 indices per slice
+TX - TXPP guarantees not to send more than 1 request each 4 cc (packed I/F time)",
+    },
+  },
+  InterruptReg2Test => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 13; Skip Register;
+    Name => "InterruptReg[3]Test",
+    RegMem => "Reg",
+    Address => "10F",
+    Description => "This register tests InterruptReg[3] interrupt register",
+    Width => "3", # Excel Formula: =calc_reg_width(E22:E24,F24)
+    Type => "InterruptTest",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    MaxCounterCrossedThreshold2Test => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 27;
+      Name => "MaxCounterCrossedThreshold[n]Test",
+      RegMem => "RegField",
+      Description => "This field tests MaxCounterCrossedThreshold[n] interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F21,E22,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    PdConfigMismatch2Test => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 17;
+      Name => "PdConfigMismatch[n]Test",
+      RegMem => "RegField",
+      Description => "This field tests PdConfigMismatch[n] interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F22,E23)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    LmResultFifoOverflow2Test => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 21;
+      Name => "LmResultFifoOverflow[n]Test",
+      RegMem => "RegField",
+      Description => "This field tests LmResultFifoOverflow[n] interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F23,E24)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+      Comments => "From previous decsription - when this happens an LM request was discarded and an invalid reply will be sent
+Should not be possible to reach this because:
+RX - Since FIFO depth is 4 and there are 4 indices per slice
+TX - TXPP guarantees not to send more than 1 request each 4 cc (packed I/F time)",
+    },
+  },
+  MaxCounterStatus0 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 17;
+    Name => "MaxCounterStatus[3]",
+    RegMem => "Reg",
+    Address => "110", # Excel Formula: =calc_reg_address(C21,A21,G21)
+    Description => "Concurrent value of the max counter",
+    Width => "78", # Excel Formula: =calc_reg_width(E26:E27,F27)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    MaxCounterAddress0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 18;
+      Name => "MaxCounterAddress[n]",
+      RegMem => "RegField",
+      Description => "Address of the max counter (offset inside the bank)",
+      Width => "14",
+      Position => "13:0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Status",
+      UsedBy => "DSN",
+    },
+    MaxCounterValue0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 16;
+      Name => "MaxCounterValue[n]",
+      RegMem => "RegField",
+      Description => "Value of the max counter
+When using type 64b PC + 64b BC - this is only the packet count
+When using type 32 PC  - holds the PC value of two counters",
+      Width => "64",
+      Position => "77:14", # Excel Formula: =calc_position(F26,E27)
+      Type => "Status",
+      UsedBy => "DSN",
+    },
+  },
+  MaxCounterStatus1 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 17;
+    Name => "MaxCounterStatus[3]",
+    RegMem => "Reg",
+    Address => "111",
+    Description => "Concurrent value of the max counter",
+    Width => "78", # Excel Formula: =calc_reg_width(E26:E27,F27)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    MaxCounterAddress1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 18;
+      Name => "MaxCounterAddress[n]",
+      RegMem => "RegField",
+      Description => "Address of the max counter (offset inside the bank)",
+      Width => "14",
+      Position => "13:0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Status",
+      UsedBy => "DSN",
+    },
+    MaxCounterValue1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 16;
+      Name => "MaxCounterValue[n]",
+      RegMem => "RegField",
+      Description => "Value of the max counter
+When using type 64b PC + 64b BC - this is only the packet count
+When using type 32 PC  - holds the PC value of two counters",
+      Width => "64",
+      Position => "77:14", # Excel Formula: =calc_position(F26,E27)
+      Type => "Status",
+      UsedBy => "DSN",
+    },
+  },
+  MaxCounterStatus2 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 17;
+    Name => "MaxCounterStatus[3]",
+    RegMem => "Reg",
+    Address => "112",
+    Description => "Concurrent value of the max counter",
+    Width => "78", # Excel Formula: =calc_reg_width(E26:E27,F27)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    MaxCounterAddress2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 18;
+      Name => "MaxCounterAddress[n]",
+      RegMem => "RegField",
+      Description => "Address of the max counter (offset inside the bank)",
+      Width => "14",
+      Position => "13:0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Status",
+      UsedBy => "DSN",
+    },
+    MaxCounterValue2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 16;
+      Name => "MaxCounterValue[n]",
+      RegMem => "RegField",
+      Description => "Value of the max counter
+When using type 64b PC + 64b BC - this is only the packet count
+When using type 32 PC  - holds the PC value of two counters",
+      Width => "64",
+      Position => "77:14", # Excel Formula: =calc_position(F26,E27)
+      Type => "Status",
+      UsedBy => "DSN",
+    },
+  },
+  DebugCounters0 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 14;
+    Name => "DebugCounters[3]",
+    RegMem => "Reg",
+    Address => "113", # Excel Formula: =calc_reg_address(C25,A25,G25)
+    Description => "Counters for debug purposes",
+    Width => "40", # Excel Formula: =calc_reg_width(E29:E30,F30)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    TotalUpdates0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 13;
+      Name => "TotalUpdates[n]",
+      RegMem => "RegField",
+      Description => "Total number of updates received",
+      Width => "24",
+      Position => "23:0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Counter",
+      UsedBy => "DSN",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    BubbleRequestCount0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 19;
+      Name => "BubbleRequestCount[n]",
+      RegMem => "RegField",
+      Description => "Total number of bubbles requested",
+      Width => "16",
+      Position => "39:24", # Excel Formula: =calc_position(F29,E30)
+      Type => "Counter",
+      UsedBy => "DSN",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  DebugCounters1 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 14;
+    Name => "DebugCounters[3]",
+    RegMem => "Reg",
+    Address => "114",
+    Description => "Counters for debug purposes",
+    Width => "40", # Excel Formula: =calc_reg_width(E29:E30,F30)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    TotalUpdates1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 13;
+      Name => "TotalUpdates[n]",
+      RegMem => "RegField",
+      Description => "Total number of updates received",
+      Width => "24",
+      Position => "23:0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Counter",
+      UsedBy => "DSN",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    BubbleRequestCount1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 19;
+      Name => "BubbleRequestCount[n]",
+      RegMem => "RegField",
+      Description => "Total number of bubbles requested",
+      Width => "16",
+      Position => "39:24", # Excel Formula: =calc_position(F29,E30)
+      Type => "Counter",
+      UsedBy => "DSN",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  DebugCounters2 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 14;
+    Name => "DebugCounters[3]",
+    RegMem => "Reg",
+    Address => "115",
+    Description => "Counters for debug purposes",
+    Width => "40", # Excel Formula: =calc_reg_width(E29:E30,F30)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    TotalUpdates2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 13;
+      Name => "TotalUpdates[n]",
+      RegMem => "RegField",
+      Description => "Total number of updates received",
+      Width => "24",
+      Position => "23:0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Counter",
+      UsedBy => "DSN",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    BubbleRequestCount2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 19;
+      Name => "BubbleRequestCount[n]",
+      RegMem => "RegField",
+      Description => "Total number of bubbles requested",
+      Width => "16",
+      Position => "39:24", # Excel Formula: =calc_position(F29,E30)
+      Type => "Counter",
+      UsedBy => "DSN",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  ResetBankTrigger0 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 17;
+    Name => "ResetBankTrigger[3]",
+    RegMem => "Reg",
+    Address => "116", # Excel Formula: =calc_reg_address(C28,A28,G28)
+    Description => "Writing to this register trigger bank reset (activates all counters' reset bits)",
+    Width => "1", # Excel Formula: =calc_reg_width(E32:E32,F32)
+    Type => "External",
+    UsedBy => "DSN",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    ResetBank0 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 10;
+      Name => "ResetBank[n]",
+      RegMem => "RegField",
+      Description => "N/A",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F31,E32,TRUE)
+      Type => "External",
+    },
+  },
+  ResetBankTrigger1 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 17;
+    Name => "ResetBankTrigger[3]",
+    RegMem => "Reg",
+    Address => "117",
+    Description => "Writing to this register trigger bank reset (activates all counters' reset bits)",
+    Width => "1", # Excel Formula: =calc_reg_width(E32:E32,F32)
+    Type => "External",
+    UsedBy => "DSN",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    ResetBank1 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 10;
+      Name => "ResetBank[n]",
+      RegMem => "RegField",
+      Description => "N/A",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F31,E32,TRUE)
+      Type => "External",
+    },
+  },
+  ResetBankTrigger2 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 17;
+    Name => "ResetBankTrigger[3]",
+    RegMem => "Reg",
+    Address => "118",
+    Description => "Writing to this register trigger bank reset (activates all counters' reset bits)",
+    Width => "1", # Excel Formula: =calc_reg_width(E32:E32,F32)
+    Type => "External",
+    UsedBy => "DSN",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    ResetBank2 => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 10;
+      Name => "ResetBank[n]",
+      RegMem => "RegField",
+      Description => "N/A",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F31,E32,TRUE)
+      Type => "External",
+    },
+  },
+  CountersTable0 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 14;
+    Name => "CountersTable[3]",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "The counters' data - fields' description is for 29b PC + 35b BC counter type
+Each entry holds data for 1, 2 or 4 counters depending on BankCounterType configuration:
+128b counter type (64b PC + 64b BC) - 1 counter per entry
+64b counter types - 2 counters per entry
+32b PC counter type - 4 counters per entry",
+    Width => "137", # Excel Formula: =calc_mem_width(E34:E37,M33,F37,-1)
+    Type => "Dynamic",
+    UsedBy => "bank",
+    MemEntries => "4096", # Excel Formula: =8192/2
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,PackArrayToBus=Enabled,WriteActivityFactor=25,ReadActivityFactor=25,PortErrPropagate=Disabled,CpuWriteAccess=Disabled",
+    Comments => "Total Mem Entries = 8192 (8k) - 2 entries per row",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    MemLogicalWidth => "128",
+    PacketCount00 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 13;
+      Name => "PacketCount0[n]",
+      RegMem => "MemField",
+      Description => "Number of packets counted (0)",
+      Width => "29",
+      Position => "28:0", # Excel Formula: =calc_position(F33,E34,TRUE)
+    },
+    ByteCount00 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 11;
+      Name => "ByteCount0[n]",
+      RegMem => "MemField",
+      Description => "The total size (in bytes) of the counted packets (0)",
+      Width => "35",
+      Position => "63:29", # Excel Formula: =calc_position(F34,E35)
+    },
+    PacketCount10 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 13;
+      Name => "PacketCount1[n]",
+      RegMem => "MemField",
+      Description => "Number of packets counted (1)",
+      Width => "29",
+      Position => "92:64", # Excel Formula: =calc_position(F35,E36)
+    },
+    ByteCount10 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 11;
+      Name => "ByteCount1[n]",
+      RegMem => "MemField",
+      Description => "The total size (in bytes) of the counted packets (1)",
+      Width => "35",
+      Position => "127:93", # Excel Formula: =calc_position(F36,E37)
+    },
+  },
+  CountersTable1 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 14;
+    Name => "CountersTable[3]",
+    RegMem => "Mem",
+    Address => "200000",
+    Description => "The counters' data - fields' description is for 29b PC + 35b BC counter type
+Each entry holds data for 1, 2 or 4 counters depending on BankCounterType configuration:
+128b counter type (64b PC + 64b BC) - 1 counter per entry
+64b counter types - 2 counters per entry
+32b PC counter type - 4 counters per entry",
+    Width => "137", # Excel Formula: =calc_mem_width(E34:E37,M33,F37,-1)
+    Type => "Dynamic",
+    UsedBy => "bank",
+    MemEntries => "4096", # Excel Formula: =8192/2
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,PackArrayToBus=Enabled,WriteActivityFactor=25,ReadActivityFactor=25,PortErrPropagate=Disabled,CpuWriteAccess=Disabled",
+    Comments => "Total Mem Entries = 8192 (8k) - 2 entries per row",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    MemLogicalWidth => "128",
+    PacketCount01 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 13;
+      Name => "PacketCount0[n]",
+      RegMem => "MemField",
+      Description => "Number of packets counted (0)",
+      Width => "29",
+      Position => "28:0", # Excel Formula: =calc_position(F33,E34,TRUE)
+    },
+    ByteCount01 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 11;
+      Name => "ByteCount0[n]",
+      RegMem => "MemField",
+      Description => "The total size (in bytes) of the counted packets (0)",
+      Width => "35",
+      Position => "63:29", # Excel Formula: =calc_position(F34,E35)
+    },
+    PacketCount11 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 13;
+      Name => "PacketCount1[n]",
+      RegMem => "MemField",
+      Description => "Number of packets counted (1)",
+      Width => "29",
+      Position => "92:64", # Excel Formula: =calc_position(F35,E36)
+    },
+    ByteCount11 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 11;
+      Name => "ByteCount1[n]",
+      RegMem => "MemField",
+      Description => "The total size (in bytes) of the counted packets (1)",
+      Width => "35",
+      Position => "127:93", # Excel Formula: =calc_position(F36,E37)
+    },
+  },
+  CountersTable2 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 14;
+    Name => "CountersTable[3]",
+    RegMem => "Mem",
+    Address => "300000",
+    Description => "The counters' data - fields' description is for 29b PC + 35b BC counter type
+Each entry holds data for 1, 2 or 4 counters depending on BankCounterType configuration:
+128b counter type (64b PC + 64b BC) - 1 counter per entry
+64b counter types - 2 counters per entry
+32b PC counter type - 4 counters per entry",
+    Width => "137", # Excel Formula: =calc_mem_width(E34:E37,M33,F37,-1)
+    Type => "Dynamic",
+    UsedBy => "bank",
+    MemEntries => "4096", # Excel Formula: =8192/2
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,PackArrayToBus=Enabled,WriteActivityFactor=25,ReadActivityFactor=25,PortErrPropagate=Disabled,CpuWriteAccess=Disabled",
+    Comments => "Total Mem Entries = 8192 (8k) - 2 entries per row",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    MemLogicalWidth => "128",
+    PacketCount02 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 13;
+      Name => "PacketCount0[n]",
+      RegMem => "MemField",
+      Description => "Number of packets counted (0)",
+      Width => "29",
+      Position => "28:0", # Excel Formula: =calc_position(F33,E34,TRUE)
+    },
+    ByteCount02 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 11;
+      Name => "ByteCount0[n]",
+      RegMem => "MemField",
+      Description => "The total size (in bytes) of the counted packets (0)",
+      Width => "35",
+      Position => "63:29", # Excel Formula: =calc_position(F34,E35)
+    },
+    PacketCount12 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 13;
+      Name => "PacketCount1[n]",
+      RegMem => "MemField",
+      Description => "Number of packets counted (1)",
+      Width => "29",
+      Position => "92:64", # Excel Formula: =calc_position(F35,E36)
+    },
+    ByteCount12 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 11;
+      Name => "ByteCount1[n]",
+      RegMem => "MemField",
+      Description => "The total size (in bytes) of the counted packets (1)",
+      Width => "35",
+      Position => "127:93", # Excel Formula: =calc_position(F36,E37)
+    },
+  },
+  CountersAuxTable0 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 17;
+    Name => "CountersAuxTable[3]",
+    RegMem => "Mem",
+    Address => "400000", # Excel Formula: =calc_mem_address(C33,A33,G38,L38)
+    Description => "Auxiliary counters data - reset bit
+This is a bitmap where according to configuration:
+64b counter types - each bit represents one counter
+32b PC counter type - each bit represents two counters
+128b counter type (64b PC + 64b BC) - each second bit represents one counter, only lower one used (i.e. bit 0 represents counter #0, bit 1 is unused, bit 2 represents counter #1, bit 3 is unused etc.)",
+    Width => "39", # Excel Formula: =calc_mem_width(E39:E39,M38,F39,-1)
+    Type => "Dynamic",
+    UsedBy => "bank",
+    MemEntries => "256", # Excel Formula: =8192/32
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=2,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=25,ReadActivityFactor=25,PortErrPropagate=Disabled",
+    Comments => "Total Mem Entries = 8192 (8k) - 32 entries per row",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    MemLogicalWidth => "32",
+    ResetBit0 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 9;
+      Name => "ResetBit[n]",
+      RegMem => "MemField",
+      Description => "Each bit indicates that the corresponding counter was reset, i.e. equals 0 (regardless of the counter's data contents in CountersTable)
+0 - Counter value is valid (stored in CountersTable)
+1 - Counter value is zero",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F38,E39,TRUE)
+    },
+  },
+  CountersAuxTable1 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 17;
+    Name => "CountersAuxTable[3]",
+    RegMem => "Mem",
+    Address => "500000",
+    Description => "Auxiliary counters data - reset bit
+This is a bitmap where according to configuration:
+64b counter types - each bit represents one counter
+32b PC counter type - each bit represents two counters
+128b counter type (64b PC + 64b BC) - each second bit represents one counter, only lower one used (i.e. bit 0 represents counter #0, bit 1 is unused, bit 2 represents counter #1, bit 3 is unused etc.)",
+    Width => "39", # Excel Formula: =calc_mem_width(E39:E39,M38,F39,-1)
+    Type => "Dynamic",
+    UsedBy => "bank",
+    MemEntries => "256", # Excel Formula: =8192/32
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=2,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=25,ReadActivityFactor=25,PortErrPropagate=Disabled",
+    Comments => "Total Mem Entries = 8192 (8k) - 32 entries per row",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    MemLogicalWidth => "32",
+    ResetBit1 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 9;
+      Name => "ResetBit[n]",
+      RegMem => "MemField",
+      Description => "Each bit indicates that the corresponding counter was reset, i.e. equals 0 (regardless of the counter's data contents in CountersTable)
+0 - Counter value is valid (stored in CountersTable)
+1 - Counter value is zero",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F38,E39,TRUE)
+    },
+  },
+  CountersAuxTable2 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 17;
+    Name => "CountersAuxTable[3]",
+    RegMem => "Mem",
+    Address => "600000",
+    Description => "Auxiliary counters data - reset bit
+This is a bitmap where according to configuration:
+64b counter types - each bit represents one counter
+32b PC counter type - each bit represents two counters
+128b counter type (64b PC + 64b BC) - each second bit represents one counter, only lower one used (i.e. bit 0 represents counter #0, bit 1 is unused, bit 2 represents counter #1, bit 3 is unused etc.)",
+    Width => "39", # Excel Formula: =calc_mem_width(E39:E39,M38,F39,-1)
+    Type => "Dynamic",
+    UsedBy => "bank",
+    MemEntries => "256", # Excel Formula: =8192/32
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=2,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=25,ReadActivityFactor=25,PortErrPropagate=Disabled",
+    Comments => "Total Mem Entries = 8192 (8k) - 32 entries per row",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    MemLogicalWidth => "32",
+    ResetBit2 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 9;
+      Name => "ResetBit[n]",
+      RegMem => "MemField",
+      Description => "Each bit indicates that the corresponding counter was reset, i.e. equals 0 (regardless of the counter's data contents in CountersTable)
+0 - Counter value is valid (stored in CountersTable)
+1 - Counter value is zero",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F38,E39,TRUE)
+    },
+  },
+};

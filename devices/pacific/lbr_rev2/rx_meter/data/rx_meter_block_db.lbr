@@ -1,0 +1,2717 @@
+$block{rx_meter_block} = {
+  Defines_db => "Z:\\SVN\\Development\\leaba\\trunk\\Moriah\\ASIC\\design\\defines\\moriah_common_defines.v",
+  ProjectName => "Pacific",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "1",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_1bErrInterrupt",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_2bErrInterrupt",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks ParityErrInterrupt",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "15",
+    Type => "Config",
+    MetersTable0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersTable0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MetersTable1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersTable1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MetersTable2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersTable2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MetersAttributeTable0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersAttributeTable0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MetersAttributeTable1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersAttributeTable1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MetersAttributeTable2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersAttributeTable2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MetersStateTable0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersStateTable0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MetersStateTable1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersStateTable1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MetersStateTable2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersStateTable2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MeterShaperConfigurationTable0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MeterShaperConfigurationTable0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MeterShaperConfigurationTable1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MeterShaperConfigurationTable1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MeterShaperConfigurationTable2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MeterShaperConfigurationTable2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MeterShaperLinkedListTable0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MeterShaperLinkedListTable0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MeterShaperLinkedListTable1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MeterShaperLinkedListTable1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MeterShaperLinkedListTable2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MeterShaperLinkedListTable2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "15",
+    Type => "Config",
+    MetersTable0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersTable0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MetersTable1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersTable1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MetersTable2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersTable2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MetersAttributeTable0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersAttributeTable0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MetersAttributeTable1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersAttributeTable1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MetersAttributeTable2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersAttributeTable2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MetersStateTable0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersStateTable0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MetersStateTable1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersStateTable1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MetersStateTable2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MetersStateTable2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MeterShaperConfigurationTable0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MeterShaperConfigurationTable0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MeterShaperConfigurationTable1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MeterShaperConfigurationTable1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MeterShaperConfigurationTable2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MeterShaperConfigurationTable2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MeterShaperLinkedListTable0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MeterShaperLinkedListTable0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MeterShaperLinkedListTable1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MeterShaperLinkedListTable1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    MeterShaperLinkedListTable2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "MeterShaperLinkedListTable2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "15",
+    Type => "Config",
+    MetersTable0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersTable0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MetersTable1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersTable1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MetersTable2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersTable2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MetersAttributeTable0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersAttributeTable0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MetersAttributeTable1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersAttributeTable1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MetersAttributeTable2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersAttributeTable2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MetersStateTable0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersStateTable0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MetersStateTable1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersStateTable1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MetersStateTable2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersStateTable2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MeterShaperConfigurationTable0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "MeterShaperConfigurationTable0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MeterShaperConfigurationTable1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "MeterShaperConfigurationTable1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MeterShaperConfigurationTable2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "MeterShaperConfigurationTable2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MeterShaperLinkedListTable0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "MeterShaperLinkedListTable0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MeterShaperLinkedListTable1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "MeterShaperLinkedListTable1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MeterShaperLinkedListTable2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "MeterShaperLinkedListTable2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "15",
+    Type => "Config",
+    MetersTable0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersTable0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MetersTable1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersTable1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MetersTable2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersTable2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MetersAttributeTable0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersAttributeTable0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MetersAttributeTable1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersAttributeTable1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MetersAttributeTable2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersAttributeTable2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MetersStateTable0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersStateTable0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MetersStateTable1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersStateTable1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MetersStateTable2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "MetersStateTable2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MeterShaperConfigurationTable0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "MeterShaperConfigurationTable0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MeterShaperConfigurationTable1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "MeterShaperConfigurationTable1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MeterShaperConfigurationTable2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "MeterShaperConfigurationTable2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MeterShaperLinkedListTable0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "MeterShaperLinkedListTable0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MeterShaperLinkedListTable1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "MeterShaperLinkedListTable1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    MeterShaperLinkedListTable2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "MeterShaperLinkedListTable2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectErrStatus",
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "15",
+    Type => "ReadOnly",
+    MetersTable0ErrInt => { #Structure Type: RegField;
+      Name => "MetersTable0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MetersTable1ErrInt => { #Structure Type: RegField;
+      Name => "MetersTable1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "1",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MetersTable2ErrInt => { #Structure Type: RegField;
+      Name => "MetersTable2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "2",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MetersAttributeTable0ErrInt => { #Structure Type: RegField;
+      Name => "MetersAttributeTable0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "3",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MetersAttributeTable1ErrInt => { #Structure Type: RegField;
+      Name => "MetersAttributeTable1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "4",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MetersAttributeTable2ErrInt => { #Structure Type: RegField;
+      Name => "MetersAttributeTable2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "5",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MetersStateTable0ErrInt => { #Structure Type: RegField;
+      Name => "MetersStateTable0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "6",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MetersStateTable1ErrInt => { #Structure Type: RegField;
+      Name => "MetersStateTable1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "7",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MetersStateTable2ErrInt => { #Structure Type: RegField;
+      Name => "MetersStateTable2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "8",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MeterShaperConfigurationTable0ErrInt => { #Structure Type: RegField;
+      Name => "MeterShaperConfigurationTable0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "9",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MeterShaperConfigurationTable1ErrInt => { #Structure Type: RegField;
+      Name => "MeterShaperConfigurationTable1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "10",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MeterShaperConfigurationTable2ErrInt => { #Structure Type: RegField;
+      Name => "MeterShaperConfigurationTable2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "11",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MeterShaperLinkedListTable0ErrInt => { #Structure Type: RegField;
+      Name => "MeterShaperLinkedListTable0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "12",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MeterShaperLinkedListTable1ErrInt => { #Structure Type: RegField;
+      Name => "MeterShaperLinkedListTable1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "13",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MeterShaperLinkedListTable2ErrInt => { #Structure Type: RegField;
+      Name => "MeterShaperLinkedListTable2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "14",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    Name => "SelectedSerErrorInfo",
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "14",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      Name => "MemErrAddr",
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "12",
+      Position => "11:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      Name => "MemErrType",
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "13:12",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SerErrorDebugConfiguration",
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "5",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      Name => "ErroneousMemorySelector",
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "4",
+      Position => "3:0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      Name => "ResetMemoryErrors",
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrDebug",
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_1bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrDebug",
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_2bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  MbistPassStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistPassStatus",
+    RegMem => "Reg",
+    Address => "39",
+    Description => "MBIST pass status",
+    Width => "36",
+    Type => "ReadOnly",
+    BistDonePassOut => { #Structure Type: RegField;
+      Name => "BistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST passed",
+      Width => "36",
+      Position => "35:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+  MbistFailStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistFailStatus",
+    RegMem => "Reg",
+    Address => "3A",
+    Description => "MBIST fail status",
+    Width => "36",
+    Type => "ReadOnly",
+    BistDoneFailOut => { #Structure Type: RegField;
+      Name => "BistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST failed",
+      Width => "36",
+      Position => "35:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DefaultValue => "b0",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "3", # Excel Formula: =calc_reg_width(E25:E27,F27)
+    Type => "Config",
+    CoreBistRprMode => { #Structure Type: RegField;
+      Name => "CoreBistRprMode",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistRun => { #Structure Type: RegField;
+      Name => "CoreBistRun",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistPtrnFill => { #Structure Type: RegField;
+      Name => "CoreBistPtrnFill",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E29:E29,F29)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C28,A28,G28)
+    Description => "Power Down Configuration for the block",
+    Width => "128", # Excel Formula: =calc_reg_width(E31:E31,F31)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C30,A30,G30)
+    Width => "39", # Excel Formula: =calc_reg_width(E33:E37,F37)
+    Type => "Config",
+    PmroExecute => { #Structure Type: RegField;
+      Name => "PmroExecute",
+      RegMem => "RegField",
+      Description => "0->1: execute pmro command.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F32,E33,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroCmd => { #Structure Type: RegField;
+      Name => "PmroCmd",
+      RegMem => "RegField",
+      Description => "Pmro command to execute:
+0: reset.
+1: write.
+2: read.
+3: invalid.",
+      Width => "2",
+      Position => "2:1", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroSbusReset => { #Structure Type: RegField;
+      Name => "PmroSbusReset",
+      RegMem => "RegField",
+      Description => "Reset pmro sbus chain. Need to set to 0 before starting access to pmro registers.",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroAddr => { #Structure Type: RegField;
+      Name => "PmroAddr",
+      RegMem => "RegField",
+      Description => "PMRO register address:
+0 - control register, 8b, def: 0x0.
+1 - SVT Configuration Register, 16b, def: 0xFFFF.
+2 - LVT Configuration Register, 16b, def: 0xFFFF.
+3 - ULVT Configuration Register, 16b, def: 0xFFFF.
+4 - Interconnect Configuration Register, 16b, def: 0xFFFF.
+5 - Reference Clock Counter Register, 24b, def: 0xFFF000.
+6 - Oscillator Counter Register, 24b, def: 0x000000.
+7 - SBus ID register, read as 0x0B.
+Set to '0' on reset command.",
+      Width => "3",
+      Position => "6:4", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroData => { #Structure Type: RegField;
+      Name => "PmroData",
+      RegMem => "RegField",
+      Description => "PMRO data, set to 0x0 on reset and read command.",
+      Width => "32",
+      Position => "38:7", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C32,A32,G32)
+    Width => "34", # Excel Formula: =calc_reg_width(E39:E41,F41)
+    Type => "ReadOnly",
+    PmroRdata => { #Structure Type: RegField;
+      Name => "PmroRdata",
+      RegMem => "RegField",
+      Description => "Read data from pmro. Valid when PmroFinish=1 and PmroFailed=0.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F38,E39,TRUE)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFailed => { #Structure Type: RegField;
+      Name => "PmroFailed",
+      RegMem => "RegField",
+      Description => "Pmro command failed. Valid only when PmroFinish=1.",
+      Width => "1",
+      Position => "32", # Excel Formula: =calc_position(F39,E40)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFinish => { #Structure Type: RegField;
+      Name => "PmroFinish",
+      RegMem => "RegField",
+      Description => "Pmro command finished.",
+      Width => "1",
+      Position => "33", # Excel Formula: =calc_position(F40,E41)
+      Type => "Event",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C38,A38,G38)
+    Description => "aaa",
+    Width => "11", # Excel Formula: =calc_reg_width(E43:E44,F44)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F42,E43,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C42,A42,G42)
+    Description => "aaa",
+    Width => "32", # Excel Formula: =calc_reg_width(E46:E46,F46)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C45,A45,G45)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E48:E48,F48)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F47,E48,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  MeterBlockConfiguration0 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 24;
+    Name => "MeterBlockConfiguration[3]",
+    RegMem => "Reg",
+    Address => "100",
+    Width => "10", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    Block0TokenSize => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Block[n]TokenSize",
+      RegMem => "RegField",
+      Description => "The size of the token that is given by the shaper.
+The resolution is 64B/64 packets.",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "h1",
+    },
+    Block0ShaperFifoPauseThr => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Block[n]ShaperFifoPauseThr",
+      RegMem => "RegField",
+      Description => "Indicates the fill level threshold of the shaper add client FIFO that will pause the pipe. This thrshold should be configured such that the FIFO has enough space to absorb potential 'add client' requests inside the pipe.
+This field was used for tuning parameters during the design phase. 
+The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+      Width => "5",
+      Position => "9:5", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "d12",
+    },
+  },
+  MeterBlockConfiguration1 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 24;
+    Name => "MeterBlockConfiguration[3]",
+    RegMem => "Reg",
+    Address => "101",
+    Width => "10", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    Block1TokenSize => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Block[n]TokenSize",
+      RegMem => "RegField",
+      Description => "The size of the token that is given by the shaper.
+The resolution is 64B/64 packets.",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "h1",
+    },
+    Block1ShaperFifoPauseThr => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Block[n]ShaperFifoPauseThr",
+      RegMem => "RegField",
+      Description => "Indicates the fill level threshold of the shaper add client FIFO that will pause the pipe. This thrshold should be configured such that the FIFO has enough space to absorb potential 'add client' requests inside the pipe.
+This field was used for tuning parameters during the design phase. 
+The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+      Width => "5",
+      Position => "9:5", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "d12",
+    },
+  },
+  MeterBlockConfiguration2 => { #Structure Type: Reg; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 24;
+    Name => "MeterBlockConfiguration[3]",
+    RegMem => "Reg",
+    Address => "102",
+    Width => "10", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    Block2TokenSize => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Block[n]TokenSize",
+      RegMem => "RegField",
+      Description => "The size of the token that is given by the shaper.
+The resolution is 64B/64 packets.",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "h1",
+    },
+    Block2ShaperFifoPauseThr => { #Structure Type: RegField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Block[n]ShaperFifoPauseThr",
+      RegMem => "RegField",
+      Description => "Indicates the fill level threshold of the shaper add client FIFO that will pause the pipe. This thrshold should be configured such that the FIFO has enough space to absorb potential 'add client' requests inside the pipe.
+This field was used for tuning parameters during the design phase. 
+The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+      Width => "5",
+      Position => "9:5", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "d12",
+    },
+  },
+  MetersTable0 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 12;
+    Name => "MetersTable[3]",
+    RegMem => "Mem",
+    Address => "100000",
+    Width => "96", # Excel Formula: =calc_mem_width(E11:E14,M10,F14,-1)
+    Type => "Dynamic",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "1024",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=50,ReadActivityFactor=50,PortErrPropagate=Disabled",
+    Comments => "MetersTable & MetersAttributeTable should have the same read latency
+Read latency must not exceed 4cc (due to shaper 'do not remove client' indication that needs to arrive after 6cc)",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    MemLogicalWidth => "88",
+    Table0Entry0CommitedMeter => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Table[n]Entry0CommitedMeter",
+      RegMem => "MemField",
+      Description => "The commited bucket counter.
+Resolution is according to configuration (bytes/packets).
+Note - the MSB of the counter indicates positive or negative value",
+      Width => "22",
+      Position => "21:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+    },
+    Table0Entry0ExcessMeter => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Table[n]Entry0ExcessMeter",
+      RegMem => "MemField",
+      Description => "The excess bucket counter.
+Resolution is according to configuration (bytes/packets).
+Note - the MSB of the counter indicates positive or negative value",
+      Width => "22",
+      Position => "43:22", # Excel Formula: =calc_position(F11,E12)
+    },
+    Table0Entry1CommitedMeter => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Table[n]Entry1CommitedMeter",
+      RegMem => "MemField",
+      Description => "The commited bucket counter.
+Resolution is according to configuration (bytes/packets).
+Note - the MSB of the counter indicates positive or negative value",
+      Width => "22",
+      Position => "65:44", # Excel Formula: =calc_position(F12,E13)
+    },
+    Table0Entry1ExcessMeter => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Table[n]Entry1ExcessMeter",
+      RegMem => "MemField",
+      Description => "The excess bucket counter.
+Resolution is according to configuration (bytes/packets).
+Note - the MSB of the counter indicates positive or negative value",
+      Width => "22",
+      Position => "87:66", # Excel Formula: =calc_position(F13,E14)
+    },
+  },
+  MetersTable1 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 12;
+    Name => "MetersTable[3]",
+    RegMem => "Mem",
+    Address => "200000",
+    Width => "96", # Excel Formula: =calc_mem_width(E11:E14,M10,F14,-1)
+    Type => "Dynamic",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "1024",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=50,ReadActivityFactor=50,PortErrPropagate=Disabled",
+    Comments => "MetersTable & MetersAttributeTable should have the same read latency
+Read latency must not exceed 4cc (due to shaper 'do not remove client' indication that needs to arrive after 6cc)",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    MemLogicalWidth => "88",
+    Table1Entry0CommitedMeter => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Table[n]Entry0CommitedMeter",
+      RegMem => "MemField",
+      Description => "The commited bucket counter.
+Resolution is according to configuration (bytes/packets).
+Note - the MSB of the counter indicates positive or negative value",
+      Width => "22",
+      Position => "21:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+    },
+    Table1Entry0ExcessMeter => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Table[n]Entry0ExcessMeter",
+      RegMem => "MemField",
+      Description => "The excess bucket counter.
+Resolution is according to configuration (bytes/packets).
+Note - the MSB of the counter indicates positive or negative value",
+      Width => "22",
+      Position => "43:22", # Excel Formula: =calc_position(F11,E12)
+    },
+    Table1Entry1CommitedMeter => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Table[n]Entry1CommitedMeter",
+      RegMem => "MemField",
+      Description => "The commited bucket counter.
+Resolution is according to configuration (bytes/packets).
+Note - the MSB of the counter indicates positive or negative value",
+      Width => "22",
+      Position => "65:44", # Excel Formula: =calc_position(F12,E13)
+    },
+    Table1Entry1ExcessMeter => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Table[n]Entry1ExcessMeter",
+      RegMem => "MemField",
+      Description => "The excess bucket counter.
+Resolution is according to configuration (bytes/packets).
+Note - the MSB of the counter indicates positive or negative value",
+      Width => "22",
+      Position => "87:66", # Excel Formula: =calc_position(F13,E14)
+    },
+  },
+  MetersTable2 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 12;
+    Name => "MetersTable[3]",
+    RegMem => "Mem",
+    Address => "300000",
+    Width => "96", # Excel Formula: =calc_mem_width(E11:E14,M10,F14,-1)
+    Type => "Dynamic",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "1024",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=50,ReadActivityFactor=50,PortErrPropagate=Disabled",
+    Comments => "MetersTable & MetersAttributeTable should have the same read latency
+Read latency must not exceed 4cc (due to shaper 'do not remove client' indication that needs to arrive after 6cc)",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    MemLogicalWidth => "88",
+    Table2Entry0CommitedMeter => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Table[n]Entry0CommitedMeter",
+      RegMem => "MemField",
+      Description => "The commited bucket counter.
+Resolution is according to configuration (bytes/packets).
+Note - the MSB of the counter indicates positive or negative value",
+      Width => "22",
+      Position => "21:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+    },
+    Table2Entry0ExcessMeter => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Table[n]Entry0ExcessMeter",
+      RegMem => "MemField",
+      Description => "The excess bucket counter.
+Resolution is according to configuration (bytes/packets).
+Note - the MSB of the counter indicates positive or negative value",
+      Width => "22",
+      Position => "43:22", # Excel Formula: =calc_position(F11,E12)
+    },
+    Table2Entry1CommitedMeter => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Table[n]Entry1CommitedMeter",
+      RegMem => "MemField",
+      Description => "The commited bucket counter.
+Resolution is according to configuration (bytes/packets).
+Note - the MSB of the counter indicates positive or negative value",
+      Width => "22",
+      Position => "65:44", # Excel Formula: =calc_position(F12,E13)
+    },
+    Table2Entry1ExcessMeter => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Table[n]Entry1ExcessMeter",
+      RegMem => "MemField",
+      Description => "The excess bucket counter.
+Resolution is according to configuration (bytes/packets).
+Note - the MSB of the counter indicates positive or negative value",
+      Width => "22",
+      Position => "87:66", # Excel Formula: =calc_position(F13,E14)
+    },
+  },
+  MetersAttributeTable0 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 21;
+    Name => "MetersAttributeTable[3]",
+    RegMem => "Mem",
+    Address => "400000", # Excel Formula: =calc_mem_address(C10,A10,G15,L15)
+    Width => "35", # Excel Formula: =calc_mem_width(E16:E27,M15,F27,-1)
+    Type => "Config",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,WriteActivityFactor=0,ReadActivityFactor=50,PortErrPropagate=Disabled",
+    Comments => "MetersTable & MetersAttributeTable should have the same read latency
+Read latency must not exceed 4cc (due to shaper 'do not remove client' indication that needs to arrive after 6cc)",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    MemLogicalWidth => "28",
+    Table0Entry0Profile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Table[n]Entry0Profile",
+      RegMem => "MemField",
+      Description => "The profile associated with the meter, used for accessing the MeterProfileTable.",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+    },
+    Table0Entry0CommitedCouplingFlag => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Table[n]Entry0CommitedCouplingFlag",
+      RegMem => "MemField",
+      Description => "The couplng flag of the meter:
+0 - No Coupling
+1 - Coupling with the excess bucket",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F16,E17)
+    },
+    Table0Entry0MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Table[n]Entry0MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.",
+      Width => "2",
+      Position => "6:5", # Excel Formula: =calc_position(F17,E18)
+    },
+    Table0Entry1Profile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Table[n]Entry1Profile",
+      RegMem => "MemField",
+      Description => "The profile associated with the meter, used for accessing the MeterProfileTable.",
+      Width => "4",
+      Position => "10:7", # Excel Formula: =calc_position(F18,E19)
+    },
+    Table0Entry1CommitedCouplingFlag => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Table[n]Entry1CommitedCouplingFlag",
+      RegMem => "MemField",
+      Description => "The couplng flag of the meter:
+0 - No Coupling
+1 - Coupling with the excess bucket",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F19,E20)
+    },
+    Table0Entry1MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Table[n]Entry1MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.",
+      Width => "2",
+      Position => "13:12", # Excel Formula: =calc_position(F20,E21)
+    },
+    Table0Entry2Profile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Table[n]Entry2Profile",
+      RegMem => "MemField",
+      Description => "The profile associated with the meter, used for accessing the MeterProfileTable.",
+      Width => "4",
+      Position => "17:14", # Excel Formula: =calc_position(F21,E22)
+    },
+    Table0Entry2CommitedCouplingFlag => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Table[n]Entry2CommitedCouplingFlag",
+      RegMem => "MemField",
+      Description => "The couplng flag of the meter:
+0 - No Coupling
+1 - Coupling with the excess bucket",
+      Width => "1",
+      Position => "18", # Excel Formula: =calc_position(F22,E23)
+    },
+    Table0Entry2MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Table[n]Entry2MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.",
+      Width => "2",
+      Position => "20:19", # Excel Formula: =calc_position(F23,E24)
+    },
+    Table0Entry3Profile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Table[n]Entry3Profile",
+      RegMem => "MemField",
+      Description => "The profile associated with the meter, used for accessing the MeterProfileTable.",
+      Width => "4",
+      Position => "24:21", # Excel Formula: =calc_position(F24,E25)
+    },
+    Table0Entry3CommitedCouplingFlag => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Table[n]Entry3CommitedCouplingFlag",
+      RegMem => "MemField",
+      Description => "The couplng flag of the meter:
+0 - No Coupling
+1 - Coupling with the excess bucket",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F25,E26)
+    },
+    Table0Entry3MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Table[n]Entry3MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.",
+      Width => "2",
+      Position => "27:26", # Excel Formula: =calc_position(F26,E27)
+    },
+  },
+  MetersAttributeTable1 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 21;
+    Name => "MetersAttributeTable[3]",
+    RegMem => "Mem",
+    Address => "500000",
+    Width => "35", # Excel Formula: =calc_mem_width(E16:E27,M15,F27,-1)
+    Type => "Config",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,WriteActivityFactor=0,ReadActivityFactor=50,PortErrPropagate=Disabled",
+    Comments => "MetersTable & MetersAttributeTable should have the same read latency
+Read latency must not exceed 4cc (due to shaper 'do not remove client' indication that needs to arrive after 6cc)",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    MemLogicalWidth => "28",
+    Table1Entry0Profile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Table[n]Entry0Profile",
+      RegMem => "MemField",
+      Description => "The profile associated with the meter, used for accessing the MeterProfileTable.",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+    },
+    Table1Entry0CommitedCouplingFlag => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Table[n]Entry0CommitedCouplingFlag",
+      RegMem => "MemField",
+      Description => "The couplng flag of the meter:
+0 - No Coupling
+1 - Coupling with the excess bucket",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F16,E17)
+    },
+    Table1Entry0MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Table[n]Entry0MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.",
+      Width => "2",
+      Position => "6:5", # Excel Formula: =calc_position(F17,E18)
+    },
+    Table1Entry1Profile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Table[n]Entry1Profile",
+      RegMem => "MemField",
+      Description => "The profile associated with the meter, used for accessing the MeterProfileTable.",
+      Width => "4",
+      Position => "10:7", # Excel Formula: =calc_position(F18,E19)
+    },
+    Table1Entry1CommitedCouplingFlag => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Table[n]Entry1CommitedCouplingFlag",
+      RegMem => "MemField",
+      Description => "The couplng flag of the meter:
+0 - No Coupling
+1 - Coupling with the excess bucket",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F19,E20)
+    },
+    Table1Entry1MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Table[n]Entry1MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.",
+      Width => "2",
+      Position => "13:12", # Excel Formula: =calc_position(F20,E21)
+    },
+    Table1Entry2Profile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Table[n]Entry2Profile",
+      RegMem => "MemField",
+      Description => "The profile associated with the meter, used for accessing the MeterProfileTable.",
+      Width => "4",
+      Position => "17:14", # Excel Formula: =calc_position(F21,E22)
+    },
+    Table1Entry2CommitedCouplingFlag => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Table[n]Entry2CommitedCouplingFlag",
+      RegMem => "MemField",
+      Description => "The couplng flag of the meter:
+0 - No Coupling
+1 - Coupling with the excess bucket",
+      Width => "1",
+      Position => "18", # Excel Formula: =calc_position(F22,E23)
+    },
+    Table1Entry2MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Table[n]Entry2MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.",
+      Width => "2",
+      Position => "20:19", # Excel Formula: =calc_position(F23,E24)
+    },
+    Table1Entry3Profile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Table[n]Entry3Profile",
+      RegMem => "MemField",
+      Description => "The profile associated with the meter, used for accessing the MeterProfileTable.",
+      Width => "4",
+      Position => "24:21", # Excel Formula: =calc_position(F24,E25)
+    },
+    Table1Entry3CommitedCouplingFlag => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Table[n]Entry3CommitedCouplingFlag",
+      RegMem => "MemField",
+      Description => "The couplng flag of the meter:
+0 - No Coupling
+1 - Coupling with the excess bucket",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F25,E26)
+    },
+    Table1Entry3MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Table[n]Entry3MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.",
+      Width => "2",
+      Position => "27:26", # Excel Formula: =calc_position(F26,E27)
+    },
+  },
+  MetersAttributeTable2 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 21;
+    Name => "MetersAttributeTable[3]",
+    RegMem => "Mem",
+    Address => "600000",
+    Width => "35", # Excel Formula: =calc_mem_width(E16:E27,M15,F27,-1)
+    Type => "Config",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "512",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,WriteActivityFactor=0,ReadActivityFactor=50,PortErrPropagate=Disabled",
+    Comments => "MetersTable & MetersAttributeTable should have the same read latency
+Read latency must not exceed 4cc (due to shaper 'do not remove client' indication that needs to arrive after 6cc)",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    MemLogicalWidth => "28",
+    Table2Entry0Profile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Table[n]Entry0Profile",
+      RegMem => "MemField",
+      Description => "The profile associated with the meter, used for accessing the MeterProfileTable.",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+    },
+    Table2Entry0CommitedCouplingFlag => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Table[n]Entry0CommitedCouplingFlag",
+      RegMem => "MemField",
+      Description => "The couplng flag of the meter:
+0 - No Coupling
+1 - Coupling with the excess bucket",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F16,E17)
+    },
+    Table2Entry0MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Table[n]Entry0MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.",
+      Width => "2",
+      Position => "6:5", # Excel Formula: =calc_position(F17,E18)
+    },
+    Table2Entry1Profile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Table[n]Entry1Profile",
+      RegMem => "MemField",
+      Description => "The profile associated with the meter, used for accessing the MeterProfileTable.",
+      Width => "4",
+      Position => "10:7", # Excel Formula: =calc_position(F18,E19)
+    },
+    Table2Entry1CommitedCouplingFlag => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Table[n]Entry1CommitedCouplingFlag",
+      RegMem => "MemField",
+      Description => "The couplng flag of the meter:
+0 - No Coupling
+1 - Coupling with the excess bucket",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F19,E20)
+    },
+    Table2Entry1MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Table[n]Entry1MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.",
+      Width => "2",
+      Position => "13:12", # Excel Formula: =calc_position(F20,E21)
+    },
+    Table2Entry2Profile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Table[n]Entry2Profile",
+      RegMem => "MemField",
+      Description => "The profile associated with the meter, used for accessing the MeterProfileTable.",
+      Width => "4",
+      Position => "17:14", # Excel Formula: =calc_position(F21,E22)
+    },
+    Table2Entry2CommitedCouplingFlag => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Table[n]Entry2CommitedCouplingFlag",
+      RegMem => "MemField",
+      Description => "The couplng flag of the meter:
+0 - No Coupling
+1 - Coupling with the excess bucket",
+      Width => "1",
+      Position => "18", # Excel Formula: =calc_position(F22,E23)
+    },
+    Table2Entry2MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Table[n]Entry2MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.",
+      Width => "2",
+      Position => "20:19", # Excel Formula: =calc_position(F23,E24)
+    },
+    Table2Entry3Profile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Table[n]Entry3Profile",
+      RegMem => "MemField",
+      Description => "The profile associated with the meter, used for accessing the MeterProfileTable.",
+      Width => "4",
+      Position => "24:21", # Excel Formula: =calc_position(F24,E25)
+    },
+    Table2Entry3CommitedCouplingFlag => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Table[n]Entry3CommitedCouplingFlag",
+      RegMem => "MemField",
+      Description => "The couplng flag of the meter:
+0 - No Coupling
+1 - Coupling with the excess bucket",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F25,E26)
+    },
+    Table2Entry3MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Table[n]Entry3MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.",
+      Width => "2",
+      Position => "27:26", # Excel Formula: =calc_position(F26,E27)
+    },
+  },
+  MetersStateTable0 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 17;
+    Name => "MetersStateTable[3]",
+    RegMem => "Mem",
+    Address => "700000", # Excel Formula: =calc_mem_address(C15,A15,G28,L28)
+    Width => "18", # Excel Formula: =calc_mem_width(E29:E38,M28,F38,-1)
+    Type => "Dynamic",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "1024",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleReadAfterProt=2,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=50,ReadActivityFactor=50,PortErrPropagate=Disabled",
+    Comments => "MetersStateTable & RateLimitersStateTable should have the same number of samples",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    MemLogicalWidth => "12",
+    MetersState0Entry0ColorAwareMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry0ColorAwareMode",
+      RegMem => "MemField",
+      Description => "0 - Color Blind
+1 - Color Aware
+This field is set by the design according to the MeterProfileTable",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F28,E29,TRUE)
+    },
+    MetersState0Entry0MeterMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry0MeterMode",
+      RegMem => "MemField",
+      Description => "0 - srTCM
+1 - trTCM
+This field is set by the design according to the MeterProfileTable",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F29,E30)
+    },
+    MetersState0Entry0MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry0MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.
+This field is set by the design according to the  MetersAttributeTable",
+      Width => "2",
+      Position => "3:2", # Excel Formula: =calc_position(F30,E31)
+    },
+    MetersState0Entry0CommitedAboveZero => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry0CommitedAboveZero",
+      RegMem => "MemField",
+      Description => "Indicates that the commited bucket is above 0",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F31,E32)
+    },
+    MetersState0Entry0ExcessAboveZero => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry0ExcessAboveZero",
+      RegMem => "MemField",
+      Description => "Indicates that the excess bucket is above 0",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F32,E33)
+    },
+    MetersState0Entry1ColorAwareMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry1ColorAwareMode",
+      RegMem => "MemField",
+      Description => "0 - Color Blind
+1 - Color Aware
+This field is set by the design according to the MeterProfileTable",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F33,E34)
+      DefaultValue => " ",
+    },
+    MetersState0Entry1MeterMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry1MeterMode",
+      RegMem => "MemField",
+      Description => "0 - srTCM
+1 - trTCM
+This field is set by the design according to the MeterProfileTable",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F34,E35)
+    },
+    MetersState0Entry1MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry1MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.
+This field is set by the design according to the  MetersAttributeTable",
+      Width => "2",
+      Position => "9:8", # Excel Formula: =calc_position(F35,E36)
+    },
+    MetersState0Entry1CommitedAboveZero => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry1CommitedAboveZero",
+      RegMem => "MemField",
+      Description => "Indicates that the commited bucket is above 0",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F36,E37)
+    },
+    MetersState0Entry1ExcessAboveZero => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry1ExcessAboveZero",
+      RegMem => "MemField",
+      Description => "Indicates that the excess bucket is above 0",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F37,E38)
+    },
+  },
+  MetersStateTable1 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 17;
+    Name => "MetersStateTable[3]",
+    RegMem => "Mem",
+    Address => "800000",
+    Width => "18", # Excel Formula: =calc_mem_width(E29:E38,M28,F38,-1)
+    Type => "Dynamic",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "1024",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleReadAfterProt=2,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=50,ReadActivityFactor=50,PortErrPropagate=Disabled",
+    Comments => "MetersStateTable & RateLimitersStateTable should have the same number of samples",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    MemLogicalWidth => "12",
+    MetersState1Entry0ColorAwareMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry0ColorAwareMode",
+      RegMem => "MemField",
+      Description => "0 - Color Blind
+1 - Color Aware
+This field is set by the design according to the MeterProfileTable",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F28,E29,TRUE)
+    },
+    MetersState1Entry0MeterMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry0MeterMode",
+      RegMem => "MemField",
+      Description => "0 - srTCM
+1 - trTCM
+This field is set by the design according to the MeterProfileTable",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F29,E30)
+    },
+    MetersState1Entry0MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry0MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.
+This field is set by the design according to the  MetersAttributeTable",
+      Width => "2",
+      Position => "3:2", # Excel Formula: =calc_position(F30,E31)
+    },
+    MetersState1Entry0CommitedAboveZero => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry0CommitedAboveZero",
+      RegMem => "MemField",
+      Description => "Indicates that the commited bucket is above 0",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F31,E32)
+    },
+    MetersState1Entry0ExcessAboveZero => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry0ExcessAboveZero",
+      RegMem => "MemField",
+      Description => "Indicates that the excess bucket is above 0",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F32,E33)
+    },
+    MetersState1Entry1ColorAwareMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry1ColorAwareMode",
+      RegMem => "MemField",
+      Description => "0 - Color Blind
+1 - Color Aware
+This field is set by the design according to the MeterProfileTable",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F33,E34)
+      DefaultValue => " ",
+    },
+    MetersState1Entry1MeterMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry1MeterMode",
+      RegMem => "MemField",
+      Description => "0 - srTCM
+1 - trTCM
+This field is set by the design according to the MeterProfileTable",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F34,E35)
+    },
+    MetersState1Entry1MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry1MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.
+This field is set by the design according to the  MetersAttributeTable",
+      Width => "2",
+      Position => "9:8", # Excel Formula: =calc_position(F35,E36)
+    },
+    MetersState1Entry1CommitedAboveZero => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry1CommitedAboveZero",
+      RegMem => "MemField",
+      Description => "Indicates that the commited bucket is above 0",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F36,E37)
+    },
+    MetersState1Entry1ExcessAboveZero => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry1ExcessAboveZero",
+      RegMem => "MemField",
+      Description => "Indicates that the excess bucket is above 0",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F37,E38)
+    },
+  },
+  MetersStateTable2 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 17;
+    Name => "MetersStateTable[3]",
+    RegMem => "Mem",
+    Address => "900000",
+    Width => "18", # Excel Formula: =calc_mem_width(E29:E38,M28,F38,-1)
+    Type => "Dynamic",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "1024",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleReadAfterProt=2,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=50,ReadActivityFactor=50,PortErrPropagate=Disabled",
+    Comments => "MetersStateTable & RateLimitersStateTable should have the same number of samples",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    MemLogicalWidth => "12",
+    MetersState2Entry0ColorAwareMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry0ColorAwareMode",
+      RegMem => "MemField",
+      Description => "0 - Color Blind
+1 - Color Aware
+This field is set by the design according to the MeterProfileTable",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F28,E29,TRUE)
+    },
+    MetersState2Entry0MeterMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry0MeterMode",
+      RegMem => "MemField",
+      Description => "0 - srTCM
+1 - trTCM
+This field is set by the design according to the MeterProfileTable",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F29,E30)
+    },
+    MetersState2Entry0MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry0MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.
+This field is set by the design according to the  MetersAttributeTable",
+      Width => "2",
+      Position => "3:2", # Excel Formula: =calc_position(F30,E31)
+    },
+    MetersState2Entry0CommitedAboveZero => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry0CommitedAboveZero",
+      RegMem => "MemField",
+      Description => "Indicates that the commited bucket is above 0",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F31,E32)
+    },
+    MetersState2Entry0ExcessAboveZero => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry0ExcessAboveZero",
+      RegMem => "MemField",
+      Description => "Indicates that the excess bucket is above 0",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F32,E33)
+    },
+    MetersState2Entry1ColorAwareMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry1ColorAwareMode",
+      RegMem => "MemField",
+      Description => "0 - Color Blind
+1 - Color Aware
+This field is set by the design according to the MeterProfileTable",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F33,E34)
+      DefaultValue => " ",
+    },
+    MetersState2Entry1MeterMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry1MeterMode",
+      RegMem => "MemField",
+      Description => "0 - srTCM
+1 - trTCM
+This field is set by the design according to the MeterProfileTable",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F34,E35)
+    },
+    MetersState2Entry1MeterDecisionMappingProfile => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry1MeterDecisionMappingProfile",
+      RegMem => "MemField",
+      Description => "The profile number that will be used when accessing the meter decision mapping table.
+This field is set by the design according to the  MetersAttributeTable",
+      Width => "2",
+      Position => "9:8", # Excel Formula: =calc_position(F35,E36)
+    },
+    MetersState2Entry1CommitedAboveZero => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry1CommitedAboveZero",
+      RegMem => "MemField",
+      Description => "Indicates that the commited bucket is above 0",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F36,E37)
+    },
+    MetersState2Entry1ExcessAboveZero => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 12;
+      Name => "MetersState[n]Entry1ExcessAboveZero",
+      RegMem => "MemField",
+      Description => "Indicates that the excess bucket is above 0",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F37,E38)
+    },
+  },
+  MeterProfileTable0 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 18;
+    Name => "MeterProfileTable[3]",
+    RegMem => "Mem",
+    Address => "A00000", # Excel Formula: =calc_mem_address(C28,A28,G39,L39)
+    Width => "39", # Excel Formula: =calc_mem_width(E40:E44,M39,F44,-1)
+    Type => "Config",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "16",
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,PortErrPropagate=Disabled",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    MemLogicalWidth => "39",
+    MeterProfile0MeterCountMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 13;
+      Name => "MeterProfile[n]MeterCountMode",
+      RegMem => "MemField",
+      Description => "0 - The meter count in bytes resolution
+1 - The meter count in packets resolution",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F39,E40,TRUE)
+    },
+    MeterProfile0MeterMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 13;
+      Name => "MeterProfile[n]MeterMode",
+      RegMem => "MemField",
+      Description => "0 - srTCM
+1 - trTCM",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F40,E41)
+    },
+    MeterProfile0ColorAwareMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 13;
+      Name => "MeterProfile[n]ColorAwareMode",
+      RegMem => "MemField",
+      Description => "0 - Color Blind
+1 - Color Aware",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F41,E42)
+    },
+    MeterProfile0CBS => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 13;
+      Name => "MeterProfile[n]CBS",
+      RegMem => "MemField",
+      Description => "Commited burst size
+Resolution is 1K (bytes or packets according to configuration).",
+      Width => "18",
+      Position => "20:3", # Excel Formula: =calc_position(F42,E43)
+    },
+    MeterProfile0EBS => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 13;
+      Name => "MeterProfile[n]EBS",
+      RegMem => "MemField",
+      Description => "Excess burst size or peak burst size
+Resolution is 1KB (bytes or packets according to configuration).",
+      Width => "18",
+      Position => "38:21", # Excel Formula: =calc_position(F43,E44)
+    },
+  },
+  MeterProfileTable1 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 18;
+    Name => "MeterProfileTable[3]",
+    RegMem => "Mem",
+    Address => "B00000",
+    Width => "39", # Excel Formula: =calc_mem_width(E40:E44,M39,F44,-1)
+    Type => "Config",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "16",
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,PortErrPropagate=Disabled",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    MemLogicalWidth => "39",
+    MeterProfile1MeterCountMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 13;
+      Name => "MeterProfile[n]MeterCountMode",
+      RegMem => "MemField",
+      Description => "0 - The meter count in bytes resolution
+1 - The meter count in packets resolution",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F39,E40,TRUE)
+    },
+    MeterProfile1MeterMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 13;
+      Name => "MeterProfile[n]MeterMode",
+      RegMem => "MemField",
+      Description => "0 - srTCM
+1 - trTCM",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F40,E41)
+    },
+    MeterProfile1ColorAwareMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 13;
+      Name => "MeterProfile[n]ColorAwareMode",
+      RegMem => "MemField",
+      Description => "0 - Color Blind
+1 - Color Aware",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F41,E42)
+    },
+    MeterProfile1CBS => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 13;
+      Name => "MeterProfile[n]CBS",
+      RegMem => "MemField",
+      Description => "Commited burst size
+Resolution is 1K (bytes or packets according to configuration).",
+      Width => "18",
+      Position => "20:3", # Excel Formula: =calc_position(F42,E43)
+    },
+    MeterProfile1EBS => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 13;
+      Name => "MeterProfile[n]EBS",
+      RegMem => "MemField",
+      Description => "Excess burst size or peak burst size
+Resolution is 1KB (bytes or packets according to configuration).",
+      Width => "18",
+      Position => "38:21", # Excel Formula: =calc_position(F43,E44)
+    },
+  },
+  MeterProfileTable2 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 18;
+    Name => "MeterProfileTable[3]",
+    RegMem => "Mem",
+    Address => "C00000",
+    Width => "39", # Excel Formula: =calc_mem_width(E40:E44,M39,F44,-1)
+    Type => "Config",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "16",
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,PortErrPropagate=Disabled",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    MemLogicalWidth => "39",
+    MeterProfile2MeterCountMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 13;
+      Name => "MeterProfile[n]MeterCountMode",
+      RegMem => "MemField",
+      Description => "0 - The meter count in bytes resolution
+1 - The meter count in packets resolution",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F39,E40,TRUE)
+    },
+    MeterProfile2MeterMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 13;
+      Name => "MeterProfile[n]MeterMode",
+      RegMem => "MemField",
+      Description => "0 - srTCM
+1 - trTCM",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F40,E41)
+    },
+    MeterProfile2ColorAwareMode => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 13;
+      Name => "MeterProfile[n]ColorAwareMode",
+      RegMem => "MemField",
+      Description => "0 - Color Blind
+1 - Color Aware",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F41,E42)
+    },
+    MeterProfile2CBS => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 13;
+      Name => "MeterProfile[n]CBS",
+      RegMem => "MemField",
+      Description => "Commited burst size
+Resolution is 1K (bytes or packets according to configuration).",
+      Width => "18",
+      Position => "20:3", # Excel Formula: =calc_position(F42,E43)
+    },
+    MeterProfile2EBS => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 13;
+      Name => "MeterProfile[n]EBS",
+      RegMem => "MemField",
+      Description => "Excess burst size or peak burst size
+Resolution is 1KB (bytes or packets according to configuration).",
+      Width => "18",
+      Position => "38:21", # Excel Formula: =calc_position(F43,E44)
+    },
+  },
+  MeterShaperConfigurationTable0 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 30;
+    Name => "MeterShaperConfigurationTable[3]",
+    RegMem => "Mem",
+    Address => "D00000", # Excel Formula: =calc_mem_address(C39,A39,G45,L45)
+    Width => "47", # Excel Formula: =calc_mem_width(E46:E49,M45,F49,-1)
+    Type => "Config",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "1024",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=2,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,WriteActivityFactor=0,ReadActivityFactor=50,PortErrPropagate=Disabled",
+    Comments => "Don't change sampling since the shaper is designed for:
+SampleReadBeforeProt = 1
+SampleReadAfterProt = 2",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    MemLogicalWidth => "40",
+    MeterShaperConfiguration0Entry0CirWeight => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "MeterShaperConfiguration[n]Entry0CirWeight",
+      RegMem => "MemField",
+      Description => "The weight of the committed rate meter in the global shaper that is used to implement the meters.
+The field is composed of two parts:
+[4:0] – weight 
+[9:5] – weight factor
+The weight is computed as 2^WeightFactor*weight",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+    },
+    MeterShaperConfiguration0Entry0EirWeight => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "MeterShaperConfiguration[n]Entry0EirWeight",
+      RegMem => "MemField",
+      Description => "The weight of the excess/peak rate meter in the global shaper that is used to implement the meters
+The field is composed of two parts:
+[4:0] – weight 
+[9:5] – weight factor
+The weight is computed as 2^WeightFactor*weight",
+      Width => "10",
+      Position => "19:10", # Excel Formula: =calc_position(F46,E47)
+    },
+    MeterShaperConfiguration0Entry1CirWeight => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "MeterShaperConfiguration[n]Entry1CirWeight",
+      RegMem => "MemField",
+      Description => "The weight of the committed rate meter in the global shaper that is used to implement the meters.
+The field is composed of two parts:
+[4:0] – weight 
+[9:5] – weight factor
+The weight is computed as 2^WeightFactor*weight",
+      Width => "10",
+      Position => "29:20", # Excel Formula: =calc_position(F47,E48)
+    },
+    MeterShaperConfiguration0Entry1EirWeight => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "MeterShaperConfiguration[n]Entry1EirWeight",
+      RegMem => "MemField",
+      Description => "The weight of the excess/peak rate meter in the global shaper that is used to implement the meters
+The field is composed of two parts:
+[4:0] – weight 
+[9:5] – weight factor
+The weight is computed as 2^WeightFactor*weight",
+      Width => "10",
+      Position => "39:30", # Excel Formula: =calc_position(F48,E49)
+    },
+  },
+  MeterShaperConfigurationTable1 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 30;
+    Name => "MeterShaperConfigurationTable[3]",
+    RegMem => "Mem",
+    Address => "E00000",
+    Width => "47", # Excel Formula: =calc_mem_width(E46:E49,M45,F49,-1)
+    Type => "Config",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "1024",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=2,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,WriteActivityFactor=0,ReadActivityFactor=50,PortErrPropagate=Disabled",
+    Comments => "Don't change sampling since the shaper is designed for:
+SampleReadBeforeProt = 1
+SampleReadAfterProt = 2",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    MemLogicalWidth => "40",
+    MeterShaperConfiguration1Entry0CirWeight => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 25;
+      Name => "MeterShaperConfiguration[n]Entry0CirWeight",
+      RegMem => "MemField",
+      Description => "The weight of the committed rate meter in the global shaper that is used to implement the meters.
+The field is composed of two parts:
+[4:0] – weight 
+[9:5] – weight factor
+The weight is computed as 2^WeightFactor*weight",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+    },
+    MeterShaperConfiguration1Entry0EirWeight => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 25;
+      Name => "MeterShaperConfiguration[n]Entry0EirWeight",
+      RegMem => "MemField",
+      Description => "The weight of the excess/peak rate meter in the global shaper that is used to implement the meters
+The field is composed of two parts:
+[4:0] – weight 
+[9:5] – weight factor
+The weight is computed as 2^WeightFactor*weight",
+      Width => "10",
+      Position => "19:10", # Excel Formula: =calc_position(F46,E47)
+    },
+    MeterShaperConfiguration1Entry1CirWeight => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 25;
+      Name => "MeterShaperConfiguration[n]Entry1CirWeight",
+      RegMem => "MemField",
+      Description => "The weight of the committed rate meter in the global shaper that is used to implement the meters.
+The field is composed of two parts:
+[4:0] – weight 
+[9:5] – weight factor
+The weight is computed as 2^WeightFactor*weight",
+      Width => "10",
+      Position => "29:20", # Excel Formula: =calc_position(F47,E48)
+    },
+    MeterShaperConfiguration1Entry1EirWeight => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 25;
+      Name => "MeterShaperConfiguration[n]Entry1EirWeight",
+      RegMem => "MemField",
+      Description => "The weight of the excess/peak rate meter in the global shaper that is used to implement the meters
+The field is composed of two parts:
+[4:0] – weight 
+[9:5] – weight factor
+The weight is computed as 2^WeightFactor*weight",
+      Width => "10",
+      Position => "39:30", # Excel Formula: =calc_position(F48,E49)
+    },
+  },
+  MeterShaperConfigurationTable2 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 30;
+    Name => "MeterShaperConfigurationTable[3]",
+    RegMem => "Mem",
+    Address => "F00000",
+    Width => "47", # Excel Formula: =calc_mem_width(E46:E49,M45,F49,-1)
+    Type => "Config",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "1024",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=2,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,WriteActivityFactor=0,ReadActivityFactor=50,PortErrPropagate=Disabled",
+    Comments => "Don't change sampling since the shaper is designed for:
+SampleReadBeforeProt = 1
+SampleReadAfterProt = 2",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    MemLogicalWidth => "40",
+    MeterShaperConfiguration2Entry0CirWeight => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 25;
+      Name => "MeterShaperConfiguration[n]Entry0CirWeight",
+      RegMem => "MemField",
+      Description => "The weight of the committed rate meter in the global shaper that is used to implement the meters.
+The field is composed of two parts:
+[4:0] – weight 
+[9:5] – weight factor
+The weight is computed as 2^WeightFactor*weight",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+    },
+    MeterShaperConfiguration2Entry0EirWeight => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 25;
+      Name => "MeterShaperConfiguration[n]Entry0EirWeight",
+      RegMem => "MemField",
+      Description => "The weight of the excess/peak rate meter in the global shaper that is used to implement the meters
+The field is composed of two parts:
+[4:0] – weight 
+[9:5] – weight factor
+The weight is computed as 2^WeightFactor*weight",
+      Width => "10",
+      Position => "19:10", # Excel Formula: =calc_position(F46,E47)
+    },
+    MeterShaperConfiguration2Entry1CirWeight => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 25;
+      Name => "MeterShaperConfiguration[n]Entry1CirWeight",
+      RegMem => "MemField",
+      Description => "The weight of the committed rate meter in the global shaper that is used to implement the meters.
+The field is composed of two parts:
+[4:0] – weight 
+[9:5] – weight factor
+The weight is computed as 2^WeightFactor*weight",
+      Width => "10",
+      Position => "29:20", # Excel Formula: =calc_position(F47,E48)
+    },
+    MeterShaperConfiguration2Entry1EirWeight => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 25;
+      Name => "MeterShaperConfiguration[n]Entry1EirWeight",
+      RegMem => "MemField",
+      Description => "The weight of the excess/peak rate meter in the global shaper that is used to implement the meters
+The field is composed of two parts:
+[4:0] – weight 
+[9:5] – weight factor
+The weight is computed as 2^WeightFactor*weight",
+      Width => "10",
+      Position => "39:30", # Excel Formula: =calc_position(F48,E49)
+    },
+  },
+  MeterShaperLinkedListTable0 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 27;
+    Name => "MeterShaperLinkedListTable[3]",
+    RegMem => "Mem",
+    Address => "1000000", # Excel Formula: =calc_mem_address(C45,A45,G50,L50)
+    Width => "18", # Excel Formula: =calc_mem_width(E51:E51,M50,F51,-1)
+    Type => "Dynamic",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "4096",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=25,ReadActivityFactor=25,PortErrPropagate=Disabled",
+    Comments => "Don't change sampling since the shaper is designed for:
+SampleReadBeforeProt = 2
+SampleReadAfterProt = 1
+SampleWriteBeforeProt = 1
+SampleWriteAfterProt = 1",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    MemLogicalWidth => "12",
+    MeterShaperLinkedList0 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 22;
+      Name => "MeterShaperLinkedList[n]",
+      RegMem => "MemField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F50,E51,TRUE)
+    },
+  },
+  MeterShaperLinkedListTable1 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 27;
+    Name => "MeterShaperLinkedListTable[3]",
+    RegMem => "Mem",
+    Address => "1100000",
+    Width => "18", # Excel Formula: =calc_mem_width(E51:E51,M50,F51,-1)
+    Type => "Dynamic",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "4096",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=25,ReadActivityFactor=25,PortErrPropagate=Disabled",
+    Comments => "Don't change sampling since the shaper is designed for:
+SampleReadBeforeProt = 2
+SampleReadAfterProt = 1
+SampleWriteBeforeProt = 1
+SampleWriteAfterProt = 1",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    MemLogicalWidth => "12",
+    MeterShaperLinkedList1 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 22;
+      Name => "MeterShaperLinkedList[n]",
+      RegMem => "MemField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F50,E51,TRUE)
+    },
+  },
+  MeterShaperLinkedListTable2 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 27;
+    Name => "MeterShaperLinkedListTable[3]",
+    RegMem => "Mem",
+    Address => "1200000",
+    Width => "18", # Excel Formula: =calc_mem_width(E51:E51,M50,F51,-1)
+    Type => "Dynamic",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "4096",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=25,ReadActivityFactor=25,PortErrPropagate=Disabled",
+    Comments => "Don't change sampling since the shaper is designed for:
+SampleReadBeforeProt = 2
+SampleReadAfterProt = 1
+SampleWriteBeforeProt = 1
+SampleWriteAfterProt = 1",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    MemLogicalWidth => "12",
+    MeterShaperLinkedList2 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 22;
+      Name => "MeterShaperLinkedList[n]",
+      RegMem => "MemField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F50,E51,TRUE)
+    },
+  },
+};

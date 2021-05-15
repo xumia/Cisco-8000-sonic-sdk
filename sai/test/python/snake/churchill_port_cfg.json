@@ -1,0 +1,56 @@
+{
+    "traffic_gen_port": [
+        {
+            "pif": "0x610",
+            "Description": "Spirent Traffic Gen port 2/9 400G connected to front panel QSFP-DD P15, 3/0/16.",
+            "pif_counts": 8,
+            "speed": 400000,
+            "fc": "disable",
+            "fec": "RS",
+            "mtu_size": 9600,
+            "media_type": "COPPER",
+            "an": false
+        }
+    ],
+    "skipped_traffic_gen_port": [
+        {
+            "pif": "0x210",
+            "Description": "Spirent Traffic Gen port 1/17 100G connected to front panel QSFP-DD P16, 1/0/16.",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mtu_size": 9600,
+            "media_type": "COPPER",
+            "an": false
+        }
+    ],
+    "loopback_ports":
+    [
+        {
+            "pif": ["0x000", "0x010", "0x110", "0x208", "0x200", "0x308", "0x508", "0x510", "0x700", "0x800", "0xB08"],
+            "Description": "QSFP-DD serdes loopback ports, 400G. P30, P22, P20, P19, P18, P28, P25, P17, P4, P3, P1.",
+            "pif_counts": 8,
+            "speed": 400000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "PHY",
+            "mtu_size": 9600,
+            "an": false
+        }
+    ],
+    "skipped_loopback_ports":
+    [
+        {
+            "pif": ["0x008", "0x108", "0x208", "0x300", "0x400", "0x500", "0x608", "0x708", "0x808", "0x910", "0xA00", "0xB10"],
+            "Description": "QSFP-DD serdes loopback ports, 100G. P31, P21, P19, P29, P26, P24, P7, P5, P2, P14, P13, P12",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "PHY",
+            "mtu_size": 9600,
+            "an": false
+        }
+    ]
+}

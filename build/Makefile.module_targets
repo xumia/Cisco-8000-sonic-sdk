@@ -1,0 +1,624 @@
+# BEGIN_LEGAL
+#
+# Copyright (c) 2016-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+# Target and dependencies definitions Makefile, sourced once per module.
+
+VALGRIND-COMMAND = env LEABAMALLOC=malloc IS_VALGRIND=True $(VALGRIND)
+VALGRIND-TEST-ARGS = --log-file=$(LOG-FILE) --xml=yes --xml-file=$(XML-FILE) $< $(PKG-TEST-HELPER-ARGS)
+VALGRIND-TEST-COMMAND = $(VALGRIND-COMMAND) $(VALGRIND-FLAGS) $(VALGRIND-TEST-ARGS)
+VALGRIND-FAST-TEST-COMMAND = $(VALGRIND-COMMAND) $(VALGRIND-FAST-FLAGS) $(VALGRIND-TEST-ARGS)
+
+VALGRIND-PY-COMMAND = env $(PKG-TEST-HELPER-ENV) IS_VALGRIND=True LEABAMALLOC=malloc PYTHONMALLOC=malloc $(VALGRIND)
+VALGRIND-PY-TEST-ARGS = --xml=yes --xml-file=$(subst valgrind_passed,valgrind.xml,$@) \
+--log-file=$(subst valgrind_passed,valgrind.log,$@) $(PYTHON_BIN) $< -v
+VALGRIND-PY-TEST-COMMAND = $(VALGRIND-PY-COMMAND) $(VALGRIND-PY-FLAGS) $(VALGRIND-PY-TEST-ARGS)
+VALGRIND-FAST-PY-TEST-COMMAND = $(VALGRIND-PY-COMMAND) $(VALGRIND-PY-FAST-FLAGS) $(VALGRIND-PY-TEST-ARGS)
+
+BENCHMARK-PY-SCRIPT = $(realpath $(ROOT_SCRIPT_DIR)/benchmark.py)
+BENCHMARK-PY-GENERATE-JENKINS-JSON-SCRIPT = $(realpath $(ROOT_SCRIPT_DIR)/benchmark_convert.py)
+BENCHMARK-PY-ARGS = -m pytest -s --benchmark-only
+BENCHMARK-PY-THRESHOLD = 5%
+BENCHMARK-PY-ROUNDS = 5
+ifeq ($(ASIC),)
+  BENCHMARK-PY-JSON-SUFFIX_TYPE = pacific
+else
+  BENCHMARK-PY-JSON-SUFFIX_TYPE = $(ASIC)
+endif
+BENCHMARK-PY-JSON-REFERENCE-VALUES-FILE = $(subst .py,_$(BENCHMARK-PY-JSON-SUFFIX_TYPE)_benchmark.json,$<)
+BENCHMARK-PY-JSON-CURRENT-VALUES-FILE = $(subst .py,_$(BENCHMARK-PY-JSON-SUFFIX_TYPE)_current_benchmark.json,$<)
+BENCHMARK-PY-SAVE-COMMAND = $(BENCHMARK-PY-ARGS) --benchmark-json=$(BENCHMARK-PY-JSON-REFERENCE-VALUES-FILE) $(BENCHMARK-PY-SCRIPT)
+BENCHMARK-PY-COMPARE-COMMAND = $(BENCHMARK-PY-ARGS) --benchmark-json=$(BENCHMARK-PY-JSON-CURRENT-VALUES-FILE) \
+ --benchmark-compare=$(BENCHMARK-PY-JSON-REFERENCE-VALUES-FILE) --benchmark-compare-fail=median:$(BENCHMARK-PY-THRESHOLD) $(BENCHMARK-PY-SCRIPT)
+# Command used to generate .json files for Jenkins benchmark visualization plugin
+BENCHMARK-PY-GENERATE-JENKINS-JSON-COMMAND = $(BENCHMARK-PY-GENERATE-JENKINS-JSON-SCRIPT) --reference_median_file=$(BENCHMARK-PY-JSON-REFERENCE-VALUES-FILE) \
+--current_median_value_file=$(BENCHMARK-PY-JSON-CURRENT-VALUES-FILE) --threshold=$(BENCHMARK-PY-THRESHOLD) --benchmark_results_dir=$(BASE_OUTPUT_DIR)
+
+CEREAL-INCLUDE-FLAG :=
+CEREAL-DEPENDENCY :=
+ifneq ($($(PKG)-gen-cereal),)
+    .PHONY: $(PKG)-gen-cereal
+    $(PKG)-gen-cereal: $($(PKG)-gen-cereal)
+
+    CEREAL-INCLUDE-FLAG := $(INC_FLAG)$(cereal-include-path)
+    CEREAL-DEPENDENCY := $(cereal-configured)
+
+    $($(PKG)-gen-cereal): INCLUDE_FLAGS:=$(PKG-INCLUDE-FLAGS) $(INC_FLAG)$(PKG-PATH) $(INC_FLAG)$($(PKG)-build-dir) $(CEREAL-INCLUDE-FLAG)
+    $($(PKG)-gen-cereal): CXX_EXTRA_FLAGS:=$(PKG-CXX-EXTRA-FLAGS)
+    $($(PKG)-gen-cereal): FILES_TO_COMPILE:=$(patsubst %,-include %,$($(PKG)-cereal-h-files) $($(PKG)-generated-h-files))
+    $($(PKG)-gen-cereal): MODULE_DIRS_FLAGS:=$(patsubst %,-module-dir=%,$($(PKG)-cereal-module-dirs))
+    $($(PKG)-gen-cereal): CONFIG_FILE:=$($(PKG)-cereal-config-file)
+    $($(PKG)-gen-cereal): OUT_FILE_TEMPLATE:=$($(PKG)-cereal-out-file-template)
+    $($(PKG)-gen-cereal): NUM_GENERATED_FILES:=$($(PKG)-cereal-num-generated-files)
+
+    $($(PKG)-gen-cereal): $($(PKG)-cereal-config-file) $($(PKG)-cereal-h-files) $(PKG-CEREAL-PREREQS)
+    $($(PKG)-cereal-generated-cpp-files): $($(PKG)-gen-cereal) ;
+endif
+
+ifneq ($(strip $($(PKG)-objs)),)
+    .PHONY: $(PKG)-slib $(PKG)-dlib
+    $(PKG)-slib: $($(PKG)-slib)
+    $(PKG)-dlib: $($(PKG)-dlib)
+
+    $($(PKG)-generated-cpp-srcs): $(PKG-COMPILE-PREREQS)
+
+    $($(PKG)-objs): INCLUDE_FLAGS:=$(PKG-INCLUDE-FLAGS) $(INC_FLAG)$(PKG-PATH) $(INC_FLAG)$($(PKG)-build-dir) $(CEREAL-INCLUDE-FLAG)
+    $($(PKG)-objs): C_EXTRA_FLAGS:=$(PKG-C-EXTRA-FLAGS)
+    $($(PKG)-cereal-generated-objs): CEREAL_ADDITIONAL_FLAGS:=$(CEREAL_COMPILE_FLAGS)
+    $($(PKG)-objs): CXX_EXTRA_FLAGS:=$(PKG-CXX-EXTRA-FLAGS)
+    $($(PKG)-objs): LIB_NAME:=$(PKG-NAME)
+    $($(PKG)-objs): $(CEREAL-DEPENDENCY) $(PKG-COMPILE-PREREQS)
+
+
+    $($(PKG)-slib) $($(PKG)-dlib): OBJS:=$($(PKG)-objs)
+    $($(PKG)-dlib): LINK_LIBS_FLAGS:=$(PKG-LINK-LIBS)
+    $($(PKG)-slib) $($(PKG)-dlib): $($(PKG)-objs)
+    $($(PKG)-dlib): $(PKG-LINK-PREREQS)
+endif
+
+PKG-SWIG-LINK-LIBS-FINAL := $(PKG-SWIG-LINK-LIBS)
+PKG-SWIG-LINK-PREREQS-FINAL := $(PKG-SWIG-LINK-PREREQS)
+ifneq ($(filter $(PKG-TARGETS), libs), )
+    PKG-SWIG-LINK-LIBS-FINAL := $(PKG-SWIG-LINK-LIBS) -l$(PKG-NAME)
+    PKG-SWIG-LINK-PREREQS-FINAL := $(PKG-SWIG-LINK-PREREQS) $($(PKG)-dlib)
+endif
+
+ifneq ($(filter $(PKG-TARGETS), swiglib), )
+    .PHONY: $(PKG)-swig-wrap-src $(PKG)-swig-dlib
+    $(PKG)-swig-wrap-src: $($(PKG)-swig-wrap-src)
+    $(PKG)-swig-dlib: $($(PKG)-swig-dlib)
+
+    $($(PKG)-swig-wrap-src): SWIG_INCLUDE_FLAGS:=$(PKG-SWIG-INCLUDE-FLAGS) -I$(BOOST_INC_DIR) -I$(LIBNL3_INC_DIR)
+    $($(PKG)-swig-wrap-src): SWIG_EXTRA_FLAGS:=$(PKG-SWIG-EXTRA-FLAGS)
+    $($(PKG)-swig-wrap-src): SWIG_OUTPUT_DIR:=$(PKG-PYLIB-OUTPUT-DIR)
+    $($(PKG)-swig-wrap-src): $(PKG-SWIG-COMPILE-PREREQS)
+    $($(PKG)-swig-wrap-obj): C_EXTRA_FLAGS:=$(PKG-C-EXTRA-FLAGS) -O0
+    $($(PKG)-swig-wrap-obj): CXX_EXTRA_FLAGS:=$(PKG-CXX-EXTRA-FLAGS) -O0
+    $($(PKG)-swig-wrap-obj): SWIG_EXTRA_FLAGS:=$(PKG-SWIG-EXTRA-FLAGS)
+    $($(PKG)-swig-wrap-obj): SWIG_INCLUDE_FLAGS:=$(PKG-SWIG-INCLUDE-FLAGS) -I$(BOOST_INC_DIR) -I$(LIBNL3_INC_DIR)
+    $($(PKG)-swig-wrap-obj): LIB_NAME:=$(PKG-NAME)
+
+    $($(PKG)-swig-dlib): SWIG_INCLUDE_FLAGS:=$(PKG-SWIG-INCLUDE-FLAGS) -I$(BOOST_INC_DIR) -I$(LIBNL3_INC_DIR)
+    $($(PKG)-swig-dlib): LINK_LIBS_FLAGS:=$(PKG-SWIG-LINK-LIBS-FINAL)
+    $($(PKG)-swig-dlib): OBJS:=$($(PKG)-swig-wrap-obj)
+    $($(PKG)-swig-dlib): $(PKG-SWIG-LINK-PREREQS-FINAL) $($(PKG)-dlib) $($(PKG)-swig-wrap-obj)
+endif
+
+ifneq ($(filter $(PKG-TARGETS), copy), )
+    $(BASE_OUTPUT_DIR)/$(PKG-NAME): $($(PKG)-copy-files) | $($(PKG)-copy-dirs)
+	$(SILENT)$(RM) -rf $@
+	$(SILENT)$(MKDIR) -p $@
+	$(CP) -R $| $@
+endif
+
+ifneq ($(filter $(PKG-TARGETS), py_app), )
+    $($(PKG)-py-bins): $(BIN_OUTPUT_DIR)/%.py: $(PKG-PATH)/%.py
+	$(SILENT)$(MKDIR) -p $(@D)
+	$(CP) --preserve=mode $^ $@
+endif
+
+ifneq ($(filter $(PKG-TARGETS), py_lib), )
+    $($(PKG)-py-libs): $(PKG-PYLIB-OUTPUT-DIR)/%.py: $(PKG-PATH)/%.py
+	$(SILENT)$(MKDIR) -p $(@D)
+	$(CP) --preserve=mode $^ $@
+endif
+
+# Application targets
+ifneq ($(filter $(PKG-TARGETS), app), )
+    .PHONY: $(PKG)-app
+    $(PKG)-app: $($(PKG)-app)
+
+    $($(PKG)-app): OBJS:=$($(PKG)-objs)
+    $($(PKG)-app): LINK_LIBS_FLAGS:=$(PKG-LINK-LIBS)
+    $($(PKG)-app): $(PKG-LINK-PREREQS) $($(PKG)-objs)
+endif
+
+# Test targets
+ifneq ($(filter $(PKG-TARGETS), test_app), )
+    .PHONY: $(PKG)-app
+    $(PKG)-app: $($(PKG)-app)
+
+    $($(PKG)-app): OBJS:=$($(PKG)-objs)
+    $($(PKG)-app): LINK_LIBS_FLAGS:=$(PKG-LINK-LIBS)
+    $($(PKG)-app): $(PKG-LINK-PREREQS) $($(PKG)-objs)
+
+    .PHONY: $(PKG)-test-app
+    $(PKG)-test-app: PKG-TEST-HELPER-ARGS:=$(PKG-TEST-ARGS)
+    $(PKG)-test-app: $(PKG)-test-app-helper
+
+    .PHONY: $(PKG)-test-app-helper
+    $(PKG)-test-app-helper: $($(PKG)-app-test-status)
+    $($(PKG)-app-test-status): ERR-LOG = $($(PKG)-build-dir)$*.app_test.log
+    $($(PKG)-app-test-status): PKG-TEST-HELPER-ENV = NSIM_MACRO_EXECUTION_FLOW_LOG_FILE_PATH=$(BUILD_OUTPUT_DIR)$*.sim.macro_execution.json
+    $($(PKG)-app-test-status): $($(PKG)-build-dir)%.passed: $(BIN_OUTPUT_DIR)%
+	$(SILENT)echo "App Testing: $$(basename $${PWD}) $< ..."
+	$(SILENT)$(MKDIR) -p $(@D)
+	$(SILENT)mkdir -p $(dir $(ERR-LOG)) ; \
+	    rm -rf $(ERR-LOG) ; \
+	    echo "env $(PKG-TEST-HELPER-ENV) $< $(PKG-TEST-HELPER-ARGS)" > $(ERR-LOG)
+	$(SILENT)env $(PKG-TEST-HELPER-ENV) $< $(PKG-TEST-HELPER-ARGS) &>> $(ERR-LOG) || ( \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$: /" ; \
+	    exit 1 )
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+	    rm -rf $@ ; \
+	    echo "$< $(PKG-TEST-HELPER-ARGS)" > $@
+	$(SILENT)echo "App $$(basename $${PWD}) $< ... PASSED"
+
+    .PHONY: $(PKG)-test-app-ref
+    $(PKG)-test-app-ref: PKG-TEST-HELPER-ARGS:=$(PKG-TEST-ARGS)
+    $(PKG)-test-app-ref: $(PKG)-test-app-ref-helper
+
+    .PHONY: $(PKG)-test-app-ref-helper
+    $(PKG)-test-app-ref-helper: $($(PKG)-app-test-ref-status)
+    $($(PKG)-app-test-ref-status): ERR-LOG = $($(PKG)-build-dir)$*.app_test_ref.log
+    # NOTE: NSIM_MACRO_EXECUTION_FLOW_LOG_FILE_PATH is used only when NSIM_MACRO_EXECUTION_FLOW_LOGGING=1
+    $($(PKG)-app-test-ref-status): PKG-APP-TEST-ENV = NSIM_ACCURATE_SCALE_MODEL=1 NSIM_REFERENCE_MODEL=1 NSIM_MACRO_EXECUTION_FLOW_LOG_FILE_PATH=$(BUILD_OUTPUT_DIR)$*.ref.macro_execution.json
+    $($(PKG)-app-test-ref-status): $($(PKG)-build-dir)%.ref_passed: $(BIN_OUTPUT_DIR)%
+	$(SILENT)echo "App Ref Model Testing $$(basename $${PWD}) $< ..."
+	$(SILENT)$(MKDIR) -p $(@D)
+	$(SILENT)mkdir -p $(dir $(ERR-LOG)) ; \
+	    rm -rf $(ERR-LOG) ; \
+	    echo "env $(PKG-APP-TEST-ENV) $< $(PKG-TEST-HELPER-ARGS)" > $(ERR-LOG)
+	$(SILENT)env $(PKG-APP-TEST-ENV) $< $(PKG-TEST-HELPER-ARGS) &>> $(ERR-LOG) || ( \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$: /" ; \
+	    exit 1 )
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+	    rm -rf $@ ; \
+	    echo "$< $(PKG-TEST-HELPER-ARGS)" > $@
+
+    .PHONY: $(PKG)-test-ref
+    $(PKG)-test-ref: $(PKG)-test-app-ref
+
+    .PHONY: $(PKG)-test-valgrind-app
+    $(PKG)-test-valgrind-app: LOG-FILE:= $($(PKG)-build-dir)/valgrind_app.log
+    $(PKG)-test-valgrind-app: XML-FILE:= $($(PKG)-build-dir)/valgrind_app.xml
+    $(PKG)-test-valgrind-app: PKG-TEST-HELPER-ARGS:=$(PKG-TEST-ARGS)
+    $(PKG)-test-valgrind-app: $($(PKG)-app-valgrind-test-status)
+
+    $($(PKG)-app-valgrind-test-status): ERR-LOG = $($(PKG)-build-dir)$*.app_valgrind_test.log
+    $($(PKG)-app-valgrind-test-status): $($(PKG)-build-dir)%.valgrind_passed: $(BIN_OUTPUT_DIR)%
+	$(SILENT)echo "App Valgrind Testing: $$(basename $${PWD}) $< ..."
+	$(SILENT)$(MKDIR) -p $(@D)
+	$(SILENT)mkdir -p $(dir $(ERR-LOG)) ; \
+	    rm -rf $(ERR-LOG)
+    ifeq ($(VALGRIND_DONT_TRACK_ORIGIN), 1)
+	$(SLIENT)echo "$(VALGRIND-FAST-TEST-COMMAND) || (echo Rerunning tests $(VALGRIND-TEST-COMMAND); $(VALGRIND-TEST-COMMAND); cat $(XML-FILE)" > $(ERR-LOG)
+	$(SILENT) $(VALGRIND-FAST-TEST-COMMAND) &>> $(ERR-LOG) || ( \
+	    echo Rerunning tests $(VALGRIND-TEST-COMMAND) &>> $(ERR-LOG) ; \
+	    $(VALGRIND-TEST-COMMAND) &>> $(ERR-LOG) ; \
+	    cat $(XML-FILE) &>> $(ERR-LOG) ; \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$/" ; \
+	    exit 1 )
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+	    rm -rf $@ ; \
+	    echo "$(VALGRIND-FAST-TEST-COMMAND) || (echo Rerunning tests $(VALGRIND-TEST-COMMAND); $(VALGRIND-TEST-COMMAND); cat $(XML-FILE)" > $@
+	$(SILENT)echo "App Valgrind $$(basename $${PWD}) $< ... PASSED"
+    else
+	$(SILENT)echo "$(VALGRIND-TEST-COMMAND) || (cat $(XML-FILE))" > $(ERR-LOG)
+	$(SILENT)$(VALGRIND-TEST-COMMAND) &>> $(ERR-LOG) || (
+	    cat $(XML-FILE) &>> $(ERR-LOG); \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$: /" ; \
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+            rm -rf $@ ; \
+            echo "$(VALGRIND-TEST-COMMAND) || (cat $(XML-FILE))" > $@
+	$(SILENT)echo "App Valgrind $$(basename $${PWD}) $< ... PASSED"
+    endif
+
+    .PHONY: $(PKG)-test-valgrind
+    ifeq ($(PKG-VALGRIND-CLEAN), True)
+    $(PKG)-test-valgrind: $(PKG)-test-valgrind-app
+
+    endif
+
+    .PHONY: $(PKG)-test
+    $(PKG)-test: $(PKG)-test-app
+
+endif
+
+PKG-TEST-STATUS := $(PKG)-py-tests-status
+PASSED_EXTENTION := passed
+TEST_LOG_EXTENTION := py_tests.log
+
+ifneq ($(MATILDA_TEST_MODE_ENV),)
+ifneq ($(MATILDA_TEST_MODE),GB)
+	PKG-TEST-STATUS := $(PKG)-matilda-py-tests-status
+	PASSED_EXTENTION := matilda_passed
+	TEST_LOG_EXTENTION := py_tests.matilda_log
+endif
+endif
+
+ifneq ($(filter $(PKG-TARGETS), test_py), )
+    .PHONY: $(PKG)-test-py
+    $(PKG)-test-py: $($(PKG-TEST-STATUS))
+	@true
+
+    ifeq ($(RUN_SLOW_TESTS), 1)
+        PKG-PY-TEST-ENV := $(PKG-PY-TEST-ENV) RUN_SLOW_TESTS=True
+    endif
+
+    ifeq ($(SKIP_SLOW_TESTS), 1)
+        PKG-PY-TEST-ENV := $(PKG-PY-TEST-ENV) SKIP_SLOW_TESTS=True
+    endif
+
+    $($(PKG-TEST-STATUS)): $($(PKG)-swig-dlib)
+    $($(PKG-TEST-STATUS)): $(PKG-PY-TEST-PREREQS)
+    $($(PKG-TEST-STATUS)): PKG-TEST-HELPER-ENV-BASE:=$(PKG-PY-TEST-ENV)
+    # NOTE: NSIM_MACRO_EXECUTION_FLOW_LOG_FILE_PATH is used only when NSIM_MACRO_EXECUTION_FLOW_LOGGING=1
+    $($(PKG-TEST-STATUS)): PKG-TEST-HELPER-ENV = $(PKG-TEST-HELPER-ENV-BASE) NSIM_MACRO_EXECUTION_FLOW_LOG_FILE_PATH=$(BUILD_OUTPUT_DIR)$*.sim.macro_execution.json
+    $($(PKG-TEST-STATUS)): ERR-LOG = $(BUILD_OUTPUT_DIR)$*.$(TEST_LOG_EXTENTION)
+    $($(PKG-TEST-STATUS)): $(BUILD_OUTPUT_DIR)%.$(PASSED_EXTENTION): %.py
+
+
+	$(SILENT)echo "Py Testing: $$(basename $${PWD}) $< ..."
+	$(SILENT)$(MKDIR) -p $(@D)
+	$(SILENT)mkdir -p $(dir $(ERR-LOG)) ; \
+	    rm -rf $(ERR-LOG)
+  ifneq ($(filter $(PKG-PYTHON-TEST-FRAMEWORK), pytest), )
+	$(SILENT)echo "env $(PKG-TEST-HELPER-ENV) $(PYTEST_BIN) $< $(PYTEST_ARGS) -v" > $(ERR-LOG)
+	$(SILENT)env $(PKG-TEST-HELPER-ENV) $(PYTEST_BIN)  $< $(PYTEST_ARGS) -v &>> $(ERR-LOG) || ( \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$: /" ; \
+	    exit 1 )
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+	    rm -rf $@ ; \
+	    echo "env $(PKG-TEST-HELPER-ENV) $(PYTEST_BIN) $< -v" > $@
+	$(SILENT)echo "Py $$(basename $${PWD}) $< ... PASSED"
+   else
+	$(SILENT)echo "env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v" > $(ERR-LOG)
+	$(SILENT)env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v &>> $(ERR-LOG) || ( \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$: /" ; \
+	    exit 1 )
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+	    rm -rf $@ ; \
+	    echo "env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v" > $@
+	$(SILENT)echo "Py $$(basename $${PWD}) $< ... PASSED"
+  endif
+
+    $(PKG)-test-py-%: $(BUILD_OUTPUT_DIR)$(PKG-PATH)/test_%.passed
+	@true
+
+    .PHONY: $(PKG)-test-ref-py
+    $(PKG)-test-ref-py: $($(PKG)-py-ref-tests-status)
+	@true
+
+    $(BUILD_OUTPUT_DIR)%.rpc_$(PASSED_EXTENTION): $($(PKG)-swig-dlib)
+    $(BUILD_OUTPUT_DIR)%.rpc_$(PASSED_EXTENTION): $(PKG-PY-TEST-PREREQS)
+    $(BUILD_OUTPUT_DIR)%.rpc_$(PASSED_EXTENTION): PKG-TEST-HELPER-ENV:=$(PKG-PY-TEST-ENV)
+    $(BUILD_OUTPUT_DIR)%.rpc_$(PASSED_EXTENTION): ERR-LOG = $(BUILD_OUTPUT_DIR)$*.$(TEST_LOG_EXTENTION)
+    $(BUILD_OUTPUT_DIR)%.rpc_$(PASSED_EXTENTION): %.py
+	$(SILENT)echo "NSIM RPC Testing: $$(basename $${PWD}) $< ..."
+	$(SILENT)$(MKDIR) -p $(@D)
+	$(SILENT)mkdir -p $(dir $(ERR-LOG)) ; \
+	    rm -rf $(ERR-LOG)
+	$(SILENT)echo "env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v" > $(ERR-LOG)
+	$(SILENT)env $(PKG-TEST-HELPER-ENV) NSIM_RPC_ENABLE=1 NSIM_RPC_DEBUG_ENABLE=1 $(PYTHON_BIN) $< -v &>> $(ERR-LOG) || ( \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$: /" ; \
+	    exit 1 )
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+	    rm -rf $@ ; \
+	    echo "env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v" > $@
+	$(SILENT)echo "Py $$(basename $${PWD}) $< ... PASSED"
+
+    $($(PKG)-py-ref-tests-status): $($(PKG)-swig-dlib)
+    $($(PKG)-py-ref-tests-status): $(PKG-PY-TEST-PREREQS)
+    $($(PKG)-py-ref-tests-status): ERR-LOG = $(BUILD_OUTPUT_DIR)$*.py_ref_tests.log
+    $($(PKG)-py-ref-tests-status): PKG-TEST-HELPER-ENV-BASE:=$(PKG-PY-TEST-ENV) NSIM_ACCURATE_SCALE_MODEL=1 NSIM_REFERENCE_MODEL=1
+    # NOTE: NSIM_MACRO_EXECUTION_FLOW_LOG_FILE_PATH is used only when NSIM_MACRO_EXECUTION_FLOW_LOGGING=1
+    $($(PKG)-py-ref-tests-status): PKG-TEST-HELPER-ENV = $(PKG-TEST-HELPER-ENV-BASE) NSIM_MACRO_EXECUTION_FLOW_LOG_FILE_PATH=$(BUILD_OUTPUT_DIR)$*.ref.macro_execution.json
+    $($(PKG)-py-ref-tests-status): $(BUILD_OUTPUT_DIR)%.ref_passed: %.py
+	$(SILENT)echo "Py Ref Model Testing $$(basename $${PWD}) $< ..."
+	$(SILENT)$(MKDIR) -p $(@D)
+	$(SILENT)mkdir -p $(dir $(ERR-LOG)) ; \
+	    rm -rf $(ERR-LOG)
+  ifneq ($(filter $(PKG-PYTHON-TEST-FRAMEWORK), pytest), )
+	$(SILENT)echo "env $(PKG-TEST-HELPER-ENV) $(PYTEST_BIN) $< -v" > $(ERR-LOG)
+	$(SILENT)env $(PKG-TEST-HELPER-ENV) $(PYTEST_BIN) $< -v &>> $(ERR-LOG) || ( \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$: /" ; \
+	    exit 1 )
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+	    rm -rf $@ ; \
+	    echo "env $(PKG-TEST-HELPER-ENV) $(PYTEST_BIN) $< -v" > $@
+	$(SILENT)echo "Py Ref Model $$(basename $${PWD}) $< ... PASSED"
+   else
+	$(SILENT)echo "env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v" > $(ERR-LOG)
+	$(SILENT)env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v &>> $(ERR-LOG) || ( \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$: /" ; \
+	    exit 1 )
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+	    rm -rf $@ ; \
+	    echo "env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v" > $@ ;
+	$(SILENT)echo "Py Ref Model $$(basename $${PWD}) $< ... PASSED"
+   endif
+
+    $(PKG)-test-ref-py-%: $(BUILD_OUTPUT_DIR)$(PKG-PATH)/test_%.ref_passed
+	@true
+
+    .PHONY: $(PKG)-test-ref
+    $(PKG)-test-ref: $(PKG)-test-ref-py
+
+    .PHONY: $(PKG)-test-warmboot-py
+    $(PKG)-test-warmboot-py: $($(PKG)-py-warmboot-tests-status)
+	@true
+
+    $($(PKG)-py-warmboot-tests-status): $($(PKG)-swig-dlib)
+    $($(PKG)-py-warmboot-tests-status): $(PKG-PY-TEST-PREREQS)
+    $($(PKG)-py-warmboot-tests-status): PKG-TEST-HELPER-ENV:=$(PKG-PY-TEST-ENV) ENABLE_AUTO_WB=1
+    $($(PKG)-py-warmboot-tests-status): ERR-LOG = $(BUILD_OUTPUT_DIR)$*.py_warmboot_tests.log
+    $($(PKG)-py-warmboot-tests-status): $(BUILD_OUTPUT_DIR)%.warmboot_passed: %.py
+	$(SILENT)echo "WarmBoot Testing: $$(basename $${PWD}) $< ..."
+	$(SILENT)$(MKDIR) -p $(@D)
+	$(SILENT)mkdir -p $(dir $(ERR-LOG)) ; \
+	    rm -rf $(ERR-LOG)
+  ifneq ($(filter $(PKG-PYTHON-TEST-FRAMEWORK), pytest), )
+	$(SILENT)echo "env $(PKG-TEST-HELPER-ENV) $(PYTEST_BIN) $< -v" > $(ERR-LOG)
+	$(SILENT)env $(PKG-TEST-HELPER-ENV) $(PYTEST_BIN) $< -v &>> $(ERR-LOG) || ( \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$: /" ; \
+	    exit 1 )
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+	    rm -rf $@ ; \
+	    echo "env $(PKG-TEST-HELPER-ENV) $(PYTEST_BIN) $< -v" > $@
+	$(SILENT)echo "WarmBoot $$(basename $${PWD}) $< ... PASSED"
+   else
+	$(SILENT)echo "env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v" > $(ERR-LOG)
+	$(SILENT)env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v &>> $(ERR-LOG) || ( \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$: /" ; \
+	    exit 1 )
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+	    rm -rf $@ ; \
+	    echo "env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v" > $@
+	$(SILENT)echo "WarmBoot $$(basename $${PWD}) $< ... PASSED"
+  endif
+
+    $(PKG)-test-warmboot-py-%: $(BUILD_OUTPUT_DIR)$(PKG-PATH)/test_%.warmboot_passed
+	@true
+
+    .PHONY: $(PKG)-test-warmboot
+    $(PKG)-test-warmboot: $(PKG)-test-warmboot-py
+
+    .PHONY: $(PKG)-test-warmboot-upgrade-rollback-py
+    $(PKG)-test-warmboot-upgrade-rollback-py: $($(PKG)-py-warmboot-upgrade-rollback-tests-status)
+	@true
+
+    $($(PKG)-py-warmboot-upgrade-rollback-tests-status): $($(PKG)-swig-dlib)
+    $($(PKG)-py-warmboot-upgrade-rollback-tests-status): $(PKG-PY-TEST-PREREQS)
+    $($(PKG)-py-warmboot-upgrade-rollback-tests-status): PKG-TEST-HELPER-ENV:=$(PKG-PY-TEST-ENV) ENABLE_WB_UPGRADE_ROLLBACK=1
+    $($(PKG)-py-warmboot-upgrade-rollback-tests-status): ERR-LOG = $(BUILD_OUTPUT_DIR)$*.py_warmboot_ur_tests.log
+    $($(PKG)-py-warmboot-upgrade-rollback-tests-status): $(BUILD_OUTPUT_DIR)%.warmboot_ur_passed: %.py
+	$(SILENT)echo "WarmBoot Testing: $$(basename $${PWD}) $< ..."
+	$(SILENT)$(MKDIR) -p $(@D)
+	$(SILENT)mkdir -p $(dir $(ERR-LOG)) ; \
+	    rm -rf $(ERR-LOG)
+  ifneq ($(filter $(PKG-PYTHON-TEST-FRAMEWORK), pytest), )
+	$(SILENT)echo "env $(PKG-TEST-HELPER-ENV) $(PYTEST_BIN) $< -v" > $(ERR-LOG)
+	$(SILENT)env $(PKG-TEST-HELPER-ENV) $(PYTEST_BIN) $< -v &>> $(ERR-LOG) || ( \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$: /" ; \
+	    exit 1 )
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+	    rm -rf $@ ; \
+	    echo "env $(PKG-TEST-HELPER-ENV) $(PYTEST_BIN) $< -v" > $@
+	$(SILENT)echo "WarmBoot $$(basename $${PWD}) $< ... PASSED"
+   else
+	$(SILENT)echo "env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v" > $(ERR-LOG)
+	$(SILENT)env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v &>> $(ERR-LOG) || ( \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$: /" ; \
+	    exit 1 )
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+	    rm -rf $@ ; \
+	    echo "env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v" > $@
+	$(SILENT)echo "WarmBoot $$(basename $${PWD}) $< ... PASSED"
+  endif
+
+    $(PKG)-test-warmboot-upgrade-rollback-py-%: $(BUILD_OUTPUT_DIR)$(PKG-PATH)/test_%.warmboot_ur_passed
+	@true
+
+    .PHONY: $(PKG)-test-warmboot-upgrade-rollback
+    $(PKG)-test-warmboot-upgrade-rollback: $(PKG)-test-warmboot-upgrade-rollback-py
+
+    .PHONY: $(PKG)-test-dead-or-alive-py
+    $(PKG)-test-dead-or-alive-py: $($(PKG)-py-dead-or-alive-tests-status)
+	@true
+
+	$($(PKG)-py-dead-or-alive-tests-status): $($(PKG)-swig-dlib)
+    $($(PKG)-py-dead-or-alive-tests-status): $(PKG-PY-TEST-PREREQS)
+    $($(PKG)-py-dead-or-alive-tests-status): PKG-TEST-HELPER-ENV:=$(PKG-PY-TEST-ENV)
+    $($(PKG)-py-dead-or-alive-tests-status): ERR-LOG = $(BUILD_OUTPUT_DIR)$*.doa_py_tests.log
+    $($(PKG)-py-dead-or-alive-tests-status): $(BUILD_OUTPUT_DIR)%.doa_passed: %.py
+	$(SILENT)echo "doa Testing: $$(basename $${PWD}) $< ..."
+	$(SILENT)$(MKDIR) -p $(@D)
+	$(SILENT)mkdir -p $(dir $(ERR-LOG)) ; \
+	    rm -rf $(ERR-LOG)
+
+
+  ifneq ($(filter $(PKG-PYTHON-TEST-FRAMEWORK), pytest), )
+	$(SILENT)echo "env $(PKG-TEST-HELPER-ENV) $(PYTEST_BIN) $< -v" > $(ERR-LOG)
+	$(SILENT)env $(PKG-TEST-HELPER-ENV) $(PYTEST_BIN) $< -v &>> $(ERR-LOG) || ( \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$: /" ; \
+	    exit 1 )
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+	    rm -rf $@ ; \
+	    echo "env $(PKG-TEST-HELPER-ENV) $(PYTEST_BIN) $< -v" > $@
+	$(SILENT)echo "doa $$(basename $${PWD}) $< ... PASSED"
+   else
+	$(SILENT)echo "env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v" > $(ERR-LOG)
+	$(SILENT)env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v &>> $(ERR-LOG) || ( \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$: /" ; \
+	    exit 1 )
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+	    rm -rf $@ ; \
+	    echo "env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $< -v" > $@
+	$(SILENT)echo "doa $$(basename $${PWD}) $< ... PASSED"
+  endif
+
+    $(PKG)-test-dead-or-alive-py-%: $(BUILD_OUTPUT_DIR)$(PKG-PATH)/test_%.doa_passed
+	@true
+
+    .PHONY: $(PKG)-test-dead-or-alive
+    $(PKG)-test-dead-or-alive: $(PKG)-test-dead-or-alive-py
+
+    .PHONY: $(PKG)-test-valgrind-py
+    $(PKG)-test-valgrind-py: $($(PKG)-py-valgrind-tests-status)
+
+    $($(PKG)-py-valgrind-tests-status): $($(PKG)-swig-dlib)
+    $($(PKG)-py-valgrind-tests-status): $(PKG-PY-TEST-PREREQS)
+    $($(PKG)-py-valgrind-tests-status): PKG-TEST-HELPER-ENV:=$(PKG-PY-TEST-ENV)
+
+    $($(PKG)-py-valgrind-tests-status): ERR-LOG = $(BUILD_OUTPUT_DIR)$*.py_valgrind_tests.log
+    $($(PKG)-py-valgrind-tests-status): $(BUILD_OUTPUT_DIR)%.valgrind_passed: %.py
+	$(SILENT)echo "Py Valgrind Testing: $$(basename $${PWD}) $< ..."
+	$(SILENT)$(MKDIR) -p $(@D)
+	$(SILENT)mkdir -p $(dir $(ERR-LOG)) ; \
+	    rm -rf $(ERR-LOG)
+    ifeq ($(VALGRIND_DONT_TRACK_ORIGIN), 1)
+	$(SILENT)echo "$(VALGRIND-FAST-PY-TEST-COMMAND) || (echo Rerunning tests $(VALGRIND-PY-TEST-COMMAND); $(VALGRIND-PY-TEST-COMMAND); cat $(subst valgrind_passed,valgrind.xml,$@)" > $(ERR-LOG)
+	$(SILENT)$(VALGRIND-FAST-PY-TEST-COMMAND) &>> $(ERR-LOG) || ( \
+	    echo Rerunning tests $(VALGRIND-PY-TEST-COMMAND) &>> $(ERR-LOG) ; \
+	    $(VALGRIND-PY-TEST-COMMAND) &>> $(ERR-LOG) ; \
+	    cat $(subst valgrind_passed,valgrind.xml,$@) &>> $(ERR-LOG) ; \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$: /" ; \
+	    exit 1 )
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+	    rm -rf $@ ; \
+	    echo "$(VALGRIND-FAST-PY-TEST-COMMAND) || (echo Rerunning tests $(VALGRIND-PY-TEST-COMMAND); $(VALGRIND-PY-TEST-COMMAND); cat $(subst valgrind_passed,valgrind.xml,$@)" > $@
+	$(SILENT)echo "Py Valgrind $$(basename $${PWD}) $< ... PASSED"
+    else
+	$(SILENT)echo "$(VALGRIND-PY-TEST-COMMAND) || (cat $(subst valgrind_passed,valgrind.xml,$@)" > $(ERR-LOG)
+	$(VALGRIND-PY-TEST-COMMAND) &>> $(ERR-LOG) || ( \
+	    cat $(subst valgrind_passed,valgrind.xml,$@) &>> $(ERR-LOG) ; \
+	    echo "$$$$: ERROR_LOG $$(basename $${PWD}) $(ERR-LOG)" ; \
+	    cat $(ERR-LOG) | sed "s/^/$$$$: /" ; \
+	    exit 1 )
+	$(SILENT)rm -rf $(ERR-LOG) ; \
+	    rm -rf $@ ; \
+	    echo "$(VALGRIND-PY-TEST-COMMAND) || (cat $(subst valgrind_passed,valgrind.xml,$@)" > $@
+	$(SILENT)echo "Py Valgrind $$(basename $${PWD}) $< ... PASSED"
+    endif
+
+    $(PKG)-test-valgrind-py-%: $(BUILD_OUTPUT_DIR)$(PKG-PATH)/test_%.valgrind_passed
+	@true
+
+
+    .PHONY: $(PKG)-test-valgrind
+    ifeq ($(PKG-VALGRIND-CLEAN), True)
+    $(PKG)-test-valgrind: $(PKG)-test-valgrind-py
+
+    endif
+
+    .PHONY: $(PKG)-test-benchmark
+    $(PKG)-test-benchmark: $($(PKG)-py-benchmark-compare-tests-status)
+    $($(PKG)-py-benchmark-compare-tests-status): $($(PKG)-swig-dlib)
+    $($(PKG)-py-benchmark-compare-tests-status): $(PKG-PY-TEST-PREREQS)
+    $($(PKG)-py-benchmark-compare-tests-status): PKG-TEST-HELPER-ENV:=$(PKG-PY-TEST-ENV)
+    $($(PKG)-py-benchmark-compare-tests-status): $(BUILD_OUTPUT_DIR)%.benchmark_compare: %.py
+	$(SILENT)$(MKDIR) -p $(@D)
+  ifeq ($(filter $(PKG-PYTHON-TEST-FRAMEWORK), pytest), )
+	$(SILENT)touch $(BENCHMARK-PY-JSON-REFERENCE-VALUES-FILE)
+	@echo env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $(BENCHMARK-PY-COMPARE-COMMAND) $<; \
+	env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $(BENCHMARK-PY-COMPARE-COMMAND) $< || \
+	cat $(BENCHMARK-PY-JSON-REFERENCE-VALUES-FILE) $(BENCHMARK-PY-JSON-CURRENT-VALUES-FILE)
+	@echo env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $(BENCHMARK-PY-GENERATE-JENKINS-JSON-COMMAND) $<; \
+	env $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $(BENCHMARK-PY-GENERATE-JENKINS-JSON-COMMAND) $<
+	@echo find $(BENCHMARK-PY-JSON-REFERENCE-VALUES-FILE) -size 0 -delete
+	$(SILENT)find $(BENCHMARK-PY-JSON-REFERENCE-VALUES-FILE) -size 0 -delete
+	@echo $(RM) $(BENCHMARK-PY-JSON-CURRENT-VALUES-FILE)
+	$(SILENT)$(RM) $(BENCHMARK-PY-JSON-CURRENT-VALUES-FILE)
+  endif
+	$(SILENT)touch $@
+
+    $(PKG)-test-benchmark-compare-%: $(BUILD_OUTPUT_DIR)$(PKG-PATH)/test_%.benchmark-compare
+	@true
+
+    .PHONY: $(PKG)-test-benchmark-save
+    $(PKG)-test-benchmark-save: $($(PKG)-py-benchmark-save-tests-status)
+    $($(PKG)-py-benchmark-save-tests-status): $($(PKG)-swig-dlib)
+    $($(PKG)-py-benchmark-save-tests-status): $(PKG-PY-TEST-PREREQS)
+    $($(PKG)-py-benchmark-save-tests-status): PKG-TEST-HELPER-ENV:=$(PKG-PY-TEST-ENV)
+    $($(PKG)-py-benchmark-save-tests-status): $(BUILD_OUTPUT_DIR)%.benchmark_save: %.py
+	$(SILENT)$(MKDIR) -p $(@D)
+  ifeq ($(filter $(PKG-PYTHON-TEST-FRAMEWORK), pytest), )
+	@echo env BENCHMARK_ROUNDS=$(BENCHMARK-PY-ROUNDS) $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $(BENCHMARK-PY-SAVE-COMMAND) $<; \
+	env BENCHMARK_ROUNDS=$(BENCHMARK-PY-ROUNDS) $(PKG-TEST-HELPER-ENV) $(PYTHON_BIN) $(BENCHMARK-PY-SAVE-COMMAND) $< || (exit 1)
+	@echo find $(BENCHMARK-PY-JSON-REFERENCE-VALUES-FILE) -size 0 -delete
+	$(SILENT)find $(BENCHMARK-PY-JSON-REFERENCE-VALUES-FILE) -size 0 -delete
+  endif
+	$(SILENT)touch $@
+
+    $(PKG)-test-benchmark-save-%: $(BUILD_OUTPUT_DIR)$(PKG-PATH)/test_%.benchmark-save
+	@true
+
+    .PHONY: $(PKG)-test
+    $(PKG)-test: $(PKG)-test-py
+
+endif
+
+
+ifneq ($($(PKG)-as-dependency), )
+    .PHONY: $(PKG)
+    $(PKG): $($(PKG)-as-dependency)
+endif
+
+
+# Clean targets
+.PHONY: $(PKG)-clean
+$(PKG)-clean: PKG-CLEAN-HELPER-LIST:=$($(PKG)-build-dir) $($(PKG)-slib) $($(PKG)-dlib) $($(PKG)-swig-dlib) $($(PKG)-app)
+$(PKG)-clean: $(PKG)-clean-helper
+
+.PHONY: $(PKG)-clean-helper
+$(PKG)-clean-helper:
+	$(SILENT)$(RM) -rf $(PKG-CLEAN-HELPER-LIST)
+
+clean:: $(PKG)-clean
+
+ifeq ($(filter clean, $(MAKECMDGOALS)),)
+-include $($(PKG)-deps)
+endif
+

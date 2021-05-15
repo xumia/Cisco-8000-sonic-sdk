@@ -1,0 +1,59 @@
+// Pacific Packet Processing theory IP routing model page
+
+/// @page pacific_ip_routing IP routing
+///
+/// IP routing is made up of the following steps:
+///
+/// * <b>VRF selection</b>: identifies which VRF should handle the packet. Typically based on receiving port, packet's Destination MAC Address, etc.
+/// * <b>Forwarding</b>: selects an L3 destination for the packet, based on its Destination IP address.
+/// * <b>Resolution</b>: destination is resolved from the L3 forwarding destination. For example, exact output port is chosen for LAG/protection groups.
+/// * <b>Editing</b>: packet is manipulated, potentially modifying QoS settings.
+/// * <b>Encapsulation</b>: new headers are applied, i.e. Ethernet and tunnel headers.
+///
+/// @dot
+/// digraph ip_routing_graph {
+///     rankdir=LR;
+///		label = "Figure 7: IP routing process"
+///     node[shape = record, style="bold, rounded", fontname = "Helvetica:bold", fontsize = 10];
+///     edge [tailport="e", headport="w"];
+///
+///		receive[label = "Receive"]
+///		vrf_selection[label = "VRF selection"]
+///		forwarding[label = "Forwarding"]
+///		resolution[label = "Resolution"]
+///		editing[label = "Editing"]
+///		encapsulation[label = "Encapsulation"]
+///		transmit[label = "Transmit"]
+///
+///		receive->vrf_selection->forwarding->resolution->editing->encapsulation->transmit
+/// }
+/// @enddot
+///
+/// @section ip_routing_vrf_selection_section VRF selection
+///
+/// VRF selection is the process of identifying the VRF to handle packet forwarding.\n
+/// Ethernet ports are connected to a VRF either directly, or through a switch (with an SVI port connecting the switch to a VRF).
+/// The received packet's DA is tested against the Ethernet port/SVI's MAC address; if there's a match, the VRF connected to the port is selected.
+///
+/// These parameters impact VRF selection:
+///
+/// * <b>Receive port</b>: L3 ethernet ports, and some tunnel types, are connected directly to a VRF.
+/// * <b>Switch</b>:	   Virtual switch selected for packets received on L2 ethernet ports define which SVI ports should be tested.
+/// * <b>Service Identifiers</b>: Tunneled packets select their virtual switch by the packet's configuration.\n
+///								  Tunnels are either associated with a specific VRF (i.e. an IPv4 tunnel),
+///								  or else rely on service identifiers such as GRE keys or MPLS VRF labels to select the VRF.
+///
+/// @section ip_routing_forwarding_section Forwarding
+///
+/// A VRF forwards packets to an L3 destination based on their Destination IP (DIP), which is an IP address.
+///
+/// The VRF's <b>FIB</b> (forwarding information base) maintains a set of routed prefixes; each entry contains a prefix
+/// of the form Address/Length, i.e. 198.51.100.0/24, and an \ref pacific_l3_object_model_l3_destination "L3 destination" to forward matching packets to.
+/// During forwarding, the FIB entry with the Longest Prefix Match is chosen, and the packet is forwarded to it.
+///
+/// @section ip_routing_editing_encapsulation_section Resolution, Editing, Encapsulation
+///
+/// Once an L3 destination has been chosen for a packet, \ref pacific_processing_model_resolution "Resolution",
+/// \ref pacific_processing_model_editing_and_encapsulation "Editing and Encapsulation" take place.
+///
+///

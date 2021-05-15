@@ -1,0 +1,2532 @@
+$block{TXPDR} = {
+  Defines_db => "..\\..\\defines\\control_common_defines.v,..\\..\\defines\\pd_fd_defines.v,..\\verilog\\txpdr_defines.v,..\\verilog\\config_txpdr\\txpdr_cif_defines.v,..\\..\\defines\\pd_fd_defines_next.v",
+  ProjectName => "Pacific",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "2",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+    GeneralInterruptRegisterSummary => { #Structure Type: RegField;
+      Name => "GeneralInterruptRegisterSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, GeneralInterruptRegister has asserted interrupt",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_1bErrInterrupt",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_2bErrInterrupt",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks ParityErrInterrupt",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "6",
+    Type => "Config",
+    McListSizeEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "McListSizeEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    TxrqEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "TxrqEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    TxrqPdmEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "TxrqPdmEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    McemdbReqFifoEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "McemdbReqFifoEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    McemdbReplyFifoEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "McemdbReplyFifoEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    BitmapOqgMapEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "BitmapOqgMapEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "6",
+    Type => "Config",
+    McListSizeEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "McListSizeEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    TxrqEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "TxrqEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    TxrqPdmEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "TxrqPdmEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    McemdbReqFifoEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "McemdbReqFifoEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    McemdbReplyFifoEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "McemdbReplyFifoEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    BitmapOqgMapEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "BitmapOqgMapEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "6",
+    Type => "Config",
+    McListSizeEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "McListSizeEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    TxrqEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "TxrqEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    TxrqPdmEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "TxrqPdmEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    McemdbReqFifoEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "McemdbReqFifoEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    McemdbReplyFifoEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "McemdbReplyFifoEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    BitmapOqgMapEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "BitmapOqgMapEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "6",
+    Type => "Config",
+    McListSizeEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "McListSizeEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    TxrqEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "TxrqEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    TxrqPdmEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "TxrqPdmEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    McemdbReqFifoEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "McemdbReqFifoEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    McemdbReplyFifoEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "McemdbReplyFifoEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    BitmapOqgMapEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "BitmapOqgMapEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectErrStatus",
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "6",
+    Type => "ReadOnly",
+    McListSizeErrInt => { #Structure Type: RegField;
+      Name => "McListSizeErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    TxrqErrInt => { #Structure Type: RegField;
+      Name => "TxrqErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "1",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    TxrqPdmErrInt => { #Structure Type: RegField;
+      Name => "TxrqPdmErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "2",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    McemdbReqFifoErrInt => { #Structure Type: RegField;
+      Name => "McemdbReqFifoErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "3",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    McemdbReplyFifoErrInt => { #Structure Type: RegField;
+      Name => "McemdbReplyFifoErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "4",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    BitmapOqgMapErrInt => { #Structure Type: RegField;
+      Name => "BitmapOqgMapErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "5",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    Name => "SelectedSerErrorInfo",
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "16",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      Name => "MemErrAddr",
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "14",
+      Position => "13:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      Name => "MemErrType",
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "15:14",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SerErrorDebugConfiguration",
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "4",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      Name => "ErroneousMemorySelector",
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "3",
+      Position => "2:0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      Name => "ResetMemoryErrors",
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrDebug",
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_1bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrDebug",
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_2bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  MbistPassStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistPassStatus",
+    RegMem => "Reg",
+    Address => "39",
+    Description => "MBIST pass status",
+    Width => "16",
+    Type => "ReadOnly",
+    BistDonePassOut => { #Structure Type: RegField;
+      Name => "BistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST passed",
+      Width => "16",
+      Position => "15:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+  MbistFailStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistFailStatus",
+    RegMem => "Reg",
+    Address => "3A",
+    Description => "MBIST fail status",
+    Width => "16",
+    Type => "ReadOnly",
+    BistDoneFailOut => { #Structure Type: RegField;
+      Name => "BistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST failed",
+      Width => "16",
+      Position => "15:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DefaultValue => "b0",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "3", # Excel Formula: =calc_reg_width(E25:E27,F27)
+    Type => "Config",
+    CoreBistRprMode => { #Structure Type: RegField;
+      Name => "CoreBistRprMode",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistRun => { #Structure Type: RegField;
+      Name => "CoreBistRun",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistPtrnFill => { #Structure Type: RegField;
+      Name => "CoreBistPtrnFill",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E29:E29,F29)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C28,A28,G28)
+    Description => "Power Down Configuration for the block",
+    Width => "128", # Excel Formula: =calc_reg_width(E31:E31,F31)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C30,A30,G30)
+    Width => "39", # Excel Formula: =calc_reg_width(E33:E37,F37)
+    Type => "Config",
+    PmroExecute => { #Structure Type: RegField;
+      Name => "PmroExecute",
+      RegMem => "RegField",
+      Description => "0->1: execute pmro command.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F32,E33,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroCmd => { #Structure Type: RegField;
+      Name => "PmroCmd",
+      RegMem => "RegField",
+      Description => "Pmro command to execute:
+0: reset.
+1: write.
+2: read.
+3: invalid.",
+      Width => "2",
+      Position => "2:1", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroSbusReset => { #Structure Type: RegField;
+      Name => "PmroSbusReset",
+      RegMem => "RegField",
+      Description => "Reset pmro sbus chain. Need to set to 0 before starting access to pmro registers.",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroAddr => { #Structure Type: RegField;
+      Name => "PmroAddr",
+      RegMem => "RegField",
+      Description => "PMRO register address:
+0 - control register, 8b, def: 0x0.
+1 - SVT Configuration Register, 16b, def: 0xFFFF.
+2 - LVT Configuration Register, 16b, def: 0xFFFF.
+3 - ULVT Configuration Register, 16b, def: 0xFFFF.
+4 - Interconnect Configuration Register, 16b, def: 0xFFFF.
+5 - Reference Clock Counter Register, 24b, def: 0xFFF000.
+6 - Oscillator Counter Register, 24b, def: 0x000000.
+7 - SBus ID register, read as 0x0B.
+Set to '0' on reset command.",
+      Width => "3",
+      Position => "6:4", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroData => { #Structure Type: RegField;
+      Name => "PmroData",
+      RegMem => "RegField",
+      Description => "PMRO data, set to 0x0 on reset and read command.",
+      Width => "32",
+      Position => "38:7", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C32,A32,G32)
+    Width => "34", # Excel Formula: =calc_reg_width(E39:E41,F41)
+    Type => "ReadOnly",
+    PmroRdata => { #Structure Type: RegField;
+      Name => "PmroRdata",
+      RegMem => "RegField",
+      Description => "Read data from pmro. Valid when PmroFinish=1 and PmroFailed=0.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F38,E39,TRUE)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFailed => { #Structure Type: RegField;
+      Name => "PmroFailed",
+      RegMem => "RegField",
+      Description => "Pmro command failed. Valid only when PmroFinish=1.",
+      Width => "1",
+      Position => "32", # Excel Formula: =calc_position(F39,E40)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFinish => { #Structure Type: RegField;
+      Name => "PmroFinish",
+      RegMem => "RegField",
+      Description => "Pmro command finished.",
+      Width => "1",
+      Position => "33", # Excel Formula: =calc_position(F40,E41)
+      Type => "Event",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C38,A38,G38)
+    Description => "aaa",
+    Width => "11", # Excel Formula: =calc_reg_width(E43:E44,F44)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F42,E43,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C42,A42,G42)
+    Description => "aaa",
+    Width => "32", # Excel Formula: =calc_reg_width(E46:E46,F46)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C45,A45,G45)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E48:E48,F48)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F47,E48,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  GeneralInterruptRegister => { #Structure Type: Reg;
+    Name => "GeneralInterruptRegister",
+    RegMem => "Reg",
+    Address => "100",
+    Description => "TxPDR interrupt register",
+    Width => "3", # Excel Formula: =calc_reg_width(E8:E10,F10)
+    Type => "Interrupt",
+    McFlbToUcOq => { #Structure Type: RegField;
+      Name => "McFlbToUcOq",
+      RegMem => "RegField",
+      Description => "Received MC packet to non Txrq destination",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Interrupt",
+      UsedBy => "UMR",
+    },
+    EmptyLinkBitmap => { #Structure Type: RegField;
+      Name => "EmptyLinkBitmap",
+      RegMem => "RegField",
+      Description => "Received empty link bitmap in FE mode",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Interrupt",
+      UsedBy => "TXRQ",
+    },
+    UcdvRollover => { #Structure Type: RegField;
+      Name => "UcdvRollover",
+      RegMem => "RegField",
+      Description => "User Count Decrement Value rollover, may be caused by mis-configuration",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F9,E10)
+      Type => "Interrupt",
+      UsedBy => "MOR",
+    },
+  },
+  GeneralInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "GeneralInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "101",
+    Description => "This register masks GeneralInterruptRegister interrupt register",
+    Width => "3", # Excel Formula: =calc_reg_width(E8:E10,F10)
+    Type => "InterruptMask",
+    McFlbToUcOqMask => { #Structure Type: RegField;
+      Name => "McFlbToUcOqMask",
+      RegMem => "RegField",
+      Description => "This field masks McFlbToUcOq interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    EmptyLinkBitmapMask => { #Structure Type: RegField;
+      Name => "EmptyLinkBitmapMask",
+      RegMem => "RegField",
+      Description => "This field masks EmptyLinkBitmap interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    UcdvRolloverMask => { #Structure Type: RegField;
+      Name => "UcdvRolloverMask",
+      RegMem => "RegField",
+      Description => "This field masks UcdvRollover interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F9,E10)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  GeneralInterruptRegisterTest => { #Structure Type: Reg; Skip Register;
+    Name => "GeneralInterruptRegisterTest",
+    RegMem => "Reg",
+    Address => "102",
+    Description => "This register tests GeneralInterruptRegister interrupt register",
+    Width => "3", # Excel Formula: =calc_reg_width(E8:E10,F10)
+    Type => "InterruptTest",
+    McFlbToUcOqTest => { #Structure Type: RegField;
+      Name => "McFlbToUcOqTest",
+      RegMem => "RegField",
+      Description => "This field tests McFlbToUcOq interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    EmptyLinkBitmapTest => { #Structure Type: RegField;
+      Name => "EmptyLinkBitmapTest",
+      RegMem => "RegField",
+      Description => "This field tests EmptyLinkBitmap interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    UcdvRolloverTest => { #Structure Type: RegField;
+      Name => "UcdvRolloverTest",
+      RegMem => "RegField",
+      Description => "This field tests UcdvRollover interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F9,E10)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  SliceModeConfiguration => { #Structure Type: Reg;
+    Name => "SliceModeConfiguration",
+    RegMem => "Reg",
+    Address => "103", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Slice mode",
+    Width => "4", # Excel Formula: =calc_reg_width(E12:E12,F12)
+    Type => "Config",
+    SliceMode => { #Structure Type: RegField;
+      Name => "SliceMode",
+      RegMem => "RegField",
+      Description => "Slice mode",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F11,E12,TRUE)
+      Type => "Config",
+      UsedBy => "UMR,UOR,TXRQ,REP",
+      DefaultValue => "d8",
+    },
+  },
+  FabricLinkConfiguration => { #Structure Type: Reg;
+    Name => "FabricLinkConfiguration",
+    RegMem => "Reg",
+    Address => "104", # Excel Formula: =calc_reg_address(C11,A11,G11)
+    Description => "Queue offset for each context inside fabric link",
+    Width => "15", # Excel Formula: =calc_reg_width(E14:E18,F18)
+    Type => "Config",
+    FabricRlbUcHpOffset => { #Structure Type: RegField;
+      Name => "FabricRlbUcHpOffset",
+      RegMem => "RegField",
+      Description => "Offset for PLB UCH context",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Config",
+      UsedBy => "UOR",
+      DefaultValue => "d6",
+      DocName => "FabricPlbUcHpOffset",
+    },
+    FabricRlbUcLpOffset => { #Structure Type: RegField;
+      Name => "FabricRlbUcLpOffset",
+      RegMem => "RegField",
+      Description => "Offset for PLB UCL context",
+      Width => "3",
+      Position => "5:3", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "UOR",
+      DefaultValue => "d5",
+      DocName => "FabricPlbUcLpOffset",
+    },
+    FabricRlbMcOffset => { #Structure Type: RegField;
+      Name => "FabricRlbMcOffset",
+      RegMem => "RegField",
+      Description => "Offset for PLB MC context",
+      Width => "3",
+      Position => "8:6", # Excel Formula: =calc_position(F15,E16)
+      Type => "Config",
+      UsedBy => "MOR,UOR",
+      DefaultValue => "d0",
+      DocName => "FabricPlbMcOffset",
+    },
+    FabricFlbMcHpOffset => { #Structure Type: RegField;
+      Name => "FabricFlbMcHpOffset",
+      RegMem => "RegField",
+      Description => "Offset for FLB MCH context",
+      Width => "3",
+      Position => "11:9", # Excel Formula: =calc_position(F16,E17)
+      Type => "Config",
+      UsedBy => "MOR",
+      DefaultValue => "d2",
+    },
+    FabricFlbMcLpOffset => { #Structure Type: RegField;
+      Name => "FabricFlbMcLpOffset",
+      RegMem => "RegField",
+      Description => "Offset for FLB MCL context",
+      Width => "3",
+      Position => "14:12", # Excel Formula: =calc_position(F17,E18)
+      Type => "Config",
+      UsedBy => "MOR",
+      DefaultValue => "d1",
+    },
+  },
+  UcMcWfqConfiguration => { #Structure Type: Reg;
+    Name => "UcMcWfqConfiguration",
+    RegMem => "Reg",
+    Address => "105", # Excel Formula: =calc_reg_address(C13,A13,G13)
+    Description => "UC MC arbitration at the TxPDR output",
+    Width => "11", # Excel Formula: =calc_reg_width(E20:E22,F22)
+    Type => "Config",
+    UcWeight => { #Structure Type: RegField;
+      Name => "UcWeight",
+      RegMem => "RegField",
+      Description => "If UcSpMode is 0, defines UC weight for UC MC WFQ",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F19,E20,TRUE)
+      Type => "Config",
+      UsedBy => "UOR",
+      DefaultValue => "d16",
+    },
+    McWeight => { #Structure Type: RegField;
+      Name => "McWeight",
+      RegMem => "RegField",
+      Description => "If UcSpMode is 0, defines MC weight for UC MC WFQ",
+      Width => "5",
+      Position => "9:5", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "UOR",
+      DefaultValue => "d1",
+    },
+    UcSpMode => { #Structure Type: RegField;
+      Name => "UcSpMode",
+      RegMem => "RegField",
+      Description => "If set, UC has SP over MC",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F21,E22)
+      Type => "Config",
+      UsedBy => "UOR",
+      DefaultValue => "d1",
+    },
+  },
+  TxrqMappings => { #Structure Type: Reg;
+    Name => "TxrqMappings",
+    RegMem => "Reg",
+    Address => "106", # Excel Formula: =calc_reg_address(C19,A19,G19)
+    Description => "Mappings on PD fields for choosing 1 of 4 TXRQs",
+    Width => "9", # Excel Formula: =calc_reg_width(E24:E25,F25)
+    Type => "Config",
+    ScheduledTxrqMap => { #Structure Type: RegField;
+      Name => "ScheduledTxrqMap",
+      RegMem => "RegField",
+      Description => "Defines High or Low Sch TXRQ for sch MC received from the fabric",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F23,E24,TRUE)
+      Type => "Config",
+      UsedBy => "UMR",
+      DefaultValue => "h0",
+    },
+    UnscheduledTxrqMap => { #Structure Type: RegField;
+      Name => "UnscheduledTxrqMap",
+      RegMem => "RegField",
+      Description => "Bit per TC, defines Unscheduled TXRQ High or Low. In FE mode, should be configured to all 0 (Unsch Low)",
+      Width => "8",
+      Position => "8:1", # Excel Formula: =calc_position(F24,E25)
+      Type => "Config",
+      UsedBy => "UMR",
+      DefaultValue => "hf0",
+    },
+  },
+  TxrqWfqConfiguration => { #Structure Type: Reg;
+    Name => "TxrqWfqConfiguration",
+    RegMem => "Reg",
+    Address => "107", # Excel Formula: =calc_reg_address(C23,A23,G23)
+    Description => "Scheduled versus Unscheduled TXRQ arbitration at single copy resolution",
+    Width => "11", # Excel Formula: =calc_reg_width(E27:E29,F29)
+    Type => "Config",
+    WfqWeightSch => { #Structure Type: RegField;
+      Name => "WfqWeightSch",
+      RegMem => "RegField",
+      Description => "If WfqSpMode is 0, defines Scheduled weight for the WFQ",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F26,E27,TRUE)
+      Type => "Config",
+      UsedBy => "ARB",
+      DefaultValue => "h1",
+    },
+    WfqWeightUnsch => { #Structure Type: RegField;
+      Name => "WfqWeightUnsch",
+      RegMem => "RegField",
+      Description => "If WfqSpMode is 0, defines Unscheduled weight for the WFQ",
+      Width => "5",
+      Position => "9:5", # Excel Formula: =calc_position(F27,E28)
+      Type => "Config",
+      UsedBy => "ARB",
+      DefaultValue => "h1",
+    },
+    WfqSpMode => { #Structure Type: RegField;
+      Name => "WfqSpMode",
+      RegMem => "RegField",
+      Description => "If set, Scheduled TXRQs has SP over Unscheduled",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F28,E29)
+      Type => "Config",
+      UsedBy => "ARB",
+      DefaultValue => "h0",
+    },
+  },
+  TxrqFifoSizeCfg0 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 16;
+    Name => "TxrqFifoSizeCfg[4]",
+    RegMem => "Reg",
+    Address => "108", # Excel Formula: =calc_reg_address(C26,A26,G26)
+    Description => "Static configuration of 4 TXRQ sizes.
+NOTE: After changing this register, soft reset should be performed",
+    Width => "21", # Excel Formula: =calc_reg_width(E31:E32,F32)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    TxrqFifoSize0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 13;
+      Name => "TxrqFifoSize[n]",
+      RegMem => "RegField",
+      Description => "Size of TXRQ n, max value = 1024",
+      Width => "11", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH")+1,2),0)
+      Position => "10:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "d256",
+    },
+    TxrqFifoStartAddr0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 18;
+      Name => "TxrqFifoStartAddr[n]",
+      RegMem => "RegField",
+      Description => "Start address of TXRQ n. Start address of TXRQ n+1 = start address of TXRQ n + size of TXRQ n. Max value = 1023",
+      Width => "10", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH"),2),0)
+      Position => "20:11", # Excel Formula: =calc_position(F31,E32)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "d0",
+      DefaultValueArray => "d0,d256,d512,d768",
+    },
+  },
+  TxrqFifoSizeCfg1 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 16;
+    Name => "TxrqFifoSizeCfg[4]",
+    RegMem => "Reg",
+    Address => "109",
+    Description => "Static configuration of 4 TXRQ sizes.
+NOTE: After changing this register, soft reset should be performed",
+    Width => "21", # Excel Formula: =calc_reg_width(E31:E32,F32)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    TxrqFifoSize1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 13;
+      Name => "TxrqFifoSize[n]",
+      RegMem => "RegField",
+      Description => "Size of TXRQ n, max value = 1024",
+      Width => "11", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH")+1,2),0)
+      Position => "10:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "d256",
+    },
+    TxrqFifoStartAddr1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 18;
+      Name => "TxrqFifoStartAddr[n]",
+      RegMem => "RegField",
+      Description => "Start address of TXRQ n. Start address of TXRQ n+1 = start address of TXRQ n + size of TXRQ n. Max value = 1023",
+      Width => "10", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH"),2),0)
+      Position => "20:11", # Excel Formula: =calc_position(F31,E32)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "d256",
+      DefaultValueArray => "d0,d256,d512,d768",
+    },
+  },
+  TxrqFifoSizeCfg2 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 16;
+    Name => "TxrqFifoSizeCfg[4]",
+    RegMem => "Reg",
+    Address => "10A",
+    Description => "Static configuration of 4 TXRQ sizes.
+NOTE: After changing this register, soft reset should be performed",
+    Width => "21", # Excel Formula: =calc_reg_width(E31:E32,F32)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    TxrqFifoSize2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 13;
+      Name => "TxrqFifoSize[n]",
+      RegMem => "RegField",
+      Description => "Size of TXRQ n, max value = 1024",
+      Width => "11", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH")+1,2),0)
+      Position => "10:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "d256",
+    },
+    TxrqFifoStartAddr2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 18;
+      Name => "TxrqFifoStartAddr[n]",
+      RegMem => "RegField",
+      Description => "Start address of TXRQ n. Start address of TXRQ n+1 = start address of TXRQ n + size of TXRQ n. Max value = 1023",
+      Width => "10", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH"),2),0)
+      Position => "20:11", # Excel Formula: =calc_position(F31,E32)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "d512",
+      DefaultValueArray => "d0,d256,d512,d768",
+    },
+  },
+  TxrqFifoSizeCfg3 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 16;
+    Name => "TxrqFifoSizeCfg[4]",
+    RegMem => "Reg",
+    Address => "10B",
+    Description => "Static configuration of 4 TXRQ sizes.
+NOTE: After changing this register, soft reset should be performed",
+    Width => "21", # Excel Formula: =calc_reg_width(E31:E32,F32)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    TxrqFifoSize3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 13;
+      Name => "TxrqFifoSize[n]",
+      RegMem => "RegField",
+      Description => "Size of TXRQ n, max value = 1024",
+      Width => "11", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH")+1,2),0)
+      Position => "10:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "d256",
+    },
+    TxrqFifoStartAddr3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 18;
+      Name => "TxrqFifoStartAddr[n]",
+      RegMem => "RegField",
+      Description => "Start address of TXRQ n. Start address of TXRQ n+1 = start address of TXRQ n + size of TXRQ n. Max value = 1023",
+      Width => "10", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH"),2),0)
+      Position => "20:11", # Excel Formula: =calc_position(F31,E32)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "d768",
+      DefaultValueArray => "d0,d256,d512,d768",
+    },
+  },
+  TxrqThresholds => { #Structure Type: Reg;
+    Name => "TxrqThresholds",
+    RegMem => "Reg",
+    Address => "10C", # Excel Formula: =calc_reg_address(C30,A30,G30)
+    Description => "Drop and flow control thresholds of the 4 TXRQs - scheduled/unscheduled and HP/LP",
+    Width => "156", # Excel Formula: =calc_reg_width(E34:E43,F43)
+    Type => "Config",
+    SchHpFcTh => { #Structure Type: RegField;
+      Name => "SchHpFcTh",
+      RegMem => "RegField",
+      Description => "Scheduled HP flow control threshold in packets, if crossed, flow control to SCH TXRQ High will be raised",
+      Width => "10", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH"),2),0)
+      Position => "9:0", # Excel Formula: =calc_position(F33,E34,TRUE)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "d128",
+    },
+    SchLpFcTh => { #Structure Type: RegField;
+      Name => "SchLpFcTh",
+      RegMem => "RegField",
+      Description => "Scheduled LP flow control threshold in packets, if crossed, flow control to SCH TXRQ Low will be raised",
+      Width => "10", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH"),2),0)
+      Position => "19:10", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "d128",
+    },
+    SchHpByteFcTh => { #Structure Type: RegField;
+      Name => "SchHpByteFcTh",
+      RegMem => "RegField",
+      Description => "Scheduled HP flow control threshold in bytes, if crossed, flow control to SCH TXRQ High will be raised",
+      Width => "24", # Excel Formula: =calc_field_width_define("TXPDR_TXRQ_BYTE_SIZE")
+      Position => "43:20", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "h100000",
+    },
+    SchLpByteFcTh => { #Structure Type: RegField;
+      Name => "SchLpByteFcTh",
+      RegMem => "RegField",
+      Description => "Scheduled LP flow control threshold in bytes, if crossed, flow control to SCH TXRQ Low will be raised",
+      Width => "24", # Excel Formula: =calc_field_width_define("TXPDR_TXRQ_BYTE_SIZE")
+      Position => "67:44", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "h100000",
+    },
+    SchHpDropTh => { #Structure Type: RegField;
+      Name => "SchHpDropTh",
+      RegMem => "RegField",
+      Description => "Scheduled HP drop threshold in packets, if crossed, incoming packets to this TXRQ will be dropped",
+      Width => "10", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH"),2),0)
+      Position => "77:68", # Excel Formula: =calc_position(F37,E38)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "d250",
+    },
+    SchLpDropTh => { #Structure Type: RegField;
+      Name => "SchLpDropTh",
+      RegMem => "RegField",
+      Description => "Scheduled LP drop threshold in packets, if crossed, incoming packets to this TXRQ will be dropped",
+      Width => "10", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH"),2),0)
+      Position => "87:78", # Excel Formula: =calc_position(F38,E39)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "d250",
+    },
+    UnschHpDropTh => { #Structure Type: RegField;
+      Name => "UnschHpDropTh",
+      RegMem => "RegField",
+      Description => "Unscheduled HP drop threshold in packets, if crossed, incoming packets to this TXRQ will be dropped",
+      Width => "10", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH"),2),0)
+      Position => "97:88", # Excel Formula: =calc_position(F39,E40)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "d250",
+    },
+    UnschLpDropTh => { #Structure Type: RegField;
+      Name => "UnschLpDropTh",
+      RegMem => "RegField",
+      Description => "Unscheduled LP drop threshold in packets, if crossed, incoming packets to this TXRQ will be dropped",
+      Width => "10", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH"),2),0)
+      Position => "107:98", # Excel Formula: =calc_position(F40,E41)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "d250",
+    },
+    UnschHpByteDropTh => { #Structure Type: RegField;
+      Name => "UnschHpByteDropTh",
+      RegMem => "RegField",
+      Description => "Unscheduled HP drop threshold in bytes, if crossed, incoming packets to this TXRQ will be dropped",
+      Width => "24", # Excel Formula: =calc_field_width_define("TXPDR_TXRQ_BYTE_SIZE")
+      Position => "131:108", # Excel Formula: =calc_position(F41,E42)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "h100000",
+    },
+    UnschLpByteDropTh => { #Structure Type: RegField;
+      Name => "UnschLpByteDropTh",
+      RegMem => "RegField",
+      Description => "Unscheduled LP drop threshold in bytes, if crossed, incoming packets to this TXRQ will be dropped",
+      Width => "24", # Excel Formula: =calc_field_width_define("TXPDR_TXRQ_BYTE_SIZE")
+      Position => "155:132", # Excel Formula: =calc_position(F42,E43)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "h100000",
+    },
+  },
+  TxrqFlowControlMap => { #Structure Type: Reg;
+    Name => "TxrqFlowControlMap",
+    RegMem => "Reg",
+    Address => "10D", # Excel Formula: =calc_reg_address(C33,A33,G33)
+    Description => "Defines polarity of the SCH flow control",
+    Width => "1", # Excel Formula: =calc_reg_width(E45:E45,F45)
+    Type => "Config",
+    SchHpFcMap => { #Structure Type: RegField;
+      Name => "SchHpFcMap",
+      RegMem => "RegField",
+      Description => "Default value sets 1 for HP, 0 for LP. The value should not be changed for normal work",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F44,E45,TRUE)
+      Type => "Config",
+      UsedBy => "TXRQ",
+      DefaultValue => "d1",
+    },
+  },
+  RelicatorKeyMappings => { #Structure Type: Reg;
+    Name => "RelicatorKeyMappings",
+    RegMem => "Reg",
+    Address => "10E", # Excel Formula: =calc_reg_address(C44,A44,G44)
+    Description => "Defines slice number as part of the MC-EMDB key",
+    Width => "3", # Excel Formula: =calc_reg_width(E47:E47,F47)
+    Type => "Config",
+    SliceMap => { #Structure Type: RegField;
+      Name => "SliceMap",
+      RegMem => "RegField",
+      Description => "Slice number of this register instance",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F46,E47,TRUE)
+      Type => "Config",
+      UsedBy => "REP",
+      DefaultValue => "d0",
+    },
+  },
+  TxrqSizeDebug0 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 14;
+    Name => "TxrqSizeDebug[4]",
+    RegMem => "Reg",
+    Address => "10F", # Excel Formula: =calc_reg_address(C46,A46,G46)
+    Description => "TXRQ fifo size debug indications, register per TXRQ",
+    Width => "36", # Excel Formula: =calc_reg_width(E49:E51,F51)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    TxrqPdSizeWmk0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 14;
+      Name => "TxrqPdSizeWmk[n]",
+      RegMem => "RegField",
+      Description => "Max watermark in packets",
+      Width => "11", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH"),2),0)+1
+      Position => "10:0", # Excel Formula: =calc_position(F48,E49,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "TXRQ",
+    },
+    TxrqByteSizeWmk0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 16;
+      Name => "TxrqByteSizeWmk[n]",
+      RegMem => "RegField",
+      Description => "Max watermark in bytes",
+      Width => "24", # Excel Formula: =calc_field_width_define("TXPDR_TXRQ_BYTE_SIZE")
+      Position => "34:11", # Excel Formula: =calc_position(F49,E50)
+      Type => "MaxWmk",
+      UsedBy => "TXRQ",
+    },
+    TxrqFull0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 9;
+      Name => "TxrqFull[n]",
+      RegMem => "RegField",
+      Description => "Fifo full sticky",
+      Width => "1",
+      Position => "35", # Excel Formula: =calc_position(F50,E51)
+      Type => "Event",
+      UsedBy => "TXRQ",
+    },
+  },
+  TxrqSizeDebug1 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 14;
+    Name => "TxrqSizeDebug[4]",
+    RegMem => "Reg",
+    Address => "110",
+    Description => "TXRQ fifo size debug indications, register per TXRQ",
+    Width => "36", # Excel Formula: =calc_reg_width(E49:E51,F51)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    TxrqPdSizeWmk1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 14;
+      Name => "TxrqPdSizeWmk[n]",
+      RegMem => "RegField",
+      Description => "Max watermark in packets",
+      Width => "11", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH"),2),0)+1
+      Position => "10:0", # Excel Formula: =calc_position(F48,E49,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "TXRQ",
+    },
+    TxrqByteSizeWmk1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 16;
+      Name => "TxrqByteSizeWmk[n]",
+      RegMem => "RegField",
+      Description => "Max watermark in bytes",
+      Width => "24", # Excel Formula: =calc_field_width_define("TXPDR_TXRQ_BYTE_SIZE")
+      Position => "34:11", # Excel Formula: =calc_position(F49,E50)
+      Type => "MaxWmk",
+      UsedBy => "TXRQ",
+    },
+    TxrqFull1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 9;
+      Name => "TxrqFull[n]",
+      RegMem => "RegField",
+      Description => "Fifo full sticky",
+      Width => "1",
+      Position => "35", # Excel Formula: =calc_position(F50,E51)
+      Type => "Event",
+      UsedBy => "TXRQ",
+    },
+  },
+  TxrqSizeDebug2 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 14;
+    Name => "TxrqSizeDebug[4]",
+    RegMem => "Reg",
+    Address => "111",
+    Description => "TXRQ fifo size debug indications, register per TXRQ",
+    Width => "36", # Excel Formula: =calc_reg_width(E49:E51,F51)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    TxrqPdSizeWmk2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 14;
+      Name => "TxrqPdSizeWmk[n]",
+      RegMem => "RegField",
+      Description => "Max watermark in packets",
+      Width => "11", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH"),2),0)+1
+      Position => "10:0", # Excel Formula: =calc_position(F48,E49,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "TXRQ",
+    },
+    TxrqByteSizeWmk2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 16;
+      Name => "TxrqByteSizeWmk[n]",
+      RegMem => "RegField",
+      Description => "Max watermark in bytes",
+      Width => "24", # Excel Formula: =calc_field_width_define("TXPDR_TXRQ_BYTE_SIZE")
+      Position => "34:11", # Excel Formula: =calc_position(F49,E50)
+      Type => "MaxWmk",
+      UsedBy => "TXRQ",
+    },
+    TxrqFull2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 9;
+      Name => "TxrqFull[n]",
+      RegMem => "RegField",
+      Description => "Fifo full sticky",
+      Width => "1",
+      Position => "35", # Excel Formula: =calc_position(F50,E51)
+      Type => "Event",
+      UsedBy => "TXRQ",
+    },
+  },
+  TxrqSizeDebug3 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 14;
+    Name => "TxrqSizeDebug[4]",
+    RegMem => "Reg",
+    Address => "112",
+    Description => "TXRQ fifo size debug indications, register per TXRQ",
+    Width => "36", # Excel Formula: =calc_reg_width(E49:E51,F51)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    TxrqPdSizeWmk3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 14;
+      Name => "TxrqPdSizeWmk[n]",
+      RegMem => "RegField",
+      Description => "Max watermark in packets",
+      Width => "11", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("TXPDR_TXRQ_DEPTH"),2),0)+1
+      Position => "10:0", # Excel Formula: =calc_position(F48,E49,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "TXRQ",
+    },
+    TxrqByteSizeWmk3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 16;
+      Name => "TxrqByteSizeWmk[n]",
+      RegMem => "RegField",
+      Description => "Max watermark in bytes",
+      Width => "24", # Excel Formula: =calc_field_width_define("TXPDR_TXRQ_BYTE_SIZE")
+      Position => "34:11", # Excel Formula: =calc_position(F49,E50)
+      Type => "MaxWmk",
+      UsedBy => "TXRQ",
+    },
+    TxrqFull3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 9;
+      Name => "TxrqFull[n]",
+      RegMem => "RegField",
+      Description => "Fifo full sticky",
+      Width => "1",
+      Position => "35", # Excel Formula: =calc_position(F50,E51)
+      Type => "Event",
+      UsedBy => "TXRQ",
+    },
+  },
+  TxrqSchDebug0 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 13;
+    Name => "TxrqSchDebug[2]",
+    RegMem => "Reg",
+    Address => "113", # Excel Formula: =calc_reg_address(C48,A48,G48)
+    Description => "Flow control to SCH debug indications",
+    Width => "1", # Excel Formula: =calc_reg_width(E53:E53,F53)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    TxrqSchFc0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 10;
+      Name => "TxrqSchFc[n]",
+      RegMem => "RegField",
+      Description => "Bit per HP (1) and LP (0) in flow control to SCH sticky",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F52,E53,TRUE)
+      Type => "Event",
+      UsedBy => "TXRQ",
+    },
+  },
+  TxrqSchDebug1 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 13;
+    Name => "TxrqSchDebug[2]",
+    RegMem => "Reg",
+    Address => "114",
+    Description => "Flow control to SCH debug indications",
+    Width => "1", # Excel Formula: =calc_reg_width(E53:E53,F53)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    TxrqSchFc1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 10;
+      Name => "TxrqSchFc[n]",
+      RegMem => "RegField",
+      Description => "Bit per HP (1) and LP (0) in flow control to SCH sticky",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F52,E53,TRUE)
+      Type => "Event",
+      UsedBy => "TXRQ",
+    },
+  },
+  McemdbReqDebug => { #Structure Type: Reg;
+    Name => "McemdbReqDebug",
+    RegMem => "Reg",
+    Address => "115", # Excel Formula: =calc_reg_address(C52,A52,G52)
+    Description => "MC-EMDB request fifo (pending for results) debug indications",
+    Width => "8", # Excel Formula: =calc_reg_width(E55:E55,F55)
+    Type => "ReadOnly",
+    McemdbReqFifoWmk => { #Structure Type: RegField;
+      Name => "McemdbReqFifoWmk",
+      RegMem => "RegField",
+      Description => "Max watermark of the fifo",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F54,E55,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "REP",
+    },
+  },
+  McidCacheConfiguration => { #Structure Type: Reg;
+    Name => "McidCacheConfiguration",
+    RegMem => "Reg",
+    Address => "116", # Excel Formula: =calc_reg_address(C54,A54,G54)
+    Description => "MC-EMDB cache configuration - stores last 8 accesses",
+    Width => "26", # Excel Formula: =calc_reg_width(E57:E59,F59)
+    Type => "Config",
+    DisableCache => { #Structure Type: RegField;
+      Name => "DisableCache",
+      RegMem => "RegField",
+      Description => "Disables the cache - for debug only",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F56,E57,TRUE)
+      Type => "Config",
+      UsedBy => "REP",
+      DefaultValue => "d0",
+    },
+    CacheResetCycle => { #Structure Type: RegField;
+      Name => "CacheResetCycle",
+      RegMem => "RegField",
+      Description => "Once in CacheResetCycle, the cache deletes all its data, 0 for disabling the reset",
+      Width => "24",
+      Position => "24:1", # Excel Formula: =calc_position(F57,E58)
+      Type => "Config",
+      UsedBy => "REP",
+      DefaultValue => "d0",
+    },
+    CacheResetTrig => { #Structure Type: RegField;
+      Name => "CacheResetTrig",
+      RegMem => "RegField",
+      Description => "Manual cache reset trigger",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F58,E59)
+      Type => "Config",
+      UsedBy => "REP",
+      DefaultValue => "d0",
+    },
+  },
+  LinkBitmapConfiguration => { #Structure Type: Reg;
+    Name => "LinkBitmapConfiguration",
+    RegMem => "Reg",
+    Address => "117", # Excel Formula: =calc_reg_address(C56,A56,G56)
+    Description => "Not functional feature, the register value should not be changed",
+    Width => "4", # Excel Formula: =calc_reg_width(E61:E62,F62)
+    Type => "Config",
+    BitmapUseTcProfile => { #Structure Type: RegField;
+      Name => "BitmapUseTcProfile",
+      RegMem => "RegField",
+      Description => "Not functional feature, the register value should not be changed",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F60,E61,TRUE)
+      Type => "Config",
+      UsedBy => "MOR",
+      DefaultValue => "d0",
+    },
+    BitmapTcProfile => { #Structure Type: RegField;
+      Name => "BitmapTcProfile",
+      RegMem => "RegField",
+      Description => "Not functional feature, the register value should not be changed",
+      Width => "3",
+      Position => "3:1", # Excel Formula: =calc_position(F61,E62)
+      Type => "Config",
+      UsedBy => "MOR",
+      DefaultValue => "d0",
+    },
+  },
+  InternalFifoAlmFull => { #Structure Type: Reg;
+    Name => "InternalFifoAlmFull",
+    RegMem => "Reg",
+    Address => "118", # Excel Formula: =calc_reg_address(C60,A60,G60)
+    Description => "Internal TxPDR fifos size settings.
+This register was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+    Width => "12", # Excel Formula: =calc_reg_width(E64:E66,F66)
+    Type => "Config",
+    McemdbReqAlmFull => { #Structure Type: RegField;
+      Name => "McemdbReqAlmFull",
+      RegMem => "RegField",
+      Description => "Internal fifo size configuration.",
+      Width => "7",
+      Position => "6:0", # Excel Formula: =calc_position(F63,E64,TRUE)
+      Type => "Config",
+      UsedBy => "REP",
+      DefaultValue => "d5",
+    },
+    BitmapOqgMapAlmFull => { #Structure Type: RegField;
+      Name => "BitmapOqgMapAlmFull",
+      RegMem => "RegField",
+      Description => "Internal fifo size configuration.",
+      Width => "3",
+      Position => "9:7", # Excel Formula: =calc_position(F64,E65)
+      Type => "Config",
+      UsedBy => "MOR",
+      DefaultValue => "d0",
+    },
+    UcFifoAlmFull => { #Structure Type: RegField;
+      Name => "UcFifoAlmFull",
+      RegMem => "RegField",
+      Description => "Internal fifo size configuration.",
+      Width => "2",
+      Position => "11:10", # Excel Formula: =calc_position(F65,E66)
+      Type => "Config",
+      UsedBy => "UOR",
+      DefaultValue => "d1",
+    },
+  },
+  TxpdrLastPdSelCfg => { #Structure Type: Reg;
+    Name => "TxpdrLastPdSelCfg",
+    RegMem => "Reg",
+    Address => "119", # Excel Formula: =calc_reg_address(C63,A63,G63)
+    Description => "Last packet descriptors bit select configuration at TxPDR in stage.",
+    Width => "3", # Excel Formula: =calc_reg_width(E68:E68,F68)
+    Type => "Config",
+    TxpdrLastPdSel => { #Structure Type: RegField;
+      Name => "TxpdrLastPdSel",
+      RegMem => "RegField",
+      Description => "Selects 32b data of last packet descriptor, max value is 4",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Config",
+      UsedBy => "UMR",
+      DefaultValue => "b0",
+    },
+  },
+  TxpdrLastPdData => { #Structure Type: Reg;
+    Name => "TxpdrLastPdData",
+    RegMem => "Reg",
+    Address => "11A", # Excel Formula: =calc_reg_address(C67,A67,G67)
+    Description => "Last packet descriptor selected data",
+    Width => "32", # Excel Formula: =calc_reg_width(E70:E70,F70)
+    Type => "External",
+    UsedBy => "UMR",
+    AdditionalInfo => "ExternalSampleDisable",
+    TxpdrLastPd => { #Structure Type: RegField;
+      Name => "TxpdrLastPd",
+      RegMem => "RegField",
+      Description => "Last packet descriptor selected data",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F69,E70,TRUE)
+      Type => "External",
+    },
+  },
+  InternalDebugCfg => { #Structure Type: Reg;
+    Name => "InternalDebugCfg",
+    RegMem => "Reg",
+    Address => "11B", # Excel Formula: =calc_reg_address(C69,A69,G69)
+    Description => "Internal TxPDR fifos size settings.
+This register was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+    Width => "9", # Excel Formula: =calc_reg_width(E72:E74,F74)
+    Type => "Config",
+    TxcgmCbtAlmFullCfg => { #Structure Type: RegField;
+      Name => "TxcgmCbtAlmFullCfg",
+      RegMem => "RegField",
+      Description => "Internal fifo size configuration.",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F71,E72,TRUE)
+      Type => "Config",
+      UsedBy => "UOR",
+      DefaultValue => "d1",
+    },
+    RxpdrCbtAlmFullCfg => { #Structure Type: RegField;
+      Name => "RxpdrCbtAlmFullCfg",
+      RegMem => "RegField",
+      Description => "Internal fifo size configuration.",
+      Width => "5",
+      Position => "7:3", # Excel Formula: =calc_position(F72,E73)
+      Type => "Config",
+      UsedBy => "REP",
+      DefaultValue => "d0",
+    },
+    DisableUcdvRes => { #Structure Type: RegField;
+      Name => "DisableUcdvRes",
+      RegMem => "RegField",
+      Description => "Internal fifo size configuration.",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F73,E74)
+      Type => "Config",
+      UsedBy => "MOR",
+      DefaultValue => "d0",
+    },
+  },
+  CbtNotReadyCounter => { #Structure Type: Reg;
+    Name => "CbtNotReadyCounter",
+    RegMem => "Reg",
+    Address => "11C", # Excel Formula: =calc_reg_address(C71,A71,G71)
+    Description => "Counters of back pressure clocks of the outgoing interfaces",
+    Width => "64", # Excel Formula: =calc_reg_width(E76:E77,F77)
+    Type => "ReadOnly",
+    TxcgmCbtNotReadyCnt => { #Structure Type: RegField;
+      Name => "TxcgmCbtNotReadyCnt",
+      RegMem => "RegField",
+      Description => "Counts back pressure clocks to TxCGM interface",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F75,E76,TRUE)
+      Type => "Counter",
+      UsedBy => "UOR",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    RxpdrCbtNotReadyCnt => { #Structure Type: RegField;
+      Name => "RxpdrCbtNotReadyCnt",
+      RegMem => "RegField",
+      Description => "Counts back pressure clocks to RxPDR interface",
+      Width => "32",
+      Position => "63:32", # Excel Formula: =calc_position(F76,E77)
+      Type => "Counter",
+      UsedBy => "REP",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  NullCopyCounter => { #Structure Type: Reg;
+    Name => "NullCopyCounter",
+    RegMem => "Reg",
+    Address => "11D", # Excel Formula: =calc_reg_address(C75,A75,G75)
+    Description => "Counter of silent dropped copies as a result of null MC-EMDB entry - this doesn’t imply congestion, but SW configuration of the MC-EMDB",
+    Width => "16", # Excel Formula: =calc_reg_width(E79:E79,F79)
+    Type => "ReadOnly",
+    NullCopyCnt => { #Structure Type: RegField;
+      Name => "NullCopyCnt",
+      RegMem => "RegField",
+      Description => "Number of silent dropped copies",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F78,E79,TRUE)
+      Type => "Counter",
+      UsedBy => "MOR",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  DebugPdFieldValueCfg => { #Structure Type: Reg;
+    Name => "DebugPdFieldValueCfg",
+    RegMem => "Reg",
+    Address => "11E", # Excel Formula: =calc_reg_address(C78,A78,G78)
+    Description => "PD debugger - programmable counter based on any PD field. For example, the user can count number of PDs  with OutColor = 2",
+    Width => "156", # Excel Formula: =calc_reg_width(E81:E81,F81)
+    Type => "Config",
+    DebugPdFieldValue => { #Structure Type: RegField;
+      Name => "DebugPdFieldValue",
+      RegMem => "RegField",
+      Description => "Match value of PD field to account",
+      Width => "156", # Excel Formula: =calc_field_width_define("TSMS2TXPDR_DUAL_PD_WIDTH")
+      Position => "155:0", # Excel Formula: =calc_position(F80,E81,TRUE)
+      Type => "Config",
+      UsedBy => "DBG",
+      DefaultValue => "b0",
+    },
+  },
+  DebugPdFieldMaskCfg => { #Structure Type: Reg;
+    Name => "DebugPdFieldMaskCfg",
+    RegMem => "Reg",
+    Address => "11F", # Excel Formula: =calc_reg_address(C80,A80,G80)
+    Description => "PD debugger",
+    Width => "156", # Excel Formula: =calc_reg_width(E83:E83,F83)
+    Type => "Config",
+    DebugPdFieldMask => { #Structure Type: RegField;
+      Name => "DebugPdFieldMask",
+      RegMem => "RegField",
+      Description => "Mask of PD field to account",
+      Width => "156", # Excel Formula: =calc_field_width_define("TSMS2TXPDR_DUAL_PD_WIDTH")
+      Position => "155:0", # Excel Formula: =calc_position(F82,E83,TRUE)
+      Type => "Config",
+      UsedBy => "DBG",
+      DefaultValue => "b0",
+    },
+  },
+  DebugPdFieldStatus => { #Structure Type: Reg;
+    Name => "DebugPdFieldStatus",
+    RegMem => "Reg",
+    Address => "120", # Excel Formula: =calc_reg_address(C82,A82,G82)
+    Description => "PD debug counters",
+    Width => "96", # Excel Formula: =calc_reg_width(E85:E87,F87)
+    Type => "ReadOnly",
+    DebugPdFieldCnt => { #Structure Type: RegField;
+      Name => "DebugPdFieldCnt",
+      RegMem => "RegField",
+      Description => "Match filter counter",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F84,E85,TRUE)
+      Type => "Counter",
+      UsedBy => "DBG",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    DebugPdTotalPdCnt => { #Structure Type: RegField;
+      Name => "DebugPdTotalPdCnt",
+      RegMem => "RegField",
+      Description => "Total PDs counter",
+      Width => "32",
+      Position => "63:32", # Excel Formula: =calc_position(F85,E86)
+      Type => "Counter",
+      UsedBy => "DBG",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    DebugPdTotalByteCnt => { #Structure Type: RegField;
+      Name => "DebugPdTotalByteCnt",
+      RegMem => "RegField",
+      Description => "Total PD byte size counter",
+      Width => "32",
+      Position => "95:64", # Excel Formula: =calc_position(F86,E87)
+      Type => "Counter",
+      UsedBy => "DBG",
+      AdditionalInfo => "CounterIncrWidth=14",
+    },
+  },
+  McListSize => { #Structure Type: Mem;
+    Name => "McListSize",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "MC group list size. Entry per 4 consecutive MC groups. Each 11b in the entry is the list size of MC group in MC-EMDB entries units",
+    Width => "51", # Excel Formula: =calc_mem_width(E89:E89,M88,F89,-1)
+    Type => "Config",
+    UsedBy => "TXRQ",
+    MemEntries => "16384", # Excel Formula: =calc_field_width_define("NUM_OF_MCIDS")/4
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "44",
+    McListSizeData => { #Structure Type: MemField;
+      Name => "McListSizeData",
+      RegMem => "MemField",
+      Description => "The list size for 4 MC groups",
+      Width => "44", # Excel Formula: =11*4
+      Position => "43:0", # Excel Formula: =calc_position(F88,E89,TRUE)
+    },
+  },
+  Txrq => { #Structure Type: Mem;
+    Name => "Txrq",
+    RegMem => "Mem",
+    Address => "200000", # Excel Formula: =calc_mem_address(C88,A88,G90,L90)
+    Description => "TX replication queues. Each entry holds the data needed for replication engine (see description per field)",
+    Width => "36", # Excel Formula: =calc_mem_width(E91:E94,M90,F94,-1)
+    Type => "Dynamic",
+    UsedBy => "TXRQ",
+    MemEntries => "1024", # Excel Formula: =calc_field_width_define("TXPDR_TXRQ_DEPTH")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=100,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "29",
+    Format => { #Structure Type: MemField;
+      Name => "Format",
+      RegMem => "MemField",
+      Description => "0 - MC-EMDB, 1 - FE link bitmap",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F90,E91,TRUE)
+    },
+    McId => { #Structure Type: MemField;
+      Name => "McId",
+      RegMem => "MemField",
+      Description => "MC-ID of the packet",
+      Width => "16", # Excel Formula: =LOG(calc_field_width_define("NUM_OF_MCIDS"),2)
+      Position => "16:1", # Excel Formula: =calc_position(F91,E92)
+    },
+    ListSize => { #Structure Type: MemField;
+      Name => "ListSize",
+      RegMem => "MemField",
+      Description => "List size of the MC group retrieved from the McListSize table",
+      Width => "11",
+      Position => "27:17", # Excel Formula: =calc_position(F92,E93)
+    },
+    IsRcy => { #Structure Type: MemField;
+      Name => "IsRcy",
+      RegMem => "MemField",
+      Description => "Is rcy source interface, needed for building the MC-EMDB key",
+      Width => "1",
+      Position => "28", # Excel Formula: =calc_position(F93,E94)
+    },
+  },
+  TxrqFe => { #Structure Type: Mem;
+    Name => "TxrqFe",
+    RegMem => "Mem",
+    Address => "200000", # Excel Formula: =calc_mem_address(C90,A90,G95,L95)
+    Description => "Note: this is not a real memory, and is only used for parsing the Txrq table for FE link bitmap format",
+    Width => "36", # Excel Formula: =calc_mem_width(E96:E98,M95,F98,-1)
+    Type => "DocOnly",
+    UsedBy => "TXRQ",
+    MemEntries => "1024", # Excel Formula: =calc_field_width_define("TXPDR_TXRQ_DEPTH")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "29",
+    Format => { #Structure Type: MemField;
+      Name => "Format",
+      RegMem => "MemField",
+      Description => "0 - MC-EMDB, 1 - FE link bitmap",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F95,E96,TRUE)
+    },
+    LinkBitmap => { #Structure Type: MemField;
+      Name => "LinkBitmap",
+      RegMem => "MemField",
+      Description => "Link bitmap",
+      Width => "18",
+      Position => "18:1", # Excel Formula: =calc_position(F96,E97)
+    },
+    Reserved => { #Structure Type: MemField;
+      Name => "Reserved",
+      RegMem => "MemField",
+      Description => "Reserved",
+      Width => "10",
+      Position => "28:19", # Excel Formula: =calc_position(F97,E98)
+    },
+  },
+  TxrqPdm => { #Structure Type: Mem;
+    Name => "TxrqPdm",
+    RegMem => "Mem",
+    Address => "300000", # Excel Formula: =calc_mem_address(C90,A90,G99,L99)
+    Description => "Stores the entire PD of the replicated packet in Txrq table",
+    Width => "94", # Excel Formula: =calc_mem_width(E100:E114,M99,F114,-1)
+    Type => "Dynamic",
+    UsedBy => "TXRQ",
+    MemEntries => "1024", # Excel Formula: =calc_field_width_define("TXPDR_TXRQ_DEPTH")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=100,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "86",
+    SourceSlice => { #Structure Type: MemField;
+      Name => "SourceSlice",
+      RegMem => "MemField",
+      Description => "Source slice",
+      Width => "3", # Excel Formula: =calc_field_width_define("SOURCE_SLICE_WIDTH")
+      Position => "2:0", # Excel Formula: =calc_position(F99,E100,TRUE)
+    },
+    Ucdv => { #Structure Type: MemField;
+      Name => "Ucdv",
+      RegMem => "MemField",
+      Description => "PD.UCDV",
+      Width => "14", # Excel Formula: =calc_field_width_define("PD_UCDV_WIDTH")
+      Position => "16:3", # Excel Formula: =calc_position(F100,E101)
+    },
+    PacketId => { #Structure Type: MemField;
+      Name => "PacketId",
+      RegMem => "MemField",
+      Description => "PD.PacketId",
+      Width => "18", # Excel Formula: =calc_field_width_define("PKT_ID_WIDTH")
+      Position => "34:17", # Excel Formula: =calc_position(F101,E102)
+    },
+    PacketSize => { #Structure Type: MemField;
+      Name => "PacketSize",
+      RegMem => "MemField",
+      Description => "PD.PacketSize",
+      Width => "14", # Excel Formula: =calc_field_width_define("PKT_SIZE_WIDTH")
+      Position => "48:35", # Excel Formula: =calc_position(F102,E103)
+    },
+    Congestion => { #Structure Type: MemField;
+      Name => "Congestion",
+      RegMem => "MemField",
+      Description => "PD.Congestion experienced",
+      Width => "1", # Excel Formula: =calc_field_width_define("CONG_ON_WIDTH")
+      Position => "49", # Excel Formula: =calc_position(F103,E104)
+    },
+    Tc => { #Structure Type: MemField;
+      Name => "Tc",
+      RegMem => "MemField",
+      Description => "PD.TC",
+      Width => "3", # Excel Formula: =calc_field_width_define("TC_WIDTH")
+      Position => "52:50", # Excel Formula: =calc_position(F104,E105)
+    },
+    Color => { #Structure Type: MemField;
+      Name => "Color",
+      RegMem => "MemField",
+      Description => "PD.OutColor",
+      Width => "2", # Excel Formula: =calc_field_width_define("OUT_COLOR_WIDTH")
+      Position => "54:53", # Excel Formula: =calc_position(F105,E106)
+    },
+    CgmCounterType => { #Structure Type: MemField;
+      Name => "CgmCounterType",
+      RegMem => "MemField",
+      Description => "PD.CgmCounterType",
+      Width => "3", # Excel Formula: =calc_field_width_define("CGM_COUNTER_TYPE_WIDTH")
+      Position => "57:55", # Excel Formula: =calc_position(F106,E107)
+    },
+    LmRequest => { #Structure Type: MemField;
+      Name => "LmRequest",
+      RegMem => "MemField",
+      Description => "PD.Access LM counter",
+      Width => "1", # Excel Formula: =calc_field_width_define("ACCESS_LM_REQ_CACHE_WIDTH")
+      Position => "58", # Excel Formula: =calc_position(F107,E108)
+    },
+    Elephant => { #Structure Type: MemField;
+      Name => "Elephant",
+      RegMem => "MemField",
+      Description => "PD.ElephantFlow",
+      Width => "1", # Excel Formula: =calc_field_width_define("ELEPHANT_FLOW_WIDTH")
+      Position => "59", # Excel Formula: =calc_position(F108,E109)
+    },
+    FabricContext => { #Structure Type: MemField;
+      Name => "FabricContext",
+      RegMem => "MemField",
+      Description => "PD.FabricContext",
+      Width => "2", # Excel Formula: =calc_field_width_define("VMD_FABRIC_CTXT_WIDTH")
+      Position => "61:60", # Excel Formula: =calc_position(F109,E110)
+    },
+    LbKey => { #Structure Type: MemField;
+      Name => "LbKey",
+      RegMem => "MemField",
+      Description => "PD.LbKey",
+      Width => "16", # Excel Formula: =calc_field_width_define("LB_KEY_WIDTH")
+      Position => "77:62", # Excel Formula: =calc_position(F110,E111)
+    },
+    LmCounterIndex => { #Structure Type: MemField;
+      Name => "LmCounterIndex",
+      RegMem => "MemField",
+      Description => "PD.LmCounterIndex",
+      Width => "2", # Excel Formula: =calc_field_width_define("LM_CNT_RX_IDX_WIDTH")
+      Position => "79:78", # Excel Formula: =calc_position(F111,E112)
+    },
+    IsMirror => { #Structure Type: MemField;
+      Name => "IsMirror",
+      RegMem => "MemField",
+      Description => "Indicates whether it is a mirror copy packet",
+      Width => "1",
+      Position => "80", # Excel Formula: =calc_position(F112,E113)
+    },
+    MirrorCmd => { #Structure Type: MemField;
+      Name => "MirrorCmd",
+      RegMem => "MemField",
+      Description => "Mirror command field, relevant if the packet is a mirror copy",
+      Width => "5", # Excel Formula: =calc_field_width_define("IN_MIRROR_CMD0_WIDTH")
+      Position => "85:81", # Excel Formula: =calc_position(F113,E114)
+    },
+  },
+  TxrqPdmFe => { #Structure Type: Mem;
+    Name => "TxrqPdmFe",
+    RegMem => "Mem",
+    Address => "300000", # Excel Formula: =calc_mem_address(C99,A99,G115,L115)
+    Description => "Note: this is not a real memory, and is only used for parsing the TxrqPdm table for FE mode",
+    Width => "94", # Excel Formula: =calc_mem_width(E116:E127,M115,F127,-1)
+    Type => "DocOnly",
+    UsedBy => "TXRQ",
+    MemEntries => "1024", # Excel Formula: =calc_field_width_define("TXPDR_TXRQ_DEPTH")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=100,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "86",
+    SourceSlice => { #Structure Type: MemField;
+      Name => "SourceSlice",
+      RegMem => "MemField",
+      Description => "Source slice",
+      Width => "3", # Excel Formula: =calc_field_width_define("SOURCE_SLICE_WIDTH")
+      Position => "2:0", # Excel Formula: =calc_position(F115,E116,TRUE)
+    },
+    Ucdv => { #Structure Type: MemField;
+      Name => "Ucdv",
+      RegMem => "MemField",
+      Description => "PD.UCDV",
+      Width => "14", # Excel Formula: =calc_field_width_define("PD_UCDV_WIDTH")
+      Position => "16:3", # Excel Formula: =calc_position(F116,E117)
+    },
+    PacketId => { #Structure Type: MemField;
+      Name => "PacketId",
+      RegMem => "MemField",
+      Description => "PD.PacketId",
+      Width => "18", # Excel Formula: =calc_field_width_define("PKT_ID_WIDTH")
+      Position => "34:17", # Excel Formula: =calc_position(F117,E118)
+    },
+    PacketSize => { #Structure Type: MemField;
+      Name => "PacketSize",
+      RegMem => "MemField",
+      Description => "PD.PacketSize",
+      Width => "14", # Excel Formula: =calc_field_width_define("PKT_SIZE_WIDTH")
+      Position => "48:35", # Excel Formula: =calc_position(F118,E119)
+    },
+    Congestion => { #Structure Type: MemField;
+      Name => "Congestion",
+      RegMem => "MemField",
+      Description => "PD.Congestion experienced",
+      Width => "1", # Excel Formula: =calc_field_width_define("CONG_ON_WIDTH")
+      Position => "49", # Excel Formula: =calc_position(F119,E120)
+    },
+    Tc => { #Structure Type: MemField;
+      Name => "Tc",
+      RegMem => "MemField",
+      Description => "PD.TC",
+      Width => "3", # Excel Formula: =calc_field_width_define("TC_WIDTH")
+      Position => "52:50", # Excel Formula: =calc_position(F120,E121)
+    },
+    Color => { #Structure Type: MemField;
+      Name => "Color",
+      RegMem => "MemField",
+      Description => "PD.OutColor",
+      Width => "2", # Excel Formula: =calc_field_width_define("OUT_COLOR_WIDTH")
+      Position => "54:53", # Excel Formula: =calc_position(F121,E122)
+    },
+    CgmCounterType => { #Structure Type: MemField;
+      Name => "CgmCounterType",
+      RegMem => "MemField",
+      Description => "PD.CgmCounterType",
+      Width => "3", # Excel Formula: =calc_field_width_define("CGM_COUNTER_TYPE_WIDTH")
+      Position => "57:55", # Excel Formula: =calc_position(F122,E123)
+    },
+    LmRequest => { #Structure Type: MemField;
+      Name => "LmRequest",
+      RegMem => "MemField",
+      Description => "PD.Access LM counter",
+      Width => "1", # Excel Formula: =calc_field_width_define("ACCESS_LM_REQ_CACHE_WIDTH")
+      Position => "58", # Excel Formula: =calc_position(F123,E124)
+    },
+    Elephant => { #Structure Type: MemField;
+      Name => "Elephant",
+      RegMem => "MemField",
+      Description => "PD.ElephantFlow",
+      Width => "1", # Excel Formula: =calc_field_width_define("ELEPHANT_FLOW_WIDTH")
+      Position => "59", # Excel Formula: =calc_position(F124,E125)
+    },
+    FabricContext => { #Structure Type: MemField;
+      Name => "FabricContext",
+      RegMem => "MemField",
+      Description => "PD.FabricContext",
+      Width => "2", # Excel Formula: =calc_field_width_define("VMD_FABRIC_CTXT_WIDTH")
+      Position => "61:60", # Excel Formula: =calc_position(F125,E126)
+    },
+    FabricTs => { #Structure Type: MemField;
+      Name => "FabricTs",
+      RegMem => "MemField",
+      Description => "Time Stamp",
+      Width => "24", # Excel Formula: =calc_field_width_define("FABRIC_TS_SN_WIDTH")
+      Position => "85:62", # Excel Formula: =calc_position(F126,E127)
+    },
+  },
+  McemdbReqFifo => { #Structure Type: Mem;
+    Name => "McemdbReqFifo",
+    RegMem => "Mem",
+    Address => "400000", # Excel Formula: =calc_mem_address(C99,A99,G128,L128)
+    Description => "MC-EMDB request fifo (pending for MC-EMDB results)",
+    Width => "120", # Excel Formula: =calc_mem_width(E129:E135,M128,F135,-1)
+    Type => "Dynamic",
+    UsedBy => "REP",
+    MemEntries => "128",
+    MemWrapper => "Fifo",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,WriteActivityFactor=100,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    MemLogicalWidth => "112",
+    Pd => { #Structure Type: MemField;
+      Name => "Pd",
+      RegMem => "MemField",
+      Description => "PD",
+      Width => "86", # Excel Formula: =SUM(E100:E114)
+      Position => "85:0", # Excel Formula: =calc_position(F128,E129,TRUE)
+    },
+    Last => { #Structure Type: MemField;
+      Name => "Last",
+      RegMem => "MemField",
+      Description => "Is last request",
+      Width => "1",
+      Position => "86", # Excel Formula: =calc_position(F129,E130)
+    },
+    TxrqId => { #Structure Type: MemField;
+      Name => "TxrqId",
+      RegMem => "MemField",
+      Description => "1 of 4 TXRQs",
+      Width => "2",
+      Position => "88:87", # Excel Formula: =calc_position(F130,E131)
+    },
+    Format => { #Structure Type: MemField;
+      Name => "Format",
+      RegMem => "MemField",
+      Description => "0 - MC-EMDB, 1 - FE link bitmap",
+      Width => "1",
+      Position => "89", # Excel Formula: =calc_position(F131,E132)
+    },
+    Bitmap => { #Structure Type: MemField;
+      Name => "Bitmap",
+      RegMem => "MemField",
+      Description => "FE link bitmap",
+      Width => "18",
+      Position => "107:90", # Excel Formula: =calc_position(F132,E133)
+    },
+    CacheHit => { #Structure Type: MemField;
+      Name => "CacheHit",
+      RegMem => "MemField",
+      Description => "Indicates that MC-EMDB key is stored in the cache",
+      Width => "1",
+      Position => "108", # Excel Formula: =calc_position(F133,E134)
+    },
+    CacheHitIndex => { #Structure Type: MemField;
+      Name => "CacheHitIndex",
+      RegMem => "MemField",
+      Description => "Indicates the cache index where MC-EMDB data is stored",
+      Width => "3",
+      Position => "111:109", # Excel Formula: =calc_position(F134,E135)
+    },
+  },
+  McemdbReplyFifo => { #Structure Type: Mem;
+    Name => "McemdbReplyFifo",
+    RegMem => "Mem",
+    Address => "500000", # Excel Formula: =calc_mem_address(C128,A128,G136,L136)
+    Description => "MC-EMDB reply fifo - holds the returned results",
+    Width => "81", # Excel Formula: =calc_mem_width(E137:E137,M136,F137,-1)
+    Type => "Dynamic",
+    UsedBy => "REP",
+    MemEntries => "96",
+    MemWrapper => "Fifo",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,WriteActivityFactor=100,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    MemLogicalWidth => "73",
+    Data => { #Structure Type: MemField;
+      Name => "Data",
+      RegMem => "MemField",
+      Description => "MC-EMPD payload",
+      Width => "73", # Excel Formula: =calc_field_width_define("RXPDR2TXPDR_READ_REPLY_CBR_FIFO_WIDTH")
+      Position => "72:0", # Excel Formula: =calc_position(F136,E137,TRUE)
+    },
+  },
+  MirrorMap => { #Structure Type: Mem;
+    Name => "MirrorMap",
+    RegMem => "Mem",
+    Address => "600000", # Excel Formula: =calc_mem_address(C136,A136,G138,L138)
+    Description => "MC mirror table. For each mirror copy, returns whether  mirror copy is MC type, and if so its MC-ID",
+    Width => "17", # Excel Formula: =calc_mem_width(E139:E140,M138,F140,-1)
+    Type => "Config",
+    UsedBy => "UMR",
+    MemEntries => "32", # Excel Formula: =POWER(2,calc_field_width_define("IN_MIRROR_CMD0_WIDTH"))
+    MemWrapper => "1P",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,FfBased=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "17",
+    McMirrorMcid => { #Structure Type: MemField;
+      Name => "McMirrorMcid",
+      RegMem => "MemField",
+      Description => "MC-ID per mirror command, relevant if McMirrorIsMc is set",
+      Width => "16", # Excel Formula: =LOG(calc_field_width_define("NUM_OF_MCIDS"),2)
+      Position => "15:0", # Excel Formula: =calc_position(F138,E139,TRUE)
+    },
+    McMirrorIsMc => { #Structure Type: MemField;
+      Name => "McMirrorIsMc",
+      RegMem => "MemField",
+      Description => "If set, the mirror command is MC and uses McMirrorMcid for replication",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F139,E140)
+    },
+  },
+  TcProfileMap => { #Structure Type: Mem;
+    Name => "TcProfileMap",
+    RegMem => "Mem",
+    Address => "700000", # Excel Formula: =calc_mem_address(C138,A138,G141,L141)
+    Description => "Defines OQG (TM port) offset of the copy, accessed with {TC-map-profile from MC-EMDB, packet TC}",
+    Width => "3", # Excel Formula: =calc_mem_width(E142:E142,M141,F142,-1)
+    Type => "Config",
+    UsedBy => "MOR",
+    MemEntries => "64",
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "3",
+    TcProfileMapData => { #Structure Type: MemField;
+      Name => "TcProfileMapData",
+      RegMem => "MemField",
+      Description => "OQG offset",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F141,E142,TRUE)
+    },
+  },
+  BitmapOqgMap => { #Structure Type: Mem;
+    Name => "BitmapOqgMap",
+    RegMem => "Mem",
+    Address => "800000", # Excel Formula: =calc_mem_address(C141,A141,G143,L143)
+    Description => "Used for bitmap format of the MC-EMDB. The bitmap format uses 192b bitmap (4 entries with 48b each). For each asserted bit, the table returns destination OQG (TM port). Last 18 entries are used for FE link bitmap",
+    Width => "13", # Excel Formula: =calc_mem_width(E144:E144,M143,F144,-1)
+    Type => "Config",
+    UsedBy => "MOR",
+    MemEntries => "210",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    Comments => "entries = 48(mcdb bitmap)x4(mcdb profiles) + 18 link bitmap",
+    MemLogicalWidth => "8",
+    OqGroupId => { #Structure Type: MemField;
+      Name => "OqGroupId",
+      RegMem => "MemField",
+      Description => "Destination OQG per asserted bit",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F143,E144,TRUE)
+    },
+  },
+  FabricLinkMap => { #Structure Type: Mem;
+    Name => "FabricLinkMap",
+    RegMem => "Mem",
+    Address => "900000", # Excel Formula: =calc_mem_address(C143,A143,G145,L145)
+    Description => "Relevant for LC fabric slice only, maps PD.RlbTxFabricLink to OQG that represent this link",
+    Width => "6", # Excel Formula: =calc_mem_width(E146:E146,M145,F146,-1)
+    Type => "Config",
+    UsedBy => "UOR",
+    MemEntries => "19",
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PortErrPropagate=Disabled",
+    Comments => "19 links per slice",
+    MemLogicalWidth => "6",
+    FabricLinkPortMap => { #Structure Type: MemField;
+      Name => "FabricLinkPortMap",
+      RegMem => "MemField",
+      Description => "OQG of the fabric link",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F145,E146,TRUE)
+    },
+  },
+};

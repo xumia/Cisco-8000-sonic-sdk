@@ -1,0 +1,71 @@
+*** include/serdes_core.h	2019-05-24 03:36:05.870989000 -0700
+--- include/serdes_core.h.new	2019-05-24 03:36:09.646039000 -0700
+***************
+*** 342,347 ****
+--- 342,349 ----
+      int tx_width;      /**< TX width mode: 10, 20, 40, 80, 16, 32, or 64.  Valid values are SerDes dependent. */
+      BOOL tx_phase_cal;
+      BOOL refclk_sync_master;
++     BOOL tx_refclk1;
++     BOOL rx_refclk1;
+  
+      uint rx_divider;
+      uint rate_sel;      /**< Rx rate selector. Only valid for PON SerDes */
+*** serdes/serdes_core.c	2019-05-24 03:34:33.085998000 -0700
+--- serdes/serdes_core.c.new	2019-05-24 03:34:36.339977000 -0700
+***************
+*** 3675,3680 ****
+--- 3675,3682 ----
+      config->tx_encoding  = AVAGO_SERDES_PAM4;   /* Ignored on NRZ-only devices */
+      config->tx_phase_cal = FALSE;
+      config->refclk_sync_master = TRUE;
++     config->tx_refclk1 = FALSE;
++     config->rx_refclk1 = FALSE;
+      config->tx_output_en = TRUE;
+      config->tx_datapath.mask |= 0x0f;   /* select invert, gray, precode and swizzle bits */
+      config->tx_datapath.polarity_invert = FALSE;
+***************
+*** 4128,4133 ****
+--- 4130,4139 ----
+      if( config->refclk_sync_master )
+          div_val |= 1<<12;
+  
++     if (config->tx_refclk1) {
++         div_val |= 1<<14;
++     }
++ 
+      avago_spico_int_check(aapl, __func__, __LINE__, addr, 0x05, div_val);
+  
+      /* Retrieve Rx width to configure Rx in avago_serdes_set_tx_rx_width_pam() */
+***************
+*** 4200,4205 ****
+--- 4206,4212 ----
+      BOOL tx_en, rx_en, tx_output_en;
+      uint rate_sel = 0;  /* For PON configuration */
+      uint extra = 0;
++     int div_val = 0;
+  
+      avago_addr_to_struct(addr, &addr_struct);
+  
+***************
+*** 4220,4226 ****
+      avago_spico_int_check(aapl, __func__, __LINE__, addr, 0x11, 0x0);
+  
+      /* Set Rx divider */
+!     avago_spico_int_check(aapl, __func__, __LINE__, addr, 0x06, rate_sel | (config->rx_divider & 0xff));
+  
+      /* Retrieve Tx width to configure Tx in avago_serdes_set_tx_rx_width_pam() */
+      avago_serdes_get_tx_rx_width(aapl, addr, &tx_width, &rx_width);
+--- 4227,4238 ----
+      avago_spico_int_check(aapl, __func__, __LINE__, addr, 0x11, 0x0);
+  
+      /* Set Rx divider */
+!     div_val = rate_sel | config->rx_divider & 0xff;
+!     if (config->rx_refclk1) {
+!         div_val |= 1<<14;
+!     }
+! 
+!     avago_spico_int_check(aapl, __func__, __LINE__, addr, 0x06, div_val);
+  
+      /* Retrieve Tx width to configure Tx in avago_serdes_set_tx_rx_width_pam() */
+      avago_serdes_get_tx_rx_width(aapl, addr, &tx_width, &rx_width);

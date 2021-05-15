@@ -1,0 +1,391 @@
+{
+    "board_settings": [
+        {
+            "slice": 0,
+            "ifg": 0,
+            "ifg_swaps": [1, 0, 3, 2, 4, 5, 6, 7, 11, 9, 10, 8, 13, 15, 14, 12, 17, 16, 18, 19, 21, 22, 23, 20],
+            "anlt_swaps": [1, 0, 3, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 16, 19, 18, 20, 21, 22, 23],
+            "rx_polarity": [0, 1, 4, 5, 8, 12, 16, 17, 18, 20, 21, 22],
+            "tx_polarity": [0, 1, 3, 7, 10, 11, 12, 13, 15, 16, 20, 21]
+        },  
+        {
+            "slice": 0,
+            "ifg": 1,
+            "ifg_swaps": [3, 0, 2, 1, 4, 5, 6, 7, 11, 8, 9, 10, 12, 14, 13, 15, 17, 16, 19, 18, 20, 21, 23, 22],
+            "anlt_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 9, 8, 11, 10, 12, 13, 14, 15, 17, 16, 19, 18, 20, 21, 23, 22],
+            "rx_polarity": [0, 1, 2, 4, 6, 7, 10, 11, 12, 13, 14, 16, 18, 19, 21, 22],
+            "tx_polarity": [0, 1, 3, 6, 8, 9, 12, 18, 19]
+        },  
+        {
+            "slice": 1,
+            "ifg": 0,
+            "ifg_swaps": [3, 1, 0, 2, 5, 7, 6, 4, 11, 9, 10, 8, 13, 15, 12, 14, 17, 16, 18, 19, 20, 21, 22, 23],
+            "anlt_swaps": [4, 5, 6, 7, 1, 0, 3, 2, 13, 12, 15, 14, 8, 9, 10, 11, 17, 16, 19, 18, 20, 21, 22, 23],
+            "rx_polarity": [0, 2, 3, 4, 6, 8, 12, 14, 19, 21, 22],
+            "tx_polarity": [0, 1, 4, 9, 13, 14, 17, 18, 20]
+        },  
+        {
+            "slice": 1,
+            "ifg": 1,
+            "ifg_swaps": [0, 1, 2, 3, 4, 5, 7, 6, 8, 9, 10, 11, 12, 13, 14, 15],
+            "anlt_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "rx_polarity": [2, 3, 4, 6, 7, 9, 10, 12, 13, 14],
+            "tx_polarity": [0, 1, 5, 6, 8, 9, 10, 13, 14]
+        },  
+        {
+            "slice": 2,
+            "ifg": 0,
+            "ifg_swaps": [0, 2, 1, 3, 4, 5, 6, 7, 11, 8, 10, 9, 12, 15, 13, 14],
+            "anlt_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 9, 8, 11, 10, 12, 13, 14, 15],
+            "rx_polarity": [1, 2, 3, 4, 5, 8, 11, 13],
+            "tx_polarity": [0, 1, 3, 4, 5, 9, 10, 11, 13]
+        },  
+        {
+            "slice": 2,
+            "ifg": 1,
+            "ifg_swaps": [0, 3, 2, 1, 4, 5, 6, 7, 8, 9, 10, 11, 13, 12, 15, 14, 19, 17, 18, 16, 21, 20, 23, 22],
+            "anlt_swaps": [1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 12, 14, 15, 17, 16, 19, 18, 20, 21, 23, 22],
+            "rx_polarity": [3, 5, 6, 8, 11, 14, 19, 20, 22],
+            "tx_polarity": [2, 3, 6, 7, 8, 9, 10, 12, 14, 15, 18, 19, 20]
+        },  
+        {
+            "slice": 3,
+            "ifg": 0,
+            "ifg_swaps": [1, 3, 0, 2, 7, 4, 5, 6, 9, 11, 8, 10, 13, 12, 15, 14, 17, 19, 18, 16, 22, 23, 21, 20],
+            "anlt_swaps": [1, 0, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12, 14, 15, 17, 16, 18, 19, 21, 20, 22, 23],
+            "rx_polarity": [0, 4, 10, 11, 13, 15, 16, 17],
+            "tx_polarity": [0, 1, 4, 5, 10, 11, 12, 14, 16, 17, 18, 20, 21]
+        },  
+        {
+            "slice": 3,
+            "ifg": 1,
+            "ifg_swaps": [3, 0, 2, 1, 5, 7, 4, 6, 10, 8, 11, 9, 15, 13, 14, 12],
+            "anlt_swaps": [1, 0, 3, 2, 4, 5, 7, 6, 9, 8, 11, 10, 12, 13, 14, 15],
+            "rx_polarity": [0, 6, 7, 9, 10, 13, 15],
+            "tx_polarity": [2, 3, 6, 7, 10, 13, 14]
+        },  
+        {
+            "slice": 4,
+            "ifg": 0,
+            "ifg_swaps": [3, 0, 2, 1, 4, 5, 6, 7, 9, 8, 11, 10, 15, 13, 14, 12],
+            "anlt_swaps": [1, 0, 3, 2, 4, 5, 6, 7, 9, 8, 11, 10, 12, 13, 14, 15],
+            "rx_polarity": [0, 2, 5, 6, 8, 9, 11, 15],
+            "tx_polarity": [0, 1, 3, 4, 12, 13]
+        },  
+        {
+            "slice": 4,
+            "ifg": 1,
+            "ifg_swaps": [0, 3, 1, 2, 5, 7, 6, 4, 11, 9, 10, 8, 14, 15, 12, 13, 18, 16, 19, 17, 21, 20, 22, 23],
+            "anlt_swaps": [0, 1, 3, 2, 5, 4, 6, 7, 11, 10, 9, 8, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+            "rx_polarity": [0, 2, 4, 6, 9, 10, 11, 14, 15, 16, 17, 18, 21, 22],
+            "tx_polarity": [0, 1, 3, 4, 5, 8, 11, 12, 13, 15, 17, 21, 23]
+        },  
+        {
+            "slice": 5,
+            "ifg": 0,
+            "ifg_swaps": [1, 0, 2, 3, 4, 5, 6, 7, 9, 8, 11, 10, 12, 14, 13, 15, 17, 16, 19, 18, 22, 20, 23, 21],
+            "anlt_swaps": [0, 1, 2, 3, 4, 5, 6, 7, 9, 8, 11, 10, 12, 13, 14, 15, 17, 16, 19, 18, 20, 21, 23, 22],
+            "rx_polarity": [1, 3, 4, 8, 9, 12, 13, 14, 15, 16, 17, 19, 20, 21],
+            "tx_polarity": [0, 2, 3, 4, 5, 6, 7, 9, 11, 13, 16, 17, 18, 19, 21, 23]
+        },  
+        {
+            "slice": 5,
+            "ifg": 1,
+            "ifg_swaps": [1, 0, 3, 2, 7, 4, 6, 5, 8, 9, 10, 11, 12, 13, 14, 15, 18, 16, 17, 19, 23, 20, 22, 21],
+            "anlt_swaps": [1, 0, 3, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 16, 18, 19, 20, 21, 23, 22],
+            "rx_polarity": [3, 5, 7, 10, 11, 12, 23],
+            "tx_polarity": [1, 3, 4, 7, 8, 10, 11, 15, 17, 18, 19, 22, 23]
+        }
+    ],
+
+    "fp_ports": [
+        {
+            "fp": "p0", 
+            "slice_id": 4, 
+            "ifg": 1, 
+            "first_pif": 0,
+            "ser_in_use": 8,
+            "egress_loss": 8.63,
+            "ingress_loss": 8.63
+        },
+        {
+            "fp": "p1",
+            "slice_id": 4, 
+            "ifg": 1,
+            "first_pif": 16,
+            "ser_in_use": 8,
+            "egress_loss": 8.22,
+            "ingress_loss": 8.78
+        },
+        {
+            "fp": "p2",
+            "slice_id": 4, 
+            "ifg": 1,
+            "first_pif": 8,
+            "ser_in_use": 8,
+            "egress_loss": 8.12,
+            "ingress_loss": 8.22
+        },
+        {
+            "fp": "p3",
+            "slice_id": 4,
+            "ifg": 0, 
+            "first_pif": 8,
+            "ser_in_use": 8,
+            "egress_loss": 7.11,
+            "ingress_loss": 8.30
+        },
+        {
+            "fp": "p4",
+            "slice_id": 3, 
+            "ifg": 1,
+            "first_pif": 0,
+            "ser_in_use": 8,
+            "egress_loss": 7.79,
+            "ingress_loss": 7.98
+        },
+        {
+            "fp": "p5",
+            "slice_id": 4, 
+            "ifg": 0,
+            "first_pif": 0,
+            "ser_in_use": 8,
+            "egress_loss": 7.19,
+            "ingress_loss": 7.90
+        },
+        {
+            "fp": "p6",
+            "slice_id": 5,
+            "ifg": 0, 
+            "first_pif": 0,
+            "ser_in_use": 8,
+            "egress_loss": 7.84,
+            "ingress_loss": 8.01
+        },
+        {
+            "fp": "p7",
+            "slice_id": 5,
+            "ifg": 1,
+            "first_pif": 8,
+            "ser_in_use": 8,
+            "egress_loss": 8.02,
+            "ingress_loss": 8.58
+        },
+        {
+            "fp": "p8",
+            "slice_id": 5,
+            "ifg": 1,
+            "first_pif": 16,
+            "ser_in_use": 8,
+            "egress_loss": 8.04,
+            "ingress_loss": 8.35
+        },
+        {
+            "fp": "p9",
+            "slice_id": 5,
+            "ifg": 1,
+            "first_pif": 0,
+            "ser_in_use": 8,
+            "egress_loss": 8.03,
+            "ingress_loss": 8.44
+        },
+        {
+            "fp": "p10",
+            "slice_id": 5,
+            "ifg": 0,
+            "first_pif": 8,
+            "ser_in_use": 8,
+            "egress_loss": 6.77,
+            "ingress_loss": 7.31
+        },
+        {
+            "fp": "p11",
+            "slice_id": 5,
+            "ifg": 0,
+            "first_pif": 16,
+            "ser_in_use": 8,
+            "egress_loss": 6.78,
+            "ingress_loss": 6.79
+        },
+        {
+            "fp": "p12",
+            "slice_id": 3,
+            "ifg": 0,
+            "first_pif": 0,
+            "ser_in_use": 8,
+            "egress_loss": 4.83,
+            "ingress_loss": 4.88
+        },
+        {
+            "fp": "p13",
+            "slice_id": 3,
+            "ifg": 1,
+            "first_pif": 8,
+            "ser_in_use": 8,
+            "egress_loss": 4.88,
+            "ingress_loss": 5.29
+        },
+        {
+            "fp": "p14",
+            "slice_id": 3,
+            "ifg": 0,
+            "first_pif": 16,
+            "ser_in_use": 8,
+            "egress_loss": 4.28,
+            "ingress_loss": 4.70
+        },
+        {
+            "fp": "p15",
+            "slice_id": 3,
+            "ifg": 0,
+            "first_pif": 8,
+            "ser_in_use": 8,
+            "egress_loss": 4.09,
+            "ingress_loss": 4.64
+        },
+        {
+            "fp": "p16",
+            "slice_id": 2,
+            "ifg": 1,
+            "first_pif": 16,
+            "ser_in_use": 8,
+            "egress_loss": 4.2,
+            "ingress_loss": 4.89
+        },
+        {
+            "fp": "p17",
+            "slice_id": 2,
+            "ifg": 1,
+            "first_pif": 8,
+            "ser_in_use": 8,
+            "egress_loss": 4.14,
+            "ingress_loss": 4.86
+        },
+        {
+            "fp": "p18",
+            "slice_id": 2,
+            "ifg": 1,
+            "first_pif": 0,
+            "ser_in_use": 8,
+            "egress_loss": 4.73,
+            "ingress_loss": 5.41
+        },
+        {
+            "fp": "p19",
+            "slice_id": 2,
+            "ifg": 0,
+            "first_pif": 8,
+            "ser_in_use": 8,
+            "egress_loss": 4.47,
+            "ingress_loss": 5.38
+        },
+        {
+            "fp": "p20",
+            "slice_id": 0,
+            "ifg": 1,
+            "first_pif": 8,
+            "ser_in_use": 8,
+            "egress_loss": 6.87,
+            "ingress_loss": 7.21
+        },
+        {
+            "fp": "p21",
+            "slice_id": 0,
+            "ifg": 1,
+            "first_pif": 16,
+            "ser_in_use": 8,
+            "egress_loss": 6.35,
+            "ingress_loss": 7.38
+        },
+        {
+            "fp": "p22",
+            "slice_id": 0,
+            "ifg": 0,
+            "first_pif": 16,
+            "ser_in_use": 8,
+            "egress_loss": 8.24,
+            "ingress_loss": 8.43
+        },
+        {
+            "fp": "p23",
+            "slice_id": 0,
+            "ifg": 0,
+            "first_pif": 0,
+            "ser_in_use": 8,
+            "egress_loss": 8.03,
+            "ingress_loss": 8.43
+        },
+        {
+            "fp": "p24",
+            "slice_id": 0,
+            "ifg": 1,
+            "first_pif": 0,
+            "ser_in_use": 8,
+            "egress_loss": 7.83,
+            "ingress_loss": 8.53
+        },
+        {
+            "fp": "p25",
+            "slice_id": 0,
+            "ifg": 0,
+            "first_pif": 8,
+            "ser_in_use": 8,
+            "egress_loss": 7.99,
+            "ingress_loss": 8.82
+        },
+        {
+            "fp": "p26",
+            "slice_id": 2,
+            "ifg": 0,
+            "first_pif": 0,
+            "ser_in_use": 8,
+            "egress_loss": 7.58,
+            "ingress_loss": 8.15
+        },
+        {
+            "fp": "p27",
+            "slice_id": 1,
+            "ifg": 1,
+            "first_pif": 0,
+            "ser_in_use": 8,
+            "egress_loss": 7.24,
+            "ingress_loss": 8.05
+        },
+        {
+            "fp": "p28",
+            "slice_id": 1,
+            "ifg": 0,
+            "first_pif": 8,
+            "ser_in_use": 8,
+            "egress_loss": 8.02,
+            "ingress_loss": 8.37
+        },
+        {
+            "fp": "p29",
+            "slice_id": 1,
+            "ifg": 1,
+            "first_pif": 8,
+            "ser_in_use": 8,
+            "egress_loss": 7.81,
+            "ingress_loss": 8.30
+        },
+        {
+            "fp": "p30",
+            "slice_id": 1,
+            "ifg": 0,
+            "first_pif": 0,
+            "ser_in_use": 8,
+            "egress_loss": 8.72,
+            "ingress_loss": 8.76
+        },
+        {
+            "fp": "p31",
+            "slice_id": 1,
+            "ifg": 0,
+            "first_pif": 16,
+            "ser_in_use": 8,
+            "egress_loss": 8.22,
+            "ingress_loss": 8.83
+        }
+    ]
+}

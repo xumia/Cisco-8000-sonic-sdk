@@ -1,0 +1,34 @@
+{
+    "traffic_gen_port": [
+        {
+            "pif": "0x508",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "media_type": "COPPER",
+            "an": false
+        }
+    ],
+    "loopback_ports":
+    [
+        {
+            "pif": ["0x300", "0x308", "0x400", "0x404", "0x408", "0x40c", "0x500", "0x504"],
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "MAC",
+            "an": false
+        },
+        {
+            "pif": "0x50c",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "MAC",
+            "an": false
+        }
+    ]
+}

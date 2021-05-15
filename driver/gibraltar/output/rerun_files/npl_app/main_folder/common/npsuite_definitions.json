@@ -1,0 +1,139 @@
+{
+    "npsuite_definitions": {
+        "generated_code_namespace" :  "leaba",
+        "per_macro_features": {
+            "macros": {
+                "network_rx_ip_af_and_forwarding_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },
+                "network_rx_ip_prefix_slp_fwd_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },                
+                "network_rx_ip_second_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },                
+                "network_rx_ipv4_rtf_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },                
+                "network_rx_ipv6_rtf_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },
+                "network_rx_eth_rtf_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },
+                 "network_rx_null_rtf_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },
+                "network_rx_local_mc_forwarding_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },
+                "network_rx_mac_forwarding_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },
+                // "network_rx_mac_ipv6_acl_macro": {
+                //     "disable_ser_check_in_update_tcam" : true
+                //  },
+                "network_rx_mpls_forwarding_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },
+                "network_rx_ip_object_groups_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },
+                "npu_rx_nop_fwd_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },
+                "resolution_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },
+                "resolve_lp_over_lag_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },
+                "rx_handle_bfd_and_lpts_og_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },
+                "rx_inject_post_process_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },
+                "rx_lpts_redirect_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },
+                "rx_redirect_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 },
+                 "network_rx_vpls_forwarding_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                 }
+            }
+        },
+        "per_engine_features": {
+            "contexts": {
+                "network": {
+                    "engines": {
+                        "termination": {
+                            "npe_sram_mapping": {
+                                "level_1_interface_to_sram_index_mapping": {
+                                    "0": 3,
+                                    "1": 5
+                                },
+                                "level_2_interface_to_sram_index_mapping": {
+                                    "0": 1,
+                                    "2": 6
+                                },
+                                "level_6_interface_to_sram_index_mapping": {
+                                    "0": 2
+                                },
+                                "level_7_interface_to_sram_index_mapping": {
+                                    "0": 0,
+                                    "2": 4
+                                }
+                            },
+                            "error_macro": {
+                                "macro": "network_termination_error_macro",
+                                "assign_macro_id_zero": true
+                            }
+                        },
+                        "forwarding": {
+                            "error_macro": {
+                                "macro": "network_forwarding_error_macro",
+                                "assign_macro_id_zero": true
+                            }
+                        },
+                        "transmit": {
+                            "default_per_engine_for_lookup_result_buffering": {
+                                "buffering_disabled": false
+                            },
+                            "oversubscribed_interfaces": {
+                                "interfaces": [
+                                    { "id": "OUTGOING_EGRESS_LARGE_EM_COMPOUND" }
+                                ]
+                            },
+                            "error_macro": {
+                                "macro": "network_transmit_error_macro",
+                                "assign_macro_id_zero": true
+                            }
+                        }
+                    }
+                },
+                "fabric": {
+                    "engines": {
+                        "termination": {
+                            "error_macro": {
+                                "macro": "fabric_termination_error_macro"
+                            }
+                        },
+                        "forwarding": {
+                            "error_macro": {
+                                "macro": "fabric_forwarding_error_macro"
+                            }
+                        },
+                        "transmit": {
+                            "error_macro": {
+                                "macro": "fabric_transmit_error_macro"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

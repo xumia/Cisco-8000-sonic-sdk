@@ -1,0 +1,1228 @@
+-------------------------------------------------
+sbus_master.debug.0x055c_2002.rom (HBM core functionality)
+sbus_master.debug.0x055c_2012.rom (HBM MBIST)
+-------------------------------------------------
+sbus_master.debug.0x055c_2002.rom
+   - Removed intermediate reset operation between dword write and read
+     operation. This fixes poor performance with SKH devices.
+
+   - Fixed bug in DLL configuration.  Previously the DLL configuration was not
+     being set and the default settings was giving a non-optimal quarter-cycle
+     delay.
+
+   - Reduced hard lane repair burn times to meet the 300ms + 20n WRCK wait
+     times.  Previously this was set higher than neccessary.
+
+   - Removed intermediate reset operation between dword write and read operation
+
+   - Added HBM parameter
+
+        * 0x69 - hbm_save_soft_lane_repairs
+
+          When set to 1, soft lane repairs will be read from the PHY prior to
+          any reset and reapplied after.  This enables the lane repair
+          operation to be run once followed by multiple verification
+          operations.  
+          
+          Note that soft lane repairs must be applied after running an initial
+          reset operation to ensure the phy in a non-reset state.  If the phy
+          is in a reset state, soft lane repairs will not be saved/restored. When
+          hbm_save_soft_lane_repairs is set to 1, HBM hard lane repairs will not
+          be copied to PHY so it is expected that appropriate soft repairs will be
+          applied before running any other operations.
+
+
+-------------------------------------------------
+sbus_master.debug.0x055b_2002.rom (HBM core functionality)
+sbus_master.debug.0x055b_2012.rom (HBM MBIST)
+-------------------------------------------------
+sbus_master.debug.0x055b_2002.rom
+    - Removed support for pre-production SKH HBM2 devices.
+    - Added support for 16nm thermal sensor and pmro devices
+
+sbus_master.debug.0x055b_2012.rom
+    - Added wait cycles when programming SKH PMBIST initialization register to
+      improve performance
+
+
+-------------------------------------------------
+sbus_master.debug.0x055a_2002.rom (HBM core functionality)
+sbus_master.debug.0x055a_2012.rom (HBM MBIST)
+-------------------------------------------------
+sbus_master.debug.0x055a_2012.rom
+    - Updated CTC patterns when using DIV2 CTC.  Pattern 1 (High Power) and
+      pattern 2 (High Power DBI) will now use the same pattern as when run on
+      DP and 1X controllers.  The previous pattern did not properly toggle the
+      DQ bits due to DBI.  This does not affect DIV2-DualPort or 1X CTCs.
+
+-------------------------------------------------
+sbus_master.debug.0x0559_2002.rom (HBM core functionality)
+sbus_master.debug.0x0559_2012.rom (HBM MBIST)
+-------------------------------------------------
+sbus_master.debug.0x0559_2012.rom
+   - Added HBM parameter
+        * 0x67 - hbm_mbist_verify
+             0 - Do not perform mbist verification
+             1 - Perform mbist verification
+
+          Determines if Samsung mbist is re-run after applying repairs to
+          verify that the repairs worked. By default this parameter is set to
+          1. This parameter has no effect for SKH HBM devices.
+          
+          Note that if this parameter is set to 0, the mbist operation will
+          always return pass unless a runtime error occurs during the first
+          mbist operation or repairs are not able to be applied.
+
+    - MBIST updates 
+         * Apply all known soft-repairs to the HBM just prior to finishing a
+           Samsung MBIST operation.  This enables mission mode traffic to be
+           run with bitcell soft repairs.
+
+
+-------------------------------------------------
+sbus_master.debug.0x0558_2002.rom (HBM core functionality)
+sbus_master.debug.0x0558_2012.rom (HBM MBIST)
+-------------------------------------------------
+sbus_master.debug.0x0558_2002.rom
+   - Added/modified HBM parameters
+        * 0x3e - hbm_ctc_pattern_type
+             0 - PRBS
+             1 - High Power w/o DBI
+             2 - High Power w   DBI
+             3 - Randomized continuous read
+    
+          PRBS - This is a low bus utililazation pattern that performs
+          alternating write/reads with PRBS data.
+
+          High Power w/o DBI.  The entire memory is written with a 0x05fa
+          pattern and then read continuously with back-to-back reads.  This draws
+          maximum current.  
+
+          High Power w/ DBI.  This toggles the bits slightly
+          different than the standard High power pattern in order to ensure unique
+          sequential transactions that also cause DBI toggling.
+    
+          Randomized continuous reads.  This test uses the user data buffer
+          to create a random data pattern based on the hbm_ctc_user_data_seed
+          parameter to write the entire memory and then read the data back
+          continuously.
+
+        * 0x4b - hbm_ctc_user_data_seed
+
+          Initial seed value for randomizing the user data during CTC testing
+
+   - CTC related updates
+        * Updated CTC refresh settings to support frequencies up to 3.0Gb/s
+        * Updated CFG_RCD for Samsung X-die devices. This value is increased
+          when running > 2.4Gg/s.
+        * Updated read/write latency for Samsung X-die devices
+        * Updated read/write latency for SKH HS devices
+        * Modified commands to stop CTC to prevent false errors with new
+          patterns
+        * Skip APB interface reinitialization in STOP block if already
+          initialized
+
+   - Add TM sequence to SKH DWORD test to enable higher performance
+
+   - Mask out DERR during DWORD_SLB to enable higher performance.  
+
+
+sbus_master.debug.0x0558_2012.rom 
+
+   - Updated HBM parameter 
+   
+        * 0x20 - hbm_mbist_pattern
+       
+          Selects the MBIST pattern to run.  This is specific to the type of
+          HBM device.
+          Samsung:
+            0x0  - SCAN
+            0x1  - MARCH
+          SKH:
+            0x0  - YMC (replaces PAUSE) on all channels in parallel
+            0x1  - GROSS on all channels in parallel
+            0x2  - XMC on all channels in parallal
+            0x80 - YMC on all channels serially
+            0x81 - GROSS on all channels serially
+            0x82 - XMC on all channels serially
+
+   - Changed over of pattern progression in Samsung MBIST to perform SID0 then SID1.
+
+   - Changed DMEM storage of repair data to save both SID0 and SID1 repairs.
+     Used for debug reporting only.
+
+-------------------------------------------------
+sbus_master.debug.0x0557_2002.rom (HBM core functionality)
+sbus_master.debug.0x0557_2012.rom (HBM MBIST)
+-------------------------------------------------
+sbus_master.debug.0x0557_2002.rom
+   - Changed hbm_ctc_run_cycles from 0xff to 0x3fc to the ctc_test operation
+    (0x34) has enough time to write the full memory regarless of clock speeds.
+
+-------------------------------------------------
+sbus_master.debug.0x0556_2002.rom (HBM core functionality)
+sbus_master.debug.0x0556_2012.rom (HBM MBIST)
+-------------------------------------------------
+sbus_master.debug.0x0556_2002.rom
+   - Changed hbm_ctc_max_address_lo and hbm_ctc_max_address_hi default values
+     to 0.  If these are left at 0, the max address will be set based on the HBM
+     stack height and density to ensure the full address range is covered by CTC
+     testing.  If set to non-zero, the values will be left unchanged.
+
+-------------------------------------------------
+sbus_master.debug.0x0555_2002.rom (HBM core functionality)
+sbus_master.debug.0x0555_2012.rom (HBM MBIST)
+-------------------------------------------------
+Common Updates
+   - Initial release split firmware with core functionality and MBIST separated
+     into two FW images.  All parameters and operations remain as previously
+     defined except that in the 0x2012 image only MBIST and reset are fully
+     functional. The 0x2002 image does not support MBIST.  Calling an operations
+     that has not been implemented in the current build will return
+     ERROR_UNSUPPORTED_INTERRUPT.
+
+   - Updated default test mode MRS2 value
+   
+   - Updated DWORD latency values to account for MRS2 update
+   
+   - Added HBM reset operation between DWORD READ and WRITE as required by SKH HS
+     device for maximum performance.
+   
+   - Modified CFG_RTP value for SKH HBMs during NWL controller initialization.
+     New value is 7.
+   
+   - Added HBM parameter
+   
+       * 0x63 hbm_dword_op
+   
+       Directs the firmware DWORD operation to perform either a WRITE (0x1), a
+       READ (0x2) or both (0x3). The default is to perform both a WRITE and then a
+       READ (0x3)
+
+sbus_master.debug.0x0555_2012.rom
+
+   - Supported MBIST flavors include:
+       * Samsung 8HI SID0 march
+       * Samsung 8HI SID1 march
+       * Samsung 4HI march
+       * Samsung 8HI SID0 scan
+       * Samsung 8HI SID1 scan
+       * Samsung 4HI scan
+       * SKH GEN2 gross
+       * SKH GEN2 pause
+   
+   - Modified HBM operations
+   
+       * 0x13 Run MBIST
+       * 0x14 Run MBIST
+   
+       These operations previously were use for either Samsung or SKH MBIST.
+       These now both work identically and will determine the correct MBIST flavor to
+       run based on the HBM device ID and firmware parameter 0x20 (hbm_mbist_repair_mode)
+   
+   - Modified HBM parameter 
+   
+        * 0x1f - hbm_mbist_pattern
+   
+        Type of pattern that is used during MBIST.  The HBM device ID will be used
+        to determine the the correct HBM and stack height.  Only the pattern needs to
+        be configured by the user.
+   
+        0 = Scan (Samsung) or PAUSE (SKH)
+        1 = March (Samsung) or GROSS (SKH)
+   
+
+
+-------------------------------------------------
+sbus_master.debug.0x0554_2002.rom
+-------------------------------------------------
+- Fixed MBIST code to properly save the number of MBIST repairs to the hbm_spare_0 result
+  location accessible with operation 0x32.
+
+-------------------------------------------------
+sbus_master.debug.0x0553_2002.rom
+-------------------------------------------------
+- Changed the default value for hbm_ctc_retention_cycles to 0xff.  This
+  created a worst-case power droop between back-to-back writes and read for a
+  more stressful CTC test.
+
+- Updated MISR checking during AWORD/DWORD tests to work properly with SKH HBM
+  devices.
+
+-------------------------------------------------
+sbus_master.debug.0x0552_2002.rom
+-------------------------------------------------
+- Added HBM MISR preset checking during DWORD/AWORD/DERR tests.  This ensures
+  that the tests won't pass if the HBM is in reset. Previously this would pass
+  because the error LFSR_COMPARE_STICKY WDR returns 0 if no errors are
+  detected or the HBM is in reset.  With the MISR checking, this ensures we
+  are able to write/read non-zero data to the HBM 1500 WDRs.
+
+- Added check to ensure the CORE_POWERON_RST_L sbus register is deasserted
+  when entering testmode.
+
+- Updated CTC high-power pattern to perform back-to-back writes
+
+- Added error codes
+
+    * 0x1a - ERROR_HBM_MISR_PRESET_FAILED
+
+    Indicates that the presetting of the HBM AWORD or DWORD MISR failed.  This
+    can be caused by HBM being in a reset state when running the test.
+
+    * 0x1b - ERROR_PHY_MISR_PRESET_FAILED
+
+    Indicates that presetting of the PHY AWORD or DWORD MISR failed. 
+
+    * 0x1c - ERROR_CORE_POWERON_RST_L_ASSERTED
+
+    Indicates that the HBM_POWER_ON_RESET_L core port of the PHY is asserted.
+
+-------------------------------------------------
+sbus_master.debug.0x0551_2002.rom
+-------------------------------------------------
+- Removed wafer and package test flows.  These are not used so were removed to
+  free up memory.
+
+- Fixed issue with hbm_mode_register4 parameter getting overwritten during MRS
+  programming. This does not change functional behavior but will change the
+  read-back value of hbm_mode_register4.
+
+- Removed MRS save/restore capability.  MRS reading behaves inconsitently
+  across HBM devices so this was removed.
+
+- Removed lane repair options during power-on flow.  This didn't work as
+  intended so was removed to avoid confusion.
+
+- Updated device_id test to allow read from any HBM channel.
+
+- Additional code optimizations for decreased memory usage.
+
+
+-------------------------------------------------
+sbus_master.debug.0x0550_2002.rom
+-------------------------------------------------
+- Changed NWL memory controller initialiation values
+    * CFG_RFC is now dependent on the hbm_freq parameter
+    * CFG_REF_PER is now dependent on the hbm_freq parameter
+    * CFG_PS_ONE_FAW is now set according to the HBM device vendor
+
+- Added HBM operation
+
+    * 0x26 - hbm_cattrip_test
+
+    Tests CATTRIP functionality by toggling CATTRIP MR7 mode register and
+    verifying HBM sends the CATTRIP value back to the PHY.
+
+- Added HBM interrupt
+
+    * 0x37 - hbm_read_dmem
+
+    Reads a value in extended dmem and can be used to retrieve additional HBM
+    diagnostics no normally available through operation error codes.  AAPL 
+    contains support code to make use of this diagnostic information.
+
+- Added HBM parameter
+
+    * 0x49 hbm_ctc_sbref_en
+   
+    This parameter programs the NWL memory controller CFG_SBREF_EN CSR.  This
+    value defaults to 0.
+
+    * 0x4a hbm_ctc_retention_cycles
+
+    When running the high-power pattern CTC test, this parameter can be used
+    to inject wait cycles between the initial pattern writing and the
+    continuous reads.  This is intended to test data retention.  The default
+    value is 0.
+
+
+    * 0x62 - hbm_perform_samsung_mbist_workaround
+
+    By default this is set to 1.  When set to 1, the workarounds required for
+    Samsung MBIST operation will be used.  This can be set to 0 for future
+    products where the workarounds are not needed.
+
+
+-------------------------------------------------
+sbus_master.debug.0x054f_2002.rom
+-------------------------------------------------
+- Updated reset sequence to set CKE high before programming mode registers.
+  This gives a significant performance increase on Samsung devices. 
+
+-------------------------------------------------
+sbus_master.debug.0x054e_2002.rom
+-------------------------------------------------
+- Updated NWL MC initialization to enable DQ read/write parity if
+  the hbm_parity_latency parameter is set to non-zero.
+
+- Fixed bug in NWL memory controller initialization.  Polling of
+  CTRLR_SOFT_RESET_N always returned complete regardless of actual status.
+
+- Changed default write recovery value in MR1 to 17 to be compatible with SKH
+  devices
+
+- Fixed non-critical bug in SKH mbist routine to avoid verilog errors
+
+- When initializing NWL controllers CFG_EN_RDDP will now be set to 1 for SH
+  devices
+
+- Fixed bug introduced in 0x054d when starting CTC using broadcast that causes
+  all PC0 memory controllers to fail.
+
+
+-------------------------------------------------
+sbus_master.debug.0x054d_2002.rom
+-------------------------------------------------
+- Updated lane_repair/lane_verify operations to check TEMP / CATTRIP lanes
+
+- Optimized NWL MC initialization and CTC programming to use broadcast
+  addresses when possible.  This significantly speeds up CTC high power
+  testing.
+
+- Added HBM parameters
+    * 0x44 - hbm_parity_latency
+
+    Sets the value of parity_latency in the MRS and PHY_CONFIG registers for
+    mission mode operations.
+
+    * 0x45 - hbm_test_parity_latency
+
+    Sets the value of parity_latency in the MRS and PHY_CONFIG registers for
+    testmode operations.
+
+    * 0x46 - hbm_dfi_t_rddata_en
+
+    Sets the value of the CFG_DFI_T_RDDATA_EN NWL CSR.  If the value is left
+    at the default of 0, the value will be auto-determined based on memory
+    controller type and HBM vendor.
+
+    * 0x47 - hbm_manually_config_nwl
+
+    When set to 1, NWL CSR values are derived from the hbm_mode_register*
+    parameters where possible.  When set to 0, the production test values
+    will be used.
+
+    * 0x48 - hbm_ctc_pseudo_channel
+
+    For dual-channel memory controllers, this parameter determines which 
+    pseudo channel to start/stop ctcs tests for.  The default value is 0b11.
+    Below are possible values.
+
+      0b00 - Illegal value
+      0b01 - Pseudo Channel 0
+      0b10 - Pseudo Channel 1
+      0b11 - Pseudo Channel 0 and 1
+
+    This is used in conjunction with the start_ctc and stop_ctc operations,
+    allowing multple interrupts to be made to start/stop CTC operations on
+    specific channels/pseudo-channels.  
+
+
+-------------------------------------------------
+sbus_master.debug.0x054c_2002.rom
+-------------------------------------------------
+- Added HBM parameters 
+    * 0x3f - hbm_bypass_repair_on_reset
+
+    When set to 1, HBM hard lane repairs will not be applied to the PHY as
+    soft lane repairs.  
+
+    * 0x40 - hbm_stack_height
+
+    Sets the stack height for the HBM device.  This is set automatically
+    during firmware tests unless the hbm_manually_configure_id parameter is set
+    to 1.  Valid values are:
+
+       0 - STACK_4HI
+       1 - STACK_8HI
+
+    * 0x41 - hbm_manufacturing_id
+
+    Sets the manuafacturing id for the HBM device.  This is set automatically
+    during firmware tests unless the hbm_manually_configure_id parameter is set
+    to 1.  Valid values are:
+
+       1  - SAMSUNG
+       6  - SKH
+       15 - MICRON
+
+    * 0x42 - hbm_density
+
+    Sets the density for the HBM device.  This is set automatically
+    during firmware tests unless the hbm_manually_configure_id parameter is set
+    to 1.  Valid values are:
+
+       1 - DENSITY_1GB
+       2 - DENSITY_2GB
+       3 - DENSITY_4GB
+       4 - DENSITY_8GB
+       5 - DENSITY_16GB
+       6 - DENSITY_32GB
+
+    * 0x43 - hbm_manually_configure_id
+
+    During firmware tests, the device id of the HBM is read to determine the
+    stack height, density and manufacturer.  When this parameter is set to
+    1, these value may be manually set by defining the hbm_stack_height,
+    hbm_manufacturing_id and hbm_density parameters.
+
+- Added additional spare results when issueing interrup 0x32.  In addition to
+  status, error codes and operation codes, there are now 24 spare result
+  values.  Various firmware operations will store results in the spare
+  locations for retrieval after the operation in complete.  The complete set
+  of result value include:
+
+     1  hbm_global_error_code
+     2  hbm_channel0_error_code
+     3  hbm_channel1_error_code
+     4  hbm_channel2_error_code
+     5  hbm_channel3_error_code
+     6  hbm_channel4_error_code
+     7  hbm_channel5_error_code
+     8  hbm_channel6_error_code
+     9  hbm_channel7_error_code
+     10 hbm_channel0_operation
+     11 hbm_channel1_operation
+     12 hbm_channel2_operation
+     13 hbm_channel3_operation
+     14 hbm_channel4_operation
+     15 hbm_channel5_operation
+     16 hbm_channel6_operation
+     17 hbm_channel7_operation
+     18 hbm_spare_0
+     19 hbm_spare_1
+     20 hbm_spare_2
+     21 hbm_spare_3
+     22 hbm_spare_4
+     23 hbm_spare_5
+     24 hbm_spare_6
+     25 hbm_spare_7
+     26 hbm_spare_8
+     27 hbm_spare_9
+     28 hbm_spare_10
+     29 hbm_spare_11
+     30 hbm_spare_12
+     31 hbm_spare_13
+     32 hbm_spare_14
+     33 hbm_spare_15
+     34 hbm_spare_16
+     35 hbm_spare_17
+     36 hbm_spare_18
+     37 hbm_spare_19
+     38 hbm_spare_20
+     39 hbm_spare_21
+     40 hbm_spare_22
+     41 hbm_spare_23
+
+- Updated lane_repair (operation 0x0d) and lane_verify (operation 0x21) to
+  store lane with faults in the spare results.  The total number of repairs
+  and the first 23 lane faults are stored as follows:
+
+     hbm_spare_0     - Total number of lanes with faults
+     hbm_spare[0-23] - Lane number with fault
+
+  The lane number can be mapped to a signal name by referring to the JEDEC HBM 
+  Spec's EXTEST_TX WDR definition.  The lane repair values match this register
+  definition.
+
+- Updated read_device_temp (operation 0x10) to store read temperature in
+  hbm_spare_0 result.  The result is also saved in the APC SPARE_0 register
+  as before.
+
+- Updated read_device_id (operation 0x08) to store the device_id value in
+  the spare results.  The results are also saved in the APC SPARE_0, SPARE_1,
+  and SPARE2 registers as before.  The spare results results are as follows:
+
+     hbm_spare_0 - device_id[15:0]
+     hbm_spare_1 - device_id[31:16]
+     hbm_spare_2 - device_id[47:32]
+     hbm_spare_3 - device_id[63:38]
+     hbm_spare_4 - device_id[79:64]
+     hbm_spare_5 - device_id[82:80]
+
+- Updated Samsung MBIST (operation 0x13) and SKH MBIST (operation 0x14) to
+  save number of MBIST repairs to spare result hbm_spare_0.  The results are
+  also saved in the APC SPARE_1 register as refore.
+
+- Updated DERR_SLB and AERR_SLB tests send the EXTEST_RX 1500 instruction the
+  HBM before running the test.  This allows with SLB test to be run with a 
+  HBM device attached without worry that the HBM is driving any signals.
+
+- Added preliminary 8HI support for Samsung MBIST operations.  This has only
+  been verified in verilog, not silicon.
+
+- Added preliminary 8HI support for NWL memory controller initialization and
+  CTC testing.  This has only been verified in verilog, not silicon.
+
+- Updated RL values for SKH when NWL memory controller initialization is run.  
+  RL values are now frequency depenedent as a single value will not work for
+  all frequencies.  This requires that the hbm_freq parameter (parameter 0x27)
+  be set to the integer operating frequency in MHZ.
+
+-------------------------------------------------
+sbus_master.debug.0x054b_2002.rom
+-------------------------------------------------
+- Fixed bug in CTC code where detected errors were not propagated out to an
+  invalid return code
+- Fixed bug where CTC high-power pattern times out while waiting for memory to
+  write at lower frequencies
+
+-------------------------------------------------
+sbus_master.debug.0x054a_2002.rom
+-------------------------------------------------
+- Added HBM operation
+
+    * 0x25 - hbm_release_ctc_control
+
+    Releases input to the NWL MC from the AXI port to the localbus port.  Also
+    releases STOP control of the APB bus back to the core.  Broadcast
+    addresses are used so this will apply to all CTC/STOP devices on the sbus
+    chain.
+
+- Added HBM parameter 0x3e - hbm_ctc_pattern_type
+
+  When set to 0 (default), the ctc operations will run a light traffic PRBS
+  pattern, intermixing reads and writes with long gaps between bursts.  
+  
+  When set to 1, the full memory will be written with a high-power data
+  pattern following by continuous reads.  The high-power pattern runs a
+  0xaf50 pattern to maximize the interposer toggle rate, regardless of 
+  of DBI settings.  Note that this is a worst case pattern and with 
+  maximize current draw.  
+
+- Reverted operation 0x24, Program TMRS, to orignal code in release 0x0548.
+  This was based on customer feedback
+
+- Added sbus reset of CTC devices when hbm_initailize_nwl_mcs is called
+  (operation 0x1f).  This ensures all CTC registers are in a known state prior
+  to running initializion and ctc operations for more reliable results.
+
+
+-------------------------------------------------
+sbus_master.debug.0x0549_2002.rom
+-------------------------------------------------
+- Set CFG_ECC_CORRECTION_EN configuration bit to 0 for NWL MC initialization.
+  This is to ensure the MC does not auto-correct any ECC errors during
+  testing.
+
+- Removed HBM operation to free room in rom
+
+    * 0x1a - hbm_load_samsung_tmrs
+
+- Revised HBM operation 0x24 - Program TMRS
+
+    * 0x24 - Program TMRS
+
+    Reads a arbitrary tmrs code from the APC SPARE_2 register and loads
+    it into the HBM. TMRS codes are 4 character codes from Samsung.
+    
+    Example Code:
+      CA04
+      ||||_NAME
+      |||_SUBCATEGORY
+      ||_CATEGORY
+      |_DIE/SAFETY
+    
+    Spare register bit assignment:
+    
+      SPARE_2[15:12] - DIE/SAFETY
+      SPARE_2[11:8]  - CATEGORY
+      SPARE_2[7:4]   - SUBCATEGORY
+      SPARE_2[3:0]   - NAME
+    
+    DIE/SAFETY Code:
+      B        - 0b1000 - 0x8
+      B/Safety - 0b1001 - 0x9
+      C        - 0b0110 - 0x6
+      C/Safety - 0b0111 - 0x7
+    
+    Category/ Subcategory/Name Code:
+      Hex value of character
+    
+    Example:  Program code CA04 (BDIE=0 SID0/SID1=1 SAFETEY=1)
+      SPARE_2 = 0x7A04
+    
+    The bypass WDR is set at the end of each TMRS instruction.  This is less
+    efficient than only setting after all TMRS sequences are programmed, but
+    is easier or the user.
+    
+-------------------------------------------------
+sbus_master.debug.0x0548_2002.rom
+-------------------------------------------------
+- Added HBM operation
+
+    * 0x24 - Program TMRS
+
+    Reads a arbitrary tmrs code from the APC SPARE spare registers and
+    loads it into the HBM.
+    
+      SPARE_3[31:16] - DIE/SAFETY  TMRS[36:33]
+      SPARE_3[15:0]  - CATEGORY    TMRS[10:0]
+      SPARE_2[31:16] - SUBCATEGORY TMRS[21:11]
+      SPARE_2[15:0]  - NAME        TMRS[32:22]
+    
+    Example:  Program code CA04 (BDIE=0 SID0/SID1=1 SAFETEY=1)
+      SPARE_3 = 0b0111 << 16 || 0xa
+      SPARE_2 = 0 << 16 || 4
+    
+    The bypass WDR is set at the end of each TMRS instruction.  This is
+    less efficient than only setting after all TMRS sequences are programmed,
+    but is easier or the user.
+
+
+-------------------------------------------------
+sbus_master.debug.0x0547_2002.rom
+-------------------------------------------------
+- Updated Samsung Mbist operation to use hard resets instead of the 1500 reset
+  for more reliable results.
+
+-------------------------------------------------
+sbus_master.debug.0x0546_2002.rom
+-------------------------------------------------
+- Fixed DWORD_SLB testing.  The ILB_EN DWORD config bit was set during this
+  test and should have been disabled.
+
+-------------------------------------------------
+sbus_master.debug.0x0545_2002.rom
+-------------------------------------------------
+- Added HBM operations
+
+    * 0x22 - Start All CTCs
+      Start running PRBS patterns for all CTC blocks on the sbus ring in
+      continuous mode.  This allows for CTC testing over extended periods
+      of time with multiple HBM interfaces.  
+
+    * 0x23 - Stop All CTCs
+      Stops running all CTCs and checks the error counts.  If any errors are
+      detected the operation with fail. 
+
+-------------------------------------------------
+sbus_master.debug.0x0544_2002.rom
+-------------------------------------------------
+- Added HBM parameter 0x3d - hbm_disable_addr_lane_repair
+
+    * When the lane repair operation is run and this parameter is set to 1, no
+      vectors will be run on the address lines.  This is attempting to work
+      around a problem where address vectors are being interpretted as
+      commands while EXTEST_RX is enabled on the HBM
+
+-------------------------------------------------
+sbus_master.debug.0x0543_2002.rom
+-------------------------------------------------
+- Added HBM parameter 0x3c - hbm_bypass_testmode_reset
+
+    * When entering testmode operations, a PHY/HBM reset is automatically
+      performed.  When this parameter is set to 1, the reset is skipped.  The
+      default value is 0 (reset is performed).
+
+- Added DBI masking support during DWORD testing.  This masks the DBI errors
+  reported during DWORD when Mode 1 repairs have been made.  The are due to
+  the DBI bit being used for lane repairs.
+
+- Modified tinit parameters to closer match JEDEC timing specs.  The previous
+  values were too high resulting in longer than needed wait times.  New
+  paramters values are:
+    tinit1 - 0x1509
+    tinit3 - 0x3496
+    tinit5 - 0x6
+
+- Modified default PHY_CONFIG values to use a AWORD_CLK_CQ_CONFIG values of 4.
+
+- Modified reset operation to read HBM hard lane repair values and write them
+  as PHY soft lane repairs.  This is to ensure that the PHY and HBM are always
+  have matching lane repair settings and to ensure proper testing when hard
+  repairs have been burned.
+
+- Modified DERR algorithm to not run for channels with lane repairs.  The
+  previous DERR checking scheme could report false failures when Mode 1 lane
+  repairs were made.  This is only an issue for the DERR test and DERR still
+  works correctly during mission mode.
+
+- Fixed bug in CTC operation that could result in no CTC operations running
+  depending on sbus ordering.
+
+- Implemented fully working SKH MBIST solution
+
+- Implemented SKH support NWL initializion and CTC
+
+
+
+-------------------------------------------------
+sbus_master.debug.0x0542_2002.rom
+-------------------------------------------------
+- Fixed the AERR_SLB test to run in SLB mode instead of ILB mode
+
+- Fixed the DERR SLB/ILB tests to write the DWORD_MISR_CONFIG.  Previously
+  only the WIR was written and no data.
+
+- Fixed DERR SLB and ILB tests to use the proper ILB mode setting
+
+- Modified AWORD, DWORD, DERR, AERR tests to only read LFSR_COMPARE_STICKY
+  once for all channels.  This is more efficient and required for proper
+  operation on sk Hynix parts.
+
+
+-------------------------------------------------
+sbus_master.debug.0x0541_2002.rom
+-------------------------------------------------
+- Added HBM operation 0x21 - hbm_verify_lane_errors
+
+    * Run the standard lane repair algorith but only passes if there are no
+      lane faults even if the lanes are repairable.  This is intended to 
+      simplify the DFT packaging flow.  The error ERROR_LANE_ERRORS_DETECTED
+      will be set for each channel that has lnae errors.
+
+- Added error code 0x17 - ERROR_LANE_ERRORS_DETECTED
+    * Used with hbm_verify_lane_errors interrupt to indicate existence of lane
+      faults within a channel.
+
+- Modified lane repair algorithm to remain in EXTEST throughout the test.
+  This avoid previous issues where EXTEST vectors could be interpretted as
+  read commands by the HBM under specific voltage/temp conditions in silicon
+  cause false failures. 
+
+
+-------------------------------------------------
+sbus_master.debug.0x0540_2002.rom
+-------------------------------------------------
+
+- Fixed bug in DERR_ILB test caused by an uninitialized variable.  This could
+  cause false faiures.
+
+- Fixed bug in DWORD_ILB/DWORD_SLB preventing proper error detection.
+
+- Updated MC timing parameters used during NWL MC initialization to match
+  latest Samsung recommendations.
+
+- Updated MRS values programmed when exiting test mode to match Samsung
+  recommendations.
+
+- Changed DWORD latency parameters to improvde performance over frequency.
+
+
+-------------------------------------------------
+sbus_master.debug.0x053f_2002.rom
+-------------------------------------------------
+
+- Added to new paramters for setting mode_register15
+    * 0x03a - hbm_mode_register15       (default:0)
+      Value to program mode register 15 when exiting test mode back into
+      mission mode
+
+    * 0x03b - hbm_test_mode_register15  (default:0)
+      Value to program mode register 15 when running test mode operations
+
+- Updated CTC test to run multiple patterns
+
+- The lane repair operation now saves the number of repair in APC SPARE_0_REG
+  upon completion.
+
+- Updated lane repair algorithm to provide to avoid potential issues when
+  scanning vectors on CKE and COL[0]
+
+
+-------------------------------------------------
+sbus_master.debug.0x053e_2002.rom
+-------------------------------------------------
+
+- Added to new paramters for setting mode_register15
+    * 0x03a - hbm_mode_register15       (default:0)
+      Value to program mode register 15 when exiting test mode back into
+      mission mode
+
+    * 0x03b - hbm_test_mode_register15  (default:0)
+      Value to program mode register 15 when running test mode operations
+
+
+-------------------------------------------------
+sbus_master.debug.0x053d_2002.rom
+-------------------------------------------------
+
+    * Added support for NWL MC initialization (Highland test chip values only)
+    
+    * Added support for running CTC
+    
+    * PHY_CONFIG values should do not be adjusted by user.  The defaults values
+      are Broadcom recommended values.  The only value users may need to change is
+      T_RDLAT_OFFSET.  A seperate parameter, hbm_t_rdlat_offset, has been added to
+      allow users to program just this single value rather than the entire
+      PHY_CONFIG.
+    
+    * Support has been added more test mode and mission mode MRS values.  The
+      mission mode MRS values will be programmed when exitting test mode.  The
+      test MRS values will be programmed when entering test mode.
+    
+    * The CKE value can now be programmed upon exiting test mode to a user-defined
+      value.  This is controlled with the hbm_cke_exit_state parameter.
+    
+    * Added HBM/PHY reset upon entering testmode
+    
+    * Added BIST_CLK gating in aword/dword tests to avoid misr corruption
+    
+    * Added interrupt to program TMRS defaults (based on Highland test chip
+      silicon)
+    
+    * Added chipping test
+    
+    * Added hbm_freq and hbm_div_mode parameters
+         hbm_freq     - should be set to 2x frequency in MHz. Defaults to 2000
+         hbm_div_mode - 0=>div1_mode (default) 1=>div2_mode
+    
+    * hbm_rw_latency_offset and hbm_latency_odd_n_even parameters are now autoset
+      in firmware based on hbm_div_mode, hbm_freq and the running test.  These
+      parameters will be overwritten during tests so users should not program
+      these anymore.
+    
+    * Modified test exit behavior to ensure cleaner exists from failed tests
+    
+    * Lane repair algorithm updated to avoid silicon issues
+    
+    * DWORD/AWORD algorithm optimazations
+    
+    * Update ERROR and Operation codes
+    
+         0x01 ERROR_DETECTED
+         0x02 ERROR_UNEXPECTED_RESET_STATE
+         0x03 ERROR_ILLEGAL_CHANNEL_NUMBER_REQUESTED
+         0x04 ERROR_TIMEOUT_WAITING_FOR_1500_DONE
+         0x05 ERROR_TIMEOUT_WAITING_FOR_BIST_DONE
+         0x06 ERROR_DATA_COMPARE_FAILED
+         0x07 ERROR_ALL_CHANNELS_NOT_SELECTED_FOR_RESET
+         0x08 ERROR_REPAIR_LIMIT_EXCEEDED
+         0x09 ERROR_NON_REPAIRABLE_FAULTS_FOUND
+         0x0a ERROR_MBIST_FAILED
+         0x0b ERROR_EXCEEDED_BANK_REPAIR_LIMIT
+         0x0c ERROR_ALL_CHANNELS_NOT_ENABLED
+         0x0d ERROR_TIMEOUT_WAITING_FOR_PHYUPD_HANDSHAKE
+         0x0e ERROR_CHANNEL_UNREPAIRABLE
+         0x0f ERROR_NO_FUSES_AVAILABLE_FOR_REPAIR
+         0x10 ERROR_TIMEOUT_WAITING_FOR_VALID_TEMP
+         0x11 ERROR_TIMEOUT_WAITING_FOR_NWL_INIT
+         0x12 ERROR_CHANNEL_FAILURES_EXIST
+         0x13 ERROR_UNKNOWN_ERROR
+    
+         0x01 OP_BYPASS
+         0x02 OP_DEVICE_ID
+         0x03 OP_AWORD
+         0x04 OP_AERR
+         0x05 OP_AWORD_ILB
+         0x06 OP_AERR_ILB
+         0x07 OP_AERR_INJ_ILB
+         0x08 OP_DWORD_WRITE
+         0x09 OP_DWORD_READ
+         0x0a OP_DERR
+         0x0b OP_DWORD_UPPER_ILB
+         0x0c OP_DWORD_LOWER_ILB
+         0x0d OP_DERR_ILB
+         0x0e OP_DERR_INJ_ILB
+         0x0f OP_LANE_REPAIR
+         0x10 OP_DEVICE_TEMP
+         0x11 OP_CONNECTIVITY_CHECK
+         0x12 OP_RESET
+         0x13 OP_MBIST
+         0x14 OP_REPAIR
+         0x15 OP_AWORD_SLB
+         0x16 OP_AERR_SLB
+         0x17 OP_AERR_INJ_SLB
+         0x18 OP_DWORD_UPPER_SLB
+         0x19 OP_DWORD_LOWER_SLB
+         0x1a OP_DERR_SLB
+         0x1b OP_DERR_INJ_SLB
+         0x1c OP_TMRS
+         0x1d OP_CHIPPING
+    
+    - Updated callable hbm operations
+    
+         0x00  hbm_reset_phy_and_hbm
+         0x01  hbm_reset_phy
+         0x02  hbm_reset_hbm
+         0x03  hbm_run_package_test_flow
+         0x04  hbm_run_wafer_test_flow
+         0x05  hbm_run_power_on_flow
+         0x06  hbm_check_connectivity
+         0x07  hbm_run_bypass_test
+         0x08  hbm_run_device_id_test
+         0x09  hbm_run_aword_test
+         0x0a  hbm_run_aerr_test
+         0x0b  hbm_run_dword_test
+         0x0c  hbm_run_derr_test
+         0x0d  hbm_run_lane_repair
+         0x0e  hbm_run_aword_ilb
+         0x0f  hbm_run_dword_ilb
+         0x10  hbm_read_device_temp
+         0x11  hbm_apply_soft_repairs_as_hard_repairs
+         0x02  hbm_apply_hard_repairs_as_phy_soft_repairs
+         0x13  hbm_run_samsung_mbist
+         0x14  hbm_run_skh_mbist
+         0x15  hbm_reset_mode_registers
+         0x16  hbm_reset_phy_config
+         0x17  hbm_run_aword_slb
+         0x18  hbm_run_dword_slb
+         0x19  hbm_run_samsung_chipping_test
+         0x1a  hbm_load_samsung_tmrs
+         0x1b  hbm_run_aerr_ilb
+         0x1c  hbm_run_aerr_slb
+         0x1d  hbm_run_derr_ilb
+         0x1e  hbm_run_derr_slb
+    
+
+-------------------------------------------------
+sbus_master.debug.0x053b_2002.rom
+-------------------------------------------------
+
+- Added interrupt to program TMRS defaults
+
+- Added hbm_t_rdlat_offset parameter to set T_RDLAT_OFFSET value in PHY_CONFIG
+
+- PHY_CONFIG and mode_register values should not be adjusted by user.
+  These are defaults for test mode and users will need to program mode
+  registers separately after firmware operations.  Only the hbm_t_rdlat_offset
+  paramter should be programmed.
+
+- Added chipping test
+
+- Added hbm_freq and hbm_div_mode parameters
+     hbm_freq     - should be set to 2x frequency in MHz. Defaults to 2000
+     hbm_div_mode - 0=>div1_mode (default) 1=>div2_mode
+
+- hbm_rw_latency_offset and hbm_latency_odd_n_even parameters are not autoset
+  in firmware based on hbm_div_mode, hbm_freq and the running test.  These
+  parameters will be overwritten during tests so users should not program
+  these anymore.
+
+- Modified test exit behavior to ensure cleaner exists from failed tests
+
+- Lane repair algorithm updates
+
+- DWORD/AWORD algorithm updates
+
+- Update ERROR and Operation code
+
+     #define ERROR_DETECTED                              1
+     #define ERROR_UNEXPECTED_RESET_STATE                2
+     #define ERROR_ILLEGAL_CHANNEL_NUMBER_REQUESTED      3
+     #define ERROR_TIMEOUT_WAITING_FOR_1500_DONE         4
+     #define ERROR_TIMEOUT_WAITING_FOR_BIST_DONE         5
+     #define ERROR_DATA_COMPARE_FAILED                   6
+     #define ERROR_ALL_CHANNELS_NOT_SELECTED_FOR_RESET   7
+     #define ERROR_REPAIR_LIMIT_EXCEEDED                 8
+     #define ERROR_NON_REPAIRABLE_FAULTS_FOUND           9
+     #define ERROR_MBIST_FAILED                         10 
+     #define ERROR_EXCEEDED_BANK_REPAIR_LIMIT           11 
+     #define ERROR_ALL_CHANNELS_NOT_ENABLED             12
+     #define ERROR_TIMEOUT_WAITING_FOR_PHYUPD_HANDSHAKE 13
+     #define ERROR_CHANNEL_UNREPAIRABLE                 14
+     #define ERROR_NO_FUSES_AVAILABLE_FOR_REPAIR        15
+     #define ERROR_TIMEOUT_WAITING_FOR_VALID_TEMP       16
+     #define ERROR_TIMEOUT_WAITING_FOR_NWL_INIT         17
+     #define ERROR_CHANNEL_FAILURES_EXIST               18
+     #define ERROR_UNKNOWN_ERROR                        19
+
+     #define OP_BYPASS              1
+     #define OP_DEVICE_ID           2
+     #define OP_AWORD               3
+     #define OP_AERR                4
+     #define OP_AWORD_ILB           5
+     #define OP_AERR_ILB            6
+     #define OP_AERR_INJ_ILB        7
+     #define OP_DWORD_WRITE         8
+     #define OP_DWORD_READ          9
+     #define OP_DERR                10
+     #define OP_DWORD_UPPER_ILB     11
+     #define OP_DWORD_LOWER_ILB     12
+     #define OP_DERR_ILB            13
+     #define OP_DERR_INJ_ILB        14
+     #define OP_LANE_REPAIR         15
+     #define OP_DEVICE_TEMP         16
+     #define OP_CONNECTIVITY_CHECK  17
+     #define OP_RESET               18
+     #define OP_MBIST               19
+     #define OP_REPAIR              20
+     #define OP_AWORD_SLB           21
+     #define OP_AERR_SLB            22
+     #define OP_AERR_INJ_SLB        23
+     #define OP_DWORD_UPPER_SLB     24
+     #define OP_DWORD_LOWER_SLB     25
+     #define OP_DERR_SLB            26
+     #define OP_DERR_INJ_SLB        27
+     #define OP_TMRS                28
+     #define OP_CHIPPING            29
+
+- Updated callable hbm operations
+
+     hbm_reset_phy_and_hbm                       //  0   0x00
+     hbm_reset_phy                               //  1   0x01
+     hbm_reset_hbm                               //  2   0x02
+     hbm_run_package_test_flow                   //  3   0x03
+     hbm_run_wafer_test_flow                     //  4   0x04
+     hbm_run_power_on_flow                       //  5   0x05
+     hbm_check_connectivity                      //  6   0x06
+     hbm_run_bypass_test                         //  7   0x07
+     hbm_run_device_id_test                      //  8   0x08
+     hbm_run_aword_test                          //  9   0x09
+     hbm_run_aerr_test                           //  10  0x0a
+     hbm_run_dword_test                          //  11  0x0b
+     hbm_run_derr_test                           //  12  0x0c
+     hbm_run_lane_repair                         //  13  0x0d
+     hbm_run_aword_ilb                           //  14  0x0e
+     hbm_run_dword_ilb                           //  15  0x0f
+     hbm_read_device_temp                        //  16  0x10
+     hbm_apply_soft_repairs_as_hard_repairs      //  17  0x11
+     hbm_apply_hard_repairs_as_phy_soft_repairs  //  18  0x02
+     hbm_run_samsung_mbist                       //  19  0x13
+     hbm_run_skh_mbist                           //  20  0x14
+     hbm_reset_mode_registers                    //  21  0x15
+     hbm_reset_phy_config                        //  22  0x16
+     hbm_run_aword_slb                           //  23  0x17
+     hbm_run_dword_slb                           //  24  0x18
+     hbm_run_samsung_chipping_test               //  25  0x19
+     hbm_load_samsung_tmrs                       //  26  0x1a
+     hbm_run_aerr_ilb                            //  27  0x1b
+     hbm_run_aerr_slb                            //  28  0x1c
+     hbm_run_derr_ilb                            //  29  0x1d
+     hbm_run_derr_slb                            //  30  0x1e
+
+-------------------------------------------------
+sbus_master.debug.0x053a_2002.rom
+-------------------------------------------------
+
+- Added BIST_CLK gating in aword/dword tests to avoid misr corruption
+
+
+-------------------------------------------------
+sbus_master.debug.0x0539_2002.rom
+-------------------------------------------------
+
+- Added new HBM operations
+   0x04 - hbm_run_wafer_test_flow
+   0x05 - hbm_run_power_on_flow
+   0x14 - hbm_run_skh_mbist
+   0x15 - hbm_reset_mode_registers
+   0x16 - hbm_reset_phy_config
+   0x17 - hbm_run_aword_slb
+   0x18 - hbm_run_dword_slb
+
+- Added new HBM parameters
+   0x24 - hbm_mbist_bank_address_end
+   0x25 - hbm_mbist_row_address_end
+   0x26 - hbm_mbist_column_address_end
+
+- Added new HBM error codes
+   0x0e - ERROR_CHANNEL_UNREPAIRABLE
+   0x0f - ERROR_NO_FUSES_AVAILABLE_FOR_REPAIR
+
+- HBM Operation Descriptions
+   0x04 - hbm_run_wafer_test_flow
+   Runs a series of tests intended to be performed during wafer-level testing.
+   These include the AWORD/DWORD SLB and ILB tests.
+
+   This test is not intended to be run in the customer environment. 
+
+   0x05 - hbm_run_power_on_flow
+   Runs a series of test intended to be performed duruing package-level
+   testing.  These include full lane repair testing, all AWORD/DWORD tests, and
+   memory BIST.  An attempt will be made to repair any detected errors as soft
+   repairs.  Once soft repairs are applied, all tests are rerun to verify
+   proper operation and repair information burned as hard repairs.  
+
+   This test is not intended to be run in the customer environment. 
+
+   0x14 - hbm_run_skh_mbist
+   Runs SK-Hynix HBM MBIST.  Each HBM channel is is run serially to test for
+   and repair errors.  The results of MBIST are used to program soft or hard
+   bit cell repairs.  Repairs may also be skipped. The repair mode is
+   controlled by setting the hbm_mbist_repair_mode parameter.
+
+   0x15 - hbm_reset_mode_registers
+   Programs the HBM mode registers with values in the hbm_mode_register*
+   parameters.  These will be programmed via the IEEE 1500 interface.
+
+   0x16 - hbm_reset_phy_config
+   Programs the PHY_CONFIG registers with values in the hbm_phy_config*
+   parameters.   These will be programmed via the IEEE 1500 interface.
+
+   0x17 - hbm_run_aword_slb
+   Performs address self loopback testing for wafer-level diagnostic testing.  Refer
+   to the Avago Technologies 16nm HBM PHY Specification for details.
+
+   0x18 - hbm_run_dword_slb
+   Performs data self loopback testing for wafer-level diagnostic testing.  Refer
+   to the Avago Technologies 16nm HBM PHY Specification for details.
+
+- HBM Parameter Descriptions
+   0x24 - hbm_mbist_bank_address_end
+   The maximum bank address used during MBIST testing. The default value is 16.
+
+   0x25 - hbm_mbist_row_address_end
+   The maximum row address used during MBIST testing. The default value is 16383
+
+   0x26 - hbm_mbist_column_address_end
+   The maximum row address used in MBIST test. The default value is 63
+
+
+-------------------------------------------------
+sbus_master.debug.0x0536_2002.rom
+-------------------------------------------------
+
+- New Firmware Operations
+    0x11 - Burn Hard Lane Repairs
+    0x12 - Apply Hard Lane Repairs as Phy Soft Lane Repairs
+    0x13 - Run Samsung MBIST
+
+- New Firmware Parameters
+    0x1f - hbm_mbist_repair_mode
+    0x20 - hbm_samsung_mbist_pattern
+    0x21 - hbm_samsung_mbist_hr_counter
+    0x22 - hbm_hlr_counter
+    0x23 - hbm_power_on_lane_repair_mode
+
+- Firmware Operation Descriptions
+    0x11 - Burn Hard Lane Repairs
+    After soft lane repair is performed and verified, burn the lane repair fuses
+    to store the repairs as hard repairs.  This operation is intended for use
+    during production test only.
+
+    0x12 - Apply Hard Lane Repairs as Phy Soft Lane Repairs
+    Reads the hard lane repair information from the HBM and apply the repairs as
+    soft repairs in the PHY.  This is required to ensure that both the PHY and HBM
+    are using the same repair codes.  This operation is performed as part of the
+    Power-on flow.
+
+    0x13 - Run Samsung MBIST
+    Runs the Samsung MBIST in SPEC mode.  The results of MBIST are use to program
+    soft or hard repairs.  Repairs may also be skipped.  The repair mode is
+    controlled by setting the hbm_mbist_repair_mode parameter.  If repairs are
+    made, a second MBIST run is performed to verify the integrity of the repair.
+    If errors are still found and error will be issued.  
+    This operation is specific to Samsung HBM devices.  It also requires that the
+    1X clock frequency (DRAM clock) runs at 800Mhz.  This is not configured by the
+    firmware and must be done prior to launch this firmware operation.
+
+- Firmware Parameter Descriptions
+    0x1f - hbm_mbist_repair_mode
+    Determines the type of repair performed after an MBIST run.0 = no repair1 =
+    hard repair (default)2 = soft repair
+
+    0x20 - hbm_samsung_mbist_pattern
+    Determines the type of pattern that is used during MBIST0 = scan (default)1 =
+    march
+
+    0x21 - hbm_samsung_mbist_hr_counter
+    Sets the number of wait cycles for an MBIST hard repair
+
+    0x22 - hbm_hlr_counter
+    Sets the number of wait cycles for a hard lane repair
+
+    0x23 - hbm_power_on_lane_repair_mode
+    Determines the lane repair operation to perform during the power-on flow0 = no
+    lane repair2 = apply HBM hard repairs as PHY repairs1 = full lane repair
+    testing with soft repairs
+
+
+-------------------------------------------------
+sbus_master.debug.0x0530_2002.rom
+-------------------------------------------------
+
+- Preliminary HBM firmware
+

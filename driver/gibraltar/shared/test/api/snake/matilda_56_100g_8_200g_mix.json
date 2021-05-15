@@ -1,0 +1,159 @@
+{
+    "loopback_ports":
+    [
+        {
+            "slice": [0],
+            "ifg": [0,1],
+            "serdes": [0,4,8,12,16,20],
+            "serdes_count": 4,
+            "speed": 100,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops":1,
+            "an": false
+        },
+        {
+            "slice": [1],
+            "ifg": [0],
+            "serdes": [0,4,8,12,16,20],
+            "serdes_count": 4,
+            "speed": 100,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops":1,
+            "an": false
+        },
+        {
+            "slice": [1],
+            "ifg": [1],
+            "serdes": [0,4],
+            "serdes_count": 4,
+            "speed": 200,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops":1,
+            "an": false
+        },
+        {
+            "slice": [1],
+            "ifg": [1],
+            "serdes": [8,12],
+            "serdes_count": 4,
+            "speed": 100,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops":1,
+            "an": false
+        },
+        {
+            "slice": [2],
+            "ifg": [1],
+            "serdes": [0,4,8,12,16,20],
+            "serdes_count": 4,
+            "speed": 100,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops":1,
+            "an": false
+        },
+        {
+            "slice": [2],
+            "ifg": [0],
+            "serdes": [0,4],
+            "serdes_count": 4,
+            "speed": 200,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops":1,
+            "an": false
+        },
+        {
+            "slice": [2],
+            "ifg": [0],
+            "serdes": [8,12],
+            "serdes_count": 4,
+            "speed": 100,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops":1,
+            "an": false
+        },
+        {
+            "slice": [3],
+            "ifg": [0],
+            "serdes": [0,4,8,12,16,20],
+            "serdes_count": 4,
+            "speed": 100,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops":1,
+            "an": false
+        },
+        {
+            "slice": [3],
+            "ifg": [1],
+            "serdes": [0,4],
+            "serdes_count": 4,
+            "speed": 200,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops":1,
+            "an": false
+        },
+        {
+            "slice": [3],
+            "ifg": [1],
+            "serdes": [8,12],
+            "serdes_count": 4,
+            "speed": 100,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops":1,
+            "an": false
+        },
+        {
+            "slice": [4],
+            "ifg": [1],
+            "serdes": [0,4,8,12,16,20],
+            "serdes_count": 4,
+            "speed": 100,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops":1,
+            "an": false
+        },
+        {
+            "slice": [4],
+            "ifg": [0],
+            "serdes": [0,4],
+            "serdes_count": 4,
+            "speed": 200,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops":1,
+            "an": false
+        },
+        {
+            "slice": [4],
+            "ifg": [0],
+            "serdes": [8,12],
+            "serdes_count": 4,
+            "speed": 100,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops":1,
+            "an": false
+        },
+        {
+            "slice": [5],
+            "ifg": [0,1],
+            "serdes": [0,4,8,12,16,20],
+            "serdes_count": 4,
+            "speed": 100,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops":1,
+            "an": false
+        }
+    ]
+}

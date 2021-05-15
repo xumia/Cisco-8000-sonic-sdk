@@ -1,0 +1,120 @@
+#!/bin/bash
+
+SCRIPT_PATH=`realpath $0`
+SCRIPT_DIR=`dirname ${SCRIPT_PATH}`
+EMACS=""
+C="-C,-C++,-YACC"
+P="-Python"
+M="-Make"
+N=""
+NPL=""
+DIRS=""
+NPL_OPTIONS="--options=${SCRIPT_DIR}/npl.ctags"
+
+help() {
+    echo "Allowed flags are:"
+    echo "  -h or --help             : Print this help message"
+    echo "  -v or --vim              : Emit tags for VIM (default)"
+    echo "  -e or --emacs            : Emit tags for emacs instead of VIM"
+    echo "  -c                       : Include symbols for C/C++/YACC"
+    echo "  -p or --python           : Include symbols for Python"
+    echo "  -m or --make             : Include symbols for Make"
+    echo "  -l or --leaba-npl        : Include symbols for leaba defined NPL"
+    echo "  -f or --cisco-router-npl : Include symbols for cisco_router NPL"
+    echo "  -t or --tests-npl        : Include symbols for tests NPL"
+}
+
+case $PWD in
+  */npl)
+    C_DIRS=""
+    PY_DIRS="THERE_ARE_NO_PYTHON_SOURCES_IN_NPL"
+    MAKE_DIRS="THERE_ARE_NO_MAKEFILES_IN_NPL"
+    LEABA_DIRS="leaba_defined"
+    FULL_DIRS="cisco_router"
+    TESTS_DIRS="tests"
+    ;;
+  */npsuite)
+    C_DIRS="src include externals/jansson"
+    PY_DIRS="src scripts ../scripts"
+    MAKE_DIRS="Makefile src res doc"
+    LEABA_DIRS="../npl/pacific/leaba_defined"
+    FULL_DIRS="../npl/cisco_router"
+    TESTS_DIRS="../npl/pacific/tests"
+    ;;
+  */driver)
+    C_DIRS="src include externals/jansson ../npsuite/src ../npsuite/include"
+    MAKE_DIRS="Makefile src test doc"
+    PY_DIRS="test ../scripts externals/npsuite/src"
+    LEABA_DIRS="npl/pacific/leaba_defined"
+    FULL_DIRS="npl/cisco_router"
+    TESTS_DIRS="npl/pacific/tests"
+    ;;
+  *)
+    echo "Don't know how to make tags in $PWD"
+    exit 1
+    ;;
+esac
+
+ANY="no"
+for FLAG in "$@"
+do
+    case $FLAG in
+    -v|--vim)
+        EMACS=""
+        ;;
+    -e|--emacs)
+        EMACS="-e"
+        ;;
+    -c|--c)
+        ANY="yes"
+        C=`echo $C | sed 's/-/+/g'`
+        DIRS="$DIRS $C_DIRS"
+        ;;
+    -p|--python)
+        ANY="yes"
+        P=`echo $P | sed 's/-/+/g'`
+        DIRS="$DIRS $PY_DIRS"
+        ;;
+    -m|--make)
+        ANY="yes"
+        M=`echo $M | sed 's/-/+/g'`
+        DIRS="$DIRS $MAKE_DIRS"
+        ;;
+    -l|--leabe-npl)
+        ANY="yes"
+        N="+NPL"
+        NPL="$NPL_OPTIONS"
+        DIRS="$DIRS $LEABA_DIRS"
+        ;;
+    -f|-cisco-router-npl)
+        ANY="yes"
+        N="+NPL"
+        NPL="$NPL_OPTIONS"
+        DIRS="$DIRS $FULL_DIRS"
+        ;;
+    -t|-tests-npl)
+        ANY="yes"
+        N="+NPL"
+        NPL="$NPL_OPTIONS"
+        DIRS="$DIRS $TESTS_DIRS"
+        ;;
+    -h)
+        help
+        exit 0
+        ;;
+    *)
+        echo "Unknown flag $FLAG"
+        help
+        exit 1
+    esac
+done
+
+if [ $ANY = "no" ]
+then
+    echo "No language types specified" 2>&1
+    help 2>&1
+    exit 1
+fi
+
+set -x
+ctags $EMACS $NPL --languages="$C,$P,$M,$N" -R $DIRS

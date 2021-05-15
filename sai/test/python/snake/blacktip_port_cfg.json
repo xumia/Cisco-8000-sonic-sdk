@@ -1,0 +1,65 @@
+{
+    "traffic_gen_port": [
+        {
+            "pif": "0x510",
+            "Description": "Traffic Gen port, 2/1/16, Blacktip",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mtu_size": 9600,
+            "media_type": "COPPER",
+            "an": false
+        }
+    ],
+    "skipped_external_port2port": [
+        {
+            "pif": ["0x500", "0x508"],
+            "Description": "A pair of ports connected by cable externally. 400G credo cables, IFG5[0-7]<->IFG5[8-15]",
+            "pif_counts": 8,
+            "speed": 400000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "NONE",
+            "mtu_size": 9600,
+            "media_type": "OPTIC",
+            "an": false
+        },
+        {
+            "pif": ["0x514", "0x515"],
+            "Description": "SFP ports connected to gb_alt_board Q56-p47 breakout cable. IFG5[20] & IFG5[21].",
+            "pif_counts": 1,
+            "speed": 10000,
+            "fc": "disable",
+            "fec": "NONE",
+            "mac_lpbk": "NONE",
+            "mtu_size": 9600,
+            "media_type": "COPPER",
+            "an": false
+        }
+    ],
+    "loopback_ports":
+    [
+        {
+            "pif": ["0x204", "0x20c", "0x300", "0x304", "0x308", "0x30c", "0x400", "0x404", "0x408", "0x40c"],
+            "Description": "These are the serdes loopback ports. For external loopback, use loopback cables and set mac_lpbk=NONE.",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "PHY",
+            "mtu_size": 9600,
+            "an": false
+        },
+        {
+            "pif": ["0x700", "0x708"],
+            "pif_counts": 8,
+            "speed": 400000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "PHY",
+            "mtu_size": 9600,
+            "an": false
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "loopback_ports":
+    [
+        {
+            "slice": 0,
+            "ifg": 0,
+            "serdes": [0,2,4,6],
+            "serdes_count": 2,
+            "speed": 100,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops": 1,
+            "an": false
+        },
+        {
+            "slice": 0,
+            "ifg": 1,
+            "serdes": 0,
+            "serdes_count": 8,
+            "speed": 400,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops": 1,
+            "an": false
+        }
+    ]
+}

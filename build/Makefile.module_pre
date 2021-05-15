@@ -1,0 +1,56 @@
+# BEGIN_LEGAL
+#
+# Copyright (c) 2016-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+# Pre-module makefile, to be included before per-module definitions.
+# Cleans up existing per-module parameters.
+
+# TODO: document each parameter.
+
+PKG :=
+PKG-TARGETS :=
+PKG-PATH :=
+PKG-SUBDIRS :=
+PKG-NAME :=
+PKG-COMPILE-PREREQS :=
+PKG-LINK-PREREQS :=
+PKG-LINK-LIBS :=
+PKG-SWIG-NAME :=
+PKG-SWIG-COMPILE-PREREQS :=
+PKG-SWIG-LINK-PREREQS :=
+PKG-SWIG-LINK-LIBS :=
+PKG-VALGRIND-CLEAN := True
+PKG-C-EXTRA-FLAGS :=
+PKG-CXX-EXTRA-FLAGS :=
+PKG-GENERATED-CPP-FILES :=
+PKG-GENERATED-H-FILES :=
+PKG-GENERATED-DIR :=
+PKG-TEST-ARGS :=
+PKG-PY-TEST-PREREQS :=
+PKG-PYLIB-OUTPUT-DIR := $(PYLIB_OUTPUT_DIR)
+PKG-PY-MODULE-PATH :=
+PKG-EXTRA_CSRCS :=
+PKG-EXTRA_CPPSRCS :=
+PKG-EXTRA_H_FILES :=
+PKG-EXTRA_SWIG_SRCS :=
+
+PKG-CEREAL-GEN := False
+PKG-CEREAL-EXTRA-DIRS :=
+PKG-CEREAL-PREREQS :=
+PKG-CEREAL-NUM-OF-GENERATED-FILES := 16
+PKG-CEREAL-CONFIG-FILE :=

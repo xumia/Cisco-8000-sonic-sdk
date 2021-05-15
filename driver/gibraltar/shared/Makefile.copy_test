@@ -1,0 +1,34 @@
+# BEGIN_LEGAL
+#
+# Copyright (c) 2016-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+tests-files := $(shell $(UNLOGGED) find shared/test/api -type f -not -path "*__pycache__*")
+tests-files += $(shell $(UNLOGGED) find shared/test/utils -type f -not -path "*__pycache__*")
+tests-copied := $(patsubst %, $(BASE_OUTPUT_DIR)/%, $(tests-files))
+
+# Copy include
+$(tests-copied): $(BASE_OUTPUT_DIR)/%: %
+	@$(MKDIR) -p $(@D)
+	@$(CP) $< $@
+
+.PHONY: copy-test-clean
+
+copy-test-clean:
+	@$(RM) -rf $(BASE_OUTPUT_DIR)/shared/test/api
+	@$(RM) -rf $(BASE_OUTPUT_DIR)/shared/test/utils
+

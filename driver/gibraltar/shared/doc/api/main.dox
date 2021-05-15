@@ -1,0 +1,14 @@
+// General Doxygen definitions
+
+/// @mainpage Network Processing API main page
+///
+/// Welcome to Leaba's Network Programming API manual for the 'Pacific' device.
+///
+/// This manual is designed to get you up to speed using the Network Programming API.
+///
+/// It includes the following sections:
+///
+/// * \ref pacific_pp_theory_page, an overview of Pacific's processing architecture.
+/// * \ref pacific_qos_and_congestion_management_page, an overview of Pacific's QoS and congestion management architecture.
+/// * \ref api_conventions_page, detailing the API's conventions.
+

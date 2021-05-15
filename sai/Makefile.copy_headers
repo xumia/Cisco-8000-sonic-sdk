@@ -1,0 +1,77 @@
+# BEGIN_LEGAL
+#
+# Copyright (c) 2017-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+sai-ver ?= 1.7.1
+
+SAI_VER_SUFFIX := $(subst .,,$(sai-ver))
+SAI_VER_CODE := 0x0$(subst .,0,$(sai-ver))
+api-sai-dir := externals/sai/$(sai-ver)
+
+api-sai-external-include-built := $(INCLUDE_OUTPUT_DIR)/sai/.built-external-include
+api-sai-extra-include-built := $(INCLUDE_OUTPUT_DIR)/sai/.built-extra-include
+
+api-built := $(api-sai-include-built)
+
+config-files-dir := $(wildcard res/config/*)
+config-files-dir-copy := $(RES_OUTPUT_DIR)/config
+
+api-sai-gen-attr-info-file := $(OUTROOT)/$(BUILD_TYPE)/pylib/sai_gen_attr_info.py
+api-sai-obj-info-file := $(OUTROOT)/$(BUILD_TYPE)/pylib/sai_obj_info.py
+
+$(api-sai-gen-attr-info-file): test/python/sai_gen_attr_info.py_$(SAI_VER_SUFFIX)
+	@echo copying SAI sai_gen_attr_info.py version $(SAI_VER_SUFFIX) $(SAI_VER_CODE)
+	@$(MKDIR) -p $(OUTROOT)/$(BUILD_TYPE)/pylib/
+	@$(CP) $^ $@
+
+$(api-sai-obj-info-file): test/python/sai_obj_info.py_$(SAI_VER_SUFFIX)
+	@echo copying SAI sai_obj_info.py version $(SAI_VER_SUFFIX) $(SAI_VER_CODE)
+	@$(MKDIR) -p $(OUTROOT)/$(BUILD_TYPE)/pylib/
+	@$(CP) $^ $@
+
+
+# SAI external include files
+$(api-sai-external-include-built): SRC-DIR:=$(api-sai-dir)/inc
+$(api-sai-external-include-built): $(api-prereqs)
+	@echo copying external sai inc to $(INCLUDE_OUTPUT_DIR)/sai
+	@$(MKDIR) -p $(INCLUDE_OUTPUT_DIR)/sai
+	@$(CP) $(SRC-DIR)/*.h $(INCLUDE_OUTPUT_DIR)/sai/
+	@touch $@
+
+# SAI extra (proprietary) include files
+$(api-sai-extra-include-built): SRC-DIR:=include
+$(api-sai-extra-include-built): $(api-prereqs)
+	@echo copying extra sai inc to $(INCLUDE_OUTPUT_DIR)/sai
+	@$(MKDIR) -p $(INCLUDE_OUTPUT_DIR)/sai
+	@$(CP) $(SRC-DIR)/*.h $(INCLUDE_OUTPUT_DIR)/sai/
+	@touch $@
+	@echo copying config files to $(config-files-dir-copy)
+	@$(MKDIR) -p $(config-files-dir-copy)
+	@$(CP) -r $(config-files-dir) $(config-files-dir-copy)
+
+.PHONY: api-include
+api-include: $(api-sai-external-include-built) $(api-sai-extra-include-built) $(api-sai-gen-attr-info-file) $(api-sai-obj-info-file)
+
+.PHONY: api-include-clean
+
+api-include-clean:
+	@echo api clean
+	@$(RM) -rf $(INCLUDE_OUTPUT_DIR)
+	@$(RM) -f $(api-sai-auto-tostrings-file)
+	@$(RM) -f $(api-sai-auto-gen-attr-file)
+

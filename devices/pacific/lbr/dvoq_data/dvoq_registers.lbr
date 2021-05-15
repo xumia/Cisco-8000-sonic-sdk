@@ -1,0 +1,3045 @@
+$block{DVOQ} = {
+  Defines_db => "..\\..\\defines\\pd_fd_defines.v,..\\..\\defines\\control_common_defines.v,..\\..\\defines\\pacific_common_defines.v",
+  ProjectName => "Pacific",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "2",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+    SlaveInterruptsSummary => { #Structure Type: RegField;
+      Name => "SlaveInterruptsSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, SlaveInterrupts has asserted interrupt",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_1bErrInterrupt",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_2bErrInterrupt",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks ParityErrInterrupt",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "19",
+    Type => "Config",
+    PDM0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PDM0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PDM1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PDM1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PDM2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PDM2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PDM3Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PDM3Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PDM4Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PDM4Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PDM5Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PDM5Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PDM6Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PDM6Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PDM7Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PDM7Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PLM0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PLM0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PLM1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PLM1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PLM2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PLM2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PLM3Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PLM3Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PLM4Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PLM4Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PLM5Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PLM5Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PLM6Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PLM6Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PLM7Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PLM7Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    WPM_Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "WPM_Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "16",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    RRPM_Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "RRPM_Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "17",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    QSM_Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "QSM_Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "18",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "19",
+    Type => "Config",
+    PDM0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PDM0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PDM1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PDM1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PDM2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PDM2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PDM3Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PDM3Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PDM4Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PDM4Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PDM5Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PDM5Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PDM6Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PDM6Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PDM7Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PDM7Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PLM0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PLM0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PLM1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PLM1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PLM2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PLM2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PLM3Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PLM3Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PLM4Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PLM4Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PLM5Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PLM5Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PLM6Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PLM6Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PLM7Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PLM7Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    WPM_Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "WPM_Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "16",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    RRPM_Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "RRPM_Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "17",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    QSM_Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "QSM_Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "18",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "19",
+    Type => "Config",
+    PDM0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PDM0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PDM1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PDM1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PDM2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PDM2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PDM3Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PDM3Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PDM4Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PDM4Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PDM5Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PDM5Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PDM6Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PDM6Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PDM7Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PDM7Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PLM0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PLM0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PLM1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PLM1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PLM2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PLM2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PLM3Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PLM3Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PLM4Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PLM4Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PLM5Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PLM5Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PLM6Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PLM6Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PLM7Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PLM7Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    WPM_Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "WPM_Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "16",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    RRPM_Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "RRPM_Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "17",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    QSM_Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "QSM_Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "18",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "19",
+    Type => "Config",
+    PDM0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PDM0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PDM1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PDM1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PDM2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PDM2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PDM3Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PDM3Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PDM4Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PDM4Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PDM5Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PDM5Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PDM6Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PDM6Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PDM7Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PDM7Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PLM0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PLM0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PLM1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PLM1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PLM2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PLM2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PLM3Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PLM3Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PLM4Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PLM4Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PLM5Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PLM5Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PLM6Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PLM6Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PLM7Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PLM7Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    WPM_Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "WPM_Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "16",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    RRPM_Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "RRPM_Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "17",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    QSM_Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "QSM_Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "18",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectErrStatus",
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "19",
+    Type => "ReadOnly",
+    PDM0ErrInt => { #Structure Type: RegField;
+      Name => "PDM0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PDM1ErrInt => { #Structure Type: RegField;
+      Name => "PDM1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "1",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PDM2ErrInt => { #Structure Type: RegField;
+      Name => "PDM2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "2",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PDM3ErrInt => { #Structure Type: RegField;
+      Name => "PDM3ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "3",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PDM4ErrInt => { #Structure Type: RegField;
+      Name => "PDM4ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "4",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PDM5ErrInt => { #Structure Type: RegField;
+      Name => "PDM5ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "5",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PDM6ErrInt => { #Structure Type: RegField;
+      Name => "PDM6ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "6",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PDM7ErrInt => { #Structure Type: RegField;
+      Name => "PDM7ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "7",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PLM0ErrInt => { #Structure Type: RegField;
+      Name => "PLM0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "8",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PLM1ErrInt => { #Structure Type: RegField;
+      Name => "PLM1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "9",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PLM2ErrInt => { #Structure Type: RegField;
+      Name => "PLM2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "10",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PLM3ErrInt => { #Structure Type: RegField;
+      Name => "PLM3ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "11",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PLM4ErrInt => { #Structure Type: RegField;
+      Name => "PLM4ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "12",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PLM5ErrInt => { #Structure Type: RegField;
+      Name => "PLM5ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "13",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PLM6ErrInt => { #Structure Type: RegField;
+      Name => "PLM6ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "14",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PLM7ErrInt => { #Structure Type: RegField;
+      Name => "PLM7ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "15",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    WPM_ErrInt => { #Structure Type: RegField;
+      Name => "WPM_ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "16",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    RRPM_ErrInt => { #Structure Type: RegField;
+      Name => "RRPM_ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "17",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    QSM_ErrInt => { #Structure Type: RegField;
+      Name => "QSM_ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "18",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    Name => "SelectedSerErrorInfo",
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "17",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      Name => "MemErrAddr",
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "15",
+      Position => "14:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      Name => "MemErrType",
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "16:15",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SerErrorDebugConfiguration",
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "6",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      Name => "ErroneousMemorySelector",
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "5",
+      Position => "4:0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      Name => "ResetMemoryErrors",
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrDebug",
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_1bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrDebug",
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_2bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  MbistPassStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistPassStatus",
+    RegMem => "Reg",
+    Address => "39",
+    Description => "MBIST pass status",
+    Width => "386",
+    Type => "ReadOnly",
+    BistDonePassOut => { #Structure Type: RegField;
+      Name => "BistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST passed",
+      Width => "386",
+      Position => "385:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+  MbistFailStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistFailStatus",
+    RegMem => "Reg",
+    Address => "3A",
+    Description => "MBIST fail status",
+    Width => "386",
+    Type => "ReadOnly",
+    BistDoneFailOut => { #Structure Type: RegField;
+      Name => "BistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST failed",
+      Width => "386",
+      Position => "385:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DefaultValue => "b0",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "3", # Excel Formula: =calc_reg_width(E25:E27,F27)
+    Type => "Config",
+    CoreBistRprMode => { #Structure Type: RegField;
+      Name => "CoreBistRprMode",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistRun => { #Structure Type: RegField;
+      Name => "CoreBistRun",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistPtrnFill => { #Structure Type: RegField;
+      Name => "CoreBistPtrnFill",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E29:E29,F29)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C28,A28,G28)
+    Description => "Power Down Configuration for the block",
+    Width => "128", # Excel Formula: =calc_reg_width(E31:E31,F31)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C30,A30,G30)
+    Width => "39", # Excel Formula: =calc_reg_width(E33:E37,F37)
+    Type => "Config",
+    PmroExecute => { #Structure Type: RegField;
+      Name => "PmroExecute",
+      RegMem => "RegField",
+      Description => "0->1: execute pmro command.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F32,E33,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroCmd => { #Structure Type: RegField;
+      Name => "PmroCmd",
+      RegMem => "RegField",
+      Description => "Pmro command to execute:
+0: reset.
+1: write.
+2: read.
+3: invalid.",
+      Width => "2",
+      Position => "2:1", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroSbusReset => { #Structure Type: RegField;
+      Name => "PmroSbusReset",
+      RegMem => "RegField",
+      Description => "Reset pmro sbus chain. Need to set to 0 before starting access to pmro registers.",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroAddr => { #Structure Type: RegField;
+      Name => "PmroAddr",
+      RegMem => "RegField",
+      Description => "PMRO register address:
+0 - control register, 8b, def: 0x0.
+1 - SVT Configuration Register, 16b, def: 0xFFFF.
+2 - LVT Configuration Register, 16b, def: 0xFFFF.
+3 - ULVT Configuration Register, 16b, def: 0xFFFF.
+4 - Interconnect Configuration Register, 16b, def: 0xFFFF.
+5 - Reference Clock Counter Register, 24b, def: 0xFFF000.
+6 - Oscillator Counter Register, 24b, def: 0x000000.
+7 - SBus ID register, read as 0x0B.
+Set to '0' on reset command.",
+      Width => "3",
+      Position => "6:4", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroData => { #Structure Type: RegField;
+      Name => "PmroData",
+      RegMem => "RegField",
+      Description => "PMRO data, set to 0x0 on reset and read command.",
+      Width => "32",
+      Position => "38:7", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C32,A32,G32)
+    Width => "34", # Excel Formula: =calc_reg_width(E39:E41,F41)
+    Type => "ReadOnly",
+    PmroRdata => { #Structure Type: RegField;
+      Name => "PmroRdata",
+      RegMem => "RegField",
+      Description => "Read data from pmro. Valid when PmroFinish=1 and PmroFailed=0.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F38,E39,TRUE)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFailed => { #Structure Type: RegField;
+      Name => "PmroFailed",
+      RegMem => "RegField",
+      Description => "Pmro command failed. Valid only when PmroFinish=1.",
+      Width => "1",
+      Position => "32", # Excel Formula: =calc_position(F39,E40)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFinish => { #Structure Type: RegField;
+      Name => "PmroFinish",
+      RegMem => "RegField",
+      Description => "Pmro command finished.",
+      Width => "1",
+      Position => "33", # Excel Formula: =calc_position(F40,E41)
+      Type => "Event",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C38,A38,G38)
+    Description => "aaa",
+    Width => "11", # Excel Formula: =calc_reg_width(E43:E44,F44)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F42,E43,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C42,A42,G42)
+    Description => "aaa",
+    Width => "32", # Excel Formula: =calc_reg_width(E46:E46,F46)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C45,A45,G45)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E48:E48,F48)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F47,E48,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  SlaveInterrupts => { #Structure Type: Reg;
+    Name => "SlaveInterrupts",
+    RegMem => "Reg",
+    Address => "100",
+    Description => "Slave summary summation register",
+    Width => "2", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Interrupt",
+    hmc_cgm => { #Structure Type: RegField;
+      Name => "hmc_cgm",
+      RegMem => "RegField",
+      Description => "hmc cgm summary bit",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Interrupt",
+      UsedBy => "hmc_cgm",
+    },
+    dics => { #Structure Type: RegField;
+      Name => "dics",
+      RegMem => "RegField",
+      Description => "dics summary bit",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Interrupt",
+      UsedBy => "dics",
+    },
+  },
+  SlaveInterruptsMask => { #Structure Type: Reg; Skip Register;
+    Name => "SlaveInterruptsMask",
+    RegMem => "Reg",
+    Address => "101",
+    Description => "This register masks SlaveInterrupts interrupt register",
+    Width => "2", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "InterruptMask",
+    hmc_cgmMask => { #Structure Type: RegField;
+      Name => "hmc_cgmMask",
+      RegMem => "RegField",
+      Description => "This field masks hmc_cgm interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    dicsMask => { #Structure Type: RegField;
+      Name => "dicsMask",
+      RegMem => "RegField",
+      Description => "This field masks dics interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  SlaveInterruptsTest => { #Structure Type: Reg; Skip Register;
+    Name => "SlaveInterruptsTest",
+    RegMem => "Reg",
+    Address => "102",
+    Description => "This register tests SlaveInterrupts interrupt register",
+    Width => "2", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "InterruptTest",
+    hmc_cgmTest => { #Structure Type: RegField;
+      Name => "hmc_cgmTest",
+      RegMem => "RegField",
+      Description => "This field tests hmc_cgm interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    dicsTest => { #Structure Type: RegField;
+      Name => "dicsTest",
+      RegMem => "RegField",
+      Description => "This field tests dics interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  InitActive => { #Structure Type: Reg;
+    Name => "InitActive",
+    RegMem => "Reg",
+    Address => "103", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Mem Init Register
+Design isn't ready until this register reads 0 ",
+    Width => "4", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "ReadOnly",
+    MemInitActive => { #Structure Type: RegField;
+      Name => "MemInitActive",
+      RegMem => "RegField",
+      Description => "MemInitMachine is active",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "Status",
+      UsedBy => "DVOQ",
+    },
+  },
+  UsedBytesConfigRegister => { #Structure Type: Reg;
+    Name => "UsedBytesConfigRegister",
+    RegMem => "Reg",
+    Address => "104", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Decoding UsedBytes field in Buffer Descriptor",
+    Width => "28", # Excel Formula: =calc_reg_width(E13:E14,F14)
+    Type => "Config",
+    SizeWhenHalf => { #Structure Type: RegField;
+      Name => "SizeWhenHalf",
+      RegMem => "RegField",
+      Description => "Size when UsedBytes is 2 (i.e. half buffer)",
+      Width => "14",
+      Position => "13:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "DVOQ",
+      DefaultValue => "d2048",
+    },
+    SizeWhenFull => { #Structure Type: RegField;
+      Name => "SizeWhenFull",
+      RegMem => "RegField",
+      Description => "Size when UsedBytes is 0 or 1 (i.e. full buffer)",
+      Width => "14",
+      Position => "27:14", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "DVOQ",
+      DefaultValue => "d4096",
+    },
+  },
+  EncapCompensationConfigRegister => { #Structure Type: Reg;
+    Name => "EncapCompensationConfigRegister",
+    RegMem => "Reg",
+    Address => "105", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Encapsulation Compensation configurations.
+Values are signed numbers, Must be set from most negative to most positive.
+When a dram buffer descriptor arrives with packets that require encapsulation compensation the compensation is accumulated per dram context.
+Compensation can be negative or positive.
+Once the accumulated value is negative enough or positive enough we compensate for it with the closest quantization value.
+The fields of this register define the quantization levels of the accumulated compensation value.",
+    Width => "99", # Excel Formula: =calc_reg_width(E16:E23,F23)
+    Type => "Config",
+    QuantizationConfigValue1 => { #Structure Type: RegField;
+      Name => "QuantizationConfigValue1",
+      RegMem => "RegField",
+      Description => "Config Value to be used when encoding the Encapsulation Compensation in the Dram Buffer descriptor
+Most negative compensation Value
+Default: Negative 2048",
+      Width => "14",
+      Position => "13:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "Config",
+      UsedBy => "DVOQ",
+      DefaultValue => "b11100000000000",
+    },
+    QuantizationConfigValue2 => { #Structure Type: RegField;
+      Name => "QuantizationConfigValue2",
+      RegMem => "RegField",
+      Description => "Config Value to be used when encoding the Encapsulation Compensation in the Dram Buffer descriptor
+Second Most negative compensation value
+Default: Negative 1024",
+      Width => "14",
+      Position => "27:14", # Excel Formula: =calc_position(F16,E17)
+      Type => "Config",
+      UsedBy => "DVOQ",
+      DefaultValue => "b11110000000000",
+    },
+    QuantizationConfigValue3 => { #Structure Type: RegField;
+      Name => "QuantizationConfigValue3",
+      RegMem => "RegField",
+      Description => "Config Value to be used when encoding the Encapsulation Compensation in the Dram Buffer descriptor
+Third most negative compensation value
+Default: Negative 512",
+      Width => "14",
+      Position => "41:28", # Excel Formula: =calc_position(F17,E18)
+      Type => "Config",
+      UsedBy => "DVOQ",
+      DefaultValue => "b11111000000000",
+    },
+    QuantizationConfigValue4 => { #Structure Type: RegField;
+      Name => "QuantizationConfigValue4",
+      RegMem => "RegField",
+      Description => "Config Value to be used when encoding the Encapsulation Compensation in the Dram Buffer descriptor",
+      Width => "14",
+      Position => "55:42", # Excel Formula: =calc_position(F18,E19)
+      Type => "Config",
+      UsedBy => "DVOQ",
+      DefaultValue => "d256",
+    },
+    QuantizationConfigValue5 => { #Structure Type: RegField;
+      Name => "QuantizationConfigValue5",
+      RegMem => "RegField",
+      Description => "Config Value to be used when encoding the Encapsulation Compensation in the Dram Buffer descriptor",
+      Width => "14",
+      Position => "69:56", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "DVOQ",
+      DefaultValue => "d512",
+    },
+    QuantizationConfigValue6 => { #Structure Type: RegField;
+      Name => "QuantizationConfigValue6",
+      RegMem => "RegField",
+      Description => "Config Value to be used when encoding the Encapsulation Compensation in the Dram Buffer descriptor",
+      Width => "14",
+      Position => "83:70", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "DVOQ",
+      DefaultValue => "d1024",
+    },
+    QuantizationConfigValue7 => { #Structure Type: RegField;
+      Name => "QuantizationConfigValue7",
+      RegMem => "RegField",
+      Description => "Config Value to be used when encoding the Encapsulation Compensation in the Dram Buffer descriptor",
+      Width => "14",
+      Position => "97:84", # Excel Formula: =calc_position(F21,E22)
+      Type => "Config",
+      UsedBy => "DVOQ",
+      DefaultValue => "d2048",
+    },
+    QuantizationConfigEnable => { #Structure Type: RegField;
+      Name => "QuantizationConfigEnable",
+      RegMem => "RegField",
+      Description => "Enable the Compensation feature.",
+      Width => "1",
+      Position => "98", # Excel Formula: =calc_position(F22,E23)
+      Type => "Config",
+      UsedBy => "DVOQ",
+      DefaultValue => "d1",
+    },
+  },
+  DebugPdFieldValueCfg => { #Structure Type: Reg;
+    Name => "DebugPdFieldValueCfg",
+    RegMem => "Reg",
+    Address => "106", # Excel Formula: =calc_reg_address(C15,A15,G15)
+    Description => "PD debugger",
+    Width => "76", # Excel Formula: =calc_reg_width(E25:E25,F25)
+    Type => "Config",
+    DebugPdFieldValue => { #Structure Type: RegField;
+      Name => "DebugPdFieldValue",
+      RegMem => "RegField",
+      Description => "Match value of PD field to account
+packed as :
+12 - dram_context
+20 - buff_idx,
+5 - num_sops,
+12 - comp_size,
+13 - used_bytes,
+14 - pkt_size_bytes_for_dbg",
+      Width => "76", # Excel Formula: =calc_field_width_define("DRAM_CONTEXT_WIDTH") + calc_field_width_define("DVOQ_USED_BYTES_WIDTH") + calc_field_width_define("DVOQ_BUFF_IDX_WIDTH") + calc_field_width_define("DVOQ_SOPS_WIDTH") + calc_field_width_define("DVOQ_COMP_SIZE_WIDTH")+calc_field_width_define("PKT_SIZE_WIDTH")
+      Position => "75:0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "DBG",
+      DefaultValue => "b0",
+      Comments => "calc_field_width_define(MMU2DVOQ_DATA_WIDTH)+calc_field_width_define(PKT_SIZE_WIDTH)",
+    },
+  },
+  DebugPdFieldMaskCfg => { #Structure Type: Reg;
+    Name => "DebugPdFieldMaskCfg",
+    RegMem => "Reg",
+    Address => "107", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "PD debugger",
+    Width => "76", # Excel Formula: =calc_reg_width(E27:E27,F27)
+    Type => "Config",
+    DebugPdFieldMask => { #Structure Type: RegField;
+      Name => "DebugPdFieldMask",
+      RegMem => "RegField",
+      Description => "Mask of PD field to account",
+      Width => "76", # Excel Formula: =calc_field_width_define("DRAM_CONTEXT_WIDTH") + calc_field_width_define("DVOQ_USED_BYTES_WIDTH") + calc_field_width_define("DVOQ_BUFF_IDX_WIDTH") + calc_field_width_define("DVOQ_SOPS_WIDTH") + calc_field_width_define("DVOQ_COMP_SIZE_WIDTH")+calc_field_width_define("PKT_SIZE_WIDTH")
+      Position => "75:0", # Excel Formula: =calc_position(F26,E27,TRUE)
+      Type => "Config",
+      UsedBy => "DBG",
+      DefaultValue => "b0",
+      Comments => "calc_field_width_define(MMU2DVOQ_DATA_WIDTH)+calc_field_width_define(PKT_SIZE_WIDTH)",
+    },
+  },
+  DebugPdFieldStatus => { #Structure Type: Reg;
+    Name => "DebugPdFieldStatus",
+    RegMem => "Reg",
+    Address => "108", # Excel Formula: =calc_reg_address(C26,A26,G26)
+    Description => "PD debug counters",
+    Width => "96", # Excel Formula: =calc_reg_width(E29:E31,F31)
+    Type => "ReadOnly",
+    DebugPdFieldCnt => { #Structure Type: RegField;
+      Name => "DebugPdFieldCnt",
+      RegMem => "RegField",
+      Description => "Match filter counter",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Counter",
+      UsedBy => "DBG",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    DebugPdTotalPdCnt => { #Structure Type: RegField;
+      Name => "DebugPdTotalPdCnt",
+      RegMem => "RegField",
+      Description => "Total PDs counter",
+      Width => "32",
+      Position => "63:32", # Excel Formula: =calc_position(F29,E30)
+      Type => "Counter",
+      UsedBy => "DBG",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    DebugPdTotalByteCnt => { #Structure Type: RegField;
+      Name => "DebugPdTotalByteCnt",
+      RegMem => "RegField",
+      Description => "Total PD byte size counter",
+      Width => "32",
+      Position => "95:64", # Excel Formula: =calc_position(F30,E31)
+      Type => "Counter",
+      UsedBy => "DBG",
+      AdditionalInfo => "CounterIncrWidth=14",
+    },
+  },
+  PDM0 => { #Structure Type: Mem; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 4;
+    Name => "PDM[8]",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "Descriptor memory, entry per packet descriptor, initialization to 0 required. Write every en-queue command, read every read command, Single port memory",
+    Width => "92", # Excel Formula: =calc_mem_width(E33:E44,M32,F44,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "PacketDescriptorMemory",
+    MemEntries => "32768", # Excel Formula: =1024*1024/4/8
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SamplePhysicalMem=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=3,ReadActivityFactor=6,PortErrPropagate=Disabled",
+    ArrayLength => "8",
+    ArrayIndex => "0",
+    MemLogicalWidth => "84",
+    Num0ValidBytes0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes0",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "12:0", # Excel Formula: =calc_position(F32,E33,TRUE)
+    },
+    Num0OfSops0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops0",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "17:13", # Excel Formula: =calc_position(F33,E34)
+    },
+    Num0CompBytes0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes0",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "20:18", # Excel Formula: =calc_position(F34,E35)
+    },
+    Num0ValidBytes1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes1",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "33:21", # Excel Formula: =calc_position(F35,E36)
+    },
+    Num0OfSops1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops1",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "38:34", # Excel Formula: =calc_position(F36,E37)
+    },
+    Num0CompBytes1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes1",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "41:39", # Excel Formula: =calc_position(F37,E38)
+    },
+    Num0ValidBytes2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes2",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "54:42", # Excel Formula: =calc_position(F38,E39)
+    },
+    Num0OfSops2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops2",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "59:55", # Excel Formula: =calc_position(F39,E40)
+    },
+    Num0CompBytes2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes2",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "62:60", # Excel Formula: =calc_position(F40,E41)
+    },
+    Num0ValidBytes3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes3",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "75:63", # Excel Formula: =calc_position(F41,E42)
+    },
+    Num0OfSops3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops3",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "80:76", # Excel Formula: =calc_position(F42,E43)
+    },
+    Num0CompBytes3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes3",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "83:81", # Excel Formula: =calc_position(F43,E44)
+    },
+  },
+  PDM1 => { #Structure Type: Mem; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 4;
+    Name => "PDM[8]",
+    RegMem => "Mem",
+    Address => "200000",
+    Description => "Descriptor memory, entry per packet descriptor, initialization to 0 required. Write every en-queue command, read every read command, Single port memory",
+    Width => "92", # Excel Formula: =calc_mem_width(E33:E44,M32,F44,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "PacketDescriptorMemory",
+    MemEntries => "32768", # Excel Formula: =1024*1024/4/8
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SamplePhysicalMem=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=3,ReadActivityFactor=6,PortErrPropagate=Disabled",
+    ArrayLength => "8",
+    ArrayIndex => "1",
+    MemLogicalWidth => "84",
+    Num1ValidBytes0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes0",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "12:0", # Excel Formula: =calc_position(F32,E33,TRUE)
+    },
+    Num1OfSops0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops0",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "17:13", # Excel Formula: =calc_position(F33,E34)
+    },
+    Num1CompBytes0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes0",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "20:18", # Excel Formula: =calc_position(F34,E35)
+    },
+    Num1ValidBytes1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes1",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "33:21", # Excel Formula: =calc_position(F35,E36)
+    },
+    Num1OfSops1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops1",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "38:34", # Excel Formula: =calc_position(F36,E37)
+    },
+    Num1CompBytes1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes1",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "41:39", # Excel Formula: =calc_position(F37,E38)
+    },
+    Num1ValidBytes2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes2",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "54:42", # Excel Formula: =calc_position(F38,E39)
+    },
+    Num1OfSops2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops2",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "59:55", # Excel Formula: =calc_position(F39,E40)
+    },
+    Num1CompBytes2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes2",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "62:60", # Excel Formula: =calc_position(F40,E41)
+    },
+    Num1ValidBytes3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes3",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "75:63", # Excel Formula: =calc_position(F41,E42)
+    },
+    Num1OfSops3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops3",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "80:76", # Excel Formula: =calc_position(F42,E43)
+    },
+    Num1CompBytes3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes3",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "83:81", # Excel Formula: =calc_position(F43,E44)
+    },
+  },
+  PDM2 => { #Structure Type: Mem; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 4;
+    Name => "PDM[8]",
+    RegMem => "Mem",
+    Address => "300000",
+    Description => "Descriptor memory, entry per packet descriptor, initialization to 0 required. Write every en-queue command, read every read command, Single port memory",
+    Width => "92", # Excel Formula: =calc_mem_width(E33:E44,M32,F44,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "PacketDescriptorMemory",
+    MemEntries => "32768", # Excel Formula: =1024*1024/4/8
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SamplePhysicalMem=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=3,ReadActivityFactor=6,PortErrPropagate=Disabled",
+    ArrayLength => "8",
+    ArrayIndex => "2",
+    MemLogicalWidth => "84",
+    Num2ValidBytes0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes0",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "12:0", # Excel Formula: =calc_position(F32,E33,TRUE)
+    },
+    Num2OfSops0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops0",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "17:13", # Excel Formula: =calc_position(F33,E34)
+    },
+    Num2CompBytes0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes0",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "20:18", # Excel Formula: =calc_position(F34,E35)
+    },
+    Num2ValidBytes1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes1",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "33:21", # Excel Formula: =calc_position(F35,E36)
+    },
+    Num2OfSops1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops1",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "38:34", # Excel Formula: =calc_position(F36,E37)
+    },
+    Num2CompBytes1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes1",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "41:39", # Excel Formula: =calc_position(F37,E38)
+    },
+    Num2ValidBytes2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes2",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "54:42", # Excel Formula: =calc_position(F38,E39)
+    },
+    Num2OfSops2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops2",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "59:55", # Excel Formula: =calc_position(F39,E40)
+    },
+    Num2CompBytes2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes2",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "62:60", # Excel Formula: =calc_position(F40,E41)
+    },
+    Num2ValidBytes3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes3",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "75:63", # Excel Formula: =calc_position(F41,E42)
+    },
+    Num2OfSops3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops3",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "80:76", # Excel Formula: =calc_position(F42,E43)
+    },
+    Num2CompBytes3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes3",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "83:81", # Excel Formula: =calc_position(F43,E44)
+    },
+  },
+  PDM3 => { #Structure Type: Mem; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 4;
+    Name => "PDM[8]",
+    RegMem => "Mem",
+    Address => "400000",
+    Description => "Descriptor memory, entry per packet descriptor, initialization to 0 required. Write every en-queue command, read every read command, Single port memory",
+    Width => "92", # Excel Formula: =calc_mem_width(E33:E44,M32,F44,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "PacketDescriptorMemory",
+    MemEntries => "32768", # Excel Formula: =1024*1024/4/8
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SamplePhysicalMem=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=3,ReadActivityFactor=6,PortErrPropagate=Disabled",
+    ArrayLength => "8",
+    ArrayIndex => "3",
+    MemLogicalWidth => "84",
+    Num3ValidBytes0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes0",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "12:0", # Excel Formula: =calc_position(F32,E33,TRUE)
+    },
+    Num3OfSops0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops0",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "17:13", # Excel Formula: =calc_position(F33,E34)
+    },
+    Num3CompBytes0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes0",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "20:18", # Excel Formula: =calc_position(F34,E35)
+    },
+    Num3ValidBytes1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes1",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "33:21", # Excel Formula: =calc_position(F35,E36)
+    },
+    Num3OfSops1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops1",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "38:34", # Excel Formula: =calc_position(F36,E37)
+    },
+    Num3CompBytes1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes1",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "41:39", # Excel Formula: =calc_position(F37,E38)
+    },
+    Num3ValidBytes2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes2",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "54:42", # Excel Formula: =calc_position(F38,E39)
+    },
+    Num3OfSops2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops2",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "59:55", # Excel Formula: =calc_position(F39,E40)
+    },
+    Num3CompBytes2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes2",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "62:60", # Excel Formula: =calc_position(F40,E41)
+    },
+    Num3ValidBytes3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes3",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "75:63", # Excel Formula: =calc_position(F41,E42)
+    },
+    Num3OfSops3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops3",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "80:76", # Excel Formula: =calc_position(F42,E43)
+    },
+    Num3CompBytes3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes3",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "83:81", # Excel Formula: =calc_position(F43,E44)
+    },
+  },
+  PDM4 => { #Structure Type: Mem; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 4;
+    Name => "PDM[8]",
+    RegMem => "Mem",
+    Address => "500000",
+    Description => "Descriptor memory, entry per packet descriptor, initialization to 0 required. Write every en-queue command, read every read command, Single port memory",
+    Width => "92", # Excel Formula: =calc_mem_width(E33:E44,M32,F44,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "PacketDescriptorMemory",
+    MemEntries => "32768", # Excel Formula: =1024*1024/4/8
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SamplePhysicalMem=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=3,ReadActivityFactor=6,PortErrPropagate=Disabled",
+    ArrayLength => "8",
+    ArrayIndex => "4",
+    MemLogicalWidth => "84",
+    Num4ValidBytes0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes0",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "12:0", # Excel Formula: =calc_position(F32,E33,TRUE)
+    },
+    Num4OfSops0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops0",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "17:13", # Excel Formula: =calc_position(F33,E34)
+    },
+    Num4CompBytes0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes0",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "20:18", # Excel Formula: =calc_position(F34,E35)
+    },
+    Num4ValidBytes1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes1",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "33:21", # Excel Formula: =calc_position(F35,E36)
+    },
+    Num4OfSops1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops1",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "38:34", # Excel Formula: =calc_position(F36,E37)
+    },
+    Num4CompBytes1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes1",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "41:39", # Excel Formula: =calc_position(F37,E38)
+    },
+    Num4ValidBytes2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes2",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "54:42", # Excel Formula: =calc_position(F38,E39)
+    },
+    Num4OfSops2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops2",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "59:55", # Excel Formula: =calc_position(F39,E40)
+    },
+    Num4CompBytes2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes2",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "62:60", # Excel Formula: =calc_position(F40,E41)
+    },
+    Num4ValidBytes3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes3",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "75:63", # Excel Formula: =calc_position(F41,E42)
+    },
+    Num4OfSops3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops3",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "80:76", # Excel Formula: =calc_position(F42,E43)
+    },
+    Num4CompBytes3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes3",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "83:81", # Excel Formula: =calc_position(F43,E44)
+    },
+  },
+  PDM5 => { #Structure Type: Mem; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 4;
+    Name => "PDM[8]",
+    RegMem => "Mem",
+    Address => "600000",
+    Description => "Descriptor memory, entry per packet descriptor, initialization to 0 required. Write every en-queue command, read every read command, Single port memory",
+    Width => "92", # Excel Formula: =calc_mem_width(E33:E44,M32,F44,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "PacketDescriptorMemory",
+    MemEntries => "32768", # Excel Formula: =1024*1024/4/8
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SamplePhysicalMem=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=3,ReadActivityFactor=6,PortErrPropagate=Disabled",
+    ArrayLength => "8",
+    ArrayIndex => "5",
+    MemLogicalWidth => "84",
+    Num5ValidBytes0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes0",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "12:0", # Excel Formula: =calc_position(F32,E33,TRUE)
+    },
+    Num5OfSops0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops0",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "17:13", # Excel Formula: =calc_position(F33,E34)
+    },
+    Num5CompBytes0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes0",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "20:18", # Excel Formula: =calc_position(F34,E35)
+    },
+    Num5ValidBytes1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes1",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "33:21", # Excel Formula: =calc_position(F35,E36)
+    },
+    Num5OfSops1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops1",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "38:34", # Excel Formula: =calc_position(F36,E37)
+    },
+    Num5CompBytes1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes1",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "41:39", # Excel Formula: =calc_position(F37,E38)
+    },
+    Num5ValidBytes2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes2",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "54:42", # Excel Formula: =calc_position(F38,E39)
+    },
+    Num5OfSops2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops2",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "59:55", # Excel Formula: =calc_position(F39,E40)
+    },
+    Num5CompBytes2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes2",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "62:60", # Excel Formula: =calc_position(F40,E41)
+    },
+    Num5ValidBytes3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes3",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "75:63", # Excel Formula: =calc_position(F41,E42)
+    },
+    Num5OfSops3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops3",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "80:76", # Excel Formula: =calc_position(F42,E43)
+    },
+    Num5CompBytes3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes3",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "83:81", # Excel Formula: =calc_position(F43,E44)
+    },
+  },
+  PDM6 => { #Structure Type: Mem; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 4;
+    Name => "PDM[8]",
+    RegMem => "Mem",
+    Address => "700000",
+    Description => "Descriptor memory, entry per packet descriptor, initialization to 0 required. Write every en-queue command, read every read command, Single port memory",
+    Width => "92", # Excel Formula: =calc_mem_width(E33:E44,M32,F44,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "PacketDescriptorMemory",
+    MemEntries => "32768", # Excel Formula: =1024*1024/4/8
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SamplePhysicalMem=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=3,ReadActivityFactor=6,PortErrPropagate=Disabled",
+    ArrayLength => "8",
+    ArrayIndex => "6",
+    MemLogicalWidth => "84",
+    Num6ValidBytes0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes0",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "12:0", # Excel Formula: =calc_position(F32,E33,TRUE)
+    },
+    Num6OfSops0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops0",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "17:13", # Excel Formula: =calc_position(F33,E34)
+    },
+    Num6CompBytes0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes0",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "20:18", # Excel Formula: =calc_position(F34,E35)
+    },
+    Num6ValidBytes1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes1",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "33:21", # Excel Formula: =calc_position(F35,E36)
+    },
+    Num6OfSops1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops1",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "38:34", # Excel Formula: =calc_position(F36,E37)
+    },
+    Num6CompBytes1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes1",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "41:39", # Excel Formula: =calc_position(F37,E38)
+    },
+    Num6ValidBytes2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes2",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "54:42", # Excel Formula: =calc_position(F38,E39)
+    },
+    Num6OfSops2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops2",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "59:55", # Excel Formula: =calc_position(F39,E40)
+    },
+    Num6CompBytes2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes2",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "62:60", # Excel Formula: =calc_position(F40,E41)
+    },
+    Num6ValidBytes3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes3",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "75:63", # Excel Formula: =calc_position(F41,E42)
+    },
+    Num6OfSops3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops3",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "80:76", # Excel Formula: =calc_position(F42,E43)
+    },
+    Num6CompBytes3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes3",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "83:81", # Excel Formula: =calc_position(F43,E44)
+    },
+  },
+  PDM7 => { #Structure Type: Mem; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 4;
+    Name => "PDM[8]",
+    RegMem => "Mem",
+    Address => "800000",
+    Description => "Descriptor memory, entry per packet descriptor, initialization to 0 required. Write every en-queue command, read every read command, Single port memory",
+    Width => "92", # Excel Formula: =calc_mem_width(E33:E44,M32,F44,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "PacketDescriptorMemory",
+    MemEntries => "32768", # Excel Formula: =1024*1024/4/8
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SamplePhysicalMem=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=3,ReadActivityFactor=6,PortErrPropagate=Disabled",
+    ArrayLength => "8",
+    ArrayIndex => "7",
+    MemLogicalWidth => "84",
+    Num7ValidBytes0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes0",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "12:0", # Excel Formula: =calc_position(F32,E33,TRUE)
+    },
+    Num7OfSops0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops0",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "17:13", # Excel Formula: =calc_position(F33,E34)
+    },
+    Num7CompBytes0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes0",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "20:18", # Excel Formula: =calc_position(F34,E35)
+    },
+    Num7ValidBytes1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes1",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "33:21", # Excel Formula: =calc_position(F35,E36)
+    },
+    Num7OfSops1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops1",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "38:34", # Excel Formula: =calc_position(F36,E37)
+    },
+    Num7CompBytes1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes1",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "41:39", # Excel Formula: =calc_position(F37,E38)
+    },
+    Num7ValidBytes2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes2",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "54:42", # Excel Formula: =calc_position(F38,E39)
+    },
+    Num7OfSops2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops2",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "59:55", # Excel Formula: =calc_position(F39,E40)
+    },
+    Num7CompBytes2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes2",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "62:60", # Excel Formula: =calc_position(F40,E41)
+    },
+    Num7ValidBytes3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 4;
+      Name => "Num[n]ValidBytes3",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "75:63", # Excel Formula: =calc_position(F41,E42)
+    },
+    Num7OfSops3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 4;
+      Name => "Num[n]OfSops3",
+      RegMem => "MemField",
+      Width => "5",
+      Position => "80:76", # Excel Formula: =calc_position(F42,E43)
+    },
+    Num7CompBytes3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 4;
+      Name => "Num[n]CompBytes3",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "83:81", # Excel Formula: =calc_position(F43,E44)
+    },
+  },
+  PLM0 => { #Structure Type: Mem; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 4;
+    Name => "PLM[8]",
+    RegMem => "Mem",
+    Address => "900000", # Excel Formula: =calc_mem_address(C32,A32,G45,L45)
+    Description => "Packet Link Memory, entry per packet descriptor. initialization required.
+Write every en-queue command, read every read command, Single port memory.",
+    Width => "88", # Excel Formula: =calc_mem_width(E46:E49,M45,F49,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "PacketLinkMemory",
+    MemEntries => "32768", # Excel Formula: =1024*1024/4/8
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SamplePhysicalMem=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=3,ReadActivityFactor=6,PortErrPropagate=Disabled",
+    ArrayLength => "8",
+    ArrayIndex => "0",
+    MemLogicalWidth => "80",
+    Buffer0Address0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address0",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+    },
+    Buffer0Address1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address1",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F46,E47)
+    },
+    Buffer0Address2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address2",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F47,E48)
+    },
+    Buffer0Address3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address3",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F48,E49)
+    },
+  },
+  PLM1 => { #Structure Type: Mem; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 4;
+    Name => "PLM[8]",
+    RegMem => "Mem",
+    Address => "A00000",
+    Description => "Packet Link Memory, entry per packet descriptor. initialization required.
+Write every en-queue command, read every read command, Single port memory.",
+    Width => "88", # Excel Formula: =calc_mem_width(E46:E49,M45,F49,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "PacketLinkMemory",
+    MemEntries => "32768", # Excel Formula: =1024*1024/4/8
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SamplePhysicalMem=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=3,ReadActivityFactor=6,PortErrPropagate=Disabled",
+    ArrayLength => "8",
+    ArrayIndex => "1",
+    MemLogicalWidth => "80",
+    Buffer1Address0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address0",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+    },
+    Buffer1Address1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address1",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F46,E47)
+    },
+    Buffer1Address2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address2",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F47,E48)
+    },
+    Buffer1Address3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address3",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F48,E49)
+    },
+  },
+  PLM2 => { #Structure Type: Mem; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 4;
+    Name => "PLM[8]",
+    RegMem => "Mem",
+    Address => "B00000",
+    Description => "Packet Link Memory, entry per packet descriptor. initialization required.
+Write every en-queue command, read every read command, Single port memory.",
+    Width => "88", # Excel Formula: =calc_mem_width(E46:E49,M45,F49,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "PacketLinkMemory",
+    MemEntries => "32768", # Excel Formula: =1024*1024/4/8
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SamplePhysicalMem=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=3,ReadActivityFactor=6,PortErrPropagate=Disabled",
+    ArrayLength => "8",
+    ArrayIndex => "2",
+    MemLogicalWidth => "80",
+    Buffer2Address0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address0",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+    },
+    Buffer2Address1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address1",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F46,E47)
+    },
+    Buffer2Address2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address2",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F47,E48)
+    },
+    Buffer2Address3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address3",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F48,E49)
+    },
+  },
+  PLM3 => { #Structure Type: Mem; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 4;
+    Name => "PLM[8]",
+    RegMem => "Mem",
+    Address => "C00000",
+    Description => "Packet Link Memory, entry per packet descriptor. initialization required.
+Write every en-queue command, read every read command, Single port memory.",
+    Width => "88", # Excel Formula: =calc_mem_width(E46:E49,M45,F49,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "PacketLinkMemory",
+    MemEntries => "32768", # Excel Formula: =1024*1024/4/8
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SamplePhysicalMem=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=3,ReadActivityFactor=6,PortErrPropagate=Disabled",
+    ArrayLength => "8",
+    ArrayIndex => "3",
+    MemLogicalWidth => "80",
+    Buffer3Address0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address0",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+    },
+    Buffer3Address1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address1",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F46,E47)
+    },
+    Buffer3Address2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address2",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F47,E48)
+    },
+    Buffer3Address3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address3",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F48,E49)
+    },
+  },
+  PLM4 => { #Structure Type: Mem; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 4;
+    Name => "PLM[8]",
+    RegMem => "Mem",
+    Address => "D00000",
+    Description => "Packet Link Memory, entry per packet descriptor. initialization required.
+Write every en-queue command, read every read command, Single port memory.",
+    Width => "88", # Excel Formula: =calc_mem_width(E46:E49,M45,F49,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "PacketLinkMemory",
+    MemEntries => "32768", # Excel Formula: =1024*1024/4/8
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SamplePhysicalMem=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=3,ReadActivityFactor=6,PortErrPropagate=Disabled",
+    ArrayLength => "8",
+    ArrayIndex => "4",
+    MemLogicalWidth => "80",
+    Buffer4Address0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address0",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+    },
+    Buffer4Address1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address1",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F46,E47)
+    },
+    Buffer4Address2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address2",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F47,E48)
+    },
+    Buffer4Address3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address3",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F48,E49)
+    },
+  },
+  PLM5 => { #Structure Type: Mem; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 4;
+    Name => "PLM[8]",
+    RegMem => "Mem",
+    Address => "E00000",
+    Description => "Packet Link Memory, entry per packet descriptor. initialization required.
+Write every en-queue command, read every read command, Single port memory.",
+    Width => "88", # Excel Formula: =calc_mem_width(E46:E49,M45,F49,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "PacketLinkMemory",
+    MemEntries => "32768", # Excel Formula: =1024*1024/4/8
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SamplePhysicalMem=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=3,ReadActivityFactor=6,PortErrPropagate=Disabled",
+    ArrayLength => "8",
+    ArrayIndex => "5",
+    MemLogicalWidth => "80",
+    Buffer5Address0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address0",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+    },
+    Buffer5Address1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address1",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F46,E47)
+    },
+    Buffer5Address2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address2",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F47,E48)
+    },
+    Buffer5Address3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address3",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F48,E49)
+    },
+  },
+  PLM6 => { #Structure Type: Mem; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 4;
+    Name => "PLM[8]",
+    RegMem => "Mem",
+    Address => "F00000",
+    Description => "Packet Link Memory, entry per packet descriptor. initialization required.
+Write every en-queue command, read every read command, Single port memory.",
+    Width => "88", # Excel Formula: =calc_mem_width(E46:E49,M45,F49,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "PacketLinkMemory",
+    MemEntries => "32768", # Excel Formula: =1024*1024/4/8
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SamplePhysicalMem=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=3,ReadActivityFactor=6,PortErrPropagate=Disabled",
+    ArrayLength => "8",
+    ArrayIndex => "6",
+    MemLogicalWidth => "80",
+    Buffer6Address0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address0",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+    },
+    Buffer6Address1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address1",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F46,E47)
+    },
+    Buffer6Address2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address2",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F47,E48)
+    },
+    Buffer6Address3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address3",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F48,E49)
+    },
+  },
+  PLM7 => { #Structure Type: Mem; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 4;
+    Name => "PLM[8]",
+    RegMem => "Mem",
+    Address => "1000000",
+    Description => "Packet Link Memory, entry per packet descriptor. initialization required.
+Write every en-queue command, read every read command, Single port memory.",
+    Width => "88", # Excel Formula: =calc_mem_width(E46:E49,M45,F49,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "PacketLinkMemory",
+    MemEntries => "32768", # Excel Formula: =1024*1024/4/8
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SamplePhysicalMem=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,CpuReadEccDisable=Enabled,SinglePortAsTwoPort=Enabled,WriteActivityFactor=3,ReadActivityFactor=6,PortErrPropagate=Disabled",
+    ArrayLength => "8",
+    ArrayIndex => "7",
+    MemLogicalWidth => "80",
+    Buffer7Address0 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address0",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+    },
+    Buffer7Address1 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address1",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F46,E47)
+    },
+    Buffer7Address2 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address2",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F47,E48)
+    },
+    Buffer7Address3 => { #Structure Type: MemField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 7;
+      Name => "Buffer[n]Address3",
+      RegMem => "MemField",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F48,E49)
+    },
+  },
+  WPM => { #Structure Type: Mem;
+    Name => "WPM",
+    RegMem => "Mem",
+    Address => "1100000", # Excel Formula: =calc_mem_address(C45,A45,G50,L50)
+    Description => "Write Pointer memory, entry per queue, no initilization required.  Read Modify Write every en-Queue command, Two Port memory.",
+    Width => "39", # Excel Formula: =calc_mem_width(E51:E52,M50,F52,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "WritePointerMemory",
+    MemEntries => "4096", # Excel Formula: =4*1024
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,CpuReadEccDisable=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=100,ReadActivityFactor=25,PortErrPropagate=Disabled",
+    MemLogicalWidth => "32",
+    WpmData => { #Structure Type: MemField;
+      Name => "WpmData",
+      RegMem => "MemField",
+      Description => "Head of Linked List for enqueue",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F50,E51,TRUE)
+    },
+    ResidueValue => { #Structure Type: MemField;
+      Name => "ResidueValue",
+      RegMem => "MemField",
+      Description => "Residue value for Compensation Calculation
+signed from -2047 to 2047",
+      Width => "12",
+      Position => "31:20", # Excel Formula: =calc_position(F51,E52)
+    },
+  },
+  RRPM => { #Structure Type: Mem;
+    Name => "RRPM",
+    RegMem => "Mem",
+    Address => "1200000", # Excel Formula: =calc_mem_address(C50,A50,G53,L53)
+    Description => "Read request pointer memory, entry per queue, each entry is initialized to the reserved invalid value 20'hfffff. Read Modify Write every read request command, also writen from enq pipe if queue is empty.  Two port memory. ",
+    Width => "26", # Excel Formula: =calc_mem_width(E54:E54,M53,F54,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "ReadRequestPointerMemory",
+    MemEntries => "4096", # Excel Formula: =4*1024
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,CpuReadEccDisable=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=100,ReadActivityFactor=25,PortErrPropagate=Disabled",
+    MemLogicalWidth => "20",
+    RrpmData => { #Structure Type: MemField;
+      Name => "RrpmData",
+      RegMem => "MemField",
+      Description => "Tail of Linked List for dequeue",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+    },
+  },
+  QSM => { #Structure Type: Mem;
+    Name => "QSM",
+    RegMem => "Mem",
+    Address => "1300000", # Excel Formula: =calc_mem_address(C53,A53,G55,L55)
+    Description => "Queue Size memory, entry per queue, size of the queue in buffers, bytes and buffers ending in eop. Initialized to zeros. Read Modify Write every en-queue and read command, Two port memory.",
+    Width => "76", # Excel Formula: =calc_mem_width(E56:E58,M55,F58,-1)
+    Type => "Dynamic",
+    UsedBy => "DVOQ",
+    DocName => "QueueSizeMemory",
+    MemEntries => "4096", # Excel Formula: =4*1024
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,CpuReadEccDisable=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=100,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "68",
+    DCM => { #Structure Type: MemField;
+      Name => "DCM",
+      RegMem => "MemField",
+      Description => "Queue size in Buffers",
+      Width => "19",
+      Position => "18:0", # Excel Formula: =calc_position(F55,E56,TRUE)
+      DocName => "QsizeBuff",
+    },
+    QsizeBytes => { #Structure Type: MemField;
+      Name => "QsizeBytes",
+      RegMem => "MemField",
+      Description => "Queue size in Bytes",
+      Width => "30",
+      Position => "48:19", # Excel Formula: =calc_position(F56,E57)
+    },
+    QsizeEob => { #Structure Type: MemField;
+      Name => "QsizeEob",
+      RegMem => "MemField",
+      Description => "Queue size in Buffers that end with EndOfPacket indication",
+      Width => "19",
+      Position => "67:49", # Excel Formula: =calc_position(F57,E58)
+    },
+  },
+};

@@ -1,0 +1,111 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "npl_compile",
+            "label": "Compile pacific",
+            "python": "docker run -v /Users:/Users --tmpfs ~/volatile -it python",
+            "nplc": "${config:npl.Npsuite.binDirectory}/nplc.py",
+            "nplSource": "/Users/skondave/leaba/np2_npl_pd/sdk/npl/cisco_router",
+            "leabaDefined": "/Users/skondave/leaba/np2_npl_pd/sdk/devices/pacific/leaba_defined",
+            "output": "/Users/skondave/leaba/np2_npl_pd/output/pacific",
+            "dumpParsedItems": true,
+            "prettyFinalMessage": true,
+            "args": [
+                "--gen-python-api-files",
+                "--dump-hw-oriented-representation",
+                "--dump-parsed-items",
+                "--gen-traps-report",
+                "--gen-av-files"
+            ],
+            "overSSH": false,
+            "problemMatcher": []
+        },
+        {
+            "type": "npl_compile",
+            "label": "Compile gibraltar",
+            "python": "docker run -v /Users:/Users --tmpfs ~/volatile -it python",
+            "nplc": "${config:npl.Npsuite.binDirectory}/nplc.py",
+            "nplSource": "/Users/skondave/leaba/np2_npl_pd/sdk/npl/cisco_router",
+            "leabaDefined": "/Users/skondave/leaba/np2_npl_pd/sdk/devices/gibraltar/leaba_defined",
+            "output": "/Users/skondave/leaba/np2_npl_pd/output/gibraltar",
+            "dumpParsedItems": true,
+            "prettyFinalMessage": true,
+            "args": [
+                "--gen-python-api-files",
+                "--dump-hw-oriented-representation",
+                "--dump-parsed-items",
+                "--gen-traps-report",
+                "--gen-av-files"
+            ],
+            "overSSH": false,
+            "problemMatcher": []
+        },
+        {
+            "type": "npl_compile",
+            "label": "Compile palladium",
+            "python": "docker run -v /Users:/Users --tmpfs ~/volatile -it python",
+            "nplc": "${config:npl.Npsuite.binDirectory}/nplc.py",
+            "nplSource": "/Users/skondave/leaba/np2_npl_pd/sdk/npl/cisco_router",
+            "leabaDefined": "/Users/skondave/leaba/np2_npl_pd/sdk/devices/akpg/palladium/leaba_defined",
+            "output": "/Users/skondave/leaba/np2_npl_pd/output/palladium",
+            "dumpParsedItems": true,
+            "prettyFinalMessage": true,
+            "args": [
+                "--gen-python-api-files",
+                "--dump-hw-oriented-representation",
+                "--dump-parsed-items",
+                "--gen-traps-report",
+                "--gen-av-files"
+            ],
+            "overSSH": false,
+            "problemMatcher": []
+        },
+        {
+            "type": "npl_compile",
+            "label": "Compile graphene",
+            "python": "docker run -v /Users:/Users --tmpfs ~/volatile -it python",
+            "nplc": "${config:npl.Npsuite.binDirectory}/nplc.py",
+            "nplSource": "/Users/skondave/leaba/np2_npl_pd/sdk/npl/cisco_router",
+            "leabaDefined": "/Users/skondave/leaba/np2_npl_pd/sdk/devices/akpg/graphene/leaba_defined",
+            "output": "/Users/skondave/leaba/np2_npl_pd/output/graphene",
+            "dumpParsedItems": true,
+            "prettyFinalMessage": true,
+            "args": [
+                "--gen-python-api-files",
+                "--dump-hw-oriented-representation",
+                "--dump-parsed-items",
+                "--gen-traps-report",
+                "--gen-av-files"
+            ],
+            "overSSH": false,
+            "problemMatcher": []
+        },
+        {
+            "label": "Format",
+            "type": "shell",
+            "command": "make -j32 apply-format",
+            "options": {
+                "cwd": "../../"
+            },
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "make -C pacific clean",
+            "options": {
+                "cwd": "../../driver"
+            },
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        }
+    ]
+}

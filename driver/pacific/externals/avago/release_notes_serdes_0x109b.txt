@@ -1,0 +1,42 @@
+Avago Serdes 0x109b Release Notes	
+
+0x109B_208D: (Released ~March 2019)
+1	Added support for link training to request pre-code from remote TX.
+	PAM4 with precoding modulation can be enabled using: 
+	Int 0x3D, Data 0x2400
+2	Fix the issue causing Link Training timeout timer in 64G FC mode to be 
+	modified by firmware when link training is repeated
+3	Update to maintain unused DVOS in NRZ mode at 0
+4	Fix to support low impedence mode using the documented control, int 0x2B
+5	Addressed issue that cause CDR to not lock
+6	Ignore TC=1 flag during FC ASN
+7	Fix the issue causing long time to disable receiver if pCal was enabled
+
+0x109B_208D_003 	
+-	lowers delta_cal_fail threshold from 10 to 4. 
+-	Fix for precoding bug in PMD link training
+
+0x109B_208D_004 	
+-	increase delta_cal_fail threshold from 4 to 10 (undoes changes 
+	implemented in _003)
+-	Reset RX verniers at the beginning of calibration. This fixes an issue 
+	in which iCals being done after a forced RX PLL recalibration would 
+	cause a degraded BER
+
+0x109B_208D_005	
+-	Fixed DVOS sign issue which caused BER bursts when HF changes during 
+	pCal
+
+0x109B_208D_006	
+-	Introduce NRZ max eye size code
+
+0x109B_208D_0A5	
+-	lowers delta_cal_fail threshold from 10 to 4 (again)
+-	Added NRZ max eye size config parameter
+-	Change max LF during iCal bootstrap to 4 when in NRZ mode
+
+0x109B_208D_0A6	
+-	When vernier tuning fails, clear the current failed calibration value
+
+0x109B_208D_0A7	
+-	When vernier tuning fails, clear ALL vernier calibration values

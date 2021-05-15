@@ -1,0 +1,16 @@
+--langdef=npl
+--langmap=npl:.npl
+--regex-npl=/^[ \t]*header_type[ \t]+([A-Za-z0-9_]+)/\1/h,header type/
+--regex-npl=/^[ \t]*union[ \t]+([A-Za-z0-9_]+)/\1/u,union/
+--regex-npl=/^[ \t]*([A-Za-z0-9_]+)[ \t]*(\[[0-9]*\])?[ \t]*:[ \t]*[A-Za-z0-9_]+/\1/f,field/
+--regex-npl=/^[ \t]*enum_type[ \t]+([A-Za-z0-9_]+)/\1/e,enum type/
+--regex-npl=/^[ \t]*([A-Za-z0-9_]+)[ \t]*;/\1/V,enum value/
+--regex-npl=/^[ \t]*([A-Za-z0-9_]+)[ \t]*=/\1/V,enum value/
+--regex-npl=/^[ \t]*constant[ \t]+([A-Za-z0-9_]+)/\1/C,constant/
+--regex-npl=/^[ \t]*metadata[ \t]+[A-Za-z0-9_]+[ \t]+([A-Za-z0-9_]+)/\1/m,metadata/
+--regex-npl=/^[ \t]*control[ \t]+([A-Za-z0-9_]+)/\1/c,control/
+--regex-npl=/^[ \t]*ene_control[ \t]+([A-Za-z0-9_]+)/\1/n,ene control/
+--regex-npl=/^[ \t]*table[ \t]+([A-Za-z0-9_]+)/\1/t,table/
+--regex-npl=/^[ \t]*([A-Za-z0-9_]+)[ \t]*\(.*\)[ \t]*\{/\1/a,action/
+--regex-npl=/^[ \t]*action[ \t]+([A-Za-z0-9_]+)[ \t]*\(.*\)[ \t]*\{/\1/a,action/
+--regex-npl=/^[ \t]*hardwired[ \t]+([A-Za-z0-9_]+)[ \t]*\(.*\)[ \t]*;/\1/H,hardwired/

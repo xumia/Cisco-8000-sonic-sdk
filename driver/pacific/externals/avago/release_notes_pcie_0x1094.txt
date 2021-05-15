@@ -1,0 +1,14 @@
+FW: X1094_2447 - Release Date: 9/27/2018
+Known issues
+o   No known issues
+
+Updates
+o   Ensure Frequency lock counter remains enabled when TX is enabled
+o   Added EI debounce for MACs that incorrectly latch rxelecidle to drive rxstanby: Gen1-3
+o   Tx PLL gain table change to increase several gain settings in Tx PLL gain table to improve Gen2 PLL BW compliance
+o   Fixed deadlock with MAC and SerDes EID. 
+    Skip set of EID indication if rate change occurs while in a Power-Down state, however turn EID indication ON if 
+    initial boot of the SerDes in a Power-Down state, however turn EID indication ON if initial boot of the SerDes
+o   Fix to termination TERM_PD control in P1/P2 sleep modes.
+o   Fixed EID calibration corner cases to improve yield
+

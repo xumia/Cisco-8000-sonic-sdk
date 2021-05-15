@@ -1,0 +1,35 @@
+{
+    "loopback_ports":
+    [
+        {
+            "slice": [0,1,2,3,4,5],
+            "ifg": [0,1],
+            "serdes": [ 0, 8],
+            "serdes_count": 8,
+            "speed": 400,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops": 1
+        },
+        {
+            "slice": [0,1,3,5],
+            "ifg": [0],
+            "serdes": [ 16],
+            "serdes_count": 8,
+            "speed": 400,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops": 1
+        },
+        {
+            "slice": [0,2,4,5],
+            "ifg": [1],
+            "serdes": [ 16],
+            "serdes_count": 8,
+            "speed": 400,
+            "fc": "NONE",
+            "fec": "RS_KP4",
+            "p2p_loops": 1
+        }
+    ]
+}

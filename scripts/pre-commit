@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# check if no need to perform format cheking. 
+if [ -n "${SKIP_FORMAT_CHECKING+x}" ]; then exit 0; fi 
+
+# need to add these tools to PATH for formatting
+type -P python3 &>/dev/null      || ( echo "Error: can't find python3 in path"      && exit 255 )
+type -P git &>/dev/null          || ( echo "Error: can't find git in path"          && exit 255 )
+type -P clang-format &>/dev/null || ( echo "Error: can't find clang-format in path" && exit 255 )
+
+# change leaba_format mode to actually reformat. notice that if enabled than the commited files will not be formatted as they need to be staged.
+# usecase is to run script with formatting before commitr VERIFY_ONLY="" pre-commit
+if [ -z ${VERIFY_ONLY+x} ]; then VERIFY_ONLY="--verify-only"; fi
+
+export PYTHON_BIN=$(type -P python3)
+
+REPO=$( git rev-parse --show-toplevel )
+VERIFY_TEMP=$( mktemp -d )
+
+stat=0
+for f in $( git diff --cached --name-only --diff-filter=AM ); do
+  ${PYTHON_BIN} ${REPO}/scripts/leaba_format.py -t ${VERIFY_TEMP} -f ${REPO}/$f -l ${REPO}/scripts/notice.txt ${VERIFY_ONLY}
+  if [ $? != "0" ]; then stat=1; fi
+done
+rm -rf ${VERIFY_TEMP}
+
+# suggest to suppress format checking on format failure
+if [ $stat = "1" ]; then echo "define SKIP_FORMAT_CHECKING env variable to supress format checking on commit or run VERIFY_ONLY='' scripts/pre-commit to format the files"; fi
+
+exit $stat

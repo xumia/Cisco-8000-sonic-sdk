@@ -1,0 +1,1511 @@
+$block{FTE} = {
+  Defines_db => "Z:\\moriah\\trunk\\Moriah\\ASIC\\design\\fte\\verilog\\fte_defines.v",
+  ProjectName => "Pacific",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "2",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+    FteInterruptRegSummary => { #Structure Type: RegField;
+      Name => "FteInterruptRegSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, FteInterruptReg has asserted interrupt",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_1bErrInterrupt",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_2bErrInterrupt",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks ParityErrInterrupt",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DefaultValue => "b0",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "3", # Excel Formula: =calc_reg_width(E25:E27,F27)
+    Type => "Config",
+    CoreBistRprMode => { #Structure Type: RegField;
+      Name => "CoreBistRprMode",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistRun => { #Structure Type: RegField;
+      Name => "CoreBistRun",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistPtrnFill => { #Structure Type: RegField;
+      Name => "CoreBistPtrnFill",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E29:E29,F29)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C28,A28,G28)
+    Description => "Power Down Configuration for the block",
+    Width => "128", # Excel Formula: =calc_reg_width(E31:E31,F31)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C30,A30,G30)
+    Width => "39", # Excel Formula: =calc_reg_width(E33:E37,F37)
+    Type => "Config",
+    PmroExecute => { #Structure Type: RegField;
+      Name => "PmroExecute",
+      RegMem => "RegField",
+      Description => "0->1: execute pmro command.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F32,E33,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroCmd => { #Structure Type: RegField;
+      Name => "PmroCmd",
+      RegMem => "RegField",
+      Description => "Pmro command to execute:
+0: reset.
+1: write.
+2: read.
+3: invalid.",
+      Width => "2",
+      Position => "2:1", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroSbusReset => { #Structure Type: RegField;
+      Name => "PmroSbusReset",
+      RegMem => "RegField",
+      Description => "Reset pmro sbus chain. Need to set to 0 before starting access to pmro registers.",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroAddr => { #Structure Type: RegField;
+      Name => "PmroAddr",
+      RegMem => "RegField",
+      Description => "PMRO register address:
+0 - control register, 8b, def: 0x0.
+1 - SVT Configuration Register, 16b, def: 0xFFFF.
+2 - LVT Configuration Register, 16b, def: 0xFFFF.
+3 - ULVT Configuration Register, 16b, def: 0xFFFF.
+4 - Interconnect Configuration Register, 16b, def: 0xFFFF.
+5 - Reference Clock Counter Register, 24b, def: 0xFFF000.
+6 - Oscillator Counter Register, 24b, def: 0x000000.
+7 - SBus ID register, read as 0x0B.
+Set to '0' on reset command.",
+      Width => "3",
+      Position => "6:4", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroData => { #Structure Type: RegField;
+      Name => "PmroData",
+      RegMem => "RegField",
+      Description => "PMRO data, set to 0x0 on reset and read command.",
+      Width => "32",
+      Position => "38:7", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C32,A32,G32)
+    Width => "34", # Excel Formula: =calc_reg_width(E39:E41,F41)
+    Type => "ReadOnly",
+    PmroRdata => { #Structure Type: RegField;
+      Name => "PmroRdata",
+      RegMem => "RegField",
+      Description => "Read data from pmro. Valid when PmroFinish=1 and PmroFailed=0.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F38,E39,TRUE)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFailed => { #Structure Type: RegField;
+      Name => "PmroFailed",
+      RegMem => "RegField",
+      Description => "Pmro command failed. Valid only when PmroFinish=1.",
+      Width => "1",
+      Position => "32", # Excel Formula: =calc_position(F39,E40)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFinish => { #Structure Type: RegField;
+      Name => "PmroFinish",
+      RegMem => "RegField",
+      Description => "Pmro command finished.",
+      Width => "1",
+      Position => "33", # Excel Formula: =calc_position(F40,E41)
+      Type => "Event",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C38,A38,G38)
+    Description => "aaa",
+    Width => "11", # Excel Formula: =calc_reg_width(E43:E44,F44)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F42,E43,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C42,A42,G42)
+    Description => "aaa",
+    Width => "32", # Excel Formula: =calc_reg_width(E46:E46,F46)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C45,A45,G45)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E48:E48,F48)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F47,E48,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  FteInterruptReg => { #Structure Type: Reg;
+    Name => "FteInterruptReg",
+    RegMem => "Reg",
+    Address => "100",
+    Description => "Interrupt",
+    Width => "2", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Interrupt",
+    LostSyncInterrupt => { #Structure Type: RegField;
+      Name => "LostSyncInterrupt",
+      RegMem => "RegField",
+      Description => "Engine moved to Fabric Time out of sync interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Interrupt",
+      UsedBy => "FTE",
+    },
+    ExpectedDeviceTimeDiffInterrupt => { #Structure Type: RegField;
+      Name => "ExpectedDeviceTimeDiffInterrupt",
+      RegMem => "RegField",
+      Description => "Interrupt indicating the expected Device Time difference from the actual Device Time is bigger than the threshold",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Interrupt",
+      UsedBy => "FTE",
+    },
+  },
+  FteInterruptRegMask => { #Structure Type: Reg; Skip Register;
+    Name => "FteInterruptRegMask",
+    RegMem => "Reg",
+    Address => "101",
+    Description => "This register masks FteInterruptReg interrupt register",
+    Width => "2", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "InterruptMask",
+    LostSyncInterruptMask => { #Structure Type: RegField;
+      Name => "LostSyncInterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks LostSyncInterrupt interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    ExpectedDeviceTimeDiffInterruptMask => { #Structure Type: RegField;
+      Name => "ExpectedDeviceTimeDiffInterruptMask",
+      RegMem => "RegField",
+      Description => "This field masks ExpectedDeviceTimeDiffInterrupt interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  FteInterruptRegTest => { #Structure Type: Reg; Skip Register;
+    Name => "FteInterruptRegTest",
+    RegMem => "Reg",
+    Address => "102",
+    Description => "This register tests FteInterruptReg interrupt register",
+    Width => "2", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "InterruptTest",
+    LostSyncInterruptTest => { #Structure Type: RegField;
+      Name => "LostSyncInterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests LostSyncInterrupt interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ExpectedDeviceTimeDiffInterruptTest => { #Structure Type: RegField;
+      Name => "ExpectedDeviceTimeDiffInterruptTest",
+      RegMem => "RegField",
+      Description => "This field tests ExpectedDeviceTimeDiffInterrupt interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  ClockIncReg => { #Structure Type: Reg;
+    Name => "ClockIncReg",
+    RegMem => "Reg",
+    Address => "103", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Clock Increment Value",
+    Width => "29", # Excel Formula: =calc_reg_width(E11:E13,F13)
+    Type => "Config",
+    ClockIncNsValue => { #Structure Type: RegField;
+      Name => "ClockIncNsValue",
+      RegMem => "RegField",
+      Description => "Configure the increment value of the maintained Fabric Time every core clock cycle, in Nanosecond units. For 1 Ghz this should be 1, for 1.2Ghz it should be 0",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h0",
+    },
+    ClockIncFracValue => { #Structure Type: RegField;
+      Name => "ClockIncFracValue",
+      RegMem => "RegField",
+      Description => "Configure the increment value of the maintained Fabric Time every core clock cycle, in fractions of Nanosecond units. For 1 Ghz this should be 0, for 1.2Ghz it should be 'hd5555",
+      Width => "20",
+      Position => "23:4", # Excel Formula: =calc_position(F11,E12)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "hd5555",
+      DefaultSvConstraint => "hd5555",
+    },
+    ClockFracCompPeriod => { #Structure Type: RegField;
+      Name => "ClockFracCompPeriod",
+      RegMem => "RegField",
+      Description => "Configure the compensate period (in clocks) for the fractions configured value. This will add 1 every configured clock to the total summary for better accuracy. For 1 Ghz this should be 0, for 1.2Ghz it should be 'h3",
+      Width => "5",
+      Position => "28:24", # Excel Formula: =calc_position(F12,E13)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "h3",
+      DefaultSvConstraint => "h3",
+    },
+  },
+  EnableReg => { #Structure Type: Reg;
+    Name => "EnableReg",
+    RegMem => "Reg",
+    Address => "104", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Enable Register",
+    Width => "9", # Excel Formula: =calc_reg_width(E15:E17,F17)
+    Type => "Config",
+    PeerDelayReqGenEn => { #Structure Type: RegField;
+      Name => "PeerDelayReqGenEn",
+      RegMem => "RegField",
+      Description => "Enable generation of Peer Delay Request packets to all links.
+0 = Disable
+1 = Enable",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F14,E15,TRUE)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h0",
+    },
+    PeerDelayReqGenLinkIdx => { #Structure Type: RegField;
+      Name => "PeerDelayReqGenLinkIdx",
+      RegMem => "RegField",
+      Description => "Generate Peer Delay Request to all links (all ones = 127, the default) or to a specific link (0 to 107)",
+      Width => "7",
+      Position => "7:1", # Excel Formula: =calc_position(F15,E16)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "h7f",
+      DefaultSvConstraint => "h7f",
+    },
+    SyncPacketGenEn => { #Structure Type: RegField;
+      Name => "SyncPacketGenEn",
+      RegMem => "RegField",
+      Description => "Enable generation of Sync Packets.
+LC devices generates Sync Packets when they are in sync status.
+FE devices forward Sync Packets when they receive it.
+0 = Disable
+1 = Enable",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F16,E17)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h0",
+    },
+  },
+  LeakyBucketReg => { #Structure Type: Reg;
+    Name => "LeakyBucketReg",
+    RegMem => "Reg",
+    Address => "105", # Excel Formula: =calc_reg_address(C14,A14,G14)
+    Description => "Leaky Bucket Register for setting the Fabric Time Sync FSM various Thresholds.",
+    Width => "60", # Excel Formula: =calc_reg_width(E19:E24,F24)
+    Type => "Config",
+    LeakyOutOfSyncIncVal => { #Structure Type: RegField;
+      Name => "LeakyOutOfSyncIncVal",
+      RegMem => "RegField",
+      Description => "Leaky Bucket increment value for every close distance packet when the engine is out of sync",
+      Width => "7",
+      Position => "6:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d1",
+    },
+    LeakyOutOfSyncDecVal => { #Structure Type: RegField;
+      Name => "LeakyOutOfSyncDecVal",
+      RegMem => "RegField",
+      Description => "Leaky Bucket decrement value for every far distance packet when the engine is out of sync",
+      Width => "7",
+      Position => "13:7", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d32",
+    },
+    LeakyInSyncIncVal => { #Structure Type: RegField;
+      Name => "LeakyInSyncIncVal",
+      RegMem => "RegField",
+      Description => "Leaky Bucket increment value for every filtered packet when the engine is in sync",
+      Width => "7",
+      Position => "20:14", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d32",
+    },
+    LeakyInSyncDecVal => { #Structure Type: RegField;
+      Name => "LeakyInSyncDecVal",
+      RegMem => "RegField",
+      Description => "Leaky Bucket decrement value for every accepted packet when the engine is in sync",
+      Width => "7",
+      Position => "27:21", # Excel Formula: =calc_position(F21,E22)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d1",
+    },
+    LeakyMoveToInSyncThr => { #Structure Type: RegField;
+      Name => "LeakyMoveToInSyncThr",
+      RegMem => "RegField",
+      Description => "Move to In-Sync when the leaky bucket crosses this threshold",
+      Width => "16",
+      Position => "43:28", # Excel Formula: =calc_position(F22,E23)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d256",
+    },
+    LeakyMoveToOutOfSyncThr => { #Structure Type: RegField;
+      Name => "LeakyMoveToOutOfSyncThr",
+      RegMem => "RegField",
+      Description => "Move to Out-Of-Sync when the leaky bucket crosses this threshold",
+      Width => "16",
+      Position => "59:44", # Excel Formula: =calc_position(F23,E24)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d256",
+    },
+  },
+  TimeDiffThresholdReg => { #Structure Type: Reg;
+    Name => "TimeDiffThresholdReg",
+    RegMem => "Reg",
+    Address => "106", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Time Difference Thresholds Register",
+    Width => "20", # Excel Formula: =calc_reg_width(E26:E27,F27)
+    Type => "Config",
+    TimeDiffFarThr => { #Structure Type: RegField;
+      Name => "TimeDiffFarThr",
+      RegMem => "RegField",
+      Description => "Packets with time difference beyond this threshold are considered far, and are filtered when In-Sync. Difference is in Nanoseconds",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d256",
+    },
+    TimeDiffAdjThr => { #Structure Type: RegField;
+      Name => "TimeDiffAdjThr",
+      RegMem => "RegField",
+      Description => "Packets with time difference beyond this threshold are accounted for ajustments, otherwise they are ignores. Difference is in Nanoseconds",
+      Width => "8",
+      Position => "19:12", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d20",
+    },
+  },
+  OutOfSyncWatchdogReg => { #Structure Type: Reg;
+    Name => "OutOfSyncWatchdogReg",
+    RegMem => "Reg",
+    Address => "107", # Excel Formula: =calc_reg_address(C25,A25,G25)
+    Description => "Out Of Sync Watchdog Timer Register",
+    Width => "16", # Excel Formula: =calc_reg_width(E29:E29,F29)
+    Type => "Config",
+    OutOfSyncWatchdogTimer => { #Structure Type: RegField;
+      Name => "OutOfSyncWatchdogTimer",
+      RegMem => "RegField",
+      Description => "Watchdog Timer configuration, that counts when the engine is Out-Of-Sync and not receiving any Sync Packets.
+When expired, the engine moves to In-Sync in case the device is a LC.
+If set to zero (which is the default) the watchdog timer is disabled.",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d0",
+    },
+  },
+  SyncGenTimerReg => { #Structure Type: Reg;
+    Name => "SyncGenTimerReg",
+    RegMem => "Reg",
+    Address => "108", # Excel Formula: =calc_reg_address(C28,A28,G28)
+    Description => "Sync Packet Generation Timer Register",
+    Width => "16", # Excel Formula: =calc_reg_width(E31:E31,F31)
+    Type => "Config",
+    SyncGenTimer => { #Structure Type: RegField;
+      Name => "SyncGenTimer",
+      RegMem => "RegField",
+      Description => "Sync Packet generation timer threshold. A timer counts when the engine is ready to generate Sync Packets, and every time it reaches the threshold a packet is generated. The configured value is multiplied by 32",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d256",
+    },
+  },
+  DeviceConfigReg => { #Structure Type: Reg;
+    Name => "DeviceConfigReg",
+    RegMem => "Reg",
+    Address => "109", # Excel Formula: =calc_reg_address(C30,A30,G30)
+    Description => "Configure device and slices types ",
+    Width => "22", # Excel Formula: =calc_reg_width(E33:E39,F39)
+    Type => "Config",
+    DeviceId => { #Structure Type: RegField;
+      Name => "DeviceId",
+      RegMem => "RegField",
+      Description => "Device ID in the system, values should be between 0 and 287",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F32,E33,TRUE)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d0",
+    },
+    DeviceType => { #Structure Type: RegField;
+      Name => "DeviceType",
+      RegMem => "RegField",
+      Description => "Device type:
+0 = other (engine is inactive)
+1 = LC device
+2 = FE2 device
+3 = FE13 device",
+      Width => "2",
+      Position => "11:10", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d0",
+    },
+    Slice3Config => { #Structure Type: RegField;
+      Name => "Slice3Config",
+      RegMem => "RegField",
+      Description => "Configure if the slice is a fabric slice, relavant only for LC devices.",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d0",
+    },
+    Slice4Config => { #Structure Type: RegField;
+      Name => "Slice4Config",
+      RegMem => "RegField",
+      Description => "Configure if the slice is a fabric slice, relavant only for LC devices.",
+      Width => "1",
+      Position => "13", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d0",
+    },
+    ExtraFabricLink8 => { #Structure Type: RegField;
+      Name => "ExtraFabricLink8",
+      RegMem => "RegField",
+      Description => "Configure if an extra fabric link mode is enabled for link 8, relavant only for LC devices.",
+      Width => "1",
+      Position => "14", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d0",
+    },
+    ExtraFabricLink53 => { #Structure Type: RegField;
+      Name => "ExtraFabricLink53",
+      RegMem => "RegField",
+      Description => "Configure if an extra fabric link mode is enabled for link 53, relavant only for LC devices.",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F37,E38)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d0",
+    },
+    Fe13Config => { #Structure Type: RegField;
+      Name => "Fe13Config",
+      RegMem => "RegField",
+      Description => "In case of FE13 device, this bitmap indicates which slices are facing a LC device (asserted bits) and which are facing FE2 devices (negated bits)",
+      Width => "6",
+      Position => "21:16", # Excel Formula: =calc_position(F38,E39)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d0",
+    },
+  },
+  DeviceTimeSyncReg => { #Structure Type: Reg;
+    Name => "DeviceTimeSyncReg",
+    RegMem => "Reg",
+    Address => "10A", # Excel Formula: =calc_reg_address(C32,A32,G32)
+    Description => "Device Time Sync Pad configuration Register",
+    Width => "60", # Excel Formula: =calc_reg_width(E41:E46,F46)
+    Type => "Config",
+    DeviceTimeLoadPadEn => { #Structure Type: RegField;
+      Name => "DeviceTimeLoadPadEn",
+      RegMem => "RegField",
+      Description => "Enable the Device Time Load Pad
+0 = Disable
+1 = Enable",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F40,E41,TRUE)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d0",
+    },
+    DeviceTimeLoadPadDelay => { #Structure Type: RegField;
+      Name => "DeviceTimeLoadPadDelay",
+      RegMem => "RegField",
+      Description => "Sets the number of clock cycles to delay the rising edge of the load pad. Compensates for the signal latency on the board.",
+      Width => "16",
+      Position => "16:1", # Excel Formula: =calc_position(F41,E42)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d0",
+    },
+    DeviceTimeSyncCkPadEn => { #Structure Type: RegField;
+      Name => "DeviceTimeSyncCkPadEn",
+      RegMem => "RegField",
+      Description => "Enable the Device Time Sync Clock Pad.
+0 = Disable
+1 = Enable",
+      Width => "1",
+      Position => "17", # Excel Formula: =calc_position(F42,E43)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d0",
+    },
+    DeviceTimeSyncCkPadDelay => { #Structure Type: RegField;
+      Name => "DeviceTimeSyncCkPadDelay",
+      RegMem => "RegField",
+      Description => "Sets the number of clock cycles to delay the rising edge of the sync Ck pad. Compensates for the latency of the signal on the board",
+      Width => "16",
+      Position => "33:18", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d0",
+    },
+    DeviceTimeSyncCkInterval => { #Structure Type: RegField;
+      Name => "DeviceTimeSyncCkInterval",
+      RegMem => "RegField",
+      Description => "Device Time Sync Clock Interval in nanosonds. This is the period in nanoseconds of the Device Time Sync Clock",
+      Width => "16",
+      Position => "49:34", # Excel Formula: =calc_position(F44,E45)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d40",
+    },
+    DeviceTimeSyncCkMaxDiffTh => { #Structure Type: RegField;
+      Name => "DeviceTimeSyncCkMaxDiffTh",
+      RegMem => "RegField",
+      Description => "Sets the maximum difference between the Device Time and the Expected Time at the rising of the Sync Clock. In case of a larger difference an interrupt is asserted",
+      Width => "10",
+      Position => "59:50", # Excel Formula: =calc_position(F45,E46)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d10",
+    },
+  },
+  DeviceTimeLoadCommandReg => { #Structure Type: Reg;
+    Name => "DeviceTimeLoadCommandReg",
+    RegMem => "Reg",
+    Address => "10B", # Excel Formula: =calc_reg_address(C40,A40,G40)
+    Description => "Device Time Load Command Register",
+    Width => "3", # Excel Formula: =calc_reg_width(E48:E48,F48)
+    Type => "External",
+    UsedBy => "FTE",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    DeviceTimeLoadCommand => { #Structure Type: RegField;
+      Name => "DeviceTimeLoadCommand",
+      RegMem => "RegField",
+      Description => "Device Time Load Command - sets the command that is executed on the rising edge of Device-Time-Load signal
+0 = NOP
+1 = SW tuning
+2 = Load new time
+3 = Load new time unit
+4 = Time Capture",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F47,E48,TRUE)
+      Type => "External",
+    },
+  },
+  DeviceTimeUnitReg => { #Structure Type: Reg;
+    Name => "DeviceTimeUnitReg",
+    RegMem => "Reg",
+    Address => "10C", # Excel Formula: =calc_reg_address(C47,A47,G47)
+    Description => "Device Time Clock Increment Value. The total increment value is of 24 bits in units of 2^(-20) nanoseconds.",
+    Width => "29", # Excel Formula: =calc_reg_width(E50:E52,F52)
+    Type => "External",
+    UsedBy => "FTE",
+    DeviceTimeClockIncNsValue => { #Structure Type: RegField;
+      Name => "DeviceTimeClockIncNsValue",
+      RegMem => "RegField",
+      Description => "Configure the increment value of the maintained Device Time every core clock cycle, in Nanosecond units. For 1 Ghz this should be 1, for 1.2Ghz it should be 0",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F49,E50,TRUE)
+      Type => "External",
+    },
+    DeviceTimeClockIncFracValue => { #Structure Type: RegField;
+      Name => "DeviceTimeClockIncFracValue",
+      RegMem => "RegField",
+      Description => "Configure the increment value of the maintained Device Time every core clock cycle, in fractions of Nanosecond units. For 1 Ghz this should be 0, for 1.2Ghz it should be 'hd5555  (together with the nanosecond field the value is set to 0.833 nanoseconds)",
+      Width => "20",
+      Position => "23:4", # Excel Formula: =calc_position(F50,E51)
+      Type => "External",
+    },
+    DeviceTimeClockFracCompPeriod => { #Structure Type: RegField;
+      Name => "DeviceTimeClockFracCompPeriod",
+      RegMem => "RegField",
+      Description => "Configure the compensate period (in clocks) for the fractions configured value. This will add 1 every configured clock to the total summary for better accuracy. For 1 Ghz this should be 0, for 1.2Ghz it should be 'h3",
+      Width => "5",
+      Position => "28:24", # Excel Formula: =calc_position(F51,E52)
+      Type => "External",
+    },
+  },
+  DeviceTimeNewUnitReg => { #Structure Type: Reg;
+    Name => "DeviceTimeNewUnitReg",
+    RegMem => "Reg",
+    Address => "10D", # Excel Formula: =calc_reg_address(C49,A49,G49)
+    Description => "Device Time Clock New Loaded Increment Value",
+    Width => "29", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    DeviceTimeClockNewIncNsValue => { #Structure Type: RegField;
+      Name => "DeviceTimeClockNewIncNsValue",
+      RegMem => "RegField",
+      Description => "Configure the increment value of the maintained Fabric Time every core clock cycle, in Nanosecond units. For 1 Ghz this should be 1, for 1.2Ghz it should be 0",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h0",
+    },
+    DeviceTimeClockNewIncFracValue => { #Structure Type: RegField;
+      Name => "DeviceTimeClockNewIncFracValue",
+      RegMem => "RegField",
+      Description => "Configure the increment value of the maintained Fabric Time every core clock cycle, in fractions of Nanosecond units. For 1 Ghz this should be 0, for 1.2Ghz it should be 'hd5555 (together with the nanosecond field the value is set to 0.833 nanoseconds)",
+      Width => "20",
+      Position => "23:4", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "hd5555",
+      DefaultSvConstraint => "hd5555",
+    },
+    DeviceTimeClockNewFracCompPeriod => { #Structure Type: RegField;
+      Name => "DeviceTimeClockNewFracCompPeriod",
+      RegMem => "RegField",
+      Description => "Configure the compensate period (in clocks) for the fractions configured value. This will add 1 every configured clock to the total summary for better accuracy. For 1 Ghz this should be 0, for 1.2Ghz it should be 'h3",
+      Width => "5",
+      Position => "28:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "h3",
+      DefaultSvConstraint => "h3",
+    },
+  },
+  DeviceTimeSwTuningReg => { #Structure Type: Reg;
+    Name => "DeviceTimeSwTuningReg",
+    RegMem => "Reg",
+    Address => "10E", # Excel Formula: =calc_reg_address(C53,A53,G53)
+    Description => "Device Time SW Tuning Register",
+    Width => "37", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "Config",
+    SwTuningIncStall => { #Structure Type: RegField;
+      Name => "SwTuningIncStall",
+      RegMem => "RegField",
+      Description => "Configures the SW tuning operation mode 
+0 = Stall
+1 = Increment",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h0",
+    },
+    SwTuningRepeat => { #Structure Type: RegField;
+      Name => "SwTuningRepeat",
+      RegMem => "RegField",
+      Description => "Configures the number of SW tuning iterations to perform",
+      Width => "16",
+      Position => "16:1", # Excel Formula: =calc_position(F58,E59)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h0",
+    },
+    SwTuningPeriod => { #Structure Type: RegField;
+      Name => "SwTuningPeriod",
+      RegMem => "RegField",
+      Description => "Configures the SW tuning period in clock cycles, between each iteration",
+      Width => "20",
+      Position => "36:17", # Excel Formula: =calc_position(F59,E60)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h0",
+    },
+  },
+  NewTimeLoadReg => { #Structure Type: Reg;
+    Name => "NewTimeLoadReg",
+    RegMem => "Reg",
+    Address => "10F", # Excel Formula: =calc_reg_address(C57,A57,G57)
+    Description => "New Time Load Register",
+    Width => "164", # Excel Formula: =calc_reg_width(E62:E65,F65)
+    Type => "Config",
+    NewTimeLoadDelay => { #Structure Type: RegField;
+      Name => "NewTimeLoadDelay",
+      RegMem => "RegField",
+      Description => "Number of clock cycles to delay the load new time command. This values is used to compensate and balance the latency of the signal among the blocks inside the device.",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F61,E62,TRUE)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h0",
+    },
+    DeviceTimeNewLoad => { #Structure Type: RegField;
+      Name => "DeviceTimeNewLoad",
+      RegMem => "RegField",
+      Description => "Device Time New Load Value in nanoseconds",
+      Width => "32",
+      Position => "47:16", # Excel Formula: =calc_position(F62,E63)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h0",
+    },
+    DeviceTimeNewLoadOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeNewLoadOffset",
+      RegMem => "RegField",
+      Description => "Device Time New Load Offset in sub-nanoseconds.",
+      Width => "52",
+      Position => "99:48", # Excel Formula: =calc_position(F63,E64)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h0",
+    },
+    TimeOfDayNewLoad => { #Structure Type: RegField;
+      Name => "TimeOfDayNewLoad",
+      RegMem => "RegField",
+      Description => "Time of Day New Load Value in seconds",
+      Width => "64",
+      Position => "163:100", # Excel Formula: =calc_position(F64,E65)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h0",
+    },
+  },
+  TimeStatusReg => { #Structure Type: Reg;
+    Name => "TimeStatusReg",
+    RegMem => "Reg",
+    Address => "110", # Excel Formula: =calc_reg_address(C61,A61,G61)
+    Description => "Status Register to all times",
+    Width => "129", # Excel Formula: =calc_reg_width(E67:E70,F70)
+    Type => "ReadOnly",
+    FabricTimeStatus => { #Structure Type: RegField;
+      Name => "FabricTimeStatus",
+      RegMem => "RegField",
+      Description => "Fabric time status",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F66,E67,TRUE)
+      Type => "Status",
+      UsedBy => "FTE",
+    },
+    FabricTimeSyncStatus => { #Structure Type: RegField;
+      Name => "FabricTimeSyncStatus",
+      RegMem => "RegField",
+      Description => "Fabric time sync status",
+      Width => "1",
+      Position => "32", # Excel Formula: =calc_position(F67,E68)
+      Type => "Status",
+      UsedBy => "FTE",
+    },
+    DeviceTimeStatus => { #Structure Type: RegField;
+      Name => "DeviceTimeStatus",
+      RegMem => "RegField",
+      Description => "Device time status",
+      Width => "32",
+      Position => "64:33", # Excel Formula: =calc_position(F68,E69)
+      Type => "Status",
+      UsedBy => "FTE",
+    },
+    TimeOfDayStatus => { #Structure Type: RegField;
+      Name => "TimeOfDayStatus",
+      RegMem => "RegField",
+      Description => "Time of day status",
+      Width => "64",
+      Position => "128:65", # Excel Formula: =calc_position(F69,E70)
+      Type => "Status",
+      UsedBy => "FTE",
+    },
+  },
+  ExpectedDeviceTimeStatusReg => { #Structure Type: Reg;
+    Name => "ExpectedDeviceTimeStatusReg",
+    RegMem => "Reg",
+    Address => "111", # Excel Formula: =calc_reg_address(C66,A66,G66)
+    Description => "Expected Device Time Difference is captured at this register",
+    Width => "65", # Excel Formula: =calc_reg_width(E72:E74,F74)
+    Type => "ReadOnly",
+    ExpectedDeviceTimeAboveDiffThr => { #Structure Type: RegField;
+      Name => "ExpectedDeviceTimeAboveDiffThr",
+      RegMem => "RegField",
+      Description => "Event asserted when expected Device Time difference is above the configured threshold",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F71,E72,TRUE)
+      Type => "Event",
+      UsedBy => "FTE",
+    },
+    ComparedExpectedDeviceTime => { #Structure Type: RegField;
+      Name => "ComparedExpectedDeviceTime",
+      RegMem => "RegField",
+      Description => "Expected Device Time value when compared",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F72,E73)
+      Type => "Capture",
+      UsedBy => "FTE",
+    },
+    ComparedDeviceTime => { #Structure Type: RegField;
+      Name => "ComparedDeviceTime",
+      RegMem => "RegField",
+      Description => "Device Time value when compared",
+      Width => "32",
+      Position => "64:33", # Excel Formula: =calc_position(F73,E74)
+      Type => "Capture",
+      UsedBy => "FTE",
+    },
+  },
+  FabricTimeForceReg => { #Structure Type: Reg;
+    Name => "FabricTimeForceReg",
+    RegMem => "Reg",
+    Address => "112", # Excel Formula: =calc_reg_address(C71,A71,G71)
+    Description => "Allows the CPU to force a value of the fabric time and the sync status",
+    Width => "33", # Excel Formula: =calc_reg_width(E76:E77,F77)
+    Type => "External",
+    UsedBy => "FTE",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    FabricTimeForceValue => { #Structure Type: RegField;
+      Name => "FabricTimeForceValue",
+      RegMem => "RegField",
+      Description => "Fabric Time Force Value",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F75,E76,TRUE)
+      Type => "External",
+    },
+    FabricTimeSyncForceValue => { #Structure Type: RegField;
+      Name => "FabricTimeSyncForceValue",
+      RegMem => "RegField",
+      Description => "Fabric Time Sync Force Value",
+      Width => "1",
+      Position => "32", # Excel Formula: =calc_position(F76,E77)
+      Type => "External",
+    },
+  },
+  FreezeRegister => { #Structure Type: Reg;
+    Name => "FreezeRegister",
+    RegMem => "Reg",
+    Address => "113", # Excel Formula: =calc_reg_address(C75,A75,G75)
+    Description => "Freeze configuration register",
+    Width => "97", # Excel Formula: =calc_reg_width(E79:E80,F80)
+    Type => "Config",
+    FreezeEnable => { #Structure Type: RegField;
+      Name => "FreezeEnable",
+      RegMem => "RegField",
+      Description => "Enable the freeze indication to all blocks. Used for freezing all statistics histogram collectors",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F78,E79,TRUE)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d0",
+    },
+    FreezeAtTod => { #Structure Type: RegField;
+      Name => "FreezeAtTod",
+      RegMem => "RegField",
+      Description => "Freeze indication when the {ToD, DeviceTime} reaches this configured value",
+      Width => "96",
+      Position => "96:1", # Excel Formula: =calc_position(F79,E80)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d0",
+    },
+  },
+  TimeCaptureReg => { #Structure Type: Reg;
+    Name => "TimeCaptureReg",
+    RegMem => "Reg",
+    Address => "114", # Excel Formula: =calc_reg_address(C78,A78,G78)
+    Description => "Time Capture Register",
+    Width => "96", # Excel Formula: =calc_reg_width(E82:E83,F83)
+    Type => "ReadOnly",
+    DeviceTimeCapture => { #Structure Type: RegField;
+      Name => "DeviceTimeCapture",
+      RegMem => "RegField",
+      Description => "Captured Device Time - when a Time Capture command is loaded, the device time is recorded into this register",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F81,E82,TRUE)
+      Type => "Capture",
+      UsedBy => "FTE",
+    },
+    TimeOfDayCapture => { #Structure Type: RegField;
+      Name => "TimeOfDayCapture",
+      RegMem => "RegField",
+      Description => "Captured Time of Day - when a Time Capture command is loaded, the ToD is recorded into this register",
+      Width => "64",
+      Position => "95:32", # Excel Formula: =calc_position(F82,E83)
+      Type => "Capture",
+      UsedBy => "FTE",
+    },
+  },
+  DebugFabricTimeDiffCntReg => { #Structure Type: Reg;
+    Name => "DebugFabricTimeDiffCntReg",
+    RegMem => "Reg",
+    Address => "115", # Excel Formula: =calc_reg_address(C81,A81,G81)
+    Description => "Debug Fabric Time Diff Counter Register",
+    Width => "100", # Excel Formula: =calc_reg_width(E85:E89,F89)
+    Type => "ReadOnly",
+    DebugFabricTimeDiffCnt0 => { #Structure Type: RegField;
+      Name => "DebugFabricTimeDiffCnt0",
+      RegMem => "RegField",
+      Description => "Fabric time sync packets counter for difference between 0 and 20ns",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F84,E85,TRUE)
+      Type => "Counter",
+      UsedBy => "FTE",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    DebugFabricTimeDiffCnt1 => { #Structure Type: RegField;
+      Name => "DebugFabricTimeDiffCnt1",
+      RegMem => "RegField",
+      Description => "Fabric time sync packets counter for difference between 20 and 60ns",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F85,E86)
+      Type => "Counter",
+      UsedBy => "FTE",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    DebugFabricTimeDiffCnt2 => { #Structure Type: RegField;
+      Name => "DebugFabricTimeDiffCnt2",
+      RegMem => "RegField",
+      Description => "Fabric time sync packets counter for difference between 60 and 140ns",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F86,E87)
+      Type => "Counter",
+      UsedBy => "FTE",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    DebugFabricTimeDiffCnt3 => { #Structure Type: RegField;
+      Name => "DebugFabricTimeDiffCnt3",
+      RegMem => "RegField",
+      Description => "Fabric time sync packets counter for difference between 140 and 300ns",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F87,E88)
+      Type => "Counter",
+      UsedBy => "FTE",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    DebugFabricTimeDiffCnt4 => { #Structure Type: RegField;
+      Name => "DebugFabricTimeDiffCnt4",
+      RegMem => "RegField",
+      Description => "Fabric time sync packets counter for difference above 300ns",
+      Width => "20",
+      Position => "99:80", # Excel Formula: =calc_position(F88,E89)
+      Type => "Counter",
+      UsedBy => "FTE",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  DebugFabricTimeDiffMaxReg => { #Structure Type: Reg;
+    Name => "DebugFabricTimeDiffMaxReg",
+    RegMem => "Reg",
+    Address => "116", # Excel Formula: =calc_reg_address(C84,A84,G84)
+    Description => "Debug Fabric Time Diff Counter Register",
+    Width => "27", # Excel Formula: =calc_reg_width(E91:E93,F93)
+    Type => "ReadOnly",
+    AdditionalInfo => "MirrorReadAccess",
+    DebugFabricTimeMaxDiff => { #Structure Type: RegField;
+      Name => "DebugFabricTimeMaxDiff",
+      RegMem => "RegField",
+      Description => "Maximum received fabric time difference ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F90,E91,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "FTE",
+    },
+    DebugFabricTimeMaxDiffPktAhead => { #Structure Type: RegField;
+      Name => "DebugFabricTimeMaxDiffPktAhead",
+      RegMem => "RegField",
+      Description => "Maximum received fabric time difference for packet is ahead (1) or behind (0) to current device fabric time",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F91,E92)
+      Type => "Capture",
+      UsedBy => "FTE",
+    },
+    DebugFabricTimeMaxSourceDevice => { #Structure Type: RegField;
+      Name => "DebugFabricTimeMaxSourceDevice",
+      RegMem => "RegField",
+      Description => "Maximum received fabric time difference source device",
+      Width => "10",
+      Position => "26:17", # Excel Formula: =calc_position(F92,E93)
+      Type => "Capture",
+      UsedBy => "FTE",
+    },
+  },
+  DebugFabricTimeSyncPacketCntReg => { #Structure Type: Reg;
+    Name => "DebugFabricTimeSyncPacketCntReg",
+    RegMem => "Reg",
+    Address => "117", # Excel Formula: =calc_reg_address(C90,A90,G90)
+    Description => "Debug Fabric Time Sync Packets Counter Register",
+    Width => "64", # Excel Formula: =calc_reg_width(E95:E96,F96)
+    Type => "ReadOnly",
+    DebugFabricTimeRxCnt => { #Structure Type: RegField;
+      Name => "DebugFabricTimeRxCnt",
+      RegMem => "RegField",
+      Description => "Counter for received Time Sync packets",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F94,E95,TRUE)
+      Type => "Counter",
+      UsedBy => "FTE",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    DebugFabricTimeTxCnt => { #Structure Type: RegField;
+      Name => "DebugFabricTimeTxCnt",
+      RegMem => "RegField",
+      Description => "Counter for Transmitted Time Sync packets",
+      Width => "32",
+      Position => "63:32", # Excel Formula: =calc_position(F95,E96)
+      Type => "Counter",
+      UsedBy => "FTE",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  DebugFabricTimeCaptureOnTodReg => { #Structure Type: Reg;
+    Name => "DebugFabricTimeCaptureOnTodReg",
+    RegMem => "Reg",
+    Address => "118", # Excel Formula: =calc_reg_address(C94,A94,G94)
+    Description => "Debug Fabric Time Capture on Time of Day Register",
+    Width => "96", # Excel Formula: =calc_reg_width(E98:E98,F98)
+    Type => "Config",
+    DebugFabricTimeCaptureOnTod => { #Structure Type: RegField;
+      Name => "DebugFabricTimeCaptureOnTod",
+      RegMem => "RegField",
+      Description => "Capture the Fabric time when the ToD reaches this value",
+      Width => "96",
+      Position => "95:0", # Excel Formula: =calc_position(F97,E98,TRUE)
+      Type => "Config",
+      UsedBy => "FTE",
+      DefaultValue => "d0",
+    },
+  },
+  DebugFabricTimeCapturedReg => { #Structure Type: Reg;
+    Name => "DebugFabricTimeCapturedReg",
+    RegMem => "Reg",
+    Address => "119", # Excel Formula: =calc_reg_address(C97,A97,G97)
+    Description => "Debug Fabric Time Captured",
+    Width => "32", # Excel Formula: =calc_reg_width(E100:E100,F100)
+    Type => "ReadOnly",
+    DebugFabricTimeCaptured => { #Structure Type: RegField;
+      Name => "DebugFabricTimeCaptured",
+      RegMem => "RegField",
+      Description => "Captured Fabric time on the configured ToD",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F99,E100,TRUE)
+      Type => "Capture",
+      UsedBy => "FTE",
+    },
+  },
+  PeerDelayMem => { #Structure Type: Mem;
+    Name => "PeerDelayMem",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "Peer Delay Memory. This table is maintained by the HW, SW should only access it for debugging",
+    Width => "32", # Excel Formula: =calc_mem_width(E102:E105,M101,F105,-1)
+    Type => "Dynamic",
+    UsedBy => "FTE",
+    MemEntries => "108",
+    MemWrapper => "1P",
+    MemProtect => "None",
+    AdditionalInfo => "FfBased=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "32",
+    LinkPeerDelayValid => { #Structure Type: MemField;
+      Name => "LinkPeerDelayValid",
+      RegMem => "MemField",
+      Description => "Indication if the peer delay is valid",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F101,E102,TRUE)
+    },
+    LinkPeerDelay => { #Structure Type: MemField;
+      Name => "LinkPeerDelay",
+      RegMem => "MemField",
+      Description => "Link Peer Delay",
+      Width => "13",
+      Position => "13:1", # Excel Formula: =calc_position(F102,E103)
+    },
+    LinkPeerDeviceId => { #Structure Type: MemField;
+      Name => "LinkPeerDeviceId",
+      RegMem => "MemField",
+      Description => "Peer Device ID connected to the link",
+      Width => "10",
+      Position => "23:14", # Excel Formula: =calc_position(F103,E104)
+    },
+    LinkPeerLinkNum => { #Structure Type: MemField;
+      Name => "LinkPeerLinkNum",
+      RegMem => "MemField",
+      Description => "Peer link number connected to the link",
+      Width => "8",
+      Position => "31:24", # Excel Formula: =calc_position(F104,E105)
+    },
+  },
+};

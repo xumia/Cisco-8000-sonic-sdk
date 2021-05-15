@@ -1,0 +1,2018 @@
+$block{rx_pdr_shared_db} = {
+  Defines_db => "Z:\\leaba_reg_db_example\\defines.v",
+  ProjectName => "Pacific",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+    SharedDBInterruptRegSummary => { #Structure Type: RegField;
+      Name => "SharedDBInterruptRegSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, SharedDBInterruptReg has asserted interrupt",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+    },
+    EmResponseInterruptSummary => { #Structure Type: RegField;
+      Name => "EmResponseInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, EmResponseInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_1bErrInterrupt",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_2bErrInterrupt",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks ParityErrInterrupt",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "4",
+    Type => "Config",
+    SharedDbVerifier0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SharedDbVerifier0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SharedDbVerifier1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SharedDbVerifier1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SharedDbVerifier2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SharedDbVerifier2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SharedDbVerifier3Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SharedDbVerifier3Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "4",
+    Type => "Config",
+    SharedDbVerifier0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SharedDbVerifier0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SharedDbVerifier1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SharedDbVerifier1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SharedDbVerifier2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SharedDbVerifier2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SharedDbVerifier3Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SharedDbVerifier3Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "4",
+    Type => "Config",
+    SharedDbVerifier0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "SharedDbVerifier0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SharedDbVerifier1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "SharedDbVerifier1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SharedDbVerifier2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "SharedDbVerifier2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SharedDbVerifier3Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "SharedDbVerifier3Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "4",
+    Type => "Config",
+    SharedDbVerifier0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "SharedDbVerifier0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SharedDbVerifier1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "SharedDbVerifier1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SharedDbVerifier2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "SharedDbVerifier2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SharedDbVerifier3Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "SharedDbVerifier3Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectErrStatus",
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "4",
+    Type => "ReadOnly",
+    SharedDbVerifier0ErrInt => { #Structure Type: RegField;
+      Name => "SharedDbVerifier0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    SharedDbVerifier1ErrInt => { #Structure Type: RegField;
+      Name => "SharedDbVerifier1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "1",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    SharedDbVerifier2ErrInt => { #Structure Type: RegField;
+      Name => "SharedDbVerifier2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "2",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    SharedDbVerifier3ErrInt => { #Structure Type: RegField;
+      Name => "SharedDbVerifier3ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "3",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    Name => "SelectedSerErrorInfo",
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "17",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      Name => "MemErrAddr",
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "15",
+      Position => "14:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      Name => "MemErrType",
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "16:15",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SerErrorDebugConfiguration",
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "3",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      Name => "ErroneousMemorySelector",
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "2",
+      Position => "1:0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      Name => "ResetMemoryErrors",
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrDebug",
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_1bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrDebug",
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_2bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  MbistPassStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistPassStatus",
+    RegMem => "Reg",
+    Address => "39",
+    Description => "MBIST pass status",
+    Width => "402",
+    Type => "ReadOnly",
+    BistDonePassOut => { #Structure Type: RegField;
+      Name => "BistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST passed",
+      Width => "402",
+      Position => "401:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+  MbistFailStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistFailStatus",
+    RegMem => "Reg",
+    Address => "3A",
+    Description => "MBIST fail status",
+    Width => "402",
+    Type => "ReadOnly",
+    BistDoneFailOut => { #Structure Type: RegField;
+      Name => "BistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST failed",
+      Width => "402",
+      Position => "401:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+  TcamBistStatus => { #Structure Type: Reg; Skip Register;
+    Name => "TcamBistStatus",
+    RegMem => "Reg",
+    Address => "3B",
+    Description => "TCAM BIST pass fail status",
+    Width => "8",
+    Type => "ReadOnly",
+    TcamBistDonePassOut => { #Structure Type: RegField;
+      Name => "TcamBistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, TCAM BIST passed",
+      Width => "4",
+      Position => "3:0",
+      Type => "Status",
+      UsedBy => "TCAM",
+    },
+    TcamBistDoneFailOut => { #Structure Type: RegField;
+      Name => "TcamBistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, TCAM BIST failed",
+      Width => "4",
+      Position => "7:4",
+      Type => "Status",
+      UsedBy => "TCAM",
+    },
+  },
+  TcamScanPeriodCfg => { #Structure Type: Reg; Skip Register;
+    Name => "TcamScanPeriodCfg",
+    RegMem => "Reg",
+    Address => "3C",
+    Description => "Configures period of TCAM scan for SER, set 0 to disable",
+    Width => "32",
+    Type => "Config",
+    TcamScanPeriod => { #Structure Type: RegField;
+      Name => "TcamScanPeriod",
+      RegMem => "RegField",
+      Description => "",
+      Width => "32",
+      Position => "31:0",
+      Type => "Config",
+      UsedBy => "TCAM",
+      DefaultValue => "d120000000",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DefaultValue => "b0",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "3", # Excel Formula: =calc_reg_width(E25:E27,F27)
+    Type => "Config",
+    CoreBistRprMode => { #Structure Type: RegField;
+      Name => "CoreBistRprMode",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistRun => { #Structure Type: RegField;
+      Name => "CoreBistRun",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistPtrnFill => { #Structure Type: RegField;
+      Name => "CoreBistPtrnFill",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E29:E29,F29)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C28,A28,G28)
+    Description => "Power Down Configuration for the block",
+    Width => "128", # Excel Formula: =calc_reg_width(E31:E31,F31)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C30,A30,G30)
+    Width => "39", # Excel Formula: =calc_reg_width(E33:E37,F37)
+    Type => "Config",
+    PmroExecute => { #Structure Type: RegField;
+      Name => "PmroExecute",
+      RegMem => "RegField",
+      Description => "0->1: execute pmro command.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F32,E33,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroCmd => { #Structure Type: RegField;
+      Name => "PmroCmd",
+      RegMem => "RegField",
+      Description => "Pmro command to execute:
+0: reset.
+1: write.
+2: read.
+3: invalid.",
+      Width => "2",
+      Position => "2:1", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroSbusReset => { #Structure Type: RegField;
+      Name => "PmroSbusReset",
+      RegMem => "RegField",
+      Description => "Reset pmro sbus chain. Need to set to 0 before starting access to pmro registers.",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroAddr => { #Structure Type: RegField;
+      Name => "PmroAddr",
+      RegMem => "RegField",
+      Description => "PMRO register address:
+0 - control register, 8b, def: 0x0.
+1 - SVT Configuration Register, 16b, def: 0xFFFF.
+2 - LVT Configuration Register, 16b, def: 0xFFFF.
+3 - ULVT Configuration Register, 16b, def: 0xFFFF.
+4 - Interconnect Configuration Register, 16b, def: 0xFFFF.
+5 - Reference Clock Counter Register, 24b, def: 0xFFF000.
+6 - Oscillator Counter Register, 24b, def: 0x000000.
+7 - SBus ID register, read as 0x0B.
+Set to '0' on reset command.",
+      Width => "3",
+      Position => "6:4", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroData => { #Structure Type: RegField;
+      Name => "PmroData",
+      RegMem => "RegField",
+      Description => "PMRO data, set to 0x0 on reset and read command.",
+      Width => "32",
+      Position => "38:7", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C32,A32,G32)
+    Width => "34", # Excel Formula: =calc_reg_width(E39:E41,F41)
+    Type => "ReadOnly",
+    PmroRdata => { #Structure Type: RegField;
+      Name => "PmroRdata",
+      RegMem => "RegField",
+      Description => "Read data from pmro. Valid when PmroFinish=1 and PmroFailed=0.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F38,E39,TRUE)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFailed => { #Structure Type: RegField;
+      Name => "PmroFailed",
+      RegMem => "RegField",
+      Description => "Pmro command failed. Valid only when PmroFinish=1.",
+      Width => "1",
+      Position => "32", # Excel Formula: =calc_position(F39,E40)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFinish => { #Structure Type: RegField;
+      Name => "PmroFinish",
+      RegMem => "RegField",
+      Description => "Pmro command finished.",
+      Width => "1",
+      Position => "33", # Excel Formula: =calc_position(F40,E41)
+      Type => "Event",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C38,A38,G38)
+    Description => "aaa",
+    Width => "11", # Excel Formula: =calc_reg_width(E43:E44,F44)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F42,E43,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C42,A42,G42)
+    Description => "aaa",
+    Width => "32", # Excel Formula: =calc_reg_width(E46:E46,F46)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C45,A45,G45)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E48:E48,F48)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F47,E48,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  SharedDBInterruptReg => { #Structure Type: Reg;
+    Name => "SharedDBInterruptReg",
+    RegMem => "Reg",
+    Address => "100",
+    Width => "10", # Excel Formula: =calc_reg_width(E8:E17,F17)
+    Type => "Interrupt",
+    LookupAError => { #Structure Type: RegField;
+      Name => "LookupAError",
+      RegMem => "RegField",
+      Description => "Indicates 2 bit ECC error occurred on lookup A",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Interrupt",
+      UsedBy => "DSN",
+    },
+    LookupBError => { #Structure Type: RegField;
+      Name => "LookupBError",
+      RegMem => "RegField",
+      Description => "Indicates 2 bit ECC error occurred on lookup A",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Interrupt",
+      UsedBy => "DSN",
+    },
+    FeLinkBmpTableMem0OneEccErr => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem0OneEccErr",
+      RegMem => "RegField",
+      Description => "Indicates one bit ECC error occurred on the FE link BMP table",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F9,E10)
+      Type => "Interrupt",
+      UsedBy => "DSN",
+    },
+    FeLinkBmpTableMem1OneEccErr => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem1OneEccErr",
+      RegMem => "RegField",
+      Description => "Indicates one bit ECC error occurred on the FE link BMP table",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F10,E11)
+      Type => "Interrupt",
+      UsedBy => "DSN",
+    },
+    FeLinkBmpTableMem2OneEccErr => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem2OneEccErr",
+      RegMem => "RegField",
+      Description => "Indicates one bit ECC error occurred on the FE link BMP table",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F11,E12)
+      Type => "Interrupt",
+      UsedBy => "DSN",
+    },
+    FeLinkBmpTableMem3OneEccErr => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem3OneEccErr",
+      RegMem => "RegField",
+      Description => "Indicates one bit ECC error occurred on the FE link BMP table",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F12,E13)
+      Type => "Interrupt",
+      UsedBy => "DSN",
+    },
+    FeLinkBmpTableMem0TwoEccErr => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem0TwoEccErr",
+      RegMem => "RegField",
+      Description => "Indicates two bit ECC error occurred on the FE link BMP table",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F13,E14)
+      Type => "Interrupt",
+      UsedBy => "DSN",
+    },
+    FeLinkBmpTableMem1TwoEccErr => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem1TwoEccErr",
+      RegMem => "RegField",
+      Description => "Indicates two bit ECC error occurred on the FE link BMP table",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F14,E15)
+      Type => "Interrupt",
+      UsedBy => "DSN",
+    },
+    FeLinkBmpTableMem2TwoEccErr => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem2TwoEccErr",
+      RegMem => "RegField",
+      Description => "Indicates two bit ECC error occurred on the FE link BMP table",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F15,E16)
+      Type => "Interrupt",
+      UsedBy => "DSN",
+    },
+    FeLinkBmpTableMem3TwoEccErr => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem3TwoEccErr",
+      RegMem => "RegField",
+      Description => "Indicates two bit ECC error occurred on the FE link BMP table",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F16,E17)
+      Type => "Interrupt",
+      UsedBy => "DSN",
+    },
+  },
+  SharedDBInterruptRegMask => { #Structure Type: Reg; Skip Register;
+    Name => "SharedDBInterruptRegMask",
+    RegMem => "Reg",
+    Address => "101",
+    Width => "10", # Excel Formula: =calc_reg_width(E8:E17,F17)
+    Type => "InterruptMask",
+    LookupAErrorMask => { #Structure Type: RegField;
+      Name => "LookupAErrorMask",
+      RegMem => "RegField",
+      Description => "This field masks LookupAError interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    LookupBErrorMask => { #Structure Type: RegField;
+      Name => "LookupBErrorMask",
+      RegMem => "RegField",
+      Description => "This field masks LookupBError interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    FeLinkBmpTableMem0OneEccErrMask => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem0OneEccErrMask",
+      RegMem => "RegField",
+      Description => "This field masks FeLinkBmpTableMem0OneEccErr interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F9,E10)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    FeLinkBmpTableMem1OneEccErrMask => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem1OneEccErrMask",
+      RegMem => "RegField",
+      Description => "This field masks FeLinkBmpTableMem1OneEccErr interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F10,E11)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    FeLinkBmpTableMem2OneEccErrMask => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem2OneEccErrMask",
+      RegMem => "RegField",
+      Description => "This field masks FeLinkBmpTableMem2OneEccErr interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F11,E12)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    FeLinkBmpTableMem3OneEccErrMask => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem3OneEccErrMask",
+      RegMem => "RegField",
+      Description => "This field masks FeLinkBmpTableMem3OneEccErr interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F12,E13)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    FeLinkBmpTableMem0TwoEccErrMask => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem0TwoEccErrMask",
+      RegMem => "RegField",
+      Description => "This field masks FeLinkBmpTableMem0TwoEccErr interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F13,E14)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    FeLinkBmpTableMem1TwoEccErrMask => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem1TwoEccErrMask",
+      RegMem => "RegField",
+      Description => "This field masks FeLinkBmpTableMem1TwoEccErr interrupt",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F14,E15)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    FeLinkBmpTableMem2TwoEccErrMask => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem2TwoEccErrMask",
+      RegMem => "RegField",
+      Description => "This field masks FeLinkBmpTableMem2TwoEccErr interrupt",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F15,E16)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    FeLinkBmpTableMem3TwoEccErrMask => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem3TwoEccErrMask",
+      RegMem => "RegField",
+      Description => "This field masks FeLinkBmpTableMem3TwoEccErr interrupt",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F16,E17)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  SharedDBInterruptRegTest => { #Structure Type: Reg; Skip Register;
+    Name => "SharedDBInterruptRegTest",
+    RegMem => "Reg",
+    Address => "102",
+    Width => "10", # Excel Formula: =calc_reg_width(E8:E17,F17)
+    Type => "InterruptTest",
+    LookupAErrorTest => { #Structure Type: RegField;
+      Name => "LookupAErrorTest",
+      RegMem => "RegField",
+      Description => "This field tests LookupAError interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    LookupBErrorTest => { #Structure Type: RegField;
+      Name => "LookupBErrorTest",
+      RegMem => "RegField",
+      Description => "This field tests LookupBError interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    FeLinkBmpTableMem0OneEccErrTest => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem0OneEccErrTest",
+      RegMem => "RegField",
+      Description => "This field tests FeLinkBmpTableMem0OneEccErr interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F9,E10)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    FeLinkBmpTableMem1OneEccErrTest => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem1OneEccErrTest",
+      RegMem => "RegField",
+      Description => "This field tests FeLinkBmpTableMem1OneEccErr interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F10,E11)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    FeLinkBmpTableMem2OneEccErrTest => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem2OneEccErrTest",
+      RegMem => "RegField",
+      Description => "This field tests FeLinkBmpTableMem2OneEccErr interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F11,E12)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    FeLinkBmpTableMem3OneEccErrTest => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem3OneEccErrTest",
+      RegMem => "RegField",
+      Description => "This field tests FeLinkBmpTableMem3OneEccErr interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F12,E13)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    FeLinkBmpTableMem0TwoEccErrTest => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem0TwoEccErrTest",
+      RegMem => "RegField",
+      Description => "This field tests FeLinkBmpTableMem0TwoEccErr interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F13,E14)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    FeLinkBmpTableMem1TwoEccErrTest => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem1TwoEccErrTest",
+      RegMem => "RegField",
+      Description => "This field tests FeLinkBmpTableMem1TwoEccErr interrupt",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F14,E15)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    FeLinkBmpTableMem2TwoEccErrTest => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem2TwoEccErrTest",
+      RegMem => "RegField",
+      Description => "This field tests FeLinkBmpTableMem2TwoEccErr interrupt",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F15,E16)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    FeLinkBmpTableMem3TwoEccErrTest => { #Structure Type: RegField;
+      Name => "FeLinkBmpTableMem3TwoEccErrTest",
+      RegMem => "RegField",
+      Description => "This field tests FeLinkBmpTableMem3TwoEccErr interrupt",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F16,E17)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  GlobalConfiguration => { #Structure Type: Reg;
+    Name => "GlobalConfiguration",
+    RegMem => "Reg",
+    Address => "103", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Width => "2", # Excel Formula: =calc_reg_width(E19:E19,F19)
+    Type => "Config",
+    DeviceType => { #Structure Type: RegField;
+      Name => "DeviceType",
+      RegMem => "RegField",
+      Description => "Indicates the mode of the device:
+2'h0 - LC
+2'h1 - TR
+2'h2 - SA
+2'h3 - FE",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "h2",
+    },
+  },
+  FeLinksBmpTableConf => { #Structure Type: Reg;
+    Name => "FeLinksBmpTableConf",
+    RegMem => "Reg",
+    Address => "104", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Width => "4", # Excel Formula: =calc_reg_width(E21:E21,F21)
+    Type => "Config",
+    DisEccCheckFeLinksBmp => { #Structure Type: RegField;
+      Name => "DisEccCheckFeLinksBmp",
+      RegMem => "RegField",
+      Description => "Disables ECC check on the data that returns from the FE links BMP table. The ECC is external since the memory is shared.Bit per target memory",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F20,E21,TRUE)
+      Type => "Config",
+      UsedBy => "DSN",
+      DefaultValue => "h0",
+    },
+  },
+  SharedDb => { #Structure Type: Mem;
+    Name => "SharedDb",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "Key is: {Client[31], Slice_num[30:28], Is_recycle[27], MCID[26:11], Entry_number[10:0]}
+
+Client: RX (0), TX (1)
+Slice Num: RX (0 - NW, 1 - FB), TX (0 - 5)",
+    Width => "72", # Excel Formula: =calc_mem_width(E23:E23,M22,F23,-1)
+    Type => "DocOnly",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "65536", # Excel Formula: =64*1024
+    MemWrapper => "EM",
+    MemProtect => "None",
+    AdditionalInfo => "KeyWidth=32,SourceIdWidth=1,NumberOfBanks=4,NumberOfCamEntries=32,NumberOfParallelBanks=4,2PMemory=Enabled,VerifierSampleReadAccess=1,VerifierSampleReadBeforeProt=3,VerifierSamplePhysicalMem=2,VerifierSampleWriteAfterProt=1,VerifierCpuReadAccess=Enabled,VerifierCpuWriteAccess=Enabled,VrfWriteActivityFactor=0,VrfReadActivityFactor=50,VrfDisableSameAddressErr=Enabled,VrfEnableNonCpuRdWrSameAddress=Enabled,ValidSampleReadAccess=1,ValidSampleReadBeforeProt=2,ValidSampleWriteAfterProt=1,ValidCpuReadAccess=Enabled,ValidCpuWriteAccess=Enabled,VldWriteActivityFactor=0,VldReadActivityFactor=0",
+    MemLogicalWidth => "72",
+    SharedDbPayload => { #Structure Type: MemField;
+      Name => "SharedDbPayload",
+      RegMem => "MemField",
+      Width => "72",
+      Position => "71:0", # Excel Formula: =calc_position(F22,E23,TRUE)
+    },
+  },
+  McEmdbEntry => { #Structure Type: Mem;
+    Name => "McEmdbEntry",
+    RegMem => "Mem",
+    Address => "100000", # Excel Formula: =calc_mem_address(C22,A22,G24,L24)
+    Description => "Parsing of the MC EMDB for documentation",
+    Width => "72", # Excel Formula: =calc_mem_width(E25:E30,M24,F30,-1)
+    Type => "DocOnly",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "None",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    MemLogicalWidth => "72",
+    McCopyId0 => { #Structure Type: MemField;
+      Name => "McCopyId0",
+      RegMem => "MemField",
+      Description => "If MC Copy ID = 0 : CUD set to MCID using the MCID from the PD.
+If MC Copy ID < cfg : CUD set to MCID using the value of the MC copy ID
+If MC copy Id >= cfg : CUD set to MC Copy ID ",
+      Width => "18",
+      Position => "17:0", # Excel Formula: =calc_position(F24,E25,TRUE)
+    },
+    McCopyBaseQueueNum0 => { #Structure Type: MemField;
+      Name => "McCopyBaseQueueNum0",
+      RegMem => "MemField",
+      Width => "16",
+      Position => "33:18", # Excel Formula: =calc_position(F25,E26)
+    },
+    McCopyTcMapProfile0 => { #Structure Type: MemField;
+      Name => "McCopyTcMapProfile0",
+      RegMem => "MemField",
+      Width => "2",
+      Position => "35:34", # Excel Formula: =calc_position(F26,E27)
+    },
+    McCopyId1 => { #Structure Type: MemField;
+      Name => "McCopyId1",
+      RegMem => "MemField",
+      Width => "18",
+      Position => "53:36", # Excel Formula: =calc_position(F27,E28)
+    },
+    McCopyBaseQueueNum1 => { #Structure Type: MemField;
+      Name => "McCopyBaseQueueNum1",
+      RegMem => "MemField",
+      Width => "16",
+      Position => "69:54", # Excel Formula: =calc_position(F28,E29)
+    },
+    McCopyTcMapProfile1 => { #Structure Type: MemField;
+      Name => "McCopyTcMapProfile1",
+      RegMem => "MemField",
+      Width => "2",
+      Position => "71:70", # Excel Formula: =calc_position(F29,E30)
+    },
+  },
+  McEmdbEntryTxpdrFormat0 => { #Structure Type: Mem;
+    Name => "McEmdbEntryTxpdrFormat0",
+    RegMem => "Mem",
+    Address => "100000", # Excel Formula: =calc_mem_address(C22,A22,G31,L31)
+    Description => "Parsing of the MC EMDB TXPDR format for documentation",
+    Width => "59", # Excel Formula: =calc_mem_width(E32:E38,M31,F38,-1)
+    Type => "DocOnly",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "None",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    MemLogicalWidth => "59",
+    Format0 => { #Structure Type: MemField;
+      Name => "Format0",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F31,E32,TRUE)
+    },
+    Format0McCopyId0 => { #Structure Type: MemField;
+      Name => "Format0McCopyId0",
+      RegMem => "MemField",
+      Width => "18",
+      Position => "18:1", # Excel Formula: =calc_position(F32,E33)
+    },
+    Format0McCopyId1 => { #Structure Type: MemField;
+      Name => "Format0McCopyId1",
+      RegMem => "MemField",
+      Width => "18",
+      Position => "36:19", # Excel Formula: =calc_position(F33,E34)
+    },
+    Format0McCopyOqg0 => { #Structure Type: MemField;
+      Name => "Format0McCopyOqg0",
+      RegMem => "MemField",
+      Width => "8",
+      Position => "44:37", # Excel Formula: =calc_position(F34,E35)
+    },
+    Format0McCopyOqg1 => { #Structure Type: MemField;
+      Name => "Format0McCopyOqg1",
+      RegMem => "MemField",
+      Width => "8",
+      Position => "52:45", # Excel Formula: =calc_position(F35,E36)
+    },
+    Format0McCopyTcMapProfile0 => { #Structure Type: MemField;
+      Name => "Format0McCopyTcMapProfile0",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "55:53", # Excel Formula: =calc_position(F36,E37)
+    },
+    Format0McCopyTcMapProfile1 => { #Structure Type: MemField;
+      Name => "Format0McCopyTcMapProfile1",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "58:56", # Excel Formula: =calc_position(F37,E38)
+    },
+  },
+  McEmdbEntryTxpdrFormat1 => { #Structure Type: Mem;
+    Name => "McEmdbEntryTxpdrFormat1",
+    RegMem => "Mem",
+    Address => "100000", # Excel Formula: =calc_mem_address(C22,A22,G39,L39)
+    Description => "Parsing of the MC EMDB TXPDR format for documentation",
+    Width => "72", # Excel Formula: =calc_mem_width(E40:E44,M39,F44,-1)
+    Type => "DocOnly",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "None",
+    AdditionalInfo => "SampleReadBeforeProt=1,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    MemLogicalWidth => "72",
+    Format1 => { #Structure Type: MemField;
+      Name => "Format1",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F39,E40,TRUE)
+    },
+    Format1McCopyId => { #Structure Type: MemField;
+      Name => "Format1McCopyId",
+      RegMem => "MemField",
+      Width => "18",
+      Position => "18:1", # Excel Formula: =calc_position(F40,E41)
+    },
+    Format1McCopyTcMapProfile => { #Structure Type: MemField;
+      Name => "Format1McCopyTcMapProfile",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "21:19", # Excel Formula: =calc_position(F41,E42)
+    },
+    Format1BitmapMappingProfile => { #Structure Type: MemField;
+      Name => "Format1BitmapMappingProfile",
+      RegMem => "MemField",
+      Width => "2",
+      Position => "23:22", # Excel Formula: =calc_position(F42,E43)
+    },
+    Format1CopyBitmap => { #Structure Type: MemField;
+      Name => "Format1CopyBitmap",
+      RegMem => "MemField",
+      Width => "48",
+      Position => "71:24", # Excel Formula: =calc_position(F43,E44)
+    },
+  },
+  McFeLinksBmp => { #Structure Type: Mem;
+    Name => "McFeLinksBmp",
+    RegMem => "Mem",
+    Address => "100000", # Excel Formula: =calc_mem_address(C22,A22,G45,L45)
+    Description => "Parsing of the MC FE Link BMP for documentation",
+    Width => "109", # Excel Formula: =calc_mem_width(E46:E46,M45,F46,-1)
+    Type => "DocOnly",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "65536",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "None",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "109",
+    McFeLinksBmpEntry => { #Structure Type: MemField;
+      Name => "McFeLinksBmpEntry",
+      RegMem => "MemField",
+      Description => "The MC FE links BMP table entry:
+107:0 - a bitmap of the 108 FE link
+Each entry is a bitmap of all the fabric-links that a particular multicast group may make copies to
+Note that if there are multiple links to reach a destination device that has member leafs of the MCID than all these links would be identified in this bitmap
+108 - Use Bitmap directly - indicates that the link selection should take into consideration only the McFeLinksBmp and the live links.
+If all bits are set to 0 - the PD will be dropped.",
+      Width => "109",
+      Position => "108:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+    },
+  },
+  McFeLinksBmpMemoryPartition => { #Structure Type: Mem;
+    Name => "McFeLinksBmpMemoryPartition",
+    RegMem => "Mem",
+    Address => "100000", # Excel Formula: =calc_mem_address(C22,A22,G47,L47)
+    Width => "198", # Excel Formula: =calc_mem_width(E48:E52,M47,F52,-1)
+    Type => "DocOnly",
+    UsedBy => "DSN",
+    DefaultValue => "N/A",
+    MemEntries => "65536",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "None",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "198",
+    McFeLinksBmpPart1 => { #Structure Type: MemField;
+      Name => "McFeLinksBmpPart1",
+      RegMem => "MemField",
+      Description => "The MC FE links BMP is sharing a memory with the MC EMDB verifier table so the data and ECC are spread on the 2 physical memories (2 MC EMDB banks)",
+      Width => "91",
+      Position => "90:0", # Excel Formula: =calc_position(F47,E48,TRUE)
+    },
+    McFeLinksBmpEccPart1 => { #Structure Type: MemField;
+      Name => "McFeLinksBmpEccPart1",
+      RegMem => "MemField",
+      Width => "8",
+      Position => "98:91", # Excel Formula: =calc_position(F48,E49)
+    },
+    McFeLinksBmpPart2 => { #Structure Type: MemField;
+      Name => "McFeLinksBmpPart2",
+      RegMem => "MemField",
+      Description => "The MC FE links BMP is sharing a memory with the MC EMDB verifier table so the data and ECC are spread on the 2 physical memories (2 MC EMDB banks)",
+      Width => "18",
+      Position => "116:99", # Excel Formula: =calc_position(F49,E50)
+    },
+    McFeLinksBmpPart2Unused => { #Structure Type: MemField;
+      Name => "McFeLinksBmpPart2Unused",
+      RegMem => "MemField",
+      Description => "Unused bits",
+      Width => "73",
+      Position => "189:117", # Excel Formula: =calc_position(F50,E51)
+    },
+    McFeLinksBmpEccPart2 => { #Structure Type: MemField;
+      Name => "McFeLinksBmpEccPart2",
+      RegMem => "MemField",
+      Width => "8",
+      Position => "197:190", # Excel Formula: =calc_position(F51,E52)
+    },
+  },
+  SharedDbVerifier0 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 17; Skip Register;
+    Name => "SharedDbVerifier[4]",
+    RegMem => "Mem",
+    Address => "200000", # Excel Formula: =calc_mem_address(C22,A22,G53,L53)
+    Width => "99", # Excel Formula: =calc_mem_width(E54:E54,M53,F54,-1)
+    Type => "Dynamic",
+    UsedBy => "SharedDb",
+    MemEntries => "16384",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,UseEccCpuWr=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=50,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    MemLogicalWidth => "91",
+    SharedDbVerifier0Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 17;
+      Name => "SharedDbVerifier[n]Data",
+      RegMem => "MemField",
+      Width => "99",
+      Position => "98:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+    },
+  },
+  SharedDbVerifier1 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 17; Skip Register;
+    Name => "SharedDbVerifier[4]",
+    RegMem => "Mem",
+    Address => "300000",
+    Width => "99", # Excel Formula: =calc_mem_width(E54:E54,M53,F54,-1)
+    Type => "Dynamic",
+    UsedBy => "SharedDb",
+    MemEntries => "16384",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,UseEccCpuWr=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=50,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    MemLogicalWidth => "91",
+    SharedDbVerifier1Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 17;
+      Name => "SharedDbVerifier[n]Data",
+      RegMem => "MemField",
+      Width => "99",
+      Position => "98:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+    },
+  },
+  SharedDbVerifier2 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 17; Skip Register;
+    Name => "SharedDbVerifier[4]",
+    RegMem => "Mem",
+    Address => "400000",
+    Width => "99", # Excel Formula: =calc_mem_width(E54:E54,M53,F54,-1)
+    Type => "Dynamic",
+    UsedBy => "SharedDb",
+    MemEntries => "16384",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,UseEccCpuWr=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=50,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    MemLogicalWidth => "91",
+    SharedDbVerifier2Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 17;
+      Name => "SharedDbVerifier[n]Data",
+      RegMem => "MemField",
+      Width => "99",
+      Position => "98:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+    },
+  },
+  SharedDbVerifier3 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 17; Skip Register;
+    Name => "SharedDbVerifier[4]",
+    RegMem => "Mem",
+    Address => "500000",
+    Width => "99", # Excel Formula: =calc_mem_width(E54:E54,M53,F54,-1)
+    Type => "Dynamic",
+    UsedBy => "SharedDb",
+    MemEntries => "16384",
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,UseEccCpuWr=1,SampleReadAccess=1,SampleReadBeforeProt=3,SamplePhysicalMem=2,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=50,DisableSameAddressErr=Enabled,EnableNonCpuRdWrSameAddress=Enabled,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    MemLogicalWidth => "91",
+    SharedDbVerifier3Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 17;
+      Name => "SharedDbVerifier[n]Data",
+      RegMem => "MemField",
+      Width => "99",
+      Position => "98:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+    },
+  },
+  SharedDbPerBankReg0 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 19; Skip Register;
+    Name => "SharedDbPerBankReg[4]",
+    RegMem => "Reg",
+    Address => "105", # Excel Formula: =calc_reg_address(C20,A20,G20)
+    Width => "66", # Excel Formula: =calc_reg_width(E56:E58,F58)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    SharedDbActiveBanks0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "SharedDbActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F55,E56,TRUE)
+      Type => "Config",
+      UsedBy => "SharedDb",
+      DefaultValue => "d1",
+    },
+    SharedDbHashKey0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 16;
+      Name => "SharedDbHashKey[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "64:1", # Excel Formula: =calc_position(F56,E57)
+      Type => "Config",
+      UsedBy => "SharedDb",
+      DefaultValue => "h0",
+    },
+    SharedDbUsePrimitiveCrc0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 24;
+      Name => "SharedDbUsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "65", # Excel Formula: =calc_position(F57,E58)
+      Type => "Config",
+      UsedBy => "SharedDb",
+      DefaultValue => "h0",
+    },
+  },
+  SharedDbPerBankReg1 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 19; Skip Register;
+    Name => "SharedDbPerBankReg[4]",
+    RegMem => "Reg",
+    Address => "106",
+    Width => "66", # Excel Formula: =calc_reg_width(E56:E58,F58)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    SharedDbActiveBanks1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20;
+      Name => "SharedDbActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F55,E56,TRUE)
+      Type => "Config",
+      UsedBy => "SharedDb",
+      DefaultValue => "d1",
+    },
+    SharedDbHashKey1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 16;
+      Name => "SharedDbHashKey[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "64:1", # Excel Formula: =calc_position(F56,E57)
+      Type => "Config",
+      UsedBy => "SharedDb",
+      DefaultValue => "h0",
+    },
+    SharedDbUsePrimitiveCrc1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 24;
+      Name => "SharedDbUsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "65", # Excel Formula: =calc_position(F57,E58)
+      Type => "Config",
+      UsedBy => "SharedDb",
+      DefaultValue => "h0",
+    },
+  },
+  SharedDbPerBankReg2 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 19; Skip Register;
+    Name => "SharedDbPerBankReg[4]",
+    RegMem => "Reg",
+    Address => "107",
+    Width => "66", # Excel Formula: =calc_reg_width(E56:E58,F58)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    SharedDbActiveBanks2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20;
+      Name => "SharedDbActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F55,E56,TRUE)
+      Type => "Config",
+      UsedBy => "SharedDb",
+      DefaultValue => "d1",
+    },
+    SharedDbHashKey2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 16;
+      Name => "SharedDbHashKey[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "64:1", # Excel Formula: =calc_position(F56,E57)
+      Type => "Config",
+      UsedBy => "SharedDb",
+      DefaultValue => "h0",
+    },
+    SharedDbUsePrimitiveCrc2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 24;
+      Name => "SharedDbUsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "65", # Excel Formula: =calc_position(F57,E58)
+      Type => "Config",
+      UsedBy => "SharedDb",
+      DefaultValue => "h0",
+    },
+  },
+  SharedDbPerBankReg3 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 19; Skip Register;
+    Name => "SharedDbPerBankReg[4]",
+    RegMem => "Reg",
+    Address => "108",
+    Width => "66", # Excel Formula: =calc_reg_width(E56:E58,F58)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    SharedDbActiveBanks3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20;
+      Name => "SharedDbActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F55,E56,TRUE)
+      Type => "Config",
+      UsedBy => "SharedDb",
+      DefaultValue => "d1",
+    },
+    SharedDbHashKey3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 16;
+      Name => "SharedDbHashKey[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "64:1", # Excel Formula: =calc_position(F56,E57)
+      Type => "Config",
+      UsedBy => "SharedDb",
+      DefaultValue => "h0",
+    },
+    SharedDbUsePrimitiveCrc3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 24;
+      Name => "SharedDbUsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "65", # Excel Formula: =calc_position(F57,E58)
+      Type => "Config",
+      UsedBy => "SharedDb",
+      DefaultValue => "h0",
+    },
+  },
+  SharedDbPerEmReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 17; Skip Register;
+    Name => "SharedDbPerEmReg[1]",
+    RegMem => "Reg",
+    Address => "109", # Excel Formula: =calc_reg_address(C55,A55,G55)
+    Width => "33", # Excel Formula: =calc_reg_width(E60:E62,F62)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    SharedDbKeyWidth0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 17;
+      Name => "SharedDbKeyWidth[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F59,E60,TRUE)
+      Type => "Config",
+      UsedBy => "SharedDb",
+      DefaultValue => "h0",
+    },
+    SharedDbAutoBubbleReq0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 22;
+      Name => "SharedDbAutoBubbleReq[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F60,E61)
+      Type => "Config",
+      UsedBy => "SharedDb",
+      DefaultValue => "h0",
+    },
+    SharedDbBubbleReqThreshold0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 27;
+      Name => "SharedDbBubbleReqThreshold[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "32:17", # Excel Formula: =calc_position(F61,E62)
+      Type => "Config",
+      UsedBy => "SharedDb",
+      DefaultValue => "h0",
+    },
+  },
+  SharedDbCamWmMaxReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 20; Skip Register;
+    Name => "SharedDbCamWmMaxReg[1]",
+    RegMem => "Reg",
+    Address => "10A", # Excel Formula: =calc_reg_address(C59,A59,G59)
+    Width => "8", # Excel Formula: =calc_reg_width(E64:E64,F64)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    SharedDbCamWmMax0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 17;
+      Name => "SharedDbCamWmMax[n]",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F63,E64,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "emdb",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  SharedDbAccessRegister0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 23; Skip Register;
+    Name => "SharedDbAccessRegister[1]",
+    RegMem => "Reg",
+    Address => "10B", # Excel Formula: =calc_reg_address(C63,A63,G63)
+    Width => "127", # Excel Formula: =calc_reg_width(E66:E66,F66)
+    Type => "External",
+    UsedBy => "em_top",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    SharedDbAccessReg0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 18;
+      Name => "SharedDbAccessReg[n]",
+      RegMem => "RegField",
+      Width => "127",
+      Position => "126:0", # Excel Formula: =calc_position(F65,E66,TRUE)
+      Type => "External",
+    },
+  },
+  SharedDbResponseRegister0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 25; Skip Register;
+    Name => "SharedDbResponseRegister[1]",
+    RegMem => "Reg",
+    Address => "10C", # Excel Formula: =calc_reg_address(C65,A65,G65)
+    Width => "127", # Excel Formula: =calc_reg_width(E68:E69,F69)
+    Type => "ReadOnly",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    SharedDbResponseValid0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 22;
+      Name => "SharedDbResponseValid[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Event",
+      UsedBy => "emdb",
+    },
+    SharedDbResponseReg0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "SharedDbResponseReg[n]",
+      RegMem => "RegField",
+      Width => "126",
+      Position => "126:1", # Excel Formula: =calc_position(F68,E69)
+      Type => "Capture",
+      UsedBy => "emdb",
+    },
+  },
+  SharedDbCam => { #Structure Type: Mem; Skip Register;
+    Name => "SharedDbCam",
+    RegMem => "Mem",
+    Address => "600000", # Excel Formula: =calc_mem_address(C53,A53,G70,L70)
+    Width => "105", # Excel Formula: =calc_mem_width(E71:E73,"None",F73,-1)
+    Type => "Dynamic",
+    UsedBy => "SharedDb",
+    MemEntries => "32",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,RegTcamPayloadWidth=72,CAM=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,NumCamLookupClients=2",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "105",
+    SharedDbCam_key => { #Structure Type: MemField;
+      Name => "SharedDbCam_key",
+      RegMem => "MemField",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F70,E71,TRUE)
+    },
+    SharedDbCam_payload => { #Structure Type: MemField;
+      Name => "SharedDbCam_payload",
+      RegMem => "MemField",
+      Width => "72",
+      Position => "103:32", # Excel Formula: =calc_position(F71,E72)
+    },
+    SharedDbCam_valid => { #Structure Type: MemField;
+      Name => "SharedDbCam_valid",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "104", # Excel Formula: =calc_position(F72,E73)
+    },
+  },
+  EmResponseInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "EmResponseInterrupt",
+    RegMem => "Reg",
+    Address => "10D", # Excel Formula: =calc_reg_address(C67,A67,G67)
+    Width => "1", # Excel Formula: =calc_reg_width(E75:E75,F75)
+    Type => "Interrupt",
+    Comments => "EM Skip Reg",
+    SharedDbResp => { #Structure Type: RegField;
+      Name => "SharedDbResp",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F74,E75,TRUE)
+      Type => "Interrupt",
+      UsedBy => "emdb",
+    },
+  },
+  EmResponseInterruptMask => { #Structure Type: Reg; Skip Register; Skip Register;
+    Name => "EmResponseInterruptMask",
+    RegMem => "Reg",
+    Address => "10E",
+    Width => "1", # Excel Formula: =calc_reg_width(E75:E75,F75)
+    Type => "InterruptMask",
+    Comments => "EM Skip Reg",
+    SharedDbRespMask => { #Structure Type: RegField;
+      Name => "SharedDbRespMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F74,E75,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  EmResponseInterruptTest => { #Structure Type: Reg; Skip Register; Skip Register;
+    Name => "EmResponseInterruptTest",
+    RegMem => "Reg",
+    Address => "10F",
+    Width => "1", # Excel Formula: =calc_reg_width(E75:E75,F75)
+    Type => "InterruptTest",
+    Comments => "EM Skip Reg",
+    SharedDbRespTest => { #Structure Type: RegField;
+      Name => "SharedDbRespTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F74,E75,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  SharedDbVerifier0BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 17; Skip Register;
+    Name => "SharedDbVerifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "110", # Excel Formula: =calc_reg_address(C74,A74,G74)
+    Width => "16", # Excel Formula: =calc_reg_width(E77:E77,F77)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    SharedDbVerifier0BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 17;
+      Name => "SharedDbVerifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F76,E77,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  SharedDbVerifier1BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 17; Skip Register;
+    Name => "SharedDbVerifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "111",
+    Width => "16", # Excel Formula: =calc_reg_width(E77:E77,F77)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    SharedDbVerifier1BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 17;
+      Name => "SharedDbVerifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F76,E77,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  SharedDbVerifier2BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 17; Skip Register;
+    Name => "SharedDbVerifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "112",
+    Width => "16", # Excel Formula: =calc_reg_width(E77:E77,F77)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    SharedDbVerifier2BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 17;
+      Name => "SharedDbVerifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F76,E77,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+  SharedDbVerifier3BubbleReqCfg => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 17; Skip Register;
+    Name => "SharedDbVerifier[4]BubbleReqCfg",
+    RegMem => "Reg",
+    Address => "113",
+    Width => "16", # Excel Formula: =calc_reg_width(E77:E77,F77)
+    Type => "Config",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    SharedDbVerifier3BubbleTimerCfg => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 17;
+      Name => "SharedDbVerifier[n]BubbleTimerCfg",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F76,E77,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d1",
+    },
+  },
+};

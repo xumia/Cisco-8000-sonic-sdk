@@ -1,0 +1,4507 @@
+$block{CSMS} = {
+  Defines_db => "",
+  ProjectName => "Gibraltar",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "2",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+    CsmsInterruptRegSummary => { #Structure Type: RegField;
+      Name => "CsmsInterruptRegSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, CsmsInterruptReg has asserted interrupt",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt test register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "16",
+    Type => "Config",
+    DstDevMapMem0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DstDevMapMem0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DstDevMapMem1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DstDevMapMem1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DstDevMapMem2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DstDevMapMem2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    VoqVscDstMapMem0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    VoqVscDstMapMem1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    VoqVscDstMapMem2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    VoqVscDstMapMem3Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem3Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DstDevMapMemRedEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DstDevMapMemRedEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    VscDstMapMem0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VscDstMapMem0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    VscDstMapMem1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VscDstMapMem1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    VoqDstMapMem0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VoqDstMapMem0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    VoqDstMapMem1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VoqDstMapMem1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DdmqMem0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DdmqMem0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DdmqMem1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DdmqMem1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DdmqMem2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DdmqMem2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DdmqMemRedEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DdmqMemRedEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "16",
+    Type => "Config",
+    DstDevMapMem0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DstDevMapMem0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DstDevMapMem1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DstDevMapMem1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DstDevMapMem2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DstDevMapMem2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    VoqVscDstMapMem0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    VoqVscDstMapMem1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    VoqVscDstMapMem2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    VoqVscDstMapMem3Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem3Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DstDevMapMemRedEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DstDevMapMemRedEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    VscDstMapMem0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VscDstMapMem0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    VscDstMapMem1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VscDstMapMem1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    VoqDstMapMem0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VoqDstMapMem0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    VoqDstMapMem1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VoqDstMapMem1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DdmqMem0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DdmqMem0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DdmqMem1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DdmqMem1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DdmqMem2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DdmqMem2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    DdmqMemRedEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "DdmqMemRedEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "16",
+    Type => "Config",
+    DstDevMapMem0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DstDevMapMem0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DstDevMapMem1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DstDevMapMem1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DstDevMapMem2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DstDevMapMem2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    VoqVscDstMapMem0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    VoqVscDstMapMem1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    VoqVscDstMapMem2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    VoqVscDstMapMem3Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem3Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DstDevMapMemRedEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DstDevMapMemRedEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    VscDstMapMem0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "VscDstMapMem0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    VscDstMapMem1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "VscDstMapMem1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    VoqDstMapMem0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "VoqDstMapMem0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    VoqDstMapMem1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "VoqDstMapMem1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DdmqMem0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DdmqMem0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DdmqMem1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DdmqMem1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DdmqMem2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DdmqMem2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DdmqMemRedEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "DdmqMemRedEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "16",
+    Type => "Config",
+    DstDevMapMem0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DstDevMapMem0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DstDevMapMem1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DstDevMapMem1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DstDevMapMem2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DstDevMapMem2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    VoqVscDstMapMem0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    VoqVscDstMapMem1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    VoqVscDstMapMem2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    VoqVscDstMapMem3Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem3Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DstDevMapMemRedEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DstDevMapMemRedEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    VscDstMapMem0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "VscDstMapMem0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    VscDstMapMem1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "VscDstMapMem1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    VoqDstMapMem0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "VoqDstMapMem0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    VoqDstMapMem1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "VoqDstMapMem1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DdmqMem0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DdmqMem0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DdmqMem1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DdmqMem1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DdmqMem2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DdmqMem2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    DdmqMemRedEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "DdmqMemRedEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectErrStatus",
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "16",
+    Type => "ReadOnly",
+    DstDevMapMem0ErrInt => { #Structure Type: RegField;
+      Name => "DstDevMapMem0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DstDevMapMem1ErrInt => { #Structure Type: RegField;
+      Name => "DstDevMapMem1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "1",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DstDevMapMem2ErrInt => { #Structure Type: RegField;
+      Name => "DstDevMapMem2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "2",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    VoqVscDstMapMem0ErrInt => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "3",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    VoqVscDstMapMem1ErrInt => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "4",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    VoqVscDstMapMem2ErrInt => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "5",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    VoqVscDstMapMem3ErrInt => { #Structure Type: RegField;
+      Name => "VoqVscDstMapMem3ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "6",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DstDevMapMemRedErrInt => { #Structure Type: RegField;
+      Name => "DstDevMapMemRedErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "7",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    VscDstMapMem0ErrInt => { #Structure Type: RegField;
+      Name => "VscDstMapMem0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "8",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    VscDstMapMem1ErrInt => { #Structure Type: RegField;
+      Name => "VscDstMapMem1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "9",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    VoqDstMapMem0ErrInt => { #Structure Type: RegField;
+      Name => "VoqDstMapMem0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "10",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    VoqDstMapMem1ErrInt => { #Structure Type: RegField;
+      Name => "VoqDstMapMem1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "11",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DdmqMem0ErrInt => { #Structure Type: RegField;
+      Name => "DdmqMem0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "12",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DdmqMem1ErrInt => { #Structure Type: RegField;
+      Name => "DdmqMem1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "13",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DdmqMem2ErrInt => { #Structure Type: RegField;
+      Name => "DdmqMem2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "14",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    DdmqMemRedErrInt => { #Structure Type: RegField;
+      Name => "DdmqMemRedErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "15",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    Name => "SelectedSerErrorInfo",
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "16",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      Name => "MemErrAddr",
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "14",
+      Position => "13:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      Name => "MemErrType",
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "15:14",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SerErrorDebugConfiguration",
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "5",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      Name => "ErroneousMemorySelector",
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "4",
+      Position => "3:0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      Name => "ResetMemoryErrors",
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrDebug",
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_1bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrDebug",
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_2bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "73", # Excel Formula: =calc_reg_width(E25:E53,F53)
+    Type => "Config",
+    SACR1P_RME => { #Structure Type: RegField;
+      Name => "SACR1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACR1P_RM => { #Structure Type: RegField;
+      Name => "SACR1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "4:1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACU2P_RME => { #Structure Type: RegField;
+      Name => "SACU2P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACU2P_RM => { #Structure Type: RegField;
+      Name => "SACU2P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "9:6", # Excel Formula: =calc_position(F27,E28)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADC1P_RME => { #Structure Type: RegField;
+      Name => "SADC1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F28,E29)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADC1P_RM => { #Structure Type: RegField;
+      Name => "SADC1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "14:11", # Excel Formula: =calc_position(F29,E30)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMEA => { #Structure Type: RegField;
+      Name => "SADR2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F30,E31)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMA => { #Structure Type: RegField;
+      Name => "SADR2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "19:16", # Excel Formula: =calc_position(F31,E32)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMEB => { #Structure Type: RegField;
+      Name => "SADR2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "20", # Excel Formula: =calc_position(F32,E33)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMB => { #Structure Type: RegField;
+      Name => "SADR2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "24:21", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMEA => { #Structure Type: RegField;
+      Name => "SADS2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMA => { #Structure Type: RegField;
+      Name => "SADS2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "29:26", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMEB => { #Structure Type: RegField;
+      Name => "SADS2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "30", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMB => { #Structure Type: RegField;
+      Name => "SADS2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "34:31", # Excel Formula: =calc_position(F37,E38)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASR1P_RME => { #Structure Type: RegField;
+      Name => "SASR1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "35", # Excel Formula: =calc_position(F38,E39)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASR1P_RM => { #Structure Type: RegField;
+      Name => "SASR1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "39:36", # Excel Formula: =calc_position(F39,E40)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS1P_RME => { #Structure Type: RegField;
+      Name => "SASS1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "40", # Excel Formula: =calc_position(F40,E41)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS1P_RM => { #Structure Type: RegField;
+      Name => "SASS1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "44:41", # Excel Formula: =calc_position(F41,E42)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMEA => { #Structure Type: RegField;
+      Name => "SASS2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "45", # Excel Formula: =calc_position(F42,E43)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMA => { #Structure Type: RegField;
+      Name => "SASS2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "49:46", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMEB => { #Structure Type: RegField;
+      Name => "SASS2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "50", # Excel Formula: =calc_position(F44,E45)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMB => { #Structure Type: RegField;
+      Name => "SASS2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "54:51", # Excel Formula: =calc_position(F45,E46)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASU2P_RME => { #Structure Type: RegField;
+      Name => "SASU2P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "55", # Excel Formula: =calc_position(F46,E47)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASU2P_RM => { #Structure Type: RegField;
+      Name => "SASU2P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "59:56", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_RME => { #Structure Type: RegField;
+      Name => "SADU1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "60", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_RM => { #Structure Type: RegField;
+      Name => "SADU1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "64:61", # Excel Formula: =calc_position(F49,E50)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RA => { #Structure Type: RegField;
+      Name => "SADS2P_RA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Assist for Dual port",
+      Width => "2",
+      Position => "66:65", # Excel Formula: =calc_position(F50,E51)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_WA => { #Structure Type: RegField;
+      Name => "SADU1P_WA",
+      RegMem => "RegField",
+      Description => "Write-Assist configuration for the SP SADU compiler",
+      Width => "3",
+      Position => "69:67", # Excel Formula: =calc_position(F51,E52)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d5",
+    },
+    SADU1P_WPULSE => { #Structure Type: RegField;
+      Name => "SADU1P_WPULSE",
+      RegMem => "RegField",
+      Description => "Write-Assist-Pulse configuration for the SP SADU compiler",
+      Width => "3",
+      Position => "72:70", # Excel Formula: =calc_position(F52,E53)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E55:E55,F55)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F54,E55,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C54,A54,G54)
+    Description => "Spare register",
+    Width => "128", # Excel Formula: =calc_reg_width(E57:E57,F57)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "Spare register ",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F56,E57,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C56,A56,G56)
+    Description => "PMRO controller configuration",
+    Width => "32", # Excel Formula: =calc_reg_width(E59:E63,F63)
+    Type => "Config",
+    PmroRstn => { #Structure Type: RegField;
+      Name => "PmroRstn",
+      RegMem => "RegField",
+      Description => "PMRO reset, active low",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F58,E59,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroConfigEn => { #Structure Type: RegField;
+      Name => "PmroConfigEn",
+      RegMem => "RegField",
+      Description => "Enable pmro configuration, when equals to 0 configurations are locked",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F59,E60)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroStart => { #Structure Type: RegField;
+      Name => "PmroStart",
+      RegMem => "RegField",
+      Description => "Start the pmro operation",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F60,E61)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroRingEn => { #Structure Type: RegField;
+      Name => "PmroRingEn",
+      RegMem => "RegField",
+      Description => "Determines which PMRO ring to activate, should be configured as one hot",
+      Width => "7",
+      Position => "9:3", # Excel Formula: =calc_position(F61,E62)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroCntPeriod => { #Structure Type: RegField;
+      Name => "PmroCntPeriod",
+      RegMem => "RegField",
+      Description => "Number of core clock cycles on which PMRO is measured",
+      Width => "22",
+      Position => "31:10", # Excel Formula: =calc_position(F62,E63)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "h3FFFFF",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C58,A58,G58)
+    Description => "PMRO status configuration",
+    Width => "23", # Excel Formula: =calc_reg_width(E65:E66,F66)
+    Type => "ReadOnly",
+    PmroCountOut => { #Structure Type: RegField;
+      Name => "PmroCountOut",
+      RegMem => "RegField",
+      Description => "The ring oscilator counter value.",
+      Width => "22",
+      Position => "21:0", # Excel Formula: =calc_position(F64,E65,TRUE)
+      Type => "Status",
+      UsedBy => "pmro",
+    },
+    PmroDone => { #Structure Type: RegField;
+      Name => "PmroDone",
+      RegMem => "RegField",
+      Description => "Pmro operation done, PmroCountOut is valid.",
+      Width => "1",
+      Position => "22", # Excel Formula: =calc_position(F65,E66)
+      Type => "Status",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C64,A64,G64)
+    Description => "Mirror Bus configurations",
+    Width => "11", # Excel Formula: =calc_reg_width(E68:E69,F69)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "Enable Mirror Bus",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "Mirror Bus selector",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F68,E69)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C67,A67,G67)
+    Description => "Mirror Bus status result",
+    Width => "32", # Excel Formula: =calc_reg_width(E71:E71,F71)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "Mirror Bus status result",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F70,E71,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C70,A70,G70)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E73:E73,F73)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F72,E73,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  DeviceConfigReg => { #Structure Type: Reg;
+    Name => "DeviceConfigReg",
+    RegMem => "Reg",
+    Address => "100",
+    Description => "Device Configuration Register",
+    Width => "9", # Excel Formula: =calc_reg_width(E8:E8,F8)
+    Type => "Config",
+    DeviceId => { #Structure Type: RegField;
+      Name => "DeviceId",
+      RegMem => "RegField",
+      Description => "Self Device ID in the system. Optional values are 0 to 510",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "h0",
+      InitValueAllModes => "device_id",
+    },
+  },
+  Asic3ModeReg => { #Structure Type: Reg;
+    Name => "Asic3ModeReg",
+    RegMem => "Reg",
+    Address => "101", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Asic3 mode Register",
+    Width => "1", # Excel Formula: =calc_reg_width(E10:E10,F10)
+    Type => "Config",
+    Asic3Mode => { #Structure Type: RegField;
+      Name => "Asic3Mode",
+      RegMem => "RegField",
+      Description => "Configures the device to Asic3 mode ",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "h0",
+    },
+  },
+  PackingControlReg => { #Structure Type: Reg;
+    Name => "PackingControlReg",
+    RegMem => "Reg",
+    Address => "102", # Excel Formula: =calc_reg_address(C9,A9,G9)
+    Description => "Packing Control Register. controls the packing of Credit Scheduling Control (CSC) messages into packets that are sent over the fabric.",
+    Width => "20", # Excel Formula: =calc_reg_width(E12:E13,F13)
+    Type => "Config",
+    MinNumOfPackedMsg => { #Structure Type: RegField;
+      Name => "MinNumOfPackedMsg",
+      RegMem => "RegField",
+      Description => "Configures the minimum number of messages that are packed in a CSC packet before it is considered eligible for transmition. This is only for debugging and should not be changed otherwise",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F11,E12,TRUE)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d14",
+    },
+    PackingWatchdogTimerThr => { #Structure Type: RegField;
+      Name => "PackingWatchdogTimerThr",
+      RegMem => "RegField",
+      Description => "This field controls the maximum latency that a CSC packet can be held before it is transmitted. Configures the number of clock cycles that the packing watchdog counts before all aging counters are decremented. When the watchdog expires, a CSC packet is creates for a destination device even without reaching the minimum number of messages. This sets the maximum latecny of a message to be between 2X and 3X of the configured value (aging counters are 2 bits per device).",
+      Width => "16",
+      Position => "19:4", # Excel Formula: =calc_position(F12,E13)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d500",
+      InitValueAllModes => "600",
+    },
+  },
+  RlbMcCgMsgReg => { #Structure Type: Reg;
+    Name => "RlbMcCgMsgReg",
+    RegMem => "Reg",
+    Address => "103", # Excel Formula: =calc_reg_address(C11,A11,G11)
+    Description => "RLB-MC Congestion Message Register",
+    Width => "20", # Excel Formula: =calc_reg_width(E15:E15,F15)
+    Type => "Config",
+    RlbMcCgTimerVal => { #Structure Type: RegField;
+      Name => "RlbMcCgTimerVal",
+      RegMem => "RegField",
+      Description => "Configures the value that the RLB-MC Congestion Timer is set when receiving a Congestion Message from a remote device",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F14,E15,TRUE)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d1024",
+      InitValueLcNwk => "1024",
+    },
+  },
+  TxrqReqDupReg0 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 14;
+    Name => "TxrqReqDupReg[6]",
+    RegMem => "Reg",
+    Address => "104", # Excel Formula: =calc_reg_address(C14,A14,G14)
+    Description => "TXRQ Request Message Duplication Configuration Register per slice. Every VSC that is in the configured range is considered a TXRQ VSC which can duplicated messages of requests.",
+    Width => "30", # Excel Formula: =calc_reg_width(E17:E18,F18)
+    Type => "Config",
+    ArrayLength => "6",
+    ArrayIndex => "0",
+    TxrqMinVscRange0 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 16;
+      Name => "TxrqMinVscRange[n]",
+      RegMem => "RegField",
+      Description => "Min VSC Range for request message duplication",
+      Width => "15",
+      Position => "14:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+      InitValueSa => "0",
+      InitValueLcNwk => "0",
+      InitValueLcFab => "0",
+    },
+    TxrqMaxVscRange0 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 16;
+      Name => "TxrqMaxVscRange[n]",
+      RegMem => "RegField",
+      Description => "Max VSC Range for request message duplication",
+      Width => "15",
+      Position => "29:15", # Excel Formula: =calc_position(F17,E18)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+      InitValueSa => "96",
+      InitValueLcNwk => "48",
+      InitValueLcFab => "48",
+    },
+  },
+  TxrqReqDupReg1 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 14;
+    Name => "TxrqReqDupReg[6]",
+    RegMem => "Reg",
+    Address => "105",
+    Description => "TXRQ Request Message Duplication Configuration Register per slice. Every VSC that is in the configured range is considered a TXRQ VSC which can duplicated messages of requests.",
+    Width => "30", # Excel Formula: =calc_reg_width(E17:E18,F18)
+    Type => "Config",
+    ArrayLength => "6",
+    ArrayIndex => "1",
+    TxrqMinVscRange1 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 16;
+      Name => "TxrqMinVscRange[n]",
+      RegMem => "RegField",
+      Description => "Min VSC Range for request message duplication",
+      Width => "15",
+      Position => "14:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+      InitValueSa => "0",
+      InitValueLcNwk => "0",
+      InitValueLcFab => "0",
+    },
+    TxrqMaxVscRange1 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 16;
+      Name => "TxrqMaxVscRange[n]",
+      RegMem => "RegField",
+      Description => "Max VSC Range for request message duplication",
+      Width => "15",
+      Position => "29:15", # Excel Formula: =calc_position(F17,E18)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+      InitValueSa => "96",
+      InitValueLcNwk => "48",
+      InitValueLcFab => "48",
+    },
+  },
+  TxrqReqDupReg2 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 14;
+    Name => "TxrqReqDupReg[6]",
+    RegMem => "Reg",
+    Address => "106",
+    Description => "TXRQ Request Message Duplication Configuration Register per slice. Every VSC that is in the configured range is considered a TXRQ VSC which can duplicated messages of requests.",
+    Width => "30", # Excel Formula: =calc_reg_width(E17:E18,F18)
+    Type => "Config",
+    ArrayLength => "6",
+    ArrayIndex => "2",
+    TxrqMinVscRange2 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 16;
+      Name => "TxrqMinVscRange[n]",
+      RegMem => "RegField",
+      Description => "Min VSC Range for request message duplication",
+      Width => "15",
+      Position => "14:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+      InitValueSa => "0",
+      InitValueLcNwk => "0",
+      InitValueLcFab => "0",
+    },
+    TxrqMaxVscRange2 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 16;
+      Name => "TxrqMaxVscRange[n]",
+      RegMem => "RegField",
+      Description => "Max VSC Range for request message duplication",
+      Width => "15",
+      Position => "29:15", # Excel Formula: =calc_position(F17,E18)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+      InitValueSa => "96",
+      InitValueLcNwk => "48",
+      InitValueLcFab => "48",
+    },
+  },
+  TxrqReqDupReg3 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 14;
+    Name => "TxrqReqDupReg[6]",
+    RegMem => "Reg",
+    Address => "107",
+    Description => "TXRQ Request Message Duplication Configuration Register per slice. Every VSC that is in the configured range is considered a TXRQ VSC which can duplicated messages of requests.",
+    Width => "30", # Excel Formula: =calc_reg_width(E17:E18,F18)
+    Type => "Config",
+    ArrayLength => "6",
+    ArrayIndex => "3",
+    TxrqMinVscRange3 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 16;
+      Name => "TxrqMinVscRange[n]",
+      RegMem => "RegField",
+      Description => "Min VSC Range for request message duplication",
+      Width => "15",
+      Position => "14:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+      InitValueSa => "0",
+      InitValueLcNwk => "0",
+      InitValueLcFab => "0",
+    },
+    TxrqMaxVscRange3 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 16;
+      Name => "TxrqMaxVscRange[n]",
+      RegMem => "RegField",
+      Description => "Max VSC Range for request message duplication",
+      Width => "15",
+      Position => "29:15", # Excel Formula: =calc_position(F17,E18)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+      InitValueSa => "96",
+      InitValueLcNwk => "48",
+      InitValueLcFab => "48",
+    },
+  },
+  TxrqReqDupReg4 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 14;
+    Name => "TxrqReqDupReg[6]",
+    RegMem => "Reg",
+    Address => "108",
+    Description => "TXRQ Request Message Duplication Configuration Register per slice. Every VSC that is in the configured range is considered a TXRQ VSC which can duplicated messages of requests.",
+    Width => "30", # Excel Formula: =calc_reg_width(E17:E18,F18)
+    Type => "Config",
+    ArrayLength => "6",
+    ArrayIndex => "4",
+    TxrqMinVscRange4 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 16;
+      Name => "TxrqMinVscRange[n]",
+      RegMem => "RegField",
+      Description => "Min VSC Range for request message duplication",
+      Width => "15",
+      Position => "14:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+      InitValueSa => "0",
+      InitValueLcNwk => "0",
+      InitValueLcFab => "0",
+    },
+    TxrqMaxVscRange4 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 16;
+      Name => "TxrqMaxVscRange[n]",
+      RegMem => "RegField",
+      Description => "Max VSC Range for request message duplication",
+      Width => "15",
+      Position => "29:15", # Excel Formula: =calc_position(F17,E18)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+      InitValueSa => "96",
+      InitValueLcNwk => "48",
+      InitValueLcFab => "48",
+    },
+  },
+  TxrqReqDupReg5 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 14;
+    Name => "TxrqReqDupReg[6]",
+    RegMem => "Reg",
+    Address => "109",
+    Description => "TXRQ Request Message Duplication Configuration Register per slice. Every VSC that is in the configured range is considered a TXRQ VSC which can duplicated messages of requests.",
+    Width => "30", # Excel Formula: =calc_reg_width(E17:E18,F18)
+    Type => "Config",
+    ArrayLength => "6",
+    ArrayIndex => "5",
+    TxrqMinVscRange5 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 16;
+      Name => "TxrqMinVscRange[n]",
+      RegMem => "RegField",
+      Description => "Min VSC Range for request message duplication",
+      Width => "15",
+      Position => "14:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+      InitValueSa => "0",
+      InitValueLcNwk => "0",
+      InitValueLcFab => "0",
+    },
+    TxrqMaxVscRange5 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 16;
+      Name => "TxrqMaxVscRange[n]",
+      RegMem => "RegField",
+      Description => "Max VSC Range for request message duplication",
+      Width => "15",
+      Position => "29:15", # Excel Formula: =calc_position(F17,E18)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+      InitValueSa => "96",
+      InitValueLcNwk => "48",
+      InitValueLcFab => "48",
+    },
+  },
+  FmcReqDupReg => { #Structure Type: Reg;
+    Name => "FmcReqDupReg",
+    RegMem => "Reg",
+    Address => "10A", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "FMC Request Message Duplication Configuration Register",
+    Width => "36", # Excel Formula: =calc_reg_width(E20:E22,F22)
+    Type => "Config",
+    FmcMinVscRange => { #Structure Type: RegField;
+      Name => "FmcMinVscRange",
+      RegMem => "RegField",
+      Description => "Min VSC Range for request message duplication",
+      Width => "15",
+      Position => "14:0", # Excel Formula: =calc_position(F19,E20,TRUE)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+      InitValueSa => "96",
+      InitValueLcNwk => "0",
+      InitValueLcFab => "0",
+    },
+    FmcMaxVscRange => { #Structure Type: RegField;
+      Name => "FmcMaxVscRange",
+      RegMem => "RegField",
+      Description => "Max VSC Range for request message duplication",
+      Width => "15",
+      Position => "29:15", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+      InitValueSa => "96",
+      InitValueLcNwk => "48",
+      InitValueLcFab => "48",
+    },
+    FmcDupBitmap => { #Structure Type: RegField;
+      Name => "FmcDupBitmap",
+      RegMem => "RegField",
+      Description => "Duplication bitmap - every asserted bit will cause the message to be duplicated to IFG Scheduler 6 to 11",
+      Width => "6",
+      Position => "35:30", # Excel Formula: =calc_position(F21,E22)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+      InitValueLcNwk => "h3f",
+      InitValueLcFab => "h3f",
+    },
+  },
+  CsmsInterruptReg => { #Structure Type: Reg;
+    Name => "CsmsInterruptReg",
+    RegMem => "Reg",
+    Address => "10B", # Excel Formula: =calc_reg_address(C19,A19,G19)
+    Description => "CSMS Interrupt Register",
+    Width => "22", # Excel Formula: =calc_reg_width(E24:E45,F45)
+    Type => "Interrupt",
+    CreditGntDestDevUnreachable => { #Structure Type: RegField;
+      Name => "CreditGntDestDevUnreachable",
+      RegMem => "RegField",
+      Description => "A credit grant message was targeted to a device that is not reachable",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F23,E24,TRUE)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgBufferEnqPreFifoOverflow0 => { #Structure Type: RegField;
+      Name => "MsgBufferEnqPreFifoOverflow0",
+      RegMem => "RegField",
+      Description => "Enqueue Pre FIFO overflow at Message Buffer 0",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F24,E25)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgBufferEnqPreFifoOverflow1 => { #Structure Type: RegField;
+      Name => "MsgBufferEnqPreFifoOverflow1",
+      RegMem => "RegField",
+      Description => "Enqueue Pre FIFO overflow at Message Buffer 1",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F25,E26)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgBufferEnqPreFifoOverflow2 => { #Structure Type: RegField;
+      Name => "MsgBufferEnqPreFifoOverflow2",
+      RegMem => "RegField",
+      Description => "Enqueue Pre FIFO overflow at Message Buffer 2",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F26,E27)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgBufferEnqPreFifoOverflow3 => { #Structure Type: RegField;
+      Name => "MsgBufferEnqPreFifoOverflow3",
+      RegMem => "RegField",
+      Description => "Enqueue Pre FIFO overflow at Message Buffer 3",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F27,E28)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgBufferDdmqOverflow0 => { #Structure Type: RegField;
+      Name => "MsgBufferDdmqOverflow0",
+      RegMem => "RegField",
+      Description => "DDMQ FIFOsoverflow at Message Buffer 0",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F28,E29)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgBufferDdmqOverflow1 => { #Structure Type: RegField;
+      Name => "MsgBufferDdmqOverflow1",
+      RegMem => "RegField",
+      Description => "DDMQ FIFOsoverflow at Message Buffer 1",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F29,E30)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgBufferDdmqOverflow2 => { #Structure Type: RegField;
+      Name => "MsgBufferDdmqOverflow2",
+      RegMem => "RegField",
+      Description => "DDMQ FIFOsoverflow at Message Buffer 2",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F30,E31)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgBufferDdmqOverflow3 => { #Structure Type: RegField;
+      Name => "MsgBufferDdmqOverflow3",
+      RegMem => "RegField",
+      Description => "DDMQ FIFOsoverflow at Message Buffer 3",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F31,E32)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgBufferDeqCmdFifoOverflow0 => { #Structure Type: RegField;
+      Name => "MsgBufferDeqCmdFifoOverflow0",
+      RegMem => "RegField",
+      Description => "Dequeue Command FIFOs overflow at Message Buffer 0",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F32,E33)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgBufferDeqCmdFifoOverflow1 => { #Structure Type: RegField;
+      Name => "MsgBufferDeqCmdFifoOverflow1",
+      RegMem => "RegField",
+      Description => "Dequeue Command FIFOs overflow at Message Buffer 1",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F33,E34)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgBufferDeqCmdFifoOverflow2 => { #Structure Type: RegField;
+      Name => "MsgBufferDeqCmdFifoOverflow2",
+      RegMem => "RegField",
+      Description => "Dequeue Command FIFOs overflow at Message Buffer 2",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F34,E35)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgBufferDeqCmdFifoOverflow3 => { #Structure Type: RegField;
+      Name => "MsgBufferDeqCmdFifoOverflow3",
+      RegMem => "RegField",
+      Description => "Dequeue Command FIFOs overflow at Message Buffer 3",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F35,E36)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgBufferLocalFifoOverflow0 => { #Structure Type: RegField;
+      Name => "MsgBufferLocalFifoOverflow0",
+      RegMem => "RegField",
+      Description => "local FIFOs overflow at Message Buffer 0",
+      Width => "1",
+      Position => "13", # Excel Formula: =calc_position(F36,E37)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgBufferLocalFifoOverflow1 => { #Structure Type: RegField;
+      Name => "MsgBufferLocalFifoOverflow1",
+      RegMem => "RegField",
+      Description => "local FIFOs overflow at Message Buffer 1",
+      Width => "1",
+      Position => "14", # Excel Formula: =calc_position(F37,E38)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgBufferLocalFifoOverflow2 => { #Structure Type: RegField;
+      Name => "MsgBufferLocalFifoOverflow2",
+      RegMem => "RegField",
+      Description => "local FIFOs overflow at Message Buffer 2",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F38,E39)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgBufferLocalFifoOverflow3 => { #Structure Type: RegField;
+      Name => "MsgBufferLocalFifoOverflow3",
+      RegMem => "RegField",
+      Description => "local FIFOs overflow at Message Buffer 3",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F39,E40)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgMapFifoOverflow4 => { #Structure Type: RegField;
+      Name => "MsgMapFifoOverflow4",
+      RegMem => "RegField",
+      Description => "FIFOs overflow at Message Map 4",
+      Width => "1",
+      Position => "17", # Excel Formula: =calc_position(F40,E41)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    MsgMapFifoOverflow5 => { #Structure Type: RegField;
+      Name => "MsgMapFifoOverflow5",
+      RegMem => "RegField",
+      Description => "FIFOs overflow at Message Map 5",
+      Width => "1",
+      Position => "18", # Excel Formula: =calc_position(F41,E42)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    UnpackFifoOverflow => { #Structure Type: RegField;
+      Name => "UnpackFifoOverflow",
+      RegMem => "RegField",
+      Description => "FIFOs overflow at the Unpack",
+      Width => "1",
+      Position => "19", # Excel Formula: =calc_position(F42,E43)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    GntSwTargetFifoOverflow => { #Structure Type: RegField;
+      Name => "GntSwTargetFifoOverflow",
+      RegMem => "RegField",
+      Description => "Target FIFOs overflow at the Grant Switch",
+      Width => "1",
+      Position => "20", # Excel Formula: =calc_position(F43,E44)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+    ReqSwTargetFifoOverflow => { #Structure Type: RegField;
+      Name => "ReqSwTargetFifoOverflow",
+      RegMem => "RegField",
+      Description => "Target FIFOs overflow at the Request Switch",
+      Width => "1",
+      Position => "21", # Excel Formula: =calc_position(F44,E45)
+      Type => "Interrupt",
+      UsedBy => "CSMS",
+    },
+  },
+  CsmsInterruptRegMask => { #Structure Type: Reg; Skip Register;
+    Name => "CsmsInterruptRegMask",
+    RegMem => "Reg",
+    Address => "10C",
+    Description => "This register masks CsmsInterruptReg interrupt register",
+    Width => "22", # Excel Formula: =calc_reg_width(E24:E45,F45)
+    Type => "InterruptMask",
+    CreditGntDestDevUnreachableMask => { #Structure Type: RegField;
+      Name => "CreditGntDestDevUnreachableMask",
+      RegMem => "RegField",
+      Description => "This field masks CreditGntDestDevUnreachable interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F23,E24,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgBufferEnqPreFifoOverflow0Mask => { #Structure Type: RegField;
+      Name => "MsgBufferEnqPreFifoOverflow0Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgBufferEnqPreFifoOverflow0 interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F24,E25)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgBufferEnqPreFifoOverflow1Mask => { #Structure Type: RegField;
+      Name => "MsgBufferEnqPreFifoOverflow1Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgBufferEnqPreFifoOverflow1 interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F25,E26)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgBufferEnqPreFifoOverflow2Mask => { #Structure Type: RegField;
+      Name => "MsgBufferEnqPreFifoOverflow2Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgBufferEnqPreFifoOverflow2 interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F26,E27)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgBufferEnqPreFifoOverflow3Mask => { #Structure Type: RegField;
+      Name => "MsgBufferEnqPreFifoOverflow3Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgBufferEnqPreFifoOverflow3 interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F27,E28)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgBufferDdmqOverflow0Mask => { #Structure Type: RegField;
+      Name => "MsgBufferDdmqOverflow0Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgBufferDdmqOverflow0 interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F28,E29)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgBufferDdmqOverflow1Mask => { #Structure Type: RegField;
+      Name => "MsgBufferDdmqOverflow1Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgBufferDdmqOverflow1 interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F29,E30)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgBufferDdmqOverflow2Mask => { #Structure Type: RegField;
+      Name => "MsgBufferDdmqOverflow2Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgBufferDdmqOverflow2 interrupt",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F30,E31)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgBufferDdmqOverflow3Mask => { #Structure Type: RegField;
+      Name => "MsgBufferDdmqOverflow3Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgBufferDdmqOverflow3 interrupt",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F31,E32)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgBufferDeqCmdFifoOverflow0Mask => { #Structure Type: RegField;
+      Name => "MsgBufferDeqCmdFifoOverflow0Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgBufferDeqCmdFifoOverflow0 interrupt",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F32,E33)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgBufferDeqCmdFifoOverflow1Mask => { #Structure Type: RegField;
+      Name => "MsgBufferDeqCmdFifoOverflow1Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgBufferDeqCmdFifoOverflow1 interrupt",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F33,E34)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgBufferDeqCmdFifoOverflow2Mask => { #Structure Type: RegField;
+      Name => "MsgBufferDeqCmdFifoOverflow2Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgBufferDeqCmdFifoOverflow2 interrupt",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F34,E35)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgBufferDeqCmdFifoOverflow3Mask => { #Structure Type: RegField;
+      Name => "MsgBufferDeqCmdFifoOverflow3Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgBufferDeqCmdFifoOverflow3 interrupt",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F35,E36)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgBufferLocalFifoOverflow0Mask => { #Structure Type: RegField;
+      Name => "MsgBufferLocalFifoOverflow0Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgBufferLocalFifoOverflow0 interrupt",
+      Width => "1",
+      Position => "13", # Excel Formula: =calc_position(F36,E37)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgBufferLocalFifoOverflow1Mask => { #Structure Type: RegField;
+      Name => "MsgBufferLocalFifoOverflow1Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgBufferLocalFifoOverflow1 interrupt",
+      Width => "1",
+      Position => "14", # Excel Formula: =calc_position(F37,E38)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgBufferLocalFifoOverflow2Mask => { #Structure Type: RegField;
+      Name => "MsgBufferLocalFifoOverflow2Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgBufferLocalFifoOverflow2 interrupt",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F38,E39)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgBufferLocalFifoOverflow3Mask => { #Structure Type: RegField;
+      Name => "MsgBufferLocalFifoOverflow3Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgBufferLocalFifoOverflow3 interrupt",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F39,E40)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgMapFifoOverflow4Mask => { #Structure Type: RegField;
+      Name => "MsgMapFifoOverflow4Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgMapFifoOverflow4 interrupt",
+      Width => "1",
+      Position => "17", # Excel Formula: =calc_position(F40,E41)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    MsgMapFifoOverflow5Mask => { #Structure Type: RegField;
+      Name => "MsgMapFifoOverflow5Mask",
+      RegMem => "RegField",
+      Description => "This field masks MsgMapFifoOverflow5 interrupt",
+      Width => "1",
+      Position => "18", # Excel Formula: =calc_position(F41,E42)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    UnpackFifoOverflowMask => { #Structure Type: RegField;
+      Name => "UnpackFifoOverflowMask",
+      RegMem => "RegField",
+      Description => "This field masks UnpackFifoOverflow interrupt",
+      Width => "1",
+      Position => "19", # Excel Formula: =calc_position(F42,E43)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    GntSwTargetFifoOverflowMask => { #Structure Type: RegField;
+      Name => "GntSwTargetFifoOverflowMask",
+      RegMem => "RegField",
+      Description => "This field masks GntSwTargetFifoOverflow interrupt",
+      Width => "1",
+      Position => "20", # Excel Formula: =calc_position(F43,E44)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    ReqSwTargetFifoOverflowMask => { #Structure Type: RegField;
+      Name => "ReqSwTargetFifoOverflowMask",
+      RegMem => "RegField",
+      Description => "This field masks ReqSwTargetFifoOverflow interrupt",
+      Width => "1",
+      Position => "21", # Excel Formula: =calc_position(F44,E45)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  CsmsInterruptRegTest => { #Structure Type: Reg; Skip Register;
+    Name => "CsmsInterruptRegTest",
+    RegMem => "Reg",
+    Address => "10D",
+    Description => "This register tests CsmsInterruptReg interrupt register",
+    Width => "22", # Excel Formula: =calc_reg_width(E24:E45,F45)
+    Type => "InterruptTest",
+    CreditGntDestDevUnreachableTest => { #Structure Type: RegField;
+      Name => "CreditGntDestDevUnreachableTest",
+      RegMem => "RegField",
+      Description => "This field tests CreditGntDestDevUnreachable interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F23,E24,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgBufferEnqPreFifoOverflow0Test => { #Structure Type: RegField;
+      Name => "MsgBufferEnqPreFifoOverflow0Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgBufferEnqPreFifoOverflow0 interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F24,E25)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgBufferEnqPreFifoOverflow1Test => { #Structure Type: RegField;
+      Name => "MsgBufferEnqPreFifoOverflow1Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgBufferEnqPreFifoOverflow1 interrupt",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F25,E26)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgBufferEnqPreFifoOverflow2Test => { #Structure Type: RegField;
+      Name => "MsgBufferEnqPreFifoOverflow2Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgBufferEnqPreFifoOverflow2 interrupt",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F26,E27)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgBufferEnqPreFifoOverflow3Test => { #Structure Type: RegField;
+      Name => "MsgBufferEnqPreFifoOverflow3Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgBufferEnqPreFifoOverflow3 interrupt",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F27,E28)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgBufferDdmqOverflow0Test => { #Structure Type: RegField;
+      Name => "MsgBufferDdmqOverflow0Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgBufferDdmqOverflow0 interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F28,E29)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgBufferDdmqOverflow1Test => { #Structure Type: RegField;
+      Name => "MsgBufferDdmqOverflow1Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgBufferDdmqOverflow1 interrupt",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F29,E30)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgBufferDdmqOverflow2Test => { #Structure Type: RegField;
+      Name => "MsgBufferDdmqOverflow2Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgBufferDdmqOverflow2 interrupt",
+      Width => "1",
+      Position => "7", # Excel Formula: =calc_position(F30,E31)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgBufferDdmqOverflow3Test => { #Structure Type: RegField;
+      Name => "MsgBufferDdmqOverflow3Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgBufferDdmqOverflow3 interrupt",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F31,E32)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgBufferDeqCmdFifoOverflow0Test => { #Structure Type: RegField;
+      Name => "MsgBufferDeqCmdFifoOverflow0Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgBufferDeqCmdFifoOverflow0 interrupt",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F32,E33)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgBufferDeqCmdFifoOverflow1Test => { #Structure Type: RegField;
+      Name => "MsgBufferDeqCmdFifoOverflow1Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgBufferDeqCmdFifoOverflow1 interrupt",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F33,E34)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgBufferDeqCmdFifoOverflow2Test => { #Structure Type: RegField;
+      Name => "MsgBufferDeqCmdFifoOverflow2Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgBufferDeqCmdFifoOverflow2 interrupt",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F34,E35)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgBufferDeqCmdFifoOverflow3Test => { #Structure Type: RegField;
+      Name => "MsgBufferDeqCmdFifoOverflow3Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgBufferDeqCmdFifoOverflow3 interrupt",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F35,E36)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgBufferLocalFifoOverflow0Test => { #Structure Type: RegField;
+      Name => "MsgBufferLocalFifoOverflow0Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgBufferLocalFifoOverflow0 interrupt",
+      Width => "1",
+      Position => "13", # Excel Formula: =calc_position(F36,E37)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgBufferLocalFifoOverflow1Test => { #Structure Type: RegField;
+      Name => "MsgBufferLocalFifoOverflow1Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgBufferLocalFifoOverflow1 interrupt",
+      Width => "1",
+      Position => "14", # Excel Formula: =calc_position(F37,E38)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgBufferLocalFifoOverflow2Test => { #Structure Type: RegField;
+      Name => "MsgBufferLocalFifoOverflow2Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgBufferLocalFifoOverflow2 interrupt",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F38,E39)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgBufferLocalFifoOverflow3Test => { #Structure Type: RegField;
+      Name => "MsgBufferLocalFifoOverflow3Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgBufferLocalFifoOverflow3 interrupt",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F39,E40)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgMapFifoOverflow4Test => { #Structure Type: RegField;
+      Name => "MsgMapFifoOverflow4Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgMapFifoOverflow4 interrupt",
+      Width => "1",
+      Position => "17", # Excel Formula: =calc_position(F40,E41)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    MsgMapFifoOverflow5Test => { #Structure Type: RegField;
+      Name => "MsgMapFifoOverflow5Test",
+      RegMem => "RegField",
+      Description => "This field tests MsgMapFifoOverflow5 interrupt",
+      Width => "1",
+      Position => "18", # Excel Formula: =calc_position(F41,E42)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    UnpackFifoOverflowTest => { #Structure Type: RegField;
+      Name => "UnpackFifoOverflowTest",
+      RegMem => "RegField",
+      Description => "This field tests UnpackFifoOverflow interrupt",
+      Width => "1",
+      Position => "19", # Excel Formula: =calc_position(F42,E43)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    GntSwTargetFifoOverflowTest => { #Structure Type: RegField;
+      Name => "GntSwTargetFifoOverflowTest",
+      RegMem => "RegField",
+      Description => "This field tests GntSwTargetFifoOverflow interrupt",
+      Width => "1",
+      Position => "20", # Excel Formula: =calc_position(F43,E44)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ReqSwTargetFifoOverflowTest => { #Structure Type: RegField;
+      Name => "ReqSwTargetFifoOverflowTest",
+      RegMem => "RegField",
+      Description => "This field tests ReqSwTargetFifoOverflow interrupt",
+      Width => "1",
+      Position => "21", # Excel Formula: =calc_position(F44,E45)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  DebugUnreachGntCaptureReg => { #Structure Type: Reg;
+    Name => "DebugUnreachGntCaptureReg",
+    RegMem => "Reg",
+    Address => "10E", # Excel Formula: =calc_reg_address(C23,A23,G23)
+    Description => "Debug Unreachable Credit Grant Message Capture Register",
+    Width => "64", # Excel Formula: =calc_reg_width(E47:E50,F50)
+    Type => "ReadOnly",
+    DebugUnreachGntCapture0 => { #Structure Type: RegField;
+      Name => "DebugUnreachGntCapture0",
+      RegMem => "RegField",
+      Description => "Captures the source {IFG, VSC} of an unreachable credit grant message, for slice 0",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F46,E47,TRUE)
+      Type => "Capture",
+      UsedBy => "CSMS",
+    },
+    DebugUnreachGntCapture1 => { #Structure Type: RegField;
+      Name => "DebugUnreachGntCapture1",
+      RegMem => "RegField",
+      Description => "Captures the source {IFG, VSC} of an unreachable credit grant message, for slice 1",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F47,E48)
+      Type => "Capture",
+      UsedBy => "CSMS",
+    },
+    DebugUnreachGntCapture2 => { #Structure Type: RegField;
+      Name => "DebugUnreachGntCapture2",
+      RegMem => "RegField",
+      Description => "Captures the source {IFG, VSC} of an unreachable credit grant message, for slice 2",
+      Width => "16",
+      Position => "47:32", # Excel Formula: =calc_position(F48,E49)
+      Type => "Capture",
+      UsedBy => "CSMS",
+    },
+    DebugUnreachGntCapture3 => { #Structure Type: RegField;
+      Name => "DebugUnreachGntCapture3",
+      RegMem => "RegField",
+      Description => "Captures the source {IFG, VSC} of an unreachable credit grant message, for slice 3",
+      Width => "16",
+      Position => "63:48", # Excel Formula: =calc_position(F49,E50)
+      Type => "Capture",
+      UsedBy => "CSMS",
+    },
+  },
+  DebugFifoThrCfgReg => { #Structure Type: Reg;
+    Name => "DebugFifoThrCfgReg",
+    RegMem => "Reg",
+    Address => "10F", # Excel Formula: =calc_reg_address(C46,A46,G46)
+    Description => "Debug CSMS Configuration register",
+    Width => "43", # Excel Formula: =calc_reg_width(E52:E60,F60)
+    Type => "Config",
+    MsgBufferEnqPreFifoAlmFullThr => { #Structure Type: RegField;
+      Name => "MsgBufferEnqPreFifoAlmFullThr",
+      RegMem => "RegField",
+      Description => "Sets the Enqueue Pre FIFO almost full threshold at the Message Buffers",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F51,E52,TRUE)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d5",
+    },
+    MsgBufferDdmqAlmFullThr => { #Structure Type: RegField;
+      Name => "MsgBufferDdmqAlmFullThr",
+      RegMem => "RegField",
+      Description => "Sets the DDMQ FIFOs almost full threshold at the Message Buffers",
+      Width => "5",
+      Position => "8:4", # Excel Formula: =calc_position(F52,E53)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d1",
+    },
+    MsgBufferDeqCmdFifoAlmFullThr => { #Structure Type: RegField;
+      Name => "MsgBufferDeqCmdFifoAlmFullThr",
+      RegMem => "RegField",
+      Description => "Sets the Dequeue Command FIFOs almost full threshold at the Message Buffers",
+      Width => "3",
+      Position => "11:9", # Excel Formula: =calc_position(F53,E54)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d2",
+    },
+    MsgBufferLocalFifoAlmFullThr => { #Structure Type: RegField;
+      Name => "MsgBufferLocalFifoAlmFullThr",
+      RegMem => "RegField",
+      Description => "Sets the local FIFOs almost full threshold at the Message Buffers",
+      Width => "6",
+      Position => "17:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d13",
+    },
+    MsgMapFifoAlmFullThr => { #Structure Type: RegField;
+      Name => "MsgMapFifoAlmFullThr",
+      RegMem => "RegField",
+      Description => "Sets the FIFOs almost full threshold at the Message Map",
+      Width => "4",
+      Position => "21:18", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d5",
+    },
+    UnpackFifoAlmFullThr => { #Structure Type: RegField;
+      Name => "UnpackFifoAlmFullThr",
+      RegMem => "RegField",
+      Description => "Sets the FIFOs almost full threshold at the Unpackers",
+      Width => "6",
+      Position => "27:22", # Excel Formula: =calc_position(F56,E57)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d6",
+    },
+    UnpackLookAheadCfg => { #Structure Type: RegField;
+      Name => "UnpackLookAheadCfg",
+      RegMem => "RegField",
+      Description => "Sets the number of messages that the unpacker is looking ahead before declaring an almost done indication",
+      Width => "4",
+      Position => "31:28", # Excel Formula: =calc_position(F57,E58)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d6",
+    },
+    UnpackAlmostDoneCfg => { #Structure Type: RegField;
+      Name => "UnpackAlmostDoneCfg",
+      RegMem => "RegField",
+      Description => "Sets the number of messages that the unpacker passed before declaring an almost done indication",
+      Width => "4",
+      Position => "35:32", # Excel Formula: =calc_position(F58,E59)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d8",
+    },
+    SwitchTargetFifoAlmFullCfg => { #Structure Type: RegField;
+      Name => "SwitchTargetFifoAlmFullCfg",
+      RegMem => "RegField",
+      Description => "Sets the almost full indication of the target FIFOs at the message switches",
+      Width => "7",
+      Position => "42:36", # Excel Formula: =calc_position(F59,E60)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d53",
+      InitValueLcNwk => "3",
+      InitValueLcFab => "3",
+    },
+  },
+  CsmsPackingCtrlDebugCfgReg0 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 27;
+    Name => "CsmsPackingCtrlDebugCfgReg[4]",
+    RegMem => "Reg",
+    Address => "110", # Excel Formula: =calc_reg_address(C51,A51,G51)
+    Description => "CSMS to packing controller debug config register",
+    Width => "13", # Excel Formula: =calc_reg_width(E62:E63,F63)
+    Type => "Config",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    PackingCtrlNumOfPackDebugCfg0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 29;
+      Name => "PackingCtrlNumOfPackDebugCfg[n]",
+      RegMem => "RegField",
+      Description => "Configures debug register to CSMS packing contorller which counts the number of packed OOB packets",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F61,E62,TRUE)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d14",
+    },
+    PackingCtrlNumOfDstDevDebugCfg0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 31;
+      Name => "PackingCtrlNumOfDstDevDebugCfg[n]",
+      RegMem => "RegField",
+      Description => "Configures debug register to CSMS packing contorller which counts the number of OOB packets to config destination device ",
+      Width => "9",
+      Position => "12:4", # Excel Formula: =calc_position(F62,E63)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+    },
+  },
+  CsmsPackingCtrlDebugCfgReg1 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 27;
+    Name => "CsmsPackingCtrlDebugCfgReg[4]",
+    RegMem => "Reg",
+    Address => "111",
+    Description => "CSMS to packing controller debug config register",
+    Width => "13", # Excel Formula: =calc_reg_width(E62:E63,F63)
+    Type => "Config",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    PackingCtrlNumOfPackDebugCfg1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 29;
+      Name => "PackingCtrlNumOfPackDebugCfg[n]",
+      RegMem => "RegField",
+      Description => "Configures debug register to CSMS packing contorller which counts the number of packed OOB packets",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F61,E62,TRUE)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d14",
+    },
+    PackingCtrlNumOfDstDevDebugCfg1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 31;
+      Name => "PackingCtrlNumOfDstDevDebugCfg[n]",
+      RegMem => "RegField",
+      Description => "Configures debug register to CSMS packing contorller which counts the number of OOB packets to config destination device ",
+      Width => "9",
+      Position => "12:4", # Excel Formula: =calc_position(F62,E63)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+    },
+  },
+  CsmsPackingCtrlDebugCfgReg2 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 27;
+    Name => "CsmsPackingCtrlDebugCfgReg[4]",
+    RegMem => "Reg",
+    Address => "112",
+    Description => "CSMS to packing controller debug config register",
+    Width => "13", # Excel Formula: =calc_reg_width(E62:E63,F63)
+    Type => "Config",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    PackingCtrlNumOfPackDebugCfg2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 29;
+      Name => "PackingCtrlNumOfPackDebugCfg[n]",
+      RegMem => "RegField",
+      Description => "Configures debug register to CSMS packing contorller which counts the number of packed OOB packets",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F61,E62,TRUE)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d14",
+    },
+    PackingCtrlNumOfDstDevDebugCfg2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 31;
+      Name => "PackingCtrlNumOfDstDevDebugCfg[n]",
+      RegMem => "RegField",
+      Description => "Configures debug register to CSMS packing contorller which counts the number of OOB packets to config destination device ",
+      Width => "9",
+      Position => "12:4", # Excel Formula: =calc_position(F62,E63)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+    },
+  },
+  CsmsPackingCtrlDebugCfgReg3 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 27;
+    Name => "CsmsPackingCtrlDebugCfgReg[4]",
+    RegMem => "Reg",
+    Address => "113",
+    Description => "CSMS to packing controller debug config register",
+    Width => "13", # Excel Formula: =calc_reg_width(E62:E63,F63)
+    Type => "Config",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    PackingCtrlNumOfPackDebugCfg3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 29;
+      Name => "PackingCtrlNumOfPackDebugCfg[n]",
+      RegMem => "RegField",
+      Description => "Configures debug register to CSMS packing contorller which counts the number of packed OOB packets",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F61,E62,TRUE)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d14",
+    },
+    PackingCtrlNumOfDstDevDebugCfg3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 31;
+      Name => "PackingCtrlNumOfDstDevDebugCfg[n]",
+      RegMem => "RegField",
+      Description => "Configures debug register to CSMS packing contorller which counts the number of OOB packets to config destination device ",
+      Width => "9",
+      Position => "12:4", # Excel Formula: =calc_position(F62,E63)
+      Type => "Config",
+      UsedBy => "CSMS",
+      DefaultValue => "d0",
+    },
+  },
+  CsmsPackingCtrlDebugCounterReg0 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 31;
+    Name => "CsmsPackingCtrlDebugCounterReg[4]",
+    RegMem => "Reg",
+    Address => "114", # Excel Formula: =calc_reg_address(C61,A61,G61)
+    Description => "CSMS to packing controller debug config register",
+    Width => "96", # Excel Formula: =calc_reg_width(E65:E66,F66)
+    Type => "ReadOnly",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    PackingCtrlNumOfPackDebugCnt0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 29;
+      Name => "PackingCtrlNumOfPackDebugCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of packed OOB packets according to configuration",
+      Width => "48",
+      Position => "47:0", # Excel Formula: =calc_position(F64,E65,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    PackingCtrlNumOfDstDevDebugCnt0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 31;
+      Name => "PackingCtrlNumOfDstDevDebugCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of OOB packets to specific destination device according to configuration",
+      Width => "48",
+      Position => "95:48", # Excel Formula: =calc_position(F65,E66)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsPackingCtrlDebugCounterReg1 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 31;
+    Name => "CsmsPackingCtrlDebugCounterReg[4]",
+    RegMem => "Reg",
+    Address => "115",
+    Description => "CSMS to packing controller debug config register",
+    Width => "96", # Excel Formula: =calc_reg_width(E65:E66,F66)
+    Type => "ReadOnly",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    PackingCtrlNumOfPackDebugCnt1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 29;
+      Name => "PackingCtrlNumOfPackDebugCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of packed OOB packets according to configuration",
+      Width => "48",
+      Position => "47:0", # Excel Formula: =calc_position(F64,E65,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    PackingCtrlNumOfDstDevDebugCnt1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 31;
+      Name => "PackingCtrlNumOfDstDevDebugCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of OOB packets to specific destination device according to configuration",
+      Width => "48",
+      Position => "95:48", # Excel Formula: =calc_position(F65,E66)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsPackingCtrlDebugCounterReg2 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 31;
+    Name => "CsmsPackingCtrlDebugCounterReg[4]",
+    RegMem => "Reg",
+    Address => "116",
+    Description => "CSMS to packing controller debug config register",
+    Width => "96", # Excel Formula: =calc_reg_width(E65:E66,F66)
+    Type => "ReadOnly",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    PackingCtrlNumOfPackDebugCnt2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 29;
+      Name => "PackingCtrlNumOfPackDebugCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of packed OOB packets according to configuration",
+      Width => "48",
+      Position => "47:0", # Excel Formula: =calc_position(F64,E65,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    PackingCtrlNumOfDstDevDebugCnt2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 31;
+      Name => "PackingCtrlNumOfDstDevDebugCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of OOB packets to specific destination device according to configuration",
+      Width => "48",
+      Position => "95:48", # Excel Formula: =calc_position(F65,E66)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsPackingCtrlDebugCounterReg3 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 31;
+    Name => "CsmsPackingCtrlDebugCounterReg[4]",
+    RegMem => "Reg",
+    Address => "117",
+    Description => "CSMS to packing controller debug config register",
+    Width => "96", # Excel Formula: =calc_reg_width(E65:E66,F66)
+    Type => "ReadOnly",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    PackingCtrlNumOfPackDebugCnt3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 29;
+      Name => "PackingCtrlNumOfPackDebugCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of packed OOB packets according to configuration",
+      Width => "48",
+      Position => "47:0", # Excel Formula: =calc_position(F64,E65,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    PackingCtrlNumOfDstDevDebugCnt3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 31;
+      Name => "PackingCtrlNumOfDstDevDebugCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of OOB packets to specific destination device according to configuration",
+      Width => "48",
+      Position => "95:48", # Excel Formula: =calc_position(F65,E66)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqLocalCounterReg0 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 23;
+    Name => "CsmsReqLocalCounterReg[4]",
+    RegMem => "Reg",
+    Address => "118", # Excel Formula: =calc_reg_address(C64,A64,G64)
+    Description => "CSMS credit request local counter register",
+    Width => "48", # Excel Formula: =calc_reg_width(E68:E68,F68)
+    Type => "ReadOnly",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    ReqLocalCnt0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 12;
+      Name => "ReqLocalCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of return credit request local to the scheduler ",
+      Width => "48",
+      Position => "47:0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqLocalCounterReg1 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 23;
+    Name => "CsmsReqLocalCounterReg[4]",
+    RegMem => "Reg",
+    Address => "119",
+    Description => "CSMS credit request local counter register",
+    Width => "48", # Excel Formula: =calc_reg_width(E68:E68,F68)
+    Type => "ReadOnly",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    ReqLocalCnt1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 12;
+      Name => "ReqLocalCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of return credit request local to the scheduler ",
+      Width => "48",
+      Position => "47:0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqLocalCounterReg2 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 23;
+    Name => "CsmsReqLocalCounterReg[4]",
+    RegMem => "Reg",
+    Address => "11A",
+    Description => "CSMS credit request local counter register",
+    Width => "48", # Excel Formula: =calc_reg_width(E68:E68,F68)
+    Type => "ReadOnly",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    ReqLocalCnt2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 12;
+      Name => "ReqLocalCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of return credit request local to the scheduler ",
+      Width => "48",
+      Position => "47:0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqLocalCounterReg3 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 23;
+    Name => "CsmsReqLocalCounterReg[4]",
+    RegMem => "Reg",
+    Address => "11B",
+    Description => "CSMS credit request local counter register",
+    Width => "48", # Excel Formula: =calc_reg_width(E68:E68,F68)
+    Type => "ReadOnly",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    ReqLocalCnt3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 12;
+      Name => "ReqLocalCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of return credit request local to the scheduler ",
+      Width => "48",
+      Position => "47:0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqCbtNotIrdyCounterReg0 => { #Structure Type: Reg; ArrayLength: 12; ArrayIndex: 0; ArrayLocationInName: 28;
+    Name => "CsmsReqCbtNotIrdyCounterReg[12]",
+    RegMem => "Reg",
+    Address => "11C", # Excel Formula: =calc_reg_address(C67,A67,G67)
+    Description => "CSMS req CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E70:E70,F70)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "12",
+    ArrayIndex => "0",
+    ReqCbtNotIrdyCnt0 => { #Structure Type: RegField; ArrayLength: 12; ArrayIndex: 0; ArrayLocationInName: 17;
+      Name => "ReqCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of req CBT irdy not because the scheduler ",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F69,E70,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqCbtNotIrdyCounterReg1 => { #Structure Type: Reg; ArrayLength: 12; ArrayIndex: 1; ArrayLocationInName: 28;
+    Name => "CsmsReqCbtNotIrdyCounterReg[12]",
+    RegMem => "Reg",
+    Address => "11D",
+    Description => "CSMS req CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E70:E70,F70)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "12",
+    ArrayIndex => "1",
+    ReqCbtNotIrdyCnt1 => { #Structure Type: RegField; ArrayLength: 12; ArrayIndex: 1; ArrayLocationInName: 17;
+      Name => "ReqCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of req CBT irdy not because the scheduler ",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F69,E70,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqCbtNotIrdyCounterReg2 => { #Structure Type: Reg; ArrayLength: 12; ArrayIndex: 2; ArrayLocationInName: 28;
+    Name => "CsmsReqCbtNotIrdyCounterReg[12]",
+    RegMem => "Reg",
+    Address => "11E",
+    Description => "CSMS req CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E70:E70,F70)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "12",
+    ArrayIndex => "2",
+    ReqCbtNotIrdyCnt2 => { #Structure Type: RegField; ArrayLength: 12; ArrayIndex: 2; ArrayLocationInName: 17;
+      Name => "ReqCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of req CBT irdy not because the scheduler ",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F69,E70,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqCbtNotIrdyCounterReg3 => { #Structure Type: Reg; ArrayLength: 12; ArrayIndex: 3; ArrayLocationInName: 28;
+    Name => "CsmsReqCbtNotIrdyCounterReg[12]",
+    RegMem => "Reg",
+    Address => "11F",
+    Description => "CSMS req CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E70:E70,F70)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "12",
+    ArrayIndex => "3",
+    ReqCbtNotIrdyCnt3 => { #Structure Type: RegField; ArrayLength: 12; ArrayIndex: 3; ArrayLocationInName: 17;
+      Name => "ReqCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of req CBT irdy not because the scheduler ",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F69,E70,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqCbtNotIrdyCounterReg4 => { #Structure Type: Reg; ArrayLength: 12; ArrayIndex: 4; ArrayLocationInName: 28;
+    Name => "CsmsReqCbtNotIrdyCounterReg[12]",
+    RegMem => "Reg",
+    Address => "120",
+    Description => "CSMS req CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E70:E70,F70)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "12",
+    ArrayIndex => "4",
+    ReqCbtNotIrdyCnt4 => { #Structure Type: RegField; ArrayLength: 12; ArrayIndex: 4; ArrayLocationInName: 17;
+      Name => "ReqCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of req CBT irdy not because the scheduler ",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F69,E70,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqCbtNotIrdyCounterReg5 => { #Structure Type: Reg; ArrayLength: 12; ArrayIndex: 5; ArrayLocationInName: 28;
+    Name => "CsmsReqCbtNotIrdyCounterReg[12]",
+    RegMem => "Reg",
+    Address => "121",
+    Description => "CSMS req CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E70:E70,F70)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "12",
+    ArrayIndex => "5",
+    ReqCbtNotIrdyCnt5 => { #Structure Type: RegField; ArrayLength: 12; ArrayIndex: 5; ArrayLocationInName: 17;
+      Name => "ReqCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of req CBT irdy not because the scheduler ",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F69,E70,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqCbtNotIrdyCounterReg6 => { #Structure Type: Reg; ArrayLength: 12; ArrayIndex: 6; ArrayLocationInName: 28;
+    Name => "CsmsReqCbtNotIrdyCounterReg[12]",
+    RegMem => "Reg",
+    Address => "122",
+    Description => "CSMS req CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E70:E70,F70)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "12",
+    ArrayIndex => "6",
+    ReqCbtNotIrdyCnt6 => { #Structure Type: RegField; ArrayLength: 12; ArrayIndex: 6; ArrayLocationInName: 17;
+      Name => "ReqCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of req CBT irdy not because the scheduler ",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F69,E70,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqCbtNotIrdyCounterReg7 => { #Structure Type: Reg; ArrayLength: 12; ArrayIndex: 7; ArrayLocationInName: 28;
+    Name => "CsmsReqCbtNotIrdyCounterReg[12]",
+    RegMem => "Reg",
+    Address => "123",
+    Description => "CSMS req CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E70:E70,F70)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "12",
+    ArrayIndex => "7",
+    ReqCbtNotIrdyCnt7 => { #Structure Type: RegField; ArrayLength: 12; ArrayIndex: 7; ArrayLocationInName: 17;
+      Name => "ReqCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of req CBT irdy not because the scheduler ",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F69,E70,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqCbtNotIrdyCounterReg8 => { #Structure Type: Reg; ArrayLength: 12; ArrayIndex: 8; ArrayLocationInName: 28;
+    Name => "CsmsReqCbtNotIrdyCounterReg[12]",
+    RegMem => "Reg",
+    Address => "124",
+    Description => "CSMS req CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E70:E70,F70)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "12",
+    ArrayIndex => "8",
+    ReqCbtNotIrdyCnt8 => { #Structure Type: RegField; ArrayLength: 12; ArrayIndex: 8; ArrayLocationInName: 17;
+      Name => "ReqCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of req CBT irdy not because the scheduler ",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F69,E70,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqCbtNotIrdyCounterReg9 => { #Structure Type: Reg; ArrayLength: 12; ArrayIndex: 9; ArrayLocationInName: 28;
+    Name => "CsmsReqCbtNotIrdyCounterReg[12]",
+    RegMem => "Reg",
+    Address => "125",
+    Description => "CSMS req CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E70:E70,F70)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "12",
+    ArrayIndex => "9",
+    ReqCbtNotIrdyCnt9 => { #Structure Type: RegField; ArrayLength: 12; ArrayIndex: 9; ArrayLocationInName: 17;
+      Name => "ReqCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of req CBT irdy not because the scheduler ",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F69,E70,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqCbtNotIrdyCounterReg10 => { #Structure Type: Reg; ArrayLength: 12; ArrayIndex: 10; ArrayLocationInName: 28;
+    Name => "CsmsReqCbtNotIrdyCounterReg[12]",
+    RegMem => "Reg",
+    Address => "126",
+    Description => "CSMS req CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E70:E70,F70)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "12",
+    ArrayIndex => "10",
+    ReqCbtNotIrdyCnt10 => { #Structure Type: RegField; ArrayLength: 12; ArrayIndex: 10; ArrayLocationInName: 17;
+      Name => "ReqCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of req CBT irdy not because the scheduler ",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F69,E70,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqCbtNotIrdyCounterReg11 => { #Structure Type: Reg; ArrayLength: 12; ArrayIndex: 11; ArrayLocationInName: 28;
+    Name => "CsmsReqCbtNotIrdyCounterReg[12]",
+    RegMem => "Reg",
+    Address => "127",
+    Description => "CSMS req CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E70:E70,F70)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "12",
+    ArrayIndex => "11",
+    ReqCbtNotIrdyCnt11 => { #Structure Type: RegField; ArrayLength: 12; ArrayIndex: 11; ArrayLocationInName: 17;
+      Name => "ReqCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of req CBT irdy not because the scheduler ",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F69,E70,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsGntCbtNotIrdyCounterReg0 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 28;
+    Name => "CsmsGntCbtNotIrdyCounterReg[6]",
+    RegMem => "Reg",
+    Address => "128", # Excel Formula: =calc_reg_address(C69,A69,G69)
+    Description => "CSMS Gnt CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E72:E72,F72)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "6",
+    ArrayIndex => "0",
+    GntCbtNotIrdyCnt0 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 17;
+      Name => "GntCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of gnt CBT  irdy not local because the ICS",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F71,E72,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsGntCbtNotIrdyCounterReg1 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 28;
+    Name => "CsmsGntCbtNotIrdyCounterReg[6]",
+    RegMem => "Reg",
+    Address => "129",
+    Description => "CSMS Gnt CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E72:E72,F72)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "6",
+    ArrayIndex => "1",
+    GntCbtNotIrdyCnt1 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 17;
+      Name => "GntCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of gnt CBT  irdy not local because the ICS",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F71,E72,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsGntCbtNotIrdyCounterReg2 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 28;
+    Name => "CsmsGntCbtNotIrdyCounterReg[6]",
+    RegMem => "Reg",
+    Address => "12A",
+    Description => "CSMS Gnt CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E72:E72,F72)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "6",
+    ArrayIndex => "2",
+    GntCbtNotIrdyCnt2 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 17;
+      Name => "GntCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of gnt CBT  irdy not local because the ICS",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F71,E72,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsGntCbtNotIrdyCounterReg3 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 28;
+    Name => "CsmsGntCbtNotIrdyCounterReg[6]",
+    RegMem => "Reg",
+    Address => "12B",
+    Description => "CSMS Gnt CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E72:E72,F72)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "6",
+    ArrayIndex => "3",
+    GntCbtNotIrdyCnt3 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 17;
+      Name => "GntCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of gnt CBT  irdy not local because the ICS",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F71,E72,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsGntCbtNotIrdyCounterReg4 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 28;
+    Name => "CsmsGntCbtNotIrdyCounterReg[6]",
+    RegMem => "Reg",
+    Address => "12C",
+    Description => "CSMS Gnt CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E72:E72,F72)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "6",
+    ArrayIndex => "4",
+    GntCbtNotIrdyCnt4 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 17;
+      Name => "GntCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of gnt CBT  irdy not local because the ICS",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F71,E72,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsGntCbtNotIrdyCounterReg5 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 28;
+    Name => "CsmsGntCbtNotIrdyCounterReg[6]",
+    RegMem => "Reg",
+    Address => "12D",
+    Description => "CSMS Gnt CBT not i_rdy counter register",
+    Width => "32", # Excel Formula: =calc_reg_width(E72:E72,F72)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "6",
+    ArrayIndex => "5",
+    GntCbtNotIrdyCnt5 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 17;
+      Name => "GntCbtNotIrdyCnt[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of gnt CBT  irdy not local because the ICS",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F71,E72,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqGntEventCounterReg0 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 26;
+    Name => "CsmsReqGntEventCounterReg[6]",
+    RegMem => "Reg",
+    Address => "12E", # Excel Formula: =calc_reg_address(C71,A71,G71)
+    Description => "CSMS request and grants counter register",
+    Width => "144", # Excel Formula: =calc_reg_width(E74:E76,F76)
+    Type => "ReadOnly",
+    ArrayLength => "6",
+    ArrayIndex => "0",
+    IcsReqCounter0 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 14;
+      Name => "IcsReqCounter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of request messages from the ICS",
+      Width => "48",
+      Position => "47:0", # Excel Formula: =calc_position(F73,E74,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    SchGnt0Counter0 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 15;
+      Name => "SchGnt0Counter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of grant messages from the SCH0",
+      Width => "48",
+      Position => "95:48", # Excel Formula: =calc_position(F74,E75)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    SchGnt1Counter0 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 15;
+      Name => "SchGnt1Counter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of grant messages from the SCH1",
+      Width => "48",
+      Position => "143:96", # Excel Formula: =calc_position(F75,E76)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqGntEventCounterReg1 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 26;
+    Name => "CsmsReqGntEventCounterReg[6]",
+    RegMem => "Reg",
+    Address => "12F",
+    Description => "CSMS request and grants counter register",
+    Width => "144", # Excel Formula: =calc_reg_width(E74:E76,F76)
+    Type => "ReadOnly",
+    ArrayLength => "6",
+    ArrayIndex => "1",
+    IcsReqCounter1 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 14;
+      Name => "IcsReqCounter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of request messages from the ICS",
+      Width => "48",
+      Position => "47:0", # Excel Formula: =calc_position(F73,E74,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    SchGnt0Counter1 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 15;
+      Name => "SchGnt0Counter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of grant messages from the SCH0",
+      Width => "48",
+      Position => "95:48", # Excel Formula: =calc_position(F74,E75)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    SchGnt1Counter1 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 15;
+      Name => "SchGnt1Counter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of grant messages from the SCH1",
+      Width => "48",
+      Position => "143:96", # Excel Formula: =calc_position(F75,E76)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqGntEventCounterReg2 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 26;
+    Name => "CsmsReqGntEventCounterReg[6]",
+    RegMem => "Reg",
+    Address => "130",
+    Description => "CSMS request and grants counter register",
+    Width => "144", # Excel Formula: =calc_reg_width(E74:E76,F76)
+    Type => "ReadOnly",
+    ArrayLength => "6",
+    ArrayIndex => "2",
+    IcsReqCounter2 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 14;
+      Name => "IcsReqCounter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of request messages from the ICS",
+      Width => "48",
+      Position => "47:0", # Excel Formula: =calc_position(F73,E74,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    SchGnt0Counter2 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 15;
+      Name => "SchGnt0Counter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of grant messages from the SCH0",
+      Width => "48",
+      Position => "95:48", # Excel Formula: =calc_position(F74,E75)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    SchGnt1Counter2 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 15;
+      Name => "SchGnt1Counter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of grant messages from the SCH1",
+      Width => "48",
+      Position => "143:96", # Excel Formula: =calc_position(F75,E76)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqGntEventCounterReg3 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 26;
+    Name => "CsmsReqGntEventCounterReg[6]",
+    RegMem => "Reg",
+    Address => "131",
+    Description => "CSMS request and grants counter register",
+    Width => "144", # Excel Formula: =calc_reg_width(E74:E76,F76)
+    Type => "ReadOnly",
+    ArrayLength => "6",
+    ArrayIndex => "3",
+    IcsReqCounter3 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 14;
+      Name => "IcsReqCounter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of request messages from the ICS",
+      Width => "48",
+      Position => "47:0", # Excel Formula: =calc_position(F73,E74,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    SchGnt0Counter3 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 15;
+      Name => "SchGnt0Counter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of grant messages from the SCH0",
+      Width => "48",
+      Position => "95:48", # Excel Formula: =calc_position(F74,E75)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    SchGnt1Counter3 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 15;
+      Name => "SchGnt1Counter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of grant messages from the SCH1",
+      Width => "48",
+      Position => "143:96", # Excel Formula: =calc_position(F75,E76)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqGntEventCounterReg4 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 26;
+    Name => "CsmsReqGntEventCounterReg[6]",
+    RegMem => "Reg",
+    Address => "132",
+    Description => "CSMS request and grants counter register",
+    Width => "144", # Excel Formula: =calc_reg_width(E74:E76,F76)
+    Type => "ReadOnly",
+    ArrayLength => "6",
+    ArrayIndex => "4",
+    IcsReqCounter4 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 14;
+      Name => "IcsReqCounter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of request messages from the ICS",
+      Width => "48",
+      Position => "47:0", # Excel Formula: =calc_position(F73,E74,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    SchGnt0Counter4 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 15;
+      Name => "SchGnt0Counter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of grant messages from the SCH0",
+      Width => "48",
+      Position => "95:48", # Excel Formula: =calc_position(F74,E75)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    SchGnt1Counter4 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 15;
+      Name => "SchGnt1Counter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of grant messages from the SCH1",
+      Width => "48",
+      Position => "143:96", # Excel Formula: =calc_position(F75,E76)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqGntEventCounterReg5 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 26;
+    Name => "CsmsReqGntEventCounterReg[6]",
+    RegMem => "Reg",
+    Address => "133",
+    Description => "CSMS request and grants counter register",
+    Width => "144", # Excel Formula: =calc_reg_width(E74:E76,F76)
+    Type => "ReadOnly",
+    ArrayLength => "6",
+    ArrayIndex => "5",
+    IcsReqCounter5 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 14;
+      Name => "IcsReqCounter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of request messages from the ICS",
+      Width => "48",
+      Position => "47:0", # Excel Formula: =calc_position(F73,E74,TRUE)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    SchGnt0Counter5 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 15;
+      Name => "SchGnt0Counter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of grant messages from the SCH0",
+      Width => "48",
+      Position => "95:48", # Excel Formula: =calc_position(F74,E75)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    SchGnt1Counter5 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 15;
+      Name => "SchGnt1Counter[n]",
+      RegMem => "RegField",
+      Description => "Counts the number of grant messages from the SCH1",
+      Width => "48",
+      Position => "143:96", # Excel Formula: =calc_position(F75,E76)
+      Type => "Counter",
+      UsedBy => "CSMS",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  CsmsReqGntCbrMaxCounterReg0 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 27;
+    Name => "CsmsReqGntCbrMaxCounterReg[6]",
+    RegMem => "Reg",
+    Address => "134", # Excel Formula: =calc_reg_address(C73,A73,G73)
+    Description => "CSMS request and grants cbr max register",
+    Width => "16", # Excel Formula: =calc_reg_width(E78:E80,F80)
+    Type => "ReadOnly",
+    ArrayLength => "6",
+    ArrayIndex => "0",
+    IcsReqCbrMax0 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 13;
+      Name => "IcsReqCbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the ICS CBR",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F77,E78,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+    SchGnt0CbrMax0 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 14;
+      Name => "SchGnt0CbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the SCH0 CBR",
+      Width => "5",
+      Position => "10:6", # Excel Formula: =calc_position(F78,E79)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+    SchGnt1CbrMax0 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 0; ArrayLocationInName: 14;
+      Name => "SchGnt1CbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the SCH1 CBR",
+      Width => "5",
+      Position => "15:11", # Excel Formula: =calc_position(F79,E80)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+  },
+  CsmsReqGntCbrMaxCounterReg1 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 27;
+    Name => "CsmsReqGntCbrMaxCounterReg[6]",
+    RegMem => "Reg",
+    Address => "135",
+    Description => "CSMS request and grants cbr max register",
+    Width => "16", # Excel Formula: =calc_reg_width(E78:E80,F80)
+    Type => "ReadOnly",
+    ArrayLength => "6",
+    ArrayIndex => "1",
+    IcsReqCbrMax1 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 13;
+      Name => "IcsReqCbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the ICS CBR",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F77,E78,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+    SchGnt0CbrMax1 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 14;
+      Name => "SchGnt0CbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the SCH0 CBR",
+      Width => "5",
+      Position => "10:6", # Excel Formula: =calc_position(F78,E79)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+    SchGnt1CbrMax1 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 1; ArrayLocationInName: 14;
+      Name => "SchGnt1CbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the SCH1 CBR",
+      Width => "5",
+      Position => "15:11", # Excel Formula: =calc_position(F79,E80)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+  },
+  CsmsReqGntCbrMaxCounterReg2 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 27;
+    Name => "CsmsReqGntCbrMaxCounterReg[6]",
+    RegMem => "Reg",
+    Address => "136",
+    Description => "CSMS request and grants cbr max register",
+    Width => "16", # Excel Formula: =calc_reg_width(E78:E80,F80)
+    Type => "ReadOnly",
+    ArrayLength => "6",
+    ArrayIndex => "2",
+    IcsReqCbrMax2 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 13;
+      Name => "IcsReqCbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the ICS CBR",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F77,E78,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+    SchGnt0CbrMax2 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 14;
+      Name => "SchGnt0CbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the SCH0 CBR",
+      Width => "5",
+      Position => "10:6", # Excel Formula: =calc_position(F78,E79)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+    SchGnt1CbrMax2 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 2; ArrayLocationInName: 14;
+      Name => "SchGnt1CbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the SCH1 CBR",
+      Width => "5",
+      Position => "15:11", # Excel Formula: =calc_position(F79,E80)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+  },
+  CsmsReqGntCbrMaxCounterReg3 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 27;
+    Name => "CsmsReqGntCbrMaxCounterReg[6]",
+    RegMem => "Reg",
+    Address => "137",
+    Description => "CSMS request and grants cbr max register",
+    Width => "16", # Excel Formula: =calc_reg_width(E78:E80,F80)
+    Type => "ReadOnly",
+    ArrayLength => "6",
+    ArrayIndex => "3",
+    IcsReqCbrMax3 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 13;
+      Name => "IcsReqCbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the ICS CBR",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F77,E78,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+    SchGnt0CbrMax3 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 14;
+      Name => "SchGnt0CbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the SCH0 CBR",
+      Width => "5",
+      Position => "10:6", # Excel Formula: =calc_position(F78,E79)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+    SchGnt1CbrMax3 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 3; ArrayLocationInName: 14;
+      Name => "SchGnt1CbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the SCH1 CBR",
+      Width => "5",
+      Position => "15:11", # Excel Formula: =calc_position(F79,E80)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+  },
+  CsmsReqGntCbrMaxCounterReg4 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 27;
+    Name => "CsmsReqGntCbrMaxCounterReg[6]",
+    RegMem => "Reg",
+    Address => "138",
+    Description => "CSMS request and grants cbr max register",
+    Width => "16", # Excel Formula: =calc_reg_width(E78:E80,F80)
+    Type => "ReadOnly",
+    ArrayLength => "6",
+    ArrayIndex => "4",
+    IcsReqCbrMax4 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 13;
+      Name => "IcsReqCbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the ICS CBR",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F77,E78,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+    SchGnt0CbrMax4 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 14;
+      Name => "SchGnt0CbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the SCH0 CBR",
+      Width => "5",
+      Position => "10:6", # Excel Formula: =calc_position(F78,E79)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+    SchGnt1CbrMax4 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 4; ArrayLocationInName: 14;
+      Name => "SchGnt1CbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the SCH1 CBR",
+      Width => "5",
+      Position => "15:11", # Excel Formula: =calc_position(F79,E80)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+  },
+  CsmsReqGntCbrMaxCounterReg5 => { #Structure Type: Reg; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 27;
+    Name => "CsmsReqGntCbrMaxCounterReg[6]",
+    RegMem => "Reg",
+    Address => "139",
+    Description => "CSMS request and grants cbr max register",
+    Width => "16", # Excel Formula: =calc_reg_width(E78:E80,F80)
+    Type => "ReadOnly",
+    ArrayLength => "6",
+    ArrayIndex => "5",
+    IcsReqCbrMax5 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 13;
+      Name => "IcsReqCbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the ICS CBR",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F77,E78,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+    SchGnt0CbrMax5 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 14;
+      Name => "SchGnt0CbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the SCH0 CBR",
+      Width => "5",
+      Position => "10:6", # Excel Formula: =calc_position(F78,E79)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+    SchGnt1CbrMax5 => { #Structure Type: RegField; ArrayLength: 6; ArrayIndex: 5; ArrayLocationInName: 14;
+      Name => "SchGnt1CbrMax[n]",
+      RegMem => "RegField",
+      Description => "Holds the maxwatermark of the SCH1 CBR",
+      Width => "5",
+      Position => "15:11", # Excel Formula: =calc_position(F79,E80)
+      Type => "MaxWmk",
+      UsedBy => "CSMS",
+    },
+  },
+  CsmsReqFifoFullReg => { #Structure Type: Reg;
+    Name => "CsmsReqFifoFullReg",
+    RegMem => "Reg",
+    Address => "13A", # Excel Formula: =calc_reg_address(C77,A77,G77)
+    Description => "CSMS request target fifo register",
+    Width => "12", # Excel Formula: =calc_reg_width(E82:E82,F82)
+    Type => "ReadOnly",
+    ReqFifoEventFull => { #Structure Type: RegField;
+      Name => "ReqFifoEventFull",
+      RegMem => "RegField",
+      Description => "CSMS request target fifo full",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F81,E82,TRUE)
+      Type => "Event",
+      UsedBy => "CSMS",
+    },
+  },
+  CsmsGntFifoFullReg => { #Structure Type: Reg;
+    Name => "CsmsGntFifoFullReg",
+    RegMem => "Reg",
+    Address => "13B", # Excel Formula: =calc_reg_address(C81,A81,G81)
+    Description => "CSMS grant target fifo register",
+    Width => "6", # Excel Formula: =calc_reg_width(E84:E84,F84)
+    Type => "ReadOnly",
+    GntFifoEventFull => { #Structure Type: RegField;
+      Name => "GntFifoEventFull",
+      RegMem => "RegField",
+      Description => "CSMS grant target fifo full",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F83,E84,TRUE)
+      Type => "Event",
+      UsedBy => "CSMS",
+    },
+  },
+  DstDevMapMem0 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 13;
+    Name => "DstDevMapMem[3]",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "Destination Device Mapping Memory
+A memory per Slice (except slices 3, 4 & 5, which must be local) that maps all VOQs and VSCs to a remote destination device.
+The mapping is done in groups of 16, first 4096 entries are used to map the VSCs, second 4096 are used to map the VOQs",
+    Width => "14", # Excel Formula: =calc_mem_width(E86:E86,M85,F86,-1)
+    Type => "Config",
+    UsedBy => "CSMS",
+    MemEntries => "8192",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    MemLogicalWidth => "9",
+    DstDev0 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 7;
+      Name => "DstDev[n]",
+      RegMem => "MemField",
+      Description => "Destination Linecard Device ID in the system, should be between 0 and 510",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F85,E86,TRUE)
+      InitValueSa => "(line < 6) ? device_id : 
+(line >= 2048 && line < 2054) ? device_id : 
+(line >= 4096 && line < 4102) ? device_id : 0",
+      InitValueLcNwk => "(line < 3) ? device_id :
+(line >= 2048 && line < 2051) ? device_id : 
+(line >= 4096 && line < 4100) ? device_id : 0",
+      InitValueLcFab => "(line < 3) ? device_id :
+(line >= 2048 && line < 2051) ? device_id : 
+(line >= 4096 && line < 4100) ? device_id : 0",
+    },
+  },
+  DstDevMapMem1 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 13;
+    Name => "DstDevMapMem[3]",
+    RegMem => "Mem",
+    Address => "200000",
+    Description => "Destination Device Mapping Memory
+A memory per Slice (except slices 3, 4 & 5, which must be local) that maps all VOQs and VSCs to a remote destination device.
+The mapping is done in groups of 16, first 4096 entries are used to map the VSCs, second 4096 are used to map the VOQs",
+    Width => "14", # Excel Formula: =calc_mem_width(E86:E86,M85,F86,-1)
+    Type => "Config",
+    UsedBy => "CSMS",
+    MemEntries => "8192",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    MemLogicalWidth => "9",
+    DstDev1 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 7;
+      Name => "DstDev[n]",
+      RegMem => "MemField",
+      Description => "Destination Linecard Device ID in the system, should be between 0 and 510",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F85,E86,TRUE)
+      InitValueSa => "(line < 6) ? device_id : 
+(line >= 2048 && line < 2054) ? device_id : 
+(line >= 4096 && line < 4102) ? device_id : 0",
+      InitValueLcNwk => "(line < 3) ? device_id :
+(line >= 2048 && line < 2051) ? device_id : 
+(line >= 4096 && line < 4100) ? device_id : 0",
+      InitValueLcFab => "(line < 3) ? device_id :
+(line >= 2048 && line < 2051) ? device_id : 
+(line >= 4096 && line < 4100) ? device_id : 0",
+    },
+  },
+  DstDevMapMem2 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 13;
+    Name => "DstDevMapMem[3]",
+    RegMem => "Mem",
+    Address => "300000",
+    Description => "Destination Device Mapping Memory
+A memory per Slice (except slices 3, 4 & 5, which must be local) that maps all VOQs and VSCs to a remote destination device.
+The mapping is done in groups of 16, first 4096 entries are used to map the VSCs, second 4096 are used to map the VOQs",
+    Width => "14", # Excel Formula: =calc_mem_width(E86:E86,M85,F86,-1)
+    Type => "Config",
+    UsedBy => "CSMS",
+    MemEntries => "8192",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    MemLogicalWidth => "9",
+    DstDev2 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 7;
+      Name => "DstDev[n]",
+      RegMem => "MemField",
+      Description => "Destination Linecard Device ID in the system, should be between 0 and 510",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F85,E86,TRUE)
+      InitValueSa => "(line < 6) ? device_id : 
+(line >= 2048 && line < 2054) ? device_id : 
+(line >= 4096 && line < 4102) ? device_id : 0",
+      InitValueLcNwk => "(line < 3) ? device_id :
+(line >= 2048 && line < 2051) ? device_id : 
+(line >= 4096 && line < 4100) ? device_id : 0",
+      InitValueLcFab => "(line < 3) ? device_id :
+(line >= 2048 && line < 2051) ? device_id : 
+(line >= 4096 && line < 4100) ? device_id : 0",
+    },
+  },
+  VoqVscDstMapMem0 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 16;
+    Name => "VoqVscDstMapMem[4]",
+    RegMem => "Mem",
+    Address => "400000", # Excel Formula: =calc_mem_address(C85,A85,G87,L87)
+    Description => "VOQ and VSC Destination Mapping Memory
+A memory per Slice that maps all VSCs to destination {Slice, VOQ}, and all VOQs to destinatino {IFG, VSC}.
+The mapping is done in groups of 16, first 4096 entries are used to map the VSCs, second 4096 are used to map the VOQs",
+    Width => "21", # Excel Formula: =calc_mem_width(E88:E88,M87,F88,-1)
+    Type => "Config",
+    UsedBy => "CSMS",
+    MemEntries => "8192",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    MemLogicalWidth => "15",
+    DstSliceVoqOrIfgVsc0 => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "DstSliceVoqOrIfgVsc[n]",
+      RegMem => "MemField",
+      Description => "For VSC mapping, bits [11:0] represent the destination VOQ group (of 16), and bits [14:12] represent the destination slice.
+For VOQ mapping, bits [10:0] represent the destination VSC group (of 16), and bits [14:11] represent the destination IFG.",
+      Width => "15",
+      Position => "14:0", # Excel Formula: =calc_position(F87,E88,TRUE)
+      InitValueSa => "(line < 6) ? (line << 12) + instance :
+(line >= 2048 && line < 2054) ? ((line-2048) << 12) + instance :
+(line >= 4096 && line < 4102) ? ((line-4096) << 12) + instance : 0",
+      InitValueLcNwk => "(instance < 3 && line < 3) ? (line << 12) + instance :
+(instance < 3 && line >= 2048 && line < 2051) ? ((line-2048) << 12) + instance :
+(instance == 3 && line < 3) ? (line << 12) + 3 :
+(instance == 3 && line >= 2048 && line < 2051) ? ((line-2048) << 12) + 3 :
+(line >= 4096 && line < 4099) ? ((line-4096) << 12) + instance :
+(line == 4099) ? (12 << 11) + instance : 0",
+      InitValueLcFab => "(instance < 3 && line < 3) ? (line << 12) + instance :
+(instance < 3 && line >= 2048 && line < 2051) ? ((line-2048) << 12) + instance :
+(instance == 3 && line < 3) ? (line << 12) + 3 :
+(instance == 3 && line >= 2048 && line < 2051) ? ((line-2048) << 12) + 3 :
+(line >= 4096 && line < 4099) ? ((line-4096) << 12) + instance :
+(line == 4099) ? (12 << 11) + instance : 0",
+    },
+  },
+  VoqVscDstMapMem1 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 16;
+    Name => "VoqVscDstMapMem[4]",
+    RegMem => "Mem",
+    Address => "500000",
+    Description => "VOQ and VSC Destination Mapping Memory
+A memory per Slice that maps all VSCs to destination {Slice, VOQ}, and all VOQs to destinatino {IFG, VSC}.
+The mapping is done in groups of 16, first 4096 entries are used to map the VSCs, second 4096 are used to map the VOQs",
+    Width => "21", # Excel Formula: =calc_mem_width(E88:E88,M87,F88,-1)
+    Type => "Config",
+    UsedBy => "CSMS",
+    MemEntries => "8192",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    MemLogicalWidth => "15",
+    DstSliceVoqOrIfgVsc1 => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20;
+      Name => "DstSliceVoqOrIfgVsc[n]",
+      RegMem => "MemField",
+      Description => "For VSC mapping, bits [11:0] represent the destination VOQ group (of 16), and bits [14:12] represent the destination slice.
+For VOQ mapping, bits [10:0] represent the destination VSC group (of 16), and bits [14:11] represent the destination IFG.",
+      Width => "15",
+      Position => "14:0", # Excel Formula: =calc_position(F87,E88,TRUE)
+      InitValueSa => "(line < 6) ? (line << 12) + instance :
+(line >= 2048 && line < 2054) ? ((line-2048) << 12) + instance :
+(line >= 4096 && line < 4102) ? ((line-4096) << 12) + instance : 0",
+      InitValueLcNwk => "(instance < 3 && line < 3) ? (line << 12) + instance :
+(instance < 3 && line >= 2048 && line < 2051) ? ((line-2048) << 12) + instance :
+(instance == 3 && line < 3) ? (line << 12) + 3 :
+(instance == 3 && line >= 2048 && line < 2051) ? ((line-2048) << 12) + 3 :
+(line >= 4096 && line < 4099) ? ((line-4096) << 12) + instance :
+(line == 4099) ? (12 << 11) + instance : 0",
+      InitValueLcFab => "(instance < 3 && line < 3) ? (line << 12) + instance :
+(instance < 3 && line >= 2048 && line < 2051) ? ((line-2048) << 12) + instance :
+(instance == 3 && line < 3) ? (line << 12) + 3 :
+(instance == 3 && line >= 2048 && line < 2051) ? ((line-2048) << 12) + 3 :
+(line >= 4096 && line < 4099) ? ((line-4096) << 12) + instance :
+(line == 4099) ? (12 << 11) + instance : 0",
+    },
+  },
+  VoqVscDstMapMem2 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 16;
+    Name => "VoqVscDstMapMem[4]",
+    RegMem => "Mem",
+    Address => "600000",
+    Description => "VOQ and VSC Destination Mapping Memory
+A memory per Slice that maps all VSCs to destination {Slice, VOQ}, and all VOQs to destinatino {IFG, VSC}.
+The mapping is done in groups of 16, first 4096 entries are used to map the VSCs, second 4096 are used to map the VOQs",
+    Width => "21", # Excel Formula: =calc_mem_width(E88:E88,M87,F88,-1)
+    Type => "Config",
+    UsedBy => "CSMS",
+    MemEntries => "8192",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    MemLogicalWidth => "15",
+    DstSliceVoqOrIfgVsc2 => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20;
+      Name => "DstSliceVoqOrIfgVsc[n]",
+      RegMem => "MemField",
+      Description => "For VSC mapping, bits [11:0] represent the destination VOQ group (of 16), and bits [14:12] represent the destination slice.
+For VOQ mapping, bits [10:0] represent the destination VSC group (of 16), and bits [14:11] represent the destination IFG.",
+      Width => "15",
+      Position => "14:0", # Excel Formula: =calc_position(F87,E88,TRUE)
+      InitValueSa => "(line < 6) ? (line << 12) + instance :
+(line >= 2048 && line < 2054) ? ((line-2048) << 12) + instance :
+(line >= 4096 && line < 4102) ? ((line-4096) << 12) + instance : 0",
+      InitValueLcNwk => "(instance < 3 && line < 3) ? (line << 12) + instance :
+(instance < 3 && line >= 2048 && line < 2051) ? ((line-2048) << 12) + instance :
+(instance == 3 && line < 3) ? (line << 12) + 3 :
+(instance == 3 && line >= 2048 && line < 2051) ? ((line-2048) << 12) + 3 :
+(line >= 4096 && line < 4099) ? ((line-4096) << 12) + instance :
+(line == 4099) ? (12 << 11) + instance : 0",
+      InitValueLcFab => "(instance < 3 && line < 3) ? (line << 12) + instance :
+(instance < 3 && line >= 2048 && line < 2051) ? ((line-2048) << 12) + instance :
+(instance == 3 && line < 3) ? (line << 12) + 3 :
+(instance == 3 && line >= 2048 && line < 2051) ? ((line-2048) << 12) + 3 :
+(line >= 4096 && line < 4099) ? ((line-4096) << 12) + instance :
+(line == 4099) ? (12 << 11) + instance : 0",
+    },
+  },
+  VoqVscDstMapMem3 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 16;
+    Name => "VoqVscDstMapMem[4]",
+    RegMem => "Mem",
+    Address => "700000",
+    Description => "VOQ and VSC Destination Mapping Memory
+A memory per Slice that maps all VSCs to destination {Slice, VOQ}, and all VOQs to destinatino {IFG, VSC}.
+The mapping is done in groups of 16, first 4096 entries are used to map the VSCs, second 4096 are used to map the VOQs",
+    Width => "21", # Excel Formula: =calc_mem_width(E88:E88,M87,F88,-1)
+    Type => "Config",
+    UsedBy => "CSMS",
+    MemEntries => "8192",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    MemLogicalWidth => "15",
+    DstSliceVoqOrIfgVsc3 => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20;
+      Name => "DstSliceVoqOrIfgVsc[n]",
+      RegMem => "MemField",
+      Description => "For VSC mapping, bits [11:0] represent the destination VOQ group (of 16), and bits [14:12] represent the destination slice.
+For VOQ mapping, bits [10:0] represent the destination VSC group (of 16), and bits [14:11] represent the destination IFG.",
+      Width => "15",
+      Position => "14:0", # Excel Formula: =calc_position(F87,E88,TRUE)
+      InitValueSa => "(line < 6) ? (line << 12) + instance :
+(line >= 2048 && line < 2054) ? ((line-2048) << 12) + instance :
+(line >= 4096 && line < 4102) ? ((line-4096) << 12) + instance : 0",
+      InitValueLcNwk => "(instance < 3 && line < 3) ? (line << 12) + instance :
+(instance < 3 && line >= 2048 && line < 2051) ? ((line-2048) << 12) + instance :
+(instance == 3 && line < 3) ? (line << 12) + 3 :
+(instance == 3 && line >= 2048 && line < 2051) ? ((line-2048) << 12) + 3 :
+(line >= 4096 && line < 4099) ? ((line-4096) << 12) + instance :
+(line == 4099) ? (12 << 11) + instance : 0",
+      InitValueLcFab => "(instance < 3 && line < 3) ? (line << 12) + instance :
+(instance < 3 && line >= 2048 && line < 2051) ? ((line-2048) << 12) + instance :
+(instance == 3 && line < 3) ? (line << 12) + 3 :
+(instance == 3 && line >= 2048 && line < 2051) ? ((line-2048) << 12) + 3 :
+(line >= 4096 && line < 4099) ? ((line-4096) << 12) + instance :
+(line == 4099) ? (12 << 11) + instance : 0",
+    },
+  },
+  DstDevMapMemRed => { #Structure Type: Mem;
+    Name => "DstDevMapMemRed",
+    RegMem => "Mem",
+    Address => "800000", # Excel Formula: =calc_mem_address(C87,A87,G89,L89)
+    Description => "Destination Device Mapping Memory Reduced
+A memory for slice 3 that maps all VOQs and VSCs to a remote destination device.
+The mapping is done in groups of 16, first 4096 entries are used to map the VSCs, second 4096 are used to map the VOQs",
+    Width => "12", # Excel Formula: =calc_mem_width(E90:E90,M89,F90,-1)
+    Type => "Config",
+    UsedBy => "CSMS",
+    MemEntries => "8192",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "7",
+    DstDevRed => { #Structure Type: MemField;
+      Name => "DstDevRed",
+      RegMem => "MemField",
+      Description => "Destination Linecard Device ID in the system, should be between 0 and 71",
+      Width => "7",
+      Position => "6:0", # Excel Formula: =calc_position(F89,E90,TRUE)
+      InitValueSa => "(line < 6) ? device_id : 
+(line >= 2048 && line < 2054) ? device_id : 
+(line >= 4096 && line < 4102) ? device_id : 0",
+      InitValueLcNwk => "(line < 3) ? device_id : 
+(line >= 2048 && line < 2051) ? device_id : 0",
+      InitValueLcFab => "(line < 3) ? device_id : 
+(line >= 2048 && line < 2051) ? device_id : 0",
+    },
+  },
+  VscDstMapMem0 => { #Structure Type: Mem; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 13;
+    Name => "VscDstMapMem[2]",
+    RegMem => "Mem",
+    Address => "900000", # Excel Formula: =calc_mem_address(C89,A89,G91,L91)
+    Description => "VSC Mapping Memory for Slice 3, 4 & 5
+Maps all VSCs to destination {Slice, VOQ}.
+The mapping is done in groups of 16.",
+    Width => "21", # Excel Formula: =calc_mem_width(E92:E92,M91,F92,-1)
+    Type => "Config",
+    UsedBy => "CSMS",
+    MemEntries => "4096",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    MemLogicalWidth => "15",
+    DstSliceVoq0 => { #Structure Type: MemField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 12;
+      Name => "DstSliceVoq[n]",
+      RegMem => "MemField",
+      Description => "bits [11:0] represent the destination VOQ group (of 16), and bits [14:12] represent the destination slice.",
+      Width => "15",
+      Position => "14:0", # Excel Formula: =calc_position(F91,E92,TRUE)
+      InitValueSa => "(line < 6) ? (line << 12) + instance + 4 : 
+(line >= 2048 && line < 2054) ? ((line-2048) << 12) + instance + 4 : 0",
+      InitValueLcNwk => "(line < 3) ? (line << 12) + 3 : 
+(line >= 2048 && line < 2051) ? ((line-2048) << 12) + 3 : 0",
+      InitValueLcFab => "(line < 3) ? (line << 12) + 3 : 
+(line >= 2048 && line < 2051) ? ((line-2048) << 12) + 3 : 0",
+    },
+  },
+  VscDstMapMem1 => { #Structure Type: Mem; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 13;
+    Name => "VscDstMapMem[2]",
+    RegMem => "Mem",
+    Address => "A00000",
+    Description => "VSC Mapping Memory for Slice 3, 4 & 5
+Maps all VSCs to destination {Slice, VOQ}.
+The mapping is done in groups of 16.",
+    Width => "21", # Excel Formula: =calc_mem_width(E92:E92,M91,F92,-1)
+    Type => "Config",
+    UsedBy => "CSMS",
+    MemEntries => "4096",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    MemLogicalWidth => "15",
+    DstSliceVoq1 => { #Structure Type: MemField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 12;
+      Name => "DstSliceVoq[n]",
+      RegMem => "MemField",
+      Description => "bits [11:0] represent the destination VOQ group (of 16), and bits [14:12] represent the destination slice.",
+      Width => "15",
+      Position => "14:0", # Excel Formula: =calc_position(F91,E92,TRUE)
+      InitValueSa => "(line < 6) ? (line << 12) + instance + 4 : 
+(line >= 2048 && line < 2054) ? ((line-2048) << 12) + instance + 4 : 0",
+      InitValueLcNwk => "(line < 3) ? (line << 12) + 3 : 
+(line >= 2048 && line < 2051) ? ((line-2048) << 12) + 3 : 0",
+      InitValueLcFab => "(line < 3) ? (line << 12) + 3 : 
+(line >= 2048 && line < 2051) ? ((line-2048) << 12) + 3 : 0",
+    },
+  },
+  VoqDstMapMem0 => { #Structure Type: Mem; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 13;
+    Name => "VoqDstMapMem[2]",
+    RegMem => "Mem",
+    Address => "B00000", # Excel Formula: =calc_mem_address(C91,A91,G93,L93)
+    Description => "VOQ Mapping Memory for Slice 3, 4 & 5
+Maps all VOQs to destination {IFG, VSC}.
+The mapping is done in groups of 16.",
+    Width => "21", # Excel Formula: =calc_mem_width(E94:E94,M93,F94,-1)
+    Type => "Config",
+    UsedBy => "CSMS",
+    MemEntries => "4096",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    MemLogicalWidth => "15",
+    DstIfgVsc0 => { #Structure Type: MemField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 10;
+      Name => "DstIfgVsc[n]",
+      RegMem => "MemField",
+      Description => "bits [10:0] represents the destination VSC group (of 16), and bits [14:11] represents the destination IFG.",
+      Width => "15",
+      Position => "14:0", # Excel Formula: =calc_position(F93,E94,TRUE)
+      InitValueSa => "(line < 6) ? (line << 12) + instance + 4 : 0",
+    },
+  },
+  VoqDstMapMem1 => { #Structure Type: Mem; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 13;
+    Name => "VoqDstMapMem[2]",
+    RegMem => "Mem",
+    Address => "C00000",
+    Description => "VOQ Mapping Memory for Slice 3, 4 & 5
+Maps all VOQs to destination {IFG, VSC}.
+The mapping is done in groups of 16.",
+    Width => "21", # Excel Formula: =calc_mem_width(E94:E94,M93,F94,-1)
+    Type => "Config",
+    UsedBy => "CSMS",
+    MemEntries => "4096",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    MemLogicalWidth => "15",
+    DstIfgVsc1 => { #Structure Type: MemField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 10;
+      Name => "DstIfgVsc[n]",
+      RegMem => "MemField",
+      Description => "bits [10:0] represents the destination VSC group (of 16), and bits [14:11] represents the destination IFG.",
+      Width => "15",
+      Position => "14:0", # Excel Formula: =calc_position(F93,E94,TRUE)
+      InitValueSa => "(line < 6) ? (line << 12) + instance + 4 : 0",
+    },
+  },
+  DdmqMem0 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 8;
+    Name => "DdmqMem[3]",
+    RegMem => "Mem",
+    Address => "D00000", # Excel Formula: =calc_mem_address(C93,A93,G95,L95)
+    Description => "Destination Device Message Queues Memory
+Shared memory for all DDMQ of slices 0,1 and 2 ",
+    Width => "32", # Excel Formula: =calc_mem_width(E96:E96,M95,F96,-1)
+    Type => "Dynamic",
+    UsedBy => "CSMS",
+    MemEntries => "16384",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,WriteActivityFactor=100,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuWriteAccess=Disabled",
+    ArrayLength => "3",
+    ArrayIndex => "0",
+    MemLogicalWidth => "26",
+    MsgData0 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 0; ArrayLocationInName: 8;
+      Name => "MsgData[n]",
+      RegMem => "MemField",
+      Description => "Message Data",
+      Width => "26",
+      Position => "25:0", # Excel Formula: =calc_position(F95,E96,TRUE)
+    },
+  },
+  DdmqMem1 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 8;
+    Name => "DdmqMem[3]",
+    RegMem => "Mem",
+    Address => "E00000",
+    Description => "Destination Device Message Queues Memory
+Shared memory for all DDMQ of slices 0,1 and 2 ",
+    Width => "32", # Excel Formula: =calc_mem_width(E96:E96,M95,F96,-1)
+    Type => "Dynamic",
+    UsedBy => "CSMS",
+    MemEntries => "16384",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,WriteActivityFactor=100,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuWriteAccess=Disabled",
+    ArrayLength => "3",
+    ArrayIndex => "1",
+    MemLogicalWidth => "26",
+    MsgData1 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 1; ArrayLocationInName: 8;
+      Name => "MsgData[n]",
+      RegMem => "MemField",
+      Description => "Message Data",
+      Width => "26",
+      Position => "25:0", # Excel Formula: =calc_position(F95,E96,TRUE)
+    },
+  },
+  DdmqMem2 => { #Structure Type: Mem; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 8;
+    Name => "DdmqMem[3]",
+    RegMem => "Mem",
+    Address => "F00000",
+    Description => "Destination Device Message Queues Memory
+Shared memory for all DDMQ of slices 0,1 and 2 ",
+    Width => "32", # Excel Formula: =calc_mem_width(E96:E96,M95,F96,-1)
+    Type => "Dynamic",
+    UsedBy => "CSMS",
+    MemEntries => "16384",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,WriteActivityFactor=100,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuWriteAccess=Disabled",
+    ArrayLength => "3",
+    ArrayIndex => "2",
+    MemLogicalWidth => "26",
+    MsgData2 => { #Structure Type: MemField; ArrayLength: 3; ArrayIndex: 2; ArrayLocationInName: 8;
+      Name => "MsgData[n]",
+      RegMem => "MemField",
+      Description => "Message Data",
+      Width => "26",
+      Position => "25:0", # Excel Formula: =calc_position(F95,E96,TRUE)
+    },
+  },
+  DdmqMemRed => { #Structure Type: Mem;
+    Name => "DdmqMemRed",
+    RegMem => "Mem",
+    Address => "1000000", # Excel Formula: =calc_mem_address(C95,A95,G97,L97)
+    Description => "Destination Device Message Queues Reduced Memory
+Shared memory for all DDMQ of slice 3",
+    Width => "32", # Excel Formula: =calc_mem_width(E98:E98,M97,F98,-1)
+    Type => "Dynamic",
+    UsedBy => "CSMS",
+    MemEntries => "2304",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,WriteActivityFactor=100,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuWriteAccess=Disabled",
+    MemLogicalWidth => "26",
+    MsgData => { #Structure Type: MemField;
+      Name => "MsgData",
+      RegMem => "MemField",
+      Description => "Message Data",
+      Width => "26",
+      Position => "25:0", # Excel Formula: =calc_position(F97,E98,TRUE)
+    },
+  },
+};

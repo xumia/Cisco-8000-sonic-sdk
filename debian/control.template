@@ -1,0 +1,37 @@
+Source: silicon-one-sdk-src
+Section: non-free/libs
+Priority: optional
+Maintainer: Cisco Systems
+Build-Depends: debhelper (>= 9), zlibc
+Standards-Version: 3.9.8
+{% set asic = PROJECT.split(' ') %}
+{% for repo in asic %}
+Package: cisco-{{ repo }}
+Architecture: any
+Description: Cisco Silicon one Pacific SDK
+ This provides an SAI interface to the Cisco Silcon One NPU.
+
+Package: cisco-{{ repo }}-kmod-src
+Architecture: any
+Description: Cisco Silicon one {{ repo  }} SDK Kernel Modules
+ This is the kernel module source for the Cisco Silicon One Pacific SDK
+
+Package: cisco-{{ repo }}-dev
+Architecture: any
+Depends: cisco-{{ repo }}
+Description: Cisco Silicon One {{ repo }} SDK development files
+ These are the headers and static libraries for the
+ Cisco Silicon One {{ repo }}  SDK
+
+Package: cisco-{{ repo }}-test
+Architecture: all
+#Depends: cisco={{ repo }}
+Description: Cisco Silicon One {{ repo }} SDK test files
+ These are the python files for testing Cisco Silicon One {{ repo }} SDK
+
+Package: cisco-{{ repo }}-doc
+Architecture: all
+#Depends: cisco-{{ repo }}
+Description: Cisco Silicon One {{ repo }} SDK doc files
+ These are the documentation files for Cisco Silicon One {{ repo }} SDK
+{% endfor %}

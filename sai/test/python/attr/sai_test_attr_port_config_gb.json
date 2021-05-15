@@ -1,0 +1,73 @@
+{
+    "init_switch" : "port_only",
+    "real_ports": [
+        {
+            "pif": "0x808",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "NONE",
+            "an": false,
+            "media_type": "COPPER",
+            "admin_state": true
+        },
+        {
+            "pif": ["0x300", "0x400"],
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "tx_only",
+            "fec": "RS",
+            "mac_lpbk": "MAC",
+            "an": false,
+            "media_type": "COPPER",
+            "admin_state": true
+        },
+        {
+            "pif": ["0x404", "0x408"],
+            "pif_counts": 2,
+            "speed": 50000,
+            "fc": "rx_only",
+            "fec": "RS",
+            "mac_lpbk": "NONE",
+            "an": false,
+            "media_type": "OPTIC",
+            "admin_state": true
+        },
+        {
+            "pif": ["0x40c", "0x500", "0x504"],
+            "pif_counts": 1,
+            "speed": 10000,
+            "fc": "enable",
+            "fec": "NONE",
+            "mac_lpbk": "NONE",
+            "an": false,
+            "media_type": "OPTIC",
+            "admin_state": true
+        },
+        {
+            "pif": ["0x40e", "0x510"],
+            "pif_counts": 2,
+            "speed": 40000,
+            "fc": "enable",
+            "mac_lpbk": "MAC",
+            "an": false,
+            "media_type": "",
+            "admin_state": true
+        }
+    ],
+    "preemp_test_port": [
+        {
+            "pif": "0x508",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "NONE",
+            "an": false,
+            "media_type": "COPPER",
+            "admin_state": true,
+            "serdes_preemp": [120, 100, 90, 101]
+        }
+    ]
+}

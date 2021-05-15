@@ -1,0 +1,32 @@
+[
+    {
+        "blockname":        "SBIF",
+        "entry_type":       "LBR_block",
+        "uid":              "{LBR_BLOCK_AUTO_NUMBER}",
+        "description":      "SBIF: System Bus InterFace block"
+    },
+    {
+        "blockname":        "SIM_ACCESS",
+        "entry_type":       "LBR_block",
+        "uid":              "{LBR_BLOCK_AUTO_NUMBER}",
+        "description":      "Dummy block to model simulator calls"
+    },
+    {
+        "blockname":        "TOP",
+        "entry_type":       "LBR_block",
+        "uid":              "{LBR_BLOCK_AUTO_NUMBER}",
+        "description":      "TOP: Regfile - indirectly accessed through SBIF"
+    },
+    {
+        "blockname":        "MASK",
+        "entry_type":       "dummy_entry",
+        "uid":              "0x7FFF",
+        "description":      "CIF block ids mask"
+    },
+    {
+        "blockname":        "SBUS_BASE",
+        "entry_type":       "dummy_entry",
+        "uid":              "0x8000",
+        "description":      "bit flag that indicates that this is an SBUS on a CIF block"
+    }
+]

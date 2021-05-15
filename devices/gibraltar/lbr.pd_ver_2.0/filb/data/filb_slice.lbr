@@ -1,0 +1,4888 @@
+$block{filb_slice} = {
+  Defines_db => "..\\..\\defines\\gibraltar_common_defines.v,..\\..\\defines\\pd_fd_defines.v,..\\..\\defines\\control_common_defines.v",
+  ProjectName => "Gibraltar",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "2",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+    GeneralInterruptRegisterSummary => { #Structure Type: RegField;
+      Name => "GeneralInterruptRegisterSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, GeneralInterruptRegister has asserted interrupt",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt test register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "9",
+    Type => "Config",
+    VoqMappingEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VoqMappingEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    StaticFabricReachabilityEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "StaticFabricReachabilityEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    FabricReachabilityEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "FabricReachabilityEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SnTsPerFlowEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SnTsPerFlowEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SlbContextLbgEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SlbContextLbgEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SlbContextDbEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SlbContextDbEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SlbVoqEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SlbVoqEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SlbVoqPoolMemEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SlbVoqPoolMemEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SlbFcTimerEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SlbFcTimerEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "9",
+    Type => "Config",
+    VoqMappingEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "VoqMappingEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    StaticFabricReachabilityEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "StaticFabricReachabilityEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    FabricReachabilityEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "FabricReachabilityEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SnTsPerFlowEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SnTsPerFlowEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SlbContextLbgEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SlbContextLbgEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SlbContextDbEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SlbContextDbEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SlbVoqEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SlbVoqEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SlbVoqPoolMemEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SlbVoqPoolMemEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    SlbFcTimerEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "SlbFcTimerEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "9",
+    Type => "Config",
+    VoqMappingEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "VoqMappingEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    StaticFabricReachabilityEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "StaticFabricReachabilityEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    FabricReachabilityEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "FabricReachabilityEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SnTsPerFlowEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "SnTsPerFlowEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SlbContextLbgEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "SlbContextLbgEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SlbContextDbEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "SlbContextDbEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SlbVoqEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "SlbVoqEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SlbVoqPoolMemEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "SlbVoqPoolMemEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SlbFcTimerEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "SlbFcTimerEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "9",
+    Type => "Config",
+    VoqMappingEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "VoqMappingEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    StaticFabricReachabilityEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "StaticFabricReachabilityEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    FabricReachabilityEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "FabricReachabilityEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SnTsPerFlowEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "SnTsPerFlowEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SlbContextLbgEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "SlbContextLbgEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SlbContextDbEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "SlbContextDbEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SlbVoqEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "SlbVoqEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SlbVoqPoolMemEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "SlbVoqPoolMemEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SlbFcTimerEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "SlbFcTimerEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectErrStatus",
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "9",
+    Type => "ReadOnly",
+    VoqMappingErrInt => { #Structure Type: RegField;
+      Name => "VoqMappingErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    StaticFabricReachabilityErrInt => { #Structure Type: RegField;
+      Name => "StaticFabricReachabilityErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "1",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    FabricReachabilityErrInt => { #Structure Type: RegField;
+      Name => "FabricReachabilityErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "2",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    SnTsPerFlowErrInt => { #Structure Type: RegField;
+      Name => "SnTsPerFlowErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "3",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    SlbContextLbgErrInt => { #Structure Type: RegField;
+      Name => "SlbContextLbgErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "4",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    SlbContextDbErrInt => { #Structure Type: RegField;
+      Name => "SlbContextDbErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "5",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    SlbVoqErrInt => { #Structure Type: RegField;
+      Name => "SlbVoqErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "6",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    SlbVoqPoolMemErrInt => { #Structure Type: RegField;
+      Name => "SlbVoqPoolMemErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "7",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    SlbFcTimerErrInt => { #Structure Type: RegField;
+      Name => "SlbFcTimerErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "8",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    Name => "SelectedSerErrorInfo",
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "18",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      Name => "MemErrAddr",
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "16",
+      Position => "15:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      Name => "MemErrType",
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "17:16",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SerErrorDebugConfiguration",
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "5",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      Name => "ErroneousMemorySelector",
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "4",
+      Position => "3:0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      Name => "ResetMemoryErrors",
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrDebug",
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_1bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrDebug",
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_2bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "73", # Excel Formula: =calc_reg_width(E25:E53,F53)
+    Type => "Config",
+    SACR1P_RME => { #Structure Type: RegField;
+      Name => "SACR1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACR1P_RM => { #Structure Type: RegField;
+      Name => "SACR1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "4:1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACU2P_RME => { #Structure Type: RegField;
+      Name => "SACU2P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACU2P_RM => { #Structure Type: RegField;
+      Name => "SACU2P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "9:6", # Excel Formula: =calc_position(F27,E28)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADC1P_RME => { #Structure Type: RegField;
+      Name => "SADC1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F28,E29)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADC1P_RM => { #Structure Type: RegField;
+      Name => "SADC1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "14:11", # Excel Formula: =calc_position(F29,E30)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMEA => { #Structure Type: RegField;
+      Name => "SADR2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F30,E31)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMA => { #Structure Type: RegField;
+      Name => "SADR2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "19:16", # Excel Formula: =calc_position(F31,E32)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMEB => { #Structure Type: RegField;
+      Name => "SADR2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "20", # Excel Formula: =calc_position(F32,E33)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMB => { #Structure Type: RegField;
+      Name => "SADR2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "24:21", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMEA => { #Structure Type: RegField;
+      Name => "SADS2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMA => { #Structure Type: RegField;
+      Name => "SADS2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "29:26", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMEB => { #Structure Type: RegField;
+      Name => "SADS2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "30", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMB => { #Structure Type: RegField;
+      Name => "SADS2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "34:31", # Excel Formula: =calc_position(F37,E38)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASR1P_RME => { #Structure Type: RegField;
+      Name => "SASR1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "35", # Excel Formula: =calc_position(F38,E39)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASR1P_RM => { #Structure Type: RegField;
+      Name => "SASR1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "39:36", # Excel Formula: =calc_position(F39,E40)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS1P_RME => { #Structure Type: RegField;
+      Name => "SASS1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "40", # Excel Formula: =calc_position(F40,E41)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS1P_RM => { #Structure Type: RegField;
+      Name => "SASS1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "44:41", # Excel Formula: =calc_position(F41,E42)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMEA => { #Structure Type: RegField;
+      Name => "SASS2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "45", # Excel Formula: =calc_position(F42,E43)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMA => { #Structure Type: RegField;
+      Name => "SASS2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "49:46", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMEB => { #Structure Type: RegField;
+      Name => "SASS2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "50", # Excel Formula: =calc_position(F44,E45)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMB => { #Structure Type: RegField;
+      Name => "SASS2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "54:51", # Excel Formula: =calc_position(F45,E46)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASU2P_RME => { #Structure Type: RegField;
+      Name => "SASU2P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "55", # Excel Formula: =calc_position(F46,E47)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASU2P_RM => { #Structure Type: RegField;
+      Name => "SASU2P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "59:56", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_RME => { #Structure Type: RegField;
+      Name => "SADU1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "60", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_RM => { #Structure Type: RegField;
+      Name => "SADU1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "64:61", # Excel Formula: =calc_position(F49,E50)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RA => { #Structure Type: RegField;
+      Name => "SADS2P_RA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Assist for Dual port",
+      Width => "2",
+      Position => "66:65", # Excel Formula: =calc_position(F50,E51)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_WA => { #Structure Type: RegField;
+      Name => "SADU1P_WA",
+      RegMem => "RegField",
+      Description => "Write-Assist configuration for the SP SADU compiler",
+      Width => "3",
+      Position => "69:67", # Excel Formula: =calc_position(F51,E52)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d5",
+    },
+    SADU1P_WPULSE => { #Structure Type: RegField;
+      Name => "SADU1P_WPULSE",
+      RegMem => "RegField",
+      Description => "Write-Assist-Pulse configuration for the SP SADU compiler",
+      Width => "3",
+      Position => "72:70", # Excel Formula: =calc_position(F52,E53)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E55:E55,F55)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F54,E55,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C54,A54,G54)
+    Description => "Spare register",
+    Width => "128", # Excel Formula: =calc_reg_width(E57:E57,F57)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "Spare register ",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F56,E57,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C56,A56,G56)
+    Description => "PMRO controller configuration",
+    Width => "32", # Excel Formula: =calc_reg_width(E59:E63,F63)
+    Type => "Config",
+    PmroRstn => { #Structure Type: RegField;
+      Name => "PmroRstn",
+      RegMem => "RegField",
+      Description => "PMRO reset, active low",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F58,E59,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroConfigEn => { #Structure Type: RegField;
+      Name => "PmroConfigEn",
+      RegMem => "RegField",
+      Description => "Enable pmro configuration, when equals to 0 configurations are locked",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F59,E60)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroStart => { #Structure Type: RegField;
+      Name => "PmroStart",
+      RegMem => "RegField",
+      Description => "Start the pmro operation",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F60,E61)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroRingEn => { #Structure Type: RegField;
+      Name => "PmroRingEn",
+      RegMem => "RegField",
+      Description => "Determines which PMRO ring to activate, should be configured as one hot",
+      Width => "7",
+      Position => "9:3", # Excel Formula: =calc_position(F61,E62)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroCntPeriod => { #Structure Type: RegField;
+      Name => "PmroCntPeriod",
+      RegMem => "RegField",
+      Description => "Number of core clock cycles on which PMRO is measured",
+      Width => "22",
+      Position => "31:10", # Excel Formula: =calc_position(F62,E63)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "h3FFFFF",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C58,A58,G58)
+    Description => "PMRO status configuration",
+    Width => "23", # Excel Formula: =calc_reg_width(E65:E66,F66)
+    Type => "ReadOnly",
+    PmroCountOut => { #Structure Type: RegField;
+      Name => "PmroCountOut",
+      RegMem => "RegField",
+      Description => "The ring oscilator counter value.",
+      Width => "22",
+      Position => "21:0", # Excel Formula: =calc_position(F64,E65,TRUE)
+      Type => "Status",
+      UsedBy => "pmro",
+    },
+    PmroDone => { #Structure Type: RegField;
+      Name => "PmroDone",
+      RegMem => "RegField",
+      Description => "Pmro operation done, PmroCountOut is valid.",
+      Width => "1",
+      Position => "22", # Excel Formula: =calc_position(F65,E66)
+      Type => "Status",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C64,A64,G64)
+    Description => "Mirror Bus configurations",
+    Width => "11", # Excel Formula: =calc_reg_width(E68:E69,F69)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "Enable Mirror Bus",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "Mirror Bus selector",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F68,E69)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C67,A67,G67)
+    Description => "Mirror Bus status result",
+    Width => "32", # Excel Formula: =calc_reg_width(E71:E71,F71)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "Mirror Bus status result",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F70,E71,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C70,A70,G70)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E73:E73,F73)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F72,E73,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  GeneralInterruptRegister => { #Structure Type: Reg;
+    Name => "GeneralInterruptRegister",
+    RegMem => "Reg",
+    Address => "100",
+    Description => "Interrupt",
+    Width => "2", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Interrupt",
+    SlbOpenButNoLink => { #Structure Type: RegField;
+      Name => "SlbOpenButNoLink",
+      RegMem => "RegField",
+      Description => "in DCF, the FILB got SLB open command but there was no link with VOQ avaliable",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Interrupt",
+      UsedBy => "SLB",
+    },
+    slb_pd_fifo_overflow => { #Structure Type: RegField;
+      Name => "slb_pd_fifo_overflow",
+      RegMem => "RegField",
+      Description => "Slb PDs fifo overflow",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Interrupt",
+      UsedBy => "SLB",
+    },
+  },
+  GeneralInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "GeneralInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "101",
+    Description => "This register masks GeneralInterruptRegister interrupt register",
+    Width => "2", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "InterruptMask",
+    SlbOpenButNoLinkMask => { #Structure Type: RegField;
+      Name => "SlbOpenButNoLinkMask",
+      RegMem => "RegField",
+      Description => "This field masks SlbOpenButNoLink interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+    slb_pd_fifo_overflowMask => { #Structure Type: RegField;
+      Name => "slb_pd_fifo_overflowMask",
+      RegMem => "RegField",
+      Description => "This field masks slb_pd_fifo_overflow interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  GeneralInterruptRegisterTest => { #Structure Type: Reg; Skip Register;
+    Name => "GeneralInterruptRegisterTest",
+    RegMem => "Reg",
+    Address => "102",
+    Description => "This register tests GeneralInterruptRegister interrupt register",
+    Width => "2", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "InterruptTest",
+    SlbOpenButNoLinkTest => { #Structure Type: RegField;
+      Name => "SlbOpenButNoLinkTest",
+      RegMem => "RegField",
+      Description => "This field tests SlbOpenButNoLink interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    slb_pd_fifo_overflowTest => { #Structure Type: RegField;
+      Name => "slb_pd_fifo_overflowTest",
+      RegMem => "RegField",
+      Description => "This field tests slb_pd_fifo_overflow interrupt",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F8,E9)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  StatusReg => { #Structure Type: Reg;
+    Name => "StatusReg",
+    RegMem => "Reg",
+    Address => "103", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "init status register- when value is not 0 - hardware initialization process is in progress",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "ReadOnly",
+    InitDone => { #Structure Type: RegField;
+      Name => "InitDone",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "Status",
+      UsedBy => "LOGIC",
+    },
+  },
+  OpenButNoLinkReg => { #Structure Type: Reg;
+    Name => "OpenButNoLinkReg",
+    RegMem => "Reg",
+    Address => "104", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Slb open command discarded because there was no avaliable link",
+    Width => "9", # Excel Formula: =calc_reg_width(E13:E13,F13)
+    Type => "ReadOnly",
+    OpenButNoLinkContext => { #Structure Type: RegField;
+      Name => "OpenButNoLinkContext",
+      RegMem => "RegField",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Status",
+      UsedBy => "SLB",
+    },
+  },
+  FifosDebugReg => { #Structure Type: Reg;
+    Name => "FifosDebugReg",
+    RegMem => "Reg",
+    Address => "105", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Width => "9", # Excel Formula: =calc_reg_width(E15:E16,F16)
+    Type => "ReadOnly",
+    SlbCmdFifoCount => { #Structure Type: RegField;
+      Name => "SlbCmdFifoCount",
+      RegMem => "RegField",
+      Description => "SLB command fifo status",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F14,E15,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    slb_pd_fifo_stat => { #Structure Type: RegField;
+      Name => "slb_pd_fifo_stat",
+      RegMem => "RegField",
+      Description => "SPB PD fifo status",
+      Width => "5",
+      Position => "8:4", # Excel Formula: =calc_position(F15,E16)
+      Type => "Status",
+      UsedBy => "SLB",
+    },
+  },
+  LastInPd => { #Structure Type: Reg;
+    Name => "LastInPd",
+    RegMem => "Reg",
+    Address => "106", # Excel Formula: =calc_reg_address(C14,A14,G14)
+    Width => "32", # Excel Formula: =calc_reg_width(E18:E18,F18)
+    Type => "ReadOnly",
+    LastIncomingPd => { #Structure Type: RegField;
+      Name => "LastIncomingPd",
+      RegMem => "RegField",
+      Description => "Holds the 32 bits of the PD muxed by LastIncomingPdMuxSel",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F17,E18,TRUE)
+      Type => "Status",
+      UsedBy => "DBG",
+    },
+  },
+  DebugConf => { #Structure Type: Reg;
+    Name => "DebugConf",
+    RegMem => "Reg",
+    Address => "107", # Excel Formula: =calc_reg_address(C17,A17,G17)
+    Width => "3", # Excel Formula: =calc_reg_width(E20:E20,F20)
+    Type => "Config",
+    PdMuxSel => { #Structure Type: RegField;
+      Name => "PdMuxSel",
+      RegMem => "RegField",
+      Description => "Selector for the debug mux of LastIncomingPd",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F19,E20,TRUE)
+      Type => "Config",
+      UsedBy => "DBG",
+      DefaultValue => "h0",
+    },
+  },
+  SliceModeReg => { #Structure Type: Reg;
+    Name => "SliceModeReg",
+    RegMem => "Reg",
+    Address => "108", # Excel Formula: =calc_reg_address(C19,A19,G19)
+    Width => "4", # Excel Formula: =calc_reg_width(E22:E22,F22)
+    Type => "Config",
+    SliceMode => { #Structure Type: RegField;
+      Name => "SliceMode",
+      RegMem => "RegField",
+      Description => "0  // Linecard mode CRF TS network slice
+1  // Linecard mode CRF SN network slice
+2  // Linecard mode CRF TS fabric slice
+3  // Linecard mode CRF SN fabric slice
+4  // TOR mode network slice
+5  // TOR mode fabric slice
+6  // FE mode with TS
+7  // FE mode with SN
+8  // Stand alone device
+9  // DRAM slice",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F21,E22,TRUE)
+      Type => "Config",
+      UsedBy => "ALL",
+      DefaultValue => "d0",
+      InitValueSa => "8",
+      InitValueLcNwk => "0",
+      InitValueLcFab => "2",
+      InitValueFe => "6",
+    },
+  },
+  AlmostFullConf => { #Structure Type: Reg;
+    Name => "AlmostFullConf",
+    RegMem => "Reg",
+    Address => "109", # Excel Formula: =calc_reg_address(C21,A21,G21)
+    Description => "almost full configuration register
+This register was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+    Width => "5", # Excel Formula: =calc_reg_width(E24:E24,F24)
+    Type => "Config",
+    slb_pd_fifo_alm_full => { #Structure Type: RegField;
+      Name => "slb_pd_fifo_alm_full",
+      RegMem => "RegField",
+      Description => "SLB pd fifo almost full",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F23,E24,TRUE)
+      Type => "Config",
+      UsedBy => "SLB",
+      DefaultValue => "d16",
+    },
+  },
+  GeneralConfReg => { #Structure Type: Reg;
+    Name => "GeneralConfReg",
+    RegMem => "Reg",
+    Address => "10A", # Excel Formula: =calc_reg_address(C23,A23,G23)
+    Description => "General configuration register
+",
+    Width => "2", # Excel Formula: =calc_reg_width(E26:E27,F27)
+    Type => "Config",
+    SourceInterfaceDemux => { #Structure Type: RegField;
+      Name => "SourceInterfaceDemux",
+      RegMem => "RegField",
+      Description => "SourceInterfaceDemux effects the of RLB flow-id = {destination-device(9), source-interface-demux (1), fabric-TC(1)}
+This field was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Config",
+      UsedBy => "VMD",
+      DefaultValue => "b0",
+    },
+    InvertFrtChicken => { #Structure Type: RegField;
+      Name => "InvertFrtChicken",
+      RegMem => "RegField",
+      Description => "This field was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "ALL",
+      DefaultValue => "b0",
+    },
+  },
+  LinkToSmsIfMap => { #Structure Type: Reg;
+    Name => "LinkToSmsIfMap",
+    RegMem => "Reg",
+    Address => "10B", # Excel Formula: =calc_reg_address(C25,A25,G25)
+    Description => "Map link to fabric SMS interface by comparing the first link of the next IFG",
+    Width => "30", # Excel Formula: =calc_reg_width(E29:E33,F33)
+    Type => "Config",
+    SmsIf7MinLink => { #Structure Type: RegField;
+      Name => "SmsIf7MinLink",
+      RegMem => "RegField",
+      Description => "First link of IFG 7",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Config",
+      UsedBy => "ALL",
+      DefaultValue => "d12",
+    },
+    SmsIf8MinLink => { #Structure Type: RegField;
+      Name => "SmsIf8MinLink",
+      RegMem => "RegField",
+      Description => "First link of IFG 8",
+      Width => "6",
+      Position => "11:6", # Excel Formula: =calc_position(F29,E30)
+      Type => "Config",
+      UsedBy => "ALL",
+      DefaultValue => "d20",
+    },
+    SmsIf9MinLink => { #Structure Type: RegField;
+      Name => "SmsIf9MinLink",
+      RegMem => "RegField",
+      Description => "First link of IFG 9",
+      Width => "6",
+      Position => "17:12", # Excel Formula: =calc_position(F30,E31)
+      Type => "Config",
+      UsedBy => "ALL",
+      DefaultValue => "d28",
+    },
+    SmsIf10MinLink => { #Structure Type: RegField;
+      Name => "SmsIf10MinLink",
+      RegMem => "RegField",
+      Description => "First link of IFG 10",
+      Width => "6",
+      Position => "23:18", # Excel Formula: =calc_position(F31,E32)
+      Type => "Config",
+      UsedBy => "ALL",
+      DefaultValue => "d40",
+    },
+    SmsIf11MinLink => { #Structure Type: RegField;
+      Name => "SmsIf11MinLink",
+      RegMem => "RegField",
+      Description => "First link of IFG 11",
+      Width => "6",
+      Position => "29:24", # Excel Formula: =calc_position(F32,E33)
+      Type => "Config",
+      UsedBy => "ALL",
+      DefaultValue => "d52",
+    },
+  },
+  LoadBalanceCfg => { #Structure Type: Reg;
+    Name => "LoadBalanceCfg",
+    RegMem => "Reg",
+    Address => "10C", # Excel Formula: =calc_reg_address(C28,A28,G28)
+    Description => "Configuration regarding the load balancing enhancement scheme of GB",
+    Width => "1", # Excel Formula: =calc_reg_width(E35:E35,F35)
+    Type => "Config",
+    EnhancementDisable => { #Structure Type: RegField;
+      Name => "EnhancementDisable",
+      RegMem => "RegField",
+      Description => "If set, use pacific load balancing scheme",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F34,E35,TRUE)
+      Type => "Config",
+      UsedBy => "ALL",
+      DefaultValue => "d0",
+    },
+  },
+  SlicesReg => { #Structure Type: Reg;
+    Name => "SlicesReg",
+    RegMem => "Reg",
+    Address => "10D", # Excel Formula: =calc_reg_address(C34,A34,G34)
+    Width => "6", # Excel Formula: =calc_reg_width(E37:E38,F38)
+    Type => "Config",
+    NumOfNwkSlices => { #Structure Type: RegField;
+      Name => "NumOfNwkSlices",
+      RegMem => "RegField",
+      Description => "Number of network slices in the device",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F36,E37,TRUE)
+      Type => "Config",
+      UsedBy => "ALL",
+      DefaultValue => "d6",
+    },
+    NumOfFabricSlices => { #Structure Type: RegField;
+      Name => "NumOfFabricSlices",
+      RegMem => "RegField",
+      Description => "Number of fabric slices in the device",
+      Width => "3",
+      Position => "5:3", # Excel Formula: =calc_position(F37,E38)
+      Type => "Config",
+      UsedBy => "ALL",
+      DefaultValue => "d0",
+    },
+  },
+  PackingReg => { #Structure Type: Reg;
+    Name => "PackingReg",
+    RegMem => "Reg",
+    Address => "10E", # Excel Formula: =calc_reg_address(C36,A36,G36)
+    Description => "fabric packing control register.
+This register was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+    Width => "28", # Excel Formula: =calc_reg_width(E40:E42,F42)
+    Type => "Config",
+    PackingTimeout => { #Structure Type: RegField;
+      Name => "PackingTimeout",
+      RegMem => "RegField",
+      Description => "max number of clocks that the PD waits for packing pair",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F39,E40,TRUE)
+      Type => "Config",
+      UsedBy => "VMD",
+      DefaultValue => "d100",
+    },
+    PackingMaxPdSize => { #Structure Type: RegField;
+      Name => "PackingMaxPdSize",
+      RegMem => "RegField",
+      Description => "max PD size that enables packing",
+      Width => "10",
+      Position => "17:8", # Excel Formula: =calc_position(F40,E41)
+      Type => "Config",
+      UsedBy => "VMD",
+      DefaultValue => "d385",
+      InitValueAllModes => "368",
+    },
+    PackingMaxSumPdSize => { #Structure Type: RegField;
+      Name => "PackingMaxSumPdSize",
+      RegMem => "RegField",
+      Description => "max sum of pair PDs sizes that enables packing",
+      Width => "10",
+      Position => "27:18", # Excel Formula: =calc_position(F41,E42)
+      Type => "Config",
+      UsedBy => "VMD",
+      DefaultValue => "d705",
+      InitValueAllModes => "1023",
+    },
+  },
+  LfsrCfgReg => { #Structure Type: Reg;
+    Name => "LfsrCfgReg",
+    RegMem => "Reg",
+    Address => "10F", # Excel Formula: =calc_reg_address(C39,A39,G39)
+    Description => "LFSR config register.
+This register was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+    Width => "42", # Excel Formula: =calc_reg_width(E44:E49,F49)
+    Type => "Config",
+    BaseLfsrIdx => { #Structure Type: RegField;
+      Name => "BaseLfsrIdx",
+      RegMem => "RegField",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F43,E44,TRUE)
+      Type => "Config",
+      UsedBy => "ALL",
+      DefaultValue => "d0",
+      InitValueAllModes => "2*slice",
+    },
+    NumSelectReplaceLfsr => { #Structure Type: RegField;
+      Name => "NumSelectReplaceLfsr",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "15:4", # Excel Formula: =calc_position(F44,E45)
+      Type => "Config",
+      UsedBy => "ALL",
+      DefaultValue => "d100",
+      InitValueAllModes => "0",
+    },
+    RandomizeLinkOnLocal => { #Structure Type: RegField;
+      Name => "RandomizeLinkOnLocal",
+      RegMem => "RegField",
+      Description => "Randomize RLB link selection LFSR on local device traffic. The idea is that this may improve the randomness",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F45,E46)
+      Type => "Config",
+      UsedBy => "ALL",
+      DefaultValue => "d0",
+    },
+    LfsrSeed1 => { #Structure Type: RegField;
+      Name => "LfsrSeed1",
+      RegMem => "RegField",
+      Description => "Seed for first lfsr",
+      Width => "12",
+      Position => "28:17", # Excel Formula: =calc_position(F46,E47)
+      Type => "Config",
+      UsedBy => "ALL",
+      DefaultValue => "d2048",
+    },
+    LfsrSeed2 => { #Structure Type: RegField;
+      Name => "LfsrSeed2",
+      RegMem => "RegField",
+      Description => "Seed for second lfsr",
+      Width => "12",
+      Position => "40:29", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "ALL",
+      DefaultValue => "d0",
+    },
+    LfsrClkAdvanceEnable => { #Structure Type: RegField;
+      Name => "LfsrClkAdvanceEnable",
+      RegMem => "RegField",
+      Description => "Enables the LFSR to advance every clock cycle. If disabled, the LFSR advances every packet event.",
+      Width => "1",
+      Position => "41", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "ALL",
+      DefaultValue => "d0",
+      InitValueAllModes => "1",
+    },
+  },
+  FilbDeleteXbar => { #Structure Type: Reg;
+    Name => "FilbDeleteXbar",
+    RegMem => "Reg",
+    Address => "110", # Excel Formula: =calc_reg_address(C43,A43,G43)
+    Description => "Value of XBAR_VOQ in case that FILB delete a packet. Examples - linecard network slice with RLB or DCF network slice but all links are down ",
+    Width => "9", # Excel Formula: =calc_reg_width(E51:E52,F52)
+    Type => "Config",
+    FilbDelXbar => { #Structure Type: RegField;
+      Name => "FilbDelXbar",
+      RegMem => "RegField",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F50,E51,TRUE)
+      Type => "Config",
+      UsedBy => "EDIT",
+      DefaultValue => "d5",
+      InitValueAllModes => "(slice < 3) ? slice+3 : 0",
+    },
+    FilbDelLink => { #Structure Type: RegField;
+      Name => "FilbDelLink",
+      RegMem => "RegField",
+      Width => "5",
+      Position => "8:4", # Excel Formula: =calc_position(F51,E52)
+      Type => "Config",
+      UsedBy => "EDIT",
+      DefaultValue => "d5",
+      InitValueAllModes => "(slice < 3) ? 0 : 5",
+    },
+  },
+  SlbVoqPool0 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 0; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "111", # Excel Formula: =calc_reg_address(C50,A50,G50)
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "0",
+    Fifo0size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 0; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo0start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 0; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo0almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 0; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool1 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 1; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "112",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "1",
+    Fifo1size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 1; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo1start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 1; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo1almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 1; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool2 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 2; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "113",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "2",
+    Fifo2size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 2; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo2start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 2; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo2almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 2; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool3 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 3; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "114",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "3",
+    Fifo3size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 3; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo3start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 3; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo3almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 3; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool4 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 4; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "115",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "4",
+    Fifo4size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 4; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo4start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 4; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo4almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 4; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool5 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 5; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "116",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "5",
+    Fifo5size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 5; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo5start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 5; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo5almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 5; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool6 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 6; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "117",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "6",
+    Fifo6size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 6; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo6start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 6; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo6almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 6; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool7 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 7; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "118",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "7",
+    Fifo7size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 7; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo7start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 7; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo7almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 7; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool8 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 8; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "119",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "8",
+    Fifo8size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 8; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo8start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 8; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo8almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 8; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool9 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 9; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "11A",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "9",
+    Fifo9size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 9; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo9start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 9; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo9almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 9; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool10 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 10; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "11B",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "10",
+    Fifo10size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 10; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo10start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 10; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo10almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 10; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool11 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 11; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "11C",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "11",
+    Fifo11size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 11; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo11start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 11; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo11almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 11; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool12 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 12; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "11D",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "12",
+    Fifo12size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 12; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo12start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 12; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo12almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 12; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool13 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 13; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "11E",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "13",
+    Fifo13size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 13; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo13start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 13; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo13almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 13; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool14 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 14; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "11F",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "14",
+    Fifo14size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 14; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo14start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 14; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo14almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 14; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool15 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 15; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "120",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "15",
+    Fifo15size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 15; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo15start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 15; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo15almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 15; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool16 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 16; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "121",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "16",
+    Fifo16size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 16; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo16start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 16; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo16almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 16; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool17 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 17; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "122",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "17",
+    Fifo17size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 17; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo17start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 17; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo17almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 17; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool18 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 18; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "123",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "18",
+    Fifo18size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 18; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo18start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 18; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo18almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 18; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool19 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 19; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "124",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "19",
+    Fifo19size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 19; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo19start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 19; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo19almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 19; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool20 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 20; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "125",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "20",
+    Fifo20size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 20; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo20start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 20; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo20almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 20; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool21 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 21; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "126",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "21",
+    Fifo21size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 21; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo21start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 21; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo21almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 21; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool22 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 22; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "127",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "22",
+    Fifo22size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 22; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo22start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 22; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo22almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 22; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool23 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 23; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "128",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "23",
+    Fifo23size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 23; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo23start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 23; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo23almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 23; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool24 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 24; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "129",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "24",
+    Fifo24size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 24; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo24start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 24; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo24almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 24; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool25 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 25; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "12A",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "25",
+    Fifo25size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 25; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo25start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 25; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo25almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 25; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool26 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 26; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "12B",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "26",
+    Fifo26size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 26; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo26start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 26; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo26almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 26; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool27 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 27; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "12C",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "27",
+    Fifo27size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 27; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo27start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 27; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo27almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 27; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool28 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 28; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "12D",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "28",
+    Fifo28size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 28; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo28start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 28; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo28almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 28; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool29 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 29; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "12E",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "29",
+    Fifo29size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 29; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo29start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 29; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo29almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 29; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool30 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 30; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "12F",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "30",
+    Fifo30size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 30; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo30start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 30; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo30almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 30; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool31 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 31; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "130",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "31",
+    Fifo31size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 31; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo31start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 31; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo31almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 31; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool32 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 32; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "131",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "32",
+    Fifo32size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 32; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo32start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 32; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo32almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 32; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool33 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 33; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "132",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "33",
+    Fifo33size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 33; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo33start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 33; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo33almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 33; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool34 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 34; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "133",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "34",
+    Fifo34size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 34; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo34start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 34; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo34almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 34; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPool35 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 35; ArrayLocationInName: 11;
+    Name => "SlbVoqPool[36]",
+    RegMem => "Reg",
+    Address => "134",
+    Description => "VOQ pool per fabric link for DCF-SLB (180 = 5*36)",
+    Width => "36", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "35",
+    Fifo35size => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 35; ArrayLocationInName: 5;
+      Name => "Fifo[n]size",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo35start => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 35; ArrayLocationInName: 5;
+      Name => "Fifo[n]start",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    Fifo35almFull => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 35; ArrayLocationInName: 5;
+      Name => "Fifo[n]almFull",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "35:24", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbVoqPoolHead0 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 0; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "135", # Excel Formula: =calc_reg_address(C53,A53,G53)
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "0",
+    head0voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 0; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head0voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 0; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat0cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 0; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead1 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 1; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "136",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "1",
+    head1voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 1; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head1voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 1; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat1cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 1; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead2 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 2; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "137",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "2",
+    head2voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 2; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head2voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 2; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat2cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 2; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead3 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 3; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "138",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "3",
+    head3voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 3; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head3voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 3; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat3cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 3; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead4 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 4; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "139",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "4",
+    head4voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 4; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head4voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 4; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat4cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 4; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead5 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 5; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "13A",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "5",
+    head5voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 5; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head5voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 5; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat5cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 5; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead6 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 6; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "13B",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "6",
+    head6voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 6; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head6voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 6; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat6cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 6; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead7 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 7; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "13C",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "7",
+    head7voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 7; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head7voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 7; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat7cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 7; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead8 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 8; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "13D",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "8",
+    head8voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 8; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head8voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 8; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat8cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 8; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead9 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 9; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "13E",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "9",
+    head9voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 9; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head9voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 9; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat9cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 9; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead10 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 10; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "13F",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "10",
+    head10voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 10; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head10voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 10; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat10cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 10; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead11 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 11; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "140",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "11",
+    head11voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 11; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head11voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 11; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat11cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 11; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead12 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 12; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "141",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "12",
+    head12voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 12; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head12voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 12; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat12cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 12; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead13 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 13; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "142",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "13",
+    head13voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 13; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head13voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 13; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat13cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 13; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead14 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 14; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "143",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "14",
+    head14voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 14; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head14voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 14; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat14cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 14; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead15 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 15; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "144",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "15",
+    head15voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 15; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head15voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 15; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat15cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 15; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead16 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 16; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "145",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "16",
+    head16voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 16; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head16voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 16; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat16cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 16; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead17 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 17; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "146",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "17",
+    head17voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 17; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head17voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 17; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat17cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 17; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead18 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 18; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "147",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "18",
+    head18voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 18; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head18voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 18; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat18cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 18; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead19 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 19; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "148",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "19",
+    head19voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 19; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head19voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 19; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat19cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 19; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead20 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 20; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "149",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "20",
+    head20voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 20; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head20voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 20; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat20cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 20; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead21 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 21; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "14A",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "21",
+    head21voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 21; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head21voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 21; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat21cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 21; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead22 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 22; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "14B",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "22",
+    head22voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 22; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head22voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 22; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat22cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 22; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead23 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 23; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "14C",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "23",
+    head23voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 23; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head23voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 23; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat23cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 23; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead24 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 24; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "14D",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "24",
+    head24voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 24; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head24voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 24; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat24cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 24; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead25 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 25; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "14E",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "25",
+    head25voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 25; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head25voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 25; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat25cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 25; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead26 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 26; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "14F",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "26",
+    head26voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 26; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head26voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 26; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat26cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 26; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead27 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 27; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "150",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "27",
+    head27voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 27; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head27voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 27; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat27cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 27; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead28 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 28; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "151",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "28",
+    head28voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 28; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head28voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 28; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat28cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 28; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead29 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 29; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "152",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "29",
+    head29voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 29; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head29voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 29; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat29cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 29; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead30 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 30; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "153",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "30",
+    head30voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 30; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head30voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 30; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat30cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 30; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead31 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 31; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "154",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "31",
+    head31voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 31; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head31voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 31; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat31cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 31; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead32 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 32; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "155",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "32",
+    head32voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 32; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head32voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 32; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat32cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 32; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead33 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 33; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "156",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "33",
+    head33voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 33; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head33voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 33; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat33cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 33; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead34 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 34; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "157",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "34",
+    head34voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 34; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head34voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 34; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat34cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 34; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  SlbVoqPoolHead35 => { #Structure Type: Reg; ArrayLength: 36; ArrayIndex: 35; ArrayLocationInName: 15;
+    Name => "SlbVoqPoolHead[36]",
+    RegMem => "Reg",
+    Address => "158",
+    Description => "VOQ pool per fabric link for DCF-SLB(180=5*36)",
+    Width => "25", # Excel Formula: =calc_reg_width(E58:E60,F60)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "36",
+    ArrayIndex => "35",
+    head35voq => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 35; ArrayLocationInName: 5;
+      Name => "head[n]voq",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    head35voqRdy => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 35; ArrayLocationInName: 5;
+      Name => "head[n]voqRdy",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "12", # Excel Formula: =calc_position(F58,E59)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+    stat35cnt => { #Structure Type: RegField; ArrayLength: 36; ArrayIndex: 35; ArrayLocationInName: 5;
+      Name => "stat[n]cnt",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "24:13", # Excel Formula: =calc_position(F59,E60)
+      Type => "Status",
+      UsedBy => "SLBMAP",
+    },
+  },
+  InitSlbVoqPool => { #Structure Type: Reg;
+    Name => "InitSlbVoqPool",
+    RegMem => "Reg",
+    Address => "159", # Excel Formula: =calc_reg_address(C57,A57,G57)
+    Width => "19", # Excel Formula: =calc_reg_width(E62:E64,F64)
+    Type => "Config",
+    VoqToInit => { #Structure Type: RegField;
+      Name => "VoqToInit",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F61,E62,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    LinkToInit => { #Structure Type: RegField;
+      Name => "LinkToInit",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "17:12", # Excel Formula: =calc_position(F62,E63)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+    TriggerToInit => { #Structure Type: RegField;
+      Name => "TriggerToInit",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "18", # Excel Formula: =calc_position(F63,E64)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  PoolInit => { #Structure Type: Reg;
+    Name => "PoolInit",
+    RegMem => "Reg",
+    Address => "15A", # Excel Formula: =calc_reg_address(C61,A61,G61)
+    Width => "1", # Excel Formula: =calc_reg_width(E66:E66,F66)
+    Type => "Config",
+    PoolInitEn => { #Structure Type: RegField;
+      Name => "PoolInitEn",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F65,E66,TRUE)
+      Type => "Config",
+      UsedBy => "POOL",
+      DefaultValue => "d0",
+    },
+  },
+  SlbReg => { #Structure Type: Reg;
+    Name => "SlbReg",
+    RegMem => "Reg",
+    Address => "15B", # Excel Formula: =calc_reg_address(C65,A65,G65)
+    Width => "70", # Excel Formula: =calc_reg_width(E68:E75,F75)
+    Type => "Config",
+    SlbTimerResolution => { #Structure Type: RegField;
+      Name => "SlbTimerResolution",
+      RegMem => "RegField",
+      Description => "number of core clock cycles to increment the SLB time
+The default value match resolution of 4us",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Config",
+      UsedBy => "SLB",
+      DefaultValue => "d4800",
+    },
+    ClosePrevSegGap => { #Structure Type: RegField;
+      Name => "ClosePrevSegGap",
+      RegMem => "RegField",
+      Description => "time gap to close previous segment",
+      Width => "9",
+      Position => "28:20", # Excel Formula: =calc_position(F68,E69)
+      Type => "Config",
+      UsedBy => "SLB",
+      DefaultValue => "d5",
+    },
+    SwitchOnFcTh => { #Structure Type: RegField;
+      Name => "SwitchOnFcTh",
+      RegMem => "RegField",
+      Description => "flow control min period to switch voq# - units of SlbTimerResolution",
+      Width => "9",
+      Position => "37:29", # Excel Formula: =calc_position(F69,E70)
+      Type => "Config",
+      UsedBy => "SLB",
+      DefaultValue => "d5",
+    },
+    SwitchWithEosTh => { #Structure Type: RegField;
+      Name => "SwitchWithEosTh",
+      RegMem => "RegField",
+      Description => "normal period to switch voq# - units of SlbTimerResolution",
+      Width => "9",
+      Position => "46:38", # Excel Formula: =calc_position(F70,E71)
+      Type => "Config",
+      UsedBy => "SLB",
+      DefaultValue => "d6",
+    },
+    SwitchNoEosTh => { #Structure Type: RegField;
+      Name => "SwitchNoEosTh",
+      RegMem => "RegField",
+      Description => "period to switch voq# without EOS - units of SlbTimerResolution",
+      Width => "9",
+      Position => "55:47", # Excel Formula: =calc_position(F71,E72)
+      Type => "Config",
+      UsedBy => "SLB",
+      DefaultValue => "d7",
+    },
+    FlowControlTime => { #Structure Type: RegField;
+      Name => "FlowControlTime",
+      RegMem => "RegField",
+      Description => "period of flow control",
+      Width => "9",
+      Position => "64:56", # Excel Formula: =calc_position(F72,E73)
+      Type => "Config",
+      UsedBy => "SLB",
+      DefaultValue => "d7",
+    },
+    CongestionExpFcEn => { #Structure Type: RegField;
+      Name => "CongestionExpFcEn",
+      RegMem => "RegField",
+      Description => "Enable flow control to ICS on congestion experiened from FLLB",
+      Width => "1",
+      Position => "65", # Excel Formula: =calc_position(F73,E74)
+      Type => "Config",
+      UsedBy => "SLB",
+      DefaultValue => "d1",
+    },
+    SlbLinkVoqsOffset => { #Structure Type: RegField;
+      Name => "SlbLinkVoqsOffset",
+      RegMem => "RegField",
+      Description => "The offset of the VOQs used by the SLB selection process. That is the first VOQ is this SlbLinkVoqsOffset*4096",
+      Width => "4",
+      Position => "69:66", # Excel Formula: =calc_position(F74,E75)
+      Type => "Config",
+      UsedBy => "SLB",
+      DefaultValue => "d7",
+      InitValueAllModes => "3",
+    },
+  },
+  SlbTimerStatusReg => { #Structure Type: Reg;
+    Name => "SlbTimerStatusReg",
+    RegMem => "Reg",
+    Address => "15C", # Excel Formula: =calc_reg_address(C67,A67,G67)
+    Width => "9", # Excel Formula: =calc_reg_width(E77:E77,F77)
+    Type => "ReadOnly",
+    SlbTime => { #Structure Type: RegField;
+      Name => "SlbTime",
+      RegMem => "RegField",
+      Description => "current time",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F76,E77,TRUE)
+      Type => "Status",
+      UsedBy => "SLB",
+    },
+  },
+  VoqMapping => { #Structure Type: Mem;
+    Name => "VoqMapping",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "Voq Mapping Data",
+    Width => "32", # Excel Formula: =calc_mem_width(E79:E83,M78,F83,-1)
+    Type => "Config",
+    UsedBy => "VMD",
+    MemEntries => "65536", # Excel Formula: =calc_field_width_define("NUM_OF_VOQS")
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "26",
+    DestDev => { #Structure Type: MemField;
+      Name => "DestDev",
+      RegMem => "MemField",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F78,E79,TRUE)
+      InitValueSa => "511",
+      InitValueLcNwk => "(line >= 48 && line < 64) ? 0 : 511",
+      InitValueLcFab => "511",
+      InitValueFe => "511",
+    },
+    DestSlice => { #Structure Type: MemField;
+      Name => "DestSlice",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "11:9", # Excel Formula: =calc_position(F79,E80)
+      InitValueSa => "(line < 96 && (line%16 < 8)) ? round_down(line/16) : slice",
+      InitValueLcNwk => "(line < 48 && (line%16 < 8)) ? round_down(line/16) :
+(line >= 48 && line < 64) ? 0 : slice",
+      InitValueLcFab => "(line < 432) ? round_down(line%144/24) : 0",
+      InitValueFe => "(line < 432) ? round_down(line%144/24) : 0",
+    },
+    DestOq => { #Structure Type: MemField;
+      Name => "DestOq",
+      RegMem => "MemField",
+      Width => "9",
+      Position => "20:12", # Excel Formula: =calc_position(F80,E81)
+      InitValueSa => "(line < 96 && (line%16 < 6)) ? 416 : 
+(line < 96 && (line%16 < 8)) ? 417 : 511",
+      InitValueLcNwk => "(line < 48 && (line%16 < 6)) ? 416 :
+(line < 48 && (line%16 < 8)) ? 417 :
+(line >= 48 && line < 64) ? 0 : 511",
+      InitValueLcFab => "0",
+      InitValueFe => "0",
+    },
+    SnrPlbSs2dd => { #Structure Type: MemField;
+      Name => "SnrPlbSs2dd",
+      RegMem => "MemField",
+      Width => "4",
+      Position => "24:21", # Excel Formula: =calc_position(F81,E82)
+      InitValueSa => "0",
+      InitValueLcNwk => "0",
+      InitValueLcFab => "0",
+      InitValueFe => "0",
+    },
+    PackingEligible => { #Structure Type: MemField;
+      Name => "PackingEligible",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F82,E83)
+      InitValueSa => "0",
+      InitValueLcNwk => "0",
+      InitValueLcFab => "0",
+      InitValueFe => "0",
+    },
+  },
+  StaticFabricReachability => { #Structure Type: Mem;
+    Name => "StaticFabricReachability",
+    RegMem => "Mem",
+    Address => "200000", # Excel Formula: =calc_mem_address(C78,A78,G84,L84)
+    Description => "Static Fabric Reachability Table - written by the CPU
+In CRF mode addressed by destination device
+In DCF mode addessed by LBGID.
+
+In CRF slice 5 has 24 links, slice 4 has 20 links & slice 3 has 20 links - 64 overall.
+In DCF we use only top 36 links",
+    Width => "72", # Excel Formula: =calc_mem_width(E85:E85,M84,F85,-1)
+    Type => "Config",
+    UsedBy => "LNKSEL",
+    MemEntries => "512", # Excel Formula: =calc_field_width_define("NUM_OF_SLB_CONTEXT")
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "64",
+    StaticlinksBitMap => { #Structure Type: MemField;
+      Name => "StaticlinksBitMap",
+      RegMem => "MemField",
+      Width => "64", # Excel Formula: =1*calc_field_width_define("NUM_OF_LC_FABRIC_LINKS_WITH_SPEEDUP_IN_SLICE")+2*calc_field_width_define("NUM_OF_LC_FABRIC_LINKS_IN_SLICE")
+      Position => "63:0", # Excel Formula: =calc_position(F84,E85,TRUE)
+      InitValueAllModes => "64'hFFFF_FFFF_FFFF_FFFF",
+    },
+  },
+  FabricReachability => { #Structure Type: Mem;
+    Name => "FabricReachability",
+    RegMem => "Mem",
+    Address => "300000", # Excel Formula: =calc_mem_address(C84,A84,G86,L86)
+    Description => "Fabric Reachability Table - dynamic table updated by the frm
+In CRF mode addressed by destination device
+In DCF mode addessed by LBGID
+
+In CRF slice 5 has 24 links, slice 4 has 20 links & slice 3 has 20 links - 64 overall.
+In DCF we use only top 36 links",
+    Width => "72", # Excel Formula: =calc_mem_width(E87:E87,M86,F87,-1)
+    Type => "Dynamic",
+    UsedBy => "FRT: Write,LNKSEL: Read",
+    MemEntries => "512", # Excel Formula: =calc_field_width_define("NUM_OF_SLB_CONTEXT")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "64",
+    linksBitMap => { #Structure Type: MemField;
+      Name => "linksBitMap",
+      RegMem => "MemField",
+      Width => "64", # Excel Formula: =1*calc_field_width_define("NUM_OF_LC_FABRIC_LINKS_WITH_SPEEDUP_IN_SLICE")+2*calc_field_width_define("NUM_OF_LC_FABRIC_LINKS_IN_SLICE")
+      Position => "63:0", # Excel Formula: =calc_position(F86,E87,TRUE)
+    },
+  },
+  SnTsPerFlow => { #Structure Type: Mem;
+    Name => "SnTsPerFlow",
+    RegMem => "Mem",
+    Address => "400000", # Excel Formula: =calc_mem_address(C86,A86,G88,L88)
+    Description => "Last SN or TS for RLB traffic",
+    Width => "30", # Excel Formula: =calc_mem_width(E89:E89,M88,F89,-1)
+    Type => "Dynamic",
+    UsedBy => "SNTS",
+    MemEntries => "2048", # Excel Formula: =2*1024
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=0,ReadActivityFactor=50,PortErrPropagate=Disabled",
+    MemLogicalWidth => "24",
+    TsSnVal => { #Structure Type: MemField;
+      Name => "TsSnVal",
+      RegMem => "MemField",
+      Width => "24",
+      Position => "23:0", # Excel Formula: =calc_position(F88,E89,TRUE)
+    },
+  },
+  SlbContextLbg => { #Structure Type: Mem;
+    Name => "SlbContextLbg",
+    RegMem => "Mem",
+    Address => "500000", # Excel Formula: =calc_mem_address(C88,A88,G90,L90)
+    Width => "15", # Excel Formula: =calc_mem_width(E91:E92,M90,F92,-1)
+    Type => "Dynamic",
+    UsedBy => "VMD",
+    MemEntries => "512",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=50,PortErrPropagate=Disabled",
+    MemLogicalWidth => "10",
+    LBGID => { #Structure Type: MemField;
+      Name => "LBGID",
+      RegMem => "MemField",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F90,E91,TRUE)
+    },
+    FlowTc => { #Structure Type: MemField;
+      Name => "FlowTc",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "9", # Excel Formula: =calc_position(F91,E92)
+    },
+  },
+  SlbContextDb => { #Structure Type: Mem;
+    Name => "SlbContextDb",
+    RegMem => "Mem",
+    Address => "600000", # Excel Formula: =calc_mem_address(C90,A90,G93,L93)
+    Description => "SLB database",
+    Width => "38", # Excel Formula: =calc_mem_width(E94:E99,M93,F99,-1)
+    Type => "Dynamic",
+    UsedBy => "CMAP",
+    MemEntries => "512",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=0,ReadActivityFactor=50,PortErrPropagate=Disabled",
+    MemLogicalWidth => "31",
+    StartSegmentTime => { #Structure Type: MemField;
+      Name => "StartSegmentTime",
+      RegMem => "MemField",
+      Description => "time of the first PD in a segment",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F93,E94,TRUE)
+    },
+    LastPrevSegTime => { #Structure Type: MemField;
+      Name => "LastPrevSegTime",
+      RegMem => "MemField",
+      Description => "time of the last PD in the previous segment",
+      Width => "9",
+      Position => "17:9", # Excel Formula: =calc_position(F94,E95)
+    },
+    LastPdTime => { #Structure Type: MemField;
+      Name => "LastPdTime",
+      RegMem => "MemField",
+      Description => "Last PD time (maintained to update LastPrevSegTime",
+      Width => "9",
+      Position => "26:18", # Excel Formula: =calc_position(F95,E96)
+    },
+    ssn => { #Structure Type: MemField;
+      Name => "ssn",
+      RegMem => "MemField",
+      Description => "segment number",
+      Width => "2",
+      Position => "28:27", # Excel Formula: =calc_position(F96,E97)
+    },
+    SwitchNextPd => { #Structure Type: MemField;
+      Name => "SwitchNextPd",
+      RegMem => "MemField",
+      Description => "indicate that previous PD ended a segment with EOS and this PD is the first of the next segment",
+      Width => "1",
+      Position => "29", # Excel Formula: =calc_position(F97,E98)
+    },
+    FirstSegment => { #Structure Type: MemField;
+      Name => "FirstSegment",
+      RegMem => "MemField",
+      Description => "indicate that we are in the first segment for this context.
+Set by open command from FLLB.
+Clear on every context switch",
+      Width => "1",
+      Position => "30", # Excel Formula: =calc_position(F98,E99)
+    },
+  },
+  SlbVoq => { #Structure Type: Mem;
+    Name => "SlbVoq",
+    RegMem => "Mem",
+    Address => "700000", # Excel Formula: =calc_mem_address(C93,A93,G100,L100)
+    Description => "VOQ number per SLB context",
+    Width => "25", # Excel Formula: =calc_mem_width(E101:E103,M100,F103,-1)
+    Type => "Dynamic",
+    UsedBy => "SLBMAP",
+    MemEntries => "512",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    MemLogicalWidth => "19",
+    voq => { #Structure Type: MemField;
+      Name => "voq",
+      RegMem => "MemField",
+      Description => "voq#",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F100,E101,TRUE)
+    },
+    LinkNum => { #Structure Type: MemField;
+      Name => "LinkNum",
+      RegMem => "MemField",
+      Description => "Link# - need it to return the old voq back to the pool",
+      Width => "6",
+      Position => "17:12", # Excel Formula: =calc_position(F101,E102)
+    },
+    slbVoqMapValid => { #Structure Type: MemField;
+      Name => "slbVoqMapValid",
+      RegMem => "MemField",
+      Description => "indicates that the mapping is valid .
+Set on open command from FLLT.
+Clear on close command from FLLT.",
+      Width => "1",
+      Position => "18", # Excel Formula: =calc_position(F102,E103)
+    },
+  },
+  SlbVoqPoolMem => { #Structure Type: Mem;
+    Name => "SlbVoqPoolMem",
+    RegMem => "Mem",
+    Address => "800000", # Excel Formula: =calc_mem_address(C100,A100,G104,L104)
+    Description => "VOQ number per SLB context",
+    Width => "18", # Excel Formula: =calc_mem_width(E105:E105,M104,F105,-1)
+    Type => "Dynamic",
+    UsedBy => "POOL",
+    MemEntries => "2304", # Excel Formula: =calc_field_width_define("NUM_SLB_VOQ")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    MemLogicalWidth => "12",
+    voqentry => { #Structure Type: MemField;
+      Name => "voqentry",
+      RegMem => "MemField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F104,E105,TRUE)
+    },
+  },
+  SlbFcTimer => { #Structure Type: Mem;
+    Name => "SlbFcTimer",
+    RegMem => "Mem",
+    Address => "900000", # Excel Formula: =calc_mem_address(C104,A104,G106,L106)
+    Description => "Slb flow control timer",
+    Width => "15", # Excel Formula: =calc_mem_width(E107:E107,M106,F107,-1)
+    Type => "Dynamic",
+    UsedBy => "SLBFC",
+    MemEntries => "512", # Excel Formula: =calc_field_width_define("NUM_OF_SLB_CONTEXT")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteBeforeProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=5,ReadActivityFactor=5,PortErrPropagate=Disabled",
+    MemLogicalWidth => "10",
+    FcTimer => { #Structure Type: MemField;
+      Name => "FcTimer",
+      RegMem => "MemField",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F106,E107,TRUE)
+    },
+  },
+};

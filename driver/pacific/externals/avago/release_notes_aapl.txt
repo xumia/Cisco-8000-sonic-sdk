@@ -1,0 +1,1892 @@
+AAPL Release Notes
+==================
+
+==============================================================================
+Version 2.7.2
+Release date: December 17, 2018
+==============================================================================
+
+Defect Fixes:
+    + Fix the -pattern-capture option for proper operation on CM4 SerDes.
+    + Add CLI and API support for 7nm D6 firmware's new vernier-delay HAL table.
+    + Fix issue reading freed memory
+    + Improve rsfec_frame sequence by clearing mod reset before Tx data selection.
+    + Fix 16 nm sensor configuration to only occur during initialization (freq!=0)
+      rather than every time.
+    + Fix CLI display of temperature to show all valid probes (was omitting last one).
+    + Fix issue introduced by a fix in 2.7.1 that caused spurious errors in
+      7nm D6 and 16nm SerDes that would manifest as Rx data lock and iCal failures.
+
+Enhancements:
+    + Support reading eFuse via SBus on 4412 AVSP chip.
+    + Update HBM CLI for new option: -op-timeout <value>
+    + Changes to improve aScript and aView performance.
+
+Added APIs:   =========================================================
+    + int avago_hbm_print_spare_results(Aapl_t *aapl, uint spico_addr);
+
+Changed APIs: =========================================================
+    None
+
+Removed APIs: =========================================================
+    None
+
+
+==============================================================================
+Version 2.7.1
+Release date: September 28, 2018
+==============================================================================
+
+Defect Fixes:
+    + "aapl device-info -v 1" was displaying the dfe table twice.
+    + "aapl diag" on a PMRO device failed without an explicit frequency parameter.
+    + Fix customer reported Visual Studio compile issue.
+    + Fix issue with I2C usage when accessing chip with multiple rings.
+    + Fix issue with avago_serdes_count_errors_start/wait() which wasn't
+        always stopping the error counting after specified number of bits.
+    + Fix issue auto-detecting device in non-AACS JTAG communication modes.
+
+Enhancements:
+    + Add HBM support for MMT diagnostics and mode register reporting.
+    + Add additional 7nm D6 info to HAL DFE tables.
+    + Add additional 7nm D6 DFE info to "aapl device-info -v 1" output.
+    + Add initial support for 7nm D6 and newer 16nm SerDes with EID calibration circuitry.
+        serdes_init() by default now uses EID calibrated settings when present,
+        rather than set an explicit electrical idle threshold value.
+
+Added APIs:   =========================================================
+    + int avago_hbm_has_ctc(Aapl_t *aapl, uint apc_addr);
+    + int avago_hbm_mmt_start(Aapl_t *aapl, uint spico_addr, int pattern_type);
+    + int avago_hbm_mmt_stop(Aapl_t *aapl, uint spico_addr);
+    + int avago_hbm_print_ctc_results(Aapl_t *aapl, uint apc_addr);
+    + int avago_hbm_print_mmt_results(Aapl_t *aapl, uint apc_addr, uint verbose);
+    + int avago_hbm_print_mrs(Aapl_t *aapl, uint spico_addr, uint channel);
+    + int avago_hbm_read_mrs(Aapl_t *aapl, uint spico_addr, Avago_hbm_mrs_t *mrs, uint channel);
+    + int avago_hbm_run_ctc_diagnostics(Aapl_t *aapl, uint spico_addr, int do_reset, int do_init_nwl);
+    + int avago_hbm_run_mmt_diagnostics(Aapl_t *aapl, uint spico_addr);
+
+Changed APIs: =========================================================
+    - char * avago_serdes_dfe_print(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_dfe_t *dfe);
+    + char * avago_serdes_dfe_print(Aapl_t *aapl, uint addr, bigint mask, Avago_serdes_dfe_t *dfe);
+    -    int avago_serdes_dfe_apply(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_dfe_t *dfe);
+    +    int avago_serdes_dfe_apply(Aapl_t *aapl, uint addr, bigint mask, Avago_serdes_dfe_t *dfe);
+
+Removed APIs:   =========================================================
+    - int avago_hbm_diag_ctc(Aapl_t *aapl, uint apc_addr);
+
+
+==============================================================================
+Version 2.7
+Release date: August 31, 2018
+==============================================================================
+
+Defect Fixes:
+    + Fix eye centering issue, especially in interacting with FW doing auto-centering.
+    + Update timer API to support larger time values for long BER measurements.
+    + Temperature/Voltage sensor fixes:
+        + Update 7nm sensor temperature equation to return more accurate values.
+        + Update 16nm sensor calibration values to match hardware.
+    + Fix avago_serdes_eye_get_simple_metric() to scale properly on 7nm D6.
+    + Fix crash on overly constrained PAM4 eye gather (y-points selecting only center eye).
+    + Disallow auto-pCal enable interrupt for all CM4s where it is invalid.
+    + Fix eye example VBTC display to show all 6 VBTCs rather than one VBTC 6 times.
+
+Enhancements:
+    + Add serdes -ber-aux for doing BER measurement while dfe tuning is running.
+    + Add SERDES_REFCLK environment variable and -refclk option for specifying
+      the reference clock frequency to several CLI commands to provide accurate
+      frequency for reporting rates and initializing sensors.
+    + Expose the avago_serdes_hal_* functions to provide API for accessing the
+      CM4 firmware interface.
+    + Add ability to access non-contiguous rings in an ASIC.
+    + Provide new CM4 NRZ deep post functions.
+    + Provide new phase calibration diagnostic function.
+    + Add new IP types.
+    + Enable "eye -write" CLI to write multiple eyes to separate files.
+    + Add interrupt-only mode (a customer special - don't use)
+
+Added APIs:   =========================================================
+    + const char * aapl_bigint_to_str2(bigint val, int pretty);
+    +         void avago_print_addr_list(Aapl_t *aapl, Aapl_log_type_t debug, Avago_addr_t *addr_list, const char *caller, uint line);
+    +         void avago_serdes_phase_cal_diag(Aapl_t *aapl, uint addr, uint config);
+    New CM4 functions:
+    +  int avago_serdes_hal_get(Aapl_t *aapl, uint addr, Avago_serdes_hal_type_t hal, uint member);
+    +  int avago_serdes_hal_set(Aapl_t *aapl, uint addr, Avago_serdes_hal_type_t hal, uint member, int value);
+    + void avago_serdes_hal_func(Aapl_t *aapl, uint addr, Avago_serdes_hal_func_type_t hal_func);
+    New CM4 NRZ functions:
+    +  int avago_serdes_tx_eq_deep_post_active(Aapl_t *aapl, uint addr);
+    +  int avago_serdes_tx_eq_deep_post_enable(Aapl_t *aapl, uint addr, int enable);
+    +  int avago_serdes_tx_eq_deep_post_selected(Aapl_t *aapl, uint addr);
+
+Changed APIs: =========================================================
+    Add additional flag to use the auxiliary error counter rather than the primary error counter.
+    - float avago_serdes_get_ber(Aapl_t *aapl, Avago_addr_t *addr_struct, uint dwell, uint refclk, int console, int reset);
+    + float avago_serdes_get_ber(Aapl_t *aapl, Avago_addr_t *addr_struct, uint dwell, uint refclk, int console, int reset, int use_aux_errors);
+    - float avago_serdes_get_ber_eye(Aapl_t *aapl, Avago_addr_t *addr_struct, uint dwell, int eye, uint refclk, int console, int reset);
+    + float avago_serdes_get_ber_eye(Aapl_t *aapl, Avago_addr_t *addr_struct, uint dwell, int eye, uint refclk, int console, int reset, int use_aux_errors);
+
+    Add "pass" parameter indicating which portion of data to display.  In this release, pass is unused and should be set to zero.
+    - char * avago_serdes_dfe_state_to_str(Aapl_t *aapl, uint sbus_addr, Avago_serdes_dfe_state_t *dfe_state, int single_line, int header);
+    + char * avago_serdes_dfe_state_to_str(Aapl_t *aapl, uint sbus_addr, Avago_serdes_dfe_state_t *dfe_state, int single_line, int pass, int header);
+    -   void avago_serdes_print_dfe(Aapl_t *aapl, uint sbus_addr, Avago_serdes_dfe_state_t *dfe_state, int single_line);
+    +   void avago_serdes_print_dfe(Aapl_t *aapl, uint sbus_addr, Avago_serdes_dfe_state_t *dfe_state, int single_line, int pass);
+
+    Add option to enable/disable memory annotation.  Pass FALSE if calling directly.
+    -   void avago_serdes_mem_dump(Aapl_t *aapl, uint sbus_addr, int bin_enable, int columns, int dma_dump, int dmem_dump, int imem_dump);
+    +   void avago_serdes_mem_dump(Aapl_t *aapl, uint sbus_addr, int bin_enable, int columns, int dma_dump, int dmem_dump, int imem_dump, int enable_annotation);
+
+Removed APIs:   =========================================================
+    -         void avago_group_debug(Aapl_t *aapl, Aapl_log_type_t debug, const char *func, int line, Avago_addr_t *addr_list);
+
+
+==============================================================================
+Version 2.6.6
+Release date: May 31, 2018
+==============================================================================
+
+Defect Fixes:
+    + Fix eye VBTC calculation (eliminates inappropriate "Insufficient data" messages).
+    + Fix eye centering on newer 16nm PCIe SerDes and all 7nm SerDes.
+          Also requires newer firmware.
+    + Fix logic to get correct memory size for 7nm devices.
+    + Fix 7nm thermal sensor reset for newer devices.
+    + Fix 7nm thermal sensor equation for correct temperature reporting.
+    + Remove missing functions from header files.
+
+Enhancements:
+    + Add additional centering options to disable use of hardware centering in HW/FW.
+          Add "-centering-options 1" to disable use of HW/FW centering during eye capture.
+
+Added APIs:   =========================================================
+    None
+
+Changed APIs: =========================================================
+    None
+
+Removed APIs:   =========================================================
+    None - 3 previously listed APIs that only existed in header files have been removed.
+
+
+==============================================================================
+Version 2.6.5
+Release date: May 1, 2018
+==============================================================================
+
+Defect Fixes:
+    + Restore rotated clock to default after eye gather in all cases.
+    + Fix CLI upload to HVD6 SerDes.
+    + Fix signal OK threshold reading on 7nm D6.
+    + Fix PC0/PC1 naming in HBM CTC reporting.
+    + Read gray/precode/swizzle settings in NRZ mode rather than assume they are off.
+    + Fix makefile.example to remove gtest target
+    + Fix server registration in aapl_connect to give priority to function parameter.
+    + Update tx-eq limits for CM4 NRZ to match firmware rather than HW limits.
+    + Add option to hal CLI to suppress default printing of table after field modify for scripting support.
+    + Fix customer reported compiler/code analysis warnings.
+    + Work around potential HW timing issue in sensor reading on 7nm.
+
+Enhancements:
+    + Added full support for 5 new AN rates:  50GBASE-KR/CR, 100GBASE-KR2/CR2,
+        200GBASE-KR4/CR4, 2.5GBASE-KX, and 5GBASE-KR.
+    + Add refclk parameter to avago_serdes_get_state_dump() API and "aapl device-info" CLI.
+    + Add additional entries to 3 HAL tables for CM4.
+    + Consolidate all AN functionality into an.c, an.h and an_main.c files.
+    + Consolidate PMD functionality into pmd.c, an.h and an_main.c files.
+    + Add AN and PMD wait functions to API and CLI.
+
+
+Added APIs:   =========================================================
+    +  int avago_serdes_an_wait_complete(Aapl_t *aapl, uint addr, uint poll_ms, uint timeout_ms);
+    +  int avago_serdes_an_wait_hcd(Aapl_t *aapl, uint addr, uint poll_ms, uint timeout_ms);
+    +  int avago_serdes_pmd_wait(Aapl_t *aapl, Avago_addr_t *addr_list, uint poll_ms, uint timeout_ms);
+    + void aapl_register_ate_vec_fn(Aapl_t *aapl, int(*ate_vec_fn)(Aapl_t *, const char *command));
+
+    Deprecated avago_serdes_read_an_status() and created new name following AN function naming convention:
+    +  int avago_serdes_an_read_status(Aapl_t *aapl, uint addr, Avago_serdes_an_status_t status);
+
+Changed APIs: =========================================================
+    Pass refclk_hz = 0 to use estimated refclk rate.
+    - char *avago_serdes_get_state_dump(Aapl_t *aapl, uint addr, uint disable_features, BOOL ignore_errors);
+    + char *avago_serdes_get_state_dump(Aapl_t *aapl, uint addr, uint disable_features, BOOL ignore_errors, uint refclk_hz);
+
+    Add additional configuration options:
+    -  int avago_serdes_an_configure_to_hcd(Aapl_t *aapl, Avago_addr_t *addr_list, Avago_serdes_an_config_t *config, Avago_serdes_pmd_config_t *pmd_config);
+    +  int avago_serdes_an_configure_to_hcd(Aapl_t *aapl, Avago_addr_t *addr_list, Avago_serdes_an_config_t *config, Avago_serdes_pmd_config_t *pmd_config, int tx_width, int rx_width);
+
+    Accept an int rather than only an enum:
+    - const char * aapl_an_hcd_to_str(Avago_an_hcd_t value);
+    + const char * aapl_an_hcd_to_str(int an_hcd_value);
+
+Removed APIs:   =========================================================
+    None
+
+
+==============================================================================
+Version 2.6.4
+Release date: March 27, 2018
+==============================================================================
+
+Defect Fixes:
+    + Fix diag dump of SBus Master processor memory to not crash when SBM processor is not running.
+
+Enhancements:
+    + Added initial support for 5 new AN rates:  50GBASE-KR/CR, 100GBASE-KR2/CR2,
+        200GBASE-KR4/CR4, 2.5GBASE-KX, and 5GBASE-KR.
+    + Added Tx-Eq support for 7nm D6 SerDes.
+    + Added CLI support for reading jtag chains of unknown length and writing jtag chains.
+    + Added ability to register a function to perform a hard SBus reset operation.
+    + Enhance CLI device-info output to show all connected temperature and voltage sensor values.
+    + Update HBM functionality. Add temperature diagnostics.
+    + Add ability to display individual eye BER when any combination of gray, swizzle and polarity are selected.
+    + Add Clause 136 support to pmd training function avago_serdes_pmd_train().
+    + Add Spico diag support for the SNAP processor.
+
+
+Added APIs:   =========================================================
+    + void aapl_register_hard_sbus_reset_fn(Aapl_t *aapl, int(*hard_sbus_reset_fn)(Aapl_t *aapl, uint addr));
+    +  int avago_hbm_run_tmrs(Aapl_t *aapl, uint spico_addr, const char *tmrs_code, uint channel, uint safety);
+
+Changed APIs: =========================================================
+    None
+
+Removed APIs:   =========================================================
+    None
+
+
+==============================================================================
+Version 2.6.3
+Release date: February 21, 2018
+==============================================================================
+
+Defect Fixes:
+    + Fix jtag operation addressing issue in presence of multiple chips.
+    + Remove last vestiges of 40, 65 and 90 nm support from AAPL code.
+    + Add additional 7nm support.
+    + Add updates to support latest firmware.
+    + Refactor parallel BER measurement to use a reasonable stack size.
+    + Update stack max value for M4, used during diag memory dumps.
+    + Fix issue where parallel group operations would issue broadcast reset commands to non-existent SerDes.
+
+Enhancements:
+
+    + Added a pair of new functions for long-term BER measurement.  One function starts
+      a measurement on the addressed SerDes and records the start time and related information into
+      a startup state file.  The other reads that file and the current SerDes error counter value
+      to calculate the BER over that period of time.  The read function can be called repeatedly
+      without disturbing the SerDes or the startup state file.  Note that any use of the SerDes that
+      affects the error counter, including any tuning operation, will invalidate the results.
+
+    + The BER measurement functions now accept a refclk frequency parameter to enable precise
+      calculation of BER values.  Previously, or if refclk is set to 0, the BER functions
+      use an estimated data rate which can be 10-15% off.
+
+    + Add additional HBM functionality.
+
+
+Added APIs:   =========================================================
+
+    # New BER measurement functions.  Start records startup state into filename and
+    #   read uses that info and the current error counter to calculate the BER.
+    # Intended for long time period BER measurement.
+
+    +       int avago_serdes_async_ber_start(Aapl_t *aapl, Avago_addr_t *list, uint refclk, const char *filename);
+    +       int avago_serdes_async_ber_read(Aapl_t *aapl, Avago_addr_t *list, uint refclk, const char *filename);
+
+    # Other new functions:
+
+    +      void avago_serdes_tune_vernier(Aapl_t *aapl, uint addr);
+    +      void avago_spico_dmi_dump_file(Aapl_t *aapl, uint addr, const char *filename, uint imem_guess);
+    +       int avago_hbm_ctc_start(Aapl_t *aapl, uint spico_addr, int pattern_type, int init);
+    +       int avago_hbm_ctc_stop(Aapl_t *aapl, uint spico_addr);
+    +       int avago_hbm_diag_ctc(Aapl_t *aapl, uint apc_addr);
+    +       int avago_hbm_get_apc_addr(Aapl_t *aapl, uint spico_addr, uint *apc_addr);
+    +       int avago_hbm_run_mbist_diagnostics(Aapl_t *aapl, uint spico_addr);
+
+Changed APIs: =========================================================
+
+    # Added a refclk parameter.  If 0, will use an estimated refclk frequency as before.
+
+    -     float avago_serdes_get_ber_eye(Aapl_t *aapl, Avago_addr_t *addr_struct, uint dwell, int eye, int console, int reset);
+    +     float avago_serdes_get_ber_eye(Aapl_t *aapl, Avago_addr_t *addr_struct, uint dwell, int eye, uint refclk, int console, int reset);
+    -     float avago_serdes_get_ber(Aapl_t *aapl, Avago_addr_t *addr_struct, uint dwell, int console, int reset);
+    +     float avago_serdes_get_ber(Aapl_t *aapl, Avago_addr_t *addr_struct, uint dwell, uint refclk, int console, int reset);
+
+    # Added a timeout parameter to these HBM functions.  If zero, does not timeout.
+
+    -       int avago_hbm_launch_channel_operation(Aapl_t *aapl, uint spico_addr, Avago_hbm_operation_t operation, Avago_hbm_operation_results_t *results, uint channel);
+    +       int avago_hbm_launch_channel_operation(Aapl_t *aapl, uint spico_addr, Avago_hbm_operation_t operation, Avago_hbm_operation_results_t *results, uint channel, int max_timeout);
+    -       int avago_hbm_launch_operation(Aapl_t *aapl, uint spico_addr, Avago_hbm_operation_t operation, Avago_hbm_operation_results_t *results);
+    +       int avago_hbm_launch_operation(Aapl_t *aapl, uint spico_addr, Avago_hbm_operation_t operation, Avago_hbm_operation_results_t *results, int max_timeout);
+
+    # Added additional parameter:
+
+    -      void avago_spico_dmi_dump(Aapl_t *aapl, uint addr);
+    +      void avago_spico_dmi_dump(Aapl_t *aapl, uint addr, uint imem_guess);
+
+Removed APIs:   =========================================================
+
+    # This is an internal implementation function.
+
+    -      void aapl_buf_add(Aapl_t *aapl, char **buf, char **buf_end, int *size, const char *fmt, ...);
+
+==============================================================================
+Version 2.6.2
+Release date: December 21, 2017
+==============================================================================
+
+Defect Fixes:
+    + Low power operation of CM4 SerDes in NRZ mode was preventing iCal/pCal.
+    + Update vertical BTC extrapolations to be more selective in which measurements
+      are used for doing the extrapolations.
+
+Enhancements:
+    + Update "aapl serdes -count-errors <dwell>" command line function to perform
+      measurement on all specified SerDes in parallel rather than sequentially.
+    + Add support for new technology.
+    + Add CLI for continuously polling the temperature sensor.
+
+Added APIs:   =========================================================
+    + int avago_serdes_parallel_count_errors(Aapl_t *aapl, Avago_addr_t *list, bigint bits);
+
+Changed APIs: =========================================================
+    None.
+
+Removed APIs:   =========================================================
+    None
+
+==============================================================================
+Version 2.6.1
+Release date: December 7, 2017
+==============================================================================
+
+Defect Fixes:
+    + Fix eye gather issue affecting D6/P1 gathers when running pre-101A SBus Master firmware and not selecting -nosbm CLI option.
+    + Fix minor issue reading pre-2.6.0 generated PAM4 eye data files.
+    + Add separate TX EQ limits for CM4 in NRZ mode.
+    + Fix incorrect decimal display of codeword count in FEC statistics (hex value was correct).
+    + Add additional logic for new EI calibration circuitry.
+    + Add additional support for new IP.
+    + Fix rate reading for sd16C_pcie_gen4_ns_03 SerDes.
+
+Added APIs:   =========================================================
+    + void aapl_sigint_check(Aapl_t *aapl);
+
+Changed APIs: =========================================================
+    None.
+
+Removed APIs:   =========================================================
+    None
+
+
+==============================================================================
+Version 2.6.0
+Release date: November 9, 2017
+==============================================================================
+
+Highlights:
+
+    + Add PAM4 six eye gathering, display and statistics.  Enhance ASCII display labeling.
+      NOTE: Some fields in the eye data structure have change incompatibly, and some
+      eye-related APIs have an additional parameter.  See API change details below.
+
+    + Add PAM4 support to open source eye capture.
+
+    + Add capability to read manufacturing info from ASIC device (see efuse API and CLI).
+
+    + Add hbm command to CLI.
+
+    + Add hal structure fields available in newer firmware.
+
+    + Enhance avago_pmro_get_metric() to operate correctly even if sbus reset not implemented by customer.
+
+Defect Fixes:
+    + Parallel actions were sending broadcasts to non-existent SerDes, resulting in write errors.
+    + PAM4 error counting was measuring for twice the bits expected, resulting in a doubling of error counts and projected BER.
+    + Resolve reported issue setting all tx_eq values.
+    + Remove calls to printf() from all non-CLI functions.
+    + Fix FEC SER type mismatch and memory leak issues.
+
+Changed APIs: =========================================================
+
+    # An additional parameter was added to the BTC extrapolate functions.
+
+    - void avago_serdes_eye_hbtc_extrapolate(const Avago_serdes_eye_data_t *datap,          uint data_row, float trans_density, Avago_serdes_eye_hbtc_t *results);
+    + void avago_serdes_eye_hbtc_extrapolate(const Avago_serdes_eye_data_t *datap, int odd, uint data_row, float trans_density, Avago_serdes_eye_hbtc_t *results);
+    - void avago_serdes_eye_vbtc_extrapolate(const Avago_serdes_eye_data_t *datap,            int data_col, Avago_serdes_eye_vbtc_t *results);
+    + void avago_serdes_eye_vbtc_extrapolate(const Avago_serdes_eye_data_t *datap, int which, int data_col, Avago_serdes_eye_vbtc_t *results);
+
+    # The type of the number of bits for which counting can be performed was increased from uint to bigint (32 to 64 bits).
+
+    - int avago_serdes_count_errors_start(Aapl_t *aapl, uint addr, uint bits);
+    + int avago_serdes_count_errors_start(Aapl_t *aapl, uint addr, bigint bits);
+
+    # The type of the second parameter to the registered logging function was changed from int to Aapl_log_type_t.
+
+    - void aapl_register_logging_fn(Aapl_t *aapl, void(*log_fn)(Aapl_t *, int warning_or_error,    const char *buf, size_t new_item_length), int(*log_open_fn)(Aapl_t *), int(*log_close_fn)(Aapl_t *));
+    + void aapl_register_logging_fn(Aapl_t *aapl, void(*log_fn)(Aapl_t *, Aapl_log_type_t log_sel, const char *buf, size_t new_item_length), int(*log_open_fn)(Aapl_t *), int(*log_close_fn)(Aapl_t *));
+
+    # All the "hal" print functions were changed to add an sbus "addr" field:
+
+    - char * avago_serdes_data_channel_inputs_print(Aapl_t *aapl,            uint mask, Avago_serdes_data_channel_inputs_t *params);
+    + char * avago_serdes_data_channel_inputs_print(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_data_channel_inputs_t *params);
+    - char * avago_serdes_dfe_print(Aapl_t *aapl,            uint mask, Avago_serdes_dfe_t *dfe);
+    + char * avago_serdes_dfe_print(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_dfe_t *dfe);
+    - char * avago_serdes_rx_clock_print(Aapl_t *aapl,            uint mask, Avago_serdes_rx_clocks_t *rx_clock);
+    + char * avago_serdes_rx_clock_print(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_rx_clocks_t *rx_clock);
+    - char * avago_serdes_test_channel_inputs_print(Aapl_t *aapl,            uint mask, Avago_serdes_test_channel_inputs_t *params);
+    + char * avago_serdes_test_channel_inputs_print(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_test_channel_inputs_t *params);
+    - char * avago_serdes_vernier_cal_print(Aapl_t *aapl,            uint mask, Avago_serdes_vernier_cal_t *params);
+    + char * avago_serdes_vernier_cal_print(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_vernier_cal_t *params);
+    - char * avago_serdes_vernier_delay_print(Aapl_t *aapl,            uint mask, Avago_serdes_vernier_delay_t *params);
+    + char * avago_serdes_vernier_delay_print(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_vernier_delay_t *params);
+    - char * avago_serdes_global_tune_params_print(Aapl_t *aapl,            uint mask, Avago_serdes_global_tune_params_t *params);
+    + char * avago_serdes_global_tune_params_print(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_global_tune_params_t *params);
+    - char * avago_serdes_gradient_inputs_print(Aapl_t *aapl,            uint mask, Avago_serdes_gradient_inputs_t *params);
+    + char * avago_serdes_gradient_inputs_print(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_gradient_inputs_t *params);
+    - char * avago_serdes_pam4_eye_print(Aapl_t *aapl,            uint mask, Avago_serdes_pam4_eye_t *params);
+    + char * avago_serdes_pam4_eye_print(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_pam4_eye_t *params);
+    - char * avago_serdes_pam4_levels_print(Aapl_t *aapl,            uint mask, Avago_serdes_pam4_levels_t *params);
+    + char * avago_serdes_pam4_levels_print(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_pam4_levels_t *params);
+
+Added APIs:   =========================================================
+
+    # New functionality for reading the efuse manufacturing info from an ASIC:
+
+    + char * avago_format_efuse_chain(Aapl_t *aapl, uint chip, const char *efuse_chain);
+    + char * avago_read_efuse_chain(Aapl_t *aapl, uint chip, const char *mapfilename);
+    +    int aapl_efuse_main(int argc, char *argv[], Aapl_t *aapl);
+
+    # New function that can read a jtag chain without knowing its length.
+
+    + char * avago_jtag_rd_len(Aapl_t *aapl, int opcode, int *length);
+
+    # New diagnostic functions:
+
+    +  float avago_serdes_get_ber_eye(Aapl_t *aapl, Avago_addr_t *addr_struct, uint dwell, int eye, int console, int reset);
+    +   void avago_serdes_param_sweep(Aapl_t *aapl, uint addr, Avago_serdes_param_sweep_t *options);
+    +   void avago_spico_dmi_dump(Aapl_t *aapl, uint addr);
+
+    # New functionality for HBM.
+
+    +    int aapl_hbm_main(int argc, char *argv[], Aapl_t *aapl);
+    +    int avago_hbm_get_parameter(Aapl_t *aapl, uint spico_addr, Avago_hbm_parameter_t param);
+    +    int avago_hbm_set_parameter(Aapl_t *aapl, uint spico_addr, Avago_hbm_parameter_t param, uint value);
+    +    int avago_hbm_launch_channel_operation(Aapl_t *aapl, uint spico_addr, Avago_hbm_operation_t operation, Avago_hbm_operation_results_t *results, uint channel);
+    +    int avago_hbm_launch_operation(Aapl_t *aapl, uint spico_addr, Avago_hbm_operation_t operation, Avago_hbm_operation_results_t *results);
+    +    int avago_hbm_print_operation_results(Aapl_t *aapl, Avago_hbm_operation_results_t *results);
+    +    int avago_hbm_get_operation_results(Aapl_t *aapl, uint spico_addr, Avago_hbm_operation_results_t *results);
+    +    int avago_hbm_print_device_id(Aapl_t *aapl, uint spico_addr);
+    +    int avago_hbm_read_device_id(Aapl_t *aapl, uint spico_addr, Avago_hbm_device_id_t *device_id);
+    +    int avago_hbm_print_hard_lane_repairs(Aapl_t *aapl, uint apc_addr);
+    +    int avago_hbm_run_diagnostics(Aapl_t *aapl, uint spico_addr);
+    +    int avago_hbm_run_temp_diagnostics(Aapl_t *aapl, uint spico_addr, int count);
+    +    int avago_hbm_read_device_temp(Aapl_t *aapl, uint spico_addr);
+
+
+Removed APIs:   =========================================================
+    None
+
+
+==============================================================================
+Version 2.5.3
+Release date: June 29, 2017
+==============================================================================
+
+Highlights:
+
+The 2.5.3 release
+    + Adds PRBS error counting while pCal is running.
+    + Add functions to reduce power usage of an operating SerDes.
+    + Add CLI command to display meta information from inside SerDes and SBus Master .rom files.
+
+Note on power saving functions.  These functions turn off circuits which
+    are unused or typically only used for debugging.  Some of these
+    will be turned on and back off automatically as needed by AAPL and
+    firmware.  Some actions require that the caller disable the low power
+    mode manually.  The only things we have tested in low power mode are
+    production traffic flow, execution of pCal tuning, and eye/escope
+    measurement.  Eye/escope will automatically undo any low power mode
+    before making a measurement and then restore the previous power state
+    on completion.
+
+Defect Fixes:
+    + Add missing APPLY calls after setting test channel CAL and INPUTS values.
+
+Changed APIs: =========================================================
+    None
+
+Added APIs:   =========================================================
+    Functions to count PRBS errors during tuning:
+    +  int avago_serdes_aux_counter_disable(Aapl_t *aapl, uint addr);
+    + uint avago_serdes_aux_counter_read(Aapl_t *aapl, uint addr);
+    +  int avago_serdes_aux_counter_start(Aapl_t *aapl, uint addr);
+
+    Functions to reduce power during production operation:
+    +  int avago_serdes_enable_low_power_mode(Aapl_t *aapl, uint addr, int enable);
+    +  int avago_serdes_enable_pcs_fifo_clock(Aapl_t *aapl, uint addr, int enable);
+
+Removed APIs: =========================================================
+    None
+
+
+==============================================================================
+Version 2.5.2
+Release date: June 7, 2017
+==============================================================================
+
+Highlights:
+
+The 2.5.2 release
+    + Supports eye and escope coordination with continuous adaptive CM4 tuning
+      first introduced for CM4 in the 0x1071 firmware release.
+    + Supports new CM4 firmware.
+    + Adds new bathtub statistics, especially for CM4.
+
+
+Changed APIs: =========================================================
+    None
+
+Added APIs:   =========================================================
+    Functions for debugging CM4 channel tuning:
+
+    + char * avago_serdes_ctle_print(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_ctle_t *ctle);
+    +    int avago_serdes_data_channel_cal_apply(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_data_channel_inputs_t *params);
+    +    int avago_serdes_data_channel_cal_delta_apply(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_data_channel_inputs_t *params);
+    +    int avago_serdes_data_channel_cal_delta_read(Aapl_t *aapl, uint addr, Avago_serdes_data_channel_inputs_t *params);
+    +    int avago_serdes_data_channel_cal_delta_write(Aapl_t *aapl, uint addr, Avago_serdes_data_channel_inputs_t *params);
+    +    int avago_serdes_data_channel_cal_read(Aapl_t *aapl, uint addr, Avago_serdes_data_channel_inputs_t *params);
+    +    int avago_serdes_data_channel_cal_write(Aapl_t *aapl, uint addr, Avago_serdes_data_channel_inputs_t *params);
+    +    int avago_serdes_data_channel_inputs_apply(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_data_channel_inputs_t *params);
+    + char * avago_serdes_data_channel_inputs_print(Aapl_t *aapl, uint mask, Avago_serdes_data_channel_inputs_t *params);
+    +    int avago_serdes_data_channel_inputs_read(Aapl_t *aapl, uint addr, Avago_serdes_data_channel_inputs_t *params);
+    +    int avago_serdes_data_channel_inputs_write(Aapl_t *aapl, uint addr, Avago_serdes_data_channel_inputs_t *params);
+    + char * avago_serdes_dfe_print(Aapl_t *aapl, uint mask, Avago_serdes_dfe_t *dfe);
+    + char * avago_serdes_global_tune_params_print(Aapl_t *aapl, uint mask, Avago_serdes_global_tune_params_t *params);
+    +    int avago_serdes_gradient_inputs_apply(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_gradient_inputs_t *params);
+    + char * avago_serdes_gradient_inputs_print(Aapl_t *aapl, uint mask, Avago_serdes_gradient_inputs_t *params);
+    +    int avago_serdes_gradient_inputs_read(Aapl_t *aapl, uint addr, Avago_serdes_gradient_inputs_t *params);
+    +    int avago_serdes_gradient_inputs_write(Aapl_t *aapl, uint addr, Avago_serdes_gradient_inputs_t *params);
+    +    int avago_serdes_pam4_eye_apply(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_pam4_eye_t *params);
+    + char * avago_serdes_pam4_eye_print(Aapl_t *aapl, uint mask, Avago_serdes_pam4_eye_t *params);
+    +    int avago_serdes_pam4_eye_read(Aapl_t *aapl, uint addr, Avago_serdes_pam4_eye_t *params);
+    +    int avago_serdes_pam4_eye_write(Aapl_t *aapl, uint addr, Avago_serdes_pam4_eye_t *params);
+    +    int avago_serdes_pam4_levels_apply(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_pam4_levels_t *params);
+    + char * avago_serdes_pam4_levels_print(Aapl_t *aapl, uint mask, Avago_serdes_pam4_levels_t *params);
+    +    int avago_serdes_pam4_levels_read(Aapl_t *aapl, uint addr, Avago_serdes_pam4_levels_t *params);
+    +    int avago_serdes_pam4_levels_write(Aapl_t *aapl, uint addr, Avago_serdes_pam4_levels_t *params);
+    + char * avago_serdes_rx_clock_print(Aapl_t *aapl, uint mask, Avago_serdes_rx_clocks_t *rx_clock);
+    + char * avago_serdes_rxffe_print(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_rxffe_t *rxffe);
+    +    int avago_serdes_test_channel_cal_apply(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_test_channel_inputs_t *params);
+    +    int avago_serdes_test_channel_cal_read(Aapl_t *aapl, uint addr, Avago_serdes_test_channel_inputs_t *params);
+    +    int avago_serdes_test_channel_cal_write(Aapl_t *aapl, uint addr, Avago_serdes_test_channel_inputs_t *params);
+    +    int avago_serdes_test_channel_inputs_apply(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_test_channel_inputs_t *params);
+    + char * avago_serdes_test_channel_inputs_print(Aapl_t *aapl, uint mask, Avago_serdes_test_channel_inputs_t *params);
+    +    int avago_serdes_test_channel_inputs_read(Aapl_t *aapl, uint addr, Avago_serdes_test_channel_inputs_t *params);
+    +    int avago_serdes_test_channel_inputs_write(Aapl_t *aapl, uint addr, Avago_serdes_test_channel_inputs_t *params);
+    +    int avago_serdes_vernier_cal_apply(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_vernier_cal_t *params);
+    + char * avago_serdes_vernier_cal_print(Aapl_t *aapl, uint mask, Avago_serdes_vernier_cal_t *params);
+    +    int avago_serdes_vernier_cal_read(Aapl_t *aapl, uint addr, Avago_serdes_vernier_cal_t *params);
+    +    int avago_serdes_vernier_cal_write(Aapl_t *aapl, uint addr, Avago_serdes_vernier_cal_t *params);
+    + char * avago_serdes_vernier_delay_print(Aapl_t *aapl, uint mask, Avago_serdes_vernier_delay_t *params);
+
+Removed APIs: =========================================================
+    None
+
+
+==============================================================================
+Version 2.5.1
+Release date: April 19, 2017
+==============================================================================
+
+Highlights:
+
+The 2.5.1 release
+    + Improves support for parallel interrupts
+    + Improves CM4 SerDes support
+    + Improves GPON support
+
+Changes:
+
+    + The AVAGO_SERDES_RX_CMP_MODE_XOR_RAW enum value has been removed.  This
+      behavior is folded into the AVAGO_SERDES_RX_CMP_MODE_XOR value when
+      appropriate (value only applied to M4 SerDes).
+
+    + SerDes upload now will wait for o_core_status[5] == 1 before calling
+      CRC interrupt.  o_core_status[5] is set when interrupts have been
+      enabled.
+
+    Change to Parallel Interrupt Default Implementation
+
+      If aapl_register_parallel_serdes_int_fn() has not been called, AAPL
+      registers a default function for parallel interrupts.  In 2.5.0, that
+      function implemented parallel interrupts using SBus operations.  In
+      2.5.1, if aapl_register_spico_int_fn() has been called, then serial
+      calls to this registered function are use instead.
+
+    Independent Tx and Rx initialization errata in 2.5.0 and 2.5.1 Release
+
+    + On CM4 in PAM4 and NRZ modes, the independent Tx and Rx initialization
+      functions fail to work correctly unless avago_serdes_rx_init() is
+      called before avago_serdes_tx_init(). The work around is to make a
+      throw-away call to avago_serdes_rx_init() immediately after
+      avago_serdes_base_init(). This issue does not affect D6 SerDes.
+    + On CM4 in PAM4 mode, configuring a Tx will introduce one or two bursts
+      of errors into the Rx.  This is believed to be a firmware issue.
+
+    API Change to Setting Fixed Values in Tuning
+
+    + The variables to set fixed tuning values have been changed from a
+      boolean to a tri-state value.  In addition to 1 for setting a fixed flag
+      and 0 for unsetting a fixed flag, the value now also may be -1 to not
+      change the fixed state in the firmware.  Note, certain values may be
+      fixed by default and this change allows those values to be preserved
+      unless explicitly requested to be changed.
+    + avago_serdes_tune_init() and avago_serdes_dfe_state_construct() now
+      initialize all fixed flag values to -1 rather than 0.
+
+
+Changed APIs: =========================================================
+    -  int avago_parallel_serdes_set_tx_rx_enable(Aapl_t *aapl, Avago_addr_t *addr_list, int tx, int rx, int tx_output);
+    +  int avago_parallel_serdes_set_tx_rx_enable(Aapl_t *aapl, Avago_addr_t *addr_list, int tx, int rx, int tx_output, uint extra);
+
+Added APIs:   =========================================================
+    + void avago_serdes_pon_vos_cal(Aapl_t *aapl, uint addr);
+
+Removed APIs: =========================================================
+    -  int avago_serdes_set_burst_mode(Aapl_t *aapl, uint addr, uint burst_mode);
+
+
+==============================================================================
+Version 2.5.0
+Release date: March 1, 2017
+==============================================================================
+
+Highlights:
+
+The 2.5 release adds
+    + parallel execution of SerDes interrupts
+    +  direct support for initializing Tx and Rx independently
+
+Parallel execution of tasks:
+
+    + Add a parallel interrupt hook for customer implementation.
+    + Provide a parallel SBus interrupt implementation.
+    + Provide a parallel memory read function.
+    + Provide parallel versions of avago_serdes_init() and other key
+        initialization functions.
+    + Provide parallel versions of avago_serdes_dfe_tune() and related functions.
+
+    The Avago_addr_t structure has been enhanced to serve as the key
+    parallel function interface.  Avago_addr_t contains a linked list of
+    individual SerDes addresses.  Each structure now contains a results
+    field used by the new parallel functions to return individual results.
+    Each structure also contains a new group_addr field which identifies the
+    SBus broadcast address for a group of SerDes.  Several new functions are
+    provided for initializing and using an address list.
+
+    This release also adds parallel upload to an arbitrary set of identical SerDes.
+
+Independent Tx and Rx initialization
+
+    avago_serdes_base_init() performs SerDes global initialization and should
+    be called once after firmware is loaded.  After base initialization,
+    avago_serdes_rx_init() and avago_serdes_tx_init() can be called in either
+    order, independently and repeatedly to configure or reconfigure each half of a
+    SerDes without interfering with traffic on the other half.  In particular,
+    SerDes dividers, width modes, and data path configurations can be
+    different between the Tx and Rx.
+
+
+Changed APIs: =========================================================
+    Add sbus address field to the rsfec APIs:
+    -              int avago_rsfec_frame(Aapl_t *aapl);
+    -             void avago_fec_chip_config(Aapl_t *aapl, Avago_fec_mode_t mode);
+    -             void avago_fec_tesla_config(Aapl_t *aapl, Avago_fec_mode_t mode);
+    -             void avago_set_tesla_rsfec528_2x50g_div(Aapl_t *aapl, int cm4_count, int div);
+    -             void avago_set_tesla_rsfec544_2x50g_div(Aapl_t *aapl, int cm4_count, int div);
+    - Avago_fec_mode_t avago_rsfec_get_fec_mode(Aapl_t *aapl);
+    +              int avago_rsfec_frame(Aapl_t *aapl, uint sbus_addr);
+    +             void avago_fec_chip_config(Aapl_t *aapl, uint sbus_addr, Avago_fec_mode_t mode);
+    +             void avago_fec_tesla_config(Aapl_t *aapl, uint sbus_addr, Avago_fec_mode_t mode);
+    +             void avago_set_tesla_rsfec528_2x50g_div(Aapl_t *aapl, uint sbus_addr, uint cm4_count, int div);
+    +             void avago_set_tesla_rsfec544_2x50g_div(Aapl_t *aapl, uint sbus_addr, uint cm4_count, int div);
+    + Avago_fec_mode_t avago_rsfec_get_fec_mode(Aapl_t *aapl, uint sbus_addr);
+
+Added APIs:   =========================================================
+    Parallel functions:
+    +           void aapl_register_parallel_serdes_int_fn(Aapl_t *aapl, int(*parallel_serdes_int_fn)(Aapl_t *aapl, Avago_addr_t *addr_list, int int_code, int int_data));
+    +           void avago_group_clear(Aapl_t *aapl, Avago_addr_t *addr_list);
+    +           void avago_group_debug(Aapl_t *aapl, Aapl_log_type_t debug, const char *func, int line, Avago_addr_t *addr_list);
+    +           void avago_group_expand_broadcast(Aapl_t *aapl, Avago_addr_t *addr_list);
+    +           uint avago_group_get_addr(Avago_addr_t *addr_list);
+    + Avago_addr_t * avago_group_get_next(Avago_addr_t *addr_list);
+    +           void avago_group_setup(Aapl_t *aapl, Avago_addr_t *addr_list);
+    +            int avago_parallel_serdes_base_init(Aapl_t *aapl, Avago_addr_t *addr_list, int skip_crc);
+    +            int avago_parallel_serdes_crc(Aapl_t *aapl, Avago_addr_t *addr_list);
+    +           void avago_parallel_serdes_dfe_tune(Aapl_t *aapl, Avago_addr_t *addr_list, Avago_serdes_dfe_state_t *mode_control);
+    +            int avago_parallel_serdes_get_dfe_status(Aapl_t *aapl, Avago_addr_t *addr_list);
+    +            int avago_parallel_serdes_get_signal_ok(Aapl_t *aapl, Avago_addr_t *addr_list, int reset);
+    +            int avago_parallel_serdes_init(Aapl_t *aapl, Avago_addr_t *addr_list, Avago_serdes_init_config_t *config);
+    +            int avago_parallel_serdes_initialize_signal_ok(Aapl_t *aapl, Avago_addr_t *addr_list, int threshold);
+    +            int avago_parallel_serdes_int(Aapl_t *aapl, Avago_addr_t *addr_list, int int_num, int int_data);
+    +            int avago_parallel_serdes_int_check(Aapl_t *aapl, const char *caller, int line, Avago_addr_t *addr_list, int int_num, int param);
+    +            int avago_parallel_serdes_interpret_dfe_status(Aapl_t *aapl, Avago_addr_t *addr_list);
+    +            int avago_parallel_serdes_mem_rd(Aapl_t *aapl, Avago_addr_t *addr_list, Avago_serdes_mem_type_t type, uint addr);
+    +            int avago_parallel_serdes_set_rx_datapath(Aapl_t *aapl, Avago_addr_t *addr_list, Avago_serdes_datapath_t *datapath);
+    +            int avago_parallel_serdes_set_tx_datapath(Aapl_t *aapl, Avago_addr_t *addr_list, Avago_serdes_datapath_t *datapath);
+    +            int avago_parallel_serdes_set_tx_rx_enable(Aapl_t *aapl, Avago_addr_t *addr_list, int tx, int rx, int tx_output);
+    +            int avago_parallel_serdes_set_tx_rx_width_pam(Aapl_t *aapl, Avago_addr_t *addr_list, int tx, int rx, Avago_serdes_line_encoding_t tx_encoding, Avago_serdes_line_encoding_t rx_encoding);
+    +            int avago_parallel_spico_upload(Aapl_t *aapl, Avago_addr_t *addr_list, int ram_bist, int words, const int rom[]);
+    +            int avago_parallel_spico_upload_file(Aapl_t *aapl, Avago_addr_t *addr_list, int ram_bist, const char *filename);
+    +            int avago_parallel_verify_addr_list(Aapl_t *aapl, Avago_addr_t *addr_list);
+
+    Functions for independent initialization of Rx and Tx:
+    +            int avago_serdes_base_init(Aapl_t *aapl, uint sbus_addr, Avago_serdes_init_config_t *config);
+    +            int avago_serdes_rx_init(Aapl_t *aapl, uint sbus_addr, Avago_serdes_init_config_t *config);
+    +            int avago_serdes_tx_init(Aapl_t *aapl, uint sbus_addr, Avago_serdes_init_config_t *config);
+
+    Miscellaneous new functions:
+    +          float avago_serdes_get_ber(Aapl_t *aapl, Avago_addr_t *addr_struct, uint dwell, int console, int reset);
+    +           uint avago_firmware_get_engineering_id(Aapl_t *aapl, uint sbus_addr);
+
+Removed APIs: =========================================================
+    - void avago_addr_free(Aapl_t *aapl, Avago_addr_t *addr);
+        Replaced with equivalent avago_addr_delete() for more C++ constructor like naming.
+
+==============================================================================
+Version 2.4.6
+Release date: February 16, 2017
+==============================================================================
+The 2.4.6 release adds some specific functionality over the 2.4.5 release:
+
++ When delay cal is being used for tuning, disallow escope and non-eye height
+    measurements to avoid disturbing the channel being measured.
++ Move clocking APIs from binary-only to BSD-source distribution.
+
+Changed APIs: =========================================================
+    None
+
+Added APIs:   =========================================================
+    + Avago_serdes_rx_clock_cdc_t aapl_rx_clock_cdc_from_str(const char *str, const char *optname);
+    +     Avago_serdes_rx_clock_t aapl_rx_clock_from_str(const char *str, const char *optname);
+    +                         int aapl_str_to_rx_clock_cdc(const char *name, Avago_serdes_rx_clock_cdc_t *out);
+    +                         int aapl_str_to_rx_clock(const char *name, Avago_serdes_rx_clock_t *out);
+
+Removed APIs: =========================================================
+    None
+
+==============================================================================
+Version 2.4.5
+Release date: January 13, 2017
+==============================================================================
+
+The 2.4.5 release fixes a few issues:
+
++ Fix horizontal bathtub calculations for non full horizontal resolution gathers.
++ Fix windows pointer cast warnings.
++ Improve support for PON SerDes and Franklin test chip.
++ Add ability to dump all SBus Master memory during diag.
++ Display sbus address 0xff as ':ff' rather than ':*'.
+
+Changed APIs: =========================================================
+  Change last parameter type for this PON SerDes API:
+-   int avago_serdes_set_burst_mode(Aapl_t *aapl, uint addr, int burst_mode);
++   int avago_serdes_set_burst_mode(Aapl_t *aapl, uint addr, uint burst_mode);
+
+  Replace
+-   int avago_serdes_pon_rate_select(Aapl_t *aapl, uint addr, uint rate_sel);
+  with
++   int avago_serdes_pon_get_rate_select(Aapl_t *aapl, uint addr);
++   int avago_serdes_pon_set_rate_select(Aapl_t *aapl, uint addr, uint rate_sel);
+
+
+Added APIs:   =========================================================
++           void avago_addr_delete(Aapl_t *aapl, Avago_addr_t *addr_list);
++ Avago_addr_t * avago_addr_new(Aapl_t *aapl);
++ Avago_addr_t * avago_addr_new_from_struct(Aapl_t *aapl, Avago_addr_t *initial_value);
++            int avago_serdes_global_tune_params_apply(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_global_tune_params_t *global_tune_params);
++            int avago_serdes_global_tune_params_read(Aapl_t *aapl, uint addr, Avago_serdes_global_tune_params_t *global_tune_params);
++            int avago_serdes_global_tune_params_write(Aapl_t *aapl, uint addr, Avago_serdes_global_tune_params_t *global_tune_params);
++            int avago_serdes_pon_get_rate_select(Aapl_t *aapl, uint addr);
++            int avago_serdes_pon_set_rate_select(Aapl_t *aapl, uint addr, uint rate_sel);
+
+Removed APIs: =========================================================
+-            int avago_serdes_pon_rate_select(Aapl_t *aapl, uint addr, uint rate_sel);
+
+
+==============================================================================
+Version 2.4.4
+Release date: December 16, 2016
+==============================================================================
+
+Highlights:
+
+The 2.4.4 release makes several important improvements and fixes:
+
+    + Improvements to the AN APIs.
+    + Namespace cleanup with some internal functions.
+    + Update Avago_addr_t structure definition.
+    + Portability changes.
+    + Add new IP types and chips.
+    + Update eye and escope to leave error counter running if it was before
+    + Fix eye dynamic dwell issue when using SBM eye acceleration
+    + Fix PCS FIFO clock issues with newer 16nm SerDes.
+    + Improve/add Doxygen comments for several functions.
+    + Add avago_serdes_get_rx_data() function into BSD release.
+
+Changed APIs: =========================================================
+
+# Minor change to return value:
+- uint avago_spico_crc(Aapl_t *aapl, uint sbus_addr);
++  int avago_spico_crc(Aapl_t *aapl, uint sbus_addr);
+
+# Change parameter from configuration structure to a simple hcd value.
+# Structure moved to new avago_serdes_an_configure_to_hcd() function.
+-  int avago_serdes_an_assert_link_status(Aapl_t *aapl, uint addr, Avago_serdes_an_config_t *config);
++  int avago_serdes_an_assert_link_status(Aapl_t *aapl, uint addr, uint an_hcd);
+
+Added APIs:   =========================================================
+
++ int avago_serdes_an_complete(Aapl_t *aapl, uint addr, uint an_hcd, Avago_serdes_an_config_t *config);
++ int avago_serdes_an_configure_to_hcd(Aapl_t *aapl, Avago_addr_t *addr_list, Avago_serdes_an_config_t *config, Avago_serdes_pmd_config_t *pmd_config);
+
+Removed APIs: =========================================================
+    None
+
+
+==============================================================================
+Version 2.4.3
+Release date: November 10, 2016
+==============================================================================
+
+Highlights:
+
+The 2.4.3 release focuses on improving M4 functionality.
+
+    + Add M4 datapath options support for invert, gray, precode, swizzle
+    + Add M4 datapath options support in escope and epulse.
+    + Add new vernier (M4 only), datapath and clock APIs.
+    + Improve eye HBTC measurements and optimizations.
+    + Add eye support for configurable voltage in VBTC calculations.
+    + Add new functions to count errors for a specified number of bits.
+    + Fix P1 error counting issue.
+    + Add support for new SerDes.
+
+
+Changed APIs: =========================================================
+
+Add trans_density parameter.  Previously the function used the value passed in datap->ed_trans_density.
+-             void avago_serdes_eye_hbtc_extrapolate(const Avago_serdes_eye_data_t *datap, uint data_row, Avago_serdes_eye_hbtc_t *results);
++             void avago_serdes_eye_hbtc_extrapolate(const Avago_serdes_eye_data_t *datap, uint data_row, float trans_density, Avago_serdes_eye_hbtc_t *results);
+
+Replace old function with new function that takes an enum.  Part of a new clock API.
+-     const char * aapl_clk_mux_to_str(int val);
++     const char * aapl_rx_clock_to_str(Avago_serdes_rx_clock_t val);
+
+Added APIs:   =========================================================
+
++              int aapl_fec_main(int argc, char *argv[], Aapl_t *aapl);
++ Avago_fec_mode_t aapl_fec_mode_from_str(const char *str, const char *optname);
++     const char * aapl_fec_mode_to_str(Avago_fec_mode_t value);
++     const char * aapl_get_ip_firmware_file_str(Aapl_t *aapl, uint addr);
++     const char * aapl_rx_clock_cdc_to_str(Avago_serdes_rx_clock_cdc_t val);
++     const char * aapl_rx_clock_to_str(Avago_serdes_rx_clock_t val);
++              int aapl_str_to_fec_mode(const char *name, Avago_fec_mode_t *out);
++           bigint avago_serdes_count_errors(Aapl_t *aapl, uint addr, bigint bits);
++              int avago_serdes_count_errors_start(Aapl_t *aapl, uint addr, uint bits);
++              int avago_serdes_count_errors_wait(Aapl_t *aapl, uint addr);
++            float avago_serdes_eye_get_default_avdd(Aapl_t *aapl, uint addr);
++              int avago_serdes_get_burst_mode(Aapl_t *aapl, uint addr);
++              int avago_serdes_get_ei_calibration_status(Aapl_t *aapl, uint addr);
++              int avago_serdes_get_ei_calibration_threshold(Aapl_t *aapl, uint addr);
+-             uint avago_serdes_get_errors(Aapl_t *aapl, uint sbus_addr, Avago_serdes_mem_type_t type, int reset_count_after_get);
++             uint avago_serdes_get_errors(Aapl_t *aapl, uint addr, Avago_serdes_mem_type_t type, int reset_count_after_get);
++             uint avago_serdes_get_frequency_lock_time(Aapl_t *aapl, uint addr);
++              int avago_serdes_get_rx_datapath(Aapl_t *aapl, uint addr, Avago_serdes_datapath_t *datapath);
++              int avago_serdes_get_tx_datapath(Aapl_t *aapl, uint addr, Avago_serdes_datapath_t *datapath);
++              int avago_serdes_launch_ei_calibration(Aapl_t *aapl, uint addr, int ei_cal);
++              int avago_serdes_pon_rate_select(Aapl_t *aapl, uint addr, uint rate_sel);
++              int avago_serdes_rx_clock_apply(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_rx_clocks_t *rx_clock);
++              int avago_serdes_rx_clock_read(Aapl_t *aapl, uint addr, Avago_serdes_rx_clocks_t *rx_clock);
++              int avago_serdes_rx_clock_write(Aapl_t *aapl, uint addr, Avago_serdes_rx_clocks_t *rx_clock);
++              int avago_serdes_set_burst_mode(Aapl_t *aapl, uint addr, int burst_mode);
++              int avago_serdes_set_ei_calibration_threshold(Aapl_t *aapl, uint addr, int threshold);
++              int avago_serdes_set_error_timer(Aapl_t *aapl, uint sbus_addr, bigint dwell_bits);
++              int avago_serdes_set_rx_cdc_clock(Aapl_t *aapl, uint addr, Avago_serdes_rx_clock_cdc_t cdc);
++              int avago_serdes_set_rx_data_clock(Aapl_t *aapl, uint addr, Avago_serdes_rx_clock_t data);
++              int avago_serdes_set_rx_datapath(Aapl_t *aapl, uint addr, Avago_serdes_datapath_t *datapath);
++              int avago_serdes_set_rx_dfe_clock(Aapl_t *aapl, uint addr, Avago_serdes_rx_clock_t dfe);
++              int avago_serdes_set_rx_edge_clock(Aapl_t *aapl, uint addr, Avago_serdes_rx_clock_t edge);
++              int avago_serdes_set_rx_test_clock(Aapl_t *aapl, uint addr, Avago_serdes_rx_clock_t test);
++              int avago_serdes_set_tx_datapath(Aapl_t *aapl, uint addr, Avago_serdes_datapath_t *datapath);
++              int avago_serdes_vernier_delay_apply(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_vernier_delay_t *clock_rx);
++              int avago_serdes_vernier_delay_read(Aapl_t *aapl, uint addr, Avago_serdes_vernier_delay_t *clock_rx);
++              int avago_serdes_vernier_delay_write(Aapl_t *aapl, uint addr, Avago_serdes_vernier_delay_t *clock_rx);
+
+Removed APIs: =========================================================
+    None
+
+
+==============================================================================
+Version 2.4.2
+Release date: September 22, 2016
+==============================================================================
+
+Highlights:
+
+The 2.4.2 release focuses on improving M4 functionality.
+
++ Lots of M4 changes:
+    . Improve eye center alignment with hardware samplers on M4 SerDes.
+    . Enable use of SBus Master acceleration for M4 eye gathers.  Requires SBM 0x101D or newer.
+    . Finalize the Tx equalization API for M4 SerDes.
+    . Add support for PRBS13 on M4 SerDes.
+    . Fix width mode reporting for M4 SerDes.
+    . Add CTLE, RxFFE and DFE interfaces for M4 SerDes.
++ Add user logging function registration (see aapl_register_logging_fn())
++ Fix serious issue in aacs_server involving buffer passed to status command.
++ Add prototype of thread support. Enabled/disabled by aapl.h define.
+
+
+Changed APIs: =========================================================
+    -  int avago_aacs_server_options(Aapl_t *aapl, int tcp_port, const char *aacs_server_host, uint aacs_server_host_port);
+    +  int avago_aacs_server_options(Aapl_t *aapl, int tcp_port, const char *aacs_server_host, uint aacs_server_host_port, int close_connection);
+    - void avago_fec_chip_upload(Aapl_t *aapl, uint addr, const char *filename);
+    + void avago_fec_chip_upload(Aapl_t *aapl, uint addr, const char *cm4_file, const char *d6_file);
+    - void avago_rsfec_frame(Aapl_t *aapl);
+    +  int avago_rsfec_frame(Aapl_t *aapl);
+
+Added APIs:   =========================================================
+    +     const char * aapl_dfe_status_to_str(uint val);
+    +              int aapl_hal_main(int argc, char *argv[], Aapl_t *aapl);
+    +             void aapl_register_logging_fn(Aapl_t *aapl, void(*log_fn)(Aapl_t *, int warning_or_error, const char *buf, size_t new_item_length), int(*log_open_fn)(Aapl_t *), int(*log_close_fn)(Aapl_t *));
+    +             void aapl_register_user_supplied_functions(Aapl_t *aapl);
+    + Avago_fec_mode_t avago_rsfec_get_fec_mode(Aapl_t *aapl);
+    +              int avago_serdes_ctle_apply(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_ctle_t *ctle);
+    +              int avago_serdes_ctle_get_limits(Aapl_t *aapl, uint addr, Avago_serdes_ctle_limits_t *limits);
+    +              int avago_serdes_ctle_read(Aapl_t *aapl, uint addr, Avago_serdes_ctle_t *ctle);
+    +              int avago_serdes_ctle_write(Aapl_t *aapl, uint addr, Avago_serdes_ctle_t *ctle);
+    +              int avago_serdes_dfe_apply(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_dfe_t *dfe);
+    +              int avago_serdes_dfe_batch_tune_launch(Aapl_t *aapl, Avago_serdes_dfe_state_t *dfe_state, int addr_cnt, uint *addrs, int limit, int timeout_count, Avago_serdes_batch_tune_work_t *tuning_status);
+    +              int avago_serdes_dfe_batch_tune_poll(Aapl_t *aapl, Avago_serdes_dfe_state_t *dfe_state, Avago_serdes_batch_tune_work_t *tuning_status);
+    +              int avago_serdes_dfe_get_limits(Aapl_t *aapl, uint addr, Avago_serdes_dfe_limits_t *limits);
+    +              int avago_serdes_dfe_los(Aapl_t *aapl, uint sbus_addr);
+    +              int avago_serdes_dfe_read(Aapl_t *aapl, uint addr, Avago_serdes_dfe_t *dfe);
+    +              int avago_serdes_dfe_write(Aapl_t *aapl, uint addr, Avago_serdes_dfe_t *dfe);
+    +              int avago_serdes_eye_data_read_phase(Aapl_t *aapl, const char *filename, Avago_serdes_eye_data_t *datap);
+    +              int avago_serdes_get_rx_pll_gain(Aapl_t *aapl, uint addr, uint *bb_gain, uint *int_gain);
+    +              int avago_serdes_rxffe_apply(Aapl_t *aapl, uint addr, uint mask, Avago_serdes_rxffe_t *rxffe);
+    +              int avago_serdes_rxffe_get_limits(Aapl_t *aapl, uint addr, Avago_serdes_rxffe_limits_t *limits);
+    +              int avago_serdes_rxffe_read(Aapl_t *aapl, uint addr, Avago_serdes_rxffe_t *rxffe);
+    +              int avago_serdes_rxffe_write(Aapl_t *aapl, uint addr, Avago_serdes_rxffe_t *rxffe);
+    +              int avago_serdes_set_rx_pll_gain(Aapl_t *aapl, uint addr, uint bb_gain, uint int_gain);
+    +             void avago_set_tesla_rsfec528_2x50g_div(Aapl_t *aapl, int cm4_count, int div);
+    +             void avago_set_tesla_rsfec544_2x50g_div(Aapl_t *aapl, int cm4_count, int div);
+
+Removed APIs: =========================================================
+    None
+
+
+==============================================================================
+Version 2.4.1
+Release date: July 15, 2016
+==============================================================================
+
+Highlights:
+
+The 2.4.1 release focuses on improving eye metric stability and accuracy on
+D6.  Specific eye features and fixes:
+
++ Fixed a vertical center discrepancy with firmware.
+* Improved eye center alignment with hardware samplers on D6 SerDes.
++ Improved BTC projection stability.
++ Added a "Combined BTC" error rate to data structures and CLI eye display.
++ Fully filled in the ed_qvalp table to enable the display of an error rate contour graph.
++ Added a contour graph display in the CLI (See "aapl eye -print-contour").
+
+Changed APIs: =========================================================
+    None
+
+Added APIs:   =========================================================
+    + char * avago_serdes_eye_btc_format(const Avago_serdes_eye_data_t *datap);
+    +   void avago_serdes_eye_btc_log_print(Aapl_t *aapl, Aapl_log_type_t level, const char *func, int line, const Avago_serdes_eye_data_t *datap);
+    +   void avago_serdes_eye_btc_write(FILE *file, const Avago_serdes_eye_data_t *datap);
+    + char * avago_serdes_eye_contour_plot_format(const Avago_serdes_eye_data_t *datap);
+    +   void avago_serdes_eye_contour_plot_write(FILE *file, const Avago_serdes_eye_data_t *datap);
+    +   void avago_serdes_pmd_debug_print_repeat(Aapl_t *aapl, Avago_serdes_pmd_debug_t *pmd_debug);
+
+
+Removed APIs: =========================================================
+    None
+
+
+
+==============================================================================
+Version 2.4.0
+Release date: June 10, 2016
+==============================================================================
+
+Highlights:
+
+The 2.4 release continues to improve support for newer test chips and
+features, converts the Open Source license to BSD and adds additional
+functionality, adds pulse response extraction to escope and
+adds gray encoding support to PAM4 APIs.
+
+Changes from the 2.3.1 release:
+
+* Move the AAPL Open Source release to BSD licensing
+* Add functionality to the Open Source release:
+  + Add the sbus clock divider functions.
+  + Add a simple process performance metric function.
+  + Add the sensor API functions.
+  + Add CTLE display support.
+* Add support for PAM4 gray encoding.
+* Add support for new chips.
+* Fix defects.
+* Improve eye center alignment with hardware samplers on D6 SerDes.
+* Add pulse response extraction to escope.
+    NOTE: This API and functionality should be considered EXPERIMENTAL.
+
+Changed APIs: =========================================================
+    None
+
+Added APIs:   =========================================================
+    +                        int aapl_serdes_an_main(int argc, char *argv[], Aapl_t *aapl);
+    +                       void aapl_start_file_logging(Aapl_t *aapl, const char *filepath);
+    +                       void aapl_stop_file_logging(Aapl_t *aapl);
+    +                       void avago_fec_chip_config(Aapl_t *aapl, Avago_fec_mode_t mode);
+    +                       void avago_fec_chip_upload(Aapl_t *aapl,uint addr, const char *filename);
+    +                       void avago_jtag_reset(Aapl_t *aapl, int chip);
+    +                       uint avago_pmro_get_metric(Aapl_t *aapl, uint addr);
+    +                        int avago_serdes_an_assert_link_status(Aapl_t *aapl, uint addr, Avago_serdes_an_config_t *config);
+    + Avago_serdes_an_config_t * avago_serdes_an_config_construct(Aapl_t *aapl);
+    +                       void avago_serdes_an_config_destruct(Aapl_t *aapl, Avago_serdes_an_config_t *config);
+    +                        int avago_serdes_an_next_page_receive(Aapl_t *aapl, uint addr, const char *data_buf);
+    +                        int avago_serdes_an_next_page_transmit(Aapl_t *aapl, uint addr, const char *data_buf);
+    +                       uint avago_serdes_an_start(Aapl_t *aapl, uint sbus_address, Avago_serdes_an_config_t *config);
+    +                        int avago_serdes_dfe_wait_timeout(Aapl_t *aapl, uint sbus_addr, int timeout);
+    +                        int avago_serdes_enable_core_bit_slip(Aapl_t *aapl, uint addr, int enable_core, int enable_pcs_fifo_clk_auto_slip);
+    +                        int avago_serdes_escope_extract_pulse_response(Aapl_t *aapl, Avago_serdes_escope_data_t *datap, int pulse_width, int delay);
+    +                        int avago_serdes_get_dfe_status(Aapl_t *aapl, uint sbus_addr);
+    +                        int avago_serdes_read_an_status(Aapl_t *aapl, uint addr, Avago_serdes_an_status_t status);
+    +                        int avago_serdes_validate_tx_eq(Aapl_t *aapl, uint addr, Avago_serdes_tx_eq_t *tx_eq);
+    +                        int avsp_8812_configure_lane_speed(Aapl_t *aapl, uint prtad, uint lane, int divider);
+
+Removed APIs:   =========================================================
+    None
+
+
+
+==============================================================================
+Version 2.3.1
+Release date: November 20, 2015.
+==============================================================================
+
+Highlights:
+
+The 2.3.1 release continues to improve support for newer test chips and
+features.
+
+Errata:
+    The SBM eye acceleration feature in SBus Master firmware revision 0x101A
+    does not work properly with round-robin tuning.  Upgrade to 0x101B to
+    use these features together.
+
+Changes from the 2.3.0 release:
+
+* Addition of AVSP-5410 support to Open Source distribution.
+* Improved eye measurement performance is now enabled only for
+    0x1052 or newer of SerDes firmware.
+* Improved support for newer Avago SerDes.
+
+
+Changed APIs: =========================================================
+    The type Avago_serdes_encoding_mode_t has been renamed to Avago_serdes_line_encoding_t:
+        - int avago_serdes_set_tx_rx_width_pam(Aapl_t *aapl, uint sbus_addr, int tx_width, int rx_width, Avago_serdes_encoding_mode_t tx_encoding, Avago_serdes_encoding_mode_t rx_encoding);
+        + int avago_serdes_set_tx_rx_width_pam(Aapl_t *aapl, uint sbus_addr, int tx_width, int rx_width, Avago_serdes_line_encoding_t tx_encoding, Avago_serdes_line_encoding_t rx_encoding);
+    Update of API to support multiple chips:
+        - int avsp_5410_set_mode(Aapl_t *aapl, Avsp_state_t *state);
+        + int avsp_5410_set_mode(Aapl_t *aapl, uint prtad, Avsp_mode_t mode);
+    Update of API to support stating chip halves separately:
+        - int avsp_8812_set_mode(Aapl_t *aapl, Avsp_state_t *state);
+        + int avsp_8812_set_mode(Aapl_t *aapl, Avsp_state_t *state, uint half);
+
+Added APIs:   =========================================================
+    +         const char * aapl_line_encoding_to_str(Avago_serdes_line_encoding_t val);
+    +                  int aapl_main_entry(int argc, char *argv[]);
+    +                 void aapl_main_print_error(const char *fmt, ...);
+    +                 void aapl_main_unexpected_arg(const char *arg);
+    +                  int aapl_str_to_line_encoding(const char *name, Avago_serdes_line_encoding_t *out);
+    +                  int avago_aacs_send_command_int(Aapl_t *aapl, const char *cmd);
+    +                  int avago_aacs_send_command_options_int(Aapl_t *aapl, const char *command, int recv_data_back);
+    +                 void avago_fec_config(Aapl_t *aapl, uint addr, Avago_fec_config_options_t fec_config_options, Avago_fec_config_t *config);
+    + Avago_fec_config_t * avago_fec_config_construct(Aapl_t *aapl);
+    +                 void avago_fec_config_destruct(Aapl_t *aapl, Avago_fec_config_t *config);
+    +                 void avago_fec_control_ebuf(Aapl_t *aapl, uint addr, Avago_fec_ebuf_control_options_t ebuf_control_option);
+    +                  int avago_fec_get_alignment_reset_status(Aapl_t *aapl, uint addr);
+    +               bigint avago_fec_get_codeword(Aapl_t *aapl, uint addr, uint lane);
+    +                 uint avago_fec_get_consec_lane_active(Aapl_t *aapl, uint addr);
+    +                 uint avago_fec_get_corrected(Aapl_t *aapl, uint addr, uint lane);
+    +                 void avago_fec_get_ebuf(Aapl_t *aapl, uint addr, Avago_fec_ebuf_status_t *status);
+    +                 void avago_fec_get_gearfifo(Aapl_t *aapl, uint addr, Avago_fec_gearfifo_status_t *status);
+    +                  int avago_fec_get_reset_ebuf(Aapl_t *aapl, uint addr, Avago_fec_ebuf_reset_options_t ebuf_reset_option);
+    +                 void avago_fec_get_stats(Aapl_t *aapl, Avago_fec_stats_t *stats, uint addr, uint lane);
+    +                  int avago_fec_get_stats_halt(Aapl_t *aapl, uint addr);
+    +                 void avago_fec_get_status(Aapl_t *aapl, uint addr, Avago_fec_status_t *status);
+    +                 uint avago_fec_get_uncorrected(Aapl_t *aapl, uint addr, uint lane);
+    +                 void avago_fec_reset_alignment_status(Aapl_t *aapl, uint addr);
+    +                 void avago_fec_reset_ebuf(Aapl_t *aapl, uint addr, Avago_fec_ebuf_reset_options_t ebuf_reset_option);
+    +                 void avago_fec_reset_gearfifo(Aapl_t *aapl, uint addr, Avago_fec_gearfifo_reset_options_t gearfifo_reset_option);
+    +                 void avago_fec_reset_stats(Aapl_t *aapl, uint addr, int halt_flag);
+    +                 void avago_fec_set_stats_halt(Aapl_t *aapl, uint addr, int now, int on_max_cw);
+    +                 void avago_fec_tesla_config(Aapl_t *aapl, Avago_fec_mode_t mode);
+    +                 void avago_fec_tesla_upload(Aapl_t *aapl);
+    +                 void avago_rsfec_frame(Aapl_t *aapl);
+    +                 uint avago_rsfec_get_consec_X_sym_count(Aapl_t *aapl, uint addr, uint num);
+    +                 uint avago_rsfec_get_cw_X_sym_count(Aapl_t *aapl, uint addr, uint num);
+    +                 uint avago_rsfec_get_lane_sym_count(Aapl_t *aapl, uint addr, uint lane);
+    +               char * avago_rsfec_stats_to_str(Aapl_t *aapl, Avago_fec_stats_t *stats, uint addr);
+    +                  int avago_sbm_imem_read(Aapl_t *aapl, uint addr, uint mem_addr, uint *data, uint data_len);
+    +                 void avago_serdes_error_flag_reset(Aapl_t *aapl, uint addr);
+    +                  int avago_serdes_get_error_flag(Aapl_t *aapl, uint addr, int reset);
+    +                  int avago_serdes_get_rx_datapath_encoding(Aapl_t *aapl, uint addr, int *gray_decode, int *predecode);
+    +                  int avago_serdes_get_tx_datapath_encoding(Aapl_t *aapl, uint addr, int *gray_encode, int *precode);
+    +                  int avago_serdes_get_tx_rx_line_encoding(Aapl_t *aapl, uint addr, Avago_serdes_line_encoding_t *tx, Avago_serdes_line_encoding_t *rx);
+    +                  int avago_serdes_set_rx_datapath_encoding(Aapl_t *aapl, uint addr, int gray_decode, int predecode);
+    +                  int avago_serdes_set_tx_datapath_encoding(Aapl_t *aapl, uint addr, int gray_encode, int precode);
+    +                  int avsp_8812_state_write_to_device(Aapl_t *aapl, Avsp_state_t *state, uint half);
+    +                  int avsp_get_self_healing(Aapl_t *aapl, uint prtad);
+    +                 void avsp_set_self_healing(Aapl_t *aapl, uint prtad, int self_heal_enable);
+
+
+==============================================================================
+Version 2.3
+Release date: September 30, 2015.
+==============================================================================
+
+Highlights:
+The 2.3 release improves eye gathering performance by moving some of the
+operations onto the SBus Master processor.  Using SBus Master firmware
+revision 0x101A, up to 8x improvement is typical.  All builds of SBus Master
+firmware support the faster eye gathering mode, except for 0x04 builds.
+Furthermore, AAPL's eye gathering API has not changed: the faster mode
+is selected automatically when the SBus Master firmware supports it.
+
+
+Changes from the 2.2.3 release:
+
+* Improved eye measurement performance (requires 0x101A SBus Master FW).
+* Improved support for newer Avago SerDes.
+* Addition of eye gathering to Open Source distribution (see note below).
+
+
+Changed APIs: =========================================================
+    None.
+
+Added APIs:   =========================================================
+    int avsp_5410_loopback(Aapl_t *aapl, const char *sel_tuning, uint prtad, Avsp_lb_mode_t lb_mode, Avsp_lb_side_t lb_side);
+
+Open Source Changes: =========================================================
+* Added eye gathering capability to Open Source distribution.  Open Source eye
+  gathering requires the new SBM eye gathering firmware and makes use of the
+  same API as the non-Open Source version, though a small number of fields in
+  the Avago_serdes_eye_config_t and Avago_serdes_eye_data_t structures are
+  removed.  In addition, use of these fields, as well as non-SBM eye gather
+  functionality, is removed from the Open Source source code distribution.
+
+
+==============================================================================
+Version 2.2.3
+Release date: September 05, 2015.
+==============================================================================
+
+Continue to increase support for newer devices and fix problems from earlier
+    releases.
+
+Changes from the 2.2.2 release:
+
+* Fix incorrect vertical bathtub curve calculations on D6 (standard) SerDes.
+* Add routines for controlling the PS1 power and clock controls.
+* Add registration function for JTAG IDCODE.
+* Fix multiple chip bit_banged_jtag communication issues.
+* Add/improve support for newer devices and firmware releases.
+* Fix RAM BIST checking code for newer chips.
+
+
+Changed APIs: =========================================================
+    Rename from 5420 to 5410:
+    -         int aapl_avsp_5420_main(int argc, char *argv[], Aapl_t *aapl);
+    +         int aapl_avsp_5410_main(int argc, char *argv[], Aapl_t *aapl);
+    -         int avsp_5420_set_mode(Aapl_t *aapl, Avsp_state_t *state);
+    +         int avsp_5410_set_mode(Aapl_t *aapl, Avsp_state_t *state);
+
+    Parameter type change:
+    -         int avago_serdes_delay_cal(Aapl_t *aapl, uint addr, int mode, bigint dwell, int *start, int *stop);
+    +         int avago_serdes_delay_cal(Aapl_t *aapl, uint addr, uint mode, bigint dwell, int *start, int *stop);
+
+    Rename:
+    - void avago_ps1_status(Aapl_t *aapl);
+    + void avago_ps1_display_power_status(Aapl_t *aapl);
+
+    Additional parameter:
+    -        void avago_serdes_sas_logger(Aapl_t *aapl, uint sbus_addr, uint int_sas_data, const char *tablefile, int log_type, int log_sas_iter, int log_steps);
+    +        void avago_serdes_sas_logger(Aapl_t *aapl, uint sbus_addr, uint int_sas_data, const char *tablefile, int sas_iterations, int log_type, int log_sas_iter, int log_steps);
+
+    Add missing parameter, needed to support multiple AVSP devices:
+    - Avsp_mode_t avsp_7412_get_mode(Aapl_t *aapl);
+    + Avsp_mode_t avsp_7412_get_mode(Aapl_t *aapl, uint prtad);
+
+
+Added APIs:   =========================================================
+
+    +         int avsp_5410_bring_up(Aapl_t *aapl, uint prtad, const char *slices);
+    +         int avsp_5410_control_logic_reset_direct(Aapl_t *aapl, uint prtad, const char *direction);
+    + Avsp_mode_t avsp_5410_get_mode(Aapl_t *aapl, uint prtad);
+
+    +         int avsp_8812_control_logic_reset_direct(Aapl_t *aapl, uint prtad, Avsp_mode_t mode, uint half_select);
+
+    +        void aapl_register_jtag_idcode_fn(Aapl_t *aapl, uint(*jtag_idcode_fn)(Aapl_t *, uint device));
+
+    +         int avago_ps1_get_power_settings(Aapl_t *aapl, Avago_ps1_power_t *power);
+    +         int avago_ps1_get_power_values(Aapl_t *aapl, Avago_ps1_power_t *power);
+    +         int avago_ps1_power_off(Aapl_t *aapl);
+    +         int avago_ps1_set_clock_settings(Aapl_t *aapl, Avago_ps1_power_t *power);
+    +         int avago_ps1_set_power_defaults(Aapl_t *aapl);
+    +         int avago_ps1_set_power_settings(Aapl_t *aapl, Avago_ps1_power_t *power);
+
+    +        uint avago_sbus_rd_array(Aapl_t *aapl, uint sbus_addr, uint count, const unsigned char *reg, uint *data);
+
+    +         int avago_serdes_pmd_status(Aapl_t *aapl, uint addr);
+
+    +        void avago_serdes_sas_addrs(Aapl_t *aapl, const char *tablefile, int *ref1_km1, int *ref2_km1, int *noeq_km1, int *ref1_k0, int *ref2_k0, int *noeq_k0, int *ref1_kp1, int *ref2_kp1, int *noeq_kp1, int *pmd_km1, int *pmd_k0, int *pmd_kp1);
+
+
+==============================================================================
+Version 2.2.2
+Release date: July 2, 2015.
+==============================================================================
+
+Continue to increase support for newer devices and fix problems from earlier
+    releases.
+
+Changes from the 2.2.1 release:
+
+Changed APIs: =========================================================
+
+    These are minor type changes:
+    -   uint avago_serdes_diag(Aapl_t *aapl, uint addr, Avago_diag_config_t *config);
+    +    int avago_serdes_diag(Aapl_t *aapl, uint addr, Avago_diag_config_t *config);
+
+    - char * avago_serdes_get_state_dump(Aapl_t *aapl, uint addr, uint disable_features, uint ignore_errors);
+    + char * avago_serdes_get_state_dump(Aapl_t *aapl, uint addr, uint disable_features, int ignore_errors);
+
+    -   uint avago_spico_diag(Aapl_t *aapl, uint addr, int cycles);
+    +    int avago_spico_diag(Aapl_t *aapl, uint addr, int cycles);
+
+    -   void avsp_7412_init(Aapl_t *aapl, uint prtad, Avsp_7412_state_t state);
+    +   void avsp_7412_init(Aapl_t *aapl, uint prtad, Avsp_state_7412_t state);
+
+    This change makes the name consistent with the type and consistent with
+    other like functions.
+    - Avago_serdes_mem_type_t aapl_dma_type_from_str(const char *str, const char *optname);
+    + Avago_serdes_mem_type_t aapl_mem_type_from_str(const char *str, const char *optname);
+
+Added APIs:   =========================================================
+
+    +           int aapl_avsp_5420_main(int argc, char *argv[], Aapl_t *aapl);
+    +           int avago_serdes_delay_cal(Aapl_t *aapl, uint addr, int mode, bigint dwell, int *start, int *stop);
+    + unsigned char avago_serdes_set_delay_vernier(Aapl_t *aapl, uint addr, int x);
+    +           int avsp_5420_set_mode(Aapl_t *aapl, Avsp_state_t *state);
+    +   Avsp_mode_t avsp_7412_get_mode(Aapl_t *aapl);
+    +           int avsp_7412_set_mode(Aapl_t *aapl, Avsp_state_t *state);
+    +          void avsp_8812_fec_error_reset(Aapl_t *aapl, uint avsp_prtad, uint which_fec);
+
+==============================================================================
+Version 2.2.1
+Release date: June 12, 2015.
+==============================================================================
+
+Increase support for newer devices and fix several problems from the 2.2.0
+    release.
+
+Changes from 2.2.0 release:
+    + Fix eye capture issues affecting standard SerDes, which were introduced
+        into the 2.2.0 release when adding initial PAM4 eye capture support.
+    + Fix inconsistencies in registered communication function definitions.
+    + Mask lane field of address structure before passing to user sbus function.
+    + Add BTC calculations for PAM4 devices.
+
+Changed APIs: =========================================================
+
+    Add additional parameters:
+    - void avago_serdes_sas_logger(Aapl_t *aapl, uint sbus_addr, uint int_sas_data, const char *tablefile);
+    + void avago_serdes_sas_logger(Aapl_t *aapl, uint sbus_addr, uint int_sas_data, const char *tablefile, int log_type, int log_sas_iter, int log_steps);
+
+==============================================================================
+Version 2.2.0
+Release date: May 22, 2015.
+==============================================================================
+
+New in AAPL release 2.2:
++ All user_supplied functions have been replaced with function registration.
+  Rather than modifying the AAPL file user_code.c to implement hardware specific
+  communication methods, the user code is kept separate from AAPL and
+  registered at run-time.  This provides a cleaner and easier to integrate
+  interface.  See the file user_code.c for full details.
+
++ All main programs now take an "Aapl_t *" parameter.  This will facilitate
+  direct calling from a user program, including registration of user functions
+  before calling main.
+
++ Work-in-progress support for various new Avago test chips and technologies.
+
+
+Removed APIs: =========================================================
+
+    These are removed as part of the communication function registration
+    change:
+    -  int aapl_gpio_gpio_init(void);
+    - uint aapl_gpio_mdio_function(Aapl_t *aapl, Avago_mdio_cmd_t mdio_cmd, uint port_addr, uint dev_addr, uint reg_addr, uint data);
+    -  int aapl_is_system_communication_method(Aapl_t *aapl);
+    -  int aapl_is_user_communication_method(Aapl_t *aapl);
+    - void avago_aacs_close(Aapl_t *aapl);
+    - void avago_aacs_open(Aapl_t *aapl);
+    -  int avago_gpio_mdio_close(Aapl_t *aapl);
+    -  int avago_gpio_mdio_open(Aapl_t *aapl);
+    -  int avago_i2c_close(Aapl_t *aapl);
+    -  int avago_i2c_open(Aapl_t *aapl);
+    -  int avago_i2c_sbus(Aapl_t *aapl, uint sbus_addr, unsigned char reg_addr, unsigned char command, uint sbus_data);
+    - uint avago_jtag_sbus(Aapl_t *aapl, int sbus_address, int data_address, int command, int data);
+    -  int avago_mdio_close(Aapl_t *aapl);
+    -  int avago_mdio_open(Aapl_t *aapl);
+    - uint avago_mdio_sbus(Aapl_t *aapl, uint sbus_addr, unsigned char reg_addr, unsigned char command, uint sbus_data);
+    -  int avago_sbus_close(Aapl_t *aapl);
+    -  int avago_sbus_open(Aapl_t *aapl);
+    -  int user_supplied_i2c_close_function(Aapl_t *aapl);
+    -  int user_supplied_i2c_open_function(Aapl_t *aapl);
+    - uint user_supplied_i2c_read_function(Aapl_t *aapl, unsigned char device_addr, unsigned char length, unsigned char *buffer);
+    - uint user_supplied_i2c_write_function(Aapl_t *aapl, unsigned char device_addr, unsigned char length, unsigned char *buffer);
+    -  int user_supplied_jtag_close_function(Aapl_t *aapl);
+    - uint user_supplied_jtag_function(Aapl_t *aapl, uint tms, uint tdi, uint trst_l);
+    -  int user_supplied_jtag_open_function(Aapl_t *aapl);
+    -  int user_supplied_mdio_close_function(Aapl_t *aapl);
+    - uint user_supplied_mdio_function(Aapl_t *aapl, Avago_mdio_cmd_t mdio_cmd, uint port_addr, uint dev_addr, uint reg_addr, uint data);
+    -  int user_supplied_mdio_open_function(Aapl_t *aapl);
+    -  int user_supplied_sbus_close_function(Aapl_t *aapl);
+    - uint user_supplied_sbus_function(Aapl_t *aapl, uint sbus_addr, unsigned char reg_addr, unsigned char command, uint sbus_data, int recv_data_back);
+    -  int user_supplied_sbus_open_function(Aapl_t *aapl);
+    - uint user_supplied_serdes_interrupt_function(Aapl_t *aapl, uint sbus_addr, int int_num, int param);
+
+Added APIs:   =========================================================
+
+    Added as part of the communication function registration change:
+    + void aapl_register_bit_banged_jtag_fn(Aapl_t *aapl, int(*jtag_fn)(Aapl_t *, int tms, int tdi, int trst_l, int get_tdo), int(*comm_open_fn)(Aapl_t *), int(*comm_close_fn)(Aapl_t *));
+    + void aapl_register_i2c_fn(Aapl_t *aapl, int(*i2c_rd_fn)(Aapl_t *, uint dev_addr, uint length, unsigned char *buffer), int(*i2c_wr_fn)(Aapl_t *, uint dev_addr, uint length, unsigned char *buffer), int(*comm_open_fn)(Aapl_t *), int(*comm_close_fn)(Aapl_t *));
+    + void aapl_register_jtag_fn(Aapl_t *aapl, char *(*jtag_fn)(Aapl_t *, int opcode, int bits, const char *tdi, int get_tdo), int(*comm_open_fn)(Aapl_t *), int(*comm_close_fn)(Aapl_t *));
+    + void aapl_register_mdio_fn(Aapl_t *aapl, uint(*mdio_fn)(Aapl_t *, Avago_mdio_cmd_t mdio_cmd, uint port_addr, uint dev_addr, uint reg_addr, uint data), int(*comm_open_fn)(Aapl_t *), int(*comm_close_fn)(Aapl_t *));
+    + void aapl_register_sbus_fn(Aapl_t *aapl, uint(*user_sbus_fn)(Aapl_t *, uint addr, unsigned char reg_addr, unsigned char command, uint *sbus_data), int(*comm_open_fn)(Aapl_t *), int(*comm_close_fn)(Aapl_t *));
+    + void aapl_register_spico_int_fn(Aapl_t *aapl, uint(*serdes_int_fn)(Aapl_t *aapl, uint addr, int int_code, int int_data));
+
+    Added as part of the "Aapl_t *" parameter addition to main programs:
+    +                      int aapl_main(int argc, char *argv[], Aapl_t *aapl);
+
+    New functionality or APIs to existing functionality:
+    +                      int aapl_ps1_main(int argc, char *argv[], Aapl_t *aapl);
+    +                     void avago_device_info_all(Aapl_t *aapl);
+    +                     void avago_device_info_options(Aapl_t *aapl, Avago_addr_t *addr_struct, Avago_ip_type_t type, Avago_state_table_options_t *options);
+    +                   char * avago_jtag_options(Aapl_t *aapl, int opcode, int bits, const char *data, int get_tdo);
+    +                     void avago_jtag_scan_options(Aapl_t *aapl, int bits, int tms, const char *tdi, char *tdo, Aapl_jtag_state_t state);
+    +                     uint avago_make_sbus_addr(uint addr, int sbus);
+    +                     void avago_sbm_dmem_dump(Aapl_t *aapl, uint addr);
+    +                     void avago_sbm_imem_dump(Aapl_t *aapl, uint addr);
+    +                     void avago_sbm_rom_dump(Aapl_t *aapl, uint addr);
+    +                     void avago_serdes_data_qual_init(Avago_serdes_data_qual_t *ext_qual);
+    + Avago_serdes_data_qual_t avago_serdes_get_data_qual(Aapl_t *aapl, uint sbus);
+    +                      int avago_serdes_get_frequency_lock(Aapl_t *aapl, uint sbus_addr);
+    +                      int avago_serdes_get_signal_ok_live(Aapl_t *aapl, uint sbus_addr);
+    +                   char * avago_serdes_pattern_capture(Aapl_t *aapl, uint addr, int pattern_length);
+    +                     void avago_serdes_print_state_table_options(Aapl_t *aapl, Avago_addr_t *addr_struct, Avago_state_table_options_t *options);
+    +                     void avago_serdes_sas_logger(Aapl_t *aapl, uint sbus_addr, uint int_sas_data, const char *tablefile);
+    +                      int avago_serdes_set_data_qual(Aapl_t *aapl, uint sbus, Avago_serdes_data_qual_t qual);
+    +                     uint avago_spico_get_pc(Aapl_t *aapl, uint addr);
+    +                     uint avago_spico_get_state(Aapl_t *aapl, uint addr);
+    +                     void avsp_9104_set_kr_backchannel_mux(Aapl_t *aapl, uint chip, uint slice_0_rx, uint slice_1_rx, uint slice_2_rx, uint slice_3_rx);
+    +                      int avsp_sensor_get_temperature(Aapl_t *aapl, uint prtad, int sensor, uint frequency);
+    +                      int avsp_sensor_get_voltage(Aapl_t *aapl, uint prtad, int sensor, uint frequency);
+
+Changed APIs: =========================================================
+
+    Rename existing function:
+    - const char * aapl_data_qual_to_str(Avago_serdes_rx_data_qual_t val);
+    + const char * aapl_rx_data_qual_to_str(Avago_serdes_rx_data_qual_t val);
+
+    Redefine with new type:
+    +                const char * aapl_data_qual_to_str(Avago_serdes_data_qual_t val);
+    - Avago_serdes_rx_data_qual_t aapl_data_qual_from_str(const char *str, const char *optname);
+    +    Avago_serdes_data_qual_t aapl_data_qual_from_str(const char *str, const char *optname);
+    -                         int aapl_str_to_data_qual(const char *name, Avago_serdes_rx_data_qual_t *out);
+    +                         int aapl_str_to_data_qual(const char *name, Avago_serdes_data_qual_t *out);
+
+    Add additional parameter.  Pass 0 (or FALSE) for previous behavior:
+    - int avago_spico_status(Aapl_t *aapl, uint sbus_addr, Avago_spico_status_t *st);
+    + int avago_spico_status(Aapl_t *aapl, uint sbus_addr, int no_cache, Avago_spico_status_t *st);
+
+    Change type to be consistent with other uses of prtad:
+    - int avsp_9104_fec_control_logic_reset_direct(Aapl_t *aapl, int prtad);
+    + int avsp_9104_fec_control_logic_reset_direct(Aapl_t *aapl, uint prtad);
+
+    Add the "Aapl_t *aapl" parameter as discussed above:
+    - int aapl_aacs_server_main(int argc, char *argv[]);
+    + int aapl_aacs_server_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_avsp_1104_main(int argc, char *argv[]);
+    + int aapl_avsp_1104_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_avsp_7412_main(int argc, char *argv[]);
+    + int aapl_avsp_7412_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_avsp_8812_main(int argc, char *argv[]);
+    + int aapl_avsp_8812_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_avsp_9104_main(int argc, char *argv[]);
+    + int aapl_avsp_9104_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_avsp_retimer_main(int argc, char *argv[]);
+    + int aapl_avsp_retimer_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_bist_main(int argc, char *argv[]);
+    + int aapl_bist_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_bsb_main(int argc, char *argv[]);
+    + int aapl_bsb_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_build_info_main(int argc, char *argv[]);
+    + int aapl_build_info_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_cmd_main(int argc, char *argv[]);
+    + int aapl_cmd_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_console_main(int argc, char *argv[]);
+    + int aapl_console_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_device_info_main(int argc, char *argv[]);
+    + int aapl_device_info_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_dfe_main(int argc, char *argv[]);
+    + int aapl_dfe_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_diag_main(int argc, char *argv[]);
+    + int aapl_diag_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_eeprom_main(int argc, char *argv[]);
+    + int aapl_eeprom_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_escope_main(int argc, char *argv[]);
+    + int aapl_escope_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_examples_main(int argc, char *argv[]);
+    + int aapl_examples_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_eye_main(int argc, char *argv[]);
+    + int aapl_eye_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_sbus_master_main(int argc, char *argv[]);
+    + int aapl_sbus_master_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_serdes_init_main(int argc, char *argv[]);
+    + int aapl_serdes_init_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_serdes_main(int argc, char *argv[]);
+    + int aapl_serdes_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_state_main(int argc, char *argv[]);
+    + int aapl_state_main(int argc, char *argv[], Aapl_t *aapl);
+    - int aapl_supervisor_main(int argc, char *argv[]);
+    + int aapl_supervisor_main(int argc, char *argv[], Aapl_t *aapl);
+
+
+==============================================================================
+Version 2.1.1
+Release date: April 17, 2015.
+==============================================================================
+Release notes:
+    This release increases AVSP-8812 support for crosspoint, AN and KR.
+    From the aapl command line:
+        "aapl state" now supports the AVSP-8812, including support for
+            configuring the crosspoint.
+            Run "aapl state -init REPEATER_DUPLEX -write-txt 8812.txt" to
+            generate an initial 8812 state file.  See the "tx_source_rx"
+            fields of this file for crosspoint configuration.
+        The "aapl avsp-8812" has a -xp option to specify from which Rx each Tx
+            listens.
+
+        CLI commands using direct writes:
+
+            aapl avsp-8812 -half0 REPEATER_DUPLEX -div0 165 -xp 76543210_fedcba98
+            sleep 5
+            aapl avsp-8812 -bring-up TUNE       # Tune SerDes and bring up connections.
+
+        CLI commands using the SBus Master processor:
+
+            aapl avsp-8812 -mode REPEATER_DUPLEX -div0 165
+            sleep 5
+            aapl avsp-8812 -bring-up TUNE       # Tune SerDes and bring up connections.
+
+        CLI state commands using direct writes to the device:
+            aapl state -init REPEATER_DUPLEX -divider 165 -write-device
+            aapl avsp-8812 -bring-up TUNE
+
+        Notes about stating the AVSP-8812 device:
+            Signal must be present at the Rx before the -bring-up option is
+            invoked.  The bring up option then tunes the Rx (which requires
+            signal) and phase calibrates the corresponding Tx (which also
+            requires signal).
+
+Resolved Issues:
++ Increase the avago_serdes_dfe_wait() timeout interval for SerDes firmware
+    revs 0x1054 and 0x1055 to accommodate the automatic pCal after iCal.
++ Move TRUE, FALSE and BOOL defines into aapl.h for easier removal if customer
+    has previously defined these in an enum.
++ Add escope and other support for PAM4 test chips.
++ Add addressing support for the P1 test chip.
++ Add jtag communication method support.
++ Fix a problem causing IMEM corruption following a soft-reset of the SBus
+    controller.
++ Fix incorrect use of close() on windows socket.
++ EYE: The error counter is automatically reset after eye gathering.
++ EYE: Improve eye centering on difficult eyes with multiple "centers".
++ EYE: Add ability to gather 5 to 7 UI width eyes.  1-8 UI widths now supported.
++ EYE: Add ASCII gradient plot option to CLI and associated functions.
++ EYE: Fix a significant rounding error in gradient calculation.
++ CLI: AVSP-* commands select slices to tune based on actual chip mode.
++ CLI: AVSP-x104 add [-direct]-reset-host-to-mod and [-direct]-reset-mod-to-host options.
++ CLI: Add serdes-init command support for setting encoding and width modes.
++ CLI: Fix NULL ptr free when passing a bad string to -a option.
+
+Summary of API changes:
+-----------------------------------------------------------------------------
+The API changes are mostly additions.  Two API changes affect the 8812 device,
+support for which was still being developed in the 2.1 release. The third
+change merely adds a return value where none was returned before.
+
+
+APIs removed from the AAPL 2.1.1 release:
+-----------------------------------------------------------------------------
+None
+
+APIs modified in the AAPL 2.1.1 release:
+-----------------------------------------------------------------------------
+From:                                 int avsp_8812_channel_align(Aapl_t *aapl, uint prtad, int gb, uint slip_count);
+To:                                   int avsp_8812_channel_align(Aapl_t *aapl, uint prtad);
+
+From:                                 int avsp_8812_set_mode(Aapl_t *aapl, uint prtad, Avsp_mode_t mode);
+To:                                   int avsp_8812_set_mode(Aapl_t *aapl, Avsp_state_t *state);
+
+From:                                void avago_serdes_tune(Aapl_t *aapl, uint sbus_addr, Avago_serdes_dfe_tune_t *control);
+To:                                   int avago_serdes_tune(Aapl_t *aapl, uint sbus_addr, Avago_serdes_dfe_tune_t *control);
+
+New APIs in the AAPL 2.1.1 release:
+-----------------------------------------------------------------------------
++                                     int aapl_is_jtag_communication_method(Aapl_t *aapl);
++                                    uint avago_jtag_sbus(Aapl_t *aapl, int sbus_address, int data_address, int command, int data);
++                                    void avago_jtag_scan(Aapl_t *aapl, int bits, int tms, const char *tdi, char *tdo);
++                                    uint avago_make_addr4(int chip, int ring, int sbus, int lane);
++                                    uint avago_make_sbus_lane_addr(uint addr, int lane);
++                                    void avago_ps1_status(Aapl_t *aapl);
++                                     int avago_serdes_enable_core_to_cntl(Aapl_t *aapl, uint addr, int enable_tx_rx_en, int enable_low_power);
++                                     int avago_serdes_error_reset(Aapl_t *aapl, uint addr);
++                                  char * avago_serdes_eye_gradient_plot_format(const Avago_serdes_eye_data_t *datap);
++                                    void avago_serdes_eye_gradient_plot_write(FILE *file, const Avago_serdes_eye_data_t *datap);
++                                     int avsp_8812_bring_up(Aapl_t *aapl, uint prtad, uint half, const char *direction, const char *sel_tuning);
++                                     int avsp_8812_channel_swap(Aapl_t *aapl, uint prtad, uint gb);
++                                     int avsp_8812_configure_crosspoint(Aapl_t *aapl, Avsp_state_t *state);
++                                     int avsp_8812_configure_half(Aapl_t *aapl, Avsp_state_t *state, Avsp_mode_t mode, int divider, uint half_sel);
++                                     int avsp_8812_get_gearbox_mode(Aapl_t *aapl, uint prtad, uint sbus);
++                             Avsp_mode_t avsp_8812_get_mode(Aapl_t *aapl, uint prtad, uint half);
++                                     int avsp_state_set_crosspoint(Aapl_t *aapl, Avsp_state_t *state, char *xp);
++                                     int user_supplied_jtag_close_function(Aapl_t *aapl);
++                                    uint user_supplied_jtag_function(Aapl_t *aapl, uint tms, uint tdi, uint trst_l);
++                                     int user_supplied_jtag_open_function(Aapl_t *aapl);
+
+
+==============================================================================
+Version 2.1
+Release date: 12/31/2014
+==============================================================================
+
+Primary changes:
++ Add AVSP-9104 functionality.
++ Add partial AVSP-8812 support.
++ Add auto-negotiation support.
++ Add ability to set tap1.  See avago_serdes_set_dfe_tap1().
++ Add a simple channel quality metric function.
+        See avago_serdes_eye_get_simple_metric().
++ Add DDR3 eTrain support.
++ Add direct temperature and voltage sensor APIs.
++ Add comprehensive upload functions.
+        See avago_firmware_upload() and avago_firmware_upload_file().
++ Some aapl sub-commands can parse and use list of sbus addresses.
++ 100+ new APIs, plus a few changes to existing APIs.  Details below.
+
+
+API Changes Summary
+-------------------
+Three APIs have changed, one is removed, 100+ are new.  We do not expect
+customers to be using the changed and removed APIs, or the changes are so
+minor as to not affect customer use.  Details are described below.
+
+In addition, several APIs that were intended to be internal only and which
+should not be accessed by users have been marked internal and are no longer
+exported by the headers.  Their prototypes will no longer be available via
+the standard include of aapl.h.
+
+APIs removed from the AAPL 2.1 release:
+-----------------------------------------------------------------------------
+    avago_serdes_dump
+        Was only called from avago_serdes_diag, which is the preferred
+        public function.
+
+
+APIs modified in the AAPL 2.1 release:
+-----------------------------------------------------------------------------
+    From: int aapl_str_to_addr(const char *name, uint *addr);
+    To:   int aapl_str_to_addr(const char *name, char **endptr, uint *addr);
+        Used to parse a string into an sbus address.  The additional parameter
+        returns first unparsed character and can be passed as NULL.
+        Call "aapl_str_to_addr(name, NULL, addr)" for previous behavior.
+
+    From: uint avago_diag(Aapl_t *aapl, uint addr, Avago_diag_config_t *config);
+    To:    int avago_diag(Aapl_t *aapl, uint addr, Avago_diag_config_t *config);
+        Return type changed from uint to int to match values actually
+        returned.
+
+    From: void avago_diag_sbus_rw_test(Aapl_t *aapl, uint sbus_addr, int cycles);
+    To:    int avago_diag_sbus_rw_test(Aapl_t *aapl, uint sbus_addr, int cycles);
+        Function now returns success or failure.
+
+
+Previously exported APIs now marked internal in the AAPL 2.1 release:
+-----------------------------------------------------------------------------
+    aapl_broadcast_first - signature also changed
+    aapl_broadcast_next  - signature also changed
+    aapl_get_ip_info_index
+    aapl_hex_2_bin
+    aapl_num_from_bin
+    aapl_num_from_hex
+    aapl_sign_mag
+    aapl_strcasecmp
+    aapl_strncasecmp
+    aapl_tcp_strerr
+    aapl_twos_comp
+    avago_serdes_find_phase_center
+    avago_serdes_get_phase
+    avago_serdes_get_phase_interpolator_power_state
+    avago_serdes_get_phase_multiplier
+    avago_serdes_get_rx_test_chan_rclk
+    avago_serdes_halt_spico - also renamed to avago_spico_halt
+    avago_serdes_power_down_phase_interpolator
+    avago_serdes_resume_spico - also renamed to avago_spico_resume
+    avago_serdes_set_dac
+    avago_serdes_set_error_timer
+    avago_serdes_set_rx_test_chan_rclk
+    avago_serdes_step_phase
+        If required, these APIs can be exposed by defining
+        AAPL_ENABLE_INTERNAL_FUNCTIONS before including aapl.h.  Note: Avago
+        reserves the right to change the API of non-exported and internal functions
+        without notification.
+
+New APIs:
+-----------------------------------------------------------------------------
++                                     int aapl_addr_list_from_str(Aapl_t *aapl, Avago_addr_t *addr, const char *optarg);
++                            const char * aapl_an_hcd_to_str(Avago_an_hcd_t value);
++                            const char * aapl_bsb_clk_to_str(Avago_serdes_bsb_clk_sel_t val);
++                            const char * aapl_bsb_mode_to_str(Avago_serdes_bsb_mode_t val);
++                                    void aapl_buf_add(Aapl_t *aapl, char **buf, char **buf_end, int *size, const char *fmt, ...);
++                                     int aapl_check_firmware_build(Aapl_t *aapl, uint addr, const char *caller, int line, int error, int args, ...);
++                                     int aapl_check_ip_type_exists(Aapl_t *aapl, uint addr, const char *caller, int line, int error, int args, ...);
++                                     int aapl_get_async_cancel_flag(Aapl_t *aapl);
++                                     int aapl_get_firmware_build(Aapl_t *aapl, uint addr);
++                                     int aapl_set_async_cancel_flag(Aapl_t *aapl, int new_value);
++                                     int aapl_str_to_addr(const char *name, char **endptr, uint *addr);
++                                     int aapl_str_to_bsb_clk(const char *name, Avago_serdes_bsb_clk_sel_t *out);
++                                     int aapl_str_to_bsb_mode(const char *name, Avago_serdes_bsb_mode_t *out);
++                                    void avago_aacs_close(Aapl_t *aapl);
++                                    void avago_aacs_flush(Aapl_t *aapl);
++                                    void avago_aacs_open(Aapl_t *aapl);
++                                     int avago_aacs_server_options(Aapl_t *aapl, int tcp_port, const char *aacs_server_host, uint aacs_server_host_port);
++                                    void avago_addr_free(Aapl_t *aapl, Avago_addr_t *addr);
++                                    uint avago_addr_init_broadcast(Avago_addr_t *addr_struct);
++                                     int avago_an_get_info(Aapl_t *aapl, uint sbus_addr, Avago_an_info_t *an_info);
++                                     int avago_bist(Aapl_t *aapl, uint reset, uint sbus_addr_in, uint divider, uint testmask, uint upgrade_warnings, int rom_size, const int *rom_ptr);
++                                     int avago_bist_file(Aapl_t *aapl, uint reset, uint sbus_addr_in, uint divider, uint testmask, uint upgrade_warnings, const char *firmware);
++                                     int avago_ddr3_channel_diagnostics(Aapl_t *aapl, uint spico_addr, uint channel);
++                                     int avago_ddr3_channel_to_sbus_addr(Aapl_t *aapl, uint spico_addr, uint channel);
++                                     int avago_ddr3_diagnostics(Aapl_t *aapl, uint spico_addr);
++                                     int avago_ddr3_force_training_complete(Aapl_t *aapl, uint spico_addr, uint channel);
++                                     int avago_ddr3_get_channel_count(Aapl_t *aapl, uint spico_addr);
++                                     int avago_ddr3_get_parameter(Aapl_t *aapl, uint spico_addr, Avago_ddr3_parameter_t param);
++                                     int avago_ddr3_get_training_values(Aapl_t *aapl, uint spico_addr, uint channel, Avago_ddr3_training_values_t *values);
++                                     int avago_ddr3_load_coarse_rdlvl_value(Aapl_t *aapl, uint etrain_addr, uint byte_num, uint value);
++                                     int avago_ddr3_load_data_pbds_value(Aapl_t *aapl, uint train_addr, uint byte_num, uint lane, uint read_write, uint value);
++                                     int avago_ddr3_load_fine_rdlvl_value(Aapl_t *aapl, uint etrain_addr, uint byte_num, uint value);
++                                     int avago_ddr3_load_stb_pbds_value(Aapl_t *aapl, uint train_addr, uint byte_num, uint read_write, uint value);
++                                     int avago_ddr3_load_wrlvl_value(Aapl_t *aapl, uint etrain_addr, uint byte_num, uint value);
++                                     int avago_ddr3_query_training_status(Aapl_t *aapl, uint spico_addr, uint channel);
++                                    void avago_ddr3_report_spico_status(Aapl_t *aapl, uint spico_addr);
++                                     int avago_ddr3_report_training_values(Aapl_t *aapl, uint spico_addr, uint channel, Avago_ddr3_training_values_t *values);
++                                     int avago_ddr3_reset_sbus(Aapl_t *aapl, uint sbus_addr);
++                                    void avago_ddr3_sbus_dump(Aapl_t *aapl, uint spico_addr, uint channel, char *device_name);
++                                    void avago_ddr3_sbus_dump_channel_devices(Aapl_t *aapl, uint spico_addr, uint channel);
++                                     int avago_ddr3_set_frequency_config(Aapl_t *aapl, uint spico_addr, Avago_ddr3_frequency_config_t freq_config);
++                                     int avago_ddr3_set_parameter(Aapl_t *aapl, uint spico_addr, Avago_ddr3_parameter_t param, uint value);
++                                     int avago_ddr3_set_training_values(Aapl_t *aapl, uint spico_addr, uint channel, Avago_ddr3_training_values_t *values);
++                                     int avago_ddr3_train_all_channels(Aapl_t *aapl, uint spico_addr);
++                                     int avago_ddr3_train_channel(Aapl_t *aapl, uint spico_addr, uint channel);
++                                  char * avago_ddr3_training_error_desc(int result);
++          Avago_ddr3_training_values_t * avago_ddr3_training_values_construct(Aapl_t *aapl);
++                                    void avago_ddr3_training_values_destruct(Aapl_t *aapl, Avago_ddr3_training_values_t *values);
++                                    void avago_device_info(Aapl_t *aapl, Avago_addr_t *addr_struct, Avago_ip_type_t type);
++                                     int avago_diag(Aapl_t *aapl, uint addr, Avago_diag_config_t *config);
+                                      int avago_diag_sbus_rw_test(Aapl_t *aapl, uint sbus_addr, int cycles);
++                                     int avago_firmware_upload(Aapl_t *aapl, uint addr, int serdes_rom_size, const int *serdes_rom, int sbm_rom_size, const int *sbm_rom, int sdi_rom_size, const int *sdi_rom);
++                                     int avago_firmware_upload_file(Aapl_t *aapl, uint addr, const char *serdes_rom_file, const char *sbm_rom_file, const char *sdi_rom_file);
++                                    void avago_jtag_set_bit(Aapl_t *aapl, int opcode, uint bits, uint set_bit, uint value);
++                          Avago_pmro_t * avago_pmro_construct(Aapl_t *aapl);
++                                    void avago_pmro_destruct(Aapl_t *aapl, Avago_pmro_t *config);
++                                     int avago_pmro_get_results(Aapl_t *aapl, uint sbus_addr, Avago_pmro_t *config);
++                                    void avago_pmro_print_results(Aapl_t *aapl, uint sbus_addr, Avago_pmro_t *config);
++                                     int avago_sbm_get_refclk(Aapl_t *aapl, uint addr);
++                                    uint avago_sbus_wr_flush(Aapl_t *aapl, uint sbus_addr, unsigned char reg, uint data);
++                                     int avago_sensor_get_temperature(Aapl_t *aapl, uint addr, int sensor, uint frequency);
++                                     int avago_sensor_get_voltage(Aapl_t *aapl, uint addr, int sensor, uint frequency);
++                                    void avago_sensor_start_temperature(Aapl_t *aapl, uint addr, int sensor, uint frequency);
++                                    void avago_sensor_start_voltage(Aapl_t *aapl, uint addr, int sensor, uint frequency);
++                                     int avago_sensor_wait_temperature(Aapl_t *aapl, uint addr, int sensor);
++                                     int avago_sensor_wait_voltage(Aapl_t *aapl, uint addr, int sensor);
++                                  char * avago_serdes_dfe_state_to_str(Aapl_t *aapl, uint sbus_addr, Avago_serdes_dfe_state_t *dfe_state, int single_line, int header);
++                                    uint avago_serdes_eye_get_simple_metric(Aapl_t *aapl, uint addr);
++                                     int avago_serdes_get_rx_data(Aapl_t *aapl, uint sbus_addr, long data[4]);
++                                     int avago_serdes_get_rx_line_encoding(Aapl_t *aapl, uint addr);
++                                     int avago_serdes_get_rx_live_data(Aapl_t *aapl, uint sbus_addr);
++                                  char * avago_serdes_get_state_dump(Aapl_t *aapl, uint addr, uint disable_features, uint ignore_errors);
++                                     int avago_serdes_get_tx_line_encoding(Aapl_t *aapl, uint addr);
++                                     int avago_serdes_health_check(Aapl_t *aapl, uint addr, Avago_serdes_health_check_config_t *config);
++    Avago_serdes_health_check_config_t * avago_serdes_health_check_config_construct(Aapl_t *aapl);
++                                    void avago_serdes_health_check_config_destruct(Aapl_t *aapl, Avago_serdes_health_check_config_t *config);
++                                     int avago_serdes_link_init(Avago_serdes_link_init_config_t *config);
++       Avago_serdes_link_init_config_t * avago_serdes_link_init_config_construct(Aapl_t *aapl_a, uint addr_a, Aapl_t *aapl_b, uint addr_b);
++                                    void avago_serdes_link_init_config_destruct(Aapl_t *aapl, Avago_serdes_link_init_config_t *config);
++                                     int avago_serdes_link_init_quick(Aapl_t *aapl_a, uint addr_a, uint div_a, Aapl_t *aapl_b, uint addr_b, uint div_b);
++                                    void avago_serdes_print_state_table(Aapl_t *aapl, Avago_addr_t *addr_struct);
++                                     int avago_serdes_set_dfe_tap1(Aapl_t *aapl, uint sbus_addr, int tap1);
++                                     int avago_serdes_set_tx_rx_width_pam(Aapl_t *aapl, uint sbus_addr, int tx_width, int rx_width, Avago_serdes_encoding_mode_t tx_encoding, Avago_serdes_encoding_mode_t rx_encoding);
++                                     int avago_serdes_slip_bits(Aapl_t *aapl, uint sbus_addr, uint bits);
++                                     int avago_serdes_slip_rx_phase(Aapl_t *aapl, uint sbus_addr, uint bits, int apply_at_init);
++                                     int avago_serdes_slip_tx_phase(Aapl_t *aapl, uint sbus_addr, uint bits, int apply_at_init);
++                                    void avago_serdes_tune(Aapl_t *aapl, uint sbus_addr, Avago_serdes_dfe_tune_t *control);
++                                    void avago_serdes_tune_init(Aapl_t *aapl, Avago_serdes_dfe_tune_t *control);
++                                    uint avago_spico_diag(Aapl_t *aapl, uint addr, int cycles);
++                                     int avago_spico_int_check(Aapl_t *aapl, const char *caller, int line, uint addr, int int_num, int param);
++                                    void avago_spico_wait_for_upload(Aapl_t *aapl, uint sbus_addr);
++                                    void avago_twi_wait_for_complete(Aapl_t *aapl, uint sbus_addr);
++                                    void avsp_7412_init(Aapl_t *aapl, uint prtad, Avsp_7412_state_t state);
++                                     int avsp_8812_channel_align(Aapl_t *aapl, uint prtad, int gb, uint slip_count);
++                                     int avsp_8812_crosspoint_connect(Aapl_t *aapl, uint prtad, uint from_sd, uint to_sd);
++                                     int avsp_8812_crosspoint_connect_all(Aapl_t *aapl, uint prtad, char crosspoint[16]);
++                                     int avsp_8812_crosspoint_get(Aapl_t *aapl, uint prtad, uint to_sd);
++                                     int avsp_8812_crosspoint_get_all(Aapl_t *aapl, uint prtad, char crosspoint[16]);
++                                     int avsp_8812_get_enabled(Aapl_t *aapl, uint prtad, uint sbus);
++                                     int avsp_8812_get_status(Aapl_t *aapl, uint avsp_prtad, uint which_fec, Avsp_fec_register_t type, uint lane, int host);
++                                     int avsp_8812_set_control(Aapl_t *aapl, uint avsp_prtad, uint which_fec, Avsp_fec_register_t type, int value);
++                                     int avsp_8812_set_mode(Aapl_t *aapl, uint prtad, Avsp_mode_t mode);
++                                     int avsp_9104_fec_control_logic_reset_direct(Aapl_t *aapl, int prtad);
++                                     int avsp_9104_fec_control_logic_reset_host_to_mod_direct(Aapl_t *aapl, uint prtad);
++                                     int avsp_9104_fec_control_logic_reset_mod_to_host_direct(Aapl_t *aapl, uint prtad);
++                             Avsp_mode_t avsp_9104_get_mode(Aapl_t *aapl, uint prtad);
++                                     int avsp_9104_get_status(Aapl_t *aapl, uint avsp_prtad, Avsp_fec_register_t type, uint lane, int host);
++                                    uint avsp_9104_loopback(Aapl_t *aapl, uint div_ratio, uint prtad, Avsp_mode_t pma_v_rpt, Avsp_lb_mode_t lb_mode, Avsp_lb_side_t lb_side);
++                                     int avsp_9104_set_control(Aapl_t *aapl, uint avsp_prtad, Avsp_fec_register_t type, int value);
++                                    uint avsp_9104_slip(Aapl_t *aapl, uint prtad, uint host_sbus_addr, uint mod_sbus_addr);
++                      Avsp_an_config_t * avsp_an_config_construct(Aapl_t *aapl);
++                                    void avsp_an_config_destruct(Aapl_t *aapl, Avsp_an_config_t *config);
++                                    uint avsp_an_start(Aapl_t *aapl, uint chip, Avsp_an_config_t *config);
++                                     int avsp_get_name_list(Aapl_t *aapl, uint prtad, const char *avsp_name, uint *len, const char ** *names);
++                                     int avsp_get_refclk_divisor(Aapl_t *aapl, uint prtad);
++                                     int avsp_state_device_with_options(Aapl_t *aapl, uint prtad, Avsp_state_options_t *options);
++                                    void avsp_state_options_init(Aapl_t *aapl, Avsp_state_options_t *options);
+
+
+==============================================================================
+Version 2.0.1
+Release date: 06/16/2014
+==============================================================================
+
+The AAPL 2.0.1 release builds on the 2.0.0 release with defect fixes and the
+addition of EEPROM functionality to AAPL.
+
+New Functionality:
++ Add functions to create multi-image EEPROM ABI files for auto-loading and
+   stating multiple AVSP devices.
++ Add functions for programming EEPROM from ABI files.
++ Add CLI for creating EEPROM images and programming EEPROM.
++ avago_serdes_get_electrical_idle() function.
++ Add functions for manipulating the INTERRUPT output pin on AVSP devices.
+
+Defect Fixes:
++ avsp_state_write_to_device() caused DFE tuning to hang in the firmware.
++ avsp_state_read_from_memory() and avsp_state_read_from_sdi() did not read
+   TX PRBS values correctly.
++ avsp_state_print_dfe() swapped hf and lf values in output.
++ Removed write size limitation from avago_i2c_write().
++ Fixed memory allocation error in avago_serdes_dfe_batch_tune().
++ avago_serdes_eye_qval_get() now returns mission data when x_point is -1.
++ Fixed display of dfeTAP1 value in avago_write_dfe_state() output.
++ Support SBus Master upload to chip and ring broadcast.
++ Improve performance of swap and sbus master firmware uploads.
++ Improve portability of code by addressing pedantic compiler warnings.
++ Reduce size of library by moving functions under AAPL_ENABLE_MAIN ifdef.
++ Reduce size of library by moving functions under AAPL_ENABLE_DIAG ifdef.
++ Fix an error suppression defect.
++ Fix defect related to correctly stopping and restarting the SerDes SPICO.
+
+API Changes:
++ avsp_upload_firmware(): Add parameters for SerDes swap image.
++ avsp_state_write_to_sdi_file() accepts a SerDes firmware file name, to
+   include swap in the SDI output file.
++ avago_serdes_eye_qval_get() x_point parameter type changed from uint to int.
++ avago_serdes_eye_vbtc_extrapolate() data_col parameter type changed from
+   uint to int.
++ avago_serdes_get_signal_ok(): Added a reset parameter.
+
+
+
+
+==============================================================================
+Version 2.0.0
+Release date: 05/08/2014
+==============================================================================
+
+The AAPL 2.0.0 release has a rich feature set of tools to allow developers
+to integrate into their software and allow better configuration and control of
+their ASIC or ASSP. The list below is the highlights of new and/or improved
+features included in this release of AAPL.
+
+
+* Updated API
+    + API signature changes to avoid conflict with user functions:
+        All functions and types begin with avago_, avsp_ or aapl_).
+    + Some API signatures changed to using a structure as an argument instead
+        of multiple individual arguments
+* Improved run-time memory usage
+    + User can configure number of devices
+* Mechanism to compile slimmed down version
+    + User can easily compile out features they don't need
+* Consolidated multiple executables into one "aapl" executable
+    + Improved help for each command
+    + Much more functionality available from the command line
+* Improved diagnostics
+    + Selectable set of diagnostics
+    + Diagnostic output is more human readable
+    + Device information
+    + Version/build/compile information
+    + SerDes state information
+    + SBUS and MDIO read/write test
+    + Directly execute commands using the aapl executable
+* SerDes
+    + Load FW, Initialize and configure API
+    + SerDes DFE info API
+    + Tx and Rx configuration API
+* Improved Eye capture
+    + Measure the eye of a SerDes channel
+* eScope
+    + Capture the waveform of a repeating pattern
+* ASSP stating
+    + Capture and process AVSP startup state.
+* Documentation
+    + Improved API documentation
+    + Improved examples
+        Examples can be ran directly from the aapl executable
+
+* Known Issue:
+The avago_sbus_reset() function, if given a broadcast address, resets all
+devices on the ring, rather than only the SerDes devices.

@@ -1,0 +1,75 @@
+#!/bin/sh
+# BEGIN_LEGAL
+#
+# Copyright (c) 2016-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+# Log output of a `make` action:
+#
+# To handle `make -j`, this:
+#
+# * Ensures each line is written atomically.
+#
+# * Prefixes a unique action (process) ID to each line.
+
+if [ -f /common/pkgs/python/3.6.10/bin/python3 ]
+then
+    PYTHON_BIN=/common/pkgs/python/3.6.10/bin/python3
+else
+    PYTHON_BIN=/auto/asic-tools/sw/python/3.6.10/bin/python3
+fi
+
+MAKE_LOGGER_PY=`readlink -f $0`.py                # Location of the python script that actually does the work
+LOCK_FILE=/tmp/make_logger.`whoami`.lock          # Location of lock file to ensure atomicity between parallel action lines
+
+shift # Eat the -c flag that make gives as the 1st parameter by default
+
+case "$1" in
+
+    'unlogged '*)  # Allow `$(shell unlogged ... some command ...)` to return the clean command output
+        FIRST=`echo "$1" | sed 's/^unlogged\s*//'`
+        shift
+        /bin/sh -c "$FIRST" "$@"
+    ;;
+
+    'make -C '*)  # Avoid nested prefixes for output of nested make actions
+        /bin/sh -c "$@"
+    ;;
+
+    'echo '*';'*)  # An action `echo something; do something` needs to be handled
+        /bin/sh -c "$@" 2>&1 | $PYTHON_BIN $MAKE_LOGGER_PY $LOCK_FILE "$$: " "$@"
+        if [ $PIPESTATUS != 0 ]
+        then
+            echo -e "\e[31m\e[1m\e[7m$$: FAILURE: $*\e[m"
+            false
+        fi
+    ;;
+
+    'echo '*)  # But an action that is just `echo something` does not need to be handled
+        /bin/sh -c "$@"
+    ;;
+
+    *)  # Any other action needs to be handled
+        /bin/sh -c "$@" 2>&1 | $PYTHON_BIN $MAKE_LOGGER_PY $LOCK_FILE "$$: " "$@"
+        if [ $PIPESTATUS != 0 ]
+        then
+            echo -e "\e[31m\e[1m\e[7m$$: FAILURE: $*\e[m"
+            false
+        fi
+    ;;
+
+esac

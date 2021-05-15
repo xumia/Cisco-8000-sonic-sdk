@@ -1,0 +1,1 @@
+--folder rerun_files_folder_path/npl_app/main_folder --leaba_defined rerun_files_folder_path/leaba_defined_files/main_folder --create-nsim-archive out/opt3/build/shared/src/nplapi/compiled/nsim_archive

@@ -1,0 +1,269 @@
+// QoS and Congestion managenent - VOQ buffering architecture
+
+/// @page pacific_qos_and_congestion_management_voq_buffering QoS and Congestion managenent - VOQ buffering architecture
+///
+/// The forwaring decision of the ingress Packet Processing (PP) layer is the VOQ the packet should be forwaded to. Until the packet is scheduled to be transmitted from the VOQ to the output queue (OQ) it resides in a VOQ buffer.
+/// The main properties of a VOQ buffer as it affects traffic is:
+/// * <b>Buffer size in bytes</b>: the current and maximal size in bytes a VOQ buffer can hold.
+/// * <b>Buffer size in packets</b>: the current and maximal number of packets a VOQ buffer can hold.
+/// * <b>Buffer age</b>: the age of the oldest (head-of-line) packet in the buffer
+///
+/// A VOQ buffer can reside in two locations:
+/// * <b>Internal memory</b>: a relatively small storage location (upto 100KB). Also called Shared Memory Switch (SMS).
+/// * <b>External memory</b>: a relatively large storage location. Also called High Bandwidth Memory (HBM).
+///
+/// The SMS and HBM resources are limited, therefore the residing VOQs can become congested. There are four actions that can relieve existing or future congestion of a VOQ:
+/// * <b>Packet marking</b>: setting an explicit congestion notification (ECN) in the packet indicating that is using a congested VOQ.
+/// * <b>Packet dropping</b>: dropping packets from the VOQ buffer
+/// * <b>Flow control triggering</b>: indicating to the upstream network device to stop forwading traffic (of a certain class) to this device.
+/// * <b>Change in scheduling policy</b>: increasing the rate of scheduled packet from a VOQ to an OQ.
+///
+/// The VOQ buffer management supports the first two actions - packet marking and dropping.
+///
+/// @section storage_location_traffic_management_actions Traffic management actions per storage location
+/// The current state of a VOQ buffer (size in bytes, size in packets and age) affect the action taken when a new packet is requested to be stored in the VOQ buffer.
+/// The VOQ buffer properties that affect the traffic management actions depend on the current storage location of a VOQ.
+/// A VOQ residing in the SMS memory tracks its:
+/// * Instantaneous size in bytes.
+/// * Instantaneous size in packets.
+/// * Instantaneous age.
+///
+/// A VOQ residing in the extenal memory tracks its:
+/// * Instantaneous size in blocks.
+/// * Average size in blocks.
+///
+/// Where the size in blocks is a function of the number of stored packets and their sizes. A correleation between the number of stored packets and their sizes to the number of blocks the packets occupy is provided in <b>TODO</b>.
+/// 
+/// For example, a VOQ buffer residing in the SMS memory can reject the admission of new packets (drop), based in the buffer's age. A VOQ buffer residing in the HBM can drop packets based on the average size in blocks.
+/// However, a VOQ residing in SMS cannot drop packets based on its average size, nor can a VOQ in residing in HBM drop packes based on its age.
+///
+/// Another major difference is that a VOQ buffer residing in the HBM supports WRED - the ability to drop/mark packets statistically, whereas a VOQ residing in the SMS can react only deterministically.
+///
+/// @section wred_numerical_state_quantization Numerical properties' quantization
+/// The properties of a VOQ buffer (size, age, etc..) at each storage location are "continuous" values. However the actions taken when a new packet arrives to the VOQ are based on quantized values of each property. Thus, for each property there is a threshold quantization configuration that maps its continuous values to quantized ranges.
+///
+/// @section voq_storage_location_change VOQ storage location change
+/// A VOQ buffer initially resides in the SMS. As the VOQ buffer grows, it can be configured to be evicted to the HBM. An evicted VOQ moves all its data to the HMB, and uses the SMS as the tail of queue.
+/// Once a VOQ has been evicted to the HBM, all packets to the VOQ will be sent to the HBM. When the size in blocks that the VOQ takes in the HBM drops below a configurable threshold, the VOQ is retracted to the SMS.
+///
+/// @section voq_configuration_granularity VOQ configuration granularity
+/// The QoS and congestion management behavior is configured in VOQ-profiles. A VOQ is assigned with VOQ-profile to define its behavior.
+///
+/// @section voq_packet_storage_flow VOQ packet storage flow diagram
+/// The following diagram depicts the flow a packet undergoes when it is sent to a VOQ.
+/// 
+/// @dot
+/// digraph G {
+///    rankdir="LR";
+///    fontname="sans-serif";
+///    splines="true";
+///    penwidth="0.1";
+///    edge [comment="Wildcard edge", 
+///          fontname="sans-serif", 
+///          fontsize=10, 
+///          colorscheme="blues3", 
+///          color=2, 
+///          fontcolor=3];
+///    node [fontname="serif", 
+///          colorscheme="blues4", 
+///          color="2", 
+///          style="bold", 
+///          shape="box", 
+///          fontsize=13, 
+///          fillcolor="1", 
+///          fontcolor="4"];
+///    "drop_store_mark" [shape="diamond", 
+///                       style="bold, rounded", 
+///                       label="Drop,\nstore or mark"];
+///    "packet_processor" -> "drop_store_mark"  [label="Color"];
+///    "packet_processor" -> "drop_store_mark"  [style="dotted", 
+///                                              label="Packet"];
+///    "sms_size_in_bytes_quant" [style="bold, filled", 
+///                               fillcolor="beige", 
+///                               colorscheme="svg", 
+///                               color="lightblue", 
+///                               fontcolor="royalblue", 
+///                               label="SMS size in bytes quantization"];
+///    "sms" -> "sms_size_in_bytes_quant"  [label="Used size in bytes"];
+///    "sms_size_in_packets_quantization" [style="bold, filled", 
+///                                        fillcolor="beige", 
+///                                        colorscheme="svg", 
+///                                        color="lightblue", 
+///                                        fontcolor="royalblue", 
+///                                        label="SMS size in packets quantization"];
+///    "sms" -> "sms_size_in_packets_quantization"  [label="Used size in packets"];
+///    "num_of_voqs_in_hbm_quantization" [style="bold, filled", 
+///                                       fillcolor="beige", 
+///                                       colorscheme="svg", 
+///                                       color="lightblue", 
+///                                       fontcolor="royalblue", 
+///                                       label="HBM number of VOQ's quantization"];
+///    "hbm" -> "num_of_voqs_in_hbm_quantization"  [label="Number of VOQ's in HBM"];
+///    "voq_size_in_bytes_quantization" [style="bold, filled", 
+///                                      fillcolor="gold", 
+///                                      colorscheme="svg", 
+///                                      color="lightblue", 
+///                                      fontcolor="royalblue", 
+///                                      label="VOQ size in bytes quantization"];
+///    "voq_size_in_packets_quantization" [style="bold, filled", 
+///                                        fillcolor="gold", 
+///                                        colorscheme="svg", 
+///                                        color="lightblue", 
+///                                        fontcolor="royalblue", 
+///                                        label="VOQ size in packets quantization"];
+///    "voq_buffer_age_quantizaton" [style="bold, filled", 
+///                                  fillcolor="gold", 
+///                                  colorscheme="svg", 
+///                                  color="lightblue", 
+///                                  fontcolor="royalblue", 
+///                                  label="VOQ buffer age quantization"];
+///    "voq_in_sms" -> "voq_buffer_age_quantizaton"  [label="Buffer age"];
+///    "voq_in_sms" -> "voq_size_in_packets_quantization"  [label="\nSize in packets"];
+///    "voq_in_sms" -> "voq_size_in_bytes_quantization"  [label="Size in bytes"];
+///    "voq_sms_size_in_bytes_behavior" [style="bold, filled", 
+///                                      fillcolor="gold", 
+///                                      colorscheme="svg", 
+///                                      color="lightblue", 
+///                                      fontcolor="royalblue", 
+///                                      label="Size in bytes behavior"];
+///    "sms_size_in_bytes_quant" -> "voq_sms_size_in_bytes_behavior";
+///    "voq_size_in_bytes_quantization" -> "voq_sms_size_in_bytes_behavior";
+///    "voq_buffer_age_quantizaton" -> "voq_sms_size_in_bytes_behavior";
+///    "num_of_voqs_in_hbm_quantization" -> "voq_sms_size_in_bytes_behavior";
+///    "voq_sms_size_in_packets_behavior" [style="bold, filled", 
+///                                        fillcolor="gold", 
+///                                        colorscheme="svg", 
+///                                        color="lightblue", 
+///                                        fontcolor="royalblue", 
+///                                        label="Size in packets behavior"];
+///    "voq_size_in_packets_quantization" -> "voq_sms_size_in_packets_behavior";
+///    "voq_buffer_age_quantizaton" -> "voq_sms_size_in_packets_behavior";
+///    "voq_sms_size_in_bytes_behavior" -> "drop_store_mark"  [label="Drop yellow/green, mark"];
+///    subgraph "state_inputs" {
+///        rank=same;
+///        label="first_level";
+///        edge [comment="Wildcard node added automatic in EG."];
+///        node [comment="Wildcard node added automatic in EG."];
+///        "sms" [shape="box", 
+///               style="bold, rounded", 
+///               label="SMS"];
+///        "hbm" [style="bold, rounded", 
+///               label="HBM"];
+///        "voq_in_sms" [style="bold, rounded", 
+///                      label="VOQ in SMS"];
+///        "packet_processor" [style="bold, rounded", 
+///                            label="Packet Processor"];
+///    }
+///
+///    "voq_sms_size_in_packets_behavior" -> "drop_store_mark"  [label="Drop yellow/green, mark"];
+///    "sms_size_in_packets_quantization" -> "voq_sms_size_in_packets_behavior";
+///    "voq_storage_location" [style="bold, rounded", 
+///                            label="VOQ storage location"];
+///    "voq_sms_size_in_bytes_behavior" -> "voq_storage_location";
+///    "voq_sms_size_in_packets_behavior" -> "voq_storage_location";
+///    "storage_location_mux" [shape="trapezium", 
+///                            orientation="90.0", 
+///                            label="Location\nmux"];
+///    "voq_storage_location" -> "storage_location_mux"  [headport="n",
+///                               label="SMS / HBM"];
+///    "drop_store_mark" -> "storage_location_mux"  [style="dotted", 
+///                                                  label="Packet"];
+///    "storage_location_mux" -> "store_in_sms"  [label="Store in SMS"];
+///    subgraph "storage_locations" {
+///        rankdir="LR";
+///        rank="same";
+///        label="storage_locations";
+///        edge [comment="subgraph edge wildcard"];
+///        node [comment="subgraph node wildcard"];
+///        "store_in_sms" [style="invis",
+///                        label="dummy"];
+///        "store_in_hbm" [style="invis",
+///                        label="dummy"];
+///    }
+///
+///    "storage_location_mux" -> "store_in_hbm"  [label="Send to HBM processing"];
+///}
+///
+/// @enddot 
+///
+/// The legend of the above diagram is:
+///
+/// @dot
+/// digraph G {
+///    rankdir="LR";
+///    fontname="sans-serif";
+///    splines="true";
+///    rank="same";
+///    penwidth="0.1";
+///    edge [comment="Wildcard edge", 
+///          fontname="sans-serif", 
+///          fontsize=10, 
+///          colorscheme="blues3", 
+///          color=2, 
+///          fontcolor=3];
+///    node [fontname="serif", 
+///          colorscheme="blues4", 
+///          color="2", 
+///          style="bold, rounded", 
+///          shape="box", 
+///          fontsize=13, 
+///          fillcolor="1", 
+///          fontcolor="4"];
+///    subgraph cluster_01 {
+///        label="Legend";
+///        edge [comment="Wildcard node added automatic in EG."];
+///        node [comment="Wildcard node added automatic in EG."];
+///        "packet_control_left" -> "packet_control_right"  [label="Packet control plane info"];
+///        "packet_data_left" -> "packet_data_right"  [style="dotted", 
+///                                                    label="Packet data"];
+///        subgraph "left" {
+///            edge [comment="subgraph edge wildcard"];
+///            node [comment="subgraph node wildcard"];
+///            "packet_control_left" [style="invis", 
+///                                   label="dummy"];
+///            "packet_data_left" [style="invis", 
+///                                label="dummy"];
+///            "left_dummy" [style="invis", 
+///                          label="dummy"];
+///        }
+///
+///        "left_dummy" -> "hw_logic"  [style="invis"];
+///        subgraph "middle" {
+///            edge [comment="subgraph edge wildcard"];
+///            node [comment="subgraph node wildcard"];
+///            "hw_logic" [label="HW logic or state"];
+///            "global_configuration" [style="bold, filled", 
+///                                    fillcolor="beige", 
+///                                    colorscheme="svg", 
+///                                    color="lightblue", 
+///                                    fontcolor="royalblue", 
+///                                    label="Global configuration"];
+///            "per_voq_profile_configuration" [style="bold, filled", 
+///                                             fillcolor="gold", 
+///                                             colorscheme="svg", 
+///                                             color="lightblue", 
+///                                             fontcolor="royalblue", 
+///                                             label="Per VOQ-profile configuration"];
+///        }
+///
+///        subgraph "right" {
+///            edge [comment="subgraph edge wildcard"];
+///            node [comment="subgraph node wildcard"];
+///            "packet_control_right" [style="invis", 
+///                                    label="dummy"];
+///            "packet_data_right" [style="invis", 
+///                                 label="dummy"];
+///            "right_dummy" [style="invis"];
+///        }
+///
+///        "hw_logic" -> "right_dummy"  [style="invis"];
+///    }
+///
+///}
+///
+/// @enddot 
+
+
+
+
+

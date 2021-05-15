@@ -1,0 +1,30 @@
+# BEGIN_LEGAL
+#
+# Copyright (c) 2020-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+include $(MakefileTemplateRoot)/Makefile.module_pre
+
+PKG := device_simulator_client
+PKG-TARGETS := libs
+PKG-PATH := $(NPSUITE_ROOT)/dsim_client_source/device_simulator/dsim_client
+PKG-SUBDIRS := ../dsim_common ../../utils/logger ../../utils
+PKG-INCLUDE-FLAGS := -I$(NSIM_INC_DIR) -I$(NPSUITE_ROOT)/dsim_client_source -I$(ZLIB_INC_DIR)
+PKG-LINK-LIBS := -lz
+
+include $(MakefileTemplateRoot)/Makefile.module_vars
+include $(MakefileTemplateRoot)/Makefile.module_targets

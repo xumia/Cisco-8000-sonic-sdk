@@ -1,0 +1,132 @@
+# BEGIN_LEGAL
+#
+# Copyright (c) 2016-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+# Generic targets
+
+ifneq ($(DEBUG_INFO_OUTPUT_DIR),)
+    $(DEBUG_INFO_OUTPUT_DIR):
+	$(MKDIR) -p $@
+endif
+
+$(BASE_OUTPUT_DIR)/build/%/.serialize_generated: $(cereal-gen-as-dependency)
+	$(SILENT)$(MKDIR) -p $(@D)
+	@echo Generating serialization files for $*
+	$(SILENT)$(cereal-gen-app) $(cereal-gen-dummy-cpp) -o $(OUT_FILE_TEMPLATE) $(MODULE_DIRS_FLAGS) -num-out-files=$(NUM_GENERATED_FILES) -config-file=$(CONFIG_FILE) -- \
+	$(FILES_TO_COMPILE) $(INCLUDE_FLAGS) $(INC_FLAG)$(CLANG_TOOLING_INCLUDE_DIR) $(CXXFLAGS) $(CXX_EXTRA_FLAGS) $(GCC_TOOLCHAIN_FLAG_FOR_CLANG) $(CEREAL_GEN_EXTRA_FLAGS)
+	@touch $@
+
+$(BASE_OUTPUT_DIR)/build/%/swig_wrap.cxx: %/swig.i
+	$(SILENT)$(MKDIR) -p $(@D) $(SWIG_OUTPUT_DIR)
+	@echo Generating SWIG C++ wrapper: $@ from: $<
+	$(SILENT)$(SWIG) $(SWIG_EXTRA_FLAGS) -MT $@ -MMD -MP -MF $(@D)/swig_wrap.cxx.Td $(SWIG_INCLUDE_FLAGS) -python -c++ -features python:nondynamic -o $@ -outdir $(SWIG_OUTPUT_DIR) $<
+
+$(BASE_OUTPUT_DIR)/build/%/swig_wrap$(OBJ_EXT): $(BASE_OUTPUT_DIR)/build/%/swig_wrap.cxx | $(DEBUG_INFO_OUTPUT_DIR)
+	$(SILENT)$(MKDIR) -p $(@D)
+	@echo Compiling C++ SWIG wrapper: $<
+	$(SILENT)$(CXX) $(DEPENDS_FLAGS) $(CXXFLAGS) $(CXX_EXTRA_FLAGS) $(PYTHON_INC_FLAGS) $(SWIG_INCLUDE_FLAGS) $(OBJ_OUTPUT_FLAG)$@ $(COMPILE_FLAG) $<
+
+$(OBJ_OUTPUT_DIR)%$(OBJ_EXT): %.cpp | $(DEBUG_INFO_OUTPUT_DIR)
+	$(SILENT)$(MKDIR) -p $(@D)
+	@echo Compiling C++ file: $<
+	$(SILENT)$(CXX) $(DEPENDS_FLAGS) $(CXXFLAGS) $(CEREAL_ADDITIONAL_FLAGS) $(CXX_EXTRA_FLAGS) $(INCLUDE_FLAGS) $(OBJ_OUTPUT_FLAG)$@ $(COMPILE_FLAG) $<
+
+$(OBJ_OUTPUT_DIR)%$(OBJ_EXT): %.c | $(DEBUG_INFO_OUTPUT_DIR)
+	$(SILENT)$(MKDIR) -p $(@D)
+	@echo Compiling C file: $<
+	$(SILENT)$(CC) $(DEPENDS_FLAGS) $(CFLAGS) $(C_EXTRA_FLAGS) $(INCLUDE_FLAGS) $(OBJ_OUTPUT_FLAG)$@ $(COMPILE_FLAG) $<
+
+$(DLIB_OUTPUT_DIR)/lib%$(DYNLIB_EXT):
+	$(SILENT)$(MKDIR) -p $(@D)
+	@echo Creating dynamic library: $@ from: $^
+	$(SILENT)$(LINK) $(LINK_FLAGS) $(LINK_DYNAMIC_FLAG) $(LINK_OUTPUT_FLAG)$@ $(LINK_DIRS_FLAGS) $(OBJS) $(LINK_GROUP_START) $(LINK_LIBS_FLAGS) $(LINK_GROUP_END)
+
+$(SLIB_OUTPUT_DIR)/lib%$(ARCHIVE_EXT):
+	$(SILENT)$(MKDIR) -p $(@D)
+	@echo Creating archive: $@ from: $^
+	$(SILENT)$(AR) $(AR_FLAGS) $(AR_OUTPUT_FLAG)$@ $(OBJS)
+
+$(PYLIB_OUTPUT_DIR)/%$(PYLIB_EXT):
+	$(SILENT)$(MKDIR) -p $(@D)
+	@echo Creating dynamic SWIG library: $@ from: $^
+	$(SILENT)$(LINK) $(LINK_FLAGS) $(PYTHON_LINK_DIR_FLAG) $(LINK_DYNAMIC_FLAG) $(LINK_OUTPUT_FLAG)$@ $(LINK_DIRS_FLAGS) $(OBJS) $(LINK_GROUP_START) $(LINK_LIBS_FLAGS) $(LINK_GROUP_END)
+
+$(BIN_OUTPUT_DIR)/%:
+	$(SILENT)$(MKDIR) -p $(@D)
+	@echo Creating application: $@ from: $^
+	$(SILENT)$(LINK) $(LINK_FLAGS) $(LINK_DIRS_FLAGS) -o $@ $(OBJS) $(LINK_LIBS_STATIC_FLAGS) $(LINK_GROUP_START) $(LINK_LIBS_FLAGS) $(LINK_GROUP_END) -L $(DLIB_OUTPUT_DIR)
+
+CURR_DIR := $(shell git rev-parse --show-prefix)
+
+ifeq ($(MODIFIED_FILES),)
+	VERIFY_FORMAT_SRCS = $(foreach file, $(FORMAT_SRCS), $(FORMAT_OUTPUT_DIR)/$(file).verify)
+else
+	DIFF_FILES_MODIFIED := $(shell cat ${MODIFIED_FILES} | sed s=driver/shared/=driver/pacific/shared/=g)
+	VERIFY_FORMAT_SRCS = $(foreach file, $(FORMAT_SRCS), $(if $(filter $(DIFF_FILES_MODIFIED),${CURR_DIR}$(file)),$(FORMAT_OUTPUT_DIR)/$(file).verify))
+endif
+
+.PHONY: verify-format
+verify-format: $(VERIFY_FORMAT_SRCS)
+
+$(VERIFY_FORMAT_SRCS): $(FORMAT_OUTPUT_DIR)/%.verify: % $(ROOT_SCRIPT_DIR)/leaba_format.py
+	@echo Verify format of $*
+	$(SILENT)$(FORMAT_ENV_PATH) $(PYTHON_BIN) $(ROOT_SCRIPT_DIR)/leaba_format.py -t $(FORMAT_OUTPUT_DIR) -f $< -l $(ROOT_SCRIPT_DIR)/notice.txt --verify-only $(VERIFY_FORMAT_EXTRA_FLAGS)
+	$(SILENT)touch $(FORMAT_OUTPUT_DIR)/$*.verify $(FORMAT_OUTPUT_DIR)/$*.apply
+
+APPLY_FORMAT_SRCS = $(foreach file, $(FORMAT_SRCS), $(FORMAT_OUTPUT_DIR)/$(file).apply)
+
+.PHONY: apply-format
+apply-format: $(APPLY_FORMAT_SRCS)
+
+$(APPLY_FORMAT_SRCS): $(FORMAT_OUTPUT_DIR)/%.apply: % $(ROOT_SCRIPT_DIR)/leaba_format.py
+	$(SILENT)$(FORMAT_ENV_PATH) $(PYTHON_BIN) $(ROOT_SCRIPT_DIR)/leaba_format.py -t $(FORMAT_OUTPUT_DIR) -f $< -l $(ROOT_SCRIPT_DIR)/notice.txt $(APPLY_FORMAT_EXTRA_FLAGS)
+	$(SILENT)touch $(FORMAT_OUTPUT_DIR)/$*.verify $(FORMAT_OUTPUT_DIR)/$*.apply
+
+.PHONY: clean
+
+ifeq ($(ARM_ARCHITECTURE), $(ARCHITECTURE_TYPE))
+.PHONY: sanity
+sanity: test
+else
+ifeq ($(ARM_BUILD), 1)
+.PHONY: sanity
+sanity: verify-format
+else
+.PHONY: sanity
+sanity: test verify-format
+endif
+endif
+
+ifeq ($(ARM_BUILD), 1)
+clean::
+	$(RM) -rf  $(wildcard $(OUTROOT)/*$(ARM_SUFIX))
+else
+clean::
+	$(RM) -rf $(OUTROOT)
+endif
+
+# Allows printing the values of any target.
+# Usage:
+# 	To print the value of the VERIFY_FORMAT_SRCS variable, issue
+#	make print-var-VERIFY_FORMAT_SRCS
+print-var-%  :
+	$(info $* = $($*))
+	$(info value from = $(origin $*))
+	$(info flavor = $(flavor $*))
+	$(error )
+

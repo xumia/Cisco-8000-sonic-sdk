@@ -1,0 +1,61 @@
+NP1 IF Name                              Type       Engine          Size                 NP2 IF Name                              Type       Engine          Size                 Check               
+===========                              ====       ======          ====                 ===========                              ====       ======          ====                 =====               
+OUTGOING_NPUH_AUX.npu_host               direct     npu_host        160                  OUTGOING_NPUH_AUX.npu_host               direct     npu_host        160                  Match               
+OUTGOING_NPUH_EM_COMPOUND.npu_host       compound   npu_host        80                   OUTGOING_NPUH_EM_COMPOUND.npu_host       compound   npu_host        80                   Match               
+OUTGOING_NPUH_MP_DATA_COMPOUND.npu_hos   compound   npu_host        160                  OUTGOING_NPUH_MP_DATA_COMPOUND.npu_hos   compound   npu_host        160                  Match               
+OUTGOING_NPUH_RMEP.npu_host              compound   npu_host        80                   OUTGOING_NPUH_RMEP.npu_host              compound   npu_host        80                   Match               
+OUTGOING_PACK_1.npu_host                 pack       npu_host        160                  OUTGOING_PACK_1.npu_host                 pack       npu_host        160                  Match               
+OUTGOING_PACK_0.npu_host                 pack       npu_host        160                  OUTGOING_PACK_0.npu_host                 pack       npu_host        160                  Match               
+OUTGOING_NPUH_CPU_EVQ.npu_host           compound   npu_host        61                   OUTGOING_NPUH_CPU_EVQ.npu_host           direct     npu_host        160                  Mismatch            
+OUTGOING_PACK_2.npu_host                 pack       npu_host        80                   OUTGOING_PACK_2.npu_host                 pack       npu_host        80                   Match               
+OUTGOING_PACK_3.npu_host                 pack       npu_host        80                   OUTGOING_PACK_3.npu_host                 pack       npu_host        80                   Match               
+OUTGOING_EGRESS_VLAN_MEMBERSHIP.transm   direct     transmit        18                   OUTGOING_EGRESS_VLAN_MEMBERSHIP.transm   direct     transmit        18                   Match               
+OUTGOING_EGRESS_SMALL_EM_COMPOUND.tran   compound   transmit        44                   OUTGOING_EGRESS_ENC_EM1.transmit         compound   transmit        44                   Match               
+OUTGOING_EGRESS_DIRECT1_COMPOUND.trans   compound   transmit        10                   OUTGOING_EGRESS_DIRECT1_COMPOUND.trans   compound   transmit        10                   Match               
+OUTGOING_EGRESS_DIRECT0_COMPOUND.trans   compound   transmit        12                   OUTGOING_EGRESS_ENC_EM4.transmit         compound   transmit        12                   Match               
+OUTGOING_EGRESS_L3_DLP0_COMPOUND.trans   compound   transmit        33                   OUTGOING_EGRESS_ENC_EM3.transmit         compound   transmit        33                   Match               
+OUTGOING_EGRESS_L3_DLP1_COMPOUND.trans   compound   transmit        12                   OUTGOING_EGRESS_L3_DLP1_COMPOUND.trans   compound   transmit        12                   Match               
+OUTGOING_EGRESS_LARGE_EM_COMPOUND.tran   compound   transmit        44                   OUTGOING_EGRESS_ENC_EM0.transmit         compound   transmit        44                   Match               
+OUTGOING_EGRESS_DIP_INDEX_COMPOUND.tra   compound   transmit        11                   OUTGOING_EGRESS_ENC_EM2.transmit         compound   transmit        11                   Match               
+OUTGOING_CENTRAL_TCAM_TX0.transmit       compound   transmit        160                  OUTGOING_CENTRAL_TCAM_TX0.transmit       compound   transmit        160                  Match               
+OUTGOING_CENTRAL_TCAM_TX1.transmit       compound   transmit        160                  OUTGOING_CENTRAL_TCAM_TX1.transmit       compound   transmit        160                  Match               
+OUTGOING_PACK_0.transmit                 pack       transmit        160                  OUTGOING_PACK_0.transmit                 pack       transmit        160                  Match               
+OUTGOING_PACK_1.transmit                 pack       transmit        160                  OUTGOING_PACK_1.transmit                 pack       transmit        160                  Match               
+OUTGOING_PACK_2.transmit                 pack       transmit        80                   OUTGOING_PACK_2.transmit                 pack       transmit        80                   Match               
+OUTGOING_PACK_3.transmit                 pack       transmit        80                   OUTGOING_PACK_3.transmit                 pack       transmit        80                   Match               
+OUTGOING_MAC_SERVICE_MAPPING_TCAM_COMP   compound   termination     94                   OUTGOING_MAC_SERVICE_MAPPING_TCAM_COMP   compound   termination     96                   Match               
+OUTGOING_TUNNEL0_COMPOUND.termination    compound   termination     80                   OUTGOING_TUNNEL0_COMPOUND.termination    compound   termination     80                   Match               
+OUTGOING_INGRESS_VLAN_MEMBERSHIP.termi   direct     termination     17                   OUTGOING_INGRESS_VLAN_MEMBERSHIP.termi   direct     termination     17                   Match               
+OUTGOING_MAC_RELAY_COMPOUND.terminatio   compound   termination     14                   OUTGOING_MAC_RELAY_COMPOUND.terminatio   compound   termination     14                   Match               
+OUTGOING_MAC_VLAN_MAPPING_COMPOUND.ter   compound   termination     86                   OUTGOING_MAC_VLAN_MAPPING_COMPOUND.ter   compound   termination     86                   Match               
+OUTGOING_MAC_LINK_RELAY_COMPOUND.termi   compound   termination     12                   OUTGOING_MAC_LINK_RELAY_COMPOUND.termi   compound   termination     12                   Match               
+OUTGOING_MAC_SERVICE_MAPPING_0_EM_COMP   compound   termination     96                   OUTGOING_MAC_SERVICE_MAPPING_0_EM_COMP   compound   termination     96                   Match               
+OUTGOING_MAC_TERMINATION_TCAM_COMPOUND   compound   termination     40                   OUTGOING_MAC_TERMINATION_TCAM_COMPOUND   compound   termination     40                   Match               
+OUTGOING_CENTRAL_TCAM_T.termination      compound   termination     160                  OUTGOING_CENTRAL_TCAM_T.termination      compound   termination     160                  Match               
+OUTGOING_MAC_TERMINATION_EM_COMPOUND.t   compound   termination     40                   OUTGOING_MAC_TERMINATION_EM_COMPOUND.t   compound   termination     40                   Match               
+OUTGOING_MAC_LP_COMPOUND.termination     compound   termination     16                   OUTGOING_MAC_LP_COMPOUND.termination     compound   termination     16                   Match               
+OUTGOING_MAC_SERVICE_MAPPING_1_EM_COMP   compound   termination     96                   OUTGOING_MAC_SERVICE_MAPPING_1_EM_COMP   compound   termination     96                   Match               
+OUTGOING_TUNNEL1_COMPOUND.termination    compound   termination     80                   OUTGOING_TUNNEL1_COMPOUND.termination    compound   termination     80                   Match               
+OUTGOING_PACK_1.termination              pack       termination     160                  OUTGOING_PACK_1.termination              pack       termination     160                  Match               
+OUTGOING_PACK_0.termination              pack       termination     160                  OUTGOING_PACK_0.termination              pack       termination     160                  Match               
+OUTGOING_MAC_LINK_LP_COMPOUND.terminat   compound   termination     9                    OUTGOING_MAC_LINK_LP_COMPOUND.terminat   compound   termination     9                    Match               
+OUTGOING_PACK_2.termination              pack       termination     80                   OUTGOING_PACK_2.termination              pack       termination     80                   Match               
+OUTGOING_PACK_3.termination              pack       termination     80                   OUTGOING_PACK_3.termination              pack       termination     80                   Match               
+OUTGOING_CENTRAL_EM_LPM_COMPOUND.forwa   compound   forwarding      144                  OUTGOING_CENTRAL_EM_LPM_COMPOUND.forwa   compound   forwarding      144                  Match               
+OUTGOING_RESOLUTION1_COMPOUND.forwardi   compound   forwarding      160                  OUTGOING_RESOLUTION1_COMPOUND.forwardi   compound   forwarding      160                  Match               
+OUTGOING_RESOLUTION0_COMPOUND.forwardi   compound   forwarding      160                  OUTGOING_RESOLUTION0_COMPOUND.forwardi   compound   forwarding      160                  Match               
+OUTGOING_PACK_1.forwarding               pack       forwarding      160                  OUTGOING_PACK_1.forwarding               pack       forwarding      160                  Match               
+OUTGOING_CENTRAL_EM_COMPOUND.forwardin   compound   forwarding      142                  OUTGOING_CENTRAL_EM_COMPOUND.forwardin   compound   forwarding      142                  Match               
+OUTGOING_RESOLUTION_EM.forwarding        compound   forwarding      160                                                                                                           NO MATCH            
+OUTGOING_CENTRAL_TCAM_F1.forwarding      compound   forwarding      160                  OUTGOING_CENTRAL_TCAM_F1.forwarding      compound   forwarding      160                  Match               
+OUTGOING_CENTRAL_TCAM_F0.forwarding      compound   forwarding      160                  OUTGOING_CENTRAL_TCAM_F0.forwarding      compound   forwarding      160                  Match               
+OUTGOING_PACK_0.forwarding               pack       forwarding      160                  OUTGOING_PACK_0.forwarding               pack       forwarding      160                  Match               
+OUTGOING_CENTRAL_LPM_COMPOUND.forwardi   compound   forwarding      142                  OUTGOING_CENTRAL_LPM_COMPOUND.forwardi   compound   forwarding      142                  Match               
+OUTGOING_PACK_2.forwarding               pack       forwarding      80                   OUTGOING_PACK_2.forwarding               pack       forwarding      80                   Match               
+OUTGOING_PACK_3.forwarding               pack       forwarding      80                   OUTGOING_PACK_3.forwarding               pack       forwarding      80                   Match               
+                                                                                         OUTGOING_TERM_FRAGMENT_IFG1_COMPOUND.t   compound   termination     24                   NO MATCH            
+                                                                                         OUTGOING_TERM_FRAGMENT_IFG0_COMPOUND.t   compound   termination     24                   NO MATCH            
+                                                                                         OUTGOING_FWD_FRAGMENT_IFG1_COMPOUND.fo   direct     forwarding      24                   NO MATCH            
+                                                                                         OUTGOING_FWD_FRAGMENT_IFG0_COMPOUND.fo   direct     forwarding      24                   NO MATCH            
+                                                                                         OUTGOING_CENTRAL_TCAM_F3.forwarding      compound   forwarding      80                   NO MATCH            
+                                                                                         OUTGOING_CENTRAL_TCAM_F2.forwarding      compound   forwarding      80                   NO MATCH            

@@ -1,0 +1,107 @@
+{
+    "Description": "Pacific ASIC snake test port configurations. All 100G ports. Support Pershing and Sherman. Remove pershing_ prefix for Pershing system.",
+    "pershing_traffic_gen_port": [
+        {
+            "pif": "0x808",
+            "Description": "Pershing, P54, Traffic Gen port <-> sj18-laeba-05/port_45",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mtu_size": 9600,
+            "media_type": "COPPER",
+            "an": false
+        }
+    ],
+    "pershing_loopback_ports":
+    [
+        {
+            "pif": [
+                "0x000", "0x004", "0x008", "0x00c", "0x100", "0x104", "0x108", "0x10c",
+                "0x200", "0x204", "0x208", "0x20c", "0x300", "0x304", "0x308", "0x30c",
+                "0x400", "0x404", "0x408", "0x40c", "0x500", "0x504", "0x508", "0x50c",
+                "0x600", "0x604", "0x608", "0x60c", "0x700", "0x704", "0x708", "0x70c",
+                "0x800", "0x804",          "0x80c", "0x900", "0x904", "0x908", "0x90c",
+                "0xa00", "0xa04", "0xa08", "0xa0c", "0xb00", "0xb04", "0xb08", "0xb0c"
+            ],
+            "Description": "Pershing 4 lanes Ports, These are the serdes loopback ports. For external loopback, use loopback cables and set mac_lpbk=NONE.",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "PHY",
+            "mtu_size": 9600,
+            "an": false
+        },
+        {
+            "pif": [
+                "0x010", "0x110",
+                "0x210", "0x310",
+                "0x410", "0x510",
+                "0x610", "0x710",
+                "0x810", "0x910",
+                "0xa10", "0xb10"
+            ],
+            "Description": "Pershing 2 lanes Ports, These are the serdes loopback ports. For external loopback, use loopback cables and set mac_lpbk=NONE.",
+            "pif_counts": 2,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "PHY",
+            "mtu_size": 9600,
+            "an": false
+        }
+    ],
+    "traffic_gen_port": [
+        {
+            "pif": "0x508",
+            "Description": "Sherman, P16, Traffic Gen port <-> sj18-laeba-05/port_13",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mtu_size": 9600,
+            "media_type": "COPPER",
+            "an": false
+        }
+    ],
+    "loopback_ports":
+    [
+        {
+            "pif": [
+                "0x000", "0x004", "0x008", "0x00c", "0x100", "0x104", "0x108", "0x10c",
+                "0x200", "0x204", "0x208", "0x20c", "0x300", "0x304", "0x308", "0x30c",
+                "0x400", "0x404", "0x408", "0x40c", "0x500", "0x504",          "0x50c",
+                "0x600", "0x604", "0x608", "0x60c", "0x700", "0x704", "0x708", "0x70c",
+                "0x800", "0x804", "0x808", "0x80c", "0x900", "0x904", "0x908", "0x90c",
+                "0xa00", "0xa04", "0xa08", "0xa0c", "0xb00", "0xb04", "0xb08", "0xb0c"
+            ],
+            "Description": "Sherman 4 lanes Ports, These are the serdes loopback ports. For external loopback, use loopback cables and set mac_lpbk=NONE.",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "PHY",
+            "mtu_size": 9600,
+            "an": false
+        },
+        {
+            "pif": [
+                "0x010", "0x110",
+                "0x210", "0x310",
+                "0x410", "0x510",
+                "0x610", "0x710",
+                "0x810", "0x910",
+                "0xa10", "0xb10"
+            ],
+            "Description": "Sherman 2 lanes Ports, These are the serdes loopback ports.",
+            "pif_counts": 2,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "PHY",
+            "mtu_size": 9600,
+            "an": false
+        }
+    ]
+}

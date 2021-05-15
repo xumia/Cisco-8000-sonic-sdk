@@ -1,0 +1,71 @@
+// Pacific Packet Processing theory L2 object model page
+
+/// @page pacific_l2_object_model L2 object model
+///
+/// @section pacific_l2_object_model_l2_port L2 port
+///
+/// For a simplistic switch, an L2 port can be viewed as a wire used to receive/transmit traffic.\n
+/// The Pacific architecture extends the concept of an L2 port (#silicon_one::la_l2_port) to include several logical port types:
+///
+/// * <b>L2 Ethernet port</b>. Classic Ethernet port. Can be connected to multiple virtual switch-s.
+/// * <b>AC port</b>. Attachment Circuit port. Represents Ethernet port with VLAN tag-based muxing. Connected to a single virtual switch.
+/// * <b>PWE port</b>. Pseudo-wire emulation port. Represents an MPLS tunnel with a PWE label. Connected to a single virtual switch.
+/// * <b>PWE-tagged port</b>. Pseudo-wire emulation port, with VLAN tag based muxing. Represents an MPLS tunnel with a PWE label. Connected to a single virtual switch.
+/// * <b>VXLAN tunnel</b>. VXLAN tunnel. Connected to multiple virtual switch-s.
+///
+/// Logical port shared attributes include QoS settings and allowed protocols.
+/// Distinct properties such as PWE labels and VLAN tags are only available for relevant port types.
+///
+/// @dot
+/// digraph l2_port_hierarchy_graph {
+///		label = "Figure 1: L2 port hierarchy"
+///     node[shape = record, style="bold, rounded", fontname = "Helvetica:bold", fontsize = 10];
+///
+///		l2_port[label = "L2 port"]
+///		l2_ethernet_port[label = "L2 Ethernet port"]
+///		ac_port[label = "AC port"]
+///		pwe_port[label = "PWE port"]
+///		pwe_tagged_port[label = "PWE-tagged port"]
+///		vxlan_tunnel[label = "VXLAN tunnel"]
+///
+///		l2_port->{l2_ethernet_port ac_port pwe_port pwe_tagged_port vxlan_tunnel}
+/// }
+/// @enddot
+///
+///
+/// @section pacific_l2_object_model_l2_destination L2 destination
+///
+/// An L2 destination (#silicon_one::la_l2_destination) is a Pacific logical object. A Pacific switch's MAC table maps a Destination Address to an L2 destination.
+/// The following objects are L2 destinations:
+///
+/// * <b>L2 port</b>. Packets can be switched to L2 Ethernet ports, AC ports, PWE ports, L2 tunnels, etc.
+/// * <b>LAG</b>. Link Aggregation Group. Several L2 destinations grouped together, enabling load-balancing.
+/// * <b>Protection group</b>. A primary L2 destination and a protection L2 destination. Protection destination serves as backup for cases where primary destination is unreachable.
+/// * <b>Switch multicast group</b>. A set of L2 destinations. Packet is replicated to all destinations.
+///
+/// @dot
+/// digraph l2_destination_hierarchy_graph {
+///		label = "Figure 2: L2 destination hierarchy"
+///     node[shape = record, style="bold, rounded", fontname = "Helvetica:bold", fontsize = 10];
+///
+///		l2_destination[label = "L2 destination"]
+///		l2_port[label = "L2 port"]
+///		lag_group[label = "LAG group"]
+///		protection_group[label = "Protection group"]
+///		switch_multicast_group[label = "Switch multicast group"]
+///
+///		l2_destination->{l2_port lag_group protection_group switch_multicast_group}
+/// }
+/// @enddot
+///
+///
+/// @section pacific_l2_object_model_l2_switch Switch
+///
+/// A switch (#silicon_one::la_switch) represents a single switching domain.
+/// In the Pacific architecture, a switch has two primary actions:
+///
+/// * <b>Forwarding</b>. Identifying L2 destination for received packets based on their Destination Address.
+/// * <b>Learning</b>. Associating Source Address of received packets with source port.
+///
+/// Each switch has a MAC table associated with it; Forwarding uses this table for destination lookup, while Learning updates it for new addresses learned.
+///

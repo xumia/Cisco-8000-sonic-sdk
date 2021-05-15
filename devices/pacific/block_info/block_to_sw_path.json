@@ -1,0 +1,502 @@
+[
+    {
+        "ignored_text":         "this config, for example, will match blockname: EXAMPLE7_SUB11_UID, and will put it in path: pacific_tree.first_num_div_by_two[3].first_num_mod_two[1].second_num[11]",
+        "match_str":            "EXAMPLE(\d+)_SUB(\d+)_UID",
+        "sw_path_calc_values":  ["\1/2", "\1%2", "\2"],
+        "sw_path":              "pacific_tree.first_num_div_by_two[\1].first_num_mod_two[\2].second_num[\3]",
+        "lbr_block_name":       "chain_blk"
+    },
+    {
+        "match_str":            "SBIF_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.sbif",
+        "lbr_block_name":       "sbif",
+        "has_sbus":             true
+    },
+    {
+        "match_str":            "IFG([0-9,A-B])_IFGB_UID",
+        "sw_path_calc_values":  ["0x\1/2", "0x\1%2"],
+        "sw_path":              "pacific_tree.slice[\1].ifg[\2].ifgb",
+        "lbr_block_name":       "ifgb"
+    },
+    {
+        "match_str":            "IFG([0-9,A-B])_MAC_POOL2_0_UID",
+        "sw_path_calc_values":  ["0x\1/2", "0x\1%2"],
+        "sw_path":              "pacific_tree.slice[\1].ifg[\2].mac_pool2",
+        "lbr_block_name":       "mac_pool2"
+    },
+    {
+        "match_str":            "IFG([0-9,A-B])_MAC_POOL8_(\d)_UID",
+        "sw_path_calc_values":  ["0x\1/2", "0x\1%2", "\2"],
+        "sw_path":              "pacific_tree.slice[\1].ifg[\2].mac_pool8[\3]",
+        "lbr_block_name":       "mac_pool8"
+    },
+    {
+        "match_str":            "IFG([0-9,A-B])_SERDES_POOL_UID",
+        "sw_path_calc_values":  ["0x\1/2", "0x\1%2"],
+        "sw_path":              "pacific_tree.slice[\1].ifg[\2].serdes_pool",
+        "lbr_block_name":       "serdes_pool18",
+        "has_sbus":             true
+    },
+    {
+        "match_str":            "SCH([0-7])_UID",
+        "sw_path_calc_values":  ["\1/2", "\1%2"],
+        "sw_path":              "pacific_tree.slice[\1].ifg[\2].sch",
+        "lbr_block_name":       "sch"
+    },
+    {
+        "match_str":            "SCH([8,9]|1[0-1])_UID",
+        "sw_path_calc_values":  ["\1/2", "\1%2"],
+        "sw_path":              "pacific_tree.slice[\1].ifg[\2].fabric_sch",
+        "lbr_block_name":       "sch_fab"
+    },
+    {
+        "match_str":            "PDOQ(\d+)_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].pdoq.top",
+        "lbr_block_name":       "pdoq"
+    },
+    {
+        "match_str":            "PDOQ_EMPD(\d+)_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.pdoq.empd[\1]",
+        "lbr_block_name":       "pdoq_empd"
+    },
+    {
+        "match_str":            "PDOQ_FDOQ(\d+)_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].pdoq.fdoq",
+        "lbr_block_name":       "pdoq_fdoq"
+    },
+    {
+        "match_str":            "PDVOQ_EMPD(\d+)_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.pdvoq.empd[\1]",
+        "lbr_block_name":       "pdvoq_empd"
+    },
+    {
+        "match_str":            "PDVOQ_SLICE([0-3])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].pdvoq",
+        "lbr_block_name":       "pdvoq_slice"
+    },
+    {
+        "match_str":            "PDVOQ_SLICE([4-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].fabric_pdvoq",
+        "lbr_block_name":       "pdvoq_slice5"
+    },
+    {
+        "match_str":            "FILB_SLICE([0-3])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].filb",
+        "lbr_block_name":       "filb_slice"
+    },
+    {
+        "match_str":            "FILB_SLICE([4-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].fabric_filb",
+        "lbr_block_name":       "filb_slice5"
+    },
+    {
+        "match_str":            "FLLB_SLICE([0-4])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].fllb",
+        "lbr_block_name":       "fllb"
+    },
+    {
+        "match_str":            "FLLB_SLICE([5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].fabric_fllb",
+        "lbr_block_name":       "fllb_fabric_slice"
+    },
+    {
+        "match_str":            "CSMS_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.csms",
+        "lbr_block_name":       "csms"
+    },
+    {
+        "match_str":            "ICS_SLICE([0-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].ics",
+        "lbr_block_name":       "ics_slice"
+    },
+    {
+        "match_str":            "IDB([0-2])_RES_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice_pair[\1].idb.res",
+        "lbr_block_name":       "idb_res"
+    },
+    {
+        "match_str":            "IDB([0-2])_TOP_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice_pair[\1].idb.top",
+        "lbr_block_name":       "idb_top"
+    },
+    {
+        "match_str":            "NW_REORDER_BLOCK([0-5])_UID",
+        "sw_path_calc_values":  ["\1/2 + 3", "\1%2"],
+        "sw_path":              "pacific_tree.slice[\1].nw_reorder_block[\2]",
+        "lbr_block_name":       "nw_reorder_block"
+    },
+    {
+        "match_str":            "PP_REORDER_SLICE([0-2])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].pp_reorder",
+        "lbr_block_name":       "pp_reorder_slice"
+    },
+    {
+        "match_str":            "SIM_ACCESS_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.sim_access",
+        "lbr_block_name":       "sim_access"
+    },
+    {
+        "match_str":            "CDB_TOP_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.cdb.top",
+        "lbr_block_name":       "cdb_top"
+    },
+    {
+        "match_str":            "CDB_CORE([1,3,5,7])_UID",
+        "sw_path_calc_values":  ["\1/2"],
+        "sw_path":              "pacific_tree.cdb.core[\1]",
+        "lbr_block_name":       "cdb_core"
+    },
+    {
+        "match_str":            "CDB_CORE([0,2,4,6])_UID",
+        "sw_path_calc_values":  ["\1/2"],
+        "sw_path":              "pacific_tree.cdb.core_reduced[\1]",
+        "lbr_block_name":       "cdb_core_reduced"
+    },
+    {
+        "match_str":            "SDB_ENC_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.sdb.enc",
+        "lbr_block_name":       "sdb_enc"
+    },
+    {
+        "match_str":            "SDB_MAC_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.sdb.mac",
+        "lbr_block_name":       "sdb_mac"
+    },
+    {
+        "match_str":            "RX_METER_BLOCK(\d)_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.rx_meter.block[\1]",
+        "lbr_block_name":       "rx_meter_block"
+    },
+    {
+        "match_str":            "RX_PDR_2_SLICES(\d)_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice_pair[\1].rx_pdr",
+        "lbr_block_name":       "rx_pdr_2_slices"
+    },
+    {
+        "match_str":            "RX_PDR_SHARED(\d)_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.rx_pdr_mc_db[\1]",
+        "lbr_block_name":       "rx_pdr_shared_db"
+    },
+    {
+        "match_str":            "RXPP([0-5])_CDB_CACHE_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].npu.cdb_cache",
+        "lbr_block_name":       "cdb_cache"
+    },
+    {
+        "match_str":            "RXPP([0-5])_SNA_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].npu.sna",
+        "lbr_block_name":       "slice_sna"
+    },
+    {
+        "match_str":            "RXPP([0-5])_TERM_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].npu.rxpp_term.rxpp_term",
+        "lbr_block_name":       "rxpp_term"
+    },
+    {
+        "match_str":            "RXPP([0-5])_FI_ENG([0-7])_UID",
+        "sw_path_calc_values":  ["\1", "\2"],
+        "sw_path":              "pacific_tree.slice[\1].npu.rxpp_term.fi_eng[\2]",
+        "lbr_block_name":       "fi"
+    },
+    {
+        "match_str":            "RXPP([0-5])_FI_STAGE_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].npu.rxpp_term.fi_stage",
+        "lbr_block_name":       "fi_stage"
+    },
+    {
+        "match_str":            "RXPP([0-5])_NPE([0-2])_UID",
+        "sw_path_calc_values":  ["\1", "\2"],
+        "sw_path":              "pacific_tree.slice[\1].npu.rxpp_term.npe[\2]",
+        "lbr_block_name":       "npe"
+    },
+    {
+        "match_str":            "RXPP([0-5])_FWD_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].npu.rxpp_fwd.rxpp_fwd",
+        "lbr_block_name":       "rxpp_fwd"
+    },
+    {
+        "match_str":            "RXPP([0-5])_NPE([3-5])_UID",
+        "sw_path_calc_values":  ["\1", "\2-3"],
+        "sw_path":              "pacific_tree.slice[\1].npu.rxpp_fwd.npe[\2]",
+        "lbr_block_name":       "npe"
+    },
+    {
+        "match_str":            "TS_MS([0-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].ts_ms",
+        "lbr_block_name":       "tsms"
+    },
+    {
+        "match_str":            "TX_CGM([0-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].tx.cgm",
+        "lbr_block_name":       "txcgm"
+    },
+    {
+        "match_str":            "TX_PDR([0-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].tx.pdr",
+        "lbr_block_name":       "txpdr"
+    },
+    {
+        "match_str":            "TXPP([0-5])_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.slice[\1].npu.txpp.txpp",
+        "lbr_block_name":       "txpp"
+    },
+    {
+        "match_str":            "TXPP([0-5])_CLUSTER([0-1])_UID",
+        "sw_path_calc_values":  ["\1", "\2"],
+        "sw_path":              "pacific_tree.slice[\1].npu.txpp.cluster[\2]",
+        "lbr_block_name":       "ene_cluster"
+    },
+    {
+        "match_str":            "TXPP([0-5])_NPE([0-1])_UID",
+        "sw_path_calc_values":  ["\1", "\2"],
+        "sw_path":              "pacific_tree.slice[\1].npu.txpp.npe[\2]",
+        "lbr_block_name":       "npe"
+    },
+    {
+        "match_str":            "NPUH_NPE_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.npuh.npe",
+        "lbr_block_name":       "npe"
+    },
+    {
+        "match_str":            "COUNTERS_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.counters.top",
+        "lbr_block_name":       "counters"
+    },
+    {
+        "match_str":            "COUNTERS_BANK_GROUP(\d|[1-2]\d|3[0-1])_UID",
+        "ignored_text":         "match COUNTER_BANK_GROUP(0..31)",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.counters.bank_4k[\1]",
+        "lbr_block_name":       "counters_bank_group_4k"
+    },
+    {
+        "match_str":            "COUNTERS_BANK_GROUP(3[2-5])_UID",
+        "sw_path_calc_values":  ["\1 - 32"],
+        "sw_path":              "pacific_tree.counters.bank_6k[\1]",
+        "lbr_block_name":       "counters_bank_group"
+    },
+    {
+        "match_str":            "DICS_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.dics",
+        "lbr_block_name":       "dics"
+    },
+    {
+        "match_str":            "DVOQ_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.dvoq",
+        "lbr_block_name":       "dvoq"
+    },
+    {
+        "match_str":            "FDLL(\d)_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.fdll[\1]",
+        "lbr_block_name":       "fdll"
+    },
+    {
+        "match_str":            "FDLL_SHARED_MEM_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.fdll_shared_mem",
+        "lbr_block_name":       "fdll_shared_mem"
+    },
+    {
+        "match_str":            "FRM_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.dmc.frm",
+        "lbr_block_name":       "frm"
+    },
+    {
+        "match_str":            "FTE_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.dmc.fte",
+        "lbr_block_name":       "fte"
+    },
+    {
+        "match_str":            "HBMHI_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.hbm.hi",
+        "lbr_block_name":       "hbm"
+    },
+    {
+        "match_str":            "HBMLO_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.hbm.lo",
+        "lbr_block_name":       "hbm"
+    },
+    {
+        "match_str":            "MMU_HBM_CHNL_(0|2|12|14)_(\d+)_UID",
+        "sw_path_calc_values":  ["\1/2"],
+        "sw_path":              "pacific_tree.hbm.chnl[\1].wide",
+        "lbr_block_name":       "hbm_chnl_4x_wide"
+    },
+    {
+        "match_str":            "MMU_HBM_CHNL_(4|6|8|10)_(\d+)_UID",
+        "sw_path_calc_values":  ["\1/2"],
+        "sw_path":              "pacific_tree.hbm.chnl[\1].tall",
+        "lbr_block_name":       "hbm_chnl_4x_tall"
+    },
+    {
+        "match_str":            "HMC_CGM_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.hmc_cgm",
+        "lbr_block_name":       "hmc_cgm"
+    },
+    {
+        "match_str":            "ICS_TOP_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.ics_top",
+        "lbr_block_name":       "ics_top"
+    },
+    {
+        "match_str":            "MMU_BUFF_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.mmu_buff",
+        "lbr_block_name":       "mmu_buff"
+    },
+    {
+        "match_str":            "MMU_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.mmu",
+        "lbr_block_name":       "mmu"
+    },
+    {
+        "match_str":            "MRB_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.dmc.mrb",
+        "lbr_block_name":       "mrb"
+    },
+    {
+        "match_str":            "NPUH_FI_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.npuh.fi",
+        "lbr_block_name":       "fi"
+    },
+    {
+        "match_str":            "NPUH_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.npuh.host",
+        "lbr_block_name":       "npu_host"
+    },
+    {
+        "match_str":            "NW_REORDER_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.nw_reorder",
+        "lbr_block_name":       "nw_reorder"
+    },
+    {
+        "match_str":            "PDOQ_SHARED_MEM_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.pdoq_shared_mem",
+        "lbr_block_name":       "pdoq_shared_mem"
+    },
+    {
+        "match_str":            "PDVOQ_SHARED_MMA_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.pdvoq_shared_mma",
+        "lbr_block_name":       "pdvoq_shared_mma"
+    },
+    {
+        "match_str":            "PIER_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.dmc.pier",
+        "lbr_block_name":       "pier"
+    },
+    {
+        "match_str":            "REASSEMBLY_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.reassembly",
+        "lbr_block_name":       "reassembly"
+    },
+    {
+        "match_str":            "RX_CGM_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.rx_cgm",
+        "lbr_block_name":       "rx_cgm"
+    },
+    {
+        "match_str":            "RX_COUNTERS_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.rx_counters",
+        "lbr_block_name":       "rx_counters"
+    },
+    {
+        "match_str":            "RX_METER_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.rx_meter.top",
+        "lbr_block_name":       "rx_meter"
+    },
+    {
+        "match_str":            "RX_PDR_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.rx_pdr",
+        "lbr_block_name":       "rx_pdr"
+    },
+    {
+        "match_str":            "SCH_TOP_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.sch_top",
+        "lbr_block_name":       "sch_top"
+    },
+    {
+        "match_str":            "SMS_MAIN_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.sms_main",
+        "lbr_block_name":       "sms_main"
+    },
+    {
+        "match_str":            "SMS_QUAD(\d)_UID",
+        "sw_path_calc_values":  ["\1"],
+        "sw_path":              "pacific_tree.sms_quad[\1]",
+        "lbr_block_name":       "sms_quad"
+    },
+    {
+        "match_str":            "TS_MON_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.ts_mon",
+        "lbr_block_name":       "ts_mon"
+    },
+    {
+        "match_str":            "TX_CGM_TOP_UID",
+        "sw_path_calc_values":  [],
+        "sw_path":              "pacific_tree.tx_cgm_top",
+        "lbr_block_name":       "txcgm_top"
+    }
+]
+
+
+
+

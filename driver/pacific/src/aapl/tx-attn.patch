@@ -1,0 +1,20 @@
+*** include/serdes_core.h	2019-04-16 13:07:59.000000000 -0700
+--- include/serdes_core.h.new	2019-07-31 15:56:48.663594000 -0700
+***************
+*** 520,526 ****
+      AVAGO_HAL_GRADIENT_INPUTS        = 0x20, /**< Read gradient inputs */
+      AVAGO_HAL_DATA_CHANNEL_CAL_DELTA = 0x2c, /**< Read deltas between data and test channels */
+      AVAGO_HAL_CLK_VERNIER_CAL        = 0x2f, /**< Read Rx clock vernier cals */
+!     AVAGO_HAL_USER_PLL_GAINS         = 0x41  /**< Read/set User PLL gain values */
+  } Avago_serdes_hal_type_t;
+  
+  EXT int  avago_serdes_hal_get (Aapl_t *aapl, uint addr, Avago_serdes_hal_type_t hal, uint member);
+--- 520,527 ----
+      AVAGO_HAL_GRADIENT_INPUTS        = 0x20, /**< Read gradient inputs */
+      AVAGO_HAL_DATA_CHANNEL_CAL_DELTA = 0x2c, /**< Read deltas between data and test channels */
+      AVAGO_HAL_CLK_VERNIER_CAL        = 0x2f, /**< Read Rx clock vernier cals */
+!     AVAGO_HAL_USER_PLL_GAINS         = 0x41, /**< Read/set User PLL gain values */
+!     AVAGO_HAL_TX_ATTN_SIG_ENVELOPE   = 0x43  /**< Read/set Tx Attn signal envelope value */
+  } Avago_serdes_hal_type_t;
+  
+  EXT int  avago_serdes_hal_get (Aapl_t *aapl, uint addr, Avago_serdes_hal_type_t hal, uint member);

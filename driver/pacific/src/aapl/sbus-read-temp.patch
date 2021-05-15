@@ -1,0 +1,141 @@
+diff --git include/spico.h include/spico.h
+index 4697206..dfd0e0e 100644
+--- include/spico.h
++++ include/spico.h
+@@ -67,6 +67,10 @@ EXT BOOL avago_spico_int_check(Aapl_t *aapl, const char *caller, int line, uint
+ EXT  int avago_parallel_serdes_int(Aapl_t *aapl, Avago_addr_t *addr_list, int int_num, int int_data);
+ EXT BOOL avago_parallel_serdes_int_check(Aapl_t *aapl, const char *caller, int line, Avago_addr_t *addr_list, int int_num, int param);
+ 
++/* direct sbm methods, thread unsafe for sbm master temperature read workaround */
++EXT uint avago_sbm_spico_int_start(Aapl_t *aapl, uint sbus_addr, int int_num, int int_data);
++EXT uint avago_sbm_spico_int_read(Aapl_t *aapl, uint sbus_addr);
++
+ #ifdef AAPL_ENABLE_INTERNAL_FUNCTIONS
+ 
+ EXT uint avago_serdes_spico_int_le_fn(Aapl_t *aapl, uint sbus_addr, int int_num, int int_data);
+diff --git sensor.c sensor.c
+index 5e85979..4c73b3f 100644
+--- sensor.c
++++ sensor.c
+@@ -462,10 +462,14 @@ int avsp_sensor_get_temperature(
+                     /**<      If non-zero, configures the sensor, */
+                     /**<      which only need be done once. */
+ {
++#if ENABLE_DIRECT_SENSOR_READ
+     uint sensor_addr = avsp_sensor_get_addr(aapl, prtad);
+     if( sensor > 2 )
+         return -1000000; /* Not connected */
+     return avago_sensor_get_temperature(aapl, sensor_addr, sensor, frequency);
++#else
++    return -273000; /* Not Used, return absolute zero */
++#endif
+ }
+ 
+ /** @brief   Reads the sensor data for the AVSP device and converts to millivolts. */
+@@ -480,10 +484,14 @@ int avsp_sensor_get_voltage(
+                     /**<      If non-zero, configures the sensor, */
+                     /**<      which only need be done once. */
+ {
++#if ENABLE_DIRECT_SENSOR_READ
+     uint sensor_addr = avsp_sensor_get_addr(aapl, prtad);
+     if( sensor > 2 )
+         return -1;  /* Not connected */
+     return avago_sensor_get_voltage(aapl, sensor_addr, sensor, frequency);
++#else
++    return 0;   /* Not Used */
++#endif
+ }
+ 
+ /** @} */
+diff --git spico/spico.c spico/spico.c
+index c5d0bfc..73411aa 100644
+--- spico/spico.c
++++ spico/spico.c
+@@ -717,6 +717,87 @@ static uint avago_sbm_spico_int(
+ }
+ 
+ 
++/*============================================================================= */
++/* SPICO Interrupt Issue Routine Start */
++/** @brief    Issue the provided interrupt to a SBM SPICO. */
++/* */
++uint avago_sbm_spico_int_start(
++    Aapl_t *aapl,   /**< [in] Pointer to AAPL structure */
++    uint sbus_addr, /**< [in] SBus address of SBus Master SPICO */
++    int int_num,    /**< [in] Interrupt code */
++    int param)      /**< [in] Interrupt data */
++{
++    int int_data;
++    param &= 0xffff; /* mask out 16 bits */
++
++    if (!aapl_check_ip_type(aapl,sbus_addr, __func__, __LINE__, TRUE, 1, AVAGO_SPICO)) return 0;
++
++    /* if spico was not running, check and see if it is now: */
++    if( !aapl_get_spico_running_flag(aapl,sbus_addr) )
++        aapl_set_spico_running_flag(aapl,sbus_addr,avago_spico_running(aapl, sbus_addr));
++
++    /* If SPICO is still not running, don't bother sending the interrupt, and just return 0 */
++    if( !aapl_get_spico_running_flag(aapl,sbus_addr) )
++    {
++        aapl_log_printf(aapl, AVAGO_ERR, __func__, __LINE__, "SBus %s, Interrupt 0x%02x,0x%04x not executed because SPICO not running.\n", aapl_addr_to_str(sbus_addr), int_num, param);
++        return 0;
++    }
++
++    avago_sbus_wr(aapl, sbus_addr, 0x02, (param << 16) | int_num);
++    int_data = avago_sbus_rd(aapl, sbus_addr, 0x07);  /* read current state of 0x07 */
++
++    int_data = int_data | 0x01;                 /* Assert interrupt */
++    avago_sbus_wr(aapl, sbus_addr, 0x07, int_data);   /* Issue interrupt */
++    int_data = int_data ^ 0x01;                 /* Clear interrupt bit */
++    avago_sbus_wr(aapl, sbus_addr, 0x07, int_data);   /* Lower interrupt */
++
++    return 0;
++}
++
++
++
++/*============================================================================= */
++/* SPICO Interrupt Issue Routine Read */
++/** @brief    Issue the provided interrupt to a SBM SPICO. */
++/* */
++uint avago_sbm_spico_int_read(
++    Aapl_t *aapl,   /**< [in] Pointer to AAPL structure */
++    uint sbus_addr)      /**< [in] Interrupt data */
++{
++    uint data = 0;
++
++    if (!aapl_check_ip_type(aapl,sbus_addr, __func__, __LINE__, TRUE, 1, AVAGO_SPICO)) return 0;
++
++    if (aapl_get_ip_rev(aapl, avago_make_sbus_controller_addr(sbus_addr)) <= 0xbd) /* TODO-16NM esb/ip rev for 16nm is 0x02 so we need logic for process type */
++    {
++        if ( (avago_sbus_rd(aapl, sbus_addr, 0x08) & 0x3ff) == 0) {
++            /* failed */
++            aapl_set_spico_running_flag(aapl,sbus_addr,0); /* this SPICO must not be running */
++            aapl_fail(aapl, __func__, __LINE__, "Interrupt timed out %d loops on SBus address %s -> 0x%x.\n", aapl->serdes_int_timeout, aapl_addr_to_str(sbus_addr), data);
++            return 0;
++        }
++    }
++    else
++    {
++        if (avago_sbus_rd(aapl, sbus_addr, 0x08) & 0x8000) {
++            /* failed still if in progress */
++            aapl_set_spico_running_flag(aapl,sbus_addr,0); /* this SPICO must not be running */
++            aapl_fail(aapl, __func__, __LINE__, "Interrupt timed out after %d loops on SBus address %s -> 0x%x.\n", aapl->serdes_int_timeout, aapl_addr_to_str(sbus_addr), data);
++            return 0;
++        }
++    }
++
++    /* Read again for since the read is un-triggered, this means the data read when the */
++    /* status changed to "done" may not be valid. So read again to get a valid result data. */
++    data = avago_sbus_rd(aapl, sbus_addr, 0x08);
++
++    AAPL_LOG_PRINT7(aapl, AVAGO_DEBUG7, __func__, __LINE__, "SBus %s -> 0x%04x.\n", aapl_addr_to_str(sbus_addr), (data >> 16) & 0xffff);
++    if ((data & 0x7fff) == 1) return (data >> 16) & 0xffff; /* if status is 1, return just data */
++    else                      return ((data >> 16) & 0xffff) | ((data & 0x7fff) << 16); /* if status is not 1 (failed), return status in upper 16 bits */
++}
++
++
++
+ /** @brief  Issues the interrupt and verifies that the */
+ /**         return value matches the interrupt number. */
+ /** @return Returns TRUE if interrupt return matches the interrupt number. */

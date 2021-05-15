@@ -1,0 +1,162 @@
+{
+    "npsuite_definitions": {
+        "generated_code_namespace" :  "leaba",
+        "per_macro_features": {
+            "macros": {
+                "db_access_termination_macro": { // can be also "default" if you want to assign it to all macros
+		            "ignore_lookup_orthogonality_checks" : true
+                },
+                "db_access_forwarding_macro": { // can be also "default" if you want to assign it to all macros
+		            "ignore_lookup_orthogonality_checks" : true
+                },
+                "db_access_transmit_macro": { // can be also "default" if you want to assign it to all macros
+		            "ignore_lookup_orthogonality_checks" : true
+                },
+		        "network_forwarding_error_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                },
+                "npu_rx_nop_fwd_macro": {
+                    "disable_ser_check_in_update_tcam" : true
+                }
+            }
+        },
+        "per_engine_features": {
+            "contexts": {
+                "default": {
+                   "engines": {
+                       "termination": {
+				"allow_overloading_packet": true
+			}
+                   }
+		},
+                "network": {
+                    "engines": {
+                        "termination": {
+                            "npe_sram_mapping": {
+                                "level_1_interface_to_sram_index_mapping": {
+                                    "0": 3,
+                                    "1": 5,
+                                    "2": 2
+                                },
+                                "level_2_interface_to_sram_index_mapping": {
+                                    "0": 1,
+                                    "2": 6
+                                },
+                                "level_6_interface_to_sram_index_mapping": {
+                                    "0": 7
+                                },
+                                "level_7_interface_to_sram_index_mapping": {
+                                    "0": 0,
+                                    "2": 4
+                                }
+                            },
+                            "error_macro": {
+                                "macro": "network_termination_error_macro",
+                                "assign_macro_id_zero": true
+                            }
+                        },
+                        "forwarding": {
+                            "npe_sram_mapping": {
+                                "level_1_interface_to_sram_index_mapping": {
+                                    "0": 4,
+                                    "1": 5,
+                                    "2": 6
+                                },
+                                "level_2_interface_to_sram_index_mapping": {
+                                    "0": 2,
+                                    "2": 1
+                                },
+                                "level_6_interface_to_sram_index_mapping": {
+                                    "0": 7,
+                                    "2": 0
+                                },
+                                "level_7_interface_to_sram_index_mapping": {
+                                    "0": 3
+                                }
+                            },
+                            "error_macro": {
+                                "macro": "network_forwarding_error_macro",
+                                "assign_macro_id_zero": true
+                            }
+                        },       
+                        "transmit": {
+                            "default_per_engine_for_lookup_result_buffering": {
+                                "buffering_disabled": false
+                            },
+                            "oversubscribed_interfaces": {
+                                "interfaces": [
+                                    { "id": "OUTGOING_EGRESS_LARGE_EM_COMPOUND" }
+                                ]
+                            },
+                            "npe_sram_mapping": {
+                                "level_1_interface_to_sram_index_mapping": {
+                                    "0": 3,
+                                    "2": 7
+                                },
+                                "level_2_interface_to_sram_index_mapping": {
+                                    "0": 1,
+                                    "1": 5
+                                },
+                                "level_6_interface_to_sram_index_mapping": {
+                                    "0": 2,
+                                    "2": 6
+                                },
+                                "level_7_interface_to_sram_index_mapping": {
+                                    "0": 0,
+                                    "1": 4
+                                }
+                            },
+                            "error_macro": {
+                                "macro": "network_transmit_error_macro",
+                                "assign_macro_id_zero": true
+                            }
+                        }
+                    }
+                },
+                "fabric": {
+                    "engines": {
+                        "termination": {
+                            "error_macro": {
+                                "macro": "fabric_termination_error_macro"
+                            }
+                        },
+                        "forwarding": {
+                            "error_macro": {
+                                "macro": "fabric_forwarding_error_macro"
+                            }
+                        },
+                        "transmit": {                            
+                            "error_macro": {
+                                "macro": "fabric_transmit_error_macro"
+                            }
+                        }
+                    }
+                },
+		"udc": {
+		    "engines": {
+                        "transmit": {
+                            "npe_sram_mapping": {
+                                "level_1_interface_to_sram_index_mapping": {
+                                    "0": 3,
+                                    "1": 5
+                                },
+                                "level_2_interface_to_sram_index_mapping": {
+                                    "0": 1,
+				    "2": 4
+                                },
+                                "level_6_interface_to_sram_index_mapping": {
+                                    "0": 2,
+                                    "2": 6
+                                },
+                                "level_7_interface_to_sram_index_mapping": {
+                                    "0": 0,
+                                    "2": 7
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,3165 @@
+$block{fi_stage} = {
+  Defines_db => " ../../../global/rxpp_pd_defines.v,../../../format_identifier/fi_defines.v",
+  ProjectName => "Gibraltar",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "1",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt test register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "1",
+    Type => "Config",
+    npu_first_macros_tableEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "npu_first_macros_tableEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "1",
+    Type => "Config",
+    npu_first_macros_tableEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "npu_first_macros_tableEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "1",
+    Type => "Config",
+    npu_first_macros_tableEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "npu_first_macros_tableEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "1",
+    Type => "Config",
+    npu_first_macros_tableEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "npu_first_macros_tableEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectErrStatus",
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "1",
+    Type => "ReadOnly",
+    npu_first_macros_tableErrInt => { #Structure Type: RegField;
+      Name => "npu_first_macros_tableErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    Name => "SelectedSerErrorInfo",
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "8",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      Name => "MemErrAddr",
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "6",
+      Position => "5:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      Name => "MemErrType",
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "7:6",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SerErrorDebugConfiguration",
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "2",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      Name => "ErroneousMemorySelector",
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      Name => "ResetMemoryErrors",
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrDebug",
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_1bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrDebug",
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_2bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  TcamScanPeriodCfg => { #Structure Type: Reg; Skip Register;
+    Name => "TcamScanPeriodCfg",
+    RegMem => "Reg",
+    Address => "3B",
+    Description => "Configures period of TCAM scan for SER, set 0 to disable",
+    Width => "32",
+    Type => "Config",
+    TcamScanPeriod => { #Structure Type: RegField;
+      Name => "TcamScanPeriod",
+      RegMem => "RegField",
+      Description => "Configures period of TCAM scan for SER, set 0 to disable",
+      Width => "32",
+      Position => "31:0",
+      Type => "Config",
+      UsedBy => "TCAM",
+      DefaultValue => "d120000000",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "73", # Excel Formula: =calc_reg_width(E25:E53,F53)
+    Type => "Config",
+    SACR1P_RME => { #Structure Type: RegField;
+      Name => "SACR1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACR1P_RM => { #Structure Type: RegField;
+      Name => "SACR1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "4:1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACU2P_RME => { #Structure Type: RegField;
+      Name => "SACU2P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACU2P_RM => { #Structure Type: RegField;
+      Name => "SACU2P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "9:6", # Excel Formula: =calc_position(F27,E28)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADC1P_RME => { #Structure Type: RegField;
+      Name => "SADC1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F28,E29)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADC1P_RM => { #Structure Type: RegField;
+      Name => "SADC1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "14:11", # Excel Formula: =calc_position(F29,E30)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMEA => { #Structure Type: RegField;
+      Name => "SADR2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F30,E31)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMA => { #Structure Type: RegField;
+      Name => "SADR2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "19:16", # Excel Formula: =calc_position(F31,E32)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMEB => { #Structure Type: RegField;
+      Name => "SADR2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "20", # Excel Formula: =calc_position(F32,E33)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMB => { #Structure Type: RegField;
+      Name => "SADR2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "24:21", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMEA => { #Structure Type: RegField;
+      Name => "SADS2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMA => { #Structure Type: RegField;
+      Name => "SADS2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "29:26", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMEB => { #Structure Type: RegField;
+      Name => "SADS2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "30", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMB => { #Structure Type: RegField;
+      Name => "SADS2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "34:31", # Excel Formula: =calc_position(F37,E38)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASR1P_RME => { #Structure Type: RegField;
+      Name => "SASR1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "35", # Excel Formula: =calc_position(F38,E39)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASR1P_RM => { #Structure Type: RegField;
+      Name => "SASR1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "39:36", # Excel Formula: =calc_position(F39,E40)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS1P_RME => { #Structure Type: RegField;
+      Name => "SASS1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "40", # Excel Formula: =calc_position(F40,E41)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS1P_RM => { #Structure Type: RegField;
+      Name => "SASS1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "44:41", # Excel Formula: =calc_position(F41,E42)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMEA => { #Structure Type: RegField;
+      Name => "SASS2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "45", # Excel Formula: =calc_position(F42,E43)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMA => { #Structure Type: RegField;
+      Name => "SASS2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "49:46", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMEB => { #Structure Type: RegField;
+      Name => "SASS2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "50", # Excel Formula: =calc_position(F44,E45)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMB => { #Structure Type: RegField;
+      Name => "SASS2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "54:51", # Excel Formula: =calc_position(F45,E46)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASU2P_RME => { #Structure Type: RegField;
+      Name => "SASU2P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "55", # Excel Formula: =calc_position(F46,E47)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASU2P_RM => { #Structure Type: RegField;
+      Name => "SASU2P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "59:56", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_RME => { #Structure Type: RegField;
+      Name => "SADU1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "60", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_RM => { #Structure Type: RegField;
+      Name => "SADU1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "64:61", # Excel Formula: =calc_position(F49,E50)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RA => { #Structure Type: RegField;
+      Name => "SADS2P_RA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Assist for Dual port",
+      Width => "2",
+      Position => "66:65", # Excel Formula: =calc_position(F50,E51)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_WA => { #Structure Type: RegField;
+      Name => "SADU1P_WA",
+      RegMem => "RegField",
+      Description => "Write-Assist configuration for the SP SADU compiler",
+      Width => "3",
+      Position => "69:67", # Excel Formula: =calc_position(F51,E52)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d5",
+    },
+    SADU1P_WPULSE => { #Structure Type: RegField;
+      Name => "SADU1P_WPULSE",
+      RegMem => "RegField",
+      Description => "Write-Assist-Pulse configuration for the SP SADU compiler",
+      Width => "3",
+      Position => "72:70", # Excel Formula: =calc_position(F52,E53)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E55:E55,F55)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F54,E55,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C54,A54,G54)
+    Description => "Spare register",
+    Width => "128", # Excel Formula: =calc_reg_width(E57:E57,F57)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "Spare register ",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F56,E57,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C56,A56,G56)
+    Description => "PMRO controller configuration",
+    Width => "32", # Excel Formula: =calc_reg_width(E59:E63,F63)
+    Type => "Config",
+    PmroRstn => { #Structure Type: RegField;
+      Name => "PmroRstn",
+      RegMem => "RegField",
+      Description => "PMRO reset, active low",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F58,E59,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroConfigEn => { #Structure Type: RegField;
+      Name => "PmroConfigEn",
+      RegMem => "RegField",
+      Description => "Enable pmro configuration, when equals to 0 configurations are locked",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F59,E60)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroStart => { #Structure Type: RegField;
+      Name => "PmroStart",
+      RegMem => "RegField",
+      Description => "Start the pmro operation",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F60,E61)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroRingEn => { #Structure Type: RegField;
+      Name => "PmroRingEn",
+      RegMem => "RegField",
+      Description => "Determines which PMRO ring to activate, should be configured as one hot",
+      Width => "7",
+      Position => "9:3", # Excel Formula: =calc_position(F61,E62)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroCntPeriod => { #Structure Type: RegField;
+      Name => "PmroCntPeriod",
+      RegMem => "RegField",
+      Description => "Number of core clock cycles on which PMRO is measured",
+      Width => "22",
+      Position => "31:10", # Excel Formula: =calc_position(F62,E63)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "h3FFFFF",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C58,A58,G58)
+    Description => "PMRO status configuration",
+    Width => "23", # Excel Formula: =calc_reg_width(E65:E66,F66)
+    Type => "ReadOnly",
+    PmroCountOut => { #Structure Type: RegField;
+      Name => "PmroCountOut",
+      RegMem => "RegField",
+      Description => "The ring oscilator counter value.",
+      Width => "22",
+      Position => "21:0", # Excel Formula: =calc_position(F64,E65,TRUE)
+      Type => "Status",
+      UsedBy => "pmro",
+    },
+    PmroDone => { #Structure Type: RegField;
+      Name => "PmroDone",
+      RegMem => "RegField",
+      Description => "Pmro operation done, PmroCountOut is valid.",
+      Width => "1",
+      Position => "22", # Excel Formula: =calc_position(F65,E66)
+      Type => "Status",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C64,A64,G64)
+    Description => "Mirror Bus configurations",
+    Width => "11", # Excel Formula: =calc_reg_width(E68:E69,F69)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "Enable Mirror Bus",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "Mirror Bus selector",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F68,E69)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C67,A67,G67)
+    Description => "Mirror Bus status result",
+    Width => "32", # Excel Formula: =calc_reg_width(E71:E71,F71)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "Mirror Bus status result",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F70,E71,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C70,A70,G70)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E73:E73,F73)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F72,E73,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  cfg_tx_header_width => { #Structure Type: Reg;
+    Name => "cfg_tx_header_width",
+    RegMem => "Reg",
+    Address => "100",
+    Description => "Width of the tx header, which is the first part of the packet being stripped before entring the NPU",
+    Width => "4", # Excel Formula: =calc_reg_width(E8:E8,F8)
+    Type => "Config",
+    cfg_tx_header_width_r => { #Structure Type: RegField;
+      Name => "cfg_tx_header_width_r",
+      RegMem => "RegField",
+      Description => "8B resolution",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h1",
+      InitValueAllModes => "0",
+      InitValueSa => "5",
+      InitValueLcNwk => "5",
+    },
+  },
+  ifg_ready_threshold => { #Structure Type: Reg;
+    Name => "ifg_ready_threshold",
+    RegMem => "Reg",
+    Address => "101", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "The threshold of remaning free entries in the frag memory, before de-asserting the ready towards the IFG",
+    Width => "12", # Excel Formula: =calc_reg_width(E10:E11,F11)
+    Type => "Config",
+    frag0_mem_threshold_r => { #Structure Type: RegField;
+      Name => "frag0_mem_threshold_r",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp",
+      DefaultValue => "d21",
+      DefaultSvConstraint => "h1",
+    },
+    frag1_mem_threshold_r => { #Structure Type: RegField;
+      Name => "frag1_mem_threshold_r",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "11:6", # Excel Formula: =calc_position(F10,E11)
+      Type => "Config",
+      UsedBy => "rxpp",
+      DefaultValue => "d21",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  fi_input_fifo_ready_threshold_cfg => { #Structure Type: Reg;
+    Name => "fi_input_fifo_ready_threshold_cfg",
+    RegMem => "Reg",
+    Address => "102", # Excel Formula: =calc_reg_address(C9,A9,G9)
+    Description => "Threshold before de-asserting the FI input FIFO ready towards IFG",
+    Width => "5", # Excel Formula: =calc_reg_width(E13:E13,F13)
+    Type => "Config",
+    fi_input_fifo_ready_threshold => { #Structure Type: RegField;
+      Name => "fi_input_fifo_ready_threshold",
+      RegMem => "RegField",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp",
+      DefaultValue => "d8",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  IfgBackPressureFifoThresholdCfg0 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 32;
+    Name => "IfgBackPressureFifoThresholdCfg[2]",
+    RegMem => "Reg",
+    Address => "103", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Threshold before de-asserting the FI input FIFO ready towards IFG",
+    Width => "5", # Excel Formula: =calc_reg_width(E15:E15,F15)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    Ifg0BackPressureFifoAlmostFullThreshold => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]BackPressureFifoAlmostFullThreshold",
+      RegMem => "RegField",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F14,E15,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp",
+      DefaultValue => "d12",
+      DefaultSvConstraint => "h1",
+      InitValueAllModes => "13",
+    },
+  },
+  IfgBackPressureFifoThresholdCfg1 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 32;
+    Name => "IfgBackPressureFifoThresholdCfg[2]",
+    RegMem => "Reg",
+    Address => "104",
+    Description => "Threshold before de-asserting the FI input FIFO ready towards IFG",
+    Width => "5", # Excel Formula: =calc_reg_width(E15:E15,F15)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    Ifg1BackPressureFifoAlmostFullThreshold => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]BackPressureFifoAlmostFullThreshold",
+      RegMem => "RegField",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F14,E15,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp",
+      DefaultValue => "d12",
+      DefaultSvConstraint => "h1",
+      InitValueAllModes => "13",
+    },
+  },
+  StampRecycleDataMappingCfg0 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 27;
+    Name => "StampRecycleDataMappingCfg[4]",
+    RegMem => "Reg",
+    Address => "105", # Excel Formula: =calc_reg_address(C14,A14,G14)
+    Width => "1", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    StampRecycleDataMapping0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 24;
+      Name => "StampRecycleDataMapping[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp",
+      DefaultValue => "d0",
+      DefaultSvConstraint => "h1",
+      InitValueAllModes => "(instance == 0) ? 0 :1",
+    },
+  },
+  StampRecycleDataMappingCfg1 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 27;
+    Name => "StampRecycleDataMappingCfg[4]",
+    RegMem => "Reg",
+    Address => "106",
+    Width => "1", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    StampRecycleDataMapping1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 24;
+      Name => "StampRecycleDataMapping[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp",
+      DefaultValue => "d0",
+      DefaultSvConstraint => "h1",
+      InitValueAllModes => "(instance == 0) ? 0 :1",
+    },
+  },
+  StampRecycleDataMappingCfg2 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 27;
+    Name => "StampRecycleDataMappingCfg[4]",
+    RegMem => "Reg",
+    Address => "107",
+    Width => "1", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    StampRecycleDataMapping2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 24;
+      Name => "StampRecycleDataMapping[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp",
+      DefaultValue => "d0",
+      DefaultSvConstraint => "h1",
+      InitValueAllModes => "(instance == 0) ? 0 :1",
+    },
+  },
+  StampRecycleDataMappingCfg3 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 27;
+    Name => "StampRecycleDataMappingCfg[4]",
+    RegMem => "Reg",
+    Address => "108",
+    Width => "1", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    StampRecycleDataMapping3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 24;
+      Name => "StampRecycleDataMapping[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp",
+      DefaultValue => "d0",
+      DefaultSvConstraint => "h1",
+      InitValueAllModes => "(instance == 0) ? 0 :1",
+    },
+  },
+  RecyclePortIdConf => { #Structure Type: Reg;
+    Name => "RecyclePortIdConf",
+    RegMem => "Reg",
+    Address => "109", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Max amount of concecutive cycles that the configurable fi is waiting (and hw fi is sending data out) until cfg fi getts the priority.",
+    Width => "5", # Excel Formula: =calc_reg_width(E19:E19,F19)
+    Type => "Config",
+    RecyclePortId => { #Structure Type: RegField;
+      Name => "RecyclePortId",
+      RegMem => "RegField",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "d25",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  term_ifg_debug_features => { #Structure Type: Reg;
+    Name => "term_ifg_debug_features",
+    RegMem => "Reg",
+    Address => "10A", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Width => "86", # Excel Formula: =calc_reg_width(E21:E26,F26)
+    Type => "ReadOnly",
+    flow_control_to_ifg0 => { #Structure Type: RegField;
+      Name => "flow_control_to_ifg0",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F20,E21,TRUE)
+      Type => "Event",
+      UsedBy => "rxpp_term_dbg",
+    },
+    flow_control_to_ifg1 => { #Structure Type: RegField;
+      Name => "flow_control_to_ifg1",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F21,E22)
+      Type => "Event",
+      UsedBy => "rxpp_term_dbg",
+    },
+    ifg0_free_threads_min_wm => { #Structure Type: RegField;
+      Name => "ifg0_free_threads_min_wm",
+      RegMem => "RegField",
+      Width => "10",
+      Position => "11:2", # Excel Formula: =calc_position(F22,E23)
+      Type => "MinWmk",
+      UsedBy => "rxpp_term_dbg",
+    },
+    ifg1_free_threads_min_wm => { #Structure Type: RegField;
+      Name => "ifg1_free_threads_min_wm",
+      RegMem => "RegField",
+      Width => "10",
+      Position => "21:12", # Excel Formula: =calc_position(F23,E24)
+      Type => "MinWmk",
+      UsedBy => "rxpp_term_dbg",
+    },
+    ifg0_input_sop_counter => { #Structure Type: RegField;
+      Name => "ifg0_input_sop_counter",
+      RegMem => "RegField",
+      Width => "32",
+      Position => "53:22", # Excel Formula: =calc_position(F24,E25)
+      Type => "Counter",
+      UsedBy => "rxpp_term_dbg",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    ifg1_input_sop_counter => { #Structure Type: RegField;
+      Name => "ifg1_input_sop_counter",
+      RegMem => "RegField",
+      Width => "32",
+      Position => "85:54", # Excel Formula: =calc_position(F25,E26)
+      Type => "Counter",
+      UsedBy => "rxpp_term_dbg",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  PerIfg0FifosMaxWms => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 7;
+    Name => "PerIfg[2]FifosMaxWms",
+    RegMem => "Reg",
+    Address => "10B", # Excel Formula: =calc_reg_address(C20,A20,G20)
+    Width => "12", # Excel Formula: =calc_reg_width(E28:E29,F29)
+    Type => "ReadOnly",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    Ifg0BpFifoMaxWm => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]BpFifoMaxWm",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F27,E28,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "rxpp",
+      DefaultSvConstraint => "h1",
+    },
+    Ifg0CfgFiInputFifoMaxWm => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]CfgFiInputFifoMaxWm",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "11:6", # Excel Formula: =calc_position(F28,E29)
+      Type => "MaxWmk",
+      UsedBy => "rxpp",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  PerIfg1FifosMaxWms => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 7;
+    Name => "PerIfg[2]FifosMaxWms",
+    RegMem => "Reg",
+    Address => "10C",
+    Width => "12", # Excel Formula: =calc_reg_width(E28:E29,F29)
+    Type => "ReadOnly",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    Ifg1BpFifoMaxWm => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]BpFifoMaxWm",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F27,E28,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "rxpp",
+      DefaultSvConstraint => "h1",
+    },
+    Ifg1CfgFiInputFifoMaxWm => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]CfgFiInputFifoMaxWm",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "11:6", # Excel Formula: =calc_position(F28,E29)
+      Type => "MaxWmk",
+      UsedBy => "rxpp",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  top_debug_data_bus_register => { #Structure Type: Reg;
+    Name => "top_debug_data_bus_register",
+    RegMem => "Reg",
+    Address => "10D", # Excel Formula: =calc_reg_address(C27,A27,G27)
+    Description => "debug_data_bus_register",
+    Width => "32", # Excel Formula: =calc_reg_width(E31:E31,F31)
+    Type => "ReadOnly",
+    top_debug_data_bus => { #Structure Type: RegField;
+      Name => "top_debug_data_bus",
+      RegMem => "RegField",
+      Description => "debug_data_bus",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Status",
+      UsedBy => "rxpp_term_top",
+    },
+  },
+  top_debug_data_select_register => { #Structure Type: Reg;
+    Name => "top_debug_data_select_register",
+    RegMem => "Reg",
+    Address => "10E", # Excel Formula: =calc_reg_address(C30,A30,G30)
+    Description => "debug_data_select_register",
+    Width => "7", # Excel Formula: =calc_reg_width(E33:E33,F33)
+    Type => "Config",
+    top_debug_data_select => { #Structure Type: RegField;
+      Name => "top_debug_data_select",
+      RegMem => "RegField",
+      Description => "debug_data_select",
+      Width => "7",
+      Position => "6:0", # Excel Formula: =calc_position(F32,E33,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp_term_top",
+      DefaultValue => "d0",
+    },
+  },
+  HwFiLevelsMacroIds => { #Structure Type: Reg;
+    Name => "HwFiLevelsMacroIds",
+    RegMem => "Reg",
+    Address => "10F", # Excel Formula: =calc_reg_address(C32,A32,G32)
+    Width => "72", # Excel Formula: =calc_reg_width(E35:E46,F46)
+    Type => "Config",
+    HwFiVlan0MacroId => { #Structure Type: RegField;
+      Name => "HwFiVlan0MacroId",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F34,E35,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1",
+    },
+    HwFiVlan0LastMacroId => { #Structure Type: RegField;
+      Name => "HwFiVlan0LastMacroId",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "11:6", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h3F",
+    },
+    HwFiEthMacroId => { #Structure Type: RegField;
+      Name => "HwFiEthMacroId",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "17:12", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h0",
+    },
+    HwFiEthLastMacroId => { #Structure Type: RegField;
+      Name => "HwFiEthLastMacroId",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "23:18", # Excel Formula: =calc_position(F37,E38)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h3F",
+    },
+    HwFiVlan1MacroId => { #Structure Type: RegField;
+      Name => "HwFiVlan1MacroId",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "29:24", # Excel Formula: =calc_position(F38,E39)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1",
+    },
+    HwFiVlan1LastMacroId => { #Structure Type: RegField;
+      Name => "HwFiVlan1LastMacroId",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "35:30", # Excel Formula: =calc_position(F39,E40)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h3F",
+    },
+    HwFiVlan2MacroId => { #Structure Type: RegField;
+      Name => "HwFiVlan2MacroId",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "41:36", # Excel Formula: =calc_position(F40,E41)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h2",
+    },
+    HwFiVlan2LastMacroId => { #Structure Type: RegField;
+      Name => "HwFiVlan2LastMacroId",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "47:42", # Excel Formula: =calc_position(F41,E42)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h3F",
+    },
+    HwFiIpMacroId => { #Structure Type: RegField;
+      Name => "HwFiIpMacroId",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "53:48", # Excel Formula: =calc_position(F42,E43)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h4",
+    },
+    HwFiIpLastMacroId => { #Structure Type: RegField;
+      Name => "HwFiIpLastMacroId",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "59:54", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h3F",
+    },
+    HwFiUdpMacroId => { #Structure Type: RegField;
+      Name => "HwFiUdpMacroId",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "65:60", # Excel Formula: =calc_position(F44,E45)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h4",
+    },
+    HwFiUdpLastMacroId => { #Structure Type: RegField;
+      Name => "HwFiUdpLastMacroId",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "71:66", # Excel Formula: =calc_position(F45,E46)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h3F",
+    },
+  },
+  HwFiIpv4ErrorChecks => { #Structure Type: Reg;
+    Name => "HwFiIpv4ErrorChecks",
+    RegMem => "Reg",
+    Address => "110", # Excel Formula: =calc_reg_address(C34,A34,G34)
+    Description => "Which error checks to perform for IPv4 headers",
+    Width => "6", # Excel Formula: =calc_reg_width(E48:E53,F53)
+    Type => "Config",
+    HwFiCheckIpv4ChecksumError => { #Structure Type: RegField;
+      Name => "HwFiCheckIpv4ChecksumError",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F47,E48,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1",
+      DefaultSvConstraint => "h1",
+    },
+    HwFiCheckIpv4TtlError => { #Structure Type: RegField;
+      Name => "HwFiCheckIpv4TtlError",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1",
+      DefaultSvConstraint => "h1",
+    },
+    HwFiCheckIpv4VersionError => { #Structure Type: RegField;
+      Name => "HwFiCheckIpv4VersionError",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F49,E50)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1",
+      DefaultSvConstraint => "h1",
+    },
+    HwFiCheckIpv4IhlError => { #Structure Type: RegField;
+      Name => "HwFiCheckIpv4IhlError",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F50,E51)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1",
+      DefaultSvConstraint => "h1",
+    },
+    HwFiCheckIpv4TotalLengthError => { #Structure Type: RegField;
+      Name => "HwFiCheckIpv4TotalLengthError",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F51,E52)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1",
+      DefaultSvConstraint => "h1",
+    },
+    HwFiCheckIpv4SipMcError => { #Structure Type: RegField;
+      Name => "HwFiCheckIpv4SipMcError",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F52,E53)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  HwFiIpv6ErrorChecks => { #Structure Type: Reg;
+    Name => "HwFiIpv6ErrorChecks",
+    RegMem => "Reg",
+    Address => "111", # Excel Formula: =calc_reg_address(C47,A47,G47)
+    Description => "Which error checks to perform for IPv6 headers",
+    Width => "7", # Excel Formula: =calc_reg_width(E55:E61,F61)
+    Type => "Config",
+    HwFiCheckIpv6DipEqualSipError => { #Structure Type: RegField;
+      Name => "HwFiCheckIpv6DipEqualSipError",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F54,E55,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1",
+      DefaultSvConstraint => "h1",
+    },
+    HwFiCheckIpv6HopLimitError => { #Structure Type: RegField;
+      Name => "HwFiCheckIpv6HopLimitError",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1",
+      DefaultSvConstraint => "h1",
+    },
+    HwFiCheckIpv6VersionError => { #Structure Type: RegField;
+      Name => "HwFiCheckIpv6VersionError",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F56,E57)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1",
+      DefaultSvConstraint => "h1",
+    },
+    HwFiCheckIpv6SizeError => { #Structure Type: RegField;
+      Name => "HwFiCheckIpv6SizeError",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F57,E58)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1",
+      DefaultSvConstraint => "h1",
+    },
+    HwFiCheckIpv6SipDip0Error => { #Structure Type: RegField;
+      Name => "HwFiCheckIpv6SipDip0Error",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F58,E59)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1",
+      DefaultSvConstraint => "h1",
+    },
+    HwFiCheckIpv6SipDip1Error => { #Structure Type: RegField;
+      Name => "HwFiCheckIpv6SipDip1Error",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F59,E60)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1",
+      DefaultSvConstraint => "h1",
+    },
+    HwFiCheckIpv6SipMcError => { #Structure Type: RegField;
+      Name => "HwFiCheckIpv6SipMcError",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "6", # Excel Formula: =calc_position(F60,E61)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  HwFiCamMissInvalidData => { #Structure Type: Reg;
+    Name => "HwFiCamMissInvalidData",
+    RegMem => "Reg",
+    Address => "112", # Excel Formula: =calc_reg_address(C54,A54,G54)
+    Description => "The Header type & is layer  the HW-FI will put in case any HW-FI core parses an un-recognised (not configured) next headr type",
+    Width => "6", # Excel Formula: =calc_reg_width(E63:E64,F64)
+    Type => "Config",
+    HwFiInvalidHeaderType => { #Structure Type: RegField;
+      Name => "HwFiInvalidHeaderType",
+      RegMem => "RegField",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F62,E63,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1F",
+      DefaultSvConstraint => "h1",
+    },
+    HwFiInvalidIsLayer => { #Structure Type: RegField;
+      Name => "HwFiInvalidIsLayer",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F63,E64)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  HwFiWmStage0 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 12;
+    Name => "HwFiWmStage[2]",
+    RegMem => "Reg",
+    Address => "113", # Excel Formula: =calc_reg_address(C62,A62,G62)
+    Description => "The Header type & is layer  the HW-FI will put in case any HW-FI core parses an un-recognised (not configured) next headr type",
+    Width => "4", # Excel Formula: =calc_reg_width(E66:E66,F66)
+    Type => "ReadOnly",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    HwFiNpMacroFifoWm0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 18;
+      Name => "HwFiNpMacroFifoWm[n]",
+      RegMem => "RegField",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F65,E66,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "rxpp_hw_fi",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  HwFiWmStage1 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 12;
+    Name => "HwFiWmStage[2]",
+    RegMem => "Reg",
+    Address => "114",
+    Description => "The Header type & is layer  the HW-FI will put in case any HW-FI core parses an un-recognised (not configured) next headr type",
+    Width => "4", # Excel Formula: =calc_reg_width(E66:E66,F66)
+    Type => "ReadOnly",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    HwFiNpMacroFifoWm1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 18;
+      Name => "HwFiNpMacroFifoWm[n]",
+      RegMem => "RegField",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F65,E66,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "rxpp_hw_fi",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  HwFiEndOfPipeLastMacroId => { #Structure Type: Reg;
+    Name => "HwFiEndOfPipeLastMacroId",
+    RegMem => "Reg",
+    Address => "115", # Excel Formula: =calc_reg_address(C65,A65,G65)
+    Description => "The HW FI will compare the last macro ID it gets (from the last core), and if it is equal to this macro id, it will set Is_Last signal, indicating that we can bypass the configurable FI.",
+    Width => "6", # Excel Formula: =calc_reg_width(E68:E68,F68)
+    Type => "Config",
+    HwFiLastMacroId => { #Structure Type: RegField;
+      Name => "HwFiLastMacroId",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1F",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  HwFiMaxAmountOfCfgFiStarvation => { #Structure Type: Reg;
+    Name => "HwFiMaxAmountOfCfgFiStarvation",
+    RegMem => "Reg",
+    Address => "116", # Excel Formula: =calc_reg_address(C67,A67,G67)
+    Description => "Max amount of concecutive cycles that the configurable fi is waiting (and hw fi is sending data out) until cfg fi getts the priority.",
+    Width => "7", # Excel Formula: =calc_reg_width(E70:E71,F71)
+    Type => "Config",
+    HwFiStarvationPreventionActivated => { #Structure Type: RegField;
+      Name => "HwFiStarvationPreventionActivated",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F69,E70,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h1",
+    },
+    HwFiAmountOfCfgFiStarvation => { #Structure Type: RegField;
+      Name => "HwFiAmountOfCfgFiStarvation",
+      RegMem => "RegField",
+      Width => "6",
+      Position => "6:1", # Excel Formula: =calc_position(F70,E71)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "h1F",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  HwFiCountersStage0 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 18;
+    Name => "HwFiCountersStage[2]",
+    RegMem => "Reg",
+    Address => "117", # Excel Formula: =calc_reg_address(C69,A69,G69)
+    Width => "384", # Excel Formula: =calc_reg_width(E73:E78,F78)
+    Type => "ReadOnly",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    HwFiVlan0MatchCounter0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 22;
+      Name => "HwFiVlan0MatchCounter[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "63:0", # Excel Formula: =calc_position(F72,E73,TRUE)
+      Type => "Counter",
+      UsedBy => "rxpp_hw_fi",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    HwFiEthMatchCounter0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "HwFiEthMatchCounter[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "127:64", # Excel Formula: =calc_position(F73,E74)
+      Type => "Counter",
+      UsedBy => "rxpp_hw_fi",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    HwFiVlan1MatchCounter0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 22;
+      Name => "HwFiVlan1MatchCounter[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "191:128", # Excel Formula: =calc_position(F74,E75)
+      Type => "Counter",
+      UsedBy => "rxpp_hw_fi",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    HwFiVlan2MatchCounter0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 22;
+      Name => "HwFiVlan2MatchCounter[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "255:192", # Excel Formula: =calc_position(F75,E76)
+      Type => "Counter",
+      UsedBy => "rxpp_hw_fi",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    HwFiIpMatchCounter0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 19;
+      Name => "HwFiIpMatchCounter[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "319:256", # Excel Formula: =calc_position(F76,E77)
+      Type => "Counter",
+      UsedBy => "rxpp_hw_fi",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    HwFiUdpMatchCounter0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "HwFiUdpMatchCounter[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "383:320", # Excel Formula: =calc_position(F77,E78)
+      Type => "Counter",
+      UsedBy => "rxpp_hw_fi",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  HwFiCountersStage1 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 18;
+    Name => "HwFiCountersStage[2]",
+    RegMem => "Reg",
+    Address => "118",
+    Width => "384", # Excel Formula: =calc_reg_width(E73:E78,F78)
+    Type => "ReadOnly",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    HwFiVlan0MatchCounter1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 22;
+      Name => "HwFiVlan0MatchCounter[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "63:0", # Excel Formula: =calc_position(F72,E73,TRUE)
+      Type => "Counter",
+      UsedBy => "rxpp_hw_fi",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    HwFiEthMatchCounter1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 20;
+      Name => "HwFiEthMatchCounter[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "127:64", # Excel Formula: =calc_position(F73,E74)
+      Type => "Counter",
+      UsedBy => "rxpp_hw_fi",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    HwFiVlan1MatchCounter1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 22;
+      Name => "HwFiVlan1MatchCounter[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "191:128", # Excel Formula: =calc_position(F74,E75)
+      Type => "Counter",
+      UsedBy => "rxpp_hw_fi",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    HwFiVlan2MatchCounter1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 22;
+      Name => "HwFiVlan2MatchCounter[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "255:192", # Excel Formula: =calc_position(F75,E76)
+      Type => "Counter",
+      UsedBy => "rxpp_hw_fi",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    HwFiIpMatchCounter1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 19;
+      Name => "HwFiIpMatchCounter[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "319:256", # Excel Formula: =calc_position(F76,E77)
+      Type => "Counter",
+      UsedBy => "rxpp_hw_fi",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    HwFiUdpMatchCounter1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 20;
+      Name => "HwFiUdpMatchCounter[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "383:320", # Excel Formula: =calc_position(F77,E78)
+      Type => "Counter",
+      UsedBy => "rxpp_hw_fi",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  HwFiMissInCam0 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 14;
+    Name => "HwFiMissInCam[2]",
+    RegMem => "Reg",
+    Address => "119", # Excel Formula: =calc_reg_address(C72,A72,G72)
+    Width => "6", # Excel Formula: =calc_reg_width(E80:E85,F85)
+    Type => "ReadOnly",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    HwFiVlan0MissInCam0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 19;
+      Name => "HwFiVlan0MissInCam[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F79,E80,TRUE)
+      Type => "Event",
+      UsedBy => "rxpp_hw_fi",
+    },
+    HwFiEthMissInCam0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 17;
+      Name => "HwFiEthMissInCam[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F80,E81)
+      Type => "Event",
+      UsedBy => "rxpp_hw_fi",
+    },
+    HwFiVlan1MissInCam0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 19;
+      Name => "HwFiVlan1MissInCam[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F81,E82)
+      Type => "Event",
+      UsedBy => "rxpp_hw_fi",
+    },
+    HwFiVlan2MissInCam0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 19;
+      Name => "HwFiVlan2MissInCam[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F82,E83)
+      Type => "Event",
+      UsedBy => "rxpp_hw_fi",
+    },
+    HwFiIpMissInCam0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 16;
+      Name => "HwFiIpMissInCam[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F83,E84)
+      Type => "Event",
+      UsedBy => "rxpp_hw_fi",
+    },
+    HwFiUdpMissInCam0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 17;
+      Name => "HwFiUdpMissInCam[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F84,E85)
+      Type => "Event",
+      UsedBy => "rxpp_hw_fi",
+    },
+  },
+  HwFiMissInCam1 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 14;
+    Name => "HwFiMissInCam[2]",
+    RegMem => "Reg",
+    Address => "11A",
+    Width => "6", # Excel Formula: =calc_reg_width(E80:E85,F85)
+    Type => "ReadOnly",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    HwFiVlan0MissInCam1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 19;
+      Name => "HwFiVlan0MissInCam[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F79,E80,TRUE)
+      Type => "Event",
+      UsedBy => "rxpp_hw_fi",
+    },
+    HwFiEthMissInCam1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 17;
+      Name => "HwFiEthMissInCam[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F80,E81)
+      Type => "Event",
+      UsedBy => "rxpp_hw_fi",
+    },
+    HwFiVlan1MissInCam1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 19;
+      Name => "HwFiVlan1MissInCam[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F81,E82)
+      Type => "Event",
+      UsedBy => "rxpp_hw_fi",
+    },
+    HwFiVlan2MissInCam1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 19;
+      Name => "HwFiVlan2MissInCam[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F82,E83)
+      Type => "Event",
+      UsedBy => "rxpp_hw_fi",
+    },
+    HwFiIpMissInCam1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 16;
+      Name => "HwFiIpMissInCam[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F83,E84)
+      Type => "Event",
+      UsedBy => "rxpp_hw_fi",
+    },
+    HwFiUdpMissInCam1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 17;
+      Name => "HwFiUdpMissInCam[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F84,E85)
+      Type => "Event",
+      UsedBy => "rxpp_hw_fi",
+    },
+  },
+  HwFiIsLastCnt0 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 14;
+    Name => "HwFiIsLastCnt[2]",
+    RegMem => "Reg",
+    Address => "11B", # Excel Formula: =calc_reg_address(C79,A79,G79)
+    Width => "64", # Excel Formula: =calc_reg_width(E87:E87,F87)
+    Type => "ReadOnly",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    HwFiIsLastCounter0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 18;
+      Name => "HwFiIsLastCounter[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "63:0", # Excel Formula: =calc_position(F86,E87,TRUE)
+      Type => "Counter",
+      UsedBy => "rxpp_hw_fi",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  HwFiIsLastCnt1 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 14;
+    Name => "HwFiIsLastCnt[2]",
+    RegMem => "Reg",
+    Address => "11C",
+    Width => "64", # Excel Formula: =calc_reg_width(E87:E87,F87)
+    Type => "ReadOnly",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    HwFiIsLastCounter1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 18;
+      Name => "HwFiIsLastCounter[n]",
+      RegMem => "RegField",
+      Width => "64",
+      Position => "63:0", # Excel Formula: =calc_position(F86,E87,TRUE)
+      Type => "Counter",
+      UsedBy => "rxpp_hw_fi",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  HwFiBackpressureEventStage0 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 27;
+    Name => "HwFiBackpressureEventStage[2]",
+    RegMem => "Reg",
+    Address => "11D", # Excel Formula: =calc_reg_address(C86,A86,G86)
+    Width => "1", # Excel Formula: =calc_reg_width(E89:E89,F89)
+    Type => "ReadOnly",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    HwFiBackpressure0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 17;
+      Name => "HwFiBackpressure[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F88,E89,TRUE)
+      Type => "Event",
+      UsedBy => "rxpp_hw_fi",
+    },
+  },
+  HwFiBackpressureEventStage1 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 27;
+    Name => "HwFiBackpressureEventStage[2]",
+    RegMem => "Reg",
+    Address => "11E",
+    Width => "1", # Excel Formula: =calc_reg_width(E89:E89,F89)
+    Type => "ReadOnly",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    HwFiBackpressure1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 17;
+      Name => "HwFiBackpressure[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F88,E89,TRUE)
+      Type => "Event",
+      UsedBy => "rxpp_hw_fi",
+    },
+  },
+  hw_fi_debug_data_bus_register0 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 30;
+    Name => "hw_fi_debug_data_bus_register[2]",
+    RegMem => "Reg",
+    Address => "11F", # Excel Formula: =calc_reg_address(C88,A88,G88)
+    Description => "debug_data_bus_register",
+    Width => "32", # Excel Formula: =calc_reg_width(E91:E91,F91)
+    Type => "ReadOnly",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    debug_data_bus0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 15;
+      Name => "debug_data_bus[n]",
+      RegMem => "RegField",
+      Description => "debug_data_bus",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F90,E91,TRUE)
+      Type => "Status",
+      UsedBy => "rxpp_hw_fi",
+    },
+  },
+  hw_fi_debug_data_bus_register1 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 30;
+    Name => "hw_fi_debug_data_bus_register[2]",
+    RegMem => "Reg",
+    Address => "120",
+    Description => "debug_data_bus_register",
+    Width => "32", # Excel Formula: =calc_reg_width(E91:E91,F91)
+    Type => "ReadOnly",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    debug_data_bus1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 15;
+      Name => "debug_data_bus[n]",
+      RegMem => "RegField",
+      Description => "debug_data_bus",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F90,E91,TRUE)
+      Type => "Status",
+      UsedBy => "rxpp_hw_fi",
+    },
+  },
+  hw_fi_debug_data_select_register0 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 33;
+    Name => "hw_fi_debug_data_select_register[2]",
+    RegMem => "Reg",
+    Address => "121", # Excel Formula: =calc_reg_address(C90,A90,G90)
+    Description => "debug_data_select_register",
+    Width => "7", # Excel Formula: =calc_reg_width(E93:E93,F93)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    debug_data_select0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 18;
+      Name => "debug_data_select[n]",
+      RegMem => "RegField",
+      Description => "debug_data_select",
+      Width => "7",
+      Position => "6:0", # Excel Formula: =calc_position(F92,E93,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "d0",
+    },
+  },
+  hw_fi_debug_data_select_register1 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 33;
+    Name => "hw_fi_debug_data_select_register[2]",
+    RegMem => "Reg",
+    Address => "122",
+    Description => "debug_data_select_register",
+    Width => "7", # Excel Formula: =calc_reg_width(E93:E93,F93)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    debug_data_select1 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 18;
+      Name => "debug_data_select[n]",
+      RegMem => "RegField",
+      Description => "debug_data_select",
+      Width => "7",
+      Position => "6:0", # Excel Formula: =calc_position(F92,E93,TRUE)
+      Type => "Config",
+      UsedBy => "rxpp_hw_fi",
+      DefaultValue => "d0",
+    },
+  },
+  Ifg0EventMonIndications => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonIndications",
+    RegMem => "Reg",
+    Address => "123", # Excel Formula: =calc_reg_address(C92,A92,G92)
+    Description => "All Event monitor's outpus (cleared on the same read)",
+    Width => "256", # Excel Formula: =calc_reg_width(E95:E98,F98)
+    Type => "ReadOnly",
+    AdditionalInfo => "MirrorReadAccess",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    Ifg0EventMonAcc0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonAcc0",
+      RegMem => "RegField",
+      Description => "Number of aggregated hits (ACC0)",
+      Width => "64",
+      Position => "63:0", # Excel Formula: =calc_position(F94,E95,TRUE)
+      Type => "Counter",
+      UsedBy => "debug",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    Ifg0EventMonCapturedData => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonCapturedData",
+      RegMem => "RegField",
+      Description => "First hit data",
+      Width => "96",
+      Position => "159:64", # Excel Formula: =calc_position(F95,E96)
+      Type => "Capture",
+      UsedBy => "debug",
+    },
+    Ifg0EventMonTimeOfDay => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonTimeOfDay",
+      RegMem => "RegField",
+      Description => "First hit time of day",
+      Width => "32",
+      Position => "191:160", # Excel Formula: =calc_position(F96,E97)
+      Type => "Capture",
+      UsedBy => "debug",
+    },
+    Ifg0EventMonClockCounter => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonClockCounter",
+      RegMem => "RegField",
+      Description => "Free running clock counter",
+      Width => "64",
+      Position => "255:192", # Excel Formula: =calc_position(F97,E98)
+      Type => "Counter",
+      UsedBy => "debug",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ifg1EventMonIndications => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonIndications",
+    RegMem => "Reg",
+    Address => "124",
+    Description => "All Event monitor's outpus (cleared on the same read)",
+    Width => "256", # Excel Formula: =calc_reg_width(E95:E98,F98)
+    Type => "ReadOnly",
+    AdditionalInfo => "MirrorReadAccess",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    Ifg1EventMonAcc0 => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonAcc0",
+      RegMem => "RegField",
+      Description => "Number of aggregated hits (ACC0)",
+      Width => "64",
+      Position => "63:0", # Excel Formula: =calc_position(F94,E95,TRUE)
+      Type => "Counter",
+      UsedBy => "debug",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    Ifg1EventMonCapturedData => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonCapturedData",
+      RegMem => "RegField",
+      Description => "First hit data",
+      Width => "96",
+      Position => "159:64", # Excel Formula: =calc_position(F95,E96)
+      Type => "Capture",
+      UsedBy => "debug",
+    },
+    Ifg1EventMonTimeOfDay => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonTimeOfDay",
+      RegMem => "RegField",
+      Description => "First hit time of day",
+      Width => "32",
+      Position => "191:160", # Excel Formula: =calc_position(F96,E97)
+      Type => "Capture",
+      UsedBy => "debug",
+    },
+    Ifg1EventMonClockCounter => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonClockCounter",
+      RegMem => "RegField",
+      Description => "Free running clock counter",
+      Width => "64",
+      Position => "255:192", # Excel Formula: =calc_position(F97,E98)
+      Type => "Counter",
+      UsedBy => "debug",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ifg0EventMonEnableReg => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonEnableReg",
+    RegMem => "Reg",
+    Address => "125", # Excel Formula: =calc_reg_address(C94,A94,G94)
+    Description => "Debug Event Monitor: Enable indication",
+    Width => "1", # Excel Formula: =calc_reg_width(E100:E100,F100)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    Ifg0EventMonEnable => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonEnable",
+      RegMem => "RegField",
+      Description => "Enable",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F99,E100,TRUE)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+  },
+  Ifg1EventMonEnableReg => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonEnableReg",
+    RegMem => "Reg",
+    Address => "126",
+    Description => "Debug Event Monitor: Enable indication",
+    Width => "1", # Excel Formula: =calc_reg_width(E100:E100,F100)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    Ifg1EventMonEnable => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonEnable",
+      RegMem => "RegField",
+      Description => "Enable",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F99,E100,TRUE)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+  },
+  Ifg0EventMonFieldOffsetReg => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonFieldOffsetReg",
+    RegMem => "Reg",
+    Address => "127", # Excel Formula: =calc_reg_address(C99,A99,G99)
+    Description => "Event monitor: Mask (and mask) to be performed on each extracted field",
+    Width => "32", # Excel Formula: =calc_reg_width(E102:E105,F105)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    Ifg0EventMonField0Offset => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField0Offset",
+      RegMem => "RegField",
+      Description => "Mask",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F101,E102,TRUE)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField1Offset => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField1Offset",
+      RegMem => "RegField",
+      Description => "Mask",
+      Width => "8",
+      Position => "15:8", # Excel Formula: =calc_position(F102,E103)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField2Offset => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField2Offset",
+      RegMem => "RegField",
+      Description => "Mask",
+      Width => "8",
+      Position => "23:16", # Excel Formula: =calc_position(F103,E104)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField3Offset => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField3Offset",
+      RegMem => "RegField",
+      Description => "Mask",
+      Width => "8",
+      Position => "31:24", # Excel Formula: =calc_position(F104,E105)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+  },
+  Ifg1EventMonFieldOffsetReg => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonFieldOffsetReg",
+    RegMem => "Reg",
+    Address => "128",
+    Description => "Event monitor: Mask (and mask) to be performed on each extracted field",
+    Width => "32", # Excel Formula: =calc_reg_width(E102:E105,F105)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    Ifg1EventMonField0Offset => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField0Offset",
+      RegMem => "RegField",
+      Description => "Mask",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F101,E102,TRUE)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField1Offset => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField1Offset",
+      RegMem => "RegField",
+      Description => "Mask",
+      Width => "8",
+      Position => "15:8", # Excel Formula: =calc_position(F102,E103)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField2Offset => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField2Offset",
+      RegMem => "RegField",
+      Description => "Mask",
+      Width => "8",
+      Position => "23:16", # Excel Formula: =calc_position(F103,E104)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField3Offset => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField3Offset",
+      RegMem => "RegField",
+      Description => "Mask",
+      Width => "8",
+      Position => "31:24", # Excel Formula: =calc_position(F104,E105)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+  },
+  Ifg0EventMonFieldMaskReg => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonFieldMaskReg",
+    RegMem => "Reg",
+    Address => "129", # Excel Formula: =calc_reg_address(C101,A101,G101)
+    Description => "Event monitor: Mask (and mask) to be performed on each extracted field",
+    Width => "96", # Excel Formula: =calc_reg_width(E107:E110,F110)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    Ifg0EventMonField0Mask => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField0Mask",
+      RegMem => "RegField",
+      Description => "Mask",
+      Width => "24",
+      Position => "23:0", # Excel Formula: =calc_position(F106,E107,TRUE)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField1Mask => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField1Mask",
+      RegMem => "RegField",
+      Description => "Mask",
+      Width => "24",
+      Position => "47:24", # Excel Formula: =calc_position(F107,E108)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField2Mask => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField2Mask",
+      RegMem => "RegField",
+      Description => "Mask",
+      Width => "24",
+      Position => "71:48", # Excel Formula: =calc_position(F108,E109)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField3Mask => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField3Mask",
+      RegMem => "RegField",
+      Description => "Mask",
+      Width => "24",
+      Position => "95:72", # Excel Formula: =calc_position(F109,E110)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+  },
+  Ifg1EventMonFieldMaskReg => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonFieldMaskReg",
+    RegMem => "Reg",
+    Address => "12A",
+    Description => "Event monitor: Mask (and mask) to be performed on each extracted field",
+    Width => "96", # Excel Formula: =calc_reg_width(E107:E110,F110)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    Ifg1EventMonField0Mask => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField0Mask",
+      RegMem => "RegField",
+      Description => "Mask",
+      Width => "24",
+      Position => "23:0", # Excel Formula: =calc_position(F106,E107,TRUE)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField1Mask => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField1Mask",
+      RegMem => "RegField",
+      Description => "Mask",
+      Width => "24",
+      Position => "47:24", # Excel Formula: =calc_position(F107,E108)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField2Mask => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField2Mask",
+      RegMem => "RegField",
+      Description => "Mask",
+      Width => "24",
+      Position => "71:48", # Excel Formula: =calc_position(F108,E109)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField3Mask => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField3Mask",
+      RegMem => "RegField",
+      Description => "Mask",
+      Width => "24",
+      Position => "95:72", # Excel Formula: =calc_position(F109,E110)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+  },
+  Ifg0EventMonFieldPartOfAndBitmap => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonFieldPartOfAndBitmap",
+    RegMem => "Reg",
+    Address => "12B", # Excel Formula: =calc_reg_address(C106,A106,G106)
+    Description => "Event monitor: Bit per field; if set the field participate in the 'and' condition",
+    Width => "4", # Excel Formula: =calc_reg_width(E112:E115,F115)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    Ifg0EventMonField0PartOfAndBitmap => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField0PartOfAndBitmap",
+      RegMem => "RegField",
+      Description => "When set the field will participate in the and comperator",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F111,E112,TRUE)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField1PartOfAndBitmap => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField1PartOfAndBitmap",
+      RegMem => "RegField",
+      Description => "When set the field will participate in the and comperator",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F112,E113)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField2PartOfAndBitmap => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField2PartOfAndBitmap",
+      RegMem => "RegField",
+      Description => "When set the field will participate in the and comperator",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F113,E114)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField3PartOfAndBitmap => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField3PartOfAndBitmap",
+      RegMem => "RegField",
+      Description => "When set the field will participate in the and comperator",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F114,E115)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+  },
+  Ifg1EventMonFieldPartOfAndBitmap => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonFieldPartOfAndBitmap",
+    RegMem => "Reg",
+    Address => "12C",
+    Description => "Event monitor: Bit per field; if set the field participate in the 'and' condition",
+    Width => "4", # Excel Formula: =calc_reg_width(E112:E115,F115)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    Ifg1EventMonField0PartOfAndBitmap => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField0PartOfAndBitmap",
+      RegMem => "RegField",
+      Description => "When set the field will participate in the and comperator",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F111,E112,TRUE)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField1PartOfAndBitmap => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField1PartOfAndBitmap",
+      RegMem => "RegField",
+      Description => "When set the field will participate in the and comperator",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F112,E113)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField2PartOfAndBitmap => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField2PartOfAndBitmap",
+      RegMem => "RegField",
+      Description => "When set the field will participate in the and comperator",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F113,E114)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField3PartOfAndBitmap => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField3PartOfAndBitmap",
+      RegMem => "RegField",
+      Description => "When set the field will participate in the and comperator",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F114,E115)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+  },
+  Ifg0EventMonFieldPartOfOrBitmap => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonFieldPartOfOrBitmap",
+    RegMem => "Reg",
+    Address => "12D", # Excel Formula: =calc_reg_address(C111,A111,G111)
+    Description => "Event monitor: Bit per field; if set the field participate in the 'Or' condition",
+    Width => "4", # Excel Formula: =calc_reg_width(E117:E120,F120)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    Ifg0EventMonField0PartOfOrBitmap => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField0PartOfOrBitmap",
+      RegMem => "RegField",
+      Description => "When set the field will participate in the Or comperator",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F116,E117,TRUE)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField1PartOfOrBitmap => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField1PartOfOrBitmap",
+      RegMem => "RegField",
+      Description => "When set the field will participate in the Or comperator",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F117,E118)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField2PartOfOrBitmap => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField2PartOfOrBitmap",
+      RegMem => "RegField",
+      Description => "When set the field will participate in the Or comperator",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F118,E119)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField3PartOfOrBitmap => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField3PartOfOrBitmap",
+      RegMem => "RegField",
+      Description => "When set the field will participate in the Or comperator",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F119,E120)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+  },
+  Ifg1EventMonFieldPartOfOrBitmap => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonFieldPartOfOrBitmap",
+    RegMem => "Reg",
+    Address => "12E",
+    Description => "Event monitor: Bit per field; if set the field participate in the 'Or' condition",
+    Width => "4", # Excel Formula: =calc_reg_width(E117:E120,F120)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    Ifg1EventMonField0PartOfOrBitmap => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField0PartOfOrBitmap",
+      RegMem => "RegField",
+      Description => "When set the field will participate in the Or comperator",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F116,E117,TRUE)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField1PartOfOrBitmap => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField1PartOfOrBitmap",
+      RegMem => "RegField",
+      Description => "When set the field will participate in the Or comperator",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F117,E118)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField2PartOfOrBitmap => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField2PartOfOrBitmap",
+      RegMem => "RegField",
+      Description => "When set the field will participate in the Or comperator",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F118,E119)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField3PartOfOrBitmap => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField3PartOfOrBitmap",
+      RegMem => "RegField",
+      Description => "When set the field will participate in the Or comperator",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F119,E120)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+  },
+  Ifg0EventMonCompareModeReg => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonCompareModeReg",
+    RegMem => "Reg",
+    Address => "12F", # Excel Formula: =calc_reg_address(C116,A116,G116)
+    Description => "Event monitor compare mode register per field: 2b00 Equal, 2b01 Not equal, 2b01 Smaller than, 2b11 Greater than",
+    Width => "8", # Excel Formula: =calc_reg_width(E122:E125,F125)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    Ifg0EventMonField0CompareMode => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField0CompareMode",
+      RegMem => "RegField",
+      Description => "Compare mode",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F121,E122,TRUE)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField1CompareMode => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField1CompareMode",
+      RegMem => "RegField",
+      Description => "Compare mode",
+      Width => "2",
+      Position => "3:2", # Excel Formula: =calc_position(F122,E123)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField2CompareMode => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField2CompareMode",
+      RegMem => "RegField",
+      Description => "Compare mode",
+      Width => "2",
+      Position => "5:4", # Excel Formula: =calc_position(F123,E124)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField3CompareMode => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField3CompareMode",
+      RegMem => "RegField",
+      Description => "Compare mode",
+      Width => "2",
+      Position => "7:6", # Excel Formula: =calc_position(F124,E125)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+  },
+  Ifg1EventMonCompareModeReg => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonCompareModeReg",
+    RegMem => "Reg",
+    Address => "130",
+    Description => "Event monitor compare mode register per field: 2b00 Equal, 2b01 Not equal, 2b01 Smaller than, 2b11 Greater than",
+    Width => "8", # Excel Formula: =calc_reg_width(E122:E125,F125)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    Ifg1EventMonField0CompareMode => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField0CompareMode",
+      RegMem => "RegField",
+      Description => "Compare mode",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F121,E122,TRUE)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField1CompareMode => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField1CompareMode",
+      RegMem => "RegField",
+      Description => "Compare mode",
+      Width => "2",
+      Position => "3:2", # Excel Formula: =calc_position(F122,E123)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField2CompareMode => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField2CompareMode",
+      RegMem => "RegField",
+      Description => "Compare mode",
+      Width => "2",
+      Position => "5:4", # Excel Formula: =calc_position(F123,E124)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField3CompareMode => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField3CompareMode",
+      RegMem => "RegField",
+      Description => "Compare mode",
+      Width => "2",
+      Position => "7:6", # Excel Formula: =calc_position(F124,E125)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+  },
+  Ifg0EventMonCompareValueReg => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonCompareValueReg",
+    RegMem => "Reg",
+    Address => "131", # Excel Formula: =calc_reg_address(C121,A121,G121)
+    Description => "Event monitor: The value which is compared to the masked field",
+    Width => "96", # Excel Formula: =calc_reg_width(E127:E130,F130)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    Ifg0EventMonField0CompareValue => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField0CompareValue",
+      RegMem => "RegField",
+      Description => "Compare value",
+      Width => "24",
+      Position => "23:0", # Excel Formula: =calc_position(F126,E127,TRUE)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField1CompareValue => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField1CompareValue",
+      RegMem => "RegField",
+      Description => "Compare value",
+      Width => "24",
+      Position => "47:24", # Excel Formula: =calc_position(F127,E128)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField2CompareValue => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField2CompareValue",
+      RegMem => "RegField",
+      Description => "Compare value",
+      Width => "24",
+      Position => "71:48", # Excel Formula: =calc_position(F128,E129)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg0EventMonField3CompareValue => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField3CompareValue",
+      RegMem => "RegField",
+      Description => "Compare value",
+      Width => "24",
+      Position => "95:72", # Excel Formula: =calc_position(F129,E130)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+  },
+  Ifg1EventMonCompareValueReg => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonCompareValueReg",
+    RegMem => "Reg",
+    Address => "132",
+    Description => "Event monitor: The value which is compared to the masked field",
+    Width => "96", # Excel Formula: =calc_reg_width(E127:E130,F130)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    Ifg1EventMonField0CompareValue => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField0CompareValue",
+      RegMem => "RegField",
+      Description => "Compare value",
+      Width => "24",
+      Position => "23:0", # Excel Formula: =calc_position(F126,E127,TRUE)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField1CompareValue => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField1CompareValue",
+      RegMem => "RegField",
+      Description => "Compare value",
+      Width => "24",
+      Position => "47:24", # Excel Formula: =calc_position(F127,E128)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField2CompareValue => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField2CompareValue",
+      RegMem => "RegField",
+      Description => "Compare value",
+      Width => "24",
+      Position => "71:48", # Excel Formula: =calc_position(F128,E129)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+    Ifg1EventMonField3CompareValue => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonField3CompareValue",
+      RegMem => "RegField",
+      Description => "Compare value",
+      Width => "24",
+      Position => "95:72", # Excel Formula: =calc_position(F129,E130)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+  },
+  Ifg0EventMonModeReg => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonModeReg",
+    RegMem => "Reg",
+    Address => "133", # Excel Formula: =calc_reg_address(C126,A126,G126)
+    Description => "Event monitor: Defines a 'hit' as 1 of 4 options between the '&' and '|' comparators: 00-only 'and'; 01-only 'or' ;10-'and'&'or; 11-'and'|'or'
+",
+    Width => "2", # Excel Formula: =calc_reg_width(E132:E132,F132)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    Ifg0EventMonMode => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonMode",
+      RegMem => "RegField",
+      Description => "Mode",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F131,E132,TRUE)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+  },
+  Ifg1EventMonModeReg => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+    Name => "Ifg[2]EventMonModeReg",
+    RegMem => "Reg",
+    Address => "134",
+    Description => "Event monitor: Defines a 'hit' as 1 of 4 options between the '&' and '|' comparators: 00-only 'and'; 01-only 'or' ;10-'and'&'or; 11-'and'|'or'
+",
+    Width => "2", # Excel Formula: =calc_reg_width(E132:E132,F132)
+    Type => "Config",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    Ifg1EventMonMode => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 4;
+      Name => "Ifg[n]EventMonMode",
+      RegMem => "RegField",
+      Description => "Mode",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F131,E132,TRUE)
+      Type => "Config",
+      UsedBy => "event_mon",
+      DefaultValue => "d0",
+    },
+  },
+  npu_first_macros_table => { #Structure Type: Mem;
+    Name => "npu_first_macros_table",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "first macros to fi and np engines",
+    Width => "82", # Excel Formula: =calc_mem_width(E134:E140,M133,F140,-1)
+    Type => "Config",
+    UsedBy => "rxpp_npu: Read",
+    MemEntries => "64",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleReadAfterProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100",
+    MemLogicalWidth => "74",
+    fi_macro => { #Structure Type: MemField;
+      Name => "fi_macro",
+      RegMem => "MemField",
+      Description => "fi macro",
+      Width => "6", # Excel Formula: =calc_field_width_define("RXPP_PD_FI_MACRO_WIDTH")
+      Position => "5:0", # Excel Formula: =calc_position(F133,E134,TRUE)
+    },
+    np_marco => { #Structure Type: MemField;
+      Name => "np_marco",
+      RegMem => "MemField",
+      Description => "np macro",
+      Width => "6", # Excel Formula: =calc_field_width_define("RXPP_PD_FI_MACRO_WIDTH")
+      Position => "11:6", # Excel Formula: =calc_position(F134,E135)
+    },
+    tag_swap_cmd => { #Structure Type: MemField;
+      Name => "tag_swap_cmd",
+      RegMem => "MemField",
+      Description => "Command to place a vlan tag before the ethernet header. 0 = no swap, 1 = swap first header, 2 = swap second, 3 = swap third",
+      Width => "2",
+      Position => "13:12", # Excel Formula: =calc_position(F135,E136)
+    },
+    initial_rx_data => { #Structure Type: MemField;
+      Name => "initial_rx_data",
+      RegMem => "MemField",
+      Description => "initial data inserted to rxpp nppd",
+      Width => "50",
+      Position => "63:14", # Excel Formula: =calc_position(F136,E137)
+    },
+    FirstHeaderIsLayer => { #Structure Type: MemField;
+      Name => "FirstHeaderIsLayer",
+      RegMem => "MemField",
+      Description => "initial data inserted to rxpp nppd",
+      Width => "1",
+      Position => "64", # Excel Formula: =calc_position(F137,E138)
+    },
+    FirstHeaderType => { #Structure Type: MemField;
+      Name => "FirstHeaderType",
+      RegMem => "MemField",
+      Description => "initial data inserted to rxpp nppd",
+      Width => "5",
+      Position => "69:65", # Excel Formula: =calc_position(F138,E139)
+    },
+    nppd_current_layer_index => { #Structure Type: MemField;
+      Name => "nppd_current_layer_index",
+      RegMem => "MemField",
+      Description => "the current layer index inserted to the termination engine",
+      Width => "4",
+      Position => "73:70", # Excel Formula: =calc_position(F139,E140)
+    },
+  },
+  recycle_port_macros_table => { #Structure Type: Mem;
+    Name => "recycle_port_macros_table",
+    RegMem => "Mem",
+    Address => "200000", # Excel Formula: =calc_mem_address(C133,A133,G141,L141)
+    Description => "first macros to fi and np engines",
+    Width => "40", # Excel Formula: =calc_mem_width(E142:E149,M141,F149,-1)
+    Type => "Config",
+    UsedBy => "rxpp_npu: Read",
+    MemEntries => "64", # Excel Formula: =2^(calc_field_width_define("RXPP_PD_PORT_WIDTH") + calc_field_width_define("RXPP_PD_IFG_WIDTH"))
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "40",
+    fi_macro => { #Structure Type: MemField;
+      Name => "fi_macro",
+      RegMem => "MemField",
+      Description => "fi macro",
+      Width => "6", # Excel Formula: =calc_field_width_define("RXPP_PD_FI_MACRO_WIDTH")
+      Position => "5:0", # Excel Formula: =calc_position(F141,E142,TRUE)
+    },
+    np_marco => { #Structure Type: MemField;
+      Name => "np_marco",
+      RegMem => "MemField",
+      Description => "np macro",
+      Width => "5",
+      Position => "10:6", # Excel Formula: =calc_position(F142,E143)
+    },
+    tag_swap_cmd => { #Structure Type: MemField;
+      Name => "tag_swap_cmd",
+      RegMem => "MemField",
+      Description => "Command to place a vlan tag before the ethernet header. 0 = no swap, 1 = swap first header, 2 = swap second, 3 = swap third",
+      Width => "2",
+      Position => "12:11", # Excel Formula: =calc_position(F143,E144)
+    },
+    initial_rx_data => { #Structure Type: MemField;
+      Name => "initial_rx_data",
+      RegMem => "MemField",
+      Description => "initial data inserted to rxpp nppd",
+      Width => "16",
+      Position => "28:13", # Excel Formula: =calc_position(F144,E145)
+    },
+    nppd_current_layer_index => { #Structure Type: MemField;
+      Name => "nppd_current_layer_index",
+      RegMem => "MemField",
+      Description => "the current layer index inserted to the termination engine",
+      Width => "4",
+      Position => "32:29", # Excel Formula: =calc_position(F145,E146)
+    },
+    FirstHeaderIsLayer => { #Structure Type: MemField;
+      Name => "FirstHeaderIsLayer",
+      RegMem => "MemField",
+      Description => "initial data inserted to rxpp nppd",
+      Width => "1",
+      Position => "33", # Excel Formula: =calc_position(F146,E147)
+    },
+    FirstHeaderType => { #Structure Type: MemField;
+      Name => "FirstHeaderType",
+      RegMem => "MemField",
+      Description => "initial data inserted to rxpp nppd",
+      Width => "5",
+      Position => "38:34", # Excel Formula: =calc_position(F147,E148)
+    },
+    override_source_port_table => { #Structure Type: MemField;
+      Name => "override_source_port_table",
+      RegMem => "MemField",
+      Description => "whether to take the data from this table, or the first macro table",
+      Width => "1",
+      Position => "39", # Excel Formula: =calc_position(F148,E149)
+    },
+  },
+  HwFiVlan0CoreEthertypeMappingCam => { #Structure Type: Mem;
+    Name => "HwFiVlan0CoreEthertypeMappingCam",
+    RegMem => "Mem",
+    Address => "300000", # Excel Formula: =calc_mem_address(C141,A141,G150,L150)
+    Description => "cam that maps the ethertype from the port extender into header type and next macro id.",
+    Width => "29", # Excel Formula: =calc_mem_width(E151:E153,"None",F153,-1)
+    Type => "Config",
+    UsedBy => "rxpp_hw_fi",
+    MemEntries => "16",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,RegTcamPayloadWidth=12,OutputHitIndex=Enabled,CAM=Enabled,NumCamLookupClients=2,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100",
+    MemLogicalWidth => "29",
+    HwFiVlan0CoreEthertypeMappingCam_key => { #Structure Type: MemField;
+      Name => "HwFiVlan0CoreEthertypeMappingCam_key",
+      RegMem => "MemField",
+      Description => "Ethertype extraced from port extender",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F150,E151,TRUE)
+    },
+    HwFiVlan0CoreEthertypeMappingCam_payload => { #Structure Type: MemField;
+      Name => "HwFiVlan0CoreEthertypeMappingCam_payload",
+      RegMem => "MemField",
+      Width => "12",
+      Position => "27:16", # Excel Formula: =calc_position(F151,E152)
+    },
+    HwFiVlan0CoreEthertypeMappingCam_valid => { #Structure Type: MemField;
+      Name => "HwFiVlan0CoreEthertypeMappingCam_valid",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "28", # Excel Formula: =calc_position(F152,E153)
+    },
+  },
+  HwFiEthCoreEthertypeMappingCam => { #Structure Type: Mem;
+    Name => "HwFiEthCoreEthertypeMappingCam",
+    RegMem => "Mem",
+    Address => "400000", # Excel Formula: =calc_mem_address(C150,A150,G154,L154)
+    Description => "cam that maps the ethertype from the ethernet header into header type and next macro id.",
+    Width => "29", # Excel Formula: =calc_mem_width(E155:E157,"None",F157,-1)
+    Type => "Config",
+    UsedBy => "rxpp_hw_fi",
+    MemEntries => "16",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,RegTcamPayloadWidth=12,OutputHitIndex=Enabled,CAM=Enabled,NumCamLookupClients=2,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100",
+    MemLogicalWidth => "29",
+    HwFiEthCoreEthertypeMappingCam_key => { #Structure Type: MemField;
+      Name => "HwFiEthCoreEthertypeMappingCam_key",
+      RegMem => "MemField",
+      Description => "Ethertype extraced from the ethernet header",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F154,E155,TRUE)
+    },
+    HwFiEthCoreEthertypeMappingCam_payload => { #Structure Type: MemField;
+      Name => "HwFiEthCoreEthertypeMappingCam_payload",
+      RegMem => "MemField",
+      Width => "12",
+      Position => "27:16", # Excel Formula: =calc_position(F155,E156)
+    },
+    HwFiEthCoreEthertypeMappingCam_valid => { #Structure Type: MemField;
+      Name => "HwFiEthCoreEthertypeMappingCam_valid",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "28", # Excel Formula: =calc_position(F156,E157)
+    },
+  },
+  HwFiVlan1CoreEthertypeMappingCam => { #Structure Type: Mem;
+    Name => "HwFiVlan1CoreEthertypeMappingCam",
+    RegMem => "Mem",
+    Address => "500000", # Excel Formula: =calc_mem_address(C154,A154,G158,L158)
+    Description => "cam that maps the ethertype from the 1st vlan header into header type and next macro id.",
+    Width => "29", # Excel Formula: =calc_mem_width(E159:E161,"None",F161,-1)
+    Type => "Config",
+    UsedBy => "rxpp_hw_fi",
+    MemEntries => "16",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,RegTcamPayloadWidth=12,OutputHitIndex=Enabled,CAM=Enabled,NumCamLookupClients=2,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100",
+    MemLogicalWidth => "29",
+    HwFiVlan1CoreEthertypeMappingCam_key => { #Structure Type: MemField;
+      Name => "HwFiVlan1CoreEthertypeMappingCam_key",
+      RegMem => "MemField",
+      Description => "Ethertype extraced from 1st vlan header",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F158,E159,TRUE)
+    },
+    HwFiVlan1CoreEthertypeMappingCam_payload => { #Structure Type: MemField;
+      Name => "HwFiVlan1CoreEthertypeMappingCam_payload",
+      RegMem => "MemField",
+      Width => "12",
+      Position => "27:16", # Excel Formula: =calc_position(F159,E160)
+    },
+    HwFiVlan1CoreEthertypeMappingCam_valid => { #Structure Type: MemField;
+      Name => "HwFiVlan1CoreEthertypeMappingCam_valid",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "28", # Excel Formula: =calc_position(F160,E161)
+    },
+  },
+  HwFiVlan2CoreEthertypeMappingCam => { #Structure Type: Mem;
+    Name => "HwFiVlan2CoreEthertypeMappingCam",
+    RegMem => "Mem",
+    Address => "600000", # Excel Formula: =calc_mem_address(C158,A158,G162,L162)
+    Description => "cam that maps the ethertype from the 2nd vlan header into header type and next macro id.",
+    Width => "29", # Excel Formula: =calc_mem_width(E163:E165,"None",F165,-1)
+    Type => "Config",
+    UsedBy => "rxpp_hw_fi",
+    MemEntries => "16",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,RegTcamPayloadWidth=12,OutputHitIndex=Enabled,CAM=Enabled,NumCamLookupClients=2,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100",
+    MemLogicalWidth => "29",
+    HwFiVlan2CoreEthertypeMappingCam_key => { #Structure Type: MemField;
+      Name => "HwFiVlan2CoreEthertypeMappingCam_key",
+      RegMem => "MemField",
+      Description => "Ethertype extraced from 2nd vlan header",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F162,E163,TRUE)
+    },
+    HwFiVlan2CoreEthertypeMappingCam_payload => { #Structure Type: MemField;
+      Name => "HwFiVlan2CoreEthertypeMappingCam_payload",
+      RegMem => "MemField",
+      Description => "Ethertype extraced from port extender",
+      Width => "12",
+      Position => "27:16", # Excel Formula: =calc_position(F163,E164)
+    },
+    HwFiVlan2CoreEthertypeMappingCam_valid => { #Structure Type: MemField;
+      Name => "HwFiVlan2CoreEthertypeMappingCam_valid",
+      RegMem => "MemField",
+      Description => "Ethertype extraced from port extender",
+      Width => "1",
+      Position => "28", # Excel Formula: =calc_position(F164,E165)
+    },
+  },
+  HwFiIpCoreNextProtocolMappingCam => { #Structure Type: Mem;
+    Name => "HwFiIpCoreNextProtocolMappingCam",
+    RegMem => "Mem",
+    Address => "700000", # Excel Formula: =calc_mem_address(C162,A162,G166,L166)
+    Description => "cam that maps the ethertype from the 2nd vlan header into header type and next macro id.",
+    Width => "22", # Excel Formula: =calc_mem_width(E167:E169,"None",F169,-1)
+    Type => "Config",
+    UsedBy => "rxpp_hw_fi",
+    MemEntries => "32",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,RegTcamPayloadWidth=12,OutputHitIndex=Enabled,CAM=Enabled,NumCamLookupClients=2,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100",
+    MemLogicalWidth => "22",
+    HwFiIpCoreNextProtocolMappingCam_key => { #Structure Type: MemField;
+      Name => "HwFiIpCoreNextProtocolMappingCam_key",
+      RegMem => "MemField",
+      Description => "next protocol extracted from Ip header",
+      Width => "9",
+      Position => "8:0", # Excel Formula: =calc_position(F166,E167,TRUE)
+    },
+    HwFiIpCoreNextProtocolMappingCam_payload => { #Structure Type: MemField;
+      Name => "HwFiIpCoreNextProtocolMappingCam_payload",
+      RegMem => "MemField",
+      Width => "12",
+      Position => "20:9", # Excel Formula: =calc_position(F167,E168)
+    },
+    HwFiIpCoreNextProtocolMappingCam_valid => { #Structure Type: MemField;
+      Name => "HwFiIpCoreNextProtocolMappingCam_valid",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "21", # Excel Formula: =calc_position(F168,E169)
+    },
+  },
+  HwFiUdpCoreNextProtocolMappingCam => { #Structure Type: Mem;
+    Name => "HwFiUdpCoreNextProtocolMappingCam",
+    RegMem => "Mem",
+    Address => "800000", # Excel Formula: =calc_mem_address(C166,A166,G170,L170)
+    Description => "cam that maps the udp dest port into header type and next macro id.",
+    Width => "29", # Excel Formula: =calc_mem_width(E171:E173,"None",F173,-1)
+    Type => "Config",
+    UsedBy => "rxpp_hw_fi",
+    MemEntries => "16",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,RegTcamPayloadWidth=12,OutputHitIndex=Enabled,CAM=Enabled,NumCamLookupClients=2,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100",
+    MemLogicalWidth => "29",
+    HwFiUdpCoreNextProtocolMappingCam_key => { #Structure Type: MemField;
+      Name => "HwFiUdpCoreNextProtocolMappingCam_key",
+      RegMem => "MemField",
+      Description => "dest port extracted from Ip header",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F170,E171,TRUE)
+    },
+    HwFiUdpCoreNextProtocolMappingCam_payload => { #Structure Type: MemField;
+      Name => "HwFiUdpCoreNextProtocolMappingCam_payload",
+      RegMem => "MemField",
+      Width => "12",
+      Position => "27:16", # Excel Formula: =calc_position(F171,E172)
+    },
+    HwFiUdpCoreNextProtocolMappingCam_valid => { #Structure Type: MemField;
+      Name => "HwFiUdpCoreNextProtocolMappingCam_valid",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "28", # Excel Formula: =calc_position(F172,E173)
+    },
+  },
+};

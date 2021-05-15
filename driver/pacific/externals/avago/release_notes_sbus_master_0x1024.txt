@@ -1,0 +1,298 @@
+*************************
+* RELEASE master (0x1024)
+*************************
+ - Released for 1001 and 2001 builds only.
+ - Initializes all dmem to avoid DMEM ECC issue with accessing uninitialized dmem
+ - Remove legacy code that checked for table after end of imem image, which was triggering an IMEM ECC error.
+ - Reduce default frequency for updating temperature info to all SerDes.
+
+*************************
+* RELEASE master (0x1023)
+*************************
+ - Enable communication of temperature info to all SerDes.  Released for 1001 and 2001 builds only.
+ - Automatically initializes the temperature sensor, reads the first temperature, and writes it to all SerDes on the local ring.
+ - Supports retrieving temperature from a non-local ring if the local ring has no temperature sensor.
+
+*************************
+* RELEASE master (0x1021)
+*************************
+ - Enable communication of temperature info to M4 SerDes.  Released for 2001 build only.
+
+*************************
+* RELEASE master (0x1020)
+*************************
+ - Fix compile option for the 1001 build.  Otherwise, no change.
+
+*************************
+* RELEASE master (0x101F)
+*************************
+ - Add support for eye acceleration on PON SerDes.
+ - Fix SBus Master race condition where an interrupt could be lost during start up.
+ - Restore eye acceleration functionality inadvertently removed from 0x101E.
+
+*************************
+*************************
+* RELEASE master (0x101E)
+*************************
+ - 7nm Initial release
+
+*************************
+* RELEASE master 0x101B
+*************************
+ - Fixed squelch issues.
+ - Added routines to set RX -> TX paths based on crosspoint settings.
+ - Updated Sapphire's start_polling routine to automatically call the
+   step that detects paths through the crosspoint.
+ - Updated the tuning routine for all ASSP products to apply the current
+   user selection for the disable_auto_pcal bit
+
+*************************
+* RELEASE master 0x101A
+*************************
+  - Added SerDes eye gathering assistance for improved eye gathering performance
+
+Garnet (AVSP-5410 and AVSP-5820):
+  - First release of self healing
+
+*************************
+* RELEASE master 0x1019
+*************************
+Malachite (AVSP-9104)
+  - Added parameters to allow for adapting the FEC slip algorithm
+  - Set the default values for these params to the best case
+  - Modified the handling of the tx phase calibration to ensure
+    that the cal step is run at a time when the phase beacons
+    are stable
+  - Fixed 10:4 AN reset issue
+
+Opal (AVSP-7412)
+  - Alpha FW for stating Opal via SBM transactions
+    - Typical ASSP variables/interrupts are supported
+    - Supports 1:1 mode for passing data through core
+    - RS-FEC 528 and 544 modes are enabled
+    - Self healing for all modes is supported
+    - Self loading is supported but minimally tested thus far
+
+Garnet (AVSP-5410 and AVSP-5820)
+  - First release of passthrough repeater mode
+  - First release of 4:1 gearbox mode
+  - First release of 4:1 RS-FEC mode
+
+*************************
+* RELEASE master 0x1018
+*************************
+8812: 
+- Self healing support 
+- 2:1 and 1:2 Gearbox support 
+- Various bug fixes 
+9104: 
+- Various bug fixes
+
+*************************
+* RELEASE master 0x1017
+*************************
+Correct bug in DDR3 eTrain PBDS training.
+
+*************************
+* RELEASE master (0x1016)
+*************************
+SAPPHIRE
+-- Ability to state crosspoint from memory
+-- Stating repeater mode results in static crosspoint configuration
+-- FEC support
+-- AN now can negotiate to all supported functionalities
+-- Various bug fixes for AN and stating the part
+
+MALACHITE
+-- FEC/AN sequence 2 bug fixes
+-- Various bug fixes for AN and self healing
+-- Added ability to select AN source from module slices
+
+DDR3 eTrain Updates for Build IDs 0x0062 and 0x0063
+- Changed default ddr3_phy_t_rdlat_offset parameter from 7 to 6 for 1866 presets
+- Added dual-frequency write-leveling algorithm.  This is the new default for 1866 and 2133 presets.
+- Added additional user parameters
+
+    0x1e ddr3_dual_freq_write_levling_enable (default=1)
+         Forces Dual Frequency Write Leveling on or off.  This parameter is
+         auto configured when interrupt 0x39, ddr3_set_frequency_config, is
+         run.  It can be overwritten by the user after issuing interrupt 0x39.
+
+    0x1f ddr3_fine_read_gate_training_enable (default=1)
+         When set to 1, both coarse and fine read-gate training are performed.
+         When set to 0, only coarse read-gate training is performed.
+
+- Changed ddr3_max_timeout default from 100 to 1000
+- Added checks to ensure proper exiting of write-leveling, read-gate training and PBDS after an error condition
+- Added new DDR3 eTrain error codes
+
+    110 ERROR_TRAINING_ALREADY_ACTIVE
+        Indicates training can't be started because it is already running.
+        This may be due to a previous training failure and training must be
+        forced to end using interrupt 0x3D - ddr3_force_training_complete.
+
+    504 ERROR_EXIT_WRITE_LEVEL_TRAINING_TIMEOUT
+        Write level training did not terminate properly while exiting training.
+
+    505 ERROR_EXIT_READ_GATE_TRAINING_TIMEOUT
+        Read gate training did not terminate properly while exiting training.
+
+    506 ERROR_EXIT_PBDS_TRAINING_TIMEOUT
+        PBDS training did not terminate properly while exiting training.
+
+- Optimized coarse read-gate training to account for analog behavior of results
+- Adjusted read-gate training to provide more optimal fine-gate code.  These should now range between 0x4 and 0xb.
+- Improved PBDS algorithm
+
+*************************
+* RELEASE 1.015 (0x1015)
+*************************
+-- Repeater mode and crosspoint setup via interrupt 0x024
+-- Auto-negotiation to 10G and 40G repeater lanes
+-- Symmetric Link training
+
+*************************
+* RELEASE 1.014 (0x1014)
+*************************
+*************************
+* RELEASE 1.013 (0x1013)
+*************************
+Updated idle detection threshold to 0
+*************************
+* RELEASE 1.012 (0x1012)
+*************************
+- Verified FEC functionality for supporting AN/KR
+- Tested API with this command set
+- Re-enable self-healing after KR
+
+*************************
+* RELEASE 1.512 (0x1512)
+*************************
+- Verified FEC functionality for supporting AN/KR
+- Tested API with this command set
+- Re-enable self-healing after KR
+*************************
+* RELEASE 1.011 (0x1011)
+*************************
+Updated Self-Healing for feature updates and bug fixes
+  - Added electrical idle hold-off before initiating DFE tuning
+  - Added ability to keep a previous good tune result
+  - Fixed squelching bug (bad behavior when multiple RXs contribute to a single TX)
+  - Fixed phase cal behavior (targeted incorrect TXs)
+      - Updated default values for 1104 and 4412
+  - Updated status bits for better visibility into current state
+  - Modified flow to enable future development
+  - Added user intervention modes to allow finer customer control/direction
+  - Updated start_polling routine to ensure seamless transition if enabled after setup (no INTERR_IO glitching)
+  - Moved control and status bits around to make them available to some of the other FW tools
+Fixed startup issue with TX handling to ensure good phase alignment in PLB (Emerald only and test modes in 1104)
+Modified flow during startup to better integrate transition into polling if desired
+Hold off output enable until data is ready at startup
+
+*************************
+* RELEASE 1.010 (0x1010)
+*************************
+Added support for symetric and asymetric KR training - specific to 4412
+Partitioned code for future product support
+*************************
+* RELEASE 1.00F (0x100F)
+*************************
+Modified the PCIe Gen3/4 swap module to allow addresses 0xE0...0xE7 as 
+broadcast, skipping the SerDes type test.
+*************************
+* RELEASE 1.00E (0x100E)
+*************************
+Added "round robin" pCal capability, interrupt 0x2B
+
+Fixed the "serdes_command" interface to return with "timeout" (i.e "SerDes 
+hung") if the command doesn't complete within 30 sbus reads of the in-progress
+bit.
+*************************
+* RELEASE 1.00D (0x100D)
+*************************
+Added latest ASSP updates
+*************************
+* RELEASE 1.00C (0x100C)
+*************************
+Added in logic to ensure that all slices are fully reset prior to updating their state information
+
+Updated the wait_for_rdy routine to add in some delay between sampling so that the sampling loop doesn't complete too quickly.
+
+Added in an SBM interrupt at 0x26 to check the status of timeout checks so that a user can verify that the wait_for_rdy routine had no issues in the previous run.
+*************************
+* RELEASE 1.00B (0x100B)
+*************************
+- Added routines to assp.asm to support future code development
+- Added emerald.asm to support 0x104 and 0x204 builds for operating
+  the emerald chip.
+- Updated vortex.asm to use the updated assp.asm routines
+- Updated vortex.asm to poll for rdy rather than adding in a fixed
+  delay which caused issues for some refclk rates.
+- Added support for setting thermal control bits in the 0x01 
+  interrupt for characterization testing
+*************************
+* RELEASE 1.00A (0x100A)
+*************************
+  Added firmware support for RMON/DRMON and Temperature configuration on the 
+SerDes (Interrupts 0x29, 0x2A)
+
+  Adjusted the BUILD id range for ASSP devices. Added 16nm BUILD id bit also.
+
+  Added Interrupt to return "start of swap load" (Interrupt 0x1C)
+*************************
+* RELEASE 1.009 (0x1009)
+*************************
+Added build 0x0004, 0x0008 for ASSP support
+*************************
+* RELEASE 1.008 (0x1008)
+*************************
+Fixed a bug that caused power-up initialization to branch to an inappropriate
+location.
+*************************
+* RELEASE 1.007 (0x1007)
+*************************
+11/13/12
+Added bit check to avoid lengthy start-up procedure when doing Verilog 
+simulations.
+*************************
+* RELEASE 1.006 (0x1006)
+*************************
+DDR3 changes include
+- All DDR3 interfaces will now be trained, even if one has an error
+- Changed return code for interrupt 0x33
+- Added interrupt 0x36 to train a single interface
+- Added interrupt 0x37 to query training stattus for a single interface
+- Added a second verilog mode for faster simulation
+*************************
+* RELEASE 1.005 (0x1005)
+*************************
+Added fast verilog simulation mode for DDR3 training.
+*************************
+* RELEASE 1.004 (0x1004)
+*************************
+Added support for temperature / voltage status and interrupts
+*************************
+* RELEASE 1.003 (0x1003)
+*************************
+Added documentation for Voltage, Temperature, and PMRO interrupts.
+
+Updated DDR3 code for Tigershark/Kohala-D
+*************************
+* RELEASE 1.002 (0x1002)
+*************************
+Initial release of Base Sbus Master firmware
+  - CRC
+  - Revision
+  - Build ID
+  - DMEM access
+
+Initial release of DDR3 Trainig firmware
+  - Initialize DRAM
+  - Initialization Status
+  - Run Training
+  - Training Status
+
+*************************
+* RELEASE 1.001 (0x1001)
+*************************
+Initial Check In

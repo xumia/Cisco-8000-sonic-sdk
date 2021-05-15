@@ -1,0 +1,250 @@
+{
+   from_parser
+   Memcheck:Leak
+   ...
+   fun:*NPLParser*
+}
+{
+   parsing_errors
+   Memcheck:Leak
+   ...
+   fun:*PostParsingProcessingAndValidation*
+}
+{
+   parsed_statements
+   Memcheck:Leak
+   ...
+   fun:*ResolveCallControlOrActions*
+}
+{
+   nsim_errors
+   Memcheck:Leak
+   ...
+   fun:*create_and_run_simulator_server*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   fun:SwigPyClientData_New
+   fun:*
+}
+
+# Next 5 suppressions are for NSIM mem leaks that aren't included in the general NSIM suppression.
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   fun:__libc_alloc_buffer_allocate
+   fun:__resolv_conf_allocate
+   fun:__resolv_conf_load
+   fun:__resolv_conf_get_current
+   fun:__res_vinit
+   fun:maybe_init
+   fun:__resolv_context_get
+   fun:gethostbyname
+   fun:_ZN4dsim24socket_connection_common11find_serverESsPN7npsuite6LoggerE
+   fun:_ZN4dsim18dsim_socket_server15init_connectionEt
+   fun:_ZN4dsim16device_simulator3runEv
+}
+{
+   jansson_leaks
+   Memcheck:Leak
+   match-leak-kinds: definite
+   ...
+   fun:hashtable_init
+}
+{
+   jansson_leaks
+   Memcheck:Leak
+   match-leak-kinds: definite
+   ...
+   fun:hashtable_set
+}
+{
+   jansson_leaks
+   Memcheck:Leak
+   match-leak-kinds: definite
+   ...
+   fun:jsonp_strndup
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   fun:PyUnicode_New
+   fun:_PyUnicodeWriter_PrepareInternal
+   fun:PyUnicode_DecodeUTF8Stateful
+   fun:PyInit__imaging
+   fun:_PyImport_LoadDynamicModuleWithSpec
+   fun:_imp_create_dynamic_impl
+   fun:_imp_create_dynamic
+   fun:PyCFunction_Call
+   fun:do_call_core
+   fun:_PyEval_EvalFrameDefault
+   fun:_PyEval_EvalCodeWithName
+   fun:fast_function
+   fun:call_function
+   fun:_PyEval_EvalFrameDefault
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:_ZN11silicon_one14la_device_impl14create_counterEmRPNS_14la_counter_setE
+   fun:_wrap_la_device_create_counter
+   fun:_PyCFunction_FastCallDict
+   fun:call_function
+   fun:_PyEval_EvalFrameDefault
+   fun:_PyFunction_FastCall
+   fun:fast_function
+   fun:call_function
+   fun:_PyEval_EvalFrameDefault
+   fun:_PyFunction_FastCall
+   fun:fast_function
+   fun:call_function
+   fun:_PyEval_EvalFrameDefault
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+   fun:_ZN11silicon_one14la_device_impl20create_npu_host_portEtjPNS_10la_voq_setEPKNS_13la_tc_profileERPNS_16la_npu_host_portE
+   fun:_wrap_la_device_create_npu_host_port
+   fun:_PyCFunction_FastCallDict
+   fun:call_function
+   fun:_PyEval_EvalFrameDefault
+   fun:_PyFunction_FastCall
+   fun:fast_function
+   fun:call_function
+   fun:_PyEval_EvalFrameDefault
+   fun:_PyFunction_FastCall
+   fun:_PyFunction_FastCallDict
+   fun:_PyObject_FastCallDict
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   fun:PyUnicode_New
+   fun:_PyUnicode_FromASCII
+   fun:do_argstrip
+   fun:unicode_strip
+   fun:_PyCFunction_FastCallDict
+   fun:call_function
+   fun:_PyEval_EvalFrameDefault
+   fun:_PyFunction_FastCall
+   fun:fast_function
+   fun:call_function
+   fun:_PyEval_EvalFrameDefault
+   fun:_PyEval_EvalCodeWithName
+   fun:PyEval_EvalCodeEx
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   fun:_PyBytes_FromSize
+   fun:PyBytes_FromStringAndSize
+   fun:arr_add_docstring
+   fun:_PyCFunction_FastCallDict
+   fun:call_function
+   fun:_PyEval_EvalFrameDefault
+   fun:_PyFunction_FastCall
+   fun:fast_function
+   fun:call_function
+   fun:_PyEval_EvalFrameDefault
+   fun:_PyEval_EvalCodeWithName
+   fun:PyEval_EvalCodeEx
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   fun:PyUnicode_New
+   fun:_PyUnicode_FromUCS1
+   fun:r_object
+   fun:r_object
+   fun:r_object
+   fun:read_object
+   fun:marshal_loads
+   fun:_PyCFunction_FastCallDict
+   fun:call_function
+   fun:_PyEval_EvalFrameDefault
+   fun:_PyEval_EvalCodeWithName
+   fun:fast_function
+   fun:call_function
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   fun:PyUnicode_New
+   fun:_PyUnicodeWriter_PrepareInternal
+   fun:PyUnicode_DecodeUTF8Stateful
+   fun:setup_module
+   fun:PyInit__imaging
+   fun:_PyImport_LoadDynamicModuleWithSpec
+   fun:_imp_create_dynamic_impl
+   fun:_imp_create_dynamic
+   fun:PyCFunction_Call
+   fun:do_call_core
+   fun:_PyEval_EvalFrameDefault
+   fun:_PyEval_EvalCodeWithName
+   fun:fast_function
+   fun:call_function
+   fun:_PyEval_EvalFrameDefault
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   sched_getaffinity(mask)
+   fun:sched_getaffinity@@GLIBC_2.3.4
+   fun:get_num_procs
+   fun:blas_get_cpu_number
+   fun:gotoblas_init
+   fun:*
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   socketcall.sendto(msg)
+   fun:send
+   fun:_ZN4dsim13write_n_bytesEjPKvj
+   fun:_ZN4dsim24socket_connection_common4sendEmPKv
+   fun:_ZN4dsim11dsim_client12write_memoryEjjtmPKv
+   fun:_ZN11silicon_one16simulator_client12write_memoryEjjtmPKv
+   fun:_ZN11silicon_one14ll_device_impl19do_write_memory_rawEPNS_13access_engineEjjjtmPKh
+   fun:_ZN11silicon_one14ll_device_impl15do_write_memoryEPNS_13access_engineEPKNS_10lld_memoryEjmRKNS_15bit_vector_baseINS_26bit_vector_dynamic_storageEEE
+   fun:_ZN11silicon_one14ll_device_impl6accessESt6vectorINS_9ll_device11access_descENS_17allocator_wrapperIS3_EEE
+   fun:_ZN11silicon_one14ll_transaction6commitEv
+   fun:_ZN11silicon_one14ll_device_impl12write_memoryERKNS_10lld_memoryEmmmPKv
+   fun:_ZN11silicon_one19la_acl_profile_impl16microcode_updateEv
+   fun:_ZN11silicon_one14la_device_impl28acl_profile_microcode_writesEv
+}
+{
+   Ignore valgrind dlopen bug.
+   Memcheck:Leak
+   ...
+   fun:_dl_open
+   ...
+}
+# TODO Remove after warm boot merge
+{
+   la_l2_service_port_base attribute mgmt. issue.
+   Memcheck:Addr8
+   ...
+   fun:_ZN11silicon_one14la_device_impl27do_dependency_management_opENS_24dependency_management_opE
+   ...
+}
+

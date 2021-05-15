@@ -1,0 +1,9 @@
+// Pacific QoS and Congestion management model page
+
+/// @page pacific_qos_and_congestion_management_page QoS and Congestion management
+///
+/// This chapter describes the Pacific's Quality of Service (QoS) and Congestion management operation models and objects.
+///
+/// * @subpage pacific_qos_and_congestion_management_voq_buffering, an overview of Pacific's VOQ buffering
+/// * @subpage pacific_qos_and_congestion_management_voq_wred, an overview of Pacific's VOQ WRED architecture
+

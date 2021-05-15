@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+# BEGIN_LEGAL
+#
+# Copyright (c) 2016-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+from packet_test_utils import *
+from scapy.all import *
+from l2_vlan_editing_base import *
+from leaba import sdk
+import unittest
+import topology as T
+
+class pop_padding_test(l2_vlan_editing_base):
+
+    def test_pop_padding(self):
+        eve = sdk.la_vlan_edit_command()
+        eve.num_tags_to_push = 0
+
+        self.ac_port2.hld_obj.set_egress_vlan_edit_command(eve)
+
+        in_packet_base = Ether(dst=DST_MAC, src=SRC_MAC, type=Ethertype.Dot1Q.value) / \
+            Dot1Q(vlan=0x3ef, type=Ethertype.Dot1Q.value) / \
+            Dot1Q(vlan=0x3ef) / \
+            IP(src=SRC_IP, dst=DST_IP)
+
+        in_packet, base_input_packet_payload_size = enlarge_packet_to_min_length(in_packet_base)
+
+        egress_counter = self.device.create_counter(1)
+        self.ac_port2.hld_obj.set_egress_counter(sdk.la_counter_set.type_e_PORT, egress_counter)
+        eve.num_tags_to_pop = 0
+        self.ac_port2.hld_obj.set_egress_vlan_edit_command(eve)
+        out_packet = in_packet
+        run_and_compare(
+                self,
+                self.device,
+                in_packet,
+                IN_SLICE,
+                IN_IFG,
+                IN_SERDES_FIRST,
+                out_packet,
+                OUT_SLICE,
+                OUT_IFG,
+                OUT_SERDES_FIRST)
+        packet_count, byte_count = egress_counter.read(0,  # sub-counter index
+                                                           True,  # force_update
+                                                           True)  # clear_on_read
+        self.assertEqual(packet_count, 1)
+        assertPacketLengthEgress(self, out_packet, byte_count)
+        eve.num_tags_to_pop = 1
+        self.ac_port2.hld_obj.set_egress_vlan_edit_command(eve)
+        out_packet_base = Ether(dst=DST_MAC, src=SRC_MAC, type=Ethertype.Dot1Q.value) / \
+                       Dot1Q(vlan=0x3ef) / \
+                       IP(src=SRC_IP, dst=DST_IP)
+        out_packet = add_payload(out_packet_base, base_input_packet_payload_size)
+        run_and_compare(
+                self,
+                self.device,
+                in_packet,
+                IN_SLICE,
+                IN_IFG,
+                IN_SERDES_FIRST,
+                out_packet,
+                OUT_SLICE,
+                OUT_IFG,
+                OUT_SERDES_FIRST)
+        packet_count, byte_count = egress_counter.read(0,  # sub-counter index
+                                                           True,  # force_update
+                                                           True)  # clear_on_read
+        self.assertEqual(packet_count, 1)
+        assertPacketLengthEgress(self, out_packet, byte_count)
+        eve.num_tags_to_pop = 2
+        self.ac_port2.hld_obj.set_egress_vlan_edit_command(eve)
+        out_packet_base = Ether(dst=DST_MAC, src=SRC_MAC) / \
+                       IP(src=SRC_IP, dst=DST_IP)
+        out_packet = add_payload(out_packet_base, base_input_packet_payload_size)
+        run_and_compare(
+                self,
+                self.device,
+                in_packet,
+                IN_SLICE,
+                IN_IFG,
+                IN_SERDES_FIRST,
+                out_packet,
+                OUT_SLICE,
+                OUT_IFG,
+                OUT_SERDES_FIRST)
+        packet_count, byte_count = egress_counter.read(0,  # sub-counter index
+                                                           True,  # force_update
+                                                           True)  # clear_on_read
+        self.assertEqual(packet_count, 1)
+        assertPacketLengthEgress(self, out_packet, byte_count)
+
+if __name__ == '__main__':
+    unittest.main()

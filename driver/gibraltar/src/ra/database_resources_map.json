@@ -1,0 +1,5162 @@
+{
+    "external_central_em": {
+        "allocation": "device",
+        "translation_type": "cem_arc",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "cdb_top",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": []
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_calc_checksum_enable_hw_table": {
+        "allocation": "slice",
+        "translation_type": "multival_reg",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "eve_stage_en_signals",
+                                    "offset": 1,
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_ts_cmd_hw_static_table": {
+        "allocation": "slice",
+        "translation_type": "multival_reg",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "time_stamp_cmd_translation",
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_counters_block_config": {
+        "allocation": "device",
+        "translation_type": "reg_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "counters_bank_group",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_config",
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 3
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_counters_voq_block_map": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "counters",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "voq_block_map",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "counters",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "voq_block_map",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "counters",
+                    "id": 2,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "voq_block_map",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "counters",
+                    "id": 3,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "voq_block_map",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "counters",
+                    "id": 4,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "voq_block_map",
+                                    "arr_idx": 4,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "counters",
+                    "id": 5,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "voq_block_map",
+                                    "arr_idx": 5,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_cud_is_multicast_bitmap": {
+        "allocation": "slice",
+        "translation_type": "multival_reg",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "cud_mapping_mc_bmp",
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mc_cud": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "mc_cud_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_central_tcam": {
+        "allocation": "slice",
+        "translation_type": "ctm",
+        "placements": {
+            "network": [
+                {
+                    "engine": "cdb_top",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": []
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_egress_dip_index": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_encdb",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice_dip_index_mapping_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_encdb",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice_dip_index_mapping_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_egress_direct0": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_encdb",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice_direct0_nh_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_encdb",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice_direct0_nh_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_egress_direct1": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_encdb",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice_direct1_adj_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_encdb",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice_direct1_adj_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_npuh_eth_mp_em": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "npu_host",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "eth_mp_em_per_em_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "eth_mp_em_per_bank_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "eth_mp_em_verifier",
+                                    "arr_idx": [0, 1, 2, 3],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "eth_mp_em_cam",
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_filb_voq_mapping_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "filb_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "voq_mapping",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rxpdr_source_port_to_link_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "source_if2_port_map_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rxpdr_fe_rlb_uc_tx_fb_link_to_oq_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "fe_rlb_uc_tx_fb_link_to_oq_map",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_fwd_type_to_ive_enable_hw_table": {
+        "allocation": "slice",
+        "translation_type": "multival_reg",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "ive_fwd_data_has_ive",
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_wredprb": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "type": "exact",
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "prob_lut",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_cgmlut": {
+        "allocation": "device",
+        "translation_type": "multival_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "dram_cgm",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "cgm_lut",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_cgmlutd": {
+        "allocation": "device",
+        "translation_type": "multival_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "dram_cgm",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "cgm_deq_lut",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_profile_global": {
+        "allocation": "device",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "dram_cgm",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "profile_global",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_ibm_cmd_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "ib_mirror_cmd_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "ib_mirror_cmd_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_ingress_vlan_membership": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_term",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "vlan_membership_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mac_service_mapping_em_1": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_macdb",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "service_mapping_access_per_em_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "service_mapping_access_per_bank_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "service_mapping_access_verifier",
+                                    "arr_idx": [0, 1, 2, 3, 4, 5, 6, 7],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "service_mapping_access_cam",
+                                    "type": "tcam"
+                                },
+                                {
+                                    "name": "service_mapping_access_per_em_reg",
+                                    "arr_idx": 1,
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "service_mapping_access_per_bank_reg",
+                                    "arr_idx": 8,
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "service_mapping_access_verifier",
+                                    "arr_idx": [0, 1, 2, 3, 4, 5, 6, 7],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "service_mapping_access_cam",
+                                    "arr_idx": 1,
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_central_lpm": {
+        "allocation": "device",
+        "translation_type": "lpm",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "cdb_core",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": []
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_tunnel0": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_term",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "tunnel_termination_table_per_em_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "tunnel_termination_table_per_bank_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "tunnel_termination_table_verifier",
+                                    "arr_idx": [0, 1, 2, 3],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "tunnel_termination_table_cam",
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_tunnel1": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_term",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "tunnel_termination_table_per_em_reg",
+                                    "arr_idx": 1,
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "tunnel_termination_table_per_bank_reg",
+                                    "arr_idx": 4,
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "tunnel_termination_table_verifier",
+                                    "arr_idx": [4, 5, 6, 7],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "tunnel_termination_table_cam",
+                                    "arr_idx": 1,
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },    
+    "external_egress_large_em": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_encdb",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "large_enc_per_em_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "large_enc_per_bank_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "large_enc_verifier",
+                                    "arr_idx": [0, 1, 2, 3, 4, 5, 6, 7],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "large_enc_cam",
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mac_termination_tcam": {
+        "allocation": "slice",
+        "translation_type": "ternary",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_term",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "mymac_tcam",
+                                    "type": "tcam"
+                                },
+                                {
+                                    "name": "mymac_sram",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mc_bitmap_tc_map_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "mc_bitmap_tc_map_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "mc_bitmap_tc_map_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mc_em_db": {
+        "allocation": "device",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_pdr_shared_db",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "shared_db_per_em_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "shared_db_per_bank_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "shared_db_verifier",
+                                    "arr_idx": [0, 1, 2, 3],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "shared_db_cam",
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mc_slice_bitmap": {
+        "allocation": "slice",
+        "translation_type": "multival_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "multicast_bitmap_db",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "multicast_bitmap_db",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mc_fe_links_bmp": {
+        "allocation": "device",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_pdr_shared_db",
+                    "id": 0,
+                    "type": "exact",
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "shared_db_verifier",
+                                    "arr_idx": [0, 1, 2, 3],
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_npuh_mp_data": {
+        "allocation": "device",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "npu_host",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "mp_data_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_pdvoq_slice_voq_properties_table": {
+        "allocation": "slice",
+        "translation_type": "multival_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "voq_properties",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_source_port_map": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "reassembly",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "source_port_map_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "reassembly",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "source_port_map_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "reassembly",
+                    "id": 2,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "source_port_map_table",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "reassembly",
+                    "id": 3,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "source_port_map_table",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "reassembly",
+                    "id": 4,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "source_port_map_table",
+                                    "arr_idx": 4,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "reassembly",
+                    "id": 5,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "source_port_map_table",
+                                    "arr_idx": 5,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_npuh_rmep_state": {
+        "allocation": "device",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "npu_host",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "rmep_state_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rx_counters_config": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_counters",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_config",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_counters",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_config",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_counters",
+                    "id": 2,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_config",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_counters",
+                    "id": 3,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_config",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_counters",
+                    "id": 4,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_config",
+                                    "arr_idx": 4,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_counters",
+                    "id": 5,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_config",
+                                    "arr_idx": 5,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rx_meter_block_meter_profile_table": {
+        "allocation": "device",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_meter_block",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "meter_profile_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "meter_profile_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "meter_profile_table",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rx_meter_meter_profile_table": {
+        "allocation": "device",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_meter",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "meter_profile_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "meter_profile_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "meter_profile_table",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "meter_profile_table",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rx_meter_decision_mapping_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_meter",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "exact_meter_decision_mapping_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_meter",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "exact_meter_decision_mapping_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_meter",
+                    "id": 2,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "exact_meter_decision_mapping_table",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_meter",
+                    "id": 3,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "exact_meter_decision_mapping_table",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_meter",
+                    "id": 4,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "exact_meter_decision_mapping_table",
+                                    "arr_idx": 4,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_meter",
+                    "id": 5,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "exact_meter_decision_mapping_table",
+                                    "arr_idx": 5,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rx_stat_meter_decision_mapping_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_meter",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "stat_meter_decision_mapping_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_meter",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "stat_meter_decision_mapping_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_meter",
+                    "id": 2,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "stat_meter_decision_mapping_table",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_meter",
+                    "id": 3,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "stat_meter_decision_mapping_table",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_meter",
+                    "id": 4,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "stat_meter_decision_mapping_table",
+                                    "arr_idx": 4,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_meter",
+                    "id": 5,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "stat_meter_decision_mapping_table",
+                                    "arr_idx": 5,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_egress_l3_dlp0": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_encdb",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "l3_dlp0_table_per_em_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "l3_dlp0_table_per_bank_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "l3_dlp0_table_verifier",
+                                    "arr_idx": [0, 1, 2, 3],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "l3_dlp0_table_cam",
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_egress_l3_dlp1": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_encdb",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice_l3_dlp1_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_encdb",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice_l3_dlp1_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mac_link_relay": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_macdb",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "small_relay_table",
+                                    "offset": 14,
+                                    "width": 66,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_macdb",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "small_relay_table",
+                                    "offset": 14,
+                                    "width": 66,
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mac_link_relay_id": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_macdb",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "small_relay_table",
+                                    "width":14,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_macdb",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "small_relay_table",
+                                    "arr_idx": 1,
+                                    "width":14,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mac_termination_em": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_macdb",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "mymac_table_per_em_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "mymac_table_per_bank_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "mymac_table_verifier",
+                                    "arr_idx": [0, 1, 2, 3],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "mymac_table_cam",
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_macdb",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "mymac_table_per_em_reg",
+                                    "arr_idx": 1,
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "mymac_table_per_bank_reg",
+                                    "arr_idx": 4,
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "mymac_table_verifier",
+                                    "arr_idx": [4, 5, 6, 7],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "mymac_table_cam",
+                                    "arr_idx": 1,
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mc_bitmap_base_voq_lookup_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "mc_bitmap_base_voq_lut",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "mc_bitmap_base_voq_lut",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mc_copy_id_map": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "mc_copy_id_map",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_encap_data_source_select": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "network": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "encap_data_source_select",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mc_emdb_tc_map_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "mc_emdb_tc_map_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "mc_emdb_tc_map_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_fwd_and_encap_types_to_field_a_offset_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "npe_macro_selection_map",
+                                    "width": 8,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_fwd_and_encap_types_to_field_b_offset_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "npe_macro_selection_map",
+                                    "offset": 8,
+                                    "width": 8,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_term_to_fwd_hdr_shift": {
+        "allocation": "slice",
+        "translation_type": "reg_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_fwd",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "term_to_fwd_hdr_shift_configurations",
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mirror_code_hw_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "network": [
+                {
+                    "engine": "rxpp_fwd",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "mirror_code_to_mirror_cmd1",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_npuh_aux": {
+        "allocation": "device",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "npu_host",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "aux_data_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mac_service_mapping_em_0": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_macdb",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "service_mapping_access_per_em_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "service_mapping_access_per_bank_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "service_mapping_access_verifier",
+                                    "arr_idx": [0, 1, 2, 3, 4, 5, 6, 7],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "service_mapping_access_cam",
+                                    "type": "tcam"
+                                },
+                                {
+                                    "name": "service_mapping_access_per_em_reg",
+                                    "arr_idx": 1,
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "service_mapping_access_per_bank_reg",
+                                    "arr_idx": 8,
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "service_mapping_access_verifier",
+                                    "arr_idx": [0, 1, 2, 3, 4, 5, 6, 7],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "service_mapping_access_cam",
+                                    "arr_idx": 1,
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_dest_type_decoding": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "dest_decoding_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_fec_entry_type_decoding": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice_fec_entry_type_decoding_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice_fec_entry_type_decoding_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage0_entry_type_decoding": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "entry_type_decoding_table_slice0_stage",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "entry_type_decoding_table_slice1_stage",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage1_entry_type_decoding": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "entry_type_decoding_table_slice0_stage",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "entry_type_decoding_table_slice1_stage",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage2_entry_type_decoding": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "entry_type_decoding_table_slice0_stage",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "entry_type_decoding_table_slice1_stage",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage3_entry_type_decoding": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "entry_type_decoding_table_slice0_stage",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "entry_type_decoding_table_slice1_stage",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "external_resolution_stage0_map_table_pbts": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "pbts_map_table_slice0_stage",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "pbts_map_table_slice1_stage",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage1_map_table_pbts": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "pbts_map_table_slice0_stage",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "pbts_map_table_slice1_stage",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage2_map_table_pbts": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "pbts_map_table_slice0_stage",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "pbts_map_table_slice1_stage",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage3_map_table_pbts": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "pbts_map_table_slice0_stage",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "pbts_map_table_slice1_stage",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    
+    "external_resolution_stage0_em": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "resolution_stage0_em_per_em_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "resolution_stage0_em_per_bank_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "resolution_stage0_em_verifier",
+                                    "arr_idx": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "resolution_stage0_em_cam",
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage1_em": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "resolution_stage1_em_per_em_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "resolution_stage1_em_per_bank_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "resolution_stage1_em_verifier",
+                                    "arr_idx": [0, 1, 2, 3],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "resolution_stage1_em_cam",
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage2_em": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "resolution_stage2_em_per_em_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "resolution_stage2_em_per_bank_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "resolution_stage2_em_verifier",
+                                    "arr_idx": [0, 1, 2, 3],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "resolution_stage2_em_cam",
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage3_em": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "resolution_stage3_em_per_em_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "resolution_stage3_em_per_bank_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "resolution_stage3_em_verifier",
+                                    "arr_idx": [0, 1, 2, 3, 4, 5],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "resolution_stage3_em_cam",
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage0_assoc_data": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "resolution_stage0_associated_data",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage1_assoc_data": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "resolution_stage1_associated_data",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage2_assoc_data": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "resolution_stage2_associated_data",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage3_assoc_data": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "resolution_stage3_associated_data",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_fec_table": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "fec_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage0_lb_group_size_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice0_stage0_lb_group_size_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice1_stage0_lb_group_size_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage1_lb_group_size_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice0_stage1_lb_group_size_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice1_stage1_lb_group_size_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage2_lb_group_size_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice0_stage2_lb_group_size_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice1_stage2_lb_group_size_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage3_lb_group_size_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice0_stage3_lb_group_size_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice1_stage3_lb_group_size_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage0_protection": {
+        "allocation": "slice",
+        "translation_type": "multival_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "protection_table_slice0_stage",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "protection_table_slice1_stage",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage1_protection": {
+        "allocation": "slice",
+        "translation_type": "multival_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "protection_table_slice0_stage",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "protection_table_slice1_stage",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage2_protection": {
+        "allocation": "slice",
+        "translation_type": "multival_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "protection_table_slice0_stage",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "protection_table_slice1_stage",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_resolution_stage3_protection": {
+        "allocation": "slice",
+        "translation_type": "multival_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "protection_table_slice0_stage",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "protection_table_slice1_stage",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_lp_queuing_flow_encap_type_mapping": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice_lp_queuing_flow_encap_type_mapping",
+                                    "arr_idx": 0,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice_lp_queuing_flow_encap_type_mapping",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_lp_queuing_qos_mapping": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice_lp_queuing_qos_mapping",
+                                    "arr_idx": 0,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "idb_res",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice_lp_queuing_qos_mapping",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_lp_queuing_em": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_res",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "lp_queuing_em_per_em_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "lp_queuing_em_per_bank_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "lp_queuing_em_verifier",
+                                    "arr_idx": [0, 1, 2, 3, 4],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "lp_queuing_em_cam",
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_pdoq_ifc_mapping": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdoq",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "oq_ifc_mapping",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_npu_host_pin_start_offset_macros": {
+        "allocation": "device",
+        "translation_type": "reg_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "npu_host",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "pin_start_offset_macros",
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mac_service_link_lp": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_term",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "link_lp_table",
+                                    "type": "sram"
+                                }
+                            ],
+                            "size": 256
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_recycle_override": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "fi_stage",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "recycle_port_macros_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_npuh_rmep_last_time": {
+        "allocation": "device",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "npu_host",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "rmep_last_time",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rpf_fec": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_fwd",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "fec_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rpf_fec_access_map": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_fwd",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "fec_table_access_map_reg",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rx_meter_block_meter_attribute_table": {
+        "allocation": "device",
+        "translation_type": "multival_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_meter_block",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "meters_attribute_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "meters_attribute_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "meters_attribute_table",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rx_meter_meters_attribute_table": {
+        "allocation": "device",
+        "translation_type": "multival_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_meter",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "meters_attribute_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "meters_attribute_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "meters_attribute_table",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "meters_attribute_table",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rx_meter_distributed_meter_profile_table": {
+        "allocation": "device",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_meter",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "distributed_meter_profile_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "distributed_meter_profile_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "distributed_meter_profile_table",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "distributed_meter_profile_table",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rx_meter_block_meter_shaper_configuration_table": {
+        "allocation": "device",
+        "translation_type": "multival_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_meter_block",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "meter_shaper_configuration_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "meter_shaper_configuration_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "meter_shaper_configuration_table",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rx_meter_meter_shaper_configuration_table": {
+        "allocation": "device",
+        "translation_type": "multival_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_meter",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "meter_shaper_configuration_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "meter_shaper_configuration_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "meter_shaper_configuration_table",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        },
+                        {
+                            "resources": [
+                                {
+                                    "name": "meter_shaper_configuration_table",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rx_npu_to_tm_dest_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_fwd",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "nppd_dest_to_pd_dest",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rxpdr_dsp_lut_table": {
+        "allocation": "slice_pair",
+        "translation_type": "multival_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "dsp_lookup_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rxpdr_dsp_tc_map": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "dsp_tc_map_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "dsp_tc_map_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mac_lp": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_macdb",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "lp_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mac_service_mapping_tcam": {
+        "allocation": "slice",
+        "translation_type": "ternary",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_term",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "sm_tcam",
+                                    "type": "tcam"
+                                },
+                                {
+                                    "name": "sm_sram",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mac_service_relay_id": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_macdb",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "large_relay_table",
+                                    "width":14,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_mac_service_relay": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_macdb",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "large_relay_table",
+                                    "offset": 14,
+                                    "width": 66,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_npu_host_first_macro_id": {
+        "allocation": "device",
+        "translation_type": "multival_reg",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "npu_host",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "macro_ids",
+                                    "offset": 16,
+                                    "width": 8,
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_egress_small_em": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "idb_encdb",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "small_enc_table_per_em_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "small_enc_table_per_bank_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "small_enc_table_verifier",
+                                    "arr_idx": [0, 1, 2, 3],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "small_enc_table_cam",
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_snoop_code_hw_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "network": [
+                {
+                    "engine": "rxpp_fwd",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "snoop_code_to_mirror_cmd0",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_source_pif": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "fi_stage",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "npu_first_macros_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_termination_to_forwarding_fi_hardwired": {
+        "allocation": "slice",
+        "translation_type": "reg_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_fwd",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "term2fwd_err_header_type_mapping_reg",
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 32
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_tx_counters_config": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "counters",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "counters_bank_config",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "counters",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "counters_bank_config",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "counters",
+                    "id": 2,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "counters_bank_config",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "counters",
+                    "id": 3,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "counters_bank_config",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "counters",
+                    "id": 4,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "counters_bank_config",
+                                    "arr_idx": 4,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "counters",
+                    "id": 5,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "counters_bank_config",
+                                    "arr_idx": 5,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_txpdr_mc_list_size_table": {
+        "allocation": "slice",
+        "translation_type": "multival_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpdr",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "mc_list_size",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_txpdr_oq_tc_map_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpdr",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "tc_profile_map",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_txpdr_oqg_map_table":{
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpdr",
+                    "id": 0,
+                    "type": "exact",
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bitmap_oqg_map",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_encap_qos_mapping_hw_table": {
+        "allocation": "slice",
+        "translation_type": "multival_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "encap_qos_mapping",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "txpp",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "encap_qos_mapping",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_fe_broadcast_bmp_table": {
+        "allocation": "slice_pair",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 0,
+                    "type": "sram",
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "fe_broadcast_bmp",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_eve_drop_mapping_hw_table": {
+        "allocation": "slice",
+        "translation_type": "multival_reg",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "eve_drop_interrupt_drop_mapping",
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_eve_interrupt_mapping_hw_table": {
+        "allocation": "slice",
+        "translation_type": "multival_reg",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "eve_drop_interrupt_drop_mapping",
+                                    "offset": 64,
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_logical_port_profile_dlp_offset_and_mask": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "logical_port_profile_dlp_offset_and_mask",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_fwd_qos_mapping_hw_table": {
+        "allocation": "slice",
+        "translation_type": "multival_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "fwd_qos_mapping",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "txpp",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "fwd_qos_mapping",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_txpp_initial_npe_macro_table": {
+        "allocation": "slice",
+        "translation_type": "ternary",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "npe_mid_res_tcam",
+                                    "type": "tcam"
+                                },
+                                {
+                                    "name": "npe_mid_res_tcam_mem",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rxpdr_ibm_tc_map": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "uc_ib_mirror_tc_map_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_pdr_2_slices",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "uc_ib_mirror_tc_map_table",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_vlan_edit_tpid1": {
+        "allocation": "slice",
+        "translation_type": "multival_reg",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "ingress_vlan_editing_tpid_mapping",
+                                    "width": 64,
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_vlan_edit_tpid2": {
+        "allocation": "slice",
+        "translation_type": "multival_reg",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "ingress_vlan_editing_tpid_mapping",
+                                    "offset": 64,
+                                    "width": 64,
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_bclfe": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "buffers_consumption_lut_for_enq",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_bclfd": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "deq_buffers_consumption_lut",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_pclfe": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "pd_consumption_lut_for_enq",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_pclfd": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "deq_p_ds_consumption_lut",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_pbrt": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "profile_buff_region_thresholds",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_ppetrt": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "profile_pkt_enq_time_region_thresholds",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_pprt": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "profile_pkt_region_thresholds",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_slice_slice_cgm_profile": {
+        "allocation": "slice",
+        "translation_type": "multival_reg",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "slice_cgm_profile",
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 32
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_evctbclt": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "evicted_buffers_consumption_lut",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_evctok": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "evicted_ok_lut",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_drpyprob": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "drop_yellow_probability_selector",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_drpgprob": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "drop_green_probability_selector",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_voq_cgm_mrkprob": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "mark_probability_selector",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_lri_first_macro_id": {
+        "allocation": "device",
+        "translation_type": "multival_reg",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "npu_host",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "macro_ids",
+                                    "width": 8,
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rx_counters_bank_id_map_config": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_counters",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_id_map_config",
+                                    "arr_idx": 0,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_counters",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_id_map_config",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_counters",
+                    "id": 2,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_id_map_config",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_counters",
+                    "id": 3,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_id_map_config",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_counters",
+                    "id": 4,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_id_map_config",
+                                    "arr_idx": 4,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_counters",
+                    "id": 5,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_id_map_config",
+                                    "arr_idx": 5,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_tx_counters_bank_id_map_config": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "counters",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_id_map_config",
+                                    "arr_idx": 0,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "counters",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_id_map_config",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "counters",
+                    "id": 2,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_id_map_config",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "counters",
+                    "id": 3,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_id_map_config",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "counters",
+                    "id": 4,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_id_map_config",
+                                    "arr_idx": 4,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "counters",
+                    "id": 5,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_id_map_config",
+                                    "arr_idx": 5,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_rx_meter_bank_offset_map": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rx_meter",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_offset_map",
+                                    "arr_idx": 0,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_meter",
+                    "id": 1,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_offset_map",
+                                    "arr_idx": 1,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_meter",
+                    "id": 2,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_offset_map",
+                                    "arr_idx": 2,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_meter",
+                    "id": 3,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_offset_map",
+                                    "arr_idx": 3,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_meter",
+                    "id": 4,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_offset_map",
+                                    "arr_idx": 4,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "engine": "rx_meter",
+                    "id": 5,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "bank_offset_map",
+                                    "arr_idx": 5,
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_cud_narrow_hw_table": {
+        "allocation": "slice",
+        "translation_type": "multival_sram"
+    },
+    "external_cud_wide_hw_table": {
+        "allocation": "slice",
+        "translation_type": "exact"
+    },
+    "external_fi_core_tcam": {
+        "allocation": "slice",
+        "translation_type": "ternary"
+    },
+    "external_fi_core_macro_config": {
+        "allocation": "slice",
+        "translation_type": "exact"
+    },
+    "external_frm_db_fabric_routing_table": {
+        "allocation": "device",
+        "translation_type": "exact"
+    },
+    "external_rx_to_tx_destination": {
+        "allocation": "device",
+        "translation_type": "exact"
+    },
+    "external_ifgb_tc_lut": {
+        "allocation": "slice",
+        "translation_type": "exact"
+    },
+    "external_npuh_cpu_evq": {
+        "allocation": "slice",
+        "translation_type": "exact"
+    },
+    "external_pma_loopback_table": {
+        "allocation": "slice",
+        "translation_type": "multival_reg"
+    },
+    "external_redirect_dest_reg": {
+        "allocation": "slice",
+        "translation_type": "exact"
+    },
+    "external_light_fi_fabric_table": {
+        "allocation": "slice",
+        "translation_type": "multival_reg"
+    },
+    "external_light_fi_npu_base_table": {
+        "allocation": "slice",
+        "translation_type": "exact"
+    },
+    "external_light_fi_npu_encap_table": {
+        "allocation": "slice",
+        "translation_type": "exact"
+    },
+    "external_light_fi_nw_0_table": {
+        "allocation": "slice",
+        "translation_type": "ternary"
+    },
+    "external_light_fi_nw_1_table": {
+        "allocation": "slice",
+        "translation_type": "ternary"
+    },
+    "external_light_fi_nw_2_table": {
+        "allocation": "slice",
+        "translation_type": "ternary"
+    },
+    "external_light_fi_nw_3_table": {
+        "allocation": "slice",
+        "translation_type": "ternary"
+    },
+    "external_light_fi_stages_cfg": {
+        "allocation": "slice",
+        "translation_type": "reg_sram"
+    },
+    "external_light_fi_tm_table": {
+        "allocation": "slice",
+        "translation_type": "multival_reg"
+    },
+    "external_cud_is_wide_table": {
+        "allocation": "slice",
+        "translation_type": "multival_reg"
+    },
+    "external_mii_loopback_table": {
+        "allocation": "slice",
+        "translation_type": "multival_reg"
+    },
+    "external_rx_meter_rate_limiter_shaper_configuration_table": {
+        "allocation": "device",
+        "translation_type": "exact"
+    },
+    "external_sch_oqse_cfg": {
+        "allocation": "slice",
+        "translation_type": "exact"
+    },
+    "external_slice_modes_table": {
+        "allocation": "device",
+        "translation_type": "exact"
+    },
+    "external_tm_ibm_to_destination": {
+        "allocation": "device",
+        "translation_type": "exact"
+    },
+    "external_em_dlp_profile_hw_table": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "txpp",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "logical_port_profile_mapping_per_em_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "logical_port_profile_mapping_per_bank_reg",
+                                    "type": "register"
+                                },
+                                {
+                                    "name": "logical_port_profile_mapping_verifier",
+                                    "arr_idx": [0, 1, 2, 3],
+                                    "type": "sram"
+                                },
+                                {
+                                    "name": "logical_port_profile_mapping_cam",
+                                    "type": "tcam"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_first_enc_type_to_second_enc_type_offset": {
+        "allocation": "slice",
+        "translation_type": "multival_reg"
+    },
+    "external_eve_drop_vlan_id_hw_table": {
+        "allocation": "slice",
+        "translation_type": "multival_reg"
+    },
+
+    "external_voq_cgm_dcp": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "dram_cgm_cgm_lut_table",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "external_pdvoq_slice_dwl": {
+        "allocation": "slice",
+        "translation_type": "exact",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "pdvoq_slice",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "dram_wred_lut",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    
+    "external_flc_header_types_array_table": {
+        "allocation": "slice",
+        "translation_type": "ternary",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_term.flc_db",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "header_types_array_tcam",
+                                    "type": "tcam"
+                                },
+                                {
+                                    "name": "header_types_array_payload",
+                                    "type": "sram"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_flc_cache_range_comp_profile_table": {
+        "allocation": "slice",
+        "translation_type": "reg_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_term.flc_db",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "cache_range_compression_profile",
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 32
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "external_flc_q_range_comp_profile_table": {
+        "allocation": "slice",
+        "translation_type": "reg_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_term.flc_db",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "queue_range_compression_profile",
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 32
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "external_flc_range_comp_ranges_table": {
+        "allocation": "slice",
+        "translation_type": "reg_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_term.flc_db",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "range_compression_ranges",
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 64
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "external_flc_map_header_type_mask_l_table": {
+        "allocation": "slice",
+        "translation_type": "reg_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_term.flc_db",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "map_header_type_to_mask_l",
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 8
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "external_flc_map_header_type_mask_m_table": {
+        "allocation": "slice",
+        "translation_type": "reg_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_term.flc_db",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "map_header_type_to_mask_m",
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 8
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "external_flc_map_header_type_mask_s_table": {
+        "allocation": "slice",
+        "translation_type": "reg_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_term.flc_db",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "map_header_type_to_mask_s",
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 16
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "external_flc_map_header_type_mask_id_table": {
+        "allocation": "slice",
+        "translation_type": "reg_sram",
+        "placements": {
+            "context_none": [
+                {
+                    "engine": "rxpp_term.flc_db",
+                    "id": 0,
+                    "sections": [
+                        {
+                            "resources": [
+                                {
+                                    "name": "map_header_type_to_mask_id_reg",
+                                    "type": "register"
+                                }
+                            ],
+                            "size": 32
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "external_dummy_link_up_table": {
+        "allocation": "device",
+        "translation_type": "exact"
+    },
+    "external_dummy_all_reachable_table": {
+        "allocation": "device",
+        "translation_type": "exact"
+    },
+    "external_dummy_device_mode_table": {
+        "allocation": "device",
+        "translation_type": "exact"
+    }
+}

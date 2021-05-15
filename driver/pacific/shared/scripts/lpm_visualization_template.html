@@ -1,0 +1,1245 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!-- SEO -->
+    <meta charset="UTF-8">
+
+    <!-- Page title -->
+    <title>LPM Visualization</title>
+
+    <!-- Load CSS for vis.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css"/>
+
+    <!-- Load main CSS -->
+    <style type="text/css">
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        input {
+            font-family: "Courier New", Courier, monospace;
+            font-weight: bold;
+        }
+
+        .fullscreen {
+            /* Same size as window */
+            width: 100vw;
+            height: 100vh;
+
+            /* No space from top corner */
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        #formbox {
+            display: block;
+            overflow: hidden;
+
+            /* Position */
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        #searchBox {
+            position:fixed;
+            left: 0;
+            bottom: 0;
+            text-align:left;
+            z-index: 1;
+        }
+
+        .general_frame {
+            margin: 10pt;
+            padding: 10pt;
+            border-style: solid;
+            background-color: white;
+        }
+
+        .form_frame {
+            margin: 10pt;
+            padding: 5pt;
+            border-style: solid;
+            background-color: white;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<!-- The top bar -->
+<div id="formbox">
+    <div id="details" class="general_frame"></div>
+
+    <!-- Checkboxes for showing / hiding details -->
+    <div class="general_frame">
+        <input type="checkbox" id="show_l1_checkbox" onclick="updateGraphics();" checked>
+        <label for="show_l1_checkbox" style="color: blue">Show L1</label><br>
+
+        <input type="checkbox" id="show_l2_checkbox" onclick="updateGraphics();" checked>
+        <label for="show_l2_checkbox" style="color: red">Show L2</label><br>
+
+        <input type="checkbox" id="show_groups_checkbox" onclick="updateGraphics();" checked>
+        <label for="show_groups_checkbox" style="color: #00b050">Show groups</label><br>
+    </div>
+    <!-- Checkbox for allowing node dragging -->
+    <div class="general_frame">
+        <input type="checkbox" id="allow_drag_nodes" onclick="setAllowDragNode(this.checked);" checked>
+        <label for="allow_drag_nodes">Allow node dragging</label>
+    </div>
+</div>
+<div id="searchBox">
+    <div class="form_frame">
+        <p  style="margin: 0px; padding: 0px; padding-bottom: 4px;">
+            <select id="input_base_select">
+                <option value="hexadecimal">Hexadecimal input</option>
+                <option value="decimal">Decimal input</option>
+            </select>
+        </p>
+        <input type="text" id="search_box" size=46 placeholder="Search for node: key/key_width" onkeydown="searchOnEnter(event, this);"">
+    </div>
+</div>
+
+
+<div id="container" class="fullscreen">
+</div>
+
+<!-- Load vis.js (just Network) -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"></script>
+
+<!-- Load the script -->
+<script type="text/javascript">
+"use strict";
+    // ========== Global variables ==========
+
+    let nodes;
+    let edges;
+    let data;
+    let network;
+    let l1_buckets;
+    let l2_buckets;
+    let tree_root;
+
+    // ========== Global constants ==========
+    const container = document.getElementById('container');
+    const dummyNodeColor = "#AFAFAF";
+    const L1_bucket_color = "#0000FF";
+    const L2_bucket_color = "#FF0000";
+    const groupColor = "#00b050";
+    const white = "#FFFFFF";
+    const black = "#000000";
+
+    // Global options of the network
+    const options = {
+        layout: {
+            hierarchical: {
+                direction: "UD",
+                sortMethod: "directed"
+            }
+        },
+        physics: {
+            enabled: false
+        },
+        nodes: {
+            shape: 'dot',
+            scaling: {
+                min: 20,
+                max: 20,
+                label: {min: 14, max: 14, drawThreshold: 9, maxVisible: 20},
+            },
+            font: {size: 14, face: 'Helvetica Neue, Helvetica, Arial'},
+            borderWidth: 1,
+            borderWidthSelected: 2
+        },
+        interaction: {
+            hover: false,
+            hoverConnectedEdges: false,
+            selectConnectedEdges: false,
+            dragNodes: true
+        }
+    };
+
+    // The possible bucketing states
+    const bucketing_states = ["BELONGS_TO_L1_L2_BUCKETS", "BELONGS_TO_L1_BUCKET", "DOES_NOT_BELONG", "UNBUCKETED"];
+
+
+    // ========== Initialization ==========
+
+    /**
+     * Creates the network from the object holding the tree data.
+     * @param root The root of the tree.
+     */
+    function createNetworkFromTree(root) {
+        // Initializes the data
+        nodes = new vis.DataSet();
+        edges = new vis.DataSet();
+        data = {nodes, edges};
+
+        // Creates the network
+        network = new vis.Network(container, data, options);
+
+        // Binds all the needed functions to the network
+        network.on('click', clickEvent); // Expand on click
+        network.on("afterDrawing", customDrawing);
+        network.on('doubleClick', collapseEvent);   // Collapse on double click
+
+        const startID = keyToString(root.key, root.key_width);
+        root.isExpanded = false;    //
+        nodes.add([{
+            id: startID,
+            data: root,
+            label: startID,
+            value: 1,
+            level: 0,
+            color: getColor(root.is_valid),
+            shape: "dot",
+            x: 0,
+            y: 0,
+            parent: startID, // Parent is self
+        },]);
+    }
+
+    /**
+     * Loads the tree network.
+     */
+    function loadTree() {
+        let json_tree = JSON.parse(lpm_tree_dump);
+        l1_buckets = json_tree.buckets.l1_buckets;
+        l2_buckets = json_tree.buckets.l2_buckets;
+        tree_root = json_tree.root;
+        createNetworkFromTree(tree_root);
+    }
+
+
+    // ========== Input Handlers ==========
+
+    /**
+     * Handler for click event. Expands the clicked node.
+     * @param params
+     */
+    function clickEvent(params) {
+        // Checks if the click occurred on a node
+        if (params.nodes.length) {
+            // Show the clicked node's data, and expands it
+            const node_id = params.nodes[0];
+            const node = nodes.get(node_id);
+            // If not a dummy node.
+            if (!node.dummy) {
+                showText(nodeDescription(node));
+                expandNode(node_id);
+            }
+        } else if (params.edges.length) {
+            const edge_id = params.edges[0];
+            showText(edgeDescription(edges.get(edge_id)));
+        }
+    }
+
+    /**
+     * Handler for double-click event. Collapses the clicked node.
+     * @param params
+     */
+    function collapseEvent(params) {
+        // Checks if the click occurred on a node
+        if (params.nodes.length) {
+            // Collapses the node
+            const node_id = params.nodes[0];
+            collapseNode(node_id);
+        }
+    }
+
+
+    // ========== Drawing Methods ==========
+
+    /**
+     * Performs custom drawing of the nodes
+     * @param context The context to draw on
+     */
+    function customDrawing(context) {
+        let showL1 = shouldShowL1();
+        let showL2 = shouldShowL2();
+        let showGroups = shouldShowGroups();
+
+        // Draws each node
+        nodes.forEach(node => {
+            if (node.dummy) return;
+            const nodePosition = network.getPositions([node.id]);
+            let x = nodePosition[node.id].x;
+            let y = nodePosition[node.id].y;
+
+            let bucketing_data = node.data.bucketing_data;
+            const l1 = bucketing_data.l1_sw_index !== -1;
+            const l2 = bucketing_data.l2_sw_index !== -1;
+            const group = bucketing_data.group_id !== -1;
+
+            // Finds out the colors needed
+            let colors = [];
+            if (l1 && showL1) colors.push(L1_bucket_color);
+            if (l2 && showL2) colors.push(L2_bucket_color);
+            if (group && showGroups) colors.push(groupColor);
+
+            let numOfLines = node.data.isExpanded ? 0 : getChildren(node.data).length;
+
+            let rootColors = [];
+            if (l1 && showL1) {
+                let l1_root = getL1Bucket(node.data).root;
+                let l1_root_id = keyToString(l1_root.key, l1_root.key_width);
+                if (l1_root_id === node.id)
+                    rootColors.push(L1_bucket_color);
+            }
+            if (l2 && showL2) {
+                let l2_root = getL2Bucket(node.data).root;
+                let l2_root_id = keyToString(l2_root.key, l2_root.key_width);
+                if (l2_root_id === node.id) rootColors.push(L2_bucket_color);
+            }
+
+            drawNode(context, x, y, 20, colors, numOfLines, !node.data.is_valid, rootColors);
+        });
+
+        // Draws each edge roots
+        edges.forEach(edge => {
+            if ((edge.l1_root_id && showL1) || (edge.l2_root_id && showL2)) {
+                const nodePosition = network.getPositions([edge.from, edge.to]);
+                let xFrom = nodePosition[edge.from].x;
+                let yFrom = nodePosition[edge.from].y;
+                let xTo = nodePosition[edge.to].x;
+                let yTo = nodePosition[edge.to].y;
+                let colors = [];
+                if (edge.l1_root_id && showL1) {
+                    colors.push(L1_bucket_color);
+                }
+                if (edge.l2_root_id && showL2) {
+                    colors.push(L2_bucket_color);
+                }
+                drawEdge(context, xFrom, yFrom, xTo, yTo, colors);
+            }
+        });
+    }
+
+    function drawCircle(context, x, y, radius, colors) {
+        // The height of each colored part
+        const colorPart = 2 * radius / colors.length;
+
+        // Draws the node itself
+        context.save();
+        context.circle(x, y, radius);   // Creates a circle mask
+        context.clip();
+        for (var i = 0; i < colors.length; i++) {
+            // Paints the colors
+            context.fillStyle = colors[colors.length - i - 1];
+            context.fillRect(x - radius, y - radius, 2 * radius, 2 * radius - colorPart * i);
+        }
+        context.restore();
+    }
+
+    /**
+     * Draws a node with a given parameters
+     * @param context The context to draw on
+     * @param x The x coordinate of the node's center
+     * @param y The y coordinate of the node's center
+     * @param radius The node's radius
+     * @param colors The colors of the node
+     * @param numOfLines The number of lines to draw from the node's bottom (0/1/2)
+     * @param isEmpty Is the node hollow or full
+     * @param rootColors The colors that needed to be drawn in the root node (if at all)
+     */
+    function drawNode(context, x, y, radius, colors, numOfLines, isEmpty, rootColors) {
+        // Draws the lines from the bottom of the node
+        if (numOfLines > 0) {
+            context.save();
+            context.lineWidth = 1;
+            context.strokeStyle = black;
+            context.beginPath();
+            if (numOfLines === 1) {
+                context.moveTo(x, y + radius);
+                context.lineTo(x, y + 2 * radius);
+            } else if (numOfLines === 2) {
+                let dx = radius * Math.cos(Math.PI * 3 / 8);
+                let dy = radius * Math.sin(Math.PI * 3 / 8);
+                context.moveTo(x + dx, y + dy);
+                context.lineTo(x + 2 * dx, y + 2 * dy);
+                context.moveTo(x - dx, y + dy);
+                context.lineTo(x - 2 * dx, y + 2 * dy);
+            }
+            context.stroke();
+            context.restore();
+        }
+
+        drawCircle(context, x, y, radius, colors);
+
+        // Cuts a black/white circle in the middle
+        drawCircle(context, x, y, 0.75 * radius, [isEmpty ? white : black]);
+
+        if (rootColors.length > 0) {
+            drawCircle(context, x, y, 0.25 * radius, rootColors);
+        }
+    }
+
+    /**
+     * Draws the roots on a given edge
+     * @param context
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @param colors
+     */
+    function drawEdge(context, x1, y1, x2, y2, colors) {
+        let x = 0.5 * (x1 + x2);
+        let y = 0.5 * (y1 + y2);
+        drawCircle(context, x, y, 5, colors, colors)
+    }
+
+
+    // ========== Network Modification ==========
+
+    /**
+     * Opens the children of the given node
+     * @param node_id The node's id
+     */
+    function expandNode(node_id) {
+        const node = nodes.get(node_id); // The node that was clicked
+        const level = node.level + 1; // Level for new nodes is one more than parent
+        const children = getChildren(node.data);
+        if (children.length == 0) return;
+        if (node.data.isExpanded == true) return;
+        node.data.isExpanded = true;    // Indecates that the node is expanded
+
+        // Add all children to network
+        const subnodes = [];
+        const newedges = [];
+
+        // Create node objects
+        if (children.length == 2 && !children[0].dummy && !children[1].dummy) {
+            for (var i = 0; i < children.length; i++) {
+                createEdgeAndSubnode(node_id, level, children[i], subnodes, newedges);
+            }
+        } else {
+            if (children.length > 2) {
+                throw "Node cannot have more than two children";
+            }
+            // Create node and edge for only child.
+            const child = children[0].dummy ? children[1] : children[0];
+            createEdgeAndSubnode(node_id, level, child, subnodes, newedges);
+            // Create dummy node needed to show the only child as right or left.
+            const [dummyNode, dummy_id, data] = createDummyNode(node_id, child);
+            if (children.length != 2) {
+                // Add dummy child to node.
+                addData(node.data, data);
+                // Now parent node has two children of which one is dummy node.
+                // This way there is no special case when removing dummy node.
+            }
+            // Only only child can have dummy node.
+            child.onlyChild = {dummy_id};
+            subnodes.push(dummyNode);
+            const dummy_child_struct = Object();
+            const edge = createEdge(node_id, dummy_child_struct, dummy_id, level, dummyNodeColor);
+            newedges.push(edge);
+        }
+
+        // Add the stuff to the nodes array
+        nodes.add(subnodes);
+        edges.add(newedges);
+
+         // Correct position of left and right child.
+        const id0 = subnodes[0].id;
+        const id1 = subnodes[1].id;
+        const nodesPosition = network.getPositions([id0, id1]);
+        const x0 = nodesPosition[id0].x;
+        const x1 = nodesPosition[id1].x;
+        const bit0 = get_direction_bit(subnodes[0].data.key,
+                             subnodes[0].data.key_width,
+                             node.data.key_width);
+        if (bit0 == 1 &&  x0 < x1
+                || bit0 == 0 && x0 > x1) {
+            const y = nodesPosition[id0].y;
+            network.moveNode(id0, x1, y);
+            network.moveNode(id1, x0, y);
+        }
+        // End of expandNode function.
+        // Following are nested functions that are used only by expandNode function.
+
+        /**
+         * Creates subnodes and edges which connect subnodes to parent node.
+         * @param node_id  Id of parent node.
+         * @param level    Level of newly created subnode.
+         * @param child    Structure of subnode from json file.
+         * @param subnodes List containing all child nodes of parent node.
+         * @param newedges List of edges connecting child nodes to parent node.
+         */
+        function createEdgeAndSubnode(node_id, level, child, subnodes, newedges) {
+            const child_id = keyToString(child.key, child.key_width);
+            const subnode = createSubnode(node_id, child, child_id, level);
+            subnodes.push(subnode);
+            const edge = createEdge(node_id, child, child_id, level);
+            newedges.push(edge);
+        }
+
+        /**
+         * Creates subnode.
+         * @param node_id  Id of parent node.
+         * @param child    Structure of subnode from json file.
+         * @param child_id Id of subnode to be created.
+         * @param level    Level of newly created subnode.
+         * @returns Object containing parameters of subnode.
+         */
+        function createSubnode(node_id, child, child_id, level) {
+            if (nodes.getIds().indexOf(child_id) === -1) { // Don't add if node exists
+                child.isExpanded = false;
+                var options = {
+                    id: child_id,
+                    data: child,
+                    label: child_id,
+                    value: 1,
+                    level,
+                    color: getColor(child.is_valid),
+                    shape: "dot",
+                    parent: node_id
+                };
+                return options;
+            }
+            // Should not call createSubnode if node is already drawn.
+            throw "Unreachable";
+        }
+
+        /**
+         * Creates dummy node needed to corectly place only child of node.
+         * @param node_id  Id of parent node.
+         * @param nodeData Data of parent node.
+         * @param child    The only subnode of parent node.
+         * @returns Dummy node options.
+         */
+        function createDummyNode(node_id, child) {
+            const dummy_key = "dummy" + child.key;
+            const dummy_id = keyToString(dummy_key, child.key_width);
+            const data = {
+                isExpanded: true,
+                key: dummy_key,
+                key_width: child.key_width,
+                dummy: true
+            }
+            const options = {
+                id: dummy_id,
+                label: "",
+                data,
+                value: 1,
+                level,
+                color: white,
+                shape: "dot",
+                parent: node_id,
+                is_valid: false,
+                dummy: true
+            };
+            return [options, dummy_id, data];
+        }
+
+        /**
+         * Add data about dummy node in data structure of tree.
+         * @param nodeData reference to tree data structure.
+         * @param data Data to be added.
+         */
+        function addData(nodeData, data) {
+            if (nodeData.left && !nodeData.left.dummy) {
+                nodeData.right = data;
+            } else {
+                nodeData.left = data;
+            }
+        }
+
+        /**
+         * Creates edges which connect subnodes to parent node.
+         * @param node_id  Id of parent node.
+         * @param child    Structure of subnode from json file.
+         * @param child_id Id of subnode to be connected to parent node.
+         * @param level    Level of newly created edge.
+         * @returns Object containing parameters of edge.
+         */
+        function createEdge(node_id, child, child_id, level, color = black) {
+            if (!getEdgeConnecting(node_id, child_id)) { // Don't create duplicate edges in same direction
+                let newEdge = {
+                    id: child_id,
+                    from: node_id,
+                    to: child_id,
+                    color,
+                    level,
+                    selectionWidth: 2,
+                    hoverWidth: 0,
+                };
+
+                if (child.bucketing_data) {
+                    if (child.bucketing_data.l1_sw_index !== -1) {
+                        let l1_root = getL1Bucket(child).root;
+                        let l1_root_id = keyToString(l1_root.key, l1_root.key_width);
+                        if (l1_root_id !== child_id) newEdge.l1_root_id = l1_root_id;
+                    }
+
+                    if (child.bucketing_data.l2_sw_index !== -1) {
+                        let l2_root = getL2Bucket(child).root;
+                        let l2_root_id = keyToString(l2_root.key, l2_root.key_width);
+                        if (l2_root_id !== child_id) newEdge.l2_root_id = l2_root_id
+                    }
+                }
+
+                return newEdge;
+            }
+        }
+    }
+
+    /**
+     * Collapses the subtree that it's root is the given node
+     * @param node_id The id of the node
+     */
+    function collapseNode(node_id) {
+        const node = nodes.get(node_id);
+        if (!node.data.isExpanded) return;
+        node.data.isExpanded = false;
+
+        // Removes all of the children from the network
+        const children = getChildren(node.data);
+        for (var i = 0; i < children.length; i++) {
+            removeSubtree(children[i]);
+        }
+    }
+
+    /**
+     * Recursively removes the subtree starting at the given node from the network.
+     * @param rootData The root's data
+     */
+    function removeSubtree(rootData) {
+        let rootID = keyToString(rootData.key, rootData.key_width);
+        if (nodes.getIds().indexOf(rootID) === -1){
+            // Cannot remove children that are not drawn.
+            return;
+        }
+        // Remove all the subnodes first.
+        let children = getChildren(rootData);
+        for (var i = 0; i < children.length; i++) {
+            removeSubtree(children[i]);
+        }
+        // Remove edges to parent node.
+        edges.forEach(e => {
+            if (e.to === rootID) {
+                edges.remove(e.id);
+            }
+        });
+        // Finally remove the node itself.
+        nodes.remove(rootID);
+    }
+
+    /**
+     * Updates the field deagNodes in the interaction options of the network.
+     * @param shouldDragNodes
+     */
+    function setAllowDragNode(shouldDragNodes) {
+        options.interaction.dragNodes = shouldDragNodes;
+        network.setOptions(options);
+    }
+
+    /**
+     * Search for node only when 'Enter' key is pressed.
+     * @param event Input event.
+     * @param inputObject
+     */
+    function searchOnEnter(event, inputObject) {
+        if (event.key === "Enter") {
+            searchAndShowNode(inputObject.value);
+        }
+    }
+
+    /**
+     * Show node which key is searched for.
+     * @param search_string
+     */
+    function searchAndShowNode(search_string) {
+        // Get rid of white spaces.
+        const node_str = search_string.trim();
+        // ========= Local constants ==========
+        const BAD_INPUT_COLOR = "#ffcccc";
+        const NODE_NOT_FOUND_COLOR = "#ffffb3";
+        const FoundResult = {EXACT_MATCH: 0, EDGE_ABOVE: 1, DEAD_END: 2};
+        const InputBase = {HEX: 0, DEC: 1};
+        const inputBase = getInputBase();
+
+        // Check if input has correct format: "key/key_width"
+        if(!checkInput(node_str, inputBase)) {
+            return;
+        }
+        let [node_key, node_key_width] = breakDownStr(node_str);
+        if (inputBase == InputBase.DEC) {
+            // If input is in decimal convert it to hexadecimal.
+            node_key = convertToHex(node_key, node_key_width);
+            if (node_key === -1) {
+                setSearchBarColor(BAD_INPUT_COLOR);
+                return;
+            }
+        }
+        if (node_key.length * 4 < node_key_width) {
+            node_key = addPaddingZeros(node_key, node_key_width);
+        }
+        node_key = addLeadingZero(node_key, node_key_width);
+        const node_id = keyToString(node_key, node_key_width);
+        const node = nodes.get(node_id);
+        if (!node) {
+            seekAndShow(node_key, node_key_width);
+        } else {
+            // Node exists and is already on the canvas.
+            showFoundNode(node_id, "white");
+        }
+        // End of searchAndShowNode function.
+        // Follows definitions of functions used only in this function.
+
+        /**
+         * Traverse tree in search for node, and show longest match.
+         * @param key
+         * @param key_width
+         */
+        function seekAndShow(key, key_width) {
+            const nodes_to_expand = [];
+            const [node_found, result_type] = find_node(tree_root, key, key_width,
+                                         nodes_to_expand);
+            // Expand nodes.
+            for (let node of nodes_to_expand) {
+                expandNode(keyToString(node.key, node.key_width));
+            }
+            const node_found_id = keyToString(node_found.key, node_found.key_width);
+            switch (result_type) {
+                case FoundResult.EXACT_MATCH:
+                    showFoundNode(node_found_id, "white");
+                    break;
+                case FoundResult.EDGE_ABOVE:
+                    showFoundEdge(node_found_id, NODE_NOT_FOUND_COLOR);
+                    break;
+                case FoundResult.DEAD_END:
+                    showFoundNode(node_found_id, NODE_NOT_FOUND_COLOR);
+                    break;
+            }
+        }
+
+        /**
+         * Convert key from decimal to hexadecimal format.
+         * @param key
+         * @param key_width
+         * @returns converted key {string}
+         */
+        function convertToHex(key, key_width) {
+            let hex_key = "";
+            const max_str = Number.MAX_SAFE_INTEGER.toString();
+            if (key.length < max_str.length ||
+                    key.length == max_str && key <= max_str) {
+                hex_key = parseInt(key).toString(16);
+            } else {
+                hex_key = convertBigDecimal(key);
+            }
+            // Count valid bits number starting from first bit that is one.
+            const msNibble_val = parseInt(hex_key.charAt(0), 16);// Most significand nibble
+            const leading_zeros_count = Math.clz32(msNibble_val) - 28;
+            const key_bits_count = hex_key.length * 4 - leading_zeros_count;
+            if (key_width < key_bits_count) {
+                hex_key = -1;
+            }
+            return hex_key;
+            // End of convertToHex function.
+            // Follows definitions of functions used only in this function.
+
+            /**
+             * Used to convert big decimal keys to hexadecimal format.
+             * @param key
+             * @returns hex_key {string}
+             */
+            function convertBigDecimal(key) {
+                const key_array = key.split("").map(char => parseInt(char));
+                hex_key = [];
+                while (key_array.length > 0) {
+                    let carry_bits = 0;
+                    let remainder;
+                    // Devide key by 16.
+                    for (let i = 0; i < key_array.length; i++) {
+                        const digit = key_array[i];
+                        const ival = carry_bits + digit; // Intermediate value.
+                        const quotient_digit = (ival >> 4);
+                        remainder = ival & 0xF;
+                        // Compute digits for next iteration.
+                        key_array[i] = quotient_digit;
+                        // Compute carry bits for next iteration.
+                        carry_bits = remainder * 10;
+                    }
+                    while (key_array.length && key_array[0] == 0) key_array.shift();
+                    hex_key.unshift(remainder);
+                }
+                // Convert list to string.
+                hex_key = hex_key.map(val => val.toString(16));
+                hex_key = hex_key.join("");
+                return hex_key;
+            }
+        }
+
+        /**
+         * Breaks down node id on key and key_width.
+         * @param input_str
+         * @returns Parts of node_id
+         */
+        function breakDownStr(input_str) {
+            const slash_index = input_str.indexOf("/");
+            let node_key = input_str.slice(0, slash_index);
+            const node_key_width = parseInt(input_str.slice(slash_index + 1));
+            return [node_key, node_key_width];
+        }
+
+        /**
+         * Check if input is valid.
+         * @param input Input to be checked.
+         * @param inputBase Number base of input.
+         * @returns {boolean}
+         */
+        function checkInput(input, inputBase) {
+            let correct_input = true;
+            // Create regexp object that maches pattern of node id.
+            if (inputBase == InputBase.HEX) {
+                var id_pattern = /^[0-9a-fA-F]+\/[0-9]{1,3}$/;
+            } else {
+                // Decimal base input.
+                var id_pattern = /^[0-9]+\/[0-9]{1,3}$/;
+            }
+            // Test if input has proper format.
+            CHECK_BLOCK: {
+                const is_id = id_pattern.test(input);
+                if (!is_id) {
+                    correct_input = false;
+                    break CHECK_BLOCK;
+                }
+                if (inputBase == InputBase.HEX) {
+                    let [node_key, node_key_width] = breakDownStr(input);
+                    // It is not allowed to input key of length greater than inputed key_width.
+                    if (node_key.length > Math.ceil(node_key_width / 4)) {
+                        if (!(node_key_width == 0 && node_key == "0")) {
+                            correct_input = false;
+                            break CHECK_BLOCK;
+                        }
+                    }
+                    if (node_key.length == Math.ceil(node_key_width / 4)) {
+                        const shift = node_key_width % 4;
+                        // It is not allowed to input key of length greater than inputed key_width.
+                        const msb_nibble = parseInt(node_key.charAt(0), 16);
+                        if (shift && (msb_nibble & 0xF << shift)) {
+                            correct_input = false;
+                            break CHECK_BLOCK;
+                        }
+                    }
+                }
+            }
+            if (!correct_input) {
+                 // Set color of search bar.
+                if (input.length != 0) {
+                    setSearchBarColor(BAD_INPUT_COLOR);
+                } else {
+                    setSearchBarColor("white");
+                }
+            }
+            return correct_input;
+        }
+
+        /**
+         * Focus and select found node.
+         * @param node_id
+         * @param color Change background color of input search bar.
+         */
+        function showFoundNode(node_id, color) {
+            showText(nodeDescription(nodes.get(node_id)));
+            network.focus(node_id);
+            network.selectNodes([node_id]);
+            setSearchBarColor(color);
+        }
+
+        /**
+         * Focus and select found edge.
+         * @param edge_id
+         * @param color Change background color of input search bar.
+         */
+        function showFoundEdge(edge_id, color) {
+            // Focus on node below edge.
+            network.focus(edge_id);
+            network.selectEdges([edge_id]);
+            showText(edgeDescription(edges.get(edge_id)));
+            setSearchBarColor(color);
+        }
+
+        /**
+         * Add padding zero bits at the left end of key.
+         * @param key
+         * @param key_width
+         * @returns Key with padded zero bits at left as {string}.
+         */
+        function addPaddingZeros(key, key_width) {
+            const zero_chars_count = Math.ceil((key_width - key.length * 4) / 4);
+            key = "0".repeat(zero_chars_count) + key;
+            return key;
+        }
+
+        /**
+         * Traverses tree structure in order to find node.
+         * @param candidate_node  Node that represents subtree which should be
+         *                        checked if searched node is in it.
+         * @param node_key        Key of node to search for.
+         * @param node_key_width  Key width of node to search for.
+         * @param nodes_to_expand List of nodes to be expanded if searched node is found.
+         * @returns Array of two elements: reference to found node structure and result type.
+         */
+        function find_node(candidate_node, node_key, node_key_width, nodes_to_expand) {
+            let candidate = candidate_node;
+            let result_type = FoundResult.EXACT_MATCH;
+            node_key = removeLeadingZeros(node_key, node_key_width);
+            const node_key_id = keyToString(node_key, node_key_width);
+            while (true) {
+                if (candidate.key_width > node_key_width) {
+                    result_type = FoundResult.EDGE_ABOVE;
+                    break;
+                }
+                const candidate_key = removeLeadingZeros(candidate.key, candidate.key_width);
+                if (node_key_width == candidate.key_width) {
+                    const candidate_id = keyToString(candidate_key, candidate.key_width);
+                    if (node_key_id != candidate_id) {
+                        // Searched node can be added starting from edge above.
+                        result_type = FoundResult.EDGE_ABOVE;
+                    }// else {it is exact match.}
+                    break;
+                }
+                // If first candidate.key_width bits of prefixes are not the same,
+                // position of searched node is on edge that connects candidate node
+                // with parent node.
+                if(!equalKeys(candidate_key, candidate.key_width, node_key, node_key_width)) {
+                    result_type = FoundResult.EDGE_ABOVE;
+                    break;
+                }
+                const node_to_expand = candidate;
+                const left_right_bit = get_direction_bit(node_key, node_key_width, candidate.key_width);
+                if (left_right_bit == 0 && candidate.left && !candidate.left.dummy) {
+                    candidate = candidate.left;
+                } else if (left_right_bit == 1 && candidate.right && !candidate.right.dummy) {
+                    candidate = candidate.right;
+                } else {
+                    result_type = FoundResult.DEAD_END;
+                    break;
+                }
+                nodes_to_expand.push(node_to_expand);
+            }
+            // Return found node.
+            return [candidate, result_type];
+            // End of find_node function.
+            // Follows definitions of functions used only in this function.
+
+            /**
+             * Checks if two keys are equal when cut on key1_width argument value.
+             * It is assumed that key1_width < searched_key_width !!
+             * @param key1
+             * @param key1_width
+             * @param searched_key Key entered in search bar.
+             * @param searched_key_width Width of the key entered in search bar.
+             * @returns true if two keys are equal on width key1_width
+             */
+            function equalKeys(key1, key1_width, searched_key, searched_key_width) {
+                // This function assumes that key1_width < searched_key_width
+                const nibble_count = Math.ceil(key1_width / 4);
+                if (searched_key_width % 4 == key1_width % 4) {
+                    // No need for shift in this case.
+                    key1 = key1.slice(0, nibble_count).toLowerCase();
+                    searched_key = searched_key.slice(0, nibble_count).toLowerCase();
+                } else {
+                    key1 = shiftLeftKey(key1, key1_width);
+                    key1 = key1.slice(0, nibble_count).toLowerCase();
+                    searched_key = shiftLeftKey(searched_key, searched_key_width);
+                    searched_key = searched_key.slice(0, nibble_count).toLowerCase();
+                    const shift = key1_width % 4;
+                    if (shift != 0) {
+                        // Width of key1 must be less than width of searched_key (calling function ensures it).
+                        // Thus searched_key should be trimmed.
+                        searched_key = searched_key.substring(0, nibble_count - 1) + 
+                                 (parseInt(searched_key.charAt(nibble_count - 1), 16) & ~(0xF >> shift)).toString(16);
+                    }
+                }
+                return key1 == searched_key;
+            }
+        }
+        // SearchAndShowNode block.
+        /**
+         * Shifts key in order to make it easier to compare two keys.
+         * @param key
+         * @param key_width
+         * @returns Shifted key {string}
+         */
+        function shiftLeftKey(key, key_width) {
+            const shift = key_width % 4 ? 4 - key_width % 4 : 0;
+            if (shift != 0) {
+                var shifted_key = doLeftShift(key, shift);
+            } else {
+                var shifted_key = key;
+            }
+            return shifted_key;
+        }
+
+        /**
+         * Execution of left shift.
+         * @param key
+         * @param shift Amount of shift to be performed.
+         * @returns shifted_key {string}
+         */
+        function doLeftShift(key, shift) {
+        // Execute shifting.
+            let carry_bits = 0;
+            let shifted_key = "";
+            for (let i = 0; i < key.length; i++) {
+                const key_char = key.charAt(key.length - 1 - i);
+                const char_val = parseInt(key_char, 16);
+                const shifted_char = char_val << shift;
+                const new_char = shifted_char & 0xF | carry_bits;
+                // Compute carry bits for next iteration.
+                carry_bits = (shifted_char & 0xF0) >> 4;
+                shifted_key = new_char.toString(16) + shifted_key;
+            }
+            return shifted_key;
+        }
+
+        /**
+         * Remove leading zeros from key string.
+         * @param key
+         * @param key_width
+         * @returns key {string} without excess leading zeros.
+         */
+        function removeLeadingZeros(key, key_width) {
+            const nibble_count = Math.ceil(key_width / 4);
+            // Remove excess chars at beginning.
+            return key.slice(-nibble_count);
+        }
+
+        /**
+         * In database there is sometimes leading zero.
+         * To get exactly the same key as in database add leading zero if needed.
+         * @param key
+         * @param key_width
+         * @returns {string}
+         */
+        function addLeadingZero(key, key_width) {
+            // Add leading zero to mimic data in database.
+            if ((key_width - 1) % 8 < 4 && key_width != 0) {
+                key = "0" + key;
+            }
+            return key;
+        }
+    }
+
+
+    // ========== Interaction with HTML ==========
+
+    /**
+     * Shows text in the frame in the top-left corner
+     * @param text
+     */
+    function showText(text) {
+        document.getElementById("details").innerHTML = text;
+    }
+
+    function shouldShowL1() {
+        return document.getElementById("show_l1_checkbox").checked
+    }
+
+    function shouldShowL2() {
+        return document.getElementById("show_l2_checkbox").checked
+    }
+
+    function shouldShowGroups() {
+        return document.getElementById("show_groups_checkbox").checked
+    }
+
+    function getInputBase() {
+        return document.getElementById("input_base_select").selectedIndex;
+    }
+
+    function setSearchBarColor(color) {
+        document.getElementById("search_box").style.backgroundColor = color;
+    }
+
+    /**
+     * Updates the network's graphics
+     */
+    function updateGraphics() {
+        network.redraw();
+    }
+
+
+    // ========== Helper Methods ==========
+
+    /**
+     * Returns the color (fill + border) of a node according to it's is_valid value
+     * (black border, white fill if invalid, black fill if valid)
+     * @param is_valid
+     * @returns {{border: string, background: string}}
+     */
+    function getColor(is_valid) {
+        var color = {background: is_valid ? black : white, border: black};
+        color.highlight = {background: color.background, border: color.border};
+        return color;
+    }
+
+    /**
+     * Creates a string that describes a given LPM key. Used also as an id for a given node.
+     * @param key
+     * @param key_width
+     * @returns {string}
+     */
+    function keyToString(key, key_width) {
+        return key + "/" + key_width;
+    }
+
+    /**
+     * Get the id of the edge connecting two nodes a and b
+     * @param a
+     * @param b
+     * @returns {*}
+     */
+    function getEdgeConnecting(a, b) {
+        const edge = edges.get({
+            filter: e => e.from === a && e.to === b,
+        })[0];
+
+        return (edge instanceof Object ? edge : {}).id;
+    }
+
+    /**
+     * Creates a description string for a given bucket.
+     * @param bucket
+     * @returns {string}
+     */
+    function bucketDescription(bucket) {
+        if (bucket == null) return "";
+        let result = "<br>root: " + keyToString(bucket.root.key, bucket.root.key_width);
+        let fields = ["sw_index", "hw_index", "default_payload"];
+        for (var i = 0; i < fields.length; i++) {
+            result += "<br>" + fields[i] + ': ' + bucket[fields[i]];
+        }
+        return result;
+    }
+
+    /**
+     * Creates a description string for a given bucketingData
+     * @param bucketingData
+     * @returns {string}
+     */
+    function bucketingDataDescroption(bucketingData) {
+        let result = "<br>bucketing_state: " + bucketing_states[bucketingData.bucketing_state];
+        let fields = ["group_id", "is_balanced"];
+        for (var i = 0; i < fields.length; i++) {
+            result += "<br>" + fields[i] + ': ' + bucketingData[fields[i]];
+        }
+        return result;
+    }
+
+    /**
+     * Creates a string describing the given node
+     * @param node
+     * @returns {string}
+     */
+    function nodeDescription(node) {
+        data = node.data;
+        return "key: " + data.key + "/" + data.key_width +
+            "<br>payload: " + data.payload +
+            "<br>subtree size: " + data.tree_size +
+            "<br><br><b>bucketing_data:</b>" + bucketingDataDescroption(data.bucketing_data) +
+            "<br><b>L1 Bucket:</b>" + bucketDescription(getL1Bucket(data)) +
+            "<br><b>L2 Bucket:</b>" + bucketDescription(getL2Bucket(data));
+    }
+
+    /**
+     * Creates a description for the roots that are on a given edge.
+     * @param edge
+     * @returns {string}
+     */
+    function edgeDescription(edge) {
+        let result = "";
+        if (edge.l1_root_id) {
+            result += "l1_root: " + edge.l1_root_id;
+        }
+        if (edge.l2_root_id) {
+            result += "<br>l2_root: " + edge.l2_root_id;
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing the children (those who exist) of a node in the format [node.left, node.right]
+     * @param nodeData
+     * @returns {Array}
+     */
+    function getChildren(nodeData) {
+        let children = [];
+        if (nodeData.left) children.push(nodeData.left);
+        if (nodeData.right) children.push(nodeData.right);
+        return children;
+    }
+
+    /**
+     * Gets a bucket from a JSON object containing buckets according to the bucket's id
+     * @param buckets
+     * @param id
+     * @returns {null|*}
+     */
+    function getBucket(buckets, id) {
+        if (id < 0) return null;
+        return buckets[id.toString()];
+    }
+
+    /**
+     * Gets the L1 bucket of the node (null if doesn't exist)
+     * @param nodeData
+     * @returns {*}
+     */
+    function getL1Bucket(nodeData) {
+        return getBucket(l1_buckets, nodeData.bucketing_data.l1_sw_index)
+    }
+
+    /**
+     * Gets the L2 bucket of the node (null if doesn't exist)
+     * @param nodeData
+     * @returns {*}
+     */
+    function getL2Bucket(nodeData) {
+        return getBucket(l2_buckets, nodeData.bucketing_data.l2_sw_index)
+    }
+
+    /**
+     * Returns bit used to decide if child is left or right.
+     * @param key Child key.
+     * @param key_width Child key width.
+     * @param parent_key_width
+     * @returns {Number}
+     */
+    function get_direction_bit(key, key_width, parent_key_width) {
+        const bit_position = key_width - parent_key_width - 1;
+        if (key.length < Number.MAX_SAFE_INTEGER.toString(16).length) {
+            const key_value = parseInt(key,16);
+            const bit_mask = 1 << bit_position;
+            var bit_val = (bit_mask & key_value) >> bit_position;
+        } else {
+            const nibble_index = Math.floor(bit_position / 4);
+            const nibble_char = key.charAt(key.length - 1 - nibble_index);
+            var bit_val = (parseInt(nibble_char, 16) >> bit_position % 4) & 0x1;
+        }
+        return bit_val;
+    }
+
+
+</script>
+
+
+<script>
+    // Run events that need to happen on initialization.
+    window.onload = function () {
+        loadTree();
+    };
+</script>
+</body>
+
+</html>

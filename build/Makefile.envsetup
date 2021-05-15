@@ -1,0 +1,178 @@
+# BEGIN_LEGAL
+#
+# Copyright (c) 2020-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+CLANG_VERSION ?= 4.0.1
+ifneq ($(wildcard /common/pkgs),)
+    ifeq ($(ARM_BUILD), 1)
+        PYTHON_DIR_ARM ?= /common/pkgs/python/3.6.10-arm
+        GCC_DIR ?= /common/pkgs/gcc/7.5.0-arm-linaro
+        ZLIB ?= /common/pkgs/zlib/1.2.11-arm
+        BOOST ?= /common/pkgs/boost/1.73.0-arm
+    else
+        GCC_DIR ?= /common/pkgs/gcc/4.9.4-with-as
+        ZLIB ?= /common/pkgs/zlib/1.2.11
+        BOOST ?= /common/pkgs/boost/1.71.0
+    endif
+    PYTHON_DIR ?= /common/pkgs/python/3.6.10
+    ZLIB_INC_DIR ?= $(ZLIB)/include
+    ZLIB_LINK_DIR ?= $(ZLIB)/lib
+    BOOST_INC_DIR ?= $(BOOST)/include
+    BOOST_LIB_DIR ?= $(BOOST)/lib
+    LIBNL3_LINK_DIR ?= /common/pkgs/libnl3/lib
+    LIBNL3_INC_DIR ?= /common/pkgs/libnl3/include
+    SWIG ?= /common/pkgs/swig/3.0.12-bigmem/bin/swig
+    DOXYGEN ?= /common/pkgs/doxygen/1.8.10/bin/doxygen
+    LLVM_BASE_DIR ?= /common/pkgs/llvm/$(CLANG_VERSION)
+    CLANG_DIR ?= $(LLVM_BASE_DIR)/bin
+    GIT_DIR ?= /common/pkgs/git/2.11.1/bin
+    VALGRIND ?= /common/pkgs/valgrind/3.12.0/bin/valgrind
+    GRAPHVIZ_DIR ?= /common/pkgs/graphviz/2.38.0
+    DOT ?= /common/pkgs/graphviz/2.38.0/bin/dot
+    FW_MW_DIR ?= /cad/synopsys/arc/O-2018.06/MetaWare/arc/bin
+    FFI_LIB_DIR ?= /common/pkgs/libffi/3.2.1/lib64
+    PDFLATEX_ENV=PATH=/common/pkgs/texlive/2015/bin/x86_64-linux:$(PATH)
+
+    CC = $(GCC_DIR)/bin/gcc
+    CXX = $(GCC_DIR)/bin/g++
+    DOT ?= $(GRAPHVIZ_DIR)/bin/dot
+else ifneq ($(wildcard /auto/asic-tools/sw),)
+    ifeq ($(ARM_BUILD), 1)
+        PYTHON_DIR_ARM ?= /auto/asic-tools/sw/python/3.6.10-arm
+        GCC_DIR ?= /auto/asic-tools/sw/gcc/7.5.0-arm-linaro
+        ZLIB ?= /auto/asic-tools/sw/zlib/1.2.11-arm
+        BOOST ?= /auto/asic-tools/sw/boost/1.73.0-arm
+    else
+        GCC_DIR ?= /auto/asic-tools/sw/gcc/4.9.4-with-as
+        ZLIB ?= /auto/asic-tools/sw/zlib/1.2.11
+        BOOST ?= /auto/asic-tools/sw/boost/1.71.0
+    endif
+    PYTHON_DIR ?= /auto/asic-tools/sw/python/3.6.10
+    SWIG ?= /auto/asic-tools/sw/swig/3.0.12-bigmem/bin/swig
+    DOXYGEN ?= /auto/asic-tools/sw/doxygen/1.8.10/bin/doxygen
+    LLVM_BASE_DIR ?= /auto/asic-tools/sw/llvm/$(CLANG_VERSION)
+    CLANG_DIR ?= $(LLVM_BASE_DIR)/bin
+    GIT_DIR ?= /auto/asic-tools/sw/git/2.11.1/bin
+    VALGRIND ?= /auto/asic-tools/sw/valgrind/3.12.0/bin/valgrind
+    GRAPHVIZ_DIR ?= /auto/asic-tools/sw/graphviz/2.38.0
+    FW_MW_DIR ?= /auto/asic-tools/sw/ARC/O-2018.06/MetaWare/arc/bin
+    ZLIB_INC_DIR ?= $(ZLIB)/include
+    ZLIB_LINK_DIR ?= $(ZLIB)/lib
+    BOOST_INC_DIR ?= $(BOOST)/include
+    BOOST_LIB_DIR ?= $(BOOST)/lib
+    LIBNL3_LINK_DIR ?= /auto/asic-tools/sw/libnl3/lib
+    LIBNL3_INC_DIR ?= /auto/asic-tools/sw/libnl3/include
+    FFI_LIB_DIR ?= /auto/asic-tools/sw/libffi/3.2.1/lib64
+
+    PDFLATEX_ENV=PATH=/auto/asic-tools/sw/texlive/2015/bin/x86_64-linux:$(PATH)
+
+    CC = $(GCC_DIR)/bin/gcc
+    CXX = $(GCC_DIR)/bin/g++
+    DOT ?= $(GRAPHVIZ_DIR)/bin/dot
+else
+    GCC_DIR ?= /usr
+    PYTHON_DIR ?= /usr
+    SWIG ?= /usr/bin/swig
+    DOXYGEN ?= /bin/doxygen
+    CLANG_DIR ?= /usr/bin
+    GIT_DIR ?= /usr/bin
+    VALGRIND ?= valgrind
+    # ZLIB ?=
+    # ZLIB_INC_DIR ?=
+    # ZLIB_LINK_DIR ?=
+    # BOOST ?=
+    # BOOST_INC_DIR ?=
+    # BOOST_LIB_DIR ?=
+    # LIBNL3_LINK_DIR ?=
+    # LIBNL3_INC_DIR ?=
+    CC = $(GCC_DIR)/bin/gcc
+    CXX = $(GCC_DIR)/bin/g++
+    DOT ?=
+endif
+
+PYTHON_BIN ?= $(PYTHON_DIR)/bin/python3
+PYTEST_BIN ?= $(PYTHON_DIR)/bin/pytest
+
+NPSUITE_VER ?= 1.76.2
+
+
+TARGET_RELEASE_DIR_PREFIX ?= releases/npsuite
+ifeq ($(ARM_ARCHITECTURE), $(ARCHITECTURE_TYPE))
+    ifeq ($(ARM_BUILD), 1)
+        TARGET_RELEASE_DIR_PREFIX := arm-releases/npsuite
+    endif
+endif
+
+ifeq ($(NPSUITE_ROOT),)
+    ifneq ($(wildcard /cad/leaba/npsuite/releases),)
+        NPSUITE_RELEASE_LOCATION := /cad/leaba/npsuite/$(TARGET_RELEASE_DIR_PREFIX)
+    else ifneq ($(wildcard /auto/npsuite/releases),)
+        NPSUITE_RELEASE_LOCATION := /auto/npsuite/$(TARGET_RELEASE_DIR_PREFIX)
+    else ifeq ($(DEBIAN_BUILD), 1)
+        $(info Debian build does not require NPSUITE_ROOT!)
+    endif
+
+    ifeq ($(SIMULATOR), 1)
+        ifeq ($(PREBUILT_DEPENDS), 1)
+            export NPSUITE_ROOT := prebuilt/npsuite
+        else
+            export NPSUITE_ROOT := $(NPSUITE_RELEASE_LOCATION)-$(NPSUITE_VER)-simulator
+        endif
+    else
+        export NPSUITE_ROOT := $(NPSUITE_RELEASE_LOCATION)-$(NPSUITE_VER)
+    endif
+endif
+
+ifeq ($(wildcard $(NPSUITE_ROOT)),)
+    ifeq ($(DEBIAN_BUILD), 1)
+       $(info Debian build does not require NPSUITE_ROOT!)
+    else
+        ifneq ($(NO_NSIM), 1)
+            $(error NPSUITE_ROOT=$(NPSUITE_ROOT) is pointing to invalid NPSuite location!)
+        endif
+    endif
+endif
+
+export NSIM_INC_DIR ?= $(NPSUITE_ROOT)/include
+export NSIM_LIB_DIR ?= $(NPSUITE_ROOT)/lib
+
+ifeq ($(SIMULATOR), 1)
+    export NPSUITE_ARCHIVE_FILENAME := nsim_archive
+    ifeq ($(PREBUILT_DEPENDS), 1)
+        NSIM_ARCHIVE ?= prebuilt/build/shared/src/nplapi/compiled/$(NPSUITE_ARCHIVE_FILENAME)
+    else
+        NSIM_ARCHIVE ?= $(BUILD_OUTPUT_DIR)/shared/src/nplapi/compiled/$(NPSUITE_ARCHIVE_FILENAME)
+    endif
+
+    ifneq ($(NSIM_ARCHIVE),)
+        export NSIM_RUN_ARGS ?= NPSUITE_ROOT=$(NPSUITE_ROOT) LOAD_SOURCE_FROM_NSIM_ARCHIVE=$(NSIM_ARCHIVE)
+    else
+        $(error NSIM_ARCHIVE enviroment variable must be defined when SIMULATOR is set!)
+    endif
+else
+    ifneq ($(NPL_SRC_DIR),)
+        ifneq ($(LEABA_DEFINED_FOLDER),)
+            ifneq ($(wildcard $(NPL_SRC_DIR)),)
+                ifneq ($(wildcard $(LEABA_DEFINED_FOLDER)),)
+                    export NSIM_RUN_ARGS ?= NPSUITE_ROOT=$(NPSUITE_ROOT) NSIM_SOURCE_PATH=$(NPL_SRC_DIR) NSIM_LEABA_DEFINED_FOLDER=$(LEABA_DEFINED_FOLDER)
+                    $(info Using NSIM_RUN_ARGS := $(NSIM_RUN_ARGS))
+                endif
+            endif
+        endif
+    endif
+endif

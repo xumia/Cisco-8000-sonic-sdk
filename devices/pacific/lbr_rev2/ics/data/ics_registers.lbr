@@ -1,0 +1,3056 @@
+$block{ICS} = {
+  Defines_db => "Y:\\svn2\\trunk\\Moriah\\ASIC\\design\\ics\\verilog\\ics_defines.v,Y:\\svn2\\trunk\\Moriah\\ASIC\\design\\defines\\pd_fd_defines.v,Y:\\svn2\\trunk\\Moriah\\ASIC\\design\\defines\\control_common_defines.v",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+    GeneralInterruptRegisterSummary => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, GeneralInterruptRegister has asserted interrupt",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+    },
+    FabricBlockingIntrRegSummary => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, FabricBlockingIntrReg has asserted interrupt",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "19",
+    Type => "Config",
+    CreditConsumeEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    CreditAllocateEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LastEnqueueQsizeBytesEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LastDequeueQsizeBytesEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LastQueueReportEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LastCbConsumedEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LastCbAllocatedEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LastCbRptEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    ReTransmitFilterEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    QueueIsEmptyMemEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    ScrubberMemEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    AgedOutQueueEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    Queue2DramMemEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    EnqQueue2DramMemEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    Queue2TmDestEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    Queue2ListEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    EnqQueueThProfileEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "16",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    QueueThProfileEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "17",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    Queue2DramThMemEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "18",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "19",
+    Type => "Config",
+    CreditConsumeEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    CreditAllocateEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LastEnqueueQsizeBytesEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LastDequeueQsizeBytesEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LastQueueReportEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LastCbConsumedEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LastCbAllocatedEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    LastCbRptEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    ReTransmitFilterEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    QueueIsEmptyMemEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    ScrubberMemEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    AgedOutQueueEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    Queue2DramMemEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    EnqQueue2DramMemEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    Queue2TmDestEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    Queue2ListEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    EnqQueueThProfileEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "16",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    QueueThProfileEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "17",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    Queue2DramThMemEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "18",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  GeneralInterruptRegister => { #Structure Type: Reg;
+    Name => "GeneralInterruptRegister",
+    RegMem => "Reg",
+    Address => "5",
+    Description => "Interrupt",
+    Width => "1", # Excel Formula: =calc_reg_width(E8:E8,F8)
+    Type => "Interrupt",
+    FabricBlockingIntr => { #Structure Type: RegField;
+      Name => "FabricBlockingIntr",
+      RegMem => "RegField",
+      Description => "ICS detected fabric blocking ",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Interrupt",
+      UsedBy => "EXT",
+    },
+  },
+  GeneralInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "GeneralInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "6",
+    Description => "This register masks GeneralInterruptRegister interrupt register",
+    Width => "1", # Excel Formula: =calc_reg_width(E8:E8,F8)
+    Type => "InterruptMask",
+    DefaultValue => "b1",
+    FabricBlockingIntrMask => { #Structure Type: RegField;
+      Name => "FabricBlockingIntrMask",
+      RegMem => "RegField",
+      Description => "This field masks FabricBlockingIntr interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  GeneralInterruptRegisterTest => { #Structure Type: Reg; Skip Register;
+    Name => "GeneralInterruptRegisterTest",
+    RegMem => "Reg",
+    Address => "7",
+    Description => "This register tests GeneralInterruptRegister interrupt register",
+    Width => "1", # Excel Formula: =calc_reg_width(E8:E8,F8)
+    Type => "Config",
+    DefaultValue => "b1",
+    FabricBlockingIntrTest => { #Structure Type: RegField;
+      Name => "FabricBlockingIntrTest",
+      RegMem => "RegField",
+      Description => "This field tests FabricBlockingIntr interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  FabricBlockingIntrReg => { #Structure Type: Reg;
+    Name => "FabricBlockingIntrReg",
+    RegMem => "Reg",
+    Address => "8",
+    Width => "6", # Excel Formula: =calc_reg_width(E10:E15,F15)
+    Type => "Interrupt",
+    FlbHpListFull => { #Structure Type: RegField;
+      Name => "FlbHpListFull",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "Interrupt",
+      UsedBy => "ELGBL",
+      DefaultValue => "d0",
+    },
+    FlbLpListFull => { #Structure Type: RegField;
+      Name => "FlbLpListFull",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F10,E11)
+      Type => "Interrupt",
+      UsedBy => "ELGBL",
+      DefaultValue => "d0",
+    },
+    RlbUchListFull => { #Structure Type: RegField;
+      Name => "RlbUchListFull",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F11,E12)
+      Type => "Interrupt",
+      UsedBy => "ELGBL",
+      DefaultValue => "d0",
+    },
+    RlbUclListFull => { #Structure Type: RegField;
+      Name => "RlbUclListFull",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F12,E13)
+      Type => "Interrupt",
+      UsedBy => "ELGBL",
+      DefaultValue => "d0",
+    },
+    RlbMcListFull => { #Structure Type: RegField;
+      Name => "RlbMcListFull",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F13,E14)
+      Type => "Interrupt",
+      UsedBy => "ELGBL",
+      DefaultValue => "d0",
+    },
+    TotalListFull => { #Structure Type: RegField;
+      Name => "TotalListFull",
+      RegMem => "RegField",
+      Description => "All 128 etries are currently used and a new queue tries to enter",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F14,E15)
+      Type => "Interrupt",
+      UsedBy => "ELGBL",
+      DefaultValue => "d0",
+    },
+  },
+  FabricBlockingIntrRegMask => { #Structure Type: Reg; Skip Register;
+    Name => "FabricBlockingIntrRegMask",
+    RegMem => "Reg",
+    Address => "9",
+    Width => "6", # Excel Formula: =calc_reg_width(E10:E15,F15)
+    Type => "InterruptMask",
+    DefaultValue => "b1",
+    FlbHpListFullMask => { #Structure Type: RegField;
+      Name => "FlbHpListFullMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "d0",
+    },
+    FlbLpListFullMask => { #Structure Type: RegField;
+      Name => "FlbLpListFullMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F10,E11)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "d0",
+    },
+    RlbUchListFullMask => { #Structure Type: RegField;
+      Name => "RlbUchListFullMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F11,E12)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "d0",
+    },
+    RlbUclListFullMask => { #Structure Type: RegField;
+      Name => "RlbUclListFullMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F12,E13)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "d0",
+    },
+    RlbMcListFullMask => { #Structure Type: RegField;
+      Name => "RlbMcListFullMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F13,E14)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "d0",
+    },
+    TotalListFullMask => { #Structure Type: RegField;
+      Name => "TotalListFullMask",
+      RegMem => "RegField",
+      Description => "This field masks TotalListFull interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F14,E15)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "d0",
+    },
+  },
+  FabricBlockingIntrRegTest => { #Structure Type: Reg; Skip Register;
+    Name => "FabricBlockingIntrRegTest",
+    RegMem => "Reg",
+    Address => "A",
+    Width => "6", # Excel Formula: =calc_reg_width(E10:E15,F15)
+    Type => "Config",
+    DefaultValue => "b1",
+    FlbHpListFullTest => { #Structure Type: RegField;
+      Name => "FlbHpListFullTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "Config",
+      UsedBy => "",
+      DefaultValue => "d0",
+    },
+    FlbLpListFullTest => { #Structure Type: RegField;
+      Name => "FlbLpListFullTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F10,E11)
+      Type => "Config",
+      UsedBy => "",
+      DefaultValue => "d0",
+    },
+    RlbUchListFullTest => { #Structure Type: RegField;
+      Name => "RlbUchListFullTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F11,E12)
+      Type => "Config",
+      UsedBy => "",
+      DefaultValue => "d0",
+    },
+    RlbUclListFullTest => { #Structure Type: RegField;
+      Name => "RlbUclListFullTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F12,E13)
+      Type => "Config",
+      UsedBy => "",
+      DefaultValue => "d0",
+    },
+    RlbMcListFullTest => { #Structure Type: RegField;
+      Name => "RlbMcListFullTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "",
+      DefaultValue => "d0",
+    },
+    TotalListFullTest => { #Structure Type: RegField;
+      Name => "TotalListFullTest",
+      RegMem => "RegField",
+      Description => "This field tests TotalListFull interrupt",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "",
+      DefaultValue => "d0",
+    },
+  },
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "19",
+    Type => "Config",
+    CreditConsumeEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    CreditAllocateEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    LastEnqueueQsizeBytesEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    LastDequeueQsizeBytesEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    LastQueueReportEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    LastCbConsumedEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    LastCbAllocatedEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    LastCbRptEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    ReTransmitFilterEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    QueueIsEmptyMemEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    ScrubberMemEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    AgedOutQueueEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    Queue2DramMemEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    EnqQueue2DramMemEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    Queue2TmDestEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    Queue2ListEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    EnqQueueThProfileEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "16",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    QueueThProfileEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "17",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    Queue2DramThMemEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "18",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "19",
+    Type => "Config",
+    CreditConsumeEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    CreditAllocateEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    LastEnqueueQsizeBytesEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    LastDequeueQsizeBytesEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    LastQueueReportEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    LastCbConsumedEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    LastCbAllocatedEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    LastCbRptEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    ReTransmitFilterEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    QueueIsEmptyMemEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    ScrubberMemEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    AgedOutQueueEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "11",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    Queue2DramMemEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "12",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    EnqQueue2DramMemEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "13",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    Queue2TmDestEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "14",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    Queue2ListEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "15",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    EnqQueueThProfileEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "16",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    QueueThProfileEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "17",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+    Queue2DramThMemEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "18",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "33",
+    Description => "ECC 1b Error Counter and Last Address",
+    Width => "49",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    Ecc_1bErrAddrValid => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "The address of last ECC 1b error is valid",
+      Width => "1",
+      Position => "16",
+      Type => "Event",
+      UsedBy => "SER",
+    },
+    Ecc_1bErrAddr => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "The address of last ECC 1b error",
+      Width => "32",
+      Position => "48:17",
+      Type => "Capture",
+      UsedBy => "SER",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "34",
+    Description => "ECC 2b Error Counter and Last Address",
+    Width => "49",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    Ecc_2bErrAddrValid => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "The address of last ECC 2b error is valid",
+      Width => "1",
+      Position => "16",
+      Type => "Event",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrAddr => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "The address of last ECC 2b error",
+      Width => "32",
+      Position => "48:17",
+      Type => "Capture",
+      UsedBy => "SER",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DefaultValue => "b0",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12)
+    Description => "Config Top broadcast parameters",
+    Width => "9", # Excel Formula: =calc_reg_width(E17:E18,F18)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFF",
+    },
+    LastInChain => { #Structure Type: RegField;
+      Name => "LastInChain",
+      RegMem => "RegField",
+      Description => "If set, this block is defined as last member in broadcast chain",
+      Width => "1",
+      Position => "8", # Excel Formula: =calc_position(F17,E18)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E20:E22,F22)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F19,E20,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F21,E22)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C19,A19)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E24:E24,F24)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F23,E24,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b1",
+    },
+  },
+  FabricBlockingCaptureReg => { #Structure Type: Reg;
+    Name => "FabricBlockingCaptureReg",
+    RegMem => "Reg",
+    Address => "100",
+    Width => "42", # Excel Formula: =calc_reg_width(E17:E19,F19)
+    Type => "ReadOnly",
+    ListFullQnum => { #Structure Type: RegField;
+      Name => "ListFullQnum",
+      RegMem => "RegField",
+      Width => "14",
+      Position => "13:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Capture",
+      UsedBy => "ELGBL",
+      DefaultValue => "d0",
+    },
+    QueueBlockingQnum => { #Structure Type: RegField;
+      Name => "QueueBlockingQnum",
+      RegMem => "RegField",
+      Description => "Credit grant arrived to a queue that its credits balance cross QueueBlockingTh",
+      Width => "14",
+      Position => "27:14", # Excel Formula: =calc_position(F17,E18)
+      Type => "Capture",
+      UsedBy => "CRGNT",
+      DefaultValue => "d0",
+    },
+    SliceBlockingQnum => { #Structure Type: RegField;
+      Name => "SliceBlockingQnum",
+      RegMem => "RegField",
+      Description => "Slice blocking is a scenario that the sum of credits for active (i.e eligible) queues is greater than SliceBlockingThreshold.",
+      Width => "14",
+      Position => "41:28", # Excel Formula: =calc_position(F18,E19)
+      Type => "Capture",
+      UsedBy => "CRGNT",
+      DefaultValue => "d0",
+    },
+  },
+  GeneralConfReg => { #Structure Type: Reg;
+    Name => "GeneralConfReg",
+    RegMem => "Reg",
+    Address => "101", # Excel Formula: =calc_reg_address(C16,A16)
+    Width => "42", # Excel Formula: =calc_reg_width(E21:E24,F24)
+    Type => "Config",
+    DeleteQueueNum => { #Structure Type: RegField;
+      Name => "DeleteQueueNum",
+      RegMem => "RegField",
+      Description => "Queue number for delete queue",
+      Width => "14",
+      Position => "13:0", # Excel Formula: =calc_position(F20,E21,TRUE)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d0",
+    },
+    NetworkSlice1FabricSlice0 => { #Structure Type: RegField;
+      Name => "NetworkSlice1FabricSlice0",
+      RegMem => "RegField",
+      Description => "Bit per slice 
+'1' - This slice is a network slice
+'0' - This slice is a fabric slice",
+      Width => "6",
+      Position => "19:14", # Excel Formula: =calc_position(F21,E22)
+      Type => "Config",
+      UsedBy => "ICS",
+      DefaultValue => "b1",
+    },
+    ScrubberStep => { #Structure Type: RegField;
+      Name => "ScrubberStep",
+      RegMem => "RegField",
+      Description => "Min number of clock cycles that the scrubber machine works on specific queue entry.
+Value 0 means the scrubber machine is disabled.",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F22,E23)
+      Type => "Config",
+      UsedBy => "SCRB",
+      DefaultValue => "d0",
+    },
+    ScrubberReqType => { #Structure Type: RegField;
+      Name => "ScrubberReqType",
+      RegMem => "RegField",
+      Description => "Type of credit request that the scrubber may generate 
+(01 - GO1, 10 -GO2, 11-Noram)",
+      Width => "2",
+      Position => "41:40", # Excel Formula: =calc_position(F23,E24)
+      Type => "Config",
+      UsedBy => "SCRB",
+      DefaultValue => "d3",
+    },
+  },
+  ScrubberThReg0 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 14;
+    Name => "ScrubberThReg[8]",
+    RegMem => "Reg",
+    Address => "102", # Excel Formula: =calc_reg_address(C20,A20)
+    Description => "Queue number for delete queue",
+    Width => "5", # Excel Formula: =calc_reg_width(E26:E26,F26)
+    Type => "Config",
+    ArrayLength => "8",
+    ArrayIndex => "0",
+    ScrubberTh0 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 11;
+      Name => "ScrubberTh[n]",
+      RegMem => "RegField",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Config",
+      UsedBy => "SCRB",
+      DefaultValue => "h1f",
+    },
+  },
+  ScrubberThReg1 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 14;
+    Name => "ScrubberThReg[8]",
+    RegMem => "Reg",
+    Address => "103",
+    Description => "Queue number for delete queue",
+    Width => "5", # Excel Formula: =calc_reg_width(E26:E26,F26)
+    Type => "Config",
+    ArrayLength => "8",
+    ArrayIndex => "1",
+    ScrubberTh1 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 11;
+      Name => "ScrubberTh[n]",
+      RegMem => "RegField",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Config",
+      UsedBy => "SCRB",
+      DefaultValue => "h1f",
+    },
+  },
+  ScrubberThReg2 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 14;
+    Name => "ScrubberThReg[8]",
+    RegMem => "Reg",
+    Address => "104",
+    Description => "Queue number for delete queue",
+    Width => "5", # Excel Formula: =calc_reg_width(E26:E26,F26)
+    Type => "Config",
+    ArrayLength => "8",
+    ArrayIndex => "2",
+    ScrubberTh2 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 11;
+      Name => "ScrubberTh[n]",
+      RegMem => "RegField",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Config",
+      UsedBy => "SCRB",
+      DefaultValue => "h1f",
+    },
+  },
+  ScrubberThReg3 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 14;
+    Name => "ScrubberThReg[8]",
+    RegMem => "Reg",
+    Address => "105",
+    Description => "Queue number for delete queue",
+    Width => "5", # Excel Formula: =calc_reg_width(E26:E26,F26)
+    Type => "Config",
+    ArrayLength => "8",
+    ArrayIndex => "3",
+    ScrubberTh3 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 11;
+      Name => "ScrubberTh[n]",
+      RegMem => "RegField",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Config",
+      UsedBy => "SCRB",
+      DefaultValue => "h1f",
+    },
+  },
+  ScrubberThReg4 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 14;
+    Name => "ScrubberThReg[8]",
+    RegMem => "Reg",
+    Address => "106",
+    Description => "Queue number for delete queue",
+    Width => "5", # Excel Formula: =calc_reg_width(E26:E26,F26)
+    Type => "Config",
+    ArrayLength => "8",
+    ArrayIndex => "4",
+    ScrubberTh4 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 11;
+      Name => "ScrubberTh[n]",
+      RegMem => "RegField",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Config",
+      UsedBy => "SCRB",
+      DefaultValue => "h1f",
+    },
+  },
+  ScrubberThReg5 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 14;
+    Name => "ScrubberThReg[8]",
+    RegMem => "Reg",
+    Address => "107",
+    Description => "Queue number for delete queue",
+    Width => "5", # Excel Formula: =calc_reg_width(E26:E26,F26)
+    Type => "Config",
+    ArrayLength => "8",
+    ArrayIndex => "5",
+    ScrubberTh5 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 11;
+      Name => "ScrubberTh[n]",
+      RegMem => "RegField",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Config",
+      UsedBy => "SCRB",
+      DefaultValue => "h1f",
+    },
+  },
+  ScrubberThReg6 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 14;
+    Name => "ScrubberThReg[8]",
+    RegMem => "Reg",
+    Address => "108",
+    Description => "Queue number for delete queue",
+    Width => "5", # Excel Formula: =calc_reg_width(E26:E26,F26)
+    Type => "Config",
+    ArrayLength => "8",
+    ArrayIndex => "6",
+    ScrubberTh6 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 11;
+      Name => "ScrubberTh[n]",
+      RegMem => "RegField",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Config",
+      UsedBy => "SCRB",
+      DefaultValue => "h1f",
+    },
+  },
+  ScrubberThReg7 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 14;
+    Name => "ScrubberThReg[8]",
+    RegMem => "Reg",
+    Address => "109",
+    Description => "Queue number for delete queue",
+    Width => "5", # Excel Formula: =calc_reg_width(E26:E26,F26)
+    Type => "Config",
+    ArrayLength => "8",
+    ArrayIndex => "7",
+    ScrubberTh7 => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 11;
+      Name => "ScrubberTh[n]",
+      RegMem => "RegField",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Config",
+      UsedBy => "SCRB",
+      DefaultValue => "h1f",
+    },
+  },
+  CreditsConfReg => { #Structure Type: Reg;
+    Name => "CreditsConfReg",
+    RegMem => "Reg",
+    Address => "10A", # Excel Formula: =calc_reg_address(C25,A25)
+    Description => "Queue number for delete queue",
+    Width => "43", # Excel Formula: =calc_reg_width(E28:E35,F35)
+    Type => "Config",
+    CrgntRandomNoiseEn => { #Structure Type: RegField;
+      Name => "CrgntRandomNoiseEn",
+      RegMem => "RegField",
+      Description => "1' - Randomly discard 0.5% of the credit grents and doubly the credit grant for other 0.5%
+'0' - don’t manipulate the crrdit grants",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F27,E28,TRUE)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "b1",
+    },
+    CrdtInBytes => { #Structure Type: RegField;
+      Name => "CrdtInBytes",
+      RegMem => "RegField",
+      Description => "Value of credit in bytes default is 1K bytes",
+      Width => "13",
+      Position => "13:1", # Excel Formula: =calc_position(F28,E29)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "d1024",
+    },
+    ReturnCrdtOnOff => { #Structure Type: RegField;
+      Name => "ReturnCrdtOnOff",
+      RegMem => "RegField",
+      Description => "1' - return credit grant that arrives when the queue is in stop state",
+      Width => "1",
+      Position => "14", # Excel Formula: =calc_position(F29,E30)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "d1",
+    },
+    QueueBlockingTh => { #Structure Type: RegField;
+      Name => "QueueBlockingTh",
+      RegMem => "RegField",
+      Description => "Credit balance threshold; if the queue credit balance is above this threshold credits it may indicate fabric blocking. 
+This scenario is called 'queue blocking'
+Credits granted are returned/ignored according to ReturnCrdtQueueBlocking .",
+      Width => "24",
+      Position => "38:15", # Excel Formula: =calc_position(F30,E31)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "d999999",
+    },
+    ReturnCrdtQueueBlocking => { #Structure Type: RegField;
+      Name => "ReturnCrdtQueueBlocking",
+      RegMem => "RegField",
+      Description => "1' - Return credits granted when the queue crossed QueueBlockingTh
+'0' - ignore credit granted in queue blocking ",
+      Width => "1",
+      Position => "39", # Excel Formula: =calc_position(F31,E32)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "d1",
+    },
+    ReturnEirCrdtSliceBlocking => { #Structure Type: RegField;
+      Name => "ReturnEirCrdtSliceBlocking",
+      RegMem => "RegField",
+      Description => "Slice blocking is a scenario that the sum of credits for active (i.e eligible) queues is greater than SliceBlockingThreshold. '1' - Return EIR credits granted when the eligible list crossed EirSliceBlockingThreshold
+'0' - ignore credits granted in this scenario",
+      Width => "1",
+      Position => "40", # Excel Formula: =calc_position(F32,E33)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "d1",
+    },
+    ReturnCirCrdtSliceBlocking => { #Structure Type: RegField;
+      Name => "ReturnCirCrdtSliceBlocking",
+      RegMem => "RegField",
+      Description => "Slice blocking is a scenario that the sum of credits for active (i.e eligible) queues is greater than SliceBlockingThreshold.
+'1' - Return CIR credits granted when the eligible list crossed CirSliceBlockingThreshold
+'0' - ignore credits granted in this scenario",
+      Width => "1",
+      Position => "41", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "d1",
+    },
+    ReturnCrdtListFullBlocking => { #Structure Type: RegField;
+      Name => "ReturnCrdtListFullBlocking",
+      RegMem => "RegField",
+      Description => "List full blocking is a scenario that queue gets gredit grant, it size > 0 but the eligible list is full.
+''1' - Return credits granted when the eligible list is full
+'0' - ignore credits granted in this scenario",
+      Width => "1",
+      Position => "42", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "d1",
+    },
+  },
+  EnqSmallThRg => { #Structure Type: Reg;
+    Name => "EnqSmallThRg",
+    RegMem => "Reg",
+    Address => "10B", # Excel Formula: =calc_reg_address(C27,A27)
+    Description => "Threshold for queue size to enter the eligible list before credit grant. 
+If enqueue-report arrives with Qsize smaller than this threshold and non empty credits then queue enters to eligible list ",
+    Width => "224", # Excel Formula: =calc_reg_width(E37:E52,F52)
+    Type => "Config",
+    EnqSmallTh0 => { #Structure Type: RegField;
+      Name => "EnqSmallTh0",
+      RegMem => "RegField",
+      Description => "EnqSmallTh for queueThProfile == 0",
+      Width => "14",
+      Position => "13:0", # Excel Formula: =calc_position(F36,E37,TRUE)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d0",
+    },
+    EnqSmallTh1 => { #Structure Type: RegField;
+      Name => "EnqSmallTh1",
+      RegMem => "RegField",
+      Description => "EnqSmallTh for queueThProfile == 1",
+      Width => "14",
+      Position => "27:14", # Excel Formula: =calc_position(F37,E38)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d1",
+    },
+    EnqSmallTh2 => { #Structure Type: RegField;
+      Name => "EnqSmallTh2",
+      RegMem => "RegField",
+      Description => "EnqSmallTh for queueThProfile == 2",
+      Width => "14",
+      Position => "41:28", # Excel Formula: =calc_position(F38,E39)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d2",
+    },
+    EnqSmallTh3 => { #Structure Type: RegField;
+      Name => "EnqSmallTh3",
+      RegMem => "RegField",
+      Description => "EnqSmallTh for queueThProfile == 3",
+      Width => "14",
+      Position => "55:42", # Excel Formula: =calc_position(F39,E40)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d3",
+    },
+    EnqSmallTh4 => { #Structure Type: RegField;
+      Name => "EnqSmallTh4",
+      RegMem => "RegField",
+      Description => "EnqSmallTh for queueThProfile == 4",
+      Width => "14",
+      Position => "69:56", # Excel Formula: =calc_position(F40,E41)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d4",
+    },
+    EnqSmallTh5 => { #Structure Type: RegField;
+      Name => "EnqSmallTh5",
+      RegMem => "RegField",
+      Description => "EnqSmallTh for queueThProfile == 5",
+      Width => "14",
+      Position => "83:70", # Excel Formula: =calc_position(F41,E42)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d5",
+    },
+    EnqSmallTh6 => { #Structure Type: RegField;
+      Name => "EnqSmallTh6",
+      RegMem => "RegField",
+      Description => "EnqSmallTh for queueThProfile == 6",
+      Width => "14",
+      Position => "97:84", # Excel Formula: =calc_position(F42,E43)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d6",
+    },
+    EnqSmallTh7 => { #Structure Type: RegField;
+      Name => "EnqSmallTh7",
+      RegMem => "RegField",
+      Description => "EnqSmallTh for queueThProfile == 7",
+      Width => "14",
+      Position => "111:98", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d7",
+    },
+    EnqSmallTh8 => { #Structure Type: RegField;
+      Name => "EnqSmallTh8",
+      RegMem => "RegField",
+      Description => "EnqSmallTh for queueThProfile == 8",
+      Width => "14",
+      Position => "125:112", # Excel Formula: =calc_position(F44,E45)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d8",
+    },
+    EnqSmallTh9 => { #Structure Type: RegField;
+      Name => "EnqSmallTh9",
+      RegMem => "RegField",
+      Description => "EnqSmallTh for queueThProfile == 9",
+      Width => "14",
+      Position => "139:126", # Excel Formula: =calc_position(F45,E46)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d1",
+    },
+    EnqSmallTh10 => { #Structure Type: RegField;
+      Name => "EnqSmallTh10",
+      RegMem => "RegField",
+      Description => "EnqSmallTh for queueThProfile == 10",
+      Width => "14",
+      Position => "153:140", # Excel Formula: =calc_position(F46,E47)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d2",
+    },
+    EnqSmallTh11 => { #Structure Type: RegField;
+      Name => "EnqSmallTh11",
+      RegMem => "RegField",
+      Description => "EnqSmallTh for queueThProfile == 11",
+      Width => "14",
+      Position => "167:154", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d3",
+    },
+    EnqSmallTh12 => { #Structure Type: RegField;
+      Name => "EnqSmallTh12",
+      RegMem => "RegField",
+      Description => "EnqSmallTh for queueThProfile == 12",
+      Width => "14",
+      Position => "181:168", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d4",
+    },
+    EnqSmallTh13 => { #Structure Type: RegField;
+      Name => "EnqSmallTh13",
+      RegMem => "RegField",
+      Description => "EnqSmallTh for queueThProfile == 13",
+      Width => "14",
+      Position => "195:182", # Excel Formula: =calc_position(F49,E50)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d5",
+    },
+    EnqSmallTh14 => { #Structure Type: RegField;
+      Name => "EnqSmallTh14",
+      RegMem => "RegField",
+      Description => "EnqSmallTh for queueThProfile == 14",
+      Width => "14",
+      Position => "209:196", # Excel Formula: =calc_position(F50,E51)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d6",
+    },
+    EnqSmallTh15 => { #Structure Type: RegField;
+      Name => "EnqSmallTh15",
+      RegMem => "RegField",
+      Description => "EnqSmallTh for queueThProfile == 15",
+      Width => "14",
+      Position => "223:210", # Excel Formula: =calc_position(F51,E52)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "d7",
+    },
+  },
+  DramListParamReg => { #Structure Type: Reg;
+    Name => "DramListParamReg",
+    RegMem => "Reg",
+    Address => "10C", # Excel Formula: =calc_reg_address(C36,A36)
+    Description => "Parameters for Dram List machine",
+    Width => "32", # Excel Formula: =calc_reg_width(E54:E56,F56)
+    Type => "Config",
+    DramEligibleThNorm => { #Structure Type: RegField;
+      Name => "DramEligibleThNorm",
+      RegMem => "RegField",
+      Description => "Threshold when the DRAM queue is not empty",
+      Width => "13",
+      Position => "12:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "d4096",
+    },
+    DramEligibleThEmpty => { #Structure Type: RegField;
+      Name => "DramEligibleThEmpty",
+      RegMem => "RegField",
+      Description => "Threshold when the DRAM queue (DICS) becomes empty and need to give DRAM a chance to evacuate",
+      Width => "13",
+      Position => "25:13", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "d4096",
+    },
+    NumOfReadsPerDramBuffer => { #Structure Type: RegField;
+      Name => "NumOfReadsPerDramBuffer",
+      RegMem => "RegField",
+      Description => "Number of read request per queue in dram-eligible-list.
+NOTE: This register should NOT change under traffic",
+      Width => "6",
+      Position => "31:26", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "d16",
+    },
+  },
+  AgingListParamReg => { #Structure Type: Reg;
+    Name => "AgingListParamReg",
+    RegMem => "Reg",
+    Address => "10D", # Excel Formula: =calc_reg_address(C53,A53)
+    Description => "Parameters for Aging List machine",
+    Width => "8", # Excel Formula: =calc_reg_width(E58:E58,F58)
+    Type => "Config",
+    AgingMaxReadBurst => { #Structure Type: RegField;
+      Name => "AgingMaxReadBurst",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "d16",
+    },
+  },
+  EligibleThReg => { #Structure Type: Reg;
+    Name => "EligibleThReg",
+    RegMem => "Reg",
+    Address => "10E", # Excel Formula: =calc_reg_address(C57,A57)
+    Description => "Threshold to move a queue to speculative read",
+    Width => "86", # Excel Formula: =calc_reg_width(E60:E66,F66)
+    Type => "Config",
+    SpeculativeEn => { #Structure Type: RegField;
+      Name => "SpeculativeEn",
+      RegMem => "RegField",
+      Description => "Enable speculative selection",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F59,E60,TRUE)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "b1",
+    },
+    SpeculativeQsizeTh => { #Structure Type: RegField;
+      Name => "SpeculativeQsizeTh",
+      RegMem => "RegField",
+      Description => "Queue size threshold to move a queue to speculative read.
+units - number of PDs",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F60,E61)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "d100",
+    },
+    SpeculativeCbTh => { #Structure Type: RegField;
+      Name => "SpeculativeCbTh",
+      RegMem => "RegField",
+      Description => "Credit balance threshold to move a queue to speculative read.
+units - number of PDs",
+      Width => "20",
+      Position => "30:11", # Excel Formula: =calc_position(F61,E62)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "d0",
+    },
+    FabricPackingEn => { #Structure Type: RegField;
+      Name => "FabricPackingEn",
+      RegMem => "RegField",
+      Description => "Enable fabric packing",
+      Width => "1",
+      Position => "31", # Excel Formula: =calc_position(F62,E63)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "b1",
+    },
+    FabricPackingTh => { #Structure Type: RegField;
+      Name => "FabricPackingTh",
+      RegMem => "RegField",
+      Description => "Threshold to move a queue to fabric packing read request.
+units - number of PDs",
+      Width => "7",
+      Position => "38:32", # Excel Formula: =calc_position(F63,E64)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "d10",
+    },
+    EirSliceBlockingTh => { #Structure Type: RegField;
+      Name => "EirSliceBlockingTh",
+      RegMem => "RegField",
+      Width => "24",
+      Position => "62:39", # Excel Formula: =calc_position(F64,E65)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "d500000",
+    },
+    CirSliceBlockingTh => { #Structure Type: RegField;
+      Name => "CirSliceBlockingTh",
+      RegMem => "RegField",
+      Width => "23",
+      Position => "85:63", # Excel Formula: =calc_position(F65,E66)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "d999999",
+    },
+  },
+  EligibleMaxParallelQueues => { #Structure Type: Reg;
+    Name => "EligibleMaxParallelQueues",
+    RegMem => "Reg",
+    Address => "10F", # Excel Formula: =calc_reg_address(C59,A59)
+    Description => "Max queues served in parallel in the eligible list. Note that the sum of these fields must be =< 128",
+    Width => "35", # Excel Formula: =calc_reg_width(E68:E72,F72)
+    Type => "Config",
+    MaxRlbUch => { #Structure Type: RegField;
+      Name => "MaxRlbUch",
+      RegMem => "RegField",
+      Width => "7",
+      Position => "6:0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "d25",
+    },
+    MaxRlbUcl => { #Structure Type: RegField;
+      Name => "MaxRlbUcl",
+      RegMem => "RegField",
+      Width => "7",
+      Position => "13:7", # Excel Formula: =calc_position(F68,E69)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "d25",
+    },
+    MaxRlbMc => { #Structure Type: RegField;
+      Name => "MaxRlbMc",
+      RegMem => "RegField",
+      Width => "7",
+      Position => "20:14", # Excel Formula: =calc_position(F69,E70)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "d25",
+    },
+    MaxFlbLp => { #Structure Type: RegField;
+      Name => "MaxFlbLp",
+      RegMem => "RegField",
+      Width => "7",
+      Position => "27:21", # Excel Formula: =calc_position(F70,E71)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "d25",
+    },
+    MaxFlbHp => { #Structure Type: RegField;
+      Name => "MaxFlbHp",
+      RegMem => "RegField",
+      Width => "7",
+      Position => "34:28", # Excel Formula: =calc_position(F71,E72)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "d25",
+    },
+  },
+  WeightedRoundRobin => { #Structure Type: Reg;
+    Name => "WeightedRoundRobin",
+    RegMem => "Reg",
+    Address => "110", # Excel Formula: =calc_reg_address(C67,A67)
+    Description => "Weight for Weighted round-robin arb",
+    Width => "7", # Excel Formula: =calc_reg_width(E74:E74,F74)
+    Type => "Config",
+    RlbMcWeight => { #Structure Type: RegField;
+      Name => "RlbMcWeight",
+      RegMem => "RegField",
+      Description => "Arbitration between RLB-MC and RLB-UCL;
+In case both MC and UCL are avaliable, 
+determines the probability the design will choose RLB-MC.
+'0' choose RLB-UCL
+'127' choose RLB-MC",
+      Width => "7",
+      Position => "6:0", # Excel Formula: =calc_position(F73,E74,TRUE)
+      Type => "Config",
+      UsedBy => "ELGBL",
+      DefaultValue => "d50",
+    },
+  },
+  ReadPipeParamReg => { #Structure Type: Reg;
+    Name => "ReadPipeParamReg",
+    RegMem => "Reg",
+    Address => "111", # Excel Formula: =calc_reg_address(C73,A73)
+    Width => "11", # Excel Formula: =calc_reg_width(E76:E76,F76)
+    Type => "Config",
+    RetransmitWinSize => { #Structure Type: RegField;
+      Name => "RetransmitWinSize",
+      RegMem => "RegField",
+      Description => "Number of clocks after which to a read-report fail from this queue deduce that the write had failed and this PD skipped",
+      Width => "11",
+      Position => "10:0", # Excel Formula: =calc_position(F75,E76,TRUE)
+      Type => "Config",
+      UsedBy => "RDRPT",
+      DefaultValue => "d200",
+    },
+  },
+  TxIfReg => { #Structure Type: Reg;
+    Name => "TxIfReg",
+    RegMem => "Reg",
+    Address => "112", # Excel Formula: =calc_reg_address(C75,A75)
+    Width => "44", # Excel Formula: =calc_reg_width(E78:E79,F79)
+    Type => "Config",
+    DramTmDest => { #Structure Type: RegField;
+      Name => "DramTmDest",
+      RegMem => "RegField",
+      Width => "22", # Excel Formula: =calc_field_width_define("PDVOQ2FILB_VOQ_MAP_DATA_WIDTH")
+      Position => "21:0", # Excel Formula: =calc_position(F77,E78,TRUE)
+      Type => "Config",
+      UsedBy => "DEQ",
+      DefaultValue => "hf_ffff",
+    },
+    DeleteTmDest => { #Structure Type: RegField;
+      Name => "DeleteTmDest",
+      RegMem => "RegField",
+      Width => "22", # Excel Formula: =calc_field_width_define("PDVOQ2FILB_VOQ_MAP_DATA_WIDTH")
+      Position => "43:22", # Excel Formula: =calc_position(F78,E79)
+      Type => "Config",
+      UsedBy => "DEQ",
+      DefaultValue => "hf_fffe",
+    },
+  },
+  QueueBalanceTh0 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 15;
+    Name => "QueueBalanceTh[8]",
+    RegMem => "Reg",
+    Address => "113", # Excel Formula: =calc_reg_address(C77,A77)
+    Description => "Queue balance threshold per queue profile",
+    Width => "120", # Excel Formula: =calc_reg_width(E81:E86,F86)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "8",
+    ArrayIndex => "0",
+    Go1Up0Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Go1Up[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO1
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F80,E81,TRUE)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h5",
+    },
+    Go2Up0Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 6;
+      Name => "Go2Up[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F81,E82)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h3F",
+    },
+    NormUp0Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 7;
+      Name => "NormUp[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F82,E83)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h555",
+    },
+    OffDown0Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 8;
+      Name => "OffDown[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type STOP
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F83,E84)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h5",
+    },
+    Go1Down0Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 8;
+      Name => "Go1Down[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type GO1
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "99:80", # Excel Formula: =calc_position(F84,E85)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h3F",
+    },
+    Go2Down0Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 0; ArrayLocationInName: 8;
+      Name => "Go2Down[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "119:100", # Excel Formula: =calc_position(F85,E86)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h555",
+    },
+  },
+  QueueBalanceTh1 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 15;
+    Name => "QueueBalanceTh[8]",
+    RegMem => "Reg",
+    Address => "114",
+    Description => "Queue balance threshold per queue profile",
+    Width => "120", # Excel Formula: =calc_reg_width(E81:E86,F86)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "8",
+    ArrayIndex => "1",
+    Go1Up1Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Go1Up[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO1
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F80,E81,TRUE)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h5",
+    },
+    Go2Up1Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 6;
+      Name => "Go2Up[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F81,E82)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h3F",
+    },
+    NormUp1Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 7;
+      Name => "NormUp[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F82,E83)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h555",
+    },
+    OffDown1Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 8;
+      Name => "OffDown[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type STOP
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F83,E84)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h5",
+    },
+    Go1Down1Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 8;
+      Name => "Go1Down[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type GO1
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "99:80", # Excel Formula: =calc_position(F84,E85)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h3F",
+    },
+    Go2Down1Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 1; ArrayLocationInName: 8;
+      Name => "Go2Down[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "119:100", # Excel Formula: =calc_position(F85,E86)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h555",
+    },
+  },
+  QueueBalanceTh2 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 15;
+    Name => "QueueBalanceTh[8]",
+    RegMem => "Reg",
+    Address => "115",
+    Description => "Queue balance threshold per queue profile",
+    Width => "120", # Excel Formula: =calc_reg_width(E81:E86,F86)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "8",
+    ArrayIndex => "2",
+    Go1Up2Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Go1Up[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO1
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F80,E81,TRUE)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h5",
+    },
+    Go2Up2Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 6;
+      Name => "Go2Up[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F81,E82)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h3F",
+    },
+    NormUp2Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 7;
+      Name => "NormUp[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F82,E83)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h555",
+    },
+    OffDown2Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 8;
+      Name => "OffDown[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type STOP
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F83,E84)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h5",
+    },
+    Go1Down2Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 8;
+      Name => "Go1Down[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type GO1
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "99:80", # Excel Formula: =calc_position(F84,E85)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h3F",
+    },
+    Go2Down2Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 2; ArrayLocationInName: 8;
+      Name => "Go2Down[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "119:100", # Excel Formula: =calc_position(F85,E86)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h555",
+    },
+  },
+  QueueBalanceTh3 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 15;
+    Name => "QueueBalanceTh[8]",
+    RegMem => "Reg",
+    Address => "116",
+    Description => "Queue balance threshold per queue profile",
+    Width => "120", # Excel Formula: =calc_reg_width(E81:E86,F86)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "8",
+    ArrayIndex => "3",
+    Go1Up3Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 6;
+      Name => "Go1Up[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO1
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F80,E81,TRUE)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h5",
+    },
+    Go2Up3Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 6;
+      Name => "Go2Up[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F81,E82)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h3F",
+    },
+    NormUp3Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 7;
+      Name => "NormUp[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F82,E83)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h555",
+    },
+    OffDown3Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 8;
+      Name => "OffDown[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type STOP
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F83,E84)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h5",
+    },
+    Go1Down3Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 8;
+      Name => "Go1Down[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type GO1
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "99:80", # Excel Formula: =calc_position(F84,E85)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h3F",
+    },
+    Go2Down3Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 3; ArrayLocationInName: 8;
+      Name => "Go2Down[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "119:100", # Excel Formula: =calc_position(F85,E86)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h555",
+    },
+  },
+  QueueBalanceTh4 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 15;
+    Name => "QueueBalanceTh[8]",
+    RegMem => "Reg",
+    Address => "117",
+    Description => "Queue balance threshold per queue profile",
+    Width => "120", # Excel Formula: =calc_reg_width(E81:E86,F86)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "8",
+    ArrayIndex => "4",
+    Go1Up4Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 6;
+      Name => "Go1Up[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO1
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F80,E81,TRUE)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h5",
+    },
+    Go2Up4Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 6;
+      Name => "Go2Up[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F81,E82)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h3F",
+    },
+    NormUp4Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 7;
+      Name => "NormUp[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F82,E83)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h555",
+    },
+    OffDown4Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 8;
+      Name => "OffDown[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type STOP
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F83,E84)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h5",
+    },
+    Go1Down4Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 8;
+      Name => "Go1Down[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type GO1
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "99:80", # Excel Formula: =calc_position(F84,E85)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h3F",
+    },
+    Go2Down4Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 4; ArrayLocationInName: 8;
+      Name => "Go2Down[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "119:100", # Excel Formula: =calc_position(F85,E86)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h555",
+    },
+  },
+  QueueBalanceTh5 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 15;
+    Name => "QueueBalanceTh[8]",
+    RegMem => "Reg",
+    Address => "118",
+    Description => "Queue balance threshold per queue profile",
+    Width => "120", # Excel Formula: =calc_reg_width(E81:E86,F86)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "8",
+    ArrayIndex => "5",
+    Go1Up5Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 6;
+      Name => "Go1Up[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO1
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F80,E81,TRUE)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h5",
+    },
+    Go2Up5Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 6;
+      Name => "Go2Up[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F81,E82)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h3F",
+    },
+    NormUp5Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 7;
+      Name => "NormUp[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F82,E83)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h555",
+    },
+    OffDown5Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 8;
+      Name => "OffDown[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type STOP
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F83,E84)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h5",
+    },
+    Go1Down5Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 8;
+      Name => "Go1Down[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type GO1
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "99:80", # Excel Formula: =calc_position(F84,E85)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h3F",
+    },
+    Go2Down5Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 5; ArrayLocationInName: 8;
+      Name => "Go2Down[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "119:100", # Excel Formula: =calc_position(F85,E86)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h555",
+    },
+  },
+  QueueBalanceTh6 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 15;
+    Name => "QueueBalanceTh[8]",
+    RegMem => "Reg",
+    Address => "119",
+    Description => "Queue balance threshold per queue profile",
+    Width => "120", # Excel Formula: =calc_reg_width(E81:E86,F86)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "8",
+    ArrayIndex => "6",
+    Go1Up6Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 6;
+      Name => "Go1Up[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO1
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F80,E81,TRUE)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h5",
+    },
+    Go2Up6Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 6;
+      Name => "Go2Up[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F81,E82)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h3F",
+    },
+    NormUp6Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 7;
+      Name => "NormUp[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F82,E83)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h555",
+    },
+    OffDown6Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 8;
+      Name => "OffDown[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type STOP
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F83,E84)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h5",
+    },
+    Go1Down6Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 8;
+      Name => "Go1Down[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type GO1
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "99:80", # Excel Formula: =calc_position(F84,E85)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h3F",
+    },
+    Go2Down6Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 6; ArrayLocationInName: 8;
+      Name => "Go2Down[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "119:100", # Excel Formula: =calc_position(F85,E86)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h555",
+    },
+  },
+  QueueBalanceTh7 => { #Structure Type: Reg; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 15;
+    Name => "QueueBalanceTh[8]",
+    RegMem => "Reg",
+    Address => "11A",
+    Description => "Queue balance threshold per queue profile",
+    Width => "120", # Excel Formula: =calc_reg_width(E81:E86,F86)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "8",
+    ArrayIndex => "7",
+    Go1Up7Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 6;
+      Name => "Go1Up[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO1
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "19:0", # Excel Formula: =calc_position(F80,E81,TRUE)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h5",
+    },
+    Go2Up7Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 6;
+      Name => "Go2Up[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "39:20", # Excel Formula: =calc_position(F81,E82)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h3F",
+    },
+    NormUp7Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 7;
+      Name => "NormUp[n]Th",
+      RegMem => "RegField",
+      Description => "Enqueue-report that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "59:40", # Excel Formula: =calc_position(F82,E83)
+      Type => "Config",
+      UsedBy => "ENQ",
+      DefaultValue => "h555",
+    },
+    OffDown7Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 8;
+      Name => "OffDown[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type STOP
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "79:60", # Excel Formula: =calc_position(F83,E84)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h5",
+    },
+    Go1Down7Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 8;
+      Name => "Go1Down[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type GO1
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "99:80", # Excel Formula: =calc_position(F84,E85)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h3F",
+    },
+    Go2Down7Th => { #Structure Type: RegField; ArrayLength: 8; ArrayIndex: 7; ArrayLocationInName: 8;
+      Name => "Go2Down[n]Th",
+      RegMem => "RegField",
+      Description => "Credit-grant that cause queue balance to cross this threshold implies credit-request of type GO2
+Value of all ones implies that this threshold is disabled.",
+      Width => "20",
+      Position => "119:100", # Excel Formula: =calc_position(F85,E86)
+      Type => "Config",
+      UsedBy => "CRGNT",
+      DefaultValue => "h555",
+    },
+  },
+  CreditConsume => { #Structure Type: Mem;
+    Name => "CreditConsume",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "Credit consumed per queue",
+    Width => "29", # Excel Formula: =calc_mem_width(E88:E88,M87,F88)
+    Type => "Dynamic",
+    UsedBy => "CRGNT: Read0,RDRPT: Read1,RDRPT: Write",
+    MemEntries => "8192", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")
+    MemWrapper => "2R1W Fast Write",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "23",
+    creditConsumed => { #Structure Type: MemField;
+      Name => "creditConsumed",
+      RegMem => "MemField",
+      Width => "23", # Excel Formula: =calc_field_width_define("QSIZE_BYT_WIDTH")
+      Position => "22:0", # Excel Formula: =calc_position(F87,E88,TRUE)
+    },
+  },
+  CreditAllocate => { #Structure Type: Mem;
+    Name => "CreditAllocate",
+    RegMem => "Mem",
+    Address => "200000", # Excel Formula: =calc_mem_address(C87,A87,G89)
+    Description => "Credit allocated per queue",
+    Width => "29", # Excel Formula: =calc_mem_width(E90:E90,M89,F90)
+    Type => "Dynamic",
+    UsedBy => "RDRPT: Read0,CRGNT: Read1,CRGNT: Write",
+    MemEntries => "8192", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")
+    MemWrapper => "2R1W Fast Write",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "23",
+    CreditAllocated => { #Structure Type: MemField;
+      Name => "CreditAllocated",
+      RegMem => "MemField",
+      Width => "23", # Excel Formula: =calc_field_width_define("QSIZE_BYT_WIDTH")
+      Position => "22:0", # Excel Formula: =calc_position(F89,E90,TRUE)
+    },
+  },
+  LastEnqueueQsizeBytes => { #Structure Type: Mem;
+    Name => "LastEnqueueQsizeBytes",
+    RegMem => "Mem",
+    Address => "300000", # Excel Formula: =calc_mem_address(C89,A89,G91)
+    Description => "Queue size in bytes from enqueue-report",
+    Width => "29", # Excel Formula: =calc_mem_width(E92:E92,M91,F92)
+    Type => "Dynamic",
+    UsedBy => "ENQ: Write ,CRGNT: Read",
+    MemEntries => "8192", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "23",
+    EnqueueQsizeByte => { #Structure Type: MemField;
+      Name => "EnqueueQsizeByte",
+      RegMem => "MemField",
+      Description => "Some desc for mem2 field0",
+      Width => "23", # Excel Formula: =calc_field_width_define("QSIZE_BYT_WIDTH")
+      Position => "22:0", # Excel Formula: =calc_position(F91,E92,TRUE)
+    },
+  },
+  LastDequeueQsizeBytes => { #Structure Type: Mem;
+    Name => "LastDequeueQsizeBytes",
+    RegMem => "Mem",
+    Address => "400000", # Excel Formula: =calc_mem_address(C91,A91,G93)
+    Description => "Queue size in bytes from dequeue-report",
+    Width => "29", # Excel Formula: =calc_mem_width(E94:E94,M93,F94)
+    Type => "Dynamic",
+    UsedBy => "DEQ: Write ,CRGNT: Read",
+    MemEntries => "8192", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "23",
+    DequeueQsizeBytes => { #Structure Type: MemField;
+      Name => "DequeueQsizeBytes",
+      RegMem => "MemField",
+      Description => "Some desc for mem2 field0",
+      Width => "23", # Excel Formula: =calc_field_width_define("QSIZE_BYT_WIDTH")
+      Position => "22:0", # Excel Formula: =calc_position(F93,E94,TRUE)
+    },
+  },
+  LastQueueReport => { #Structure Type: Mem;
+    Name => "LastQueueReport",
+    RegMem => "Mem",
+    Address => "500000", # Excel Formula: =calc_mem_address(C93,A93,G95)
+    Description => "Points on either LastEnqueueQsizeBytes or LastDequeueQsizeBytes",
+    Width => "39", # Excel Formula: =calc_mem_width(E96:E96,M95,F96)
+    Type => "Dynamic",
+    UsedBy => "CRGNT",
+    MemEntries => "256", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")/32
+    MemWrapper => "SetClearRead",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "32",
+    LastQueueReportBmp => { #Structure Type: MemField;
+      Name => "LastQueueReportBmp",
+      RegMem => "MemField",
+      Description => "32-bits bitmap in an entry. Bit per queue.
+'1' on enqueue-report 
+'0' on dequeue-report",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F95,E96,TRUE)
+    },
+  },
+  LastCbConsumed => { #Structure Type: Mem;
+    Name => "LastCbConsumed",
+    RegMem => "Mem",
+    Address => "600000", # Excel Formula: =calc_mem_address(C95,A95,G97)
+    Description => "Last credit balance calculated on read-report-pipe",
+    Width => "29", # Excel Formula: =calc_mem_width(E98:E98,M97,F98)
+    Type => "Dynamic",
+    UsedBy => "RDRPT: Write ,ENQ: Read",
+    MemEntries => "8192", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "23",
+    CbConsumed => { #Structure Type: MemField;
+      Name => "CbConsumed",
+      RegMem => "MemField",
+      Width => "23", # Excel Formula: =calc_field_width_define("QSIZE_BYT_WIDTH")
+      Position => "22:0", # Excel Formula: =calc_position(F97,E98,TRUE)
+    },
+  },
+  LastCbAllocated => { #Structure Type: Mem;
+    Name => "LastCbAllocated",
+    RegMem => "Mem",
+    Address => "700000", # Excel Formula: =calc_mem_address(C97,A97,G99)
+    Description => "Last credit balance calculated on credit-grant",
+    Width => "29", # Excel Formula: =calc_mem_width(E100:E100,M99,F100)
+    Type => "Dynamic",
+    UsedBy => "CRGNT: Write ,ENQ: Read",
+    MemEntries => "8192", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "23",
+    CbAllocate => { #Structure Type: MemField;
+      Name => "CbAllocate",
+      RegMem => "MemField",
+      Width => "23", # Excel Formula: =calc_field_width_define("QSIZE_BYT_WIDTH")
+      Position => "22:0", # Excel Formula: =calc_position(F99,E100,TRUE)
+    },
+  },
+  LastCbRpt => { #Structure Type: Mem;
+    Name => "LastCbRpt",
+    RegMem => "Mem",
+    Address => "800000", # Excel Formula: =calc_mem_address(C99,A99,G101)
+    Description => "Last credit balance calculated on credit-grant",
+    Width => "39", # Excel Formula: =calc_mem_width(E102:E102,M101,F102)
+    Type => "Dynamic",
+    UsedBy => "CRGNT: Write ,ENQ: Read",
+    MemEntries => "256", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")/32
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "32",
+    Crgnt1Rdrpt0 => { #Structure Type: MemField;
+      Name => "Crgnt1Rdrpt0",
+      RegMem => "MemField",
+      Description => "1' on credit-grant '0' on read-report",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F101,E102,TRUE)
+    },
+  },
+  ReTransmitFilter => { #Structure Type: Mem;
+    Name => "ReTransmitFilter",
+    RegMem => "Mem",
+    Address => "900000", # Excel Formula: =calc_mem_address(C101,A101,G103)
+    Description => "Last credit balance calculated on credit-grant",
+    Width => "36", # Excel Formula: =calc_mem_width(E104:E107,M103,F107)
+    Type => "Dynamic",
+    UsedBy => "RDRPT: Write ,RDRPT: Read",
+    MemEntries => "8192", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "29",
+    RetransmitSn => { #Structure Type: MemField;
+      Name => "RetransmitSn",
+      RegMem => "MemField",
+      Description => "1' on credit-grant 
+'0' on read-report",
+      Width => "14", # Excel Formula: =calc_field_width_define("QSIZE_PKT_WIDTH")
+      Position => "13:0", # Excel Formula: =calc_position(F103,E104,TRUE)
+    },
+    FilterIsActive => { #Structure Type: MemField;
+      Name => "FilterIsActive",
+      RegMem => "MemField",
+      Description => "1' filter is active 
+'0' filter is inactive",
+      Width => "1",
+      Position => "14", # Excel Formula: =calc_position(F104,E105)
+    },
+    FilterOnMiss1Cb0 => { #Structure Type: MemField;
+      Name => "FilterOnMiss1Cb0",
+      RegMem => "MemField",
+      Description => "1' Filter reason is read-report miss
+'0' Filter reason is lack of credits",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F105,E106)
+    },
+    FailTime => { #Structure Type: MemField;
+      Name => "FailTime",
+      RegMem => "MemField",
+      Description => "Timestamp the filter was activated",
+      Width => "13",
+      Position => "28:16", # Excel Formula: =calc_position(F106,E107)
+    },
+  },
+  QueueIsEmptyMem => { #Structure Type: Mem;
+    Name => "QueueIsEmptyMem",
+    RegMem => "Mem",
+    Address => "A00000", # Excel Formula: =calc_mem_address(C103,A103,G108)
+    Description => "Set-Clear+Read Mem",
+    Width => "3", # Excel Formula: =calc_mem_width(E109:E109,M108,F109)
+    Type => "Dynamic",
+    UsedBy => "ENQ: Write ,DEQ: Read0,SCRB: Read1",
+    MemEntries => "8192", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")
+    MemWrapper => "2R1W Fast Write",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "1",
+    QueueIsEmpty => { #Structure Type: MemField;
+      Name => "QueueIsEmpty",
+      RegMem => "MemField",
+      Description => "1' on Queue is empty '0' on Queue is not empty",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F108,E109,TRUE)
+    },
+  },
+  ScrubberMem => { #Structure Type: Mem;
+    Name => "ScrubberMem",
+    RegMem => "Mem",
+    Address => "B00000", # Excel Formula: =calc_mem_address(C108,A108,G110)
+    Description => "Scrubber memory 8 entries in a row",
+    Width => "10", # Excel Formula: =calc_mem_width(E111:E112,M110,F112)
+    Type => "Dynamic",
+    UsedBy => "SCRB",
+    MemEntries => "8192", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "5",
+    ScrubberCnt => { #Structure Type: MemField;
+      Name => "ScrubberCnt",
+      RegMem => "MemField",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F110,E111,TRUE)
+    },
+    AgingCnt => { #Structure Type: MemField;
+      Name => "AgingCnt",
+      RegMem => "MemField",
+      Width => "2",
+      Position => "4:3", # Excel Formula: =calc_position(F111,E112)
+    },
+  },
+  AgedOutQueue => { #Structure Type: Mem;
+    Name => "AgedOutQueue",
+    RegMem => "Mem",
+    Address => "C00000", # Excel Formula: =calc_mem_address(C110,A110,G113)
+    Width => "39", # Excel Formula: =calc_mem_width(E114:E114,M113,F114)
+    Type => "Dynamic",
+    UsedBy => "SCRB: Write ,ENQ: Read0,CRGNT: Read1",
+    MemEntries => "256", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")/32
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "32",
+    AgedOutQueueBits => { #Structure Type: MemField;
+      Name => "AgedOutQueueBits",
+      RegMem => "MemField",
+      Description => "Entry 0 - queues 31:0,Entry 1 - queues 63:32,…,'1' on Queue is empty '0' on Queue is not empty",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F113,E114,TRUE)
+    },
+  },
+  Queue2DramMem => { #Structure Type: Mem;
+    Name => "Queue2DramMem",
+    RegMem => "Mem",
+    Address => "D00000", # Excel Formula: =calc_mem_address(C113,A113,G115)
+    Description => "Map context to Dram queue#",
+    Width => "18", # Excel Formula: =calc_mem_width(E116:E116,M115,F116)
+    Type => "Dynamic",
+    UsedBy => "ENQ: Write ,DEQ: Read0,CRGNT: Read1",
+    MemEntries => "8192", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")
+    MemWrapper => "2R1W Fast Write",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "12",
+    DramQueueNum => { #Structure Type: MemField;
+      Name => "DramQueueNum",
+      RegMem => "MemField",
+      Description => "Dram queue number",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F115,E116,TRUE)
+    },
+  },
+  EnqQueue2DramMem => { #Structure Type: Mem;
+    Name => "EnqQueue2DramMem",
+    RegMem => "Mem",
+    Address => "E00000", # Excel Formula: =calc_mem_address(C115,A115,G117)
+    Description => "Map Context to Dram queue# (didicated instance for ENQ) same data as Queue2DramMem. Only implementation required separate memory instance",
+    Width => "18", # Excel Formula: =calc_mem_width(E118:E118,M117,F118)
+    Type => "Dynamic",
+    UsedBy => "ENQ: Write ,ENQ: Read",
+    MemEntries => "8192", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "12",
+    EnqDramQueueNum => { #Structure Type: MemField;
+      Name => "EnqDramQueueNum",
+      RegMem => "MemField",
+      Description => "Dram queue number",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F117,E118,TRUE)
+    },
+  },
+  Queue2TmDest => { #Structure Type: Mem;
+    Name => "Queue2TmDest",
+    RegMem => "Mem",
+    Address => "F00000", # Excel Formula: =calc_mem_address(C117,A117,G119)
+    Description => "Map Context to to TM destination - ICS adds this field to the outgoing PD",
+    Width => "28", # Excel Formula: =calc_mem_width(E120:E120,M119,F120)
+    Type => "Config",
+    UsedBy => "CMAP: Write,DEQ: Read0,ENQ: Read1",
+    MemEntries => "8192", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")
+    MemWrapper => "2R1W Fast Write",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "22",
+    TmDest => { #Structure Type: MemField;
+      Name => "TmDest",
+      RegMem => "MemField",
+      Width => "22", # Excel Formula: =calc_field_width_define("PDVOQ2FILB_VOQ_MAP_DATA_WIDTH")
+      Position => "21:0", # Excel Formula: =calc_position(F119,E120,TRUE)
+    },
+  },
+  Queue2List => { #Structure Type: Mem;
+    Name => "Queue2List",
+    RegMem => "Mem",
+    Address => "1000000", # Excel Formula: =calc_mem_address(C119,A119,G121)
+    Description => "32 fields of 3-bit. Each field coding:,
+3'd0 - RLB-UC-HP,
+3'd1 - RLB-UC-LP,
+3'd2 - RLB-MC,
+3'd3 - Local-FLB-HP,
+3'd4 - Local-FLB-LP",
+    Width => "104", # Excel Formula: =calc_mem_width(E122:E122,M121,F122)
+    Type => "Config",
+    UsedBy => "ENQ: Read0 ,CRGNT: Read1",
+    MemEntries => "256", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")/32
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "96",
+    ListCode => { #Structure Type: MemField;
+      Name => "ListCode",
+      RegMem => "MemField",
+      Description => "32 field of 3-bit",
+      Width => "96",
+      Position => "95:0", # Excel Formula: =calc_position(F121,E122,TRUE)
+    },
+  },
+  EnqQueueThProfile => { #Structure Type: Mem;
+    Name => "EnqQueueThProfile",
+    RegMem => "Mem",
+    Address => "1100000", # Excel Formula: =calc_mem_address(C121,A121,G123)
+    Description => "4-bit profile per queue to select thersholds",
+    Width => "72", # Excel Formula: =calc_mem_width(E124:E124,M123,F124)
+    Type => "Config",
+    UsedBy => "ENQ: Read",
+    MemEntries => "512", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")/16
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "64",
+    EnqQueueThProf => { #Structure Type: MemField;
+      Name => "EnqQueueThProf",
+      RegMem => "MemField",
+      Description => "16 fieild of 4 bit per entry",
+      Width => "64", # Excel Formula: =4*16
+      Position => "63:0", # Excel Formula: =calc_position(F123,E124,TRUE)
+    },
+  },
+  QueueThProfile => { #Structure Type: Mem;
+    Name => "QueueThProfile",
+    RegMem => "Mem",
+    Address => "1200000", # Excel Formula: =calc_mem_address(C123,A123,G125)
+    Description => "4-bit profile per queue to select thersholds",
+    Width => "72", # Excel Formula: =calc_mem_width(E126:E126,M125,F126)
+    Type => "Config",
+    UsedBy => "DEQ: Read0,CRGNT: Read1",
+    MemEntries => "512", # Excel Formula: =calc_field_width_define("NUM_OF_CONTEXTS")/16
+    MemWrapper => "2R1W Slow Write",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "64",
+    QueueThProf => { #Structure Type: MemField;
+      Name => "QueueThProf",
+      RegMem => "MemField",
+      Description => "16 fieild of 4 bit per entry",
+      Width => "64", # Excel Formula: =4*16
+      Position => "63:0", # Excel Formula: =calc_position(F125,E126,TRUE)
+    },
+  },
+  Queue2DramThMem => { #Structure Type: Mem;
+    Name => "Queue2DramThMem",
+    RegMem => "Mem",
+    Address => "1300000", # Excel Formula: =calc_mem_address(C125,A125,G127)
+    Description => "Determine the threshold to move queue from SMS to DRAM.
+The index to this table:
+2b - lsb of EnqQueueThProfile
+8b - msb of SMS number of free buffers",
+    Width => "23", # Excel Formula: =calc_mem_width(E128:E128,M127,F128)
+    Type => "Config",
+    UsedBy => "ENQ: Read",
+    MemEntries => "1024",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Disabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "17",
+    Queue2DramTh => { #Structure Type: MemField;
+      Name => "Queue2DramTh",
+      RegMem => "MemField",
+      Description => "Threshold in SMS buffer units",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F127,E128,TRUE)
+    },
+  },
+};

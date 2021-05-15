@@ -1,0 +1,53 @@
+{
+    "traffic_gen_port": [
+        {
+            "pif": "0x808",
+            "Description": "Traffic Gen port 1/45 100G connected to Pershing P54",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mtu_size": 9600,
+            "media_type": "COPPER",
+            "an": false
+        }
+    ],
+    "skipped_external_port2port": [
+        {
+            "pif": ["0x800", "0x900", "0x908", "0xa08"],
+            "Description": "A pair of ports connected by cable externally. Pershing,P53<->55, P50<->52",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "NONE",
+            "mtu_size": 9600,
+            "media_type": "COPPER",
+            "an": false
+        }
+    ],
+    "loopback_ports":
+    [
+        {
+            "pif": ["0x000", "0x008", "0x108", "0x200", "0x300", "0x308", "0x400", "0x404", "0x408", "0x40c", "0x500", "0x504", "0x60c", "0x704", "0xb00"],
+            "Description": "These are the serdes loopback ports. For external loopback, use loopback cables and set mac_lpbk=NONE.",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "PHY",
+            "mtu_size": 9600,
+            "an": false
+        },
+        {
+            "pif": "0x50c",
+            "pif_counts": 4,
+            "speed": 100000,
+            "fc": "disable",
+            "fec": "RS",
+            "mac_lpbk": "PHY",
+            "mtu_size": 9600,
+            "an": false
+        }
+    ]
+}

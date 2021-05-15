@@ -1,0 +1,63 @@
+{
+    "external_ports":
+    [
+        {
+            "slice": 1,
+            "ifg": 0,
+            "serdes": 8,
+            "serdes_count": 4,
+            "speed": 100,
+            "fc": "NONE",
+            "fec": "RS_KR4",
+            "p2p_loops": 1,
+            "an": true
+        }
+    ],
+    "loopback_ports":
+    [
+        {
+            "slice": 2,
+            "ifg": 0,
+            "serdes": 0,
+            "serdes_count": 4,
+            "speed": 40,
+            "fc": "NONE",
+            "fec": "KR",
+            "p2p_loops": 1,
+            "an": false
+        },
+        {
+            "slice": 2,
+            "ifg": 0,
+            "serdes": 8,
+            "serdes_count": 4,
+            "speed": 40,
+            "fc": "NONE",
+            "fec": "KR",
+            "p2p_loops": 1,
+            "an": false
+        },
+        {
+            "slice": 1,
+            "ifg": 1,
+            "serdes": 0,
+            "serdes_count": 1,
+            "speed": 10,
+            "fc": "NONE",
+            "fec": "KR",
+            "p2p_loops": 0,
+            "an": false
+        },
+        {
+            "slice": 1,
+            "ifg": 1,
+            "serdes": 8,
+            "serdes_count": 1,
+            "speed": 10,
+            "fc": "NONE",
+            "fec": "KR",
+            "p2p_loops": 1,
+            "an": false
+        }
+    ]
+}

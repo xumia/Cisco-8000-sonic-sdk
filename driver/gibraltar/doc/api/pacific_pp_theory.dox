@@ -1,0 +1,13 @@
+// Pacific Packet Processing theory page
+
+/// @page pacific_pp_theory_page Pacific Packet Processing theory
+///
+/// Switching is the process of forwarding incoming traffic to outgoing destinations, potentially modifying the packet's
+/// header and payload in the process.\n
+/// This chapter describes Pacific's packet-processing object and processing models.
+///
+/// * @subpage pacific_l2_object_model
+/// * @subpage pacific_l3_object_model
+/// * @subpage pacific_processing_model
+/// * @subpage pacific_l2_switching
+/// * @subpage pacific_ip_routing

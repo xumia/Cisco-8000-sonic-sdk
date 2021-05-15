@@ -1,0 +1,8 @@
+Avago Serdes 0x109e Release Notes	
+
+0x109E_208D
+-	Same as 0x109B_208D_006 except correctly lowers delta_cal_fail threshold from 10 to 4
+
+0x109E_208D_0A0
+-	Fix issue which could unusual problems with HF/LF during NRZ tuning
+

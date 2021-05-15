@@ -1,0 +1,1331 @@
+$block{FRM} = {
+  Defines_db => "",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "1",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "This field masks Ecc_1bErrInterrupt",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "This field masks Ecc_2bErrInterrupt",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "This field masks ParityErrInterrupt",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "3",
+    Type => "Config",
+    FabricRoutingTableEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    RevFabricRoutingTableEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    FarEndTopologyMappingTableEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "3",
+    Type => "Config",
+    FabricRoutingTableEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    RevFabricRoutingTableEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    FarEndTopologyMappingTableEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "3",
+    Type => "Config",
+    FabricRoutingTableEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    RevFabricRoutingTableEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    FarEndTopologyMappingTableEcc_1bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "3",
+    Type => "Config",
+    FabricRoutingTableEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    RevFabricRoutingTableEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    FarEndTopologyMappingTableEcc_2bErrInitiate => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "3",
+    Type => "ReadOnly",
+    FabricRoutingTableErrInt => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    RevFabricRoutingTableErrInt => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "1",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    FarEndTopologyMappingTableErrInt => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "2",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "17",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "15",
+      Position => "14:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "16:15",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "3",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "2",
+      Position => "1:0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  MbistPassStatus => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "39",
+    Description => "MBIST pass status",
+    Width => "10",
+    Type => "ReadOnly",
+    BistDonePassOut => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST passed",
+      Width => "10",
+      Position => "9:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+  MbistFailStatus => { #Structure Type: Reg; Skip Register;
+    RegMem => "Reg",
+    Address => "3A",
+    Description => "MBIST fail status",
+    Width => "10",
+    Type => "ReadOnly",
+    BistDoneFailOut => { #Structure Type: RegField;
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST failed",
+      Width => "10",
+      Position => "9:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DefaultValue => "b0",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "3", # Excel Formula: =calc_reg_width(E25:E27,F27)
+    Type => "Config",
+    CoreBistRprMode => { #Structure Type: RegField;
+      Name => "CoreBistRprMode",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistRun => { #Structure Type: RegField;
+      Name => "CoreBistRun",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistPtrnFill => { #Structure Type: RegField;
+      Name => "CoreBistPtrnFill",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E29:E29,F29)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C28,A28,G28)
+    Description => "Power Down Configuration for the block",
+    Width => "128", # Excel Formula: =calc_reg_width(E31:E31,F31)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C30,A30,G30)
+    Width => "39", # Excel Formula: =calc_reg_width(E33:E37,F37)
+    Type => "Config",
+    PmroExecute => { #Structure Type: RegField;
+      Name => "PmroExecute",
+      RegMem => "RegField",
+      Description => "0->1: execute pmro command.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F32,E33,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroCmd => { #Structure Type: RegField;
+      Name => "PmroCmd",
+      RegMem => "RegField",
+      Description => "Pmro command to execute:
+0: reset.
+1: write.
+2: read.
+3: invalid.",
+      Width => "2",
+      Position => "2:1", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroSbusReset => { #Structure Type: RegField;
+      Name => "PmroSbusReset",
+      RegMem => "RegField",
+      Description => "Reset pmro sbus chain. Need to set to 0 before starting access to pmro registers.",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroAddr => { #Structure Type: RegField;
+      Name => "PmroAddr",
+      RegMem => "RegField",
+      Description => "PMRO register address:
+0 - control register, 8b, def: 0x0.
+1 - SVT Configuration Register, 16b, def: 0xFFFF.
+2 - LVT Configuration Register, 16b, def: 0xFFFF.
+3 - ULVT Configuration Register, 16b, def: 0xFFFF.
+4 - Interconnect Configuration Register, 16b, def: 0xFFFF.
+5 - Reference Clock Counter Register, 24b, def: 0xFFF000.
+6 - Oscillator Counter Register, 24b, def: 0x000000.
+7 - SBus ID register, read as 0x0B.
+Set to '0' on reset command.",
+      Width => "3",
+      Position => "6:4", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroData => { #Structure Type: RegField;
+      Name => "PmroData",
+      RegMem => "RegField",
+      Description => "PMRO data, set to 0x0 on reset and read command.",
+      Width => "32",
+      Position => "38:7", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C32,A32,G32)
+    Width => "34", # Excel Formula: =calc_reg_width(E39:E41,F41)
+    Type => "ReadOnly",
+    PmroRdata => { #Structure Type: RegField;
+      Name => "PmroRdata",
+      RegMem => "RegField",
+      Description => "Read data from pmro. Valid when PmroFinish=1 and PmroFailed=0.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F38,E39,TRUE)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFailed => { #Structure Type: RegField;
+      Name => "PmroFailed",
+      RegMem => "RegField",
+      Description => "Pmro command failed. Valid only when PmroFinish=1.",
+      Width => "1",
+      Position => "32", # Excel Formula: =calc_position(F39,E40)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFinish => { #Structure Type: RegField;
+      Name => "PmroFinish",
+      RegMem => "RegField",
+      Description => "Pmro command finished.",
+      Width => "1",
+      Position => "33", # Excel Formula: =calc_position(F40,E41)
+      Type => "Event",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C38,A38,G38)
+    Description => "aaa",
+    Width => "11", # Excel Formula: =calc_reg_width(E43:E44,F44)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F42,E43,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C42,A42,G42)
+    Description => "aaa",
+    Width => "32", # Excel Formula: =calc_reg_width(E46:E46,F46)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C45,A45,G45)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E48:E48,F48)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F47,E48,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  FrpEnableReg => { #Structure Type: Reg;
+    Name => "FrpEnableReg",
+    RegMem => "Reg",
+    Address => "100",
+    Description => "FRP Generation Enable Register",
+    Width => "1", # Excel Formula: =calc_reg_width(E8:E8,F8)
+    Type => "Config",
+    FrpPacketGenEn => { #Structure Type: RegField;
+      Name => "FrpPacketGenEn",
+      RegMem => "RegField",
+      Description => "Enable generation of FRP Packets",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "h1",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  MinLinksThresholdReg => { #Structure Type: Reg;
+    Name => "MinLinksThresholdReg",
+    RegMem => "Reg",
+    Address => "101", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Minimum Links Thresholds Register",
+    Width => "7", # Excel Formula: =calc_reg_width(E10:E10,F10)
+    Type => "Config",
+    MinLinksThr => { #Structure Type: RegField;
+      Name => "MinLinksThr",
+      RegMem => "RegField",
+      Description => "Devices are considered reachable only if more than the configured links can reach them",
+      Width => "7",
+      Position => "6:0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "d4",
+    },
+  },
+  FrmTimerReg => { #Structure Type: Reg;
+    Name => "FrmTimerReg",
+    RegMem => "Reg",
+    Address => "102", # Excel Formula: =calc_reg_address(C9,A9,G9)
+    Description => "Frm Timer Register",
+    Width => "32", # Excel Formula: =calc_reg_width(E12:E13,F13)
+    Type => "Config",
+    FrpGenTimerThr => { #Structure Type: RegField;
+      Name => "FrpGenTimerThr",
+      RegMem => "RegField",
+      Description => "FRP Packet periodic generation timer threshold. Whenever the timer reaches the threshold a packet is generated. The configured value is multiplied by 32",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F11,E12,TRUE)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "d256",
+    },
+    FrpGenMinThr => { #Structure Type: RegField;
+      Name => "FrpGenMinThr",
+      RegMem => "RegField",
+      Description => "FRP minimum threshold, to prevent excessive rate of FRP packets in case of many status changes. The configured value is multiplied by 32",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F12,E13)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "d32",
+    },
+  },
+  UpdateFmcStableThrReg => { #Structure Type: Reg;
+    Name => "UpdateFmcStableThrReg",
+    RegMem => "Reg",
+    Address => "103", # Excel Formula: =calc_reg_address(C11,A11,G11)
+    Description => "Update FMC Stable Threshold Register",
+    Width => "26", # Excel Formula: =calc_reg_width(E15:E16,F16)
+    Type => "Config",
+    UpdateFmcStableThr => { #Structure Type: RegField;
+      Name => "UpdateFmcStableThr",
+      RegMem => "RegField",
+      Description => "Number of update cycles that the FMC eligible vector must be stable before it is published.",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F14,E15,TRUE)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "d16",
+    },
+    UpdateFmcTimerThr => { #Structure Type: RegField;
+      Name => "UpdateFmcTimerThr",
+      RegMem => "RegField",
+      Description => "Configures a timer that counts when the shadow value is not updated but also not equal to the published FMC eligible vector. When expires the shadow value is sampled to the published vector (configuration is internally multiplied by 32)",
+      Width => "16",
+      Position => "25:10", # Excel Formula: =calc_position(F15,E16)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "d256",
+    },
+  },
+  DeviceConfigReg => { #Structure Type: Reg;
+    Name => "DeviceConfigReg",
+    RegMem => "Reg",
+    Address => "104", # Excel Formula: =calc_reg_address(C14,A14,G14)
+    Description => "Configure device and slices types ",
+    Width => "22", # Excel Formula: =calc_reg_width(E18:E24,F24)
+    Type => "Config",
+    DeviceType => { #Structure Type: RegField;
+      Name => "DeviceType",
+      RegMem => "RegField",
+      Description => "Device type:
+0 = Standalone (engine is inactive)
+1 = LC device
+2 = FE2 device
+3 = FE13 device
+4 = TOR device",
+      Width => "3",
+      Position => "2:0", # Excel Formula: =calc_position(F17,E18,TRUE)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "d0",
+    },
+    Slice3Config => { #Structure Type: RegField;
+      Name => "Slice3Config",
+      RegMem => "RegField",
+      Description => "Configure if the slice is a fabric slice, relavant only for LC devices.",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F18,E19)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "d0",
+    },
+    Slice4Config => { #Structure Type: RegField;
+      Name => "Slice4Config",
+      RegMem => "RegField",
+      Description => "Configure if the slice is a fabric slice, relavant only for LC devices.",
+      Width => "1",
+      Position => "4", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "d0",
+    },
+    Fe13Config => { #Structure Type: RegField;
+      Name => "Fe13Config",
+      RegMem => "RegField",
+      Description => "In case of FE13 device, this bitmap indicates which slices are facing a LC device (asserted bits) and which are facing FE2 devices (negated bits)",
+      Width => "6",
+      Position => "10:5", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "d0",
+    },
+    DeviceId => { #Structure Type: RegField;
+      Name => "DeviceId",
+      RegMem => "RegField",
+      Description => "Device ID",
+      Width => "9",
+      Position => "19:11", # Excel Formula: =calc_position(F21,E22)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "d0",
+    },
+    Ifg6ExtraLinkEnable => { #Structure Type: RegField;
+      Name => "Ifg6ExtraLinkEnable",
+      RegMem => "RegField",
+      Description => "Configures if IFG6 maintains an extra fabric link. Used for fabric link congestion status received from the IFGs",
+      Width => "1",
+      Position => "20", # Excel Formula: =calc_position(F22,E23)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "d0",
+    },
+    Ifg11ExtraLinkEnable => { #Structure Type: RegField;
+      Name => "Ifg11ExtraLinkEnable",
+      RegMem => "RegField",
+      Description => "Configures if IFG11 maintains an extra fabric link. Used for fabric link congestion status received from the IFGs",
+      Width => "1",
+      Position => "21", # Excel Formula: =calc_position(F23,E24)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "d0",
+    },
+  },
+  LinkStatusReg => { #Structure Type: Reg;
+    Name => "LinkStatusReg",
+    RegMem => "Reg",
+    Address => "105", # Excel Formula: =calc_reg_address(C17,A17,G17)
+    Description => "All Links Status Register",
+    Width => "216", # Excel Formula: =calc_reg_width(E26:E26,F26)
+    Type => "ReadOnly",
+    LinkStatus => { #Structure Type: RegField;
+      Name => "LinkStatus",
+      RegMem => "RegField",
+      Description => "All Links Status Register
+0 indicating a down link
+1 indicating an active link",
+      Width => "216",
+      Position => "215:0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Status",
+      UsedBy => "FRM",
+    },
+  },
+  FabricLinkDownTransitionReg => { #Structure Type: Reg;
+    Name => "FabricLinkDownTransitionReg",
+    RegMem => "Reg",
+    Address => "106", # Excel Formula: =calc_reg_address(C25,A25,G25)
+    Description => "All Fabric Links Down Transition Register",
+    Width => "108", # Excel Formula: =calc_reg_width(E28:E28,F28)
+    Type => "External",
+    UsedBy => "FRM",
+    FabricLinkDownTransition => { #Structure Type: RegField;
+      Name => "FabricLinkDownTransition",
+      RegMem => "RegField",
+      Description => "All Fabric Links Down Transition Register
+1 indicating a link transitioned from UP to DOWN status
+0 indicating no transition was captured.
+This register is used to mask the links until cleared by the CPU - any link that went down will still be treated as down even if the MAC already recovered until this register is cleared",
+      Width => "108",
+      Position => "107:0", # Excel Formula: =calc_position(F27,E28,TRUE)
+      Type => "External",
+    },
+  },
+  PlbUcContextFcEnReg => { #Structure Type: Reg;
+    Name => "PlbUcContextFcEnReg",
+    RegMem => "Reg",
+    Address => "107", # Excel Formula: =calc_reg_address(C27,A27,G27)
+    Description => "PLB UC Context Flow Control Enable Register",
+    Width => "1", # Excel Formula: =calc_reg_width(E30:E30,F30)
+    Type => "Config",
+    PlbUcContextFcEn => { #Structure Type: RegField;
+      Name => "PlbUcContextFcEn",
+      RegMem => "RegField",
+      Description => "In Carrier Fabric, enables the PLB-UC contexts to calculate number of congested link and generate flow control to the scheduler",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F29,E30,TRUE)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "d0",
+    },
+  },
+  CongestionScoreFcReg => { #Structure Type: Reg;
+    Name => "CongestionScoreFcReg",
+    RegMem => "Reg",
+    Address => "108", # Excel Formula: =calc_reg_address(C29,A29,G29)
+    Description => "Congestion Score PLB UC Flow Control Register",
+    Width => "24", # Excel Formula: =calc_reg_width(E32:E33,F33)
+    Type => "Config",
+    CongestionScoreFcEn => { #Structure Type: RegField;
+      Name => "CongestionScoreFcEn",
+      RegMem => "RegField",
+      Description => "In Carrier Fabric, configures if the congestion score can generate flow control to the scheduler",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F31,E32,TRUE)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "d0",
+    },
+    CongestionScoreFcThr => { #Structure Type: RegField;
+      Name => "CongestionScoreFcThr",
+      RegMem => "RegField",
+      Description => "In Carrier Fabric, configures the threshold of the congestion score to generate flow control to the scheduler",
+      Width => "23",
+      Position => "23:1", # Excel Formula: =calc_position(F32,E33)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "d0",
+    },
+  },
+  DcfmConfigReg => { #Structure Type: Reg;
+    Name => "DcfmConfigReg",
+    RegMem => "Reg",
+    Address => "109", # Excel Formula: =calc_reg_address(C31,A31,G31)
+    Description => "DCFM Configuration Register",
+    Width => "50", # Excel Formula: =calc_reg_width(E35:E39,F39)
+    Type => "Config",
+    DcfmOperationEn => { #Structure Type: RegField;
+      Name => "DcfmOperationEn",
+      RegMem => "RegField",
+      Description => "Enables the operation of the DCF Feedback Manager",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F34,E35,TRUE)
+      Type => "Config",
+      UsedBy => "DCFM",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h0",
+    },
+    GenerateFarEndMaskEn => { #Structure Type: RegField;
+      Name => "GenerateFarEndMaskEn",
+      RegMem => "RegField",
+      Description => "Configures if the DFMC uses the feedback packet to generate links mask according to the far-end topology mapping. This can only be enabled for overlay mode",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "DCFM",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h0",
+    },
+    FarEndMaskAgingThr => { #Structure Type: RegField;
+      Name => "FarEndMaskAgingThr",
+      RegMem => "RegField",
+      Description => "Configures the aging timer threshold for far-end link masks. Zero disables the timer",
+      Width => "16",
+      Position => "17:2", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "DCFM",
+      DefaultValue => "h100",
+      DefaultSvConstraint => "h0",
+    },
+    LinkFailureModeAgingThr => { #Structure Type: RegField;
+      Name => "LinkFailureModeAgingThr",
+      RegMem => "RegField",
+      Description => "Configures the aging timer threshold for link failure mode. Zero disables the timer",
+      Width => "16",
+      Position => "33:18", # Excel Formula: =calc_position(F37,E38)
+      Type => "Config",
+      UsedBy => "DCFM",
+      DefaultValue => "h100",
+      DefaultSvConstraint => "h0",
+    },
+    ReorderErrorModeAgingThr => { #Structure Type: RegField;
+      Name => "ReorderErrorModeAgingThr",
+      RegMem => "RegField",
+      Description => "Configures the aging timer threshold for reorder error mode. Zero disables the timer",
+      Width => "16",
+      Position => "49:34", # Excel Formula: =calc_position(F38,E39)
+      Type => "Config",
+      UsedBy => "DCFM",
+      DefaultValue => "h100",
+      DefaultSvConstraint => "h0",
+    },
+  },
+  DcfmFeedbackParsingReg => { #Structure Type: Reg;
+    Name => "DcfmFeedbackParsingReg",
+    RegMem => "Reg",
+    Address => "10A", # Excel Formula: =calc_reg_address(C34,A34,G34)
+    Description => "DCFM Feedback Parsing Register",
+    Width => "50", # Excel Formula: =calc_reg_width(E41:E48,F48)
+    Type => "Config",
+    HeaderTruncateSize => { #Structure Type: RegField;
+      Name => "HeaderTruncateSize",
+      RegMem => "RegField",
+      Description => "Size in bytes that is truncated from the MSB of the feedback packet",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F40,E41,TRUE)
+      Type => "Config",
+      UsedBy => "DCFM",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h0",
+    },
+    FlowSigOffset => { #Structure Type: RegField;
+      Name => "FlowSigOffset",
+      RegMem => "RegField",
+      Description => "Flow Signature field offset from MSb",
+      Width => "6",
+      Position => "13:8", # Excel Formula: =calc_position(F41,E42)
+      Type => "Config",
+      UsedBy => "DCFM",
+      DefaultValue => "d0",
+      DefaultSvConstraint => "d0",
+    },
+    SsnOffset => { #Structure Type: RegField;
+      Name => "SsnOffset",
+      RegMem => "RegField",
+      Description => "SSN field offset from MSb",
+      Width => "6",
+      Position => "19:14", # Excel Formula: =calc_position(F42,E43)
+      Type => "Config",
+      UsedBy => "DCFM",
+      DefaultValue => "d5",
+      DefaultSvConstraint => "d5",
+    },
+    CongExpOffset => { #Structure Type: RegField;
+      Name => "CongExpOffset",
+      RegMem => "RegField",
+      Description => "Congestion Experience field offset from MSb",
+      Width => "6",
+      Position => "25:20", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "DCFM",
+      DefaultValue => "d6",
+      DefaultSvConstraint => "d6",
+    },
+    LbgidOffset => { #Structure Type: RegField;
+      Name => "LbgidOffset",
+      RegMem => "RegField",
+      Description => "LBGID field offset from MSb",
+      Width => "6",
+      Position => "31:26", # Excel Formula: =calc_position(F44,E45)
+      Type => "Config",
+      UsedBy => "DCFM",
+      DefaultValue => "d7",
+      DefaultSvConstraint => "d7",
+    },
+    ReorderErrOffset => { #Structure Type: RegField;
+      Name => "ReorderErrOffset",
+      RegMem => "RegField",
+      Description => "Reorder Error field offset from MSb",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F45,E46)
+      Type => "Config",
+      UsedBy => "DCFM",
+      DefaultValue => "d9",
+      DefaultSvConstraint => "d9",
+    },
+    DeviceOversubOffset => { #Structure Type: RegField;
+      Name => "DeviceOversubOffset",
+      RegMem => "RegField",
+      Description => "Device Oversubscribed field offset from MSb",
+      Width => "6",
+      Position => "43:38", # Excel Formula: =calc_position(F46,E47)
+      Type => "Config",
+      UsedBy => "DCFM",
+      DefaultValue => "d10",
+      DefaultSvConstraint => "d10",
+    },
+    LinkFailureOffset => { #Structure Type: RegField;
+      Name => "LinkFailureOffset",
+      RegMem => "RegField",
+      Description => "Link Failure field offset from MSb",
+      Width => "6",
+      Position => "49:44", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "DCFM",
+      DefaultValue => "d11",
+      DefaultSvConstraint => "d11",
+    },
+  },
+  DcfmLinkFailureModeReg => { #Structure Type: Reg;
+    Name => "DcfmLinkFailureModeReg",
+    RegMem => "Reg",
+    Address => "10B", # Excel Formula: =calc_reg_address(C40,A40,G40)
+    Description => "Link Failure Mode Register",
+    Width => "1", # Excel Formula: =calc_reg_width(E50:E50,F50)
+    Type => "External",
+    UsedBy => "DCFM",
+    DcfmLinkFailureMode => { #Structure Type: RegField;
+      Name => "DcfmLinkFailureMode",
+      RegMem => "RegField",
+      Description => "Indicates if the DCFM is in link failure mode (can be set/cleared by a CPU write)
+When a feedback packet was received with a link failure indication this bit is set. A timer can clear it after a configured time",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F49,E50,TRUE)
+      Type => "External",
+    },
+  },
+  DcfmReorderErrorModeReg => { #Structure Type: Reg;
+    Name => "DcfmReorderErrorModeReg",
+    RegMem => "Reg",
+    Address => "10C", # Excel Formula: =calc_reg_address(C49,A49,G49)
+    Description => "Reorder Error Mode Register",
+    Width => "1", # Excel Formula: =calc_reg_width(E52:E52,F52)
+    Type => "External",
+    UsedBy => "DCFM",
+    DcfmReorderErrorMode => { #Structure Type: RegField;
+      Name => "DcfmReorderErrorMode",
+      RegMem => "RegField",
+      Description => "Indicates if the DCFM is in reorder error mode (can be set/cleared by a CPU write)
+When a feedback packet was received with a reorder error indication this bit is set. A timer can clear it after a configured time",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F51,E52,TRUE)
+      Type => "External",
+    },
+  },
+  DcfCodeReg => { #Structure Type: Reg;
+    Name => "DcfCodeReg",
+    RegMem => "Reg",
+    Address => "10D", # Excel Formula: =calc_reg_address(C51,A51,G51)
+    Description => "DCF Code Register",
+    Width => "2", # Excel Formula: =calc_reg_width(E54:E54,F54)
+    Type => "External",
+    UsedBy => "FRM",
+    DcfCode => { #Structure Type: RegField;
+      Name => "DcfCode",
+      RegMem => "RegField",
+      Description => "Indicates the current DCF Code status of the FRM, that is used to signal the RXPP to generate feedback packets:
+0 - no failure
+1 - link failure/reorder error short time ago
+2 - link failure/reorder error long time ago",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "External",
+    },
+  },
+  DcfCodeConfigReg => { #Structure Type: Reg;
+    Name => "DcfCodeConfigReg",
+    RegMem => "Reg",
+    Address => "10E", # Excel Formula: =calc_reg_address(C53,A53,G53)
+    Description => "DCF Code Configuration Register",
+    Width => "21", # Excel Formula: =calc_reg_width(E56:E57,F57)
+    Type => "Config",
+    DcfCodeEnable => { #Structure Type: RegField;
+      Name => "DcfCodeEnable",
+      RegMem => "RegField",
+      Description => "Enable the DCF Code status change towards the RXPP",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F55,E56,TRUE)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "h1",
+      DefaultSvConstraint => "h1",
+    },
+    DcfCodeTimerThr => { #Structure Type: RegField;
+      Name => "DcfCodeTimerThr",
+      RegMem => "RegField",
+      Description => "Sets the timer threshold in clock cycles (multiplied by 32) that when reached, the DCF code moved from state 1 to state 2",
+      Width => "20",
+      Position => "20:1", # Excel Formula: =calc_position(F56,E57)
+      Type => "Config",
+      UsedBy => "FRM",
+      DefaultValue => "h0",
+      DefaultSvConstraint => "h0",
+    },
+  },
+  FabricRoutingTable => { #Structure Type: Mem;
+    Name => "FabricRoutingTable",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "Fabric Routing Table for mapping destination devices to fabric links",
+    Width => "116", # Excel Formula: =calc_mem_width(E59:E59,M58,F59,-1)
+    Type => "Dynamic",
+    UsedBy => "FRM",
+    MemEntries => "288",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "108",
+    LinksBmp => { #Structure Type: MemField;
+      Name => "LinksBmp",
+      RegMem => "MemField",
+      Description => "Bitmap of links that can reach a destination device",
+      Width => "108",
+      Position => "107:0", # Excel Formula: =calc_position(F58,E59,TRUE)
+    },
+  },
+  RevFabricRoutingTable => { #Structure Type: Mem;
+    Name => "RevFabricRoutingTable",
+    RegMem => "Mem",
+    Address => "200000", # Excel Formula: =calc_mem_address(C58,A58,G60,L60)
+    Description => "Reversed Fabric Routing Table",
+    Width => "298", # Excel Formula: =calc_mem_width(E61:E61,M60,F61,-1)
+    Type => "Dynamic",
+    UsedBy => "FRM",
+    MemEntries => "108",
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "288",
+    DeviceBmp => { #Structure Type: MemField;
+      Name => "DeviceBmp",
+      RegMem => "MemField",
+      Description => "Bitmap of reachable devices through a link",
+      Width => "288",
+      Position => "287:0", # Excel Formula: =calc_position(F60,E61,TRUE)
+    },
+  },
+  FarEndTopologyMappingTable => { #Structure Type: Mem;
+    Name => "FarEndTopologyMappingTable",
+    RegMem => "Mem",
+    Address => "300000", # Excel Formula: =calc_mem_address(C60,A60,G62,L62)
+    Description => "DCF Far End Topology Mapping Table
+Entry per device (512) per far end link (36)",
+    Width => "43", # Excel Formula: =calc_mem_width(E63:E63,M62,F63,-1)
+    Type => "Config",
+    UsedBy => "DCFM",
+    MemEntries => "18432",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=1,PortErrPropagate=Disabled",
+    MemLogicalWidth => "36",
+    FabricLinks => { #Structure Type: MemField;
+      Name => "FabricLinks",
+      RegMem => "MemField",
+      Description => "Every bit indicates a fabric link that can reach a device",
+      Width => "36",
+      Position => "35:0", # Excel Formula: =calc_position(F62,E63,TRUE)
+    },
+  },
+};

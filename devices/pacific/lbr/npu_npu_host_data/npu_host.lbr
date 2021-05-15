@@ -1,0 +1,3314 @@
+$block{npu_host} = {
+  Defines_db => "   ../../global/rxpp_pd_defines.v,../../format_identifier/fi_defines.v,../../../cdb_top_macro/verilog/mact_learning/learning_defines.v,../verilog/npu_host_defines.v",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "4",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+    EneInterruptSignalsSummary => { #Structure Type: RegField;
+      Name => "EneInterruptSignalsSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, EneInterruptSignals has asserted interrupt",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+    },
+    dropped_massageSummary => { #Structure Type: RegField;
+      Name => "dropped_massageSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, dropped_massage has asserted interrupt",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+    },
+    EmResponseInterruptSummary => { #Structure Type: RegField;
+      Name => "EmResponseInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, EmResponseInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "3",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_1bErrInterrupt",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks Ecc_2bErrInterrupt",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "This field masks ParityErrInterrupt",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "11",
+    Type => "Config",
+    EneMacroMemoryEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "EneMacroMemoryEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    rmep_last_timeEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "rmep_last_timeEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    rmep_state_tableEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "rmep_state_tableEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mp_data_tableEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mp_data_tableEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    aux_data_tableEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "aux_data_tableEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    event_queueEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "event_queueEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    packet_data_tableEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "packet_data_tableEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    eth_mp_emVerifier0Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier0Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    eth_mp_emVerifier1Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier1Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    eth_mp_emVerifier2Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier2Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    eth_mp_emVerifier3Ecc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier3Ecc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "11",
+    Type => "Config",
+    EneMacroMemoryEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "EneMacroMemoryEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    rmep_last_timeEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "rmep_last_timeEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    rmep_state_tableEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "rmep_state_tableEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    mp_data_tableEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "mp_data_tableEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    aux_data_tableEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "aux_data_tableEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    event_queueEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "event_queueEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    packet_data_tableEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "packet_data_tableEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    eth_mp_emVerifier0Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier0Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    eth_mp_emVerifier1Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier1Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    eth_mp_emVerifier2Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier2Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    eth_mp_emVerifier3Ecc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier3Ecc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "11",
+    Type => "Config",
+    EneMacroMemoryEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "EneMacroMemoryEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    rmep_last_timeEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "rmep_last_timeEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    rmep_state_tableEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "rmep_state_tableEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mp_data_tableEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "mp_data_tableEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    aux_data_tableEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "aux_data_tableEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    event_queueEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "event_queueEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    packet_data_tableEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "packet_data_tableEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    eth_mp_emVerifier0Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier0Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    eth_mp_emVerifier1Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier1Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    eth_mp_emVerifier2Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier2Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    eth_mp_emVerifier3Ecc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier3Ecc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "11",
+    Type => "Config",
+    EneMacroMemoryEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "EneMacroMemoryEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    rmep_last_timeEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "rmep_last_timeEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    rmep_state_tableEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "rmep_state_tableEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    mp_data_tableEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "mp_data_tableEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    aux_data_tableEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "aux_data_tableEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    event_queueEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "event_queueEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    packet_data_tableEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "packet_data_tableEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "6",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    eth_mp_emVerifier0Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier0Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "7",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    eth_mp_emVerifier1Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier1Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "8",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    eth_mp_emVerifier2Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier2Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "9",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    eth_mp_emVerifier3Ecc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier3Ecc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "10",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectErrStatus",
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "11",
+    Type => "ReadOnly",
+    EneMacroMemoryErrInt => { #Structure Type: RegField;
+      Name => "EneMacroMemoryErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    rmep_last_timeErrInt => { #Structure Type: RegField;
+      Name => "rmep_last_timeErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "1",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    rmep_state_tableErrInt => { #Structure Type: RegField;
+      Name => "rmep_state_tableErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "2",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    mp_data_tableErrInt => { #Structure Type: RegField;
+      Name => "mp_data_tableErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "3",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    aux_data_tableErrInt => { #Structure Type: RegField;
+      Name => "aux_data_tableErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "4",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    event_queueErrInt => { #Structure Type: RegField;
+      Name => "event_queueErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "5",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    packet_data_tableErrInt => { #Structure Type: RegField;
+      Name => "packet_data_tableErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "6",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    eth_mp_emVerifier0ErrInt => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier0ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "7",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    eth_mp_emVerifier1ErrInt => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier1ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "8",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    eth_mp_emVerifier2ErrInt => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier2ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "9",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    eth_mp_emVerifier3ErrInt => { #Structure Type: RegField;
+      Name => "eth_mp_emVerifier3ErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "10",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    Name => "SelectedSerErrorInfo",
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "15",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      Name => "MemErrAddr",
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "13",
+      Position => "12:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      Name => "MemErrType",
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "14:13",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SerErrorDebugConfiguration",
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "5",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      Name => "ErroneousMemorySelector",
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "4",
+      Position => "3:0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      Name => "ResetMemoryErrors",
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrDebug",
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_1bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrDebug",
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_2bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  MbistPassStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistPassStatus",
+    RegMem => "Reg",
+    Address => "39",
+    Description => "MBIST pass status",
+    Width => "40",
+    Type => "ReadOnly",
+    BistDonePassOut => { #Structure Type: RegField;
+      Name => "BistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST passed",
+      Width => "40",
+      Position => "39:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+  MbistFailStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MbistFailStatus",
+    RegMem => "Reg",
+    Address => "3A",
+    Description => "MBIST fail status",
+    Width => "40",
+    Type => "ReadOnly",
+    BistDoneFailOut => { #Structure Type: RegField;
+      Name => "BistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, MBIST failed",
+      Width => "40",
+      Position => "39:0",
+      Type => "Status",
+      UsedBy => "MEM",
+    },
+  },
+  TcamBistStatus => { #Structure Type: Reg; Skip Register;
+    Name => "TcamBistStatus",
+    RegMem => "Reg",
+    Address => "3B",
+    Description => "TCAM BIST pass fail status",
+    Width => "8",
+    Type => "ReadOnly",
+    TcamBistDonePassOut => { #Structure Type: RegField;
+      Name => "TcamBistDonePassOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, TCAM BIST passed",
+      Width => "4",
+      Position => "3:0",
+      Type => "Status",
+      UsedBy => "TCAM",
+    },
+    TcamBistDoneFailOut => { #Structure Type: RegField;
+      Name => "TcamBistDoneFailOut",
+      RegMem => "RegField",
+      Description => "When this bit is set, TCAM BIST failed",
+      Width => "4",
+      Position => "7:4",
+      Type => "Status",
+      UsedBy => "TCAM",
+    },
+  },
+  TcamScanPeriodCfg => { #Structure Type: Reg; Skip Register;
+    Name => "TcamScanPeriodCfg",
+    RegMem => "Reg",
+    Address => "3C",
+    Description => "Configures period of TCAM scan for SER, set 0 to disable",
+    Width => "32",
+    Type => "Config",
+    TcamScanPeriod => { #Structure Type: RegField;
+      Name => "TcamScanPeriod",
+      RegMem => "RegField",
+      Description => "",
+      Width => "32",
+      Position => "31:0",
+      Type => "Config",
+      UsedBy => "TCAM",
+      DefaultValue => "d120000000",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+      DefaultValue => "b0",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "3", # Excel Formula: =calc_reg_width(E25:E27,F27)
+    Type => "Config",
+    CoreBistRprMode => { #Structure Type: RegField;
+      Name => "CoreBistRprMode",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistRun => { #Structure Type: RegField;
+      Name => "CoreBistRun",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CoreBistPtrnFill => { #Structure Type: RegField;
+      Name => "CoreBistPtrnFill",
+      RegMem => "RegField",
+      Description => "Used by MBIST logic",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E29:E29,F29)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F28,E29,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C28,A28,G28)
+    Description => "Power Down Configuration for the block",
+    Width => "128", # Excel Formula: =calc_reg_width(E31:E31,F31)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F30,E31,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C30,A30,G30)
+    Width => "39", # Excel Formula: =calc_reg_width(E33:E37,F37)
+    Type => "Config",
+    PmroExecute => { #Structure Type: RegField;
+      Name => "PmroExecute",
+      RegMem => "RegField",
+      Description => "0->1: execute pmro command.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F32,E33,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroCmd => { #Structure Type: RegField;
+      Name => "PmroCmd",
+      RegMem => "RegField",
+      Description => "Pmro command to execute:
+0: reset.
+1: write.
+2: read.
+3: invalid.",
+      Width => "2",
+      Position => "2:1", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroSbusReset => { #Structure Type: RegField;
+      Name => "PmroSbusReset",
+      RegMem => "RegField",
+      Description => "Reset pmro sbus chain. Need to set to 0 before starting access to pmro registers.",
+      Width => "1",
+      Position => "3", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroAddr => { #Structure Type: RegField;
+      Name => "PmroAddr",
+      RegMem => "RegField",
+      Description => "PMRO register address:
+0 - control register, 8b, def: 0x0.
+1 - SVT Configuration Register, 16b, def: 0xFFFF.
+2 - LVT Configuration Register, 16b, def: 0xFFFF.
+3 - ULVT Configuration Register, 16b, def: 0xFFFF.
+4 - Interconnect Configuration Register, 16b, def: 0xFFFF.
+5 - Reference Clock Counter Register, 24b, def: 0xFFF000.
+6 - Oscillator Counter Register, 24b, def: 0x000000.
+7 - SBus ID register, read as 0x0B.
+Set to '0' on reset command.",
+      Width => "3",
+      Position => "6:4", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroData => { #Structure Type: RegField;
+      Name => "PmroData",
+      RegMem => "RegField",
+      Description => "PMRO data, set to 0x0 on reset and read command.",
+      Width => "32",
+      Position => "38:7", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C32,A32,G32)
+    Width => "34", # Excel Formula: =calc_reg_width(E39:E41,F41)
+    Type => "ReadOnly",
+    PmroRdata => { #Structure Type: RegField;
+      Name => "PmroRdata",
+      RegMem => "RegField",
+      Description => "Read data from pmro. Valid when PmroFinish=1 and PmroFailed=0.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F38,E39,TRUE)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFailed => { #Structure Type: RegField;
+      Name => "PmroFailed",
+      RegMem => "RegField",
+      Description => "Pmro command failed. Valid only when PmroFinish=1.",
+      Width => "1",
+      Position => "32", # Excel Formula: =calc_position(F39,E40)
+      Type => "Capture",
+      UsedBy => "pmro",
+    },
+    PmroFinish => { #Structure Type: RegField;
+      Name => "PmroFinish",
+      RegMem => "RegField",
+      Description => "Pmro command finished.",
+      Width => "1",
+      Position => "33", # Excel Formula: =calc_position(F40,E41)
+      Type => "Event",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C38,A38,G38)
+    Description => "aaa",
+    Width => "11", # Excel Formula: =calc_reg_width(E43:E44,F44)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F42,E43,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C42,A42,G42)
+    Description => "aaa",
+    Width => "32", # Excel Formula: =calc_reg_width(E46:E46,F46)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "aaa",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F45,E46,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C45,A45,G45)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E48:E48,F48)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F47,E48,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  EneInterruptSignals => { #Structure Type: Reg;
+    Name => "EneInterruptSignals",
+    RegMem => "Reg",
+    Address => "100",
+    Description => "interrupt signals",
+    Width => "1", # Excel Formula: =calc_reg_width(E8:E8,F8)
+    Type => "Interrupt",
+    DocName => "EneInterruptSignals",
+    EneTtlCountExpiredInt => { #Structure Type: RegField;
+      Name => "EneTtlCountExpiredInt",
+      RegMem => "RegField",
+      Description => "Ene reached ttl maximal count",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Interrupt",
+      UsedBy => "txpp",
+      DocName => "EneTtlCountExpiredInt",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  EneInterruptSignalsMask => { #Structure Type: Reg; Skip Register;
+    Name => "EneInterruptSignalsMask",
+    RegMem => "Reg",
+    Address => "101",
+    Description => "This register masks EneInterruptSignals interrupt register",
+    Width => "1", # Excel Formula: =calc_reg_width(E8:E8,F8)
+    Type => "InterruptMask",
+    DocName => "EneInterruptSignals",
+    EneTtlCountExpiredIntMask => { #Structure Type: RegField;
+      Name => "EneTtlCountExpiredIntMask",
+      RegMem => "RegField",
+      Description => "This field masks EneTtlCountExpiredInt interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+      DocName => "EneTtlCountExpiredInt",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  EneInterruptSignalsTest => { #Structure Type: Reg; Skip Register;
+    Name => "EneInterruptSignalsTest",
+    RegMem => "Reg",
+    Address => "102",
+    Description => "This register tests EneInterruptSignals interrupt register",
+    Width => "1", # Excel Formula: =calc_reg_width(E8:E8,F8)
+    Type => "InterruptTest",
+    DocName => "EneInterruptSignals",
+    EneTtlCountExpiredIntTest => { #Structure Type: RegField;
+      Name => "EneTtlCountExpiredIntTest",
+      RegMem => "RegField",
+      Description => "This field tests EneTtlCountExpiredInt interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+      DocName => "EneTtlCountExpiredInt",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  debug_data_bus_register => { #Structure Type: Reg;
+    Name => "debug_data_bus_register",
+    RegMem => "Reg",
+    Address => "103", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Width => "32", # Excel Formula: =calc_reg_width(E10:E10,F10)
+    Type => "ReadOnly",
+    DocName => "DebugDataBusRegister",
+    data_bus_reg => { #Structure Type: RegField;
+      Name => "data_bus_reg",
+      RegMem => "RegField",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "Status",
+      UsedBy => "npu_host",
+      DocName => "DataBusReg",
+    },
+  },
+  debug_data_select_register => { #Structure Type: Reg;
+    Name => "debug_data_select_register",
+    RegMem => "Reg",
+    Address => "104", # Excel Formula: =calc_reg_address(C9,A9,G9)
+    Width => "10", # Excel Formula: =calc_reg_width(E12:E12,F12)
+    Type => "Config",
+    DocName => "DebugDataSelectRegister",
+    debug_data_select => { #Structure Type: RegField;
+      Name => "debug_data_select",
+      RegMem => "RegField",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F11,E12,TRUE)
+      Type => "Config",
+      UsedBy => "npu_host",
+      DefaultValue => "b0",
+      DocName => "DebugDataSelect",
+    },
+  },
+  lri_counters => { #Structure Type: Reg;
+    Name => "lri_counters",
+    RegMem => "Reg",
+    Address => "105", # Excel Formula: =calc_reg_address(C11,A11,G11)
+    Width => "32", # Excel Formula: =calc_reg_width(E14:E14,F14)
+    Type => "ReadOnly",
+    DocName => "LriCounters",
+    learn_records_in => { #Structure Type: RegField;
+      Name => "learn_records_in",
+      RegMem => "RegField",
+      Description => "amount of learn records received in the npu-host, in order to be packed and sent to the egress device",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F13,E14,TRUE)
+      Type => "Counter",
+      UsedBy => "lri",
+      DocName => "LearnRecordsIn",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  lro_counters => { #Structure Type: Reg;
+    Name => "lro_counters",
+    RegMem => "Reg",
+    Address => "106", # Excel Formula: =calc_reg_address(C13,A13,G13)
+    Width => "32", # Excel Formula: =calc_reg_width(E16:E16,F16)
+    Type => "ReadOnly",
+    DocName => "LroCounters",
+    learn_records_out => { #Structure Type: RegField;
+      Name => "learn_records_out",
+      RegMem => "RegField",
+      Description => "amount of learn records received from the ingress device and were unpacked by the npu-host",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F15,E16,TRUE)
+      Type => "Counter",
+      UsedBy => "lro",
+      DocName => "LearnRecordsOut",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  pin_counters => { #Structure Type: Reg;
+    Name => "pin_counters",
+    RegMem => "Reg",
+    Address => "107", # Excel Formula: =calc_reg_address(C15,A15,G15)
+    Width => "64", # Excel Formula: =calc_reg_width(E18:E19,F19)
+    Type => "ReadOnly",
+    DocName => "PinCounters",
+    packets_in => { #Structure Type: RegField;
+      Name => "packets_in",
+      RegMem => "RegField",
+      Description => "amount of packets received by the npu-host in its PIN interface (= from the TXPP). Typically OAM packets will be received in this path.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F17,E18,TRUE)
+      Type => "Counter",
+      UsedBy => "pin",
+      DocName => "PacketsIn",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    packets_in_with_error => { #Structure Type: RegField;
+      Name => "packets_in_with_error",
+      RegMem => "RegField",
+      Description => "amount of packets that were received with error indication. Those packets will later be dropped in the npu-host.",
+      Width => "32",
+      Position => "63:32", # Excel Formula: =calc_position(F18,E19)
+      Type => "Counter",
+      UsedBy => "pin",
+      DocName => "PacketsInWithError",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  pout_counters => { #Structure Type: Reg;
+    Name => "pout_counters",
+    RegMem => "Reg",
+    Address => "108", # Excel Formula: =calc_reg_address(C17,A17,G17)
+    Width => "64", # Excel Formula: =calc_reg_width(E21:E22,F22)
+    Type => "ReadOnly",
+    DocName => "PoutCounters",
+    packets_out => { #Structure Type: RegField;
+      Name => "packets_out",
+      RegMem => "RegField",
+      Description => "amount of packet sent from the npu-host.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F20,E21,TRUE)
+      Type => "Counter",
+      UsedBy => "pout",
+      DocName => "PacketsOut",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    dropped_pacekts_from_npe => { #Structure Type: RegField;
+      Name => "dropped_pacekts_from_npe",
+      RegMem => "RegField",
+      Description => "amount of packets that were sent from the npu-host NPE with drop indication and were thus dropped.",
+      Width => "32",
+      Position => "63:32", # Excel Formula: =calc_position(F21,E22)
+      Type => "Counter",
+      UsedBy => "pout",
+      DocName => "DroppedPacektsFromNpe",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  mps_counters => { #Structure Type: Reg;
+    Name => "mps_counters",
+    RegMem => "Reg",
+    Address => "109", # Excel Formula: =calc_reg_address(C20,A20,G20)
+    Width => "32", # Excel Formula: =calc_reg_width(E24:E24,F24)
+    Type => "ReadOnly",
+    DocName => "MpsCounters",
+    packets_initiated_from_mps => { #Structure Type: RegField;
+      Name => "packets_initiated_from_mps",
+      RegMem => "RegField",
+      Description => "amount of NPPDs sent from the MP scanner to the npu-host NPE, in order to initiate a packet (typically, an OAM packet)",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F23,E24,TRUE)
+      Type => "Counter",
+      UsedBy => "mps",
+      DocName => "PacketsInitiatedFromMps",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  sat_counters => { #Structure Type: Reg;
+    Name => "sat_counters",
+    RegMem => "Reg",
+    Address => "10A", # Excel Formula: =calc_reg_address(C23,A23,G23)
+    Width => "32", # Excel Formula: =calc_reg_width(E26:E26,F26)
+    Type => "ReadOnly",
+    DocName => "SatCounters",
+    packets_initiated_from_sats => { #Structure Type: RegField;
+      Name => "packets_initiated_from_sats",
+      RegMem => "RegField",
+      Description => "amount of NPPDs sent from the SAT scanner to the npu-host NPE, in order to initiate a packet (typically, SAT or BIST)",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F25,E26,TRUE)
+      Type => "Counter",
+      UsedBy => "sat",
+      DocName => "PacketsInitiatedFromSats",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  rmes_counters => { #Structure Type: Reg;
+    Name => "rmes_counters",
+    RegMem => "Reg",
+    Address => "10B", # Excel Formula: =calc_reg_address(C25,A25,G25)
+    Width => "32", # Excel Formula: =calc_reg_width(E28:E28,F28)
+    Type => "ReadOnly",
+    DocName => "RmesCounters",
+    interrupts_initiated_from_rmes => { #Structure Type: RegField;
+      Name => "interrupts_initiated_from_rmes",
+      RegMem => "RegField",
+      Description => "amount of interrupt events sent from the RMEP scanner to the EVQ (to the CPU). Those interrupts indicate that a remote MEP did not send CCM packets in the time interval defined for it.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F27,E28,TRUE)
+      Type => "Counter",
+      UsedBy => "rmes",
+      DocName => "InterruptsInitiatedFromRmes",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  evq_counters => { #Structure Type: Reg;
+    Name => "evq_counters",
+    RegMem => "Reg",
+    Address => "10C", # Excel Formula: =calc_reg_address(C27,A27,G27)
+    Width => "64", # Excel Formula: =calc_reg_width(E30:E31,F31)
+    Type => "ReadOnly",
+    DocName => "EvqCounters",
+    events_arrived_to_evq => { #Structure Type: RegField;
+      Name => "events_arrived_to_evq",
+      RegMem => "RegField",
+      Description => "amount of events received by the EVQ. Those events can either originate in the RMEP scanner (to indicate RMEP that did not send its CCMs in the relevant period) or in the npu-host NPE.",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F29,E30,TRUE)
+      Type => "Counter",
+      UsedBy => "evq",
+      DocName => "EventsArrivedToEvq",
+      AdditionalInfo => "CounterIncrWidth=2",
+    },
+    events_dropped_in_evq => { #Structure Type: RegField;
+      Name => "events_dropped_in_evq",
+      RegMem => "RegField",
+      Description => "amount of events sent to the EVQ and dropped because the queue was full.",
+      Width => "32",
+      Position => "63:32", # Excel Formula: =calc_position(F30,E31)
+      Type => "Counter",
+      UsedBy => "evq",
+      DocName => "EventsDroppedInEvq",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  macro_ids => { #Structure Type: Reg;
+    Name => "macro_ids",
+    RegMem => "Reg",
+    Address => "10D", # Excel Formula: =calc_reg_address(C29,A29,G29)
+    Width => "24", # Excel Formula: =calc_reg_width(E33:E35,F35)
+    Type => "Config",
+    DocName => "MacroIds",
+    lri_macro => { #Structure Type: RegField;
+      Name => "lri_macro",
+      RegMem => "RegField",
+      Description => "macro sent to the NPE for NPPDs sent from the LRI",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F32,E33,TRUE)
+      Type => "Config",
+      UsedBy => "npa",
+      DefaultValue => "hFF",
+      DocName => "LriMacro",
+    },
+    sat_macro => { #Structure Type: RegField;
+      Name => "sat_macro",
+      RegMem => "RegField",
+      Description => "macro sent to the NPE for NPPDs sent from the SAT Scanner",
+      Width => "8",
+      Position => "15:8", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "npa",
+      DefaultValue => "hFF",
+      DocName => "SatMacro",
+    },
+    mps_macro => { #Structure Type: RegField;
+      Name => "mps_macro",
+      RegMem => "RegField",
+      Description => "macro sent to the NPE for NPPDs sent from the MP Scanner",
+      Width => "8",
+      Position => "23:16", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "npa",
+      DefaultValue => "hFF",
+      DocName => "MpsMacro",
+    },
+  },
+  rmep_timer => { #Structure Type: Reg;
+    Name => "rmep_timer",
+    RegMem => "Reg",
+    Address => "10E", # Excel Formula: =calc_reg_address(C32,A32,G32)
+    Description => "timer configuration for the rmep timer",
+    Width => "99", # Excel Formula: =calc_reg_width(E37:E42,F42)
+    Type => "Config",
+    DocName => "RmepTimer",
+    rmep_interval_clocks => { #Structure Type: RegField;
+      Name => "rmep_interval_clocks",
+      RegMem => "RegField",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F36,E37,TRUE)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "RmepIntervalClocks",
+      DefaultSvConstraint => "h1",
+    },
+    rmep_cycle_clocks => { #Structure Type: RegField;
+      Name => "rmep_cycle_clocks",
+      RegMem => "RegField",
+      Width => "32",
+      Position => "63:32", # Excel Formula: =calc_position(F37,E38)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "RmepCycleClocks",
+      DefaultSvConstraint => "h1",
+    },
+    rmep_start_index => { #Structure Type: RegField;
+      Name => "rmep_start_index",
+      RegMem => "RegField",
+      Width => "13",
+      Position => "76:64", # Excel Formula: =calc_position(F38,E39)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "RmepStartIndex",
+      DefaultSvConstraint => "h1",
+    },
+    rmep_end_index => { #Structure Type: RegField;
+      Name => "rmep_end_index",
+      RegMem => "RegField",
+      Width => "13",
+      Position => "89:77", # Excel Formula: =calc_position(F39,E40)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "RmepEndIndex",
+      DefaultSvConstraint => "h1",
+    },
+    rmep_timer_enable => { #Structure Type: RegField;
+      Name => "rmep_timer_enable",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "90", # Excel Formula: =calc_position(F40,E41)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "RmepTimerEnable",
+      DefaultSvConstraint => "h1",
+    },
+    rmep_count => { #Structure Type: RegField;
+      Name => "rmep_count",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "98:91", # Excel Formula: =calc_position(F41,E42)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "RmepCount",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  mp_lm_timer => { #Structure Type: Reg;
+    Name => "mp_lm_timer",
+    RegMem => "Reg",
+    Address => "10F", # Excel Formula: =calc_reg_address(C36,A36,G36)
+    Description => "timer configuration for the lm timer",
+    Width => "99", # Excel Formula: =calc_reg_width(E44:E49,F49)
+    Type => "Config",
+    DocName => "MpLmTimer",
+    mp_lm_interval_clocks => { #Structure Type: RegField;
+      Name => "mp_lm_interval_clocks",
+      RegMem => "RegField",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F43,E44,TRUE)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpLmIntervalClocks",
+      DefaultSvConstraint => "h1",
+    },
+    mp_lm_cycle_clocks => { #Structure Type: RegField;
+      Name => "mp_lm_cycle_clocks",
+      RegMem => "RegField",
+      Width => "32",
+      Position => "63:32", # Excel Formula: =calc_position(F44,E45)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpLmCycleClocks",
+      DefaultSvConstraint => "h1",
+    },
+    mp_lm_start_index => { #Structure Type: RegField;
+      Name => "mp_lm_start_index",
+      RegMem => "RegField",
+      Width => "13",
+      Position => "76:64", # Excel Formula: =calc_position(F45,E46)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpLmStartIndex",
+      DefaultSvConstraint => "h1",
+    },
+    mp_lm_end_index => { #Structure Type: RegField;
+      Name => "mp_lm_end_index",
+      RegMem => "RegField",
+      Width => "13",
+      Position => "89:77", # Excel Formula: =calc_position(F46,E47)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpLmEndIndex",
+      DefaultSvConstraint => "h1",
+    },
+    mp_lm_timer_enable => { #Structure Type: RegField;
+      Name => "mp_lm_timer_enable",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "90", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpLmTimerEnable",
+      DefaultSvConstraint => "h1",
+    },
+    mp_lm_count => { #Structure Type: RegField;
+      Name => "mp_lm_count",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "98:91", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpLmCount",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  mp_dm_timer => { #Structure Type: Reg;
+    Name => "mp_dm_timer",
+    RegMem => "Reg",
+    Address => "110", # Excel Formula: =calc_reg_address(C43,A43,G43)
+    Description => "timer configuration for the dm timer",
+    Width => "99", # Excel Formula: =calc_reg_width(E51:E56,F56)
+    Type => "Config",
+    DocName => "MpDmTimer",
+    mp_dm_interval_clocks => { #Structure Type: RegField;
+      Name => "mp_dm_interval_clocks",
+      RegMem => "RegField",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F50,E51,TRUE)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpDmIntervalClocks",
+      DefaultSvConstraint => "h1",
+    },
+    mp_dm_cycle_clocks => { #Structure Type: RegField;
+      Name => "mp_dm_cycle_clocks",
+      RegMem => "RegField",
+      Width => "32",
+      Position => "63:32", # Excel Formula: =calc_position(F51,E52)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpDmCycleClocks",
+      DefaultSvConstraint => "h1",
+    },
+    mp_dm_start_index => { #Structure Type: RegField;
+      Name => "mp_dm_start_index",
+      RegMem => "RegField",
+      Width => "13",
+      Position => "76:64", # Excel Formula: =calc_position(F52,E53)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpDmStartIndex",
+      DefaultSvConstraint => "h1",
+    },
+    mp_dm_end_index => { #Structure Type: RegField;
+      Name => "mp_dm_end_index",
+      RegMem => "RegField",
+      Width => "13",
+      Position => "89:77", # Excel Formula: =calc_position(F53,E54)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpDmEndIndex",
+      DefaultSvConstraint => "h1",
+    },
+    mp_dm_timer_enable => { #Structure Type: RegField;
+      Name => "mp_dm_timer_enable",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "90", # Excel Formula: =calc_position(F54,E55)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpDmTimerEnable",
+      DefaultSvConstraint => "h1",
+    },
+    mp_dm_count => { #Structure Type: RegField;
+      Name => "mp_dm_count",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "98:91", # Excel Formula: =calc_position(F55,E56)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpDmCount",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  mp_ccm_timer => { #Structure Type: Reg;
+    Name => "mp_ccm_timer",
+    RegMem => "Reg",
+    Address => "111", # Excel Formula: =calc_reg_address(C50,A50,G50)
+    Description => "timer configuration for the ccm timer",
+    Width => "99", # Excel Formula: =calc_reg_width(E58:E63,F63)
+    Type => "Config",
+    DocName => "MpCcmTimer",
+    mp_ccm_interval_clocks => { #Structure Type: RegField;
+      Name => "mp_ccm_interval_clocks",
+      RegMem => "RegField",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpCcmIntervalClocks",
+      DefaultSvConstraint => "h1",
+    },
+    mp_ccm_cycle_clocks => { #Structure Type: RegField;
+      Name => "mp_ccm_cycle_clocks",
+      RegMem => "RegField",
+      Width => "32",
+      Position => "63:32", # Excel Formula: =calc_position(F58,E59)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpCcmCycleClocks",
+      DefaultSvConstraint => "h1",
+    },
+    mp_ccm_start_index => { #Structure Type: RegField;
+      Name => "mp_ccm_start_index",
+      RegMem => "RegField",
+      Width => "13",
+      Position => "76:64", # Excel Formula: =calc_position(F59,E60)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpCcmStartIndex",
+      DefaultSvConstraint => "h1",
+    },
+    mp_ccm_end_index => { #Structure Type: RegField;
+      Name => "mp_ccm_end_index",
+      RegMem => "RegField",
+      Width => "13",
+      Position => "89:77", # Excel Formula: =calc_position(F60,E61)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpCcmEndIndex",
+      DefaultSvConstraint => "h1",
+    },
+    mp_ccm_timer_enable => { #Structure Type: RegField;
+      Name => "mp_ccm_timer_enable",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "90", # Excel Formula: =calc_position(F61,E62)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpCcmTimerEnable",
+      DefaultSvConstraint => "h1",
+    },
+    mp_ccm_count => { #Structure Type: RegField;
+      Name => "mp_ccm_count",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "98:91", # Excel Formula: =calc_position(F62,E63)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "MpCcmCount",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  sat_timer => { #Structure Type: Reg;
+    Name => "sat_timer",
+    RegMem => "Reg",
+    Address => "112", # Excel Formula: =calc_reg_address(C57,A57,G57)
+    Description => "timer configuration for the sat timer",
+    Width => "97", # Excel Formula: =calc_reg_width(E65:E70,F70)
+    Type => "Config",
+    DocName => "SatTimer",
+    sat_interval_clocks => { #Structure Type: RegField;
+      Name => "sat_interval_clocks",
+      RegMem => "RegField",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F64,E65,TRUE)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "SatIntervalClocks",
+      DefaultSvConstraint => "h1",
+    },
+    sat_cycle_clocks => { #Structure Type: RegField;
+      Name => "sat_cycle_clocks",
+      RegMem => "RegField",
+      Width => "32",
+      Position => "63:32", # Excel Formula: =calc_position(F65,E66)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "SatCycleClocks",
+      DefaultSvConstraint => "h1",
+    },
+    sat_start_index => { #Structure Type: RegField;
+      Name => "sat_start_index",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "75:64", # Excel Formula: =calc_position(F66,E67)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "SatStartIndex",
+      DefaultSvConstraint => "h1",
+    },
+    sat_end_index => { #Structure Type: RegField;
+      Name => "sat_end_index",
+      RegMem => "RegField",
+      Width => "12",
+      Position => "87:76", # Excel Formula: =calc_position(F67,E68)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "SatEndIndex",
+      DefaultSvConstraint => "h1",
+    },
+    sat_timer_enable => { #Structure Type: RegField;
+      Name => "sat_timer_enable",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "88", # Excel Formula: =calc_position(F68,E69)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "SatTimerEnable",
+      DefaultSvConstraint => "h1",
+    },
+    sat_count => { #Structure Type: RegField;
+      Name => "sat_count",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "96:89", # Excel Formula: =calc_position(F69,E70)
+      Type => "Config",
+      UsedBy => "scn",
+      DefaultValue => "h0",
+      DocName => "SatCount",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  cpu_q_config_write_adress => { #Structure Type: Reg;
+    Name => "cpu_q_config_write_adress",
+    RegMem => "Reg",
+    Address => "113", # Excel Formula: =calc_reg_address(C64,A64,G64)
+    Width => "11", # Excel Formula: =calc_reg_width(E72:E72,F72)
+    Type => "ReadOnly",
+    DocName => "CpuQConfigWriteAdress",
+    write_adress => { #Structure Type: RegField;
+      Name => "write_adress",
+      RegMem => "RegField",
+      Description => "write adress of the event queue (from the npu-host to the cpu). updated by the design, after writing to the queue",
+      Width => "11",
+      Position => "10:0", # Excel Formula: =calc_position(F71,E72,TRUE)
+      Type => "Status",
+      UsedBy => "evq",
+      DocName => "WriteAdress",
+    },
+  },
+  cpu_q_config_read_adress => { #Structure Type: Reg;
+    Name => "cpu_q_config_read_adress",
+    RegMem => "Reg",
+    Address => "114", # Excel Formula: =calc_reg_address(C71,A71,G71)
+    Width => "11", # Excel Formula: =calc_reg_width(E74:E74,F74)
+    Type => "External",
+    UsedBy => "evq",
+    DocName => "CpuQConfigReadAdress",
+    read_address => { #Structure Type: RegField;
+      Name => "read_address",
+      RegMem => "RegField",
+      Description => "Read adress of the event queue (from the npu-host to the CPU). Should be updated by the host, after reading from the queue. 
+If not updated, the design will not overwrite this data, which may result in lost events.",
+      Width => "11",
+      Position => "10:0", # Excel Formula: =calc_position(F73,E74,TRUE)
+      Type => "External",
+      DocName => "ReadAddress",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  dropped_massage => { #Structure Type: Reg;
+    Name => "dropped_massage",
+    RegMem => "Reg",
+    Address => "115", # Excel Formula: =calc_reg_address(C73,A73,G73)
+    Width => "1", # Excel Formula: =calc_reg_width(E76:E76,F76)
+    Type => "Interrupt",
+    DocName => "DroppedMassage",
+    interrupt => { #Structure Type: RegField;
+      Name => "interrupt",
+      RegMem => "RegField",
+      Description => "Interrupt indicating that a massage to the EVQ was dropped because the queue was full.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F75,E76,TRUE)
+      Type => "Interrupt",
+      UsedBy => "evq",
+      DocName => "Interrupt",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  dropped_massageMask => { #Structure Type: Reg; Skip Register;
+    Name => "dropped_massageMask",
+    RegMem => "Reg",
+    Address => "116",
+    Width => "1", # Excel Formula: =calc_reg_width(E76:E76,F76)
+    Type => "InterruptMask",
+    DocName => "DroppedMassage",
+    interruptMask => { #Structure Type: RegField;
+      Name => "interruptMask",
+      RegMem => "RegField",
+      Description => "This field masks interrupt interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F75,E76,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+      DocName => "Interrupt",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  dropped_massageTest => { #Structure Type: Reg; Skip Register;
+    Name => "dropped_massageTest",
+    RegMem => "Reg",
+    Address => "117",
+    Width => "1", # Excel Formula: =calc_reg_width(E76:E76,F76)
+    Type => "InterruptTest",
+    DocName => "DroppedMassage",
+    interruptTest => { #Structure Type: RegField;
+      Name => "interruptTest",
+      RegMem => "RegField",
+      Description => "This field tests interrupt interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F75,E76,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+      DocName => "Interrupt",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  scanner_priority => { #Structure Type: Reg;
+    Name => "scanner_priority",
+    RegMem => "Reg",
+    Address => "118", # Excel Formula: =calc_reg_address(C75,A75,G75)
+    Width => "8", # Excel Formula: =calc_reg_width(E78:E78,F78)
+    Type => "Config",
+    DocName => "ScannerPriority",
+    clocks_until_scanner_prioritized => { #Structure Type: RegField;
+      Name => "clocks_until_scanner_prioritized",
+      RegMem => "RegField",
+      Description => "number of concecutive cycles of access to the memory from the NPE before the scanner will start getting priority over the NPE.
+Internal feature.",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F77,E78,TRUE)
+      Type => "Config",
+      UsedBy => "mpc",
+      DefaultValue => "hFF",
+      DocName => "ClocksUntilScannerPrioritized",
+      DefaultSvConstraint => "h1",
+    },
+  },
+  EneMacroMemory => { #Structure Type: Mem;
+    Name => "EneMacroMemory",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "Holds the instructions of the encapsulation macros",
+    Width => "52", # Excel Formula: =calc_mem_width(E80:E91,M79,F91,-1)
+    Type => "Config",
+    UsedBy => "ene",
+    DocName => "EneMacroMemory",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100",
+    MemLogicalWidth => "45",
+    EneDataFsWidth => { #Structure Type: MemField;
+      Name => "EneDataFsWidth",
+      RegMem => "MemField",
+      Description => "Width of data to select from the pkt_attr/scratchpad bus  in bytes (also uses to shift right the header)",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F79,E80,TRUE)
+      DocName => "EneDataFsWidth",
+    },
+    EneDataFsOffset => { #Structure Type: MemField;
+      Name => "EneDataFsOffset",
+      RegMem => "MemField",
+      Description => "The offset used in the Data FS when AttrOffSel equals 0.  in nibbles",
+      Width => "8",
+      Position => "11:4", # Excel Formula: =calc_position(F80,E81)
+      DocName => "EneDataFsOffset",
+    },
+    EneScratchpadPushSize => { #Structure Type: MemField;
+      Name => "EneScratchpadPushSize",
+      RegMem => "MemField",
+      Description => "Number of bytes (counted from the LSB position) to be pushed into the scratchpad register.",
+      Width => "8",
+      Position => "19:12", # Excel Formula: =calc_position(F81,E82)
+      DocName => "EneScratchpadPushSize",
+    },
+    EneScratchpadDataShift => { #Structure Type: MemField;
+      Name => "EneScratchpadDataShift",
+      RegMem => "MemField",
+      Description => "Number of bits to shift rights the data that does in the scratchpad",
+      Width => "3",
+      Position => "22:20", # Excel Formula: =calc_position(F82,E83)
+      DocName => "EneScratchpadDataShift",
+    },
+    EncLeftShiftSizeFsWidth => { #Structure Type: MemField;
+      Name => "EncLeftShiftSizeFsWidth",
+      RegMem => "MemField",
+      Description => "The width used in the lft shift size FS in bits",
+      Width => "3",
+      Position => "25:23", # Excel Formula: =calc_position(F83,E84)
+      DocName => "EncLeftShiftSizeFsWidth",
+    },
+    EneLeftShiftSizeFsOffset => { #Structure Type: MemField;
+      Name => "EneLeftShiftSizeFsOffset",
+      RegMem => "MemField",
+      Description => "The offset used in the lft shift size FS in nibbles",
+      Width => "8",
+      Position => "33:26", # Excel Formula: =calc_position(F84,E85)
+      DocName => "EneLeftShiftSizeFsOffset",
+    },
+    EneLeftShiftFsSize => { #Structure Type: MemField;
+      Name => "EneLeftShiftFsSize",
+      RegMem => "MemField",
+      Description => "amount of bytes to shift the header to the left in bytes",
+      Width => "4",
+      Position => "37:34", # Excel Formula: =calc_position(F85,E86)
+      DocName => "EneLeftShiftFsSize",
+    },
+    EneLeftShiftSel => { #Structure Type: MemField;
+      Name => "EneLeftShiftSel",
+      RegMem => "MemField",
+      Description => "indicates whether the amount of left shift of the header is determined by instruction(0) or by a value in the pkt attr bus (1)",
+      Width => "1",
+      Position => "38", # Excel Formula: =calc_position(F86,E87)
+      DocName => "EneLeftShiftSel",
+    },
+    EneStoreEncapSize => { #Structure Type: MemField;
+      Name => "EneStoreEncapSize",
+      RegMem => "MemField",
+      Description => "Marks the size of first and second encapsulations",
+      Width => "1",
+      Position => "39", # Excel Formula: =calc_position(F87,E88)
+      DocName => "EneStoreEncapSize",
+    },
+    EneStoreCsCommand => { #Structure Type: MemField;
+      Name => "EneStoreCsCommand",
+      RegMem => "MemField",
+      Description => "Marks the location of the IPv4 for check sum calculation",
+      Width => "1",
+      Position => "40", # Excel Formula: =calc_position(F88,E89)
+      DocName => "EneStoreCsCommand",
+    },
+    EneStartNextMacro => { #Structure Type: MemField;
+      Name => "EneStartNextMacro",
+      RegMem => "MemField",
+      Description => "Initiate loading of an address of a new macro to the macro counter",
+      Width => "1",
+      Position => "41", # Excel Formula: =calc_position(F89,E90)
+      DocName => "EneStartNextMacro",
+    },
+    EneOp => { #Structure Type: MemField;
+      Name => "EneOp",
+      RegMem => "MemField",
+      Description => "ENE op (000: NOP, 001: push to scratch pad, 010: Push Packet Size, 011: push pkr attr to header, 100: push const to header, 101: Push const to scratchpad, 110: Jump,  111: Jump Table)",
+      Width => "3",
+      Position => "44:42", # Excel Formula: =calc_position(F90,E91)
+      DocName => "EneOp",
+    },
+  },
+  EneMacroMemoryAlt => { #Structure Type: Mem;
+    Name => "EneMacroMemoryAlt",
+    RegMem => "Mem",
+    Address => "100000", # Excel Formula: =calc_mem_address(C79,A79,G92,L92)
+    Width => "51", # Excel Formula: =calc_mem_width(E93:E101,M92,F101,-1)
+    Type => "DocOnly",
+    UsedBy => "ene",
+    DocName => "EneMacroMemoryAlt",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "44",
+    EneDataFsWidthAlt => { #Structure Type: MemField;
+      Name => "EneDataFsWidthAlt",
+      RegMem => "MemField",
+      Description => "Width of data to select from the pkt_attr/scratchpad bus  in bytes (also uses to shift right the header)",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F92,E93,TRUE)
+      DocName => "EneDataFsWidthAlt",
+    },
+    EneDataFsOffsetAlt => { #Structure Type: MemField;
+      Name => "EneDataFsOffsetAlt",
+      RegMem => "MemField",
+      Description => "The offset used in the Data FS when AttrOffSel equals 0.  in nibbles",
+      Width => "8",
+      Position => "11:4", # Excel Formula: =calc_position(F93,E94)
+      DocName => "EneDataFsOffsetAlt",
+    },
+    EneScratchpadPushSizeAlt => { #Structure Type: MemField;
+      Name => "EneScratchpadPushSizeAlt",
+      RegMem => "MemField",
+      Description => "Number of bytes (counted from the LSB position) to be pushed into the scratchpad register.",
+      Width => "5",
+      Position => "16:12", # Excel Formula: =calc_position(F94,E95)
+      DocName => "EneScratchpadPushSizeAlt",
+    },
+    EneSpare1Alt => { #Structure Type: MemField;
+      Name => "EneSpare1Alt",
+      RegMem => "MemField",
+      Description => "unused",
+      Width => "12",
+      Position => "28:17", # Excel Formula: =calc_position(F95,E96)
+      DocName => "EneSpare1Alt",
+    },
+    EneLeftShiftSizeFsWidth => { #Structure Type: MemField;
+      Name => "EneLeftShiftSizeFsWidth",
+      RegMem => "MemField",
+      Description => "The width used in the lft shift size FS in bits",
+      Width => "3",
+      Position => "31:29", # Excel Formula: =calc_position(F96,E97)
+      DocName => "EneLeftShiftSizeFsWidth",
+    },
+    EneLeftShiftSizeFsOffset => { #Structure Type: MemField;
+      Name => "EneLeftShiftSizeFsOffset",
+      RegMem => "MemField",
+      Description => "The offset used in the lft shift size FS in nibbles",
+      Width => "8",
+      Position => "39:32", # Excel Formula: =calc_position(F97,E98)
+      DocName => "EneLeftShiftSizeFsOffset",
+    },
+    EneLeftShiftSelAlt => { #Structure Type: MemField;
+      Name => "EneLeftShiftSelAlt",
+      RegMem => "MemField",
+      Description => "indicates whether the amount of left shift of the header is determined by instruction(0) or by a value in the pkt attr bus (1)",
+      Width => "1",
+      Position => "40", # Excel Formula: =calc_position(F98,E99)
+      DocName => "EneLeftShiftSelAlt",
+    },
+    EneStartNextMacroAlt => { #Structure Type: MemField;
+      Name => "EneStartNextMacroAlt",
+      RegMem => "MemField",
+      Description => "Initiate loading of an address of a new macro to the macro counter",
+      Width => "1",
+      Position => "41", # Excel Formula: =calc_position(F99,E100)
+      DocName => "EneStartNextMacroAlt",
+    },
+    EneOpAlt => { #Structure Type: MemField;
+      Name => "EneOpAlt",
+      RegMem => "MemField",
+      Description => "ENE op (00: NOP, 01: push to scratch pad, 10: push const to header, 11: push pkr attr to header)",
+      Width => "2",
+      Position => "43:42", # Excel Formula: =calc_position(F100,E101)
+      DocName => "EneOpAlt",
+    },
+  },
+  EneMacroMemoryConst => { #Structure Type: Mem;
+    Name => "EneMacroMemoryConst",
+    RegMem => "Mem",
+    Address => "100000", # Excel Formula: =calc_mem_address(C79,A79,G102,L102)
+    Width => "51", # Excel Formula: =calc_mem_width(E103:E108,M102,F108,-1)
+    Type => "DocOnly",
+    UsedBy => "ene",
+    DocName => "EneMacroMemoryConst",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=1,SampleReadAfterProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    MemLogicalWidth => "44",
+    EneDataFsWidthConst => { #Structure Type: MemField;
+      Name => "EneDataFsWidthConst",
+      RegMem => "MemField",
+      Description => "Width of data to select from the pkt_attr/scratchpad bus  in bytes (also uses to shift right the header)",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F102,E103,TRUE)
+      DocName => "EneDataFsWidthConst",
+    },
+    EneConst => { #Structure Type: MemField;
+      Name => "EneConst",
+      RegMem => "MemField",
+      Description => "Value to be inserted to the sop word. Const must come in a byte resolution.",
+      Width => "32",
+      Position => "35:4", # Excel Formula: =calc_position(F103,E104)
+      DocName => "EneConst",
+    },
+    EneLeftShiftFsSizeConst => { #Structure Type: MemField;
+      Name => "EneLeftShiftFsSizeConst",
+      RegMem => "MemField",
+      Description => "amount of bytes to shift the header to the left in bytes",
+      Width => "4",
+      Position => "39:36", # Excel Formula: =calc_position(F104,E105)
+      DocName => "EneLeftShiftFsSizeConst",
+    },
+    EneLeftShiftSelConst => { #Structure Type: MemField;
+      Name => "EneLeftShiftSelConst",
+      RegMem => "MemField",
+      Description => "indicates whether the amount of left shift of the header is determined by instruction(0) or by a value in the pkt attr bus (1)",
+      Width => "1",
+      Position => "40", # Excel Formula: =calc_position(F105,E106)
+      DocName => "EneLeftShiftSelConst",
+    },
+    EneStartNextMacroConst => { #Structure Type: MemField;
+      Name => "EneStartNextMacroConst",
+      RegMem => "MemField",
+      Description => "Initiate loading of an address of a new macro to the macro counter",
+      Width => "1",
+      Position => "41", # Excel Formula: =calc_position(F106,E107)
+      DocName => "EneStartNextMacroConst",
+    },
+    EneOpConst => { #Structure Type: MemField;
+      Name => "EneOpConst",
+      RegMem => "MemField",
+      Description => "ENE op (00: NOP, 01: push to scratch pad, 10: push const to header, 11: push pkr attr to header)",
+      Width => "2",
+      Position => "43:42", # Excel Formula: =calc_position(F107,E108)
+      DocName => "EneOpConst",
+    },
+  },
+  rmep_last_time => { #Structure Type: Mem;
+    Name => "rmep_last_time",
+    RegMem => "Mem",
+    Address => "200000", # Excel Formula: =calc_mem_address(C79,A79,G109,L109)
+    Width => "39", # Excel Formula: =calc_mem_width(E110:E110,M109,F110,-1)
+    Type => "Dynamic",
+    UsedBy => "mpc",
+    DocName => "RmepLastTime",
+    MemEntries => "8192", # Excel Formula: =2^13
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=50,ReadActivityFactor=50",
+    MemLogicalWidth => "32",
+    last_time => { #Structure Type: MemField;
+      Name => "last_time",
+      RegMem => "MemField",
+      Description => "the last time a CCM frame was received from this RMEP. This is a read/write table, when the read access is from the npu-host NPE (which should update it when receiving CCM massages)",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F109,E110,TRUE)
+      DocName => "LastTime",
+    },
+  },
+  rmep_state_table => { #Structure Type: Mem;
+    Name => "rmep_state_table",
+    RegMem => "Mem",
+    Address => "300000", # Excel Formula: =calc_mem_address(C109,A109,G111,L111)
+    Description => "Direct table mapping state (additional data) for each of the RMEPs",
+    Width => "22", # Excel Formula: =calc_mem_width(E112:E114,M111,F114,-1)
+    Type => "Config",
+    UsedBy => "mpc",
+    DocName => "RmepStateTable",
+    MemEntries => "8192", # Excel Formula: =2^13
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100",
+    MemLogicalWidth => "16",
+    rmep_valid => { #Structure Type: MemField;
+      Name => "rmep_valid",
+      RegMem => "MemField",
+      Description => "this RMEP record belong to a valid remote MEP.",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F111,E112,TRUE)
+      DocName => "RmepValid",
+    },
+    rmep_profile => { #Structure Type: MemField;
+      Name => "rmep_profile",
+      RegMem => "MemField",
+      Description => "Profile (defining time interval for receiving CCMs) for this RMEP ID.",
+      Width => "4",
+      Position => "4:1", # Excel Formula: =calc_position(F112,E113)
+      DocName => "RmepProfile",
+    },
+    rmep_data => { #Structure Type: MemField;
+      Name => "rmep_data",
+      RegMem => "MemField",
+      Description => "additional data for this RMEP, will be added to the interrupt that will be created in case the npu-host will not receive CCM packet from this remote MEP inside the defined interval.",
+      Width => "11",
+      Position => "15:5", # Excel Formula: =calc_position(F113,E114)
+      DocName => "RmepData",
+    },
+  },
+  interval_mapping => { #Structure Type: Mem;
+    Name => "interval_mapping",
+    RegMem => "Mem",
+    Address => "400000", # Excel Formula: =calc_mem_address(C111,A111,G115,L115)
+    Width => "32", # Excel Formula: =calc_mem_width(E116:E116,M115,F116,-1)
+    Type => "Config",
+    UsedBy => "rmes",
+    DocName => "IntervalMapping",
+    MemEntries => "16", # Excel Formula: =2^4
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "32",
+    maximum_time => { #Structure Type: MemField;
+      Name => "maximum_time",
+      RegMem => "MemField",
+      Description => "per profile, maximum time allowed ",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F115,E116,TRUE)
+      DocName => "MaximumTime",
+    },
+  },
+  mp_data_table => { #Structure Type: Mem;
+    Name => "mp_data_table",
+    RegMem => "Mem",
+    Address => "500000", # Excel Formula: =calc_mem_address(C115,A115,G117,L117)
+    Description => "Direct table mapping MP index to the relevant data regarding this mainainance point",
+    Width => "209", # Excel Formula: =calc_mem_width(E118:E129,M117,F129,-1)
+    Type => "Config",
+    UsedBy => "mpc",
+    DocName => "MpDataTable",
+    MemEntries => "8192", # Excel Formula: =2^13
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100",
+    MemLogicalWidth => "200",
+    mp_valid => { #Structure Type: MemField;
+      Name => "mp_valid",
+      RegMem => "MemField",
+      Description => "Validity of MP in this ID",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F117,E118,TRUE)
+      DocName => "MpValid",
+    },
+    aux_ptr => { #Structure Type: MemField;
+      Name => "aux_ptr",
+      RegMem => "MemField",
+      Description => "Used by the MPC as the adress in aux to access (when Not used by scanner",
+      Width => "12",
+      Position => "12:1", # Excel Formula: =calc_position(F118,E119)
+      DocName => "AuxPtr",
+    },
+    ccm_valid => { #Structure Type: MemField;
+      Name => "ccm_valid",
+      RegMem => "MemField",
+      Description => "Validity of CCM in this ID",
+      Width => "1",
+      Position => "13", # Excel Formula: =calc_position(F119,E120)
+      DocName => "CcmValid",
+    },
+    lm_valid => { #Structure Type: MemField;
+      Name => "lm_valid",
+      RegMem => "MemField",
+      Description => "Validity of LM in this ID",
+      Width => "1",
+      Position => "14", # Excel Formula: =calc_position(F120,E121)
+      DocName => "LmValid",
+    },
+    dm_valid => { #Structure Type: MemField;
+      Name => "dm_valid",
+      RegMem => "MemField",
+      Description => "Validity of DM in this ID",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F121,E122)
+      DocName => "DmValid",
+    },
+    ccm_period => { #Structure Type: MemField;
+      Name => "ccm_period",
+      RegMem => "MemField",
+      Description => "Indicates the period (profile) to send packets to this CCM ID. This effects the rate of CCM packets to this ID (together with the CCM  timer registers configuration you see above).
+Basically, the rate should be 1 packet per timer cycle * max value (per profile, configured in regarray)",
+      Width => "3",
+      Position => "18:16", # Excel Formula: =calc_position(F122,E123)
+      DocName => "CcmPeriod",
+    },
+    ccm_count_phase => { #Structure Type: MemField;
+      Name => "ccm_count_phase",
+      RegMem => "MemField",
+      Description => "Indicates on which phase in the cycle to send CCM with this ID. In order to get CCM packets that are non-bursty, this field should be different between CCM packets with the same period (random).",
+      Width => "12",
+      Position => "30:19", # Excel Formula: =calc_position(F123,E124)
+      DocName => "CcmCountPhase",
+      AdditionalInfo => "2:12 sent to npe over nppd",
+    },
+    lm_period => { #Structure Type: MemField;
+      Name => "lm_period",
+      RegMem => "MemField",
+      Description => "Indicates the period (profile) to send packets to this LM ID. This effects the rate of LM packets to this ID (together with the LM  timer registers configuration you see above).
+Basically, the rate should be 1 packet per timer cycle * max value (per profile, configured in regarray)",
+      Width => "3",
+      Position => "33:31", # Excel Formula: =calc_position(F124,E125)
+      DocName => "LmPeriod",
+      AdditionalInfo => "sent to npe over nppd",
+    },
+    lm_count_phase => { #Structure Type: MemField;
+      Name => "lm_count_phase",
+      RegMem => "MemField",
+      Description => "Indicates on which phase in the cycle to send LM with this ID. In order to get LM packets that are non-bursty, this field should be different between LM packets with the same period (random).",
+      Width => "12",
+      Position => "45:34", # Excel Formula: =calc_position(F125,E126)
+      DocName => "LmCountPhase",
+      AdditionalInfo => "sent to npe over nppd",
+    },
+    dm_period => { #Structure Type: MemField;
+      Name => "dm_period",
+      RegMem => "MemField",
+      Description => "Indicates the period (profile) to send packets to this DM ID. This effects the rate of DM packets to this ID (together with the DM  timer registers configuration you see above).
+Basically, the rate should be 1 packet per timer cycle * max value (per profile, configured in regarray)",
+      Width => "3",
+      Position => "48:46", # Excel Formula: =calc_position(F126,E127)
+      DocName => "DmPeriod",
+      AdditionalInfo => "sent to npe over nppd",
+    },
+    dm_count_phase => { #Structure Type: MemField;
+      Name => "dm_count_phase",
+      RegMem => "MemField",
+      Description => "Indicates on which phase in the cycle to send DM with this ID. In order to get DM packets that are non-bursty, this field should be different between DM packets with the same period (random).",
+      Width => "12",
+      Position => "60:49", # Excel Formula: =calc_position(F127,E128)
+      DocName => "DmCountPhase",
+      AdditionalInfo => "sent to npe over nppd",
+    },
+    data => { #Structure Type: MemField;
+      Name => "data",
+      RegMem => "MemField",
+      Description => "data sent by scanner in the NPPD to the NPE",
+      Width => "139",
+      Position => "199:61", # Excel Formula: =calc_position(F128,E129)
+      DocName => "Data",
+      AdditionalInfo => "sent to npe over nppd",
+    },
+  },
+  aux_data_table => { #Structure Type: Mem;
+    Name => "aux_data_table",
+    RegMem => "Mem",
+    Address => "600000", # Excel Formula: =calc_mem_address(C117,A117,G130,L130)
+    Description => "Direct table mapping MP index to the relevant data regarding this mainainance point",
+    Width => "169", # Excel Formula: =calc_mem_width(E131:E133,M130,F133,-1)
+    Type => "Config",
+    UsedBy => "mpc",
+    DocName => "AuxDataTable",
+    MemEntries => "4096", # Excel Formula: =2^12
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100",
+    MemLogicalWidth => "160",
+    packet_header_type => { #Structure Type: MemField;
+      Name => "packet_header_type",
+      RegMem => "MemField",
+      Description => "Indicates the period (profile) to send packets to this SAT ID. This effects the rate of SAT packets to this ID (together with the SAT  timer registers configuration you see above).
+Basically, the rate should be 1 packet per timer cycle * max value (per profile, configured in regarray)",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F130,E131,TRUE)
+      DocName => "PacketHeaderType",
+    },
+    count_phase => { #Structure Type: MemField;
+      Name => "count_phase",
+      RegMem => "MemField",
+      Description => "Indicates on which phase in the cycle to send SAT with this ID. In order to get SAT packets that are non-bursty, this field should be different between SAT packets with the same period (random).",
+      Width => "8",
+      Position => "15:8", # Excel Formula: =calc_position(F131,E132)
+      DocName => "CountPhase",
+    },
+    data => { #Structure Type: MemField;
+      Name => "data",
+      RegMem => "MemField",
+      Description => "data sent by scanner in the NPPD to the NPE",
+      Width => "144",
+      Position => "159:16", # Excel Formula: =calc_position(F132,E133)
+      DocName => "Data",
+    },
+  },
+  eth_mp_em => { #Structure Type: Mem;
+    Name => "eth_mp_em",
+    RegMem => "Mem",
+    Address => "600000", # Excel Formula: =calc_mem_address(C130,A130,G134,L134)
+    Description => "data on MP ",
+    Width => "40", # Excel Formula: =calc_mem_width(E135:E140,M134,F140,-1)
+    Type => "DocOnly",
+    UsedBy => "mpc",
+    DocName => "EthMpEm",
+    MemEntries => "8192", # Excel Formula: =2^13
+    MemWrapper => "EM",
+    MemProtect => "None",
+    AdditionalInfo => "KeyWidth=50,SourceIdWidth=8,NumberOfBanks=4,NumberOfCamEntries=32,NumberOfParallelBanks=4,VerifierSampleReadAccess=1,VerifierSampleReadBeforeProt=2,VerifierSampleWriteAfterProt=1,VerifierCpuReadAccess=Enabled,VerifierCpuWriteAccess=Enabled,VrfWriteActivityFactor=0,VrfReadActivityFactor=100",
+    MemLogicalWidth => "40",
+    access_mp_data => { #Structure Type: MemField;
+      Name => "access_mp_data",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F134,E135,TRUE)
+      DocName => "AccessMpData",
+    },
+    mp_data_select => { #Structure Type: MemField;
+      Name => "mp_data_select",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F135,E136)
+      DocName => "MpDataSelect",
+    },
+    access_rmep_data => { #Structure Type: MemField;
+      Name => "access_rmep_data",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F136,E137)
+      DocName => "AccessRmepData",
+    },
+    mp_index => { #Structure Type: MemField;
+      Name => "mp_index",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "15:3", # Excel Formula: =calc_position(F137,E138)
+      DocName => "MpIndex",
+    },
+    rmep_index => { #Structure Type: MemField;
+      Name => "rmep_index",
+      RegMem => "MemField",
+      Width => "13",
+      Position => "28:16", # Excel Formula: =calc_position(F138,E139)
+      DocName => "RmepIndex",
+    },
+    payload_data => { #Structure Type: MemField;
+      Name => "payload_data",
+      RegMem => "MemField",
+      Width => "11",
+      Position => "39:29", # Excel Formula: =calc_position(F139,E140)
+      DocName => "PayloadData",
+    },
+  },
+  event_queue => { #Structure Type: Mem;
+    Name => "event_queue",
+    RegMem => "Mem",
+    Address => "700000", # Excel Formula: =calc_mem_address(C130,A130,G141,L141)
+    Description => "events stored for the CPU to read",
+    Width => "69", # Excel Formula: =calc_mem_width(E142:E142,M141,F142,-1)
+    Type => "Dynamic",
+    UsedBy => "evq",
+    DocName => "EventQueue",
+    MemEntries => "1024",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=50,ReadActivityFactor=0,PortErrPropagate=Disabled",
+    MemLogicalWidth => "61",
+    event_data => { #Structure Type: MemField;
+      Name => "event_data",
+      RegMem => "MemField",
+      Width => "61",
+      Position => "60:0", # Excel Formula: =calc_position(F141,E142,TRUE)
+      DocName => "EventData",
+    },
+  },
+  packet_data_table => { #Structure Type: Mem;
+    Name => "packet_data_table",
+    RegMem => "Mem",
+    Address => "800000", # Excel Formula: =calc_mem_address(C141,A141,G143,L143)
+    Width => "138", # Excel Formula: =calc_mem_width(E144:E145,M143,F145,-1)
+    Type => "Config",
+    UsedBy => "mpc",
+    DocName => "PacketDataTable",
+    MemEntries => "256",
+    MemWrapper => "1P",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,PortErrPropagate=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100",
+    MemLogicalWidth => "129",
+    next_recycle_valid => { #Structure Type: MemField;
+      Name => "next_recycle_valid",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F143,E144,TRUE)
+      DocName => "NextRecycleValid",
+    },
+    packet_data => { #Structure Type: MemField;
+      Name => "packet_data",
+      RegMem => "MemField",
+      Width => "128",
+      Position => "128:1", # Excel Formula: =calc_position(F144,E145)
+      DocName => "PacketData",
+    },
+  },
+  max_sat_counter => { #Structure Type: Mem;
+    Name => "max_sat_counter",
+    RegMem => "Mem",
+    Address => "900000", # Excel Formula: =calc_mem_address(C143,A143,G146,L146)
+    Description => "max per sat type",
+    Width => "12", # Excel Formula: =calc_mem_width(E147:E147,M146,F147,-1)
+    Type => "Config",
+    UsedBy => "scn",
+    DocName => "MaxSatCounter",
+    MemEntries => "8",
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "12",
+    max_counter => { #Structure Type: MemField;
+      Name => "max_counter",
+      RegMem => "MemField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F146,E147,TRUE)
+      DocName => "MaxCounter",
+    },
+  },
+  max_ccm_counter => { #Structure Type: Mem;
+    Name => "max_ccm_counter",
+    RegMem => "Mem",
+    Address => "A00000", # Excel Formula: =calc_mem_address(C146,A146,G148,L148)
+    Description => "max per profile",
+    Width => "12", # Excel Formula: =calc_mem_width(E149:E149,M148,F149,-1)
+    Type => "Config",
+    UsedBy => "scn",
+    DocName => "MaxCcmCounter",
+    MemEntries => "8",
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "12",
+    ccm_counter => { #Structure Type: MemField;
+      Name => "ccm_counter",
+      RegMem => "MemField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F148,E149,TRUE)
+      DocName => "CcmCounter",
+    },
+  },
+  max_lm_counter => { #Structure Type: Mem;
+    Name => "max_lm_counter",
+    RegMem => "Mem",
+    Address => "B00000", # Excel Formula: =calc_mem_address(C148,A148,G150,L150)
+    Description => "max per profile",
+    Width => "12", # Excel Formula: =calc_mem_width(E151:E151,M150,F151,-1)
+    Type => "Config",
+    UsedBy => "scn",
+    DocName => "MaxLmCounter",
+    MemEntries => "8",
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "12",
+    lm_counter => { #Structure Type: MemField;
+      Name => "lm_counter",
+      RegMem => "MemField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F150,E151,TRUE)
+      DocName => "LmCounter",
+    },
+  },
+  max_dm_counter => { #Structure Type: Mem;
+    Name => "max_dm_counter",
+    RegMem => "Mem",
+    Address => "C00000", # Excel Formula: =calc_mem_address(C150,A150,G152,L152)
+    Description => "max per profile",
+    Width => "12", # Excel Formula: =calc_mem_width(E153:E153,M152,F153,-1)
+    Type => "Config",
+    UsedBy => "scn",
+    DocName => "MaxDmCounter",
+    MemEntries => "8",
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "12",
+    dm_counter => { #Structure Type: MemField;
+      Name => "dm_counter",
+      RegMem => "MemField",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F152,E153,TRUE)
+      DocName => "DmCounter",
+    },
+  },
+  cfg_lri => { #Structure Type: Reg;
+    Name => "cfg_lri",
+    RegMem => "Reg",
+    Address => "119", # Excel Formula: =calc_reg_address(C77,A77,G77)
+    Width => "64", # Excel Formula: =calc_reg_width(E155:E156,F156)
+    Type => "Config",
+    DocName => "CfgLri",
+    cfg_npu_host_lri_header => { #Structure Type: RegField;
+      Name => "cfg_npu_host_lri_header",
+      RegMem => "RegField",
+      Description => "prefix added to packet headers sent from the LRI to the NPE. It will be added to each packet (which may contain multiple learn records, see in npu-host-spec)",
+      Width => "32",
+      Position => "31:0",
+      Type => "Config",
+      UsedBy => "npuh",
+      DefaultValue => "h6",
+      DocName => "CfgNpuHostLriHeader",
+    },
+    cfg_npu_host_lri_max_time => { #Structure Type: RegField;
+      Name => "cfg_npu_host_lri_max_time",
+      RegMem => "RegField",
+      Description => "Max cycles (since first learn record received in the npu-host) until the LRI will send the packed records inside a NPPD to the npu-host NPE.",
+      Width => "32",
+      Position => "63:32", # Excel Formula: =calc_position(F155,E156)
+      Type => "Config",
+      UsedBy => "npuh",
+      DefaultValue => "h6",
+      DocName => "CfgNpuHostLriMaxTime",
+    },
+  },
+  pin_start_offset_macros => { #Structure Type: Reg;
+    Name => "pin_start_offset_macros",
+    RegMem => "Reg",
+    Address => "11A", # Excel Formula: =calc_reg_address(C154,A154,G154)
+    Width => "4", # Excel Formula: =calc_reg_width(E158:E159,F159)
+    Type => "Config",
+    DocName => "PinStartOffsetMacros",
+    fi_macro_offset => { #Structure Type: RegField;
+      Name => "fi_macro_offset",
+      RegMem => "RegField",
+      Description => "offset (in bytes) for the  first fi macro in the start of the header sent to the npu-host PIN (from the TXPP)",
+      Width => "2",
+      Position => "1:0", # Excel Formula: =calc_position(F157,E158,TRUE)
+      Type => "Config",
+      UsedBy => "pin",
+      DefaultValue => "b00",
+      DocName => "FiMacroOffset",
+    },
+    npe_macro_offset => { #Structure Type: RegField;
+      Name => "npe_macro_offset",
+      RegMem => "RegField",
+      Description => "offset (in bytes) for the first npe macro in the start of the header sent to the npu-host PIN (from the TXPP)",
+      Width => "2",
+      Position => "3:2", # Excel Formula: =calc_position(F158,E159)
+      Type => "Config",
+      UsedBy => "pin",
+      DefaultValue => "b01",
+      DocName => "NpeMacroOffset",
+    },
+  },
+  scn_out_inject_ifg => { #Structure Type: Reg;
+    Name => "scn_out_inject_ifg",
+    RegMem => "Reg",
+    Address => "11B", # Excel Formula: =calc_reg_address(C157,A157,G157)
+    Description => "default target ifg for massages from the scanners (put on the NPPD sent into the NPE)",
+    Width => "4", # Excel Formula: =calc_reg_width(E161:E161,F161)
+    Type => "Config",
+    DocName => "ScnOutInjectIfg",
+    scn_inject_ifg => { #Structure Type: RegField;
+      Name => "scn_inject_ifg",
+      RegMem => "RegField",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F160,E161,TRUE)
+      Type => "Config",
+      UsedBy => "npa",
+      DefaultValue => "h0",
+      DocName => "ScnInjectIfg",
+      DefaultSvConstraint => "h0",
+    },
+  },
+  max_amount_of_threads_used => { #Structure Type: Reg;
+    Name => "max_amount_of_threads_used",
+    RegMem => "Reg",
+    Address => "11C", # Excel Formula: =calc_reg_address(C160,A160,G160)
+    Description => "max amount of thread from the NPE that the npa is allowed to use, per phase.
+Typically should be used to allow enabling less threads in case of memory error (inside the NPE)",
+    Width => "16", # Excel Formula: =calc_reg_width(E163:E164,F164)
+    Type => "Config",
+    DocName => "MaxAmountOfThreadsUsed",
+    max_threads_used_phase_0 => { #Structure Type: RegField;
+      Name => "max_threads_used_phase_0",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F162,E163,TRUE)
+      Type => "Config",
+      UsedBy => "npa",
+      DefaultValue => "d96",
+      DocName => "MaxThreadsUsedPhase_0",
+      DefaultSvConstraint => "h0",
+    },
+    max_threads_used_phase_1 => { #Structure Type: RegField;
+      Name => "max_threads_used_phase_1",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "15:8", # Excel Formula: =calc_position(F163,E164)
+      Type => "Config",
+      UsedBy => "npa",
+      DefaultValue => "d96",
+      DocName => "MaxThreadsUsedPhase_1",
+      DefaultSvConstraint => "h0",
+    },
+  },
+  eth_mp_emVerifier0 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 18; Skip Register;
+    Name => "eth_mp_emVerifier[4]",
+    RegMem => "Mem",
+    Address => "D00000", # Excel Formula: =calc_mem_address(C152,A152,G165,L165)
+    Width => "88", # Excel Formula: =calc_mem_width(E166:E166,M165,F166,-1)
+    Type => "Dynamic",
+    UsedBy => "eth_mp_em",
+    MemEntries => "2048",
+    MemWrapper => "1P",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=2,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    MemLogicalWidth => "88",
+    eth_mp_emVerifier0Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 18;
+      Name => "eth_mp_emVerifier[n]Data",
+      RegMem => "MemField",
+      Width => "88",
+      Position => "87:0", # Excel Formula: =calc_position(F165,E166,TRUE)
+    },
+  },
+  eth_mp_emVerifier1 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 18; Skip Register;
+    Name => "eth_mp_emVerifier[4]",
+    RegMem => "Mem",
+    Address => "E00000",
+    Width => "88", # Excel Formula: =calc_mem_width(E166:E166,M165,F166,-1)
+    Type => "Dynamic",
+    UsedBy => "eth_mp_em",
+    MemEntries => "2048",
+    MemWrapper => "1P",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=2,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    MemLogicalWidth => "88",
+    eth_mp_emVerifier1Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 18;
+      Name => "eth_mp_emVerifier[n]Data",
+      RegMem => "MemField",
+      Width => "88",
+      Position => "87:0", # Excel Formula: =calc_position(F165,E166,TRUE)
+    },
+  },
+  eth_mp_emVerifier2 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 18; Skip Register;
+    Name => "eth_mp_emVerifier[4]",
+    RegMem => "Mem",
+    Address => "F00000",
+    Width => "88", # Excel Formula: =calc_mem_width(E166:E166,M165,F166,-1)
+    Type => "Dynamic",
+    UsedBy => "eth_mp_em",
+    MemEntries => "2048",
+    MemWrapper => "1P",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=2,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    MemLogicalWidth => "88",
+    eth_mp_emVerifier2Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 18;
+      Name => "eth_mp_emVerifier[n]Data",
+      RegMem => "MemField",
+      Width => "88",
+      Position => "87:0", # Excel Formula: =calc_position(F165,E166,TRUE)
+    },
+  },
+  eth_mp_emVerifier3 => { #Structure Type: Mem; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 18; Skip Register;
+    Name => "eth_mp_emVerifier[4]",
+    RegMem => "Mem",
+    Address => "1000000",
+    Width => "88", # Excel Formula: =calc_mem_width(E166:E166,M165,F166,-1)
+    Type => "Dynamic",
+    UsedBy => "eth_mp_em",
+    MemEntries => "2048",
+    MemWrapper => "1P",
+    MemProtect => "ExtECC",
+    AdditionalInfo => "PackArrayToBus=Enabled,UseHardReset=1,SampleReadAccess=1,SampleReadBeforeProt=2,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=0,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    MemLogicalWidth => "88",
+    eth_mp_emVerifier3Data => { #Structure Type: MemField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 18;
+      Name => "eth_mp_emVerifier[n]Data",
+      RegMem => "MemField",
+      Width => "88",
+      Position => "87:0", # Excel Formula: =calc_position(F165,E166,TRUE)
+    },
+  },
+  eth_mp_emPerBankReg0 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 20; Skip Register;
+    Name => "eth_mp_emPerBankReg[4]",
+    RegMem => "Reg",
+    Address => "11D", # Excel Formula: =calc_reg_address(C162,A162,G162)
+    Width => "102", # Excel Formula: =calc_reg_width(E168:E170,F170)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "0",
+    eth_mp_emActiveBanks0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 21;
+      Name => "eth_mp_emActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F167,E168,TRUE)
+      Type => "Config",
+      UsedBy => "eth_mp_em",
+      DefaultValue => "d1",
+    },
+    eth_mp_emHashKey0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 17;
+      Name => "eth_mp_emHashKey[n]",
+      RegMem => "RegField",
+      Width => "100",
+      Position => "100:1", # Excel Formula: =calc_position(F168,E169)
+      Type => "Config",
+      UsedBy => "eth_mp_em",
+      DefaultValue => "h0",
+    },
+    eth_mp_emUsePrimitiveCrc0 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 0; ArrayLocationInName: 25;
+      Name => "eth_mp_emUsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "101", # Excel Formula: =calc_position(F169,E170)
+      Type => "Config",
+      UsedBy => "eth_mp_em",
+      DefaultValue => "h0",
+    },
+  },
+  eth_mp_emPerBankReg1 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 20; Skip Register;
+    Name => "eth_mp_emPerBankReg[4]",
+    RegMem => "Reg",
+    Address => "11E",
+    Width => "102", # Excel Formula: =calc_reg_width(E168:E170,F170)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "1",
+    eth_mp_emActiveBanks1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 21;
+      Name => "eth_mp_emActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F167,E168,TRUE)
+      Type => "Config",
+      UsedBy => "eth_mp_em",
+      DefaultValue => "d1",
+    },
+    eth_mp_emHashKey1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 17;
+      Name => "eth_mp_emHashKey[n]",
+      RegMem => "RegField",
+      Width => "100",
+      Position => "100:1", # Excel Formula: =calc_position(F168,E169)
+      Type => "Config",
+      UsedBy => "eth_mp_em",
+      DefaultValue => "h0",
+    },
+    eth_mp_emUsePrimitiveCrc1 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 1; ArrayLocationInName: 25;
+      Name => "eth_mp_emUsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "101", # Excel Formula: =calc_position(F169,E170)
+      Type => "Config",
+      UsedBy => "eth_mp_em",
+      DefaultValue => "h0",
+    },
+  },
+  eth_mp_emPerBankReg2 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 20; Skip Register;
+    Name => "eth_mp_emPerBankReg[4]",
+    RegMem => "Reg",
+    Address => "11F",
+    Width => "102", # Excel Formula: =calc_reg_width(E168:E170,F170)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "2",
+    eth_mp_emActiveBanks2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 21;
+      Name => "eth_mp_emActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F167,E168,TRUE)
+      Type => "Config",
+      UsedBy => "eth_mp_em",
+      DefaultValue => "d1",
+    },
+    eth_mp_emHashKey2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 17;
+      Name => "eth_mp_emHashKey[n]",
+      RegMem => "RegField",
+      Width => "100",
+      Position => "100:1", # Excel Formula: =calc_position(F168,E169)
+      Type => "Config",
+      UsedBy => "eth_mp_em",
+      DefaultValue => "h0",
+    },
+    eth_mp_emUsePrimitiveCrc2 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 2; ArrayLocationInName: 25;
+      Name => "eth_mp_emUsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "101", # Excel Formula: =calc_position(F169,E170)
+      Type => "Config",
+      UsedBy => "eth_mp_em",
+      DefaultValue => "h0",
+    },
+  },
+  eth_mp_emPerBankReg3 => { #Structure Type: Reg; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 20; Skip Register;
+    Name => "eth_mp_emPerBankReg[4]",
+    RegMem => "Reg",
+    Address => "120",
+    Width => "102", # Excel Formula: =calc_reg_width(E168:E170,F170)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "4",
+    ArrayIndex => "3",
+    eth_mp_emActiveBanks3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 21;
+      Name => "eth_mp_emActiveBanks[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F167,E168,TRUE)
+      Type => "Config",
+      UsedBy => "eth_mp_em",
+      DefaultValue => "d1",
+    },
+    eth_mp_emHashKey3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 17;
+      Name => "eth_mp_emHashKey[n]",
+      RegMem => "RegField",
+      Width => "100",
+      Position => "100:1", # Excel Formula: =calc_position(F168,E169)
+      Type => "Config",
+      UsedBy => "eth_mp_em",
+      DefaultValue => "h0",
+    },
+    eth_mp_emUsePrimitiveCrc3 => { #Structure Type: RegField; ArrayLength: 4; ArrayIndex: 3; ArrayLocationInName: 25;
+      Name => "eth_mp_emUsePrimitiveCrc[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "101", # Excel Formula: =calc_position(F169,E170)
+      Type => "Config",
+      UsedBy => "eth_mp_em",
+      DefaultValue => "h0",
+    },
+  },
+  eth_mp_emPerEmReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 18; Skip Register;
+    Name => "eth_mp_emPerEmReg[1]",
+    RegMem => "Reg",
+    Address => "121", # Excel Formula: =calc_reg_address(C167,A167,G167)
+    Width => "33", # Excel Formula: =calc_reg_width(E172:E174,F174)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    eth_mp_emKeyWidth0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 18;
+      Name => "eth_mp_emKeyWidth[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F171,E172,TRUE)
+      Type => "Config",
+      UsedBy => "eth_mp_em",
+      DefaultValue => "h0",
+    },
+    eth_mp_emAutoBubbleReq0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 23;
+      Name => "eth_mp_emAutoBubbleReq[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "16", # Excel Formula: =calc_position(F172,E173)
+      Type => "Config",
+      UsedBy => "eth_mp_em",
+      DefaultValue => "h0",
+    },
+    eth_mp_emBubbleReqThreshold0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 28;
+      Name => "eth_mp_emBubbleReqThreshold[n]",
+      RegMem => "RegField",
+      Width => "16",
+      Position => "32:17", # Excel Formula: =calc_position(F173,E174)
+      Type => "Config",
+      UsedBy => "eth_mp_em",
+      DefaultValue => "h0",
+    },
+  },
+  eth_mp_emCamWmMaxReg0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 21; Skip Register;
+    Name => "eth_mp_emCamWmMaxReg[1]",
+    RegMem => "Reg",
+    Address => "122", # Excel Formula: =calc_reg_address(C171,A171,G171)
+    Width => "8", # Excel Formula: =calc_reg_width(E176:E176,F176)
+    Type => "ReadOnly",
+    AdditionalInfo => "PackArrayToBus",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    eth_mp_emCamWmMax0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 18;
+      Name => "eth_mp_emCamWmMax[n]",
+      RegMem => "RegField",
+      Width => "8",
+      Position => "7:0", # Excel Formula: =calc_position(F175,E176,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "emdb",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  eth_mp_emAccessRegister0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 24; Skip Register;
+    Name => "eth_mp_emAccessRegister[1]",
+    RegMem => "Reg",
+    Address => "123", # Excel Formula: =calc_reg_address(C175,A175,G175)
+    Width => "110", # Excel Formula: =calc_reg_width(E178:E178,F178)
+    Type => "External",
+    UsedBy => "em_top",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    eth_mp_emAccessReg0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 19;
+      Name => "eth_mp_emAccessReg[n]",
+      RegMem => "RegField",
+      Width => "110",
+      Position => "109:0", # Excel Formula: =calc_position(F177,E178,TRUE)
+      Type => "External",
+    },
+  },
+  eth_mp_emResponseRegister0 => { #Structure Type: Reg; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 26; Skip Register;
+    Name => "eth_mp_emResponseRegister[1]",
+    RegMem => "Reg",
+    Address => "124", # Excel Formula: =calc_reg_address(C177,A177,G177)
+    Width => "110", # Excel Formula: =calc_reg_width(E180:E181,F181)
+    Type => "ReadOnly",
+    Comments => "EM Skip Reg",
+    ArrayLength => "1",
+    ArrayIndex => "0",
+    eth_mp_emResponseValid0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 23;
+      Name => "eth_mp_emResponseValid[n]",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F179,E180,TRUE)
+      Type => "Event",
+      UsedBy => "emdb",
+    },
+    eth_mp_emResponseReg0 => { #Structure Type: RegField; ArrayLength: 1; ArrayIndex: 0; ArrayLocationInName: 21;
+      Name => "eth_mp_emResponseReg[n]",
+      RegMem => "RegField",
+      Width => "109",
+      Position => "109:1", # Excel Formula: =calc_position(F180,E181)
+      Type => "Capture",
+      UsedBy => "emdb",
+    },
+  },
+  eth_mp_emCam => { #Structure Type: Mem; Skip Register;
+    Name => "eth_mp_emCam",
+    RegMem => "Mem",
+    Address => "1100000", # Excel Formula: =calc_mem_address(C165,A165,G182,L182)
+    Width => "91", # Excel Formula: =calc_mem_width(E183:E185,"None",F185,-1)
+    Type => "Dynamic",
+    UsedBy => "eth_mp_em",
+    MemEntries => "32",
+    MemWrapper => "TCAM",
+    MemProtect => "None",
+    AdditionalInfo => "NumOfKeys=1,RegTcamPayloadWidth=40,CAM=Enabled,CpuReadAccess=Enabled,CpuWriteAccess=Enabled",
+    Comments => "EM Skip Reg",
+    MemLogicalWidth => "91",
+    eth_mp_emCam_key => { #Structure Type: MemField;
+      Name => "eth_mp_emCam_key",
+      RegMem => "MemField",
+      Width => "50",
+      Position => "49:0", # Excel Formula: =calc_position(F182,E183,TRUE)
+    },
+    eth_mp_emCam_payload => { #Structure Type: MemField;
+      Name => "eth_mp_emCam_payload",
+      RegMem => "MemField",
+      Width => "40",
+      Position => "89:50", # Excel Formula: =calc_position(F183,E184)
+    },
+    eth_mp_emCam_valid => { #Structure Type: MemField;
+      Name => "eth_mp_emCam_valid",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "90", # Excel Formula: =calc_position(F184,E185)
+    },
+  },
+  EmResponseInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "EmResponseInterrupt",
+    RegMem => "Reg",
+    Address => "125", # Excel Formula: =calc_reg_address(C179,A179,G179)
+    Width => "1", # Excel Formula: =calc_reg_width(E187:E187,F187)
+    Type => "Interrupt",
+    Comments => "EM Skip Reg",
+    eth_mp_emResp => { #Structure Type: RegField;
+      Name => "eth_mp_emResp",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F186,E187,TRUE)
+      Type => "Interrupt",
+      UsedBy => "emdb",
+    },
+  },
+  EmResponseInterruptMask => { #Structure Type: Reg; Skip Register; Skip Register;
+    Name => "EmResponseInterruptMask",
+    RegMem => "Reg",
+    Address => "126",
+    Width => "1", # Excel Formula: =calc_reg_width(E187:E187,F187)
+    Type => "InterruptMask",
+    Comments => "EM Skip Reg",
+    eth_mp_emRespMask => { #Structure Type: RegField;
+      Name => "eth_mp_emRespMask",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F186,E187,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  EmResponseInterruptTest => { #Structure Type: Reg; Skip Register; Skip Register;
+    Name => "EmResponseInterruptTest",
+    RegMem => "Reg",
+    Address => "127",
+    Width => "1", # Excel Formula: =calc_reg_width(E187:E187,F187)
+    Type => "InterruptTest",
+    Comments => "EM Skip Reg",
+    eth_mp_emRespTest => { #Structure Type: RegField;
+      Name => "eth_mp_emRespTest",
+      RegMem => "RegField",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F186,E187,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+};

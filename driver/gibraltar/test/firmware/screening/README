@@ -1,0 +1,37 @@
+Files
+-----
+Main program:
+    main_socket.cpp:
+        Connect to RTL simulator over socket, load commands from file and pump them through Access Engine.
+    main_css.cpp:
+        Run on Arc, load commands from flash and pump them through Access Engine
+    screening.{cpp,h}:
+        Read commands from storage (storage is a file or a CSS memory)
+        Execute commands using access engine
+    spi_flash.{cpp,h}:
+        Read from flash through SBIF interface
+
+Utilities:
+    commands_hex_to_bin.cpp
+        Convert a human readable hex file to a binary file, which can be further copied to flash.
+    load_and_run_firmware.py
+        Execute firmware on Pacific - load firmware image file to CSS memory, take core and Arc0 out of reset and run.
+    read_commands_from_flash_pacific.py
+        Read commands from flash and dump in hex. The flash is accessed through Pacific device.
+    read_commands_from_file.py
+        Read commands from file and dump in hex.
+
+Input file format:
+-----------------
+write_reg  block_id  addr  value
+write_mem  block_id  addr  value
+check_reg  block_id  addr  expected-value
+check_mem  block_id  addr  expected-value
+
+Real-life example:
+------------------
+00000001 0000 01000120 0002 001f
+00000001 0280 0000017e 0001 01
+00000001 0280 00000203 0001 01
+00000001 0005 00000101 0003 000100
+00000001 005f 00000101 0003 000100

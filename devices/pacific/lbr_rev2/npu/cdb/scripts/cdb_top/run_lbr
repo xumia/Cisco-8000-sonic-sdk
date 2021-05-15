@@ -1,0 +1,1 @@
+$SCRIPT_BIN_DIR/unit_cfg/regfile_generation.pl -unit cdb_top -lbrs $MYPATH/design/npu/cdb/data/cdb_top.lbr -out_dir $MYPATH/design/npu/cdb/cif/cdb_top -physical_imps_file $MYPATH/design/npu/cdb/memories/cdb_top/cdb_top_lwrappers_best_physical_imps.txt -avago_memories /proj/pacific/memories/pacific/next/ -add_bist 1

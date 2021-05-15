@@ -1,0 +1,76 @@
+#!/usr/bin/env python3
+# BEGIN_LEGAL
+#
+# Copyright (c) 2016-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+import unittest
+from leaba import sdk
+from scapy.all import *
+from packet_test_utils import *
+from ipv4_ingress_acl_base import *
+import sim_utils
+import topology as T
+
+
+class multislice_scale_acl(ipv4_ingress_acl_base):
+
+    def test_multislice_scale_acl(self):
+        acl1 = self.create_simple_scaled_acl()
+        self.topology.rx_l3_ac.hld_obj.set_acl(acl1)
+        self.insert_nop_ace(acl1)
+
+        # Apply on another slice
+        self.topology.tx_l3_ac_reg.hld_obj.set_acl(acl1)
+        self.do_test_route_default()
+        self.insert_drop_ace(acl1)
+        self.do_test_route_default_with_drop()
+
+        # Check counter (not clearing)
+        packet_count, byte_count = self.drop_counter.read(0, True, False)
+        self.assertEqual(packet_count, 1)
+
+        # Remove and reapply on slice, while still applied to other
+        self.topology.rx_l3_ac.hld_obj.clear_acl(
+            sdk.la_acl.stage_e_INGRESS_FWD, sdk.la_acl.key_type_e_IPV4_AND_L4)
+
+        self.do_test_route_default()
+        self.topology.rx_l3_ac.hld_obj.set_acl(acl1)
+        self.do_test_route_default_with_drop()
+
+        # Check counter (not clearing)
+        packet_count, byte_count = self.drop_counter.read(0, True, False)
+        self.assertEqual(packet_count, 2)
+
+        # Remove in other order
+        self.topology.tx_l3_ac_reg.hld_obj.clear_acl(
+            sdk.la_acl.stage_e_INGRESS_FWD, sdk.la_acl.key_type_e_IPV4_AND_L4)
+
+        self.do_test_route_default_with_drop()
+
+       # Check counter
+        packet_count, byte_count = self.drop_counter.read(0, True, True)
+        self.assertEqual(packet_count, 3)
+
+        self.topology.rx_l3_ac.hld_obj.clear_acl(
+            sdk.la_acl.stage_e_INGRESS_FWD, sdk.la_acl.key_type_e_IPV4_AND_L4)
+
+        self.do_test_route_default()
+
+
+if __name__ == '__main__':
+    unittest.main()

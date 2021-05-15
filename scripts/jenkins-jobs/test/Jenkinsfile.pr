@@ -1,0 +1,809 @@
+@Library('leaba-pipeline-lib@release_1.1')
+
+// Imports from third party packages
+import jenkins.model.CauseOfInterruption.UserInterruption
+import groovy.transform.Field
+
+// Global objects
+
+@Field
+def FAILED_STAGE="Unknown";
+@Field
+def LSF_8C="/auto/edatools/bin/bsub -Is -P cag-sw.p -q build -R \"rusage[cores=8]\""
+
+@Field
+def gitFetched = false;
+
+enum SearchMode {
+  NORMAL, // inclusive search
+  INVERSE // exclusive search
+}
+
+def interface resultStatus {
+  String SUCCESS = "success"
+  String FAILURE = "failure"
+  String PENDING = "pending"
+}
+
+def interface resultMessage {
+  String SUCCESS = "Passed"
+  String FAILURE = "Failed"
+  String PENDING = "Pending"
+  String SKIPPED = "Skipped"
+  String PREV_SUCCESS = "Previously passed"
+  String DEFAULT = "default-message-unknown"
+}
+
+// Global Helper Functions
+@Field
+String gitCommitTitle = "" 
+
+def getGitCommitTitle() {
+  String command = """#!/bin/bash
+  git --no-pager log  HEAD -n1""";
+  return sh(script: command, returnStdout: true);
+}
+
+def shouldRunStage(String stageName) {
+  // Allows the submitter to specify the stages to run through the commit title
+  // by providing "run_only_stage=<CSV>" where the stages are lowercase and 
+  // hyphenated instead of space separated strings.
+  // "run_only_stages=gibraltar-sdk-simulation" would run only the required builds
+  // and "Gibraltar SDK Simulation", skipping everything else.
+  if (gitCommitTitle.equals("")) {
+    gitCommitTitle = getGitCommitTitle();
+  }
+  String commitTitle = gitCommitTitle.toLowerCase();
+  String newStageName = stageName.replace(' ', '-').toLowerCase();
+
+  if (commitTitle.indexOf('run_only_stages=') == -1) {
+      return true;
+  }
+
+  def matcher = commitTitle =~ /(?s)^.*run_only_stages=([a-zA-Z_0-9-]*,)*${newStageName}(,[a-zA-Z_0-9-]*)*.*/
+  Boolean matches = matcher.find();
+  if (matches) {
+    echo("stage name  " +  newStageName + " matches!!!");
+  } else {
+    echo("stage name " + newStageName + " does not match commit title: " + commitTitle);
+  }
+
+  return matches;
+}
+
+def filesChangedIn(SearchMode mode, String... search_patterns) {
+  // Return true if files were changed in matching any of the provided search_patterns.
+  // Variable args can be provided for the search pattern(s), but the function must be
+  // called multiple times if using multiple search modes.
+  // Param: mode - Determines whether to do an inclusive (NORMAL) or exclusive (INVERSE) search
+  // Param: search_patterns - pattern array containing directories, filenames, or other patterns to compare with diff
+
+  def String REPO = sh(returnStdout: true, script: """#!/bin/bash
+  git config remote.origin.url""").trim();
+  REPO = REPO.replace("https://", ""); // Remove the https prefix
+
+  // Fetch the target branch so that we can compare our checked out branch to it for changes
+  if (!gitFetched) {
+    withCredentials([usernamePassword(credentialsId: 'marvin_faceless', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME'),
+                    string(credentialsId: 'git_write_access_token', variable: 'TOKEN')]) {
+      def result = sh(
+          script: """#!/bin/bash
+            git fetch --no-tags -- https://${GIT_USERNAME}:${TOKEN}@${REPO} +refs/heads/${env.CHANGE_TARGET}:refs/remotes/origin/${env.CHANGE_TARGET}
+          """,
+          returnStdout: true).trim();
+    }
+    gitFetched = true;
+  }
+
+  // Compare only local changes vs. the target branch
+  def int result = 0
+  def String searchModeString = ''
+
+  def Collection changed_file_list = sh(
+    script: """#!/bin/bash
+      git --no-pager diff --name-only `git merge-base origin/${env.CHANGE_TARGET} HEAD`
+    """, returnStdout: true).trim().split('\n')
+
+  if (mode == SearchMode.INVERSE) {
+    // delete all entries containing any of the patterns, then count remaining list
+    def Collection remaining_file_list = changed_file_list
+    searchModeString = 'INVERSE'
+
+    for (String pattern : search_patterns) {
+      remaining_file_list.removeAll { it ==~ pattern }
+    }
+
+    result = remaining_file_list.size()
+  } else {
+    // Search list for every provided pattern and add up number of matches
+    searchModeString = 'NORMAL'
+
+    for (String pattern : search_patterns) {
+      def numOccurrences = changed_file_list.count { it ==~ pattern }
+      result += numOccurrences
+    }
+  }
+
+  def String pattern_string = ''
+  for (String pattern : search_patterns) {
+    pattern_string += pattern.trim() + '\n'
+  }
+
+  if (result) {
+    echo "Found $result files changed using $searchModeString search with the regex pattern(s):\n$pattern_string"
+    return true
+  } else {
+    echo "No changed files found using $searchModeString search with the regex pattern(s):\n$pattern_string"
+    return false
+  }
+}
+
+def runStageIf(Boolean condition) {
+  // Return true if the stage should be run
+  if (skipPassedOnReplay(env.STAGE_NAME)) {
+    setBuildStatus(resultStatus.SUCCESS, resultMessage.PREV_SUCCESS)
+    return false
+  } else if (condition) {
+    return shouldRunStage(env.STAGE_NAME)
+  } else {
+    setBuildStatus(resultStatus.SUCCESS, resultMessage.SKIPPED)
+    return false
+  }
+}
+
+void setBuildStatus(String status, String message = resultMessage.DEFAULT) {
+    if (message == resultMessage.DEFAULT) {
+      switch(status) {
+        case resultStatus.SUCCESS:
+        message = resultMessage.SUCCESS
+        break;
+        case resultStatus.FAILURE:
+        message = resultMessage.FAILURE
+        break;
+        case resultStatus.PENDING:
+        message = resultMessage.PENDING
+        break;
+        default:
+        error "Must specify resultMessage. Build status \"$status\" does not have a default set."
+      }
+    }
+
+    if (status == resultStatus.SUCCESS && message == resultMessage.SUCCESS) {
+      // create <replayDir>/<stage>.passed file on success
+      def stage_result_filename = getResultFileName stage: env.STAGE_NAME
+      sh """#!/bin/bash
+        touch ${stage_result_filename}
+      """
+    }
+
+    // add a Github access token as a global 'secret text' credential on Jenkins with the id 'github-commit-status-token'
+    // https://jenkins.leaba.local/credentials/
+    withCredentials([string(credentialsId: 'git_write_access_token', variable: 'TOKEN')]) {
+        // 'set -x' for debugging. Don't worry the access token won't be actually logged
+        // Also, the sh command actually executed is not properly logged, it will be further escaped when written to the log
+        def url = "https://cto-github.cisco.com/api/v3/repos/Leaba/sdk/statuses/" + env.GIT_COMMIT +
+            "?access_token=$TOKEN"
+        sh """#!/bin/bash
+        set - x
+        curl \"${url}\" \
+                -H \"Content-Type: application/json\" \
+                -X POST \
+                -d \"{\\\"description\\\": \\\"$message\\\", \\\"state\\\": \\\"$status\\\", \\\"context\\\": \\\"$env.STAGE_NAME\\\", \\\"target_url\\\": \\\"$BUILD_URL\\\"}\"
+        """
+    }
+
+    if (status == resultStatus.FAILURE && FAILED_STAGE == "Unknown") {
+        FAILED_STAGE = env.STAGE_NAME
+    }
+}
+
+void updateBuildStatus(hudson.AbortException exc) {
+    echo exc.message;
+    def m = exc.message =~ /(?i)script returned exit code (\d+)/
+    if (m) {
+        def exitcode = m.group(1).toInteger()
+        if (exitcode == 1) {
+            // script exit code will be 1 if no errors and there are fail tests
+            echo "There are failed tests"
+            currentBuild.result = 'UNSTABLE';
+            FAILED_STAGE = env.STAGE_NAME
+        } else if (exitcode == 143) {
+            // script exit code will be 143 if Aborted by other stage
+            echo "Stage aborted"
+            currentBuild.result = 'ABORTED';
+        } else if (exitcode > 0) {
+            echo "Exit code greater than zero, stage failed"
+            currentBuild.result = 'FAILURE';
+            FAILED_STAGE = env.STAGE_NAME
+            sh("exit 1")
+        }
+    }
+}
+
+Boolean skipPassedOnReplay(String stage) {
+  // Check if there was a previous successful run of this stage for the same commit hash.
+  // That would indicate this is a replay and we do not need to run this stage.
+  if (fileExists(getResultFileName(stage: env.STAGE_NAME))) {
+    return true
+  } else {
+    return false
+  }
+}
+
+def getMailAddressOfLastCommitter() {
+  def result = sh(
+      script: """#!/bin/bash
+      git show -s --format='%ae'
+      """,
+      returnStdout: true).trim();
+  return result.trim()
+}
+
+pipeline {
+  agent {
+    node {
+      label 'pr-agent'
+    }
+  }
+
+  environment {
+    REPLAY_DIR = setupReplayDir()
+    MARVIN_ACCOUNT = credentials('marvin_faceless')
+    PYTEST_JIRA_PASSWORD = "${MARVIN_ACCOUNT_PSW}"
+  }
+
+  stages {
+    stage('Format') {
+      failFast true
+      parallel {
+        stage('SDK Format') {
+          when {
+            expression {
+              return runStageIf(filesChangedIn(SearchMode.INVERSE, "^fishnet.*"))
+            }
+          }
+          steps {
+            sh """
+              $LSF_8C -W 240 make verify-format -j 8 -l 8
+            """
+          }
+          post {
+            success {
+              setBuildStatus(resultStatus.SUCCESS);
+            }
+            failure {
+              setBuildStatus(resultStatus.FAILURE);
+            }
+          }
+        }
+
+        stage('Fishnet Format') {
+          when {
+            expression {
+              return runStageIf(filesChangedIn(SearchMode.NORMAL, "^fishnet.*"))
+            }
+          }
+          steps{
+            sh """
+              $LSF_8C -W 240 ./fishnet/scripts/validate_format.sh
+            """        
+          }
+          post {
+            success {
+              setBuildStatus(resultStatus.SUCCESS);
+            }
+            failure {
+              setBuildStatus(resultStatus.FAILURE);
+            }
+          }
+        }
+
+        stage('Fishnet Tarball') {
+          // Always run so required tarballs are available
+          steps{
+            // Delete any old archived fishnet tarballs before building to make sure 
+            // an out of date tarball cannot be used later.
+            deleteTarballs type: "fishnet"
+            sh '''
+              ./scripts/jenkins-jobs/fishnet_tarball.sh
+            '''
+            // Archive Fishnet tarball for replay of heavy workloads.
+            archiveTarballs type: "fishnet"
+          }
+          post {
+            success {
+              setBuildStatus(resultStatus.SUCCESS);
+            }
+            failure {
+              setBuildStatus(resultStatus.FAILURE);
+            }
+          }
+        }
+      }
+    }
+
+    stage('Build') {
+      parallel {
+        stage('Pacific Build') {
+          // Never skip since we don't currently support backing up the built files
+          steps {
+            sh """
+              $LSF_8C -W 240 make -C driver/pacific -j 8 -l 8 SHELL=\$PWD/scripts/make_logger UNLOGGED=unlogged OPT=3 DEBUG=0
+            """
+          }
+          post {
+            success {
+              setBuildStatus(resultStatus.SUCCESS);
+            }
+            failure {
+              setBuildStatus(resultStatus.FAILURE);
+            }
+          }
+        }
+
+        stage('Gibraltar Build') {
+          // Never skip since we don't currently support backing up the built files
+          steps {
+            sh """
+              $LSF_8C -W 240 make -C driver/gibraltar -j 8 -l 8 SHELL=\$PWD/scripts/make_logger UNLOGGED=unlogged OPT=3 DEBUG=0
+            """
+          }
+          post {
+            success {
+              setBuildStatus(resultStatus.SUCCESS);
+            }
+            failure {
+              setBuildStatus(resultStatus.FAILURE);
+            }
+          }
+        }
+
+        stage('Palladium Build') {
+          // Never skip since we don't currently support backing up the built files
+          steps {
+            sh """
+              $LSF_8C -W 240 make -C driver/palladium -j 8 -l 8 SHELL=\$PWD/scripts/make_logger UNLOGGED=unlogged OPT=3 DEBUG=0
+            """
+          }
+          post {
+            success {
+              setBuildStatus(resultStatus.SUCCESS);
+            }
+            failure {
+              setBuildStatus(resultStatus.FAILURE);
+            }
+          }
+        }
+
+        stage('Graphene Build') {
+          // Never skip since we don't currently support backing up the built files
+          steps {
+            sh """
+              $LSF_8C -W 240 make -C driver/graphene -j 8 -l 8 SHELL=\$PWD/scripts/make_logger UNLOGGED=unlogged OPT=3 DEBUG=0
+            """
+          }
+          post {
+            success {
+              setBuildStatus(resultStatus.SUCCESS);
+            }
+            failure {
+              setBuildStatus(resultStatus.FAILURE);
+            }
+          }
+        }
+
+        stage('Argon Build') {
+          // Never skip since we don't currently support backing up the built files
+          steps {
+            sh """
+              $LSF_8C -W 240 make -C driver/argon -j 8 -l 8 SHELL=\$PWD/scripts/make_logger UNLOGGED=unlogged OPT=3 DEBUG=0
+            """
+          }
+          post {
+            success {
+              setBuildStatus(resultStatus.SUCCESS);
+            }
+            failure {
+              setBuildStatus(resultStatus.FAILURE);
+            }
+          }
+        }
+      }
+    }
+
+    stage('Simulation') {
+      failFast true
+      parallel {
+        stage('Generic SDK Simulation') {
+          when {
+            expression {
+              return runStageIf(filesChangedIn(SearchMode.INVERSE, "^fishnet.*"))
+            }
+          }
+          steps {
+            abortPreviousBuilds()
+            sh """
+              $LSF_8C -W 240 catchsegv make sanity_gen -j 8 -l 8 OPT=3 DEBUG=0
+            """
+          }
+          post {
+            success {
+              setBuildStatus(resultStatus.SUCCESS);
+            }
+            failure {
+              setBuildStatus(resultStatus.FAILURE);
+            }
+          }
+        }
+
+        stage('Pacific SDK') {
+          stages {
+            stage('Pacific SDK Simulation') {
+              when {
+                expression {
+                  return runStageIf(filesChangedIn(SearchMode.INVERSE, "^fishnet.*"))
+                }
+              }
+              steps {
+                sh """
+                  $LSF_8C -W 240 catchsegv make -C driver/pacific sanity -j 8 -l 8 OPT=3 DEBUG=0 JENKINS_SIM_RUN=1
+                """
+              }
+              post {
+                success {
+                  setBuildStatus(resultStatus.SUCCESS);
+                }
+                failure {
+                  setBuildStatus(resultStatus.FAILURE);
+                }
+              }
+            }
+
+            stage('Pacific LPM Simulation') {
+              when {
+                expression {
+                  return runStageIf(filesChangedIn(SearchMode.NORMAL, 
+                                    "^driver/shared/src/hw_tables/lpm.*",
+                                    "^driver/shared/include/hw_tables.*",
+                                    "^driver/shared/src/common.*",
+                                    "^driver/shared/include/common.*"))
+                }
+              }
+              steps {
+                abortPreviousBuilds()
+                sh """
+                  $LSF_8C -W 240 catchsegv make -C driver/pacific test-hw-tables-lpm-test -j 8 -l 8 OPT=3 DEBUG=0
+                """
+              }
+              post {
+                success {
+                  setBuildStatus(resultStatus.SUCCESS);
+                }
+                failure {
+                  setBuildStatus(resultStatus.FAILURE);
+                }
+              }
+            }
+          }
+        }
+
+        stage('Matilda SDK') {
+          stages {
+            stage('Matilda 3.2A Simulation') {
+              when {
+                expression {
+                  return runStageIf(filesChangedIn(SearchMode.INVERSE, "^fishnet.*"))
+                }
+              }
+              steps {
+                sh """
+                  $LSF_8C -W 240 catchsegv make -C driver/gibraltar sanity -j 8 -l 8 OPT=3 DEBUG=0 JENKINS_SIM_RUN=1 MATILDA_TEST_MODE=3.2A
+                """
+              }
+              post {
+                success {
+                  setBuildStatus(resultStatus.SUCCESS);
+                }
+                failure {
+                  setBuildStatus(resultStatus.FAILURE);
+                }
+              }
+            }
+          }
+        }
+        stage('Gibraltar SDK') {
+          stages {
+            stage('Gibraltar SDK Simulation') {
+              when {
+                expression {
+                  return runStageIf(filesChangedIn(SearchMode.INVERSE, "^fishnet.*"))
+                }
+              }
+              steps {
+                sh """
+                  $LSF_8C -W 240 catchsegv make -C driver/gibraltar sanity -j 8 -l 8 OPT=3 DEBUG=0 JENKINS_SIM_RUN=1
+                """
+              }
+              post {
+                success {
+                  setBuildStatus(resultStatus.SUCCESS);
+                }
+                failure {
+                  setBuildStatus(resultStatus.FAILURE);
+                }
+              }
+            }
+
+            stage('Gibraltar LPM Simulation') {
+              when {
+                expression {
+                  return runStageIf(filesChangedIn(SearchMode.NORMAL,
+                                    "^driver/shared/src/hw_tables/lpm.*",
+                                    "^driver/shared/include/hw_tables.*",
+                                    "^driver/shared/src/common.*",
+                                    "^driver/shared/include/common.*"))
+                }
+              }
+              steps {
+                abortPreviousBuilds()
+                sh """
+                  $LSF_8C -W 240 catchsegv make -C driver/gibraltar test-hw-tables-lpm-test -j 8 -l 8 OPT=3 DEBUG=0
+                """
+              }
+              post {
+                success {
+                  setBuildStatus(resultStatus.SUCCESS);
+                }
+                failure {
+                  setBuildStatus(resultStatus.FAILURE);
+                }
+              }
+            }
+          }
+        }
+
+        stage('Palladium SDK') {
+          stages {
+            stage('Palladium SDK Simulation') {
+              when {
+                expression {
+                  return runStageIf(filesChangedIn(SearchMode.INVERSE, "^fishnet.*"))
+                }
+              }
+              steps {
+                sh """
+                  $LSF_8C -W 240 catchsegv make -C driver/palladium sanity -j 8 -l 8 OPT=3 DEBUG=0 JENKINS_SIM_RUN=1
+                """
+              }
+              post {
+                success {
+                  setBuildStatus(resultStatus.SUCCESS);
+                }
+                failure {
+                  setBuildStatus(resultStatus.FAILURE);
+                }
+              }
+            }
+          }
+        }
+
+        stage('Graphene SDK') {
+          stages {
+            stage('Graphene SDK Simulation') {
+              steps {
+                sh """
+                  $LSF_8C -W 240 catchsegv make -C driver/graphene sanity -j 8 -l 8 OPT=3 DEBUG=0 JENKINS_SIM_RUN=1
+                """
+              }
+              post {
+                success {
+                  setBuildStatus(resultStatus.SUCCESS);
+                }
+                failure {
+                  setBuildStatus(resultStatus.FAILURE);
+                }
+              }
+            }
+          }
+        }
+
+        stage('Argon SDK') {
+          stages {
+            stage('Argon SDK Simulation') {
+              when {
+                expression {
+                  return runStageIf(filesChangedIn(SearchMode.INVERSE, "^fishnet.*"))
+                }
+              }
+              steps {
+                sh """
+                  $LSF_8C -W 240 catchsegv make -C driver/argon sanity -j 8 -l 8 OPT=3 DEBUG=0 JENKINS_SIM_RUN=1
+                """
+              }
+              post {
+                success {
+                  setBuildStatus(resultStatus.SUCCESS);
+                }
+                failure {
+                  setBuildStatus(resultStatus.FAILURE);
+                }
+              }
+            }
+          }
+        }
+
+        stage ('Fishnet Simulations'){
+          stages { 
+            stage('Pacific Fishnet Simulation') {
+              when {
+                expression {
+                  return runStageIf(true)
+                }
+              }
+              steps {
+                script {
+                  try {
+                    sh """#!/bin/bash
+                      sdk_path=\$PWD
+                      cd ./fishnet
+                      $LSF_8C -W 240 ./scripts/sanity.sh SDK \$sdk_path TYPE opt3 -s
+                    """
+                  } catch (hudson.AbortException exc) {
+                      updateBuildStatus(exc)
+                  } finally {
+                    junit(testResults: '**/junit.xml', keepLongStdio: true, healthScaleFactor: 1, allowEmptyResults:false);
+                  }
+                }
+              }
+              post {
+                success {
+                  setBuildStatus(resultStatus.SUCCESS);
+                }
+                failure {
+                  setBuildStatus(resultStatus.FAILURE);
+                }
+              }
+            }
+
+            stage('Gibraltar Fishnet Simulation') {
+              when {
+                  // As it is not covered by SDK Sanity, always run unless part of a rerun where this stage passed
+                expression { 
+                  return runStageIf(true)
+                }
+              }
+              steps{
+                script {
+                  try {
+                      sh """#!/bin/bash
+                        sdk_path=\$PWD
+                        cd ./fishnet
+                        $LSF_8C -W 240 ./scripts/sanity.sh GB SDK \$sdk_path TYPE opt3 -s
+                      """
+                  } catch (hudson.AbortException exc) {
+                      updateBuildStatus(exc)
+                  } finally {
+                    junit(testResults: '**/GB*junit.xml', keepLongStdio: true, healthScaleFactor: 1, allowEmptyResults:false);
+                  }
+                }
+              }
+              post {
+                success {
+                  setBuildStatus(resultStatus.SUCCESS);
+                }
+                failure {
+                  setBuildStatus(resultStatus.FAILURE);
+                }
+              }
+            }
+
+            stage('Gibraltar Fishnet WB Simulation') {
+              when {
+                expression {
+                  return runStageIf(true)
+                }
+              }
+              steps {
+                script {
+                  try{
+                    sh """
+                      $LSF_8C -W 240 ./fishnet/scripts/nsim_run.sh GB SDK \$PWD TYPE opt3 -m sanity_warm_boot \
+                        --warm-boot-mode=DURING_TRAFFIC_POST_MOD --jira --jira-do-not-run-test-case -s
+                    """
+                  } catch (hudson.AbortException exc) {
+                    updateBuildStatus(exc)
+                  }
+                }
+              }
+              post {
+                success {
+                  junit(testResults: '**/GB_WB_SAME_SDK*junit.xml', keepLongStdio: true, healthScaleFactor: 1, allowEmptyResults:false);
+                  setBuildStatus(resultStatus.SUCCESS);
+                }
+                failure {
+                  junit(testResults: '**/GB_WB_SAME_SDK*junit.xml', keepLongStdio: true, healthScaleFactor: 1, allowEmptyResults:true);
+                  setBuildStatus(resultStatus.FAILURE);
+                }
+              }
+            }
+
+            stage('Gibraltar Fishnet WB Simulation SDK Upgrade') {
+              when {
+                expression {
+                  // return runStageIf(true)
+                  return runStageIf(false)
+                }
+              }
+              steps {
+                script {
+                  try{
+                    sh """
+                      $LSF_8C -W 240 ./fishnet/scripts/nsim_run.sh GB SDK \$PWD TYPE opt3 -m sanity_warm_boot \
+                        --warm-boot-mode=SDK_RELOAD_SAVE_PHASE --sdk-upgrade-version=\$PWD --jira --jira-do-not-run-test-case -s
+                    """
+                  } catch (hudson.AbortException exc) {
+                    updateBuildStatus(exc)
+                  }
+                }
+              }
+              post {
+                success {
+                  junit(testResults: '**/GB_WB_SDK_RELOAD*junit.xml', keepLongStdio: true, healthScaleFactor: 1, allowEmptyResults:false);
+                  setBuildStatus(resultStatus.SUCCESS);
+                }
+                failure {
+                  junit(testResults: '**/GB_WB_SDK_RELOAD*junit.xml', keepLongStdio: true, healthScaleFactor: 1, allowEmptyResults:true);
+                  setBuildStatus(resultStatus.FAILURE);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    stage('Build Binary Release') {
+      // Always run so required tarballs are available
+      steps {
+        script {
+          // Delete any old archived platform tarballs before building to make sure 
+          // an out of date tarball cannot be used later.
+          deleteTarballs type: "sdk"
+          sh """
+            $LSF_8C -W 120 make release-bin -j 8 -l 8 SHELL=\$PWD/scripts/make_logger UNLOGGED=unlogged OPT=3 DEBUG=0 VERSION=dev
+          """
+          // We have built all platforms, now backup the tarballs in case we need them
+          // for a heavy workload replay
+          archiveTarballs type: "sdk"
+        }
+      }
+      post {
+        success {
+          setBuildStatus(resultStatus.SUCCESS);
+        }
+        failure {
+          setBuildStatus(resultStatus.FAILURE);
+        }
+      }
+    }
+  }
+
+  post {
+    cleanup {
+      // Cleaning workspace
+      cleanWs()
+      // clean up tmp directory
+      dir("${workspace}@tmp") {
+        script {
+            try {
+              deleteDir()
+            } catch (error) {
+              echo "There was an error thrown while cleaning up the tmp directory.\n" +
+                    "Error: ${error}\n" +
+                    "The below directory was not removed:\n" +
+                    "${workspace}@tmp/"
+          }
+        }
+      }
+    }
+  }
+}

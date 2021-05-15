@@ -1,0 +1,70 @@
+// Pacific Packet Processing theory L3 object model page
+
+/// @page pacific_l3_object_model L3 object model
+///
+/// @section pacific_l3_object_model_l3_port L3 port
+///
+/// An L3 port represents an IP/MPLS router port.\n
+/// A classic L3 port is an Ethernet port with a MAC address; transmitted packets use the port's MAC address as their Source Address.
+///
+/// The Pacific architecture extends the concept of an L3 port (#silicon_one::la_l3_port) to include several logical port types:
+///
+/// * <b>L3 Ethernet port</b>: a classic, MAC-based Ethernet port, connected to an L2 ethernet port.
+/// * <b>SVI port</b>: Switch Virtual Interface. Ethernet-based port, connected to a switch.
+///
+/// Logical port shared attributes include QoS settings and allowed protocols.
+/// Distinct properties such as connected switch (for SVI port) and tunnel settings are only available for relevant port types.
+///
+/// @dot
+/// digraph l3_port_hierarchy_graph {
+///		label = "Figure 3: L3 port hierarchy"
+///     node[shape = record, style="bold, rounded", fontname = "Helvetica:bold", fontsize = 10];
+///
+///		l3_port[label = "L3 port"]
+///		l3_ethernet_port[label = "L3 Ethernet port"]
+///		svi_port[label = "SVI port"]
+///		tunnel[label = "Tunnel"]
+///
+///		l3_port->{l3_ethernet_port svi_port tunnel}
+/// }
+/// @enddot
+///
+///
+/// @section pacific_l3_object_model_l3_destination L3 destination
+///
+/// An L3 destination (#silicon_one::la_l3_destination) is a Pacific logical object. Pacific's VRF (Virtual Router) maps a destination IP address/MPLS label to an L3 destination.
+/// The following objects are L3 destinations:
+///
+/// * <b>Next hop</b>. Next hop device to forward packets to. Includes an L3 port and MAC destination address.
+/// * <b>ECMP group</b>. Equal-Cost Multi-Path group. Several L3 destinations grouped together, enabling load-balancing.
+/// * <b>Protection group</b>. A primary L3 destination and a protection L3 destination. Protection destination serves as backup for cases where primary destination is unreachable.
+/// * <b>FEC</b>. Forward Equivalence Class. An L3 indirection destination.
+/// * <b>Tunnel</b>. An IP/IP GRE/MPLS tunnel.
+///
+/// IP multicast is handled separately of L3 destinations.
+///
+/// @dot
+/// digraph l3_destination_hierarchy_graph {
+///		label = "Figure 4: L3 destination hierarchy"
+///     node[shape = record, style="bold, rounded", fontname = "Helvetica:bold", fontsize = 10];
+///
+///		l3_destination[label = "L3 destination"]
+///		next_hop[label = "Next Hop"]
+///		ecmp_group[label = "ECMP group"]
+///		protection_group[label = "Protection group"]
+///		fec[label = "Forward Equivalence Class"]
+///		tunnel[label = "Tunnel"]
+///
+///		l3_destination->{next_hop ecmp_group protection_group fec tunnel}
+/// }
+/// @enddot
+///
+///
+/// @section pacific_l3_object_model_vrf Virtual Routing and Forwarding
+///
+/// A VRF (Virtual Routing and Fowarding, #silicon_one::la_vrf) handles IPv4/v6 routing.
+/// Each device supports multiple VRF-s; each VRF can be set-up to support a single stack (IPv4 or IPv6) or a dual stack (both IPv4 and IPv6).
+///
+/// For Unicast forwarding, destination is selected based on the destination IP and Longest Prefix Match algorithm.
+/// For Multicast forwarding, an IP multicast group is selected based on the source and destination addresses.
+///

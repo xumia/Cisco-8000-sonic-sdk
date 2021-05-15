@@ -1,0 +1,1053 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config_list>
+  <tool_config version="1.0.54" mwdt_version="L-2016.06" />
+  <configuration name="BCRs" filename="bcr_contents.txt">
+    <string><![CDATA[
+	0x4	0x42		IDENTITY
+	0x18	0x800000	AUX_DCCM
+	0x60	0x2		BCR_VER
+	0x68	0x10		VECBASE_AC_BUILD
+	0x6e	0x102		RF_BUILD
+	0x74	0x304		DCCM_BUILD
+	0x75	0x10104		TIMER_BUILD
+	0x78	0x604		ICCM_BUILD
+	0x7b	0x20506		MULTIPLY_BUILD
+	0x7c	0x3		SWAP_BUILD
+	0x7d	0x3		NORM_BUILD
+	0x7e	0x2		MINMAX_BUILD
+	0x7f	0x303		BARREL_BUILD
+	0xc1	0x22027202	ISA_CONFIG
+	0xf1	0x1		CORE_CONFIG
+	0xf3	0x1050901	IRQ_BUILD
+	0x208	0x0		AUX_ICCM
+]]></string>
+  </configuration>
+  <configuration name="mw_compiler" filename="ccac.arg">
+    <string><![CDATA[
+	-arcv2em
+	-core2
+	-HL
+	-Hpc_width=24
+	-Xcode_density
+	-Xdiv_rem=radix4
+	-Xswap
+	-Xbitscan
+	-Xmpy_option=wlh2
+	-Xshift_assist
+	-Xbarrel_shifter
+	-Xtimer0
+	-Hccm
+]]></string>
+  </configuration>
+  <configuration name="mw_debugger" filename="mdb.arg">
+    <string><![CDATA[
+	-arcv2em 
+	-core2 
+	-rgf_num_banks=1 
+	-rgf_num_wr_ports=2 
+	-pc_width=24 
+	-addr_size=24 
+	-Xcode_density 
+	-Xdiv_rem=radix4 
+	-Xswap 
+	-Xbitscan 
+	-Xmpy_option=wlh2 
+	-Xshift_assist 
+	-Xbarrel_shifter 
+	-Xtimer0 
+	-Xtimer0_level=1 
+	-interrupts=9 
+	-interrupt_priorities=2 
+	-ext_interrupts=5 
+	-interrupt_base=0x0 
+	-dccm_size=0x800 
+	-dccm_base=0x0080_0000 
+	-iccm0_size=0x4000 
+	-iccm0_base=0x0000_0000 
+]]></string>
+  </configuration>
+  <configuration name="nSIM" filename="nsim.props">
+    <string><![CDATA[
+	nsim_isa_family=av2em
+	nsim_isa_core=2
+	arcver=0x42
+	nsim_isa_rgf_num_banks=1
+	nsim_isa_rgf_num_regs=32
+	nsim_isa_rgf_num_wr_ports=2
+	nsim_isa_big_endian=0
+	nsim_isa_lpc_size=32
+	nsim_isa_pc_size=24
+	nsim_isa_addr_size=24
+	nsim_isa_code_density_option=2
+	nsim_isa_div_rem_option=2
+	nsim_isa_swap_option=1
+	nsim_isa_bitscan_option=1
+	nsim_isa_mpy_option=3
+	nsim_isa_shift_option=3
+	nsim_isa_enable_timer_0=1
+	nsim_isa_timer_0_int_level=1
+	nsim_isa_number_of_interrupts=9
+	nsim_isa_number_of_levels=2
+	nsim_isa_number_of_external_interrupts=5
+	nsim_isa_intvbase_preset=0x0
+	dccm_size=0x800
+	dccm_base=0x0080_0000
+	iccm0_size=0x4000
+	iccm0_base=0x0000_0000
+]]></string>
+  </configuration>
+  <configuration name="IDE" filename="ide.props">
+    <string><![CDATA[
+	processor.family=4
+	processor.core_version=2
+	processor.family_name=arcv2em
+	processor.rgf_num_banks=1
+	processor.rgf_num_wr_ports=2
+	processor.endian=little
+	processor.lpc_size=32
+	processor.pc_size=24
+	processor.addr_size=24
+	processor.Xcode_density=1
+	processor.Xdiv_rem=radix4
+	processor.Xswap=1
+	processor.Xbitscan=1
+	processor.Xmpy_option=wlh2
+	processor.Xshift_assist=1
+	processor.Xbarrel_shifter=1
+	processor.Xtimer0=1
+	processor.Xtimer0_level=1
+	processor.interrupts=9
+	processor.interrupt_priorities=2
+	processor.ext_interrupts=5
+	processor.interrupt_base=0x0
+	processor.dccm_size=0x800
+	processor.dccm_base=0x0080_0000
+	processor.Hccm=1
+	processor.iccm0_size=0x4000
+	processor.iccm0_base=0x0000_0000
+]]></string>
+  </configuration>
+  <configuration name="architect" filename="build_configuration.txt">
+    <string><![CDATA[
+######## cem_mng --- com.arc.templates.project.customer.arcv2em_basecase.em4_dmips_v3.1_0 ########
+
+# BuildHTMLDocs --- Creates custom HTML documentation in the 'docs' directory.
+-build_html_docs true
+
+# BuildSoftware --- Creates software under the Software directory.
+-build_software false
+
+# BuildTestCode --- Creates test source code under the 'tests' directory.
+-build_test_code true
+
+# BuildScripts --- Creates synthesis scripts and configuration files, which are required for hierarchy generation.
+-build_scripts true
+
+# BuildHDL --- Creates the behavioural and synthesisable HDL source code.
+-build_hdl true
+
+# CompileTestCode --- Compiles and assembles the test code.
+-compile_test_code false
+
+# GenerateStructuralHDL --- Generate the necessary structural HDL
+-generate_structural_hdl false
+
+# CompileForHDLSimulation --- Compile the HDL ready for simulation, using the selected Simulator.
+-compile_hdl_for_simulation false
+
+# BuildXCAM --- 
+# When true, build the XCAM cycle accurate model from HDL.
+# This happens only when the VTOC component (in the XCAM library) has been added to the design.
+# 
+-build_xcam true
+
+# RunARCsyn --- Synthesize design using ARCsyn
+-run_arcsyn false
+
+# RunSEIF --- Run Synopsys Embedit Integrator Flow to generate configured memory instances
+-run_seif false
+
+# RunARCrams --- Run ARCrams on the current build, this will stitch in vendor supplied RAM models and update the synthesis and simulation environment to use the models.
+-run_arcrams false
+
+# RunARCformal --- Formal Verification using ARCformal
+-run_arcformal false
+
+# RunARCpower --- Run the Power Analysis using RTL simulation to derive the activity
+-run_arcpower false
+
+# compile_nsim_user_extensions --- Build nSIM extensions for any APEX components in the current design using their C Models.
+-compile_nsim_user_extension false
+
+# compile_translated_nsim_extensions --- Converts APEX extensions from Verilog to C++ and compiles the model for nSIM.
+-compile_translated_nsim_extensions false
+
+
+######## System --- com.arc.hardware.System.1_0 ########
+
+# Create System
+-create com.arc.hardware.System.1_0 System
+
+# Testbench --- 
+# Only the rascal testbench is supported, and is required by ARCtest.
+# 	
+-testbench rascal
+
+# SynthesisLevel --- 
+# Sets the top level module name for synthesis.  
+# 
+# If not using core_sys: for single-core designs, cpu_isle is used; for multicore designs, archipelago is used.
+# 	
+-synthesislevel cpu_isle/archipelago
+
+# GateLevelSim --- When selected the gate level sim test code and scripts would be installed to run ARCgatesim
+-gatesim true
+
+# UserLibraryName --- The name for your HDL library
+-library_name user
+
+# OPTION_SimulatorName --- The name of the simulator you wish to use
+-simulator vcs
+
+# sim64 --- When selected, the 64-bit version of the simulator is used.  Be sure you have the 64-bit-capable simulator installed  and $ARCHITECT_ROOT/lib/linux_x86_64/ added to your LD_LIBRARY_PATH.
+# The setting of this option affects the content of the generated makefile_interface_*_verilog, where * is the simulator name.
+-sim64 false
+
+# verilog_2001 --- Enable Verilog 2001 file-io syntax (if false: use pli)
+-verilog_2001 true
+
+
+######## ARCv2EM CCT --- cct.1_0 ########
+
+# Create ARCv2EM CCT
+-create cct.1_0 "System.ARCv2EM CCT"
+
+# cct --- 
+# 	Option used to add a CCT to the design for command-line builds
+# 	Without this architect can't add this component to a build
+# 	via a cmdline -create command.  
+# 	with old scripts.
+# 	
+-cct true
+
+# no_hostlink --- 
+# This prevents the inclusion of the hostlink library when compiling
+# C or C++ programs.  The resultant executable, if it contains printfs,
+# will print to an internal fixed buffer __mwwrite_buf.  
+# Other hostlink operations that require debugger assistance, such as file
+# opens, will fail.
+# 
+# Hostlink references incur memory cycles at unpredictable times and 
+# so can perturb cycle-timing results.  Without hostlink,
+# the debugger will not in any way interfere with the target while it is running.  
+# Therefore this option is useful for simulation in which you want precisely the
+# same cycle timing to occur each time you run, or for accurate power consumption results.
+# 	
+-cct_no_hostlink false
+
+
+######## CPUisle --- com.arc.hardware.CPU_isle.1_0 ########
+
+# Create CPUisle
+-create com.arc.hardware.CPU_isle.1_0 System.CPUisle
+
+# unique_name --- verilog module modifier prefix
+-unique_name ""
+
+# ArcNum --- The processor number as read back in the ARCNUM field of the IDENTITY register.
+-arc_num 0
+
+# instances --- 
+# The number of instantiations of this core.
+# 
+-instances 1
+
+# CPUFloorplan --- Floorplan giving relative placement of the RAMs  for the given configuration of ARCv2HS or ARCv2EM in this CPUisle
+-cpu_floorplan none
+
+# userCPUFloorplanPath --- Pathname of user floorplan for the CPU when using a hierarchical implementation
+-usercpufloorplan_path ""
+
+# pinLocationConstraintsFile --- Pathname+filename of the physical pin location constraints file or just "side1" (all pins on l.h.s) or "side2" (pins on top only) or "side3" (pins on r.h.s. only) or "side4" (pins on bottom only) to get a template file generated
+-pin_location_constraints_file ""
+
+
+######## ARCv2EM --- com.arc.hardware.ARCv2EM.1_0 ########
+
+# Create ARCv2EM
+-create com.arc.hardware.ARCv2EM.1_0 System.CPUisle.ARCv2EM
+
+# arcv2em --- Description to follow
+-arcv2em true
+
+# def_div2ref --- This specifies the clock division factor at reset. It is used for mss clock controller to generate core clock, and the value N means core is running at (1/N) x ref_clk.
+-def_div2ref 1
+
+# addr_size --- This defines the address bus width (in bits).
+-addr_size 24
+
+# pc_size --- This defines the program counter (in bits).
+-pc_size 24
+
+# lpc_size --- This defines the size of the loop counter (in bits).
+-lpc_size 32
+
+# halt_on_reset --- This defines whether the core is halted initially on reset.
+-halt_on_reset true
+
+# byte_order --- This defines the endianness of the core.
+-byte_order little
+
+# code_density_option --- This reduces the size of program memory by adding instructions that condense commonly used instruction patterns with some marginal increase in processor gate count. The added instructions are ENTER_S, LEAVE_S, JLI_S, BI, BIH.
+-code_density_option true
+
+# bitscan_option --- This adds instructions for efficient search of bits within a 32 bit word, including normalize (NORM, NORMH, NORMW) and find first or last set bit (FFS, FLS) instructions.
+-bitscan_option true
+
+# shift_option --- The Shift ISA option adds variable and multi-length shift rotation instructions:  (0) No shift/rotation instructions (1) ASR16, ASR8, LSR8, LSL8, ROL8, ROR8 (2) ASRM, ASLM, LSRM, RORM (3) ASR16, ASR8, LSR8, LSL8, ROL8, ROR8, ASRM, ASLM, LSRM, RORM
+-shift_option 3
+
+# swap_option --- This adds two instructions used to swap half-words or bytes in a 32b word. Useful for converting between little to big endianess and vice-versa.
+-swap_option true
+
+# div_rem_option --- The DIV/REM option adds non-blocking multi-cycle implementation of integer divide/remainder functions. Added instructions are DIV, DIVU (integer divide), REM and REMU (integer divide remainder).radix2 takes 33 cycles.  radix4_enhanced takes 3 to 19 cycles per operation.
+-div_rem_option radix4_enhanced
+
+# mpy_option --- The Multiplier ISA option allows selection between several multiplier configurations to tradeoff performance with silicon area.
+# For select multiply options, when the DIV/REM option is also selected, some datapath resources will be shared between the multiply and divide pipeline to minimize total area.
+# 
+# Cycle count (16-bit, lower 32-bit or upper 32-bit) for the different configurations is as follows:
+# <pre>
+# 
+# option  16/L32/U32  Instructions
+# ------  ----------  ---------------------
+#       
+# none	  -/-/-     None
+# wlh1	  1/1/1     MPYW/U, MPY/U, MPYH/U
+# wlh2	  2/2/2     MPYW/U, MPY/U, MPYH/U
+# wlh3	  2/3/3     MPYW/U, MPY/U, MPYH/U
+# wlh4	  2/4/5     MPYW/U, MPY/U, MPYH/U
+# wlh5	  5/9/9     MPYW/U, MPY/U, MPYH/U
+# </pre>
+# 
+-mpy_option wlh2
+
+# code_protection --- The ARC EM architecture divides the memory into 16 regions, which can be protected individually.  This feature adds a 16-bit input to the processor core, one bit per region. When the protect bit is set, the processor disables any load or store to the corresponding region.  An attempt to access a protected region raises an EV_ProtV exception.
+-code_protection false
+
+# stack_checking --- Stack checking is a mechanism for checking stack accesses and raising an exception when a stack overflow or underflow is detected.
+-stack_checking false
+
+# unaligned_option --- This enables unaligned loads and stores.
+-unaligned_option false
+
+# intvbase_preset --- This sets the interrupt vector base configuration register, VECBASE_AC_BUILD. The vector base address is aligned to a 1KB boundary, so the required address value should be divided by 1K (i.e. do not include the lower 10 bits). On reset, this register is loaded into the interrupt vector base address register, INT_VECTOR_BASE.
+-intvbase_preset 0
+
+# rgf_impl --- This defines whether the register file is implemented using flip-flops, or with a hard macro.
+-rgf_impl flip_flops
+
+# rgf_num_regs --- This defines the size (in 32b register) of the processor register file.
+-rgf_num_regs 32
+
+# rgf_wr_ports --- This defines the number of write ports on the register file.
+-rgf_wr_ports 2
+
+# rgf_num_banks --- Dual register banks are useful if Fast IRQ has been configured, but may be selected even if not.
+-rgf_num_banks 1
+
+# rgf_banked_regs --- This selects the number of registers that are replicated in the second register-file bank.
+-rgf_banked_regs 32
+
+# turbo_boost --- This enables the Turbo Boost synthesis option. By enabling this option, the achievable clock frequency is increased, but at the cost of an additional cycle latency on branch instructions.
+-turbo_boost false
+
+# infer_alu_adder --- infer: datapath is described as behavioral code: A + B
+# instantiate: datapath is instantiated as a detailed multi-stage code of a carry-lookahead adder.  It is generally preferable to use the infer option and add directives for your target synthesizer. 
+-infer_alu_adder infer
+
+# infer_mpy_wtree --- infer: datapath is described as behavioral code: A * B (applies to only wlh3, wlh4 and wlh5 designs)
+# instantiate: datapath is instantiated as a detailed multi-stage code of a Wallace Tree multiplier It is generally preferable to use the infer option and add directives for your target synthesizer. 
+-infer_mpy_wtree instantiate
+
+# power_domains --- Adds three separate power domains to the core, and propagates power-gate control signals to the top level of the core. Also generates UPF constraints and commands in the low-power scripts
+-power_domains false
+
+# dvfs --- Adds logic to the core to allow dynamic controlling of voltage and frequency and propagates the associated control signals to the top level of core
+-dvfs false
+
+# voltage_domains --- Creates a voltage  domain split between RAM and std cell parts to support Ultra Low Voltage on cells and generates UPF constraints
+-voltage_domains false
+
+# mem_bus_option --- The core supports three bus protocols for accessing external memory: AHB & AHB-Lite. AHB-Lite-single means instruction fetch and data access share a single AHB-Lite port. AHB-Lite-dual means separate AHB-Lite port for each initiator.
+-mem_bus_option AHB-Lite-dual
+
+# mem_bus_reg_interface --- Specifies whether the memory bus interface is registered.
+-mem_bus_reg_interface false
+
+# dmi_burst_option --- This will enable high-throughput burst support on the DMI slave interfaces. By enabling this option, the peak DMI read throughput goes from 1 word per 3 cycles to N words per N+2 cycles, in which N is the AHB burst lengthDMI write throughput goes from 1 word per 3 cycles to 1 word per cycle.
+-dmi_burst_option false
+
+# has_dmp_peripheral --- This option enables the redirection of load/store accesses to one segment (1/16) of the addressable space to a dedicated peripheral bus. This offers high system integration and reduces overall system cost.
+-has_dmp_peripheral false
+
+# per_bus_option --- The core supports one bus protocol for accessing the peripheral space, when enabled: AHB-Lite.
+-per_bus_option AHB-Lite
+
+# per_bus_reg_interface --- Specifies whether the peripheral bus interface is registered.
+-per_bus_reg_interface false
+
+# clock_gating --- This enables the insertion of architectural clock gate elements in the design. By enabling this option, the clocks to various parts of the design will be disabled when the logic they drive is not in use to save power.
+-clock_gating true
+
+# byte_parity --- If parity protection on the CCMs is configured, this option is used to enable parity protection on a per-byte basis. Otherwise, parity will be per word basis
+-byte_parity false
+
+# prot_pipelined --- Check the box if CCM memories are configured for ECC, and you want single-bit errors to be corrected, written back to memory, and re-fetched. When unchecked, single bit errors are corrected when read from memory, but the offending memory location itself is not corrected with a writeback
+-prot_pipelined true
+
+# cct_test_ena --- When ECC is configured, this option enables automatic generation of error conditions in relevant testbench memories to exercise error detection and correction features
+-cct_test_ena false
+
+
+######## DCCM --- com.arc.hardware.DCCM.1_0 ########
+
+# Create DCCM
+-create com.arc.hardware.DCCM.1_0 System.CPUisle.ARCv2EM.DCCM
+
+# dccm_size --- This defines the size of the Data Closely Coupled Memory (DCCM) in bytes
+-dccm_size 2048
+
+# dccm_base --- Sets the initial memory region assignment for DCCM
+-dccm_base 8
+
+# dccm_interleave --- Split DCCM into even/odd memory banks.
+-dccm_interleave false
+
+# dccm_prot --- Specifies the type of protection built for the DCCM.
+-dccm_prot None
+
+# dccm_prot_level --- Specifies the level protection.
+-dccm_prot_level Data_Only
+
+# dccm_prot_exceptions --- When the core is configured with ECC or Parity, cause exception generation hardware to be created for uncorrectable errors detected on the DCCM
+-dccm_prot_exceptions true
+
+# dccm_dmi --- This enables external access through a DMI (direct memory interface) port.
+-dccm_dmi false
+
+
+######## ICCM0 --- com.arc.hardware.ICCM0.1_0 ########
+
+# Create ICCM0
+-create com.arc.hardware.ICCM0.1_0 System.CPUisle.ARCv2EM.ICCM0
+
+# iccm0_size --- This defines the size of ICCM0 in bytes.This ICCM has 0 wait states.
+-iccm0_size 16384
+
+# iccm0_base --- Sets the initial memory region assignment for ICCM0
+-iccm0_base 0
+
+# iccm0_wide --- Creates ICCM0 as 64b memory to reduce accesses.
+-iccm0_wide false
+
+# iccm0_prot --- Specifies the type of protection built for ICCM0.
+-iccm0_prot None
+
+# iccm0_prot_level --- Specifies the level of protection.
+-iccm0_prot_level Data_Only
+
+# iccm0_prot_exceptions --- When the core is configured with ECC or Parity, cause exception generation hardware to be created for uncorrectable errors detected on the ICCM0
+-iccm0_prot_exceptions true
+
+# iccm0_dmi --- This enables external access through a DMI (direct memory interface) port.
+-iccm0_dmi false
+
+
+######## Interrupt Controller --- com.arc.hardware.Interrupt_Controller.1_0 ########
+
+# Create Interrupt Controller
+-create com.arc.hardware.Interrupt_Controller.1_0 "System.CPUisle.ARCv2EM.Interrupt Controller"
+
+# number_of_interrupts --- This is the total number of interrupts available to the core.  Some interrupts are allocated statically to a specific interrupt line (for example, timer interrupts).  For more information on Interrupt and register-file options, see DesignWare ARCv2 ISA Programmers Reference Manual.
+-number_of_interrupts 9
+
+# number_of_levels --- Priority levels in the interrupt controller.
+-number_of_levels 2
+
+# external_interrupts --- This is the total number of interrupt pins available for external system components.  This parameter must be less than the total number of interrupts.
+-external_interrupts 5
+
+# firq_option --- This enables the fast-interrupts option, (priority level 0 interrupts), which uses an alternate register bank (if configured) instead of saving the context to memory.
+-firq_option false
+
+
+######## Timer 0 --- com.arc.hardware.Timer_0.1_0 ########
+
+# Create Timer 0
+-create com.arc.hardware.Timer_0.1_0 "System.CPUisle.ARCv2EM.Timer 0"
+
+# timer_0_int_level --- This sets the interrupt level (and implicitly the priority: level 0 is highest) of timer 0.
+-timer_0_int_level 1
+
+
+######## UAUX Interface --- com.arc.hardware.UAUX_Interface.1_0 ########
+
+# Create UAUX Interface
+-create com.arc.hardware.UAUX_Interface.1_0 "System.CPUisle.ARCv2EM.UAUX Interface"
+
+######## JTAG Interface --- com.arc.hardware.JTAG_Interface.1_0 ########
+
+# Create JTAG Interface
+-create com.arc.hardware.JTAG_Interface.1_0 "System.CPUisle.ARCv2EM.JTAG Interface"
+
+######## Debug Interface --- com.arc.hardware.Debug_Interface.1_0 ########
+
+# Create Debug Interface
+-create com.arc.hardware.Debug_Interface.1_0 "System.CPUisle.ARCv2EM.Debug Interface"
+
+######## Implementation --- com.arc.hardware.implementation.1_0 ########
+
+# Create Implementation
+-create com.arc.hardware.implementation.1_0 System.Implementation
+
+# ClockSpeed --- Target clock speed of the system
+-clock_speed 200
+
+# DDR2_clk_Ratio --- DDR2 Clock Vs System Clock Ratio
+# 2x
+# 3x
+# 4x
+-ddr2_clk_ratio 3x
+
+# ClockSkew --- The clock skew for the system
+-clock_skew 0.2
+
+# HoldMargin --- Margin for hold time checks
+-hold_margin 0.05
+
+# Floorplan --- Floorplan definition for relative placement of  RAMs (at CPU-level) or the placement of the rams and CPU hard cores (at multicore level)
+-floorplan em4
+
+# JTAGFrequency --- Select the frequency of the JTAG clock Tck (in MHz).
+# 
+# The JTAG clock speed has to be less than 1/2 of the cpu clock otherwise the signals on the BVCI interface are not guaranteed to be valid.
+# 
+# NOTE: The RTL simulations will work when the JTAG clock frequency is set to half the CPU clock, however this may not be the case when simulating at gate level due to delays on the IO pads.
+# 
+# The default is set to 10 MHz so that there is no conflict when simulating with an ARCangel3 at 30MHz. (30 > 10*2)
+# 
+# The speed of simulation can be greatly increased by using a faster JTAG clock, but a dependency will warn if it exceeds 1/2 of the cpu clock.
+# 
+-jtag_tclk 10
+
+# execution_trace_level --- 
+# This traces committed instructions as they execute, and gathers statistics
+# visible in the debugger for counting instructions & cycle delays.
+# At the "stats" level ony the statistics are gathered and no trace is printed.
+# "file" is equivalent to "full", but the results go to a trace .txt file instead.
+# 
+-execution_trace_level stats
+
+# generate_ipxact --- 
+# Generate ipxact.xml file describing the CPUisle or archipelago frontier
+# 
+-generate_ipxact false
+
+# ipxact_relative_path_names --- 
+# Use relative path names for Verilog files in the ipxact.
+# Otherwise, absolute path names are used.
+# 
+-ipxact_relative_path_names true
+
+# optional_encryption --- 
+# When selected, encrypted RTL output is generated.
+# 	
+-optional_encryption false
+
+# ignore_encrypt_license --- 
+# When selected, pretend the encryption license is missing.  For testing.
+# 	
+-ignore_encrypt_license false
+
+# ignore_clear_license --- 
+# When selected, pretend the cleartest license is missing.  For testing.
+# 	
+-ignore_clear_license false
+
+
+######## Tool Configuration --- cgen.1_0 ########
+
+# Create Tool Configuration
+-create cgen.1_0 "System.Tool Configuration"
+
+# mwdt_version --- Selects the MetaWare version to be used with the TCF file.
+# Change from the default to an older or newer toolset version if you want the TCF file to be used with an older or newer version of the MetaWare tools.
+-mwdt_version L-2016.06
+
+# code_base_addr --- 
+# The base address to assign to the executable code segment in the linker command file when there is no ICCM in the build.  This value is ignored when there is an ICCM.
+# 
+-code_base_addr 0
+
+# data_base_addr --- 
+# The base address to assign to the data segment in the linker command file when the data is not being mapped to a DCCM.  This value is ignored when the data segment is mapped to a DCCM, as in that case the base address of the DCCM memory is used.
+# 
+# A value of 0xffffffff means that the data segment will not be mapped to any specific address.
+# 
+-data_base_addr 4294967295
+
+
+]]></string>
+  </configuration>
+  <configuration name="assembler_defines" filename="core_config.s">
+    <string><![CDATA[
+.ifndef __core_config_s
+	.define __core_config_s, 1
+	.define	core_config_cir_identity,0x0000_0042
+	.define	core_config_cir_identity_chipid,0
+	.define	core_config_cir_identity_arcnum,0
+	.define	core_config_cir_identity_arcver,66
+	.define	core_config_cir_identity_family,4
+	.define	core_config_cir_identity_corever,2
+	.define	core_config_cir_aux_dccm,0x0080_0000
+	.define	core_config_bcr_bcr_ver,0x0000_0002
+	.define	core_config_bcr_bcr_ver_version,2
+	.define	core_config_bcr_vecbase_ac_build,0x0000_0010
+	.define	core_config_bcr_rf_build,0x0000_0102
+	.define	core_config_bcr_rf_build_version,2
+	.define	core_config_bcr_rf_build_p,1
+	.define	core_config_bcr_rf_build_e,0
+	.define	core_config_bcr_rf_build_r,0
+	.define	core_config_bcr_rf_build_b,0
+	.define	core_config_bcr_rf_build_d,0
+	.define	core_config_bcr_dccm_build,0x0000_0304
+	.define	core_config_bcr_dccm_build_cycles,0
+	.define	core_config_bcr_dccm_build_interleave,0
+	.define	core_config_bcr_dccm_build_size1,0
+	.define	core_config_bcr_dccm_build_size0,3
+	.define	core_config_bcr_dccm_build_version,4
+	.define	core_config_bcr_timer_build,0x0001_0104
+	.define	core_config_bcr_timer_build_sp1,0
+	.define	core_config_bcr_timer_build_sp0,0
+	.define	core_config_bcr_timer_build_p1,0
+	.define	core_config_bcr_timer_build_p0,1
+	.define	core_config_bcr_timer_build_st1,0
+	.define	core_config_bcr_timer_build_st0,0
+	.define	core_config_bcr_timer_build_rtc,0
+	.define	core_config_bcr_timer_build_rtsc_ver,1
+	.define	core_config_bcr_timer_build_rtsc,0
+	.define	core_config_bcr_timer_build_t0,1
+	.define	core_config_bcr_timer_build_t1,0
+	.define	core_config_bcr_timer_build_version,4
+	.define	core_config_bcr_iccm_build,0x0000_0604
+	.define	core_config_bcr_iccm_build_iccm1_size1,0
+	.define	core_config_bcr_iccm_build_iccm0_size1,0
+	.define	core_config_bcr_iccm_build_iccm1_size0,0
+	.define	core_config_bcr_iccm_build_iccm0_size0,6
+	.define	core_config_bcr_iccm_build_version,4
+	.define	core_config_bcr_multiply_build,0x0002_0506
+	.define	core_config_bcr_multiply_build_version16x16,2
+	.define	core_config_bcr_multiply_build_dsp,0
+	.define	core_config_bcr_multiply_build_cyc,1
+	.define	core_config_bcr_multiply_build_type,1
+	.define	core_config_bcr_multiply_build_version32x32,6
+	.define	core_config_bcr_swap_build,0x0000_0003
+	.define	core_config_bcr_swap_build_version,3
+	.define	core_config_bcr_norm_build,0x0000_0003
+	.define	core_config_bcr_norm_build_version,3
+	.define	core_config_bcr_minmax_build,0x0000_0002
+	.define	core_config_bcr_minmax_build_version,2
+	.define	core_config_bcr_barrel_build,0x0000_0303
+	.define	core_config_bcr_barrel_build_version,3
+	.define	core_config_bcr_barrel_build_shift_option,3
+	.define	core_config_bcr_isa_config,0x2202_7202
+	.define	core_config_bcr_isa_config_d,2
+	.define	core_config_bcr_isa_config_c,2
+	.define	core_config_bcr_isa_config_l,0
+	.define	core_config_bcr_isa_config_n,0
+	.define	core_config_bcr_isa_config_a,0
+	.define	core_config_bcr_isa_config_b,0
+	.define	core_config_bcr_isa_config_addr_size,2
+	.define	core_config_bcr_isa_config_lpc_size,7
+	.define	core_config_bcr_isa_config_pc_size,2
+	.define	core_config_bcr_isa_config_version,2
+	.define	core_config_bcr_core_config,0x0000_0001
+	.define	core_config_bcr_core_config_turbo_boost,0
+	.define	core_config_bcr_core_config_version,1
+	.define	core_config_bcr_irq_build,0x0105_0901
+	.define	core_config_bcr_irq_build_raz,0
+	.define	core_config_bcr_irq_build_f,0
+	.define	core_config_bcr_irq_build_p,1
+	.define	core_config_bcr_irq_build_exts,5
+	.define	core_config_bcr_irq_build_irqs,9
+	.define	core_config_bcr_irq_build_version,1
+	.define	core_config_cir_aux_iccm,0x0000_0000
+	.define	core_config_family,4
+	.define	core_config_core_version,2
+	.define	core_config_family_name,"arcv2em"
+	.define	core_config_rgf_num_banks,1
+	.define	core_config_rgf_num_wr_ports,2
+	.define	core_config_endian,"little"
+	.define	core_config_lpc_size,32
+	.define	core_config_pc_size,24
+	.define	core_config_addr_size,24
+	.define	core_config_code_density,1
+	.define	core_config_div_rem,"radix4"
+	.define	core_config_swap,1
+	.define	core_config_bitscan,1
+	.define	core_config_mpy_option,"wlh2"
+	.define	core_config_shift_assist,1
+	.define	core_config_barrel_shifter,1
+	.define	core_config_timer0,1
+	.define	core_config_timer0_level,1
+	.define	core_config_timer0_vector,16
+	.define	core_config_interrupts_present,1
+	.define	core_config_interrupts_number,9
+	.define	core_config_interrupts_priorities,2
+	.define	core_config_interrupts_externals,5
+	.define	core_config_interrupts,9
+	.define	core_config_interrupt_priorities,2
+	.define	core_config_ext_interrupts,5
+	.define	core_config_interrupts_base,0x0
+	.define	core_config_iccm_present,1
+	.define	core_config_iccm0_present,1
+	.define	core_config_iccm_size,16384
+	.define	core_config_iccm0_size,16384
+	.define	core_config_iccm_base,0x0000_0000
+	.define	core_config_iccm0_base,0x0000_0000
+.endif ; __core_config_s
+
+]]></string>
+  </configuration>
+  <configuration name="C_defines" filename="core_config.h">
+    <string><![CDATA[
+#ifndef __core_config_h
+	#define __core_config_h  1
+	#define	core_config_cir_identity	0x0000_0042
+	#define	core_config_cir_identity_chipid	0
+	#define	core_config_cir_identity_arcnum	0
+	#define	core_config_cir_identity_arcver	66
+	#define	core_config_cir_identity_family	4
+	#define	core_config_cir_identity_corever	2
+	#define	core_config_cir_aux_dccm	0x0080_0000
+	#define	core_config_bcr_bcr_ver	0x0000_0002
+	#define	core_config_bcr_bcr_ver_version	2
+	#define	core_config_bcr_vecbase_ac_build	0x0000_0010
+	#define	core_config_bcr_rf_build	0x0000_0102
+	#define	core_config_bcr_rf_build_version	2
+	#define	core_config_bcr_rf_build_p	1
+	#define	core_config_bcr_rf_build_e	0
+	#define	core_config_bcr_rf_build_r	0
+	#define	core_config_bcr_rf_build_b	0
+	#define	core_config_bcr_rf_build_d	0
+	#define	core_config_bcr_dccm_build	0x0000_0304
+	#define	core_config_bcr_dccm_build_cycles	0
+	#define	core_config_bcr_dccm_build_interleave	0
+	#define	core_config_bcr_dccm_build_size1	0
+	#define	core_config_bcr_dccm_build_size0	3
+	#define	core_config_bcr_dccm_build_version	4
+	#define	core_config_bcr_timer_build	0x0001_0104
+	#define	core_config_bcr_timer_build_sp1	0
+	#define	core_config_bcr_timer_build_sp0	0
+	#define	core_config_bcr_timer_build_p1	0
+	#define	core_config_bcr_timer_build_p0	1
+	#define	core_config_bcr_timer_build_st1	0
+	#define	core_config_bcr_timer_build_st0	0
+	#define	core_config_bcr_timer_build_rtc	0
+	#define	core_config_bcr_timer_build_rtsc_ver	1
+	#define	core_config_bcr_timer_build_rtsc	0
+	#define	core_config_bcr_timer_build_t0	1
+	#define	core_config_bcr_timer_build_t1	0
+	#define	core_config_bcr_timer_build_version	4
+	#define	core_config_bcr_iccm_build	0x0000_0604
+	#define	core_config_bcr_iccm_build_iccm1_size1	0
+	#define	core_config_bcr_iccm_build_iccm0_size1	0
+	#define	core_config_bcr_iccm_build_iccm1_size0	0
+	#define	core_config_bcr_iccm_build_iccm0_size0	6
+	#define	core_config_bcr_iccm_build_version	4
+	#define	core_config_bcr_multiply_build	0x0002_0506
+	#define	core_config_bcr_multiply_build_version16x16	2
+	#define	core_config_bcr_multiply_build_dsp	0
+	#define	core_config_bcr_multiply_build_cyc	1
+	#define	core_config_bcr_multiply_build_type	1
+	#define	core_config_bcr_multiply_build_version32x32	6
+	#define	core_config_bcr_swap_build	0x0000_0003
+	#define	core_config_bcr_swap_build_version	3
+	#define	core_config_bcr_norm_build	0x0000_0003
+	#define	core_config_bcr_norm_build_version	3
+	#define	core_config_bcr_minmax_build	0x0000_0002
+	#define	core_config_bcr_minmax_build_version	2
+	#define	core_config_bcr_barrel_build	0x0000_0303
+	#define	core_config_bcr_barrel_build_version	3
+	#define	core_config_bcr_barrel_build_shift_option	3
+	#define	core_config_bcr_isa_config	0x2202_7202
+	#define	core_config_bcr_isa_config_d	2
+	#define	core_config_bcr_isa_config_c	2
+	#define	core_config_bcr_isa_config_l	0
+	#define	core_config_bcr_isa_config_n	0
+	#define	core_config_bcr_isa_config_a	0
+	#define	core_config_bcr_isa_config_b	0
+	#define	core_config_bcr_isa_config_addr_size	2
+	#define	core_config_bcr_isa_config_lpc_size	7
+	#define	core_config_bcr_isa_config_pc_size	2
+	#define	core_config_bcr_isa_config_version	2
+	#define	core_config_bcr_core_config	0x0000_0001
+	#define	core_config_bcr_core_config_turbo_boost	0
+	#define	core_config_bcr_core_config_version	1
+	#define	core_config_bcr_irq_build	0x0105_0901
+	#define	core_config_bcr_irq_build_raz	0
+	#define	core_config_bcr_irq_build_f	0
+	#define	core_config_bcr_irq_build_p	1
+	#define	core_config_bcr_irq_build_exts	5
+	#define	core_config_bcr_irq_build_irqs	9
+	#define	core_config_bcr_irq_build_version	1
+	#define	core_config_cir_aux_iccm	0x0000_0000
+	#define	core_config_family	4
+	#define	core_config_core_version	2
+	#define	core_config_family_name	"arcv2em"
+	#define	core_config_rgf_num_banks	1
+	#define	core_config_rgf_num_wr_ports	2
+	#define	core_config_endian	"little"
+	#define	core_config_lpc_size	32
+	#define	core_config_pc_size	24
+	#define	core_config_addr_size	24
+	#define	core_config_code_density	1
+	#define	core_config_div_rem	"radix4"
+	#define	core_config_swap	1
+	#define	core_config_bitscan	1
+	#define	core_config_mpy_option	"wlh2"
+	#define	core_config_shift_assist	1
+	#define	core_config_barrel_shifter	1
+	#define	core_config_timer0	1
+	#define	core_config_timer0_level	1
+	#define	core_config_timer0_vector	16
+	#define	core_config_interrupts_present	1
+	#define	core_config_interrupts_number	9
+	#define	core_config_interrupts_priorities	2
+	#define	core_config_interrupts_externals	5
+	#define	core_config_interrupts	9
+	#define	core_config_interrupt_priorities	2
+	#define	core_config_ext_interrupts	5
+	#define	core_config_interrupts_base	0x0
+	#define	core_config_iccm_present	1
+	#define	core_config_iccm0_present	1
+	#define	core_config_iccm_size	16384
+	#define	core_config_iccm0_size	16384
+	#define	core_config_iccm_base	0x0000_0000
+	#define	core_config_iccm0_base	0x0000_0000
+#endif /* __core_config_h */
+
+]]></string>
+  </configuration>
+  <configuration name="core" filename="core.props">
+    <string><![CDATA[
+	core_config.cir.identity=0x0000_0042
+	core_config.cir.identity.chipid=0
+	core_config.cir.identity.arcnum=0
+	core_config.cir.identity.arcver=66
+	core_config.cir.identity.family=4
+	core_config.cir.identity.corever=2
+	core_config.cir.aux_dccm=0x0080_0000
+	core_config.bcr.bcr_ver=0x0000_0002
+	core_config.bcr.bcr_ver.version=2
+	core_config.bcr.vecbase_ac_build=0x0000_0010
+	core_config.bcr.rf_build=0x0000_0102
+	core_config.bcr.rf_build.version=2
+	core_config.bcr.rf_build.p=1
+	core_config.bcr.rf_build.e=0
+	core_config.bcr.rf_build.r=0
+	core_config.bcr.rf_build.b=0
+	core_config.bcr.rf_build.d=0
+	core_config.bcr.dccm_build=0x0000_0304
+	core_config.bcr.dccm_build.cycles=0
+	core_config.bcr.dccm_build.interleave=0
+	core_config.bcr.dccm_build.size1=0
+	core_config.bcr.dccm_build.size0=3
+	core_config.bcr.dccm_build.version=4
+	core_config.bcr.timer_build=0x0001_0104
+	core_config.bcr.timer_build.sp1=0
+	core_config.bcr.timer_build.sp0=0
+	core_config.bcr.timer_build.p1=0
+	core_config.bcr.timer_build.p0=1
+	core_config.bcr.timer_build.st1=0
+	core_config.bcr.timer_build.st0=0
+	core_config.bcr.timer_build.rtc=0
+	core_config.bcr.timer_build.rtsc_ver=1
+	core_config.bcr.timer_build.rtsc=0
+	core_config.bcr.timer_build.t0=1
+	core_config.bcr.timer_build.t1=0
+	core_config.bcr.timer_build.version=4
+	core_config.bcr.iccm_build=0x0000_0604
+	core_config.bcr.iccm_build.iccm1_size1=0
+	core_config.bcr.iccm_build.iccm0_size1=0
+	core_config.bcr.iccm_build.iccm1_size0=0
+	core_config.bcr.iccm_build.iccm0_size0=6
+	core_config.bcr.iccm_build.version=4
+	core_config.bcr.multiply_build=0x0002_0506
+	core_config.bcr.multiply_build.version16x16=2
+	core_config.bcr.multiply_build.dsp=0
+	core_config.bcr.multiply_build.cyc=1
+	core_config.bcr.multiply_build.type=1
+	core_config.bcr.multiply_build.version32x32=6
+	core_config.bcr.swap_build=0x0000_0003
+	core_config.bcr.swap_build.version=3
+	core_config.bcr.norm_build=0x0000_0003
+	core_config.bcr.norm_build.version=3
+	core_config.bcr.minmax_build=0x0000_0002
+	core_config.bcr.minmax_build.version=2
+	core_config.bcr.barrel_build=0x0000_0303
+	core_config.bcr.barrel_build.version=3
+	core_config.bcr.barrel_build.shift_option=3
+	core_config.bcr.isa_config=0x2202_7202
+	core_config.bcr.isa_config.d=2
+	core_config.bcr.isa_config.c=2
+	core_config.bcr.isa_config.l=0
+	core_config.bcr.isa_config.n=0
+	core_config.bcr.isa_config.a=0
+	core_config.bcr.isa_config.b=0
+	core_config.bcr.isa_config.addr_size=2
+	core_config.bcr.isa_config.lpc_size=7
+	core_config.bcr.isa_config.pc_size=2
+	core_config.bcr.isa_config.version=2
+	core_config.bcr.core_config=0x0000_0001
+	core_config.bcr.core_config.turbo_boost=0
+	core_config.bcr.core_config.version=1
+	core_config.bcr.irq_build=0x0105_0901
+	core_config.bcr.irq_build.raz=0
+	core_config.bcr.irq_build.f=0
+	core_config.bcr.irq_build.p=1
+	core_config.bcr.irq_build.exts=5
+	core_config.bcr.irq_build.irqs=9
+	core_config.bcr.irq_build.version=1
+	core_config.cir.aux_iccm=0x0000_0000
+	core_config.family=4
+	core_config.core_version=2
+	core_config.family_name=arcv2em
+	core_config.rgf_num_banks=1
+	core_config.rgf_num_wr_ports=2
+	core_config.endian=little
+	core_config.lpc_size=32
+	core_config.pc_size=24
+	core_config.addr_size=24
+	core_config.code_density=1
+	core_config.div_rem=radix4
+	core_config.swap=1
+	core_config.bitscan=1
+	core_config.mpy_option=wlh2
+	core_config.shift_assist=1
+	core_config.barrel_shifter=1
+	core_config.timer0=1
+	core_config.timer0_level=1
+	core_config.timer0.vector=16
+	core_config.interrupts.present=1
+	core_config.interrupts.number=9
+	core_config.interrupts.priorities=2
+	core_config.interrupts.externals=5
+	core_config.interrupts=9
+	core_config.interrupt_priorities=2
+	core_config.ext_interrupts=5
+	core_config.interrupts.base=0x0
+	core_config.iccm.present=1
+	core_config.iccm0.present=1
+	core_config.iccm.size=16384
+	core_config.iccm0.size=16384
+	core_config.iccm.base=0x0000_0000
+	core_config.iccm0.base=0x0000_0000
+]]></string>
+  </configuration>
+  <configuration name="gcc_compiler" filename="gcc.arg">
+    <string><![CDATA[
+	-mcpu=em4_dmips
+	-mlittle-endian
+	-mcode-density
+	-mdiv-rem
+	-mswap
+	-mnorm
+	-mmpy-option=3
+	-mbarrel-shifter
+]]></string>
+  </configuration>
+  <configuration name="linker_command_file" filename="link_cmd.txt">
+    <string><![CDATA[
+# SYSTEM memory regions indicate where external memory might be located.
+#   The TCF has no specific knowledge of whether SYSTEM regions contain 
+#   external memory or not.
+# CCMWRAP memory regions indicate unusable portions of the address space
+#   due to CCM memory wrapping into upper addresses beyond its size
+
+MEMORY {
+    ICCM0   : ORIGIN = 0x0000_0000, LENGTH = 0x0000_4000
+#   CCMWRAP0: ORIGIN = 0x0000_4000, LENGTH = 0x000f_c000
+#   SYSTEM0 : ORIGIN = 0x0010_0000, LENGTH = 0x0070_0000
+    DCCM    : ORIGIN = 0x0080_0000, LENGTH = 0x0000_0800
+#   CCMWRAP1: ORIGIN = 0x0080_0800, LENGTH = 0x000f_f800
+#   SYSTEM1 : ORIGIN = 0x0090_0000, LENGTH = 0x0070_0000
+    }
+SECTIONS {
+    GROUP: {
+        .vectors (TEXT) SIZE(DEFINED _IVTSIZE?_IVTSIZE:120): {}
+	.text? : { *('.text$crt*') }
+        * (TEXT): {}
+    	* (LIT): {}
+	} > ICCM0
+
+    GROUP: {
+	/* _SDA_BASE_ computed implicitly */
+        .cpu_io: {}
+        .sdata?: {}
+        .sbss?: {}
+        * (DATA): {}
+        * (BSS): {}
+       .stack ALIGN(4) SIZE(DEFINED _STACKSIZE?_STACKSIZE:512): {}
+       .heap? ALIGN(4) SIZE(DEFINED _HEAPSIZE?_HEAPSIZE:0): {}
+	} > DCCM
+    }
+
+]]></string>
+  </configuration>
+  <configuration name="gnu_linker_command_file" filename="memory.x">
+    <string><![CDATA[
+MEMORY {
+    ICCM0    : ORIGIN = 0x00000000, LENGTH = 0x00004000
+    CCMWRAP0 : ORIGIN = 0x00004000, LENGTH = 0x000fc000
+    SYSTEM0  : ORIGIN = 0x00100000, LENGTH = 0x00300000
+    DCCM     : ORIGIN = 0x00800000, LENGTH = 0x00000800
+    CCMWRAP1 : ORIGIN = 0x00800800, LENGTH = 0x000ff800
+    SYSTEM1  : ORIGIN = 0x00900000, LENGTH = 0x00700000
+    }
+REGION_ALIAS("startup", ICCM0)
+REGION_ALIAS("text", ICCM0)
+REGION_ALIAS("data", DCCM)
+REGION_ALIAS("sdata", DCCM)
+PROVIDE (__stack_top = (0x008007ff & -4 ));
+PROVIDE (__end_heap =  (0x008007ff ));
+]]></string>
+  </configuration>
+  <configuration name="apex_header" filename="apexextensions.h">
+    <string><![CDATA[
+
+/* **** DO NOT EDIT - this file is generated by ARChitect2 ****
+ *
+ * Description: Header file declaring the compiler extensions for apex components 
+ */
+
+#ifndef _apexextensions_H_
+#define _apexextensions_H_
+
+
+
+#endif
+
+
+]]></string>
+  </configuration>
+  <configuration name="apex_assembly" filename="apexextensions.s">
+    <string><![CDATA[
+
+; Assembler directives for eia extensions in this design
+
+]]></string>
+  </configuration>
+</config_list>
+

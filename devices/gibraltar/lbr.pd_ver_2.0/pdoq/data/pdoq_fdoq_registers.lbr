@@ -1,0 +1,2583 @@
+$block{PDOQ_FDOQ} = {
+  Defines_db => "..\\verilog\\pdoq_defines.v,..\\..\\defines\\control_common_defines.v,..\\..\\sch\\verilog\\sch_defines.v,..\\..\\defines\\pd_fd_defines.v,..\\verilog\\config_pdoq_fdoq\\pdoq_fdoq_cif_defines.v,..\\verilog\\config_pdoq_empd\\pdoq_empd_cif_defines.v",
+  ProjectName => "Gibraltar",
+  InterruptRegister => { #Structure Type: Reg; Skip Register;
+    Name => "InterruptRegister",
+    RegMem => "Reg",
+    Address => "0",
+    Description => "Master Interrupt Register",
+    Width => "2",
+    Type => "Interrupt",
+    MemProtectInterruptSummary => { #Structure Type: RegField;
+      Name => "MemProtectInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, MemProtectInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+    },
+    GeneralInterruptSummary => { #Structure Type: RegField;
+      Name => "GeneralInterruptSummary",
+      RegMem => "RegField",
+      Description => "When this bit is set, GeneralInterrupt has asserted interrupt",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+    },
+  },
+  MemProtectInterrupt => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterrupt",
+    RegMem => "Reg",
+    Address => "1",
+    Description => "ECC/Parity Interrupt Register",
+    Width => "3",
+    Type => "Interrupt",
+    Ecc_1bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b error was detected",
+      Width => "1",
+      Position => "0",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    Ecc_2bErrInterrupt => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b error was detected",
+      Width => "1",
+      Position => "1",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+    ParityErrInterrupt => { #Structure Type: RegField;
+      Name => "ParityErrInterrupt",
+      RegMem => "RegField",
+      Description => "When this bit is set, Parity error was detected",
+      Width => "1",
+      Position => "2",
+      Type => "Interrupt",
+      UsedBy => "SER",
+    },
+  },
+  MemProtectInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectInterruptTest",
+    RegMem => "Reg",
+    Address => "2",
+    Description => "ECC/Parity Interrupt test register",
+    Width => "3",
+    Type => "InterruptTest",
+    Ecc_1bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_1bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "0",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    Ecc_2bErrInterruptTest => { #Structure Type: RegField;
+      Name => "Ecc_2bErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "1",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+    ParityErrInterruptTest => { #Structure Type: RegField;
+      Name => "ParityErrInterruptTest",
+      RegMem => "RegField",
+      Description => "Setting this filed to 1 triggers an assertion of the interrupt that is associated with this test field",
+      Width => "1",
+      Position => "2",
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "3",
+    Description => "ECC 1b Error Interrupt Mask Register",
+    Width => "6",
+    Type => "Config",
+    PdifFifoEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PdifFifoEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PdifEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PdifEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PdifEmFailEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PdifEmFailEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    FdllReqFifoEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "FdllReqFifoEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    FdllDelReqFifoEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "FdllDelReqFifoEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    FdllReplyFifoEcc_1bErrInterruptMask => { #Structure Type: RegField;
+      Name => "FdllReplyFifoEcc_1bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+  Ecc_2bErrInterruptRegisterMask => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInterruptRegisterMask",
+    RegMem => "Reg",
+    Address => "4",
+    Description => "ECC 2b Error Interrupt Mask Register",
+    Width => "6",
+    Type => "Config",
+    PdifFifoEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PdifFifoEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PdifEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PdifEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    PdifEmFailEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "PdifEmFailEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    FdllReqFifoEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "FdllReqFifoEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    FdllDelReqFifoEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "FdllDelReqFifoEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+    FdllReplyFifoEcc_2bErrInterruptMask => { #Structure Type: RegField;
+      Name => "FdllReplyFifoEcc_2bErrInterruptMask",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error indication will be masked",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b1",
+    },
+  },
+
+  Ecc_1bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "30",
+    Description => "ECC 1b Error Initiator Register",
+    Width => "6",
+    Type => "Config",
+    PdifFifoEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PdifFifoEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PdifEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PdifEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PdifEmFailEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "PdifEmFailEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    FdllReqFifoEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "FdllReqFifoEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    FdllDelReqFifoEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "FdllDelReqFifoEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    FdllReplyFifoEcc_1bErrInitiate => { #Structure Type: RegField;
+      Name => "FdllReplyFifoEcc_1bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 1b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_2bErrInitiateRegister => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrInitiateRegister",
+    RegMem => "Reg",
+    Address => "31",
+    Description => "ECC 2b Error Initiator Register",
+    Width => "6",
+    Type => "Config",
+    PdifFifoEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PdifFifoEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "0",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PdifEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PdifEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "1",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    PdifEmFailEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "PdifEmFailEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "2",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    FdllReqFifoEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "FdllReqFifoEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    FdllDelReqFifoEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "FdllDelReqFifoEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "4",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    FdllReplyFifoEcc_2bErrInitiate => { #Structure Type: RegField;
+      Name => "FdllReplyFifoEcc_2bErrInitiate",
+      RegMem => "RegField",
+      Description => "When this bit is set, ECC 2b Error will be initiated",
+      Width => "1",
+      Position => "5",
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  MemProtectErrStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MemProtectErrStatus",
+    RegMem => "Reg",
+    Address => "33",
+    Description => "Memory SER protected error status",
+    Width => "6",
+    Type => "ReadOnly",
+    PdifFifoErrInt => { #Structure Type: RegField;
+      Name => "PdifFifoErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PdifErrInt => { #Structure Type: RegField;
+      Name => "PdifErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "1",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    PdifEmFailErrInt => { #Structure Type: RegField;
+      Name => "PdifEmFailErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "2",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    FdllReqFifoErrInt => { #Structure Type: RegField;
+      Name => "FdllReqFifoErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "3",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    FdllDelReqFifoErrInt => { #Structure Type: RegField;
+      Name => "FdllDelReqFifoErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "4",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    FdllReplyFifoErrInt => { #Structure Type: RegField;
+      Name => "FdllReplyFifoErrInt",
+      RegMem => "RegField",
+      Description => "When this bit is set, SER Error occured",
+      Width => "1",
+      Position => "5",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SelectedSerErrorInfo => { #Structure Type: Reg; Skip Register;
+    Name => "SelectedSerErrorInfo",
+    RegMem => "Reg",
+    Address => "34",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "13",
+    Type => "ReadOnly",
+    MemErrAddr => { #Structure Type: RegField;
+      Name => "MemErrAddr",
+      RegMem => "RegField",
+      Description => "Address of SER error of selected memory",
+      Width => "11",
+      Position => "10:0",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+    MemErrType => { #Structure Type: RegField;
+      Name => "MemErrType",
+      RegMem => "RegField",
+      Description => "0 = ECC 1b, 1 = ECC 2b, 2 = Parity",
+      Width => "2",
+      Position => "12:11",
+      Type => "Status",
+      UsedBy => "SER",
+    },
+  },
+  SerErrorDebugConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SerErrorDebugConfiguration",
+    RegMem => "Reg",
+    Address => "35",
+    Description => "Address and Type of SER error of selected memory",
+    Width => "4",
+    Type => "Config",
+    ErroneousMemorySelector => { #Structure Type: RegField;
+      Name => "ErroneousMemorySelector",
+      RegMem => "RegField",
+      Description => "Selects which memory error address and error type to set on the status register",
+      Width => "3",
+      Position => "2:0",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+    ResetMemoryErrors => { #Structure Type: RegField;
+      Name => "ResetMemoryErrors",
+      RegMem => "RegField",
+      Description => "When set to 1 - all the memory SER errors are reset. Need to set back to 0 to resume error recording",
+      Width => "1",
+      Position => "3",
+      Type => "Config",
+      UsedBy => "SER",
+      DefaultValue => "b0",
+    },
+  },
+  Ecc_1bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_1bErrDebug",
+    RegMem => "Reg",
+    Address => "36",
+    Description => "ECC 1b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_1bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_1bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 1b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  Ecc_2bErrDebug => { #Structure Type: Reg; Skip Register;
+    Name => "Ecc_2bErrDebug",
+    RegMem => "Reg",
+    Address => "37",
+    Description => "ECC 2b Error Counter",
+    Width => "16",
+    Type => "ReadOnly",
+    Ecc_2bErrCounter => { #Structure Type: RegField;
+      Name => "Ecc_2bErrCounter",
+      RegMem => "RegField",
+      Description => "Counts number of ECC 2b errors",
+      Width => "16",
+      Position => "15:0",
+      Type => "Counter",
+      UsedBy => "SER",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+
+  CounterTimer => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimer",
+    RegMem => "Reg",
+    Address => "40",
+    Description => "Defines Counter Timer parameters",
+    Width => "33", # Excel Formula: =calc_reg_width(E8:E9,F9)
+    Type => "Config",
+    CounterTimerEnable => { #Structure Type: RegField;
+      Name => "CounterTimerEnable",
+      RegMem => "RegField",
+      Description => "If set, Counter Timer will applied for the counters, otherwise the counters are free running",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+    CounterTimerCycle => { #Structure Type: RegField;
+      Name => "CounterTimerCycle",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "32",
+      Position => "32:1", # Excel Formula: =calc_position(F8,E9)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h3B9ACA00",
+    },
+  },
+  CounterTimerTriggerReg => { #Structure Type: Reg; Skip Register;
+    Name => "CounterTimerTriggerReg",
+    RegMem => "Reg",
+    Address => "41", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Activates Counter Timer",
+    Width => "1", # Excel Formula: =calc_reg_width(E11:E11,F11)
+    Type => "External",
+    UsedBy => "CIF",
+    CounterTimerTrigger => { #Structure Type: RegField;
+      Name => "CounterTimerTrigger",
+      RegMem => "RegField",
+      Description => "When activated, CounterTimer will count for CounterTimerCycle",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F10,E11,TRUE)
+      Type => "External",
+    },
+  },
+  MemoryAccessTimeout => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryAccessTimeout",
+    RegMem => "Reg",
+    Address => "42", # Excel Formula: =calc_reg_address(C10,A10,G10)
+    Description => "Defines parameters for memory access timer expiry",
+    Width => "38", # Excel Formula: =calc_reg_width(E13:E15,F15)
+    Type => "Config",
+    BubbleCounterThr => { #Structure Type: RegField;
+      Name => "BubbleCounterThr",
+      RegMem => "RegField",
+      Description => "When BubbleCounterThr clocks passed from CIF memory access without grant, Bubble Request signal raised towards the block ",
+      Width => "16",
+      Position => "15:0", # Excel Formula: =calc_position(F12,E13,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d256",
+    },
+    TimeoutCounterThr => { #Structure Type: RegField;
+      Name => "TimeoutCounterThr",
+      RegMem => "RegField",
+      Description => "When TimeoutCounterThr clocks passed from CIF memory access without grant, the access is terminated with error ",
+      Width => "16",
+      Position => "31:16", # Excel Formula: =calc_position(F13,E14)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d4096",
+    },
+    AnsWindowCounterThr => { #Structure Type: RegField;
+      Name => "AnsWindowCounterThr",
+      RegMem => "RegField",
+      Description => "When memory access is terminated because of  TimeoutCounterThr, the CIF waits AnsWindowCounterThr clocks for access termination",
+      Width => "6",
+      Position => "37:32", # Excel Formula: =calc_position(F14,E15)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "d16",
+    },
+  },
+  BroadcastConfigReg => { #Structure Type: Reg; Skip Register;
+    Name => "BroadcastConfigReg",
+    RegMem => "Reg",
+    Address => "43", # Excel Formula: =calc_reg_address(C12,A12,G12)
+    Description => "Config Top broadcast parameters",
+    Width => "12", # Excel Formula: =calc_reg_width(E17:E17,F17)
+    Type => "Config",
+    BroadcastId => { #Structure Type: RegField;
+      Name => "BroadcastId",
+      RegMem => "RegField",
+      Description => "Broadcast ID used by Config Top protocol for broadcast messages",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F16,E17,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hFFF",
+    },
+  },
+  MemoryProtBypass => { #Structure Type: Reg; Skip Register;
+    Name => "MemoryProtBypass",
+    RegMem => "Reg",
+    Address => "44", # Excel Formula: =calc_reg_address(C16,A16,G16)
+    Description => "Bypass for ECC/Parity, used for debug",
+    Width => "3", # Excel Formula: =calc_reg_width(E19:E21,F21)
+    Type => "Config",
+    DisableEcc => { #Structure Type: RegField;
+      Name => "DisableEcc",
+      RegMem => "RegField",
+      Description => "If set, ECC fix is bypassed and is taken from payload",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F18,E19,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtGenBypass => { #Structure Type: RegField;
+      Name => "CifProtGenBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity generation is bypassed and is taken from payload for CIF access",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    CifProtFixBypass => { #Structure Type: RegField;
+      Name => "CifProtFixBypass",
+      RegMem => "RegField",
+      Description => "If set, ECC/Parity fix is bypassed and original ECC/Parity is forwarded towards the CIF",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  SoftResetConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "SoftResetConfiguration",
+    RegMem => "Reg",
+    Address => "45", # Excel Formula: =calc_reg_address(C18,A18,G18)
+    Description => "Soft Reset Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E23:E23,F23)
+    Type => "Config",
+    SoftRstn => { #Structure Type: RegField;
+      Name => "SoftRstn",
+      RegMem => "RegField",
+      Description => "Triggers soft reset signal for the block, active low register",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+    },
+  },
+  MbistConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "MbistConfiguration",
+    RegMem => "Reg",
+    Address => "46", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "MBIST Configuration for the block",
+    Width => "73", # Excel Formula: =calc_reg_width(E25:E53,F53)
+    Type => "Config",
+    SACR1P_RME => { #Structure Type: RegField;
+      Name => "SACR1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F24,E25,TRUE)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACR1P_RM => { #Structure Type: RegField;
+      Name => "SACR1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "4:1", # Excel Formula: =calc_position(F25,E26)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACU2P_RME => { #Structure Type: RegField;
+      Name => "SACU2P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "5", # Excel Formula: =calc_position(F26,E27)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SACU2P_RM => { #Structure Type: RegField;
+      Name => "SACU2P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "9:6", # Excel Formula: =calc_position(F27,E28)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADC1P_RME => { #Structure Type: RegField;
+      Name => "SADC1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "10", # Excel Formula: =calc_position(F28,E29)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADC1P_RM => { #Structure Type: RegField;
+      Name => "SADC1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "14:11", # Excel Formula: =calc_position(F29,E30)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMEA => { #Structure Type: RegField;
+      Name => "SADR2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "15", # Excel Formula: =calc_position(F30,E31)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMA => { #Structure Type: RegField;
+      Name => "SADR2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "19:16", # Excel Formula: =calc_position(F31,E32)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMEB => { #Structure Type: RegField;
+      Name => "SADR2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "20", # Excel Formula: =calc_position(F32,E33)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADR2P_RMB => { #Structure Type: RegField;
+      Name => "SADR2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "24:21", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMEA => { #Structure Type: RegField;
+      Name => "SADS2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "25", # Excel Formula: =calc_position(F34,E35)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMA => { #Structure Type: RegField;
+      Name => "SADS2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "29:26", # Excel Formula: =calc_position(F35,E36)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMEB => { #Structure Type: RegField;
+      Name => "SADS2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "30", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RMB => { #Structure Type: RegField;
+      Name => "SADS2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "34:31", # Excel Formula: =calc_position(F37,E38)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASR1P_RME => { #Structure Type: RegField;
+      Name => "SASR1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "35", # Excel Formula: =calc_position(F38,E39)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASR1P_RM => { #Structure Type: RegField;
+      Name => "SASR1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "39:36", # Excel Formula: =calc_position(F39,E40)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS1P_RME => { #Structure Type: RegField;
+      Name => "SASS1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "40", # Excel Formula: =calc_position(F40,E41)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS1P_RM => { #Structure Type: RegField;
+      Name => "SASS1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "44:41", # Excel Formula: =calc_position(F41,E42)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMEA => { #Structure Type: RegField;
+      Name => "SASS2P_RMEA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port A",
+      Width => "1",
+      Position => "45", # Excel Formula: =calc_position(F42,E43)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMA => { #Structure Type: RegField;
+      Name => "SASS2P_RMA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port A",
+      Width => "4",
+      Position => "49:46", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMEB => { #Structure Type: RegField;
+      Name => "SASS2P_RMEB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable port B",
+      Width => "1",
+      Position => "50", # Excel Formula: =calc_position(F44,E45)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASS2P_RMB => { #Structure Type: RegField;
+      Name => "SASS2P_RMB",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin port B",
+      Width => "4",
+      Position => "54:51", # Excel Formula: =calc_position(F45,E46)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASU2P_RME => { #Structure Type: RegField;
+      Name => "SASU2P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "55", # Excel Formula: =calc_position(F46,E47)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SASU2P_RM => { #Structure Type: RegField;
+      Name => "SASU2P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "59:56", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_RME => { #Structure Type: RegField;
+      Name => "SADU1P_RME",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin Enable",
+      Width => "1",
+      Position => "60", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_RM => { #Structure Type: RegField;
+      Name => "SADU1P_RM",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Margin",
+      Width => "4",
+      Position => "64:61", # Excel Formula: =calc_position(F49,E50)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADS2P_RA => { #Structure Type: RegField;
+      Name => "SADS2P_RA",
+      RegMem => "RegField",
+      Description => "MBIST logic - Read Assist for Dual port",
+      Width => "2",
+      Position => "66:65", # Excel Formula: =calc_position(F50,E51)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+    SADU1P_WA => { #Structure Type: RegField;
+      Name => "SADU1P_WA",
+      RegMem => "RegField",
+      Description => "Write-Assist configuration for the SP SADU compiler",
+      Width => "3",
+      Position => "69:67", # Excel Formula: =calc_position(F51,E52)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "d5",
+    },
+    SADU1P_WPULSE => { #Structure Type: RegField;
+      Name => "SADU1P_WPULSE",
+      RegMem => "RegField",
+      Description => "Write-Assist-Pulse configuration for the SP SADU compiler",
+      Width => "3",
+      Position => "72:70", # Excel Formula: =calc_position(F52,E53)
+      Type => "Config",
+      UsedBy => "MEM",
+      DefaultValue => "b0",
+    },
+  },
+  PowerDownConfiguration => { #Structure Type: Reg; Skip Register;
+    Name => "PowerDownConfiguration",
+    RegMem => "Reg",
+    Address => "47", # Excel Formula: =calc_reg_address(C24,A24,G24)
+    Description => "Power Down Configuration for the block",
+    Width => "1", # Excel Formula: =calc_reg_width(E55:E55,F55)
+    Type => "Config",
+    PowerDown => { #Structure Type: RegField;
+      Name => "PowerDown",
+      RegMem => "RegField",
+      Description => "If set, disables the clock of the block",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F54,E55,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "b0",
+      Comments => "Default value should always be 0",
+    },
+  },
+  SpareReg => { #Structure Type: Reg; Skip Register;
+    Name => "SpareReg",
+    RegMem => "Reg",
+    Address => "48", # Excel Formula: =calc_reg_address(C54,A54,G54)
+    Description => "Spare register",
+    Width => "128", # Excel Formula: =calc_reg_width(E57:E57,F57)
+    Type => "Config",
+    SpareRegister => { #Structure Type: RegField;
+      Name => "SpareRegister",
+      RegMem => "RegField",
+      Description => "Spare register ",
+      Width => "128",
+      Position => "127:0", # Excel Formula: =calc_position(F56,E57,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "hffffffffffffffff",
+    },
+  },
+  PmroCtrl => { #Structure Type: Reg; Skip Register;
+    Name => "PmroCtrl",
+    RegMem => "Reg",
+    Address => "49", # Excel Formula: =calc_reg_address(C56,A56,G56)
+    Description => "PMRO controller configuration",
+    Width => "32", # Excel Formula: =calc_reg_width(E59:E63,F63)
+    Type => "Config",
+    PmroRstn => { #Structure Type: RegField;
+      Name => "PmroRstn",
+      RegMem => "RegField",
+      Description => "PMRO reset, active low",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F58,E59,TRUE)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroConfigEn => { #Structure Type: RegField;
+      Name => "PmroConfigEn",
+      RegMem => "RegField",
+      Description => "Enable pmro configuration, when equals to 0 configurations are locked",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F59,E60)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroStart => { #Structure Type: RegField;
+      Name => "PmroStart",
+      RegMem => "RegField",
+      Description => "Start the pmro operation",
+      Width => "1",
+      Position => "2", # Excel Formula: =calc_position(F60,E61)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d0",
+    },
+    PmroRingEn => { #Structure Type: RegField;
+      Name => "PmroRingEn",
+      RegMem => "RegField",
+      Description => "Determines which PMRO ring to activate, should be configured as one hot",
+      Width => "7",
+      Position => "9:3", # Excel Formula: =calc_position(F61,E62)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "d1",
+    },
+    PmroCntPeriod => { #Structure Type: RegField;
+      Name => "PmroCntPeriod",
+      RegMem => "RegField",
+      Description => "Number of core clock cycles on which PMRO is measured",
+      Width => "22",
+      Position => "31:10", # Excel Formula: =calc_position(F62,E63)
+      Type => "Config",
+      UsedBy => "pmro",
+      DefaultValue => "h3FFFFF",
+    },
+  },
+  PmroStatus => { #Structure Type: Reg; Skip Register;
+    Name => "PmroStatus",
+    RegMem => "Reg",
+    Address => "4A", # Excel Formula: =calc_reg_address(C58,A58,G58)
+    Description => "PMRO status configuration",
+    Width => "23", # Excel Formula: =calc_reg_width(E65:E66,F66)
+    Type => "ReadOnly",
+    PmroCountOut => { #Structure Type: RegField;
+      Name => "PmroCountOut",
+      RegMem => "RegField",
+      Description => "The ring oscilator counter value.",
+      Width => "22",
+      Position => "21:0", # Excel Formula: =calc_position(F64,E65,TRUE)
+      Type => "Status",
+      UsedBy => "pmro",
+    },
+    PmroDone => { #Structure Type: RegField;
+      Name => "PmroDone",
+      RegMem => "RegField",
+      Description => "Pmro operation done, PmroCountOut is valid.",
+      Width => "1",
+      Position => "22", # Excel Formula: =calc_position(F65,E66)
+      Type => "Status",
+      UsedBy => "pmro",
+    },
+  },
+  MirrorBusConfReg => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusConfReg",
+    RegMem => "Reg",
+    Address => "4B", # Excel Formula: =calc_reg_address(C64,A64,G64)
+    Description => "Mirror Bus configurations",
+    Width => "11", # Excel Formula: =calc_reg_width(E68:E69,F69)
+    Type => "Config",
+    MirrorBusEn => { #Structure Type: RegField;
+      Name => "MirrorBusEn",
+      RegMem => "RegField",
+      Description => "Enable Mirror Bus",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+    MirrorBusSel => { #Structure Type: RegField;
+      Name => "MirrorBusSel",
+      RegMem => "RegField",
+      Description => "Mirror Bus selector",
+      Width => "10",
+      Position => "10:1", # Excel Formula: =calc_position(F68,E69)
+      Type => "Config",
+      UsedBy => "BLOCK",
+      DefaultValue => "h0",
+    },
+  },
+  MirrorBusStatus => { #Structure Type: Reg; Skip Register;
+    Name => "MirrorBusStatus",
+    RegMem => "Reg",
+    Address => "4C", # Excel Formula: =calc_reg_address(C67,A67,G67)
+    Description => "Mirror Bus status result",
+    Width => "32", # Excel Formula: =calc_reg_width(E71:E71,F71)
+    Type => "ReadOnly",
+    MirrorBus => { #Structure Type: RegField;
+      Name => "MirrorBus",
+      RegMem => "RegField",
+      Description => "Mirror Bus status result",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F70,E71,TRUE)
+      Type => "Status",
+      UsedBy => "BLOCK",
+    },
+  },
+  DeviceTimeOffsetCfg => { #Structure Type: Reg; Skip Register;
+    Name => "DeviceTimeOffsetCfg",
+    RegMem => "Reg",
+    Address => "4D", # Excel Formula: =calc_reg_address(C70,A70,G70)
+    Description => "Define time offset configuration",
+    Width => "10", # Excel Formula: =calc_reg_width(E73:E73,F73)
+    Type => "Config",
+    DeviceTimeOffset => { #Structure Type: RegField;
+      Name => "DeviceTimeOffset",
+      RegMem => "RegField",
+      Description => "Define time offset",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F72,E73,TRUE)
+      Type => "Config",
+      UsedBy => "CIF",
+      DefaultValue => "h0",
+    },
+  },
+  GeneralInterrupt => { #Structure Type: Reg;
+    Name => "GeneralInterrupt",
+    RegMem => "Reg",
+    Address => "100",
+    Description => "FDOQ interrupt register",
+    Width => "1", # Excel Formula: =calc_reg_width(E8:E8,F8)
+    Type => "Interrupt",
+    FdllContextFifoOvf => { #Structure Type: RegField;
+      Name => "FdllContextFifoOvf",
+      RegMem => "RegField",
+      Description => "FDLL context fifo overflow, this is a fatal error, please contact Cisco support team",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "Interrupt",
+      UsedBy => "FDOQ",
+    },
+  },
+  GeneralInterruptMask => { #Structure Type: Reg; Skip Register;
+    Name => "GeneralInterruptMask",
+    RegMem => "Reg",
+    Address => "101",
+    Description => "This register masks GeneralInterrupt interrupt register",
+    Width => "1", # Excel Formula: =calc_reg_width(E8:E8,F8)
+    Type => "InterruptMask",
+    FdllContextFifoOvfMask => { #Structure Type: RegField;
+      Name => "FdllContextFifoOvfMask",
+      RegMem => "RegField",
+      Description => "This field masks FdllContextFifoOvf interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptMask",
+      UsedBy => "",
+      DefaultValue => "b1",
+    },
+  },
+  GeneralInterruptTest => { #Structure Type: Reg; Skip Register;
+    Name => "GeneralInterruptTest",
+    RegMem => "Reg",
+    Address => "102",
+    Description => "This register tests GeneralInterrupt interrupt register",
+    Width => "1", # Excel Formula: =calc_reg_width(E8:E8,F8)
+    Type => "InterruptTest",
+    FdllContextFifoOvfTest => { #Structure Type: RegField;
+      Name => "FdllContextFifoOvfTest",
+      RegMem => "RegField",
+      Description => "This field tests FdllContextFifoOvf interrupt",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F7,E8,TRUE)
+      Type => "InterruptTest",
+      UsedBy => "",
+      DefaultValue => "b0",
+    },
+  },
+  FdoqPdifFifoAlmFullTh => { #Structure Type: Reg;
+    Name => "FdoqPdifFifoAlmFullTh",
+    RegMem => "Reg",
+    Address => "103", # Excel Formula: =calc_reg_address(C7,A7,G7)
+    Description => "Internal FDOQ fifos size settings.
+This register was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+    Width => "5", # Excel Formula: =calc_reg_width(E10:E10,F10)
+    Type => "Config",
+    PdifFifoAlmFullTh => { #Structure Type: RegField;
+      Name => "PdifFifoAlmFullTh",
+      RegMem => "RegField",
+      Description => "Internal fifo size configuration.",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F9,E10,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d6",
+      InitValueAllModes => "4",
+    },
+  },
+  FodqTotalIfgThresholds0 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 23;
+    Name => "FodqTotalIfgThresholds[2]",
+    RegMem => "Reg",
+    Address => "104", # Excel Formula: =calc_reg_address(C9,A9,G9)
+    Description => "FDOQ maintains packet and byte counters per IFG. The register sets flow control thresholds of these counters. The flow control stops relevant TxSCH.",
+    Width => "38", # Excel Formula: =calc_reg_width(E12:E13,F13)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    FdoqTotalPdsIfg0Th => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 16;
+      Name => "FdoqTotalPdsIfg[n]Th",
+      RegMem => "RegField",
+      Description => "If per IFG packet counter crossed threshold, flow control is set towards TxSCH",
+      Width => "12", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("PDOQ_FDOQ_PDIF_ENTRIES"),2),0)+1
+      Position => "11:0", # Excel Formula: =calc_position(F11,E12,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "hfff",
+      InitValueAllModes => "800",
+    },
+    FdoqTotalBytesIfg0Th => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 18;
+      Name => "FdoqTotalBytesIfg[n]Th",
+      RegMem => "RegField",
+      Description => "If per IFG Byte counter crossed threshold, flow control is set towards TxSCH",
+      Width => "26", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("PDOQ_FDOQ_PDIF_ENTRIES"),2),0) + calc_field_width_define("PDOQ_PKT_SIZE_WIDTH") + 1
+      Position => "37:12", # Excel Formula: =calc_position(F12,E13)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "h3ffffff",
+      InitValueAllModes => "266240",
+    },
+  },
+  FodqTotalIfgThresholds1 => { #Structure Type: Reg; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 23;
+    Name => "FodqTotalIfgThresholds[2]",
+    RegMem => "Reg",
+    Address => "105",
+    Description => "FDOQ maintains packet and byte counters per IFG. The register sets flow control thresholds of these counters. The flow control stops relevant TxSCH.",
+    Width => "38", # Excel Formula: =calc_reg_width(E12:E13,F13)
+    Type => "Config",
+    AdditionalInfo => "PackArrayToBus",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    FdoqTotalPdsIfg1Th => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 16;
+      Name => "FdoqTotalPdsIfg[n]Th",
+      RegMem => "RegField",
+      Description => "If per IFG packet counter crossed threshold, flow control is set towards TxSCH",
+      Width => "12", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("PDOQ_FDOQ_PDIF_ENTRIES"),2),0)+1
+      Position => "11:0", # Excel Formula: =calc_position(F11,E12,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "hfff",
+      InitValueAllModes => "800",
+    },
+    FdoqTotalBytesIfg1Th => { #Structure Type: RegField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 18;
+      Name => "FdoqTotalBytesIfg[n]Th",
+      RegMem => "RegField",
+      Description => "If per IFG Byte counter crossed threshold, flow control is set towards TxSCH",
+      Width => "26", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("PDOQ_FDOQ_PDIF_ENTRIES"),2),0) + calc_field_width_define("PDOQ_PKT_SIZE_WIDTH") + 1
+      Position => "37:12", # Excel Formula: =calc_position(F12,E13)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "h3ffffff",
+      InitValueAllModes => "266240",
+    },
+  },
+  FdoqGeneralConfiguration => { #Structure Type: Reg;
+    Name => "FdoqGeneralConfiguration",
+    RegMem => "Reg",
+    Address => "106", # Excel Formula: =calc_reg_address(C11,A11,G11)
+    Description => "General FDOQ configurations, see description of each field.",
+    Width => "74", # Excel Formula: =calc_reg_width(E15:E21,F21)
+    Type => "Config",
+    UnpackPdEnable => { #Structure Type: RegField;
+      Name => "UnpackPdEnable",
+      RegMem => "RegField",
+      Description => "This register should be set if source slice n is fabric slice, and current slice is network slice, to enable Dual PD unpacking",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F14,E15,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "h0",
+      InitValueSa => "0",
+      InitValueLcNwk => "56",
+      InitValueLcFab => "0",
+      InitValueFe => "0",
+    },
+    SliceMode => { #Structure Type: RegField;
+      Name => "SliceMode",
+      RegMem => "RegField",
+      Description => "Slice mode register, should be set to relevant slice mode",
+      Width => "4",
+      Position => "9:6", # Excel Formula: =calc_position(F15,E16)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "h8",
+      InitValueSa => "8",
+      InitValueLcNwk => "0",
+      InitValueLcFab => "2",
+      InitValueFe => "6",
+    },
+    MlpMode => { #Structure Type: RegField;
+      Name => "MlpMode",
+      RegMem => "RegField",
+      Description => "2 Bits per IFG, encoding as follows:
+0 - No MLP
+1 - MLP for mac pools 0 & 1
+2 - MLP for mac pools 1 & 2
+3 - 1.2T port MLP ",
+      Width => "4",
+      Position => "13:10", # Excel Formula: =calc_position(F16,E17)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "h0",
+    },
+    FabricFastLinkEnable => { #Structure Type: RegField;
+      Name => "FabricFastLinkEnable",
+      RegMem => "RegField",
+      Description => "Unused feature,  should not be changed by the user, unless instructed by the designer",
+      Width => "6",
+      Position => "19:14", # Excel Formula: =calc_position(F17,E18)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "h0",
+    },
+    TxppFcEnable => { #Structure Type: RegField;
+      Name => "TxppFcEnable",
+      RegMem => "RegField",
+      Description => "If set, TxPP per port flow control indication are allowed",
+      Width => "1",
+      Position => "20", # Excel Formula: =calc_position(F18,E19)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "h1",
+      InitValueAllModes => "0",
+    },
+    DeleteSpDisable => { #Structure Type: RegField;
+      Name => "DeleteSpDisable",
+      RegMem => "RegField",
+      Description => "Prioritizes data over delete traffic at final FDOQ stage, should not be changed by the user, unless instructed by the designer",
+      Width => "1",
+      Position => "21", # Excel Formula: =calc_position(F19,E20)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "h1",
+    },
+    FcmRcyMap => { #Structure Type: RegField;
+      Name => "FcmRcyMap",
+      RegMem => "RegField",
+      Description => "Bitmap of recycle port, used for TX buffer credits calculation
+1 - Is recycle port
+0 - Not recycle port",
+      Width => "52", # Excel Formula: =calc_field_width_define("PDOQ_NUM_IFC")*2
+      Position => "73:22", # Excel Formula: =calc_position(F20,E21)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "h8000002000000",
+    },
+  },
+  ArbiterWeights => { #Structure Type: Reg;
+    Name => "ArbiterWeights",
+    RegMem => "Reg",
+    Address => "107", # Excel Formula: =calc_reg_address(C14,A14,G14)
+    Description => "Define weights of WFQ between delete and non delete at PDIF read stage",
+    Width => "13", # Excel Formula: =calc_reg_width(E23:E25,F25)
+    Type => "Config",
+    ArbNonDeleteSpEn => { #Structure Type: RegField;
+      Name => "ArbNonDeleteSpEn",
+      RegMem => "RegField",
+      Description => "Sets Delete to be Low Priority",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F22,E23,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d1",
+    },
+    ArbDeleteWeight => { #Structure Type: RegField;
+      Name => "ArbDeleteWeight",
+      RegMem => "RegField",
+      Description => "If ArbNonDeleteSpEn is reset, sets Delete weight in WFQ",
+      Width => "6",
+      Position => "6:1", # Excel Formula: =calc_position(F23,E24)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d1",
+    },
+    ArbNonDeleteWeight => { #Structure Type: RegField;
+      Name => "ArbNonDeleteWeight",
+      RegMem => "RegField",
+      Description => "If ArbNonDeleteSpEn is reset, sets Non Delete weight in WFQ",
+      Width => "6",
+      Position => "12:7", # Excel Formula: =calc_position(F24,E25)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d31",
+    },
+  },
+  IfgCreditInit => { #Structure Type: Reg;
+    Name => "IfgCreditInit",
+    RegMem => "Reg",
+    Address => "108", # Excel Formula: =calc_reg_address(C22,A22,G22)
+    Description => "Initiation of IFG Tx buffer credit counter",
+    Width => "69", # Excel Formula: =calc_reg_width(E27:E28,F28)
+    Type => "External",
+    UsedBy => "FDOQ",
+    AdditionalInfo => "ExternalBackdoorWriteEnable",
+    IfgCreditInitEnable => { #Structure Type: RegField;
+      Name => "IfgCreditInitEnable",
+      RegMem => "RegField",
+      Description => "Bit per IFG port, for each set bit, credit counter is initiated to IfgCreditInitValue in the port",
+      Width => "52", # Excel Formula: =calc_field_width_define("PDOQ_NUM_IFC")*2
+      Position => "51:0", # Excel Formula: =calc_position(F26,E27,TRUE)
+      Type => "External",
+      ArrayItemWidth => "1",
+      InitValueSa => "1",
+      InitValueLcNwk => "1",
+      InitValueLcFab => "(is_100g_fabric && item <= 22 && (item % 2 == 0)) ||
+(is_100g_fabric && item >= 26 && item <= (26+22) && (item % 2 == 0)) ||
+(!is_100g_fabric && item <= 22 && (item % 4 == 0)) ||
+(!is_100g_fabric && item >= 26 && item <= (26+22) && (item % 4 == 0)) ? 1 : 0",
+      InitValueFe => "(is_100g_fabric && item <= 22 && (item % 2 == 0)) ||
+(is_100g_fabric && item >= 26 && item <= (26+22) && (item % 2 == 0)) ||
+(!is_100g_fabric && item <= 22 && (item % 4 == 0)) ||
+(!is_100g_fabric && item >= 26 && item <= (26+22) && (item % 4 == 0)) ? 1 : 0",
+    },
+    IfgCreditInitValue => { #Structure Type: RegField;
+      Name => "IfgCreditInitValue",
+      RegMem => "RegField",
+      Description => "Value for credit counter which is initialized",
+      Width => "17", # Excel Formula: =calc_field_width_define("PDOQ_FDOQ_TX_BUFFER_CBT_WIDTH")
+      Position => "68:52", # Excel Formula: =calc_position(F27,E28)
+      Type => "External",
+      InitValueSa => "0",
+      InitValueLcNwk => "0",
+      InitValueLcFab => "is_100g_fabric ? 4216 : 8440",
+      InitValueFe => "is_100g_fabric ? 4216 : 8440",
+    },
+  },
+  PhantomConfiguration => { #Structure Type: Reg;
+    Name => "PhantomConfiguration",
+    RegMem => "Reg",
+    Address => "109", # Excel Formula: =calc_reg_address(C26,A26,G26)
+    Description => "Phantom Q configurations",
+    Width => "60", # Excel Formula: =calc_reg_width(E30:E31,F31)
+    Type => "Config",
+    PhantomEnable => { #Structure Type: RegField;
+      Name => "PhantomEnable",
+      RegMem => "RegField",
+      Description => "Bit per IFG port, if set, Phantom logic is enabled and congestion indication bit is stamped on the packet descriptor upon IFG indication",
+      Width => "52", # Excel Formula: =calc_field_width_define("PDOQ_NUM_IFC")*2
+      Position => "51:0", # Excel Formula: =calc_position(F29,E30,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "h0",
+    },
+    PhantomTcBitmap => { #Structure Type: RegField;
+      Name => "PhantomTcBitmap",
+      RegMem => "RegField",
+      Description => "Bit per TC, if Phantom logic is enabled, and relevant TC is enabled, and IFG signals congestion, packet descriptor will be marked with FCN",
+      Width => "8",
+      Position => "59:52", # Excel Formula: =calc_position(F30,E31)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "h0",
+    },
+  },
+  PartialMirrorConfiguration => { #Structure Type: Reg;
+    Name => "PartialMirrorConfiguration",
+    RegMem => "Reg",
+    Address => "10A", # Excel Formula: =calc_reg_address(C29,A29,G29)
+    Description => "Configurations for partial mirror copies",
+    Width => "41", # Excel Formula: =calc_reg_width(E33:E34,F34)
+    Type => "Config",
+    PartialMirror => { #Structure Type: RegField;
+      Name => "PartialMirror",
+      RegMem => "RegField",
+      Description => "Bit per mirror command. If set, copy with relevant mirror command is partial and only PartialMirrorSize bytes will be transmitted",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F32,E33,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "h0",
+    },
+    PartialMirrorSize => { #Structure Type: RegField;
+      Name => "PartialMirrorSize",
+      RegMem => "RegField",
+      Description => "Partial mirror size in bytes, should not be changed by the user, unless instructed by the designer",
+      Width => "9",
+      Position => "40:32", # Excel Formula: =calc_position(F33,E34)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d128",
+    },
+  },
+  SmsReadRateLimiter => { #Structure Type: Reg;
+    Name => "SmsReadRateLimiter",
+    RegMem => "Reg",
+    Address => "10B", # Excel Formula: =calc_reg_address(C32,A32,G32)
+    Description => "Limits rate of FD read transactions towards SMS",
+    Width => "17", # Excel Formula: =calc_reg_width(E36:E38,F38)
+    Type => "Config",
+    SmsReadRate => { #Structure Type: RegField;
+      Name => "SmsReadRate",
+      RegMem => "RegField",
+      Description => "The time interval between every two allocations of tokens in units of 1/256 clock cycles. The minimum value is 256.
+If P% are required, then use 100*256/P.
+For example, to set a rate of 97% with SmsReadRateIncValue=1, set this field to 264",
+      Width => "11",
+      Position => "10:0", # Excel Formula: =calc_position(F35,E36,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d256",
+    },
+    SmsReadRateIncValue => { #Structure Type: RegField;
+      Name => "SmsReadRateIncValue",
+      RegMem => "RegField",
+      Description => "Number of tokens to create for each limiter event",
+      Width => "3",
+      Position => "13:11", # Excel Formula: =calc_position(F36,E37)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d2",
+    },
+    SmsReadRateMaxBucket => { #Structure Type: RegField;
+      Name => "SmsReadRateMaxBucket",
+      RegMem => "RegField",
+      Description => "Max value of the token bucket",
+      Width => "3",
+      Position => "16:14", # Excel Formula: =calc_position(F37,E38)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d4",
+    },
+  },
+  SmsReadWindowLimiter => { #Structure Type: Reg;
+    Name => "SmsReadWindowLimiter",
+    RegMem => "Reg",
+    Address => "10C", # Excel Formula: =calc_reg_address(C35,A35,G35)
+    Description => "Limits rate of FD read transactions towards SMS by bubbling the pipe.",
+    Width => "24", # Excel Formula: =calc_reg_width(E40:E41,F41)
+    Type => "Config",
+    SmsReadWindow => { #Structure Type: RegField;
+      Name => "SmsReadWindow",
+      RegMem => "RegField",
+      Description => "Defines the time window in clock cycles where the rate limiter works.
+To disable rate limiting - set the SmsReadNumOfGrants to SmsReadWindow + 1.",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F39,E40,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "hFFE",
+    },
+    SmsReadNumOfGrants => { #Structure Type: RegField;
+      Name => "SmsReadNumOfGrants",
+      RegMem => "RegField",
+      Description => "Defines the number of SMS FD read transactionis allowed within the time window.
+To disable rate limiting - set the SmsReadNumOfGrants to SmsReadWindow + 1.",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F40,E41)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "hFFF",
+    },
+  },
+  SmsPacketShaperCfg => { #Structure Type: Reg;
+    Name => "SmsPacketShaperCfg",
+    RegMem => "Reg",
+    Address => "10D", # Excel Formula: =calc_reg_address(C39,A39,G39)
+    Description => "Limit packet rate at the output of the FDLL request FIFO.
+One configuration for both SMS interfaces.",
+    Width => "14", # Excel Formula: =calc_reg_width(E43:E45,F45)
+    Type => "Config",
+    SmsPacketShaperRate => { #Structure Type: RegField;
+      Name => "SmsPacketShaperRate",
+      RegMem => "RegField",
+      Description => "Defines the shaper increment rate by incrementing in 1 every SmsPacketShaperRate/512 CCs",
+      Width => "10",
+      Position => "9:0", # Excel Formula: =calc_position(F42,E43,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d512",
+    },
+    SmsPacketShaperMaxTb => { #Structure Type: RegField;
+      Name => "SmsPacketShaperMaxTb",
+      RegMem => "RegField",
+      Description => "Defines the maximal token bucket for the shaper",
+      Width => "3",
+      Position => "12:10", # Excel Formula: =calc_position(F43,E44)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d7",
+    },
+    SmsPacketShaperEn => { #Structure Type: RegField;
+      Name => "SmsPacketShaperEn",
+      RegMem => "RegField",
+      Description => "Enables the packet shaper",
+      Width => "1",
+      Position => "13", # Excel Formula: =calc_position(F44,E45)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d1",
+    },
+  },
+  AlmostFullConfiguration => { #Structure Type: Reg;
+    Name => "AlmostFullConfiguration",
+    RegMem => "Reg",
+    Address => "10E", # Excel Formula: =calc_reg_address(C42,A42,G42)
+    Description => "Internal FDOQ fifos size settings.
+This register was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+    Width => "20", # Excel Formula: =calc_reg_width(E47:E50,F50)
+    Type => "Config",
+    FcmTxBufferAlmFull => { #Structure Type: RegField;
+      Name => "FcmTxBufferAlmFull",
+      RegMem => "RegField",
+      Description => "Internal fifo size configuration.",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F46,E47,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d8",
+      InitValueSa => "8",
+      InitValueLcNwk => "14",
+      InitValueLcFab => "14",
+      InitValueFe => "8",
+    },
+    FdllReqAlmFull => { #Structure Type: RegField;
+      Name => "FdllReqAlmFull",
+      RegMem => "RegField",
+      Description => "Internal fifo size configuration.",
+      Width => "4",
+      Position => "9:6", # Excel Formula: =calc_position(F47,E48)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d6",
+    },
+    FdllDelReqAlmFull => { #Structure Type: RegField;
+      Name => "FdllDelReqAlmFull",
+      RegMem => "RegField",
+      Description => "Internal fifo size configuration.",
+      Width => "4",
+      Position => "13:10", # Excel Formula: =calc_position(F48,E49)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d6",
+    },
+    EmFailFifoAlmFull => { #Structure Type: RegField;
+      Name => "EmFailFifoAlmFull",
+      RegMem => "RegField",
+      Description => "Internal fifo size configuration.",
+      Width => "6",
+      Position => "19:14", # Excel Formula: =calc_position(F49,E50)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d40",
+    },
+  },
+  FdoqInLastPdSelCfg => { #Structure Type: Reg;
+    Name => "FdoqInLastPdSelCfg",
+    RegMem => "Reg",
+    Address => "10F", # Excel Formula: =calc_reg_address(C46,A46,G46)
+    Description => "Last normal and write fail packet descriptors bit select configuration at FDOQ in stage",
+    Width => "4", # Excel Formula: =calc_reg_width(E52:E52,F52)
+    Type => "Config",
+    FdoqInLastPdSel => { #Structure Type: RegField;
+      Name => "FdoqInLastPdSel",
+      RegMem => "RegField",
+      Description => "Selects 32b data of last  normal and write fail packet descriptor, max value is 14. First 7 data chunks are for normal packet, last 7 chunks are for write fail packet",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F51,E52,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "b0",
+    },
+  },
+  FdoqInLastPdData => { #Structure Type: Reg;
+    Name => "FdoqInLastPdData",
+    RegMem => "Reg",
+    Address => "110", # Excel Formula: =calc_reg_address(C51,A51,G51)
+    Description => "Last normal and write fail packet descriptors selected data",
+    Width => "32", # Excel Formula: =calc_reg_width(E54:E54,F54)
+    Type => "External",
+    UsedBy => "FDOQ",
+    AdditionalInfo => "ExternalSampleDisable",
+    FdoqInLastPd => { #Structure Type: RegField;
+      Name => "FdoqInLastPd",
+      RegMem => "RegField",
+      Description => "Last normal and write fail packet descriptors selected data",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F53,E54,TRUE)
+      Type => "External",
+    },
+  },
+  FdoqOutLastPdSelCfg => { #Structure Type: Reg;
+    Name => "FdoqOutLastPdSelCfg",
+    RegMem => "Reg",
+    Address => "111", # Excel Formula: =calc_reg_address(C53,A53,G53)
+    Description => "Last packet and fragment descriptors bit select configuration at FDOQ to SMS interface",
+    Width => "4", # Excel Formula: =calc_reg_width(E56:E56,F56)
+    Type => "Config",
+    FdoqOutLastPdSel => { #Structure Type: RegField;
+      Name => "FdoqOutLastPdSel",
+      RegMem => "RegField",
+      Description => "Selects 32b data of last  packet and fragment descriptor, max value is 14. Each 7 data chunks are for each SMS interface",
+      Width => "4",
+      Position => "3:0", # Excel Formula: =calc_position(F55,E56,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "b0",
+    },
+  },
+  FdoqOutLastPdData => { #Structure Type: Reg;
+    Name => "FdoqOutLastPdData",
+    RegMem => "Reg",
+    Address => "112", # Excel Formula: =calc_reg_address(C55,A55,G55)
+    Description => "Last normal and write fail packet descriptors selected data",
+    Width => "32", # Excel Formula: =calc_reg_width(E58:E58,F58)
+    Type => "External",
+    UsedBy => "FDOQ",
+    AdditionalInfo => "ExternalSampleDisable",
+    FdoqOutLastPd => { #Structure Type: RegField;
+      Name => "FdoqOutLastPd",
+      RegMem => "RegField",
+      Description => "Last normal and write fail packet descriptors selected data",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F57,E58,TRUE)
+      Type => "External",
+    },
+  },
+  InternalDebugCfg => { #Structure Type: Reg;
+    Name => "InternalDebugCfg",
+    RegMem => "Reg",
+    Address => "113", # Excel Formula: =calc_reg_address(C57,A57,G57)
+    Description => "Internal FDOQ debug settings.
+This register was used for tuning parameters during the design phase. The value of this field is optimized for the current silicon, thus the user is not expected to change its value unless instructed by Cisco Systems, Inc.",
+    Width => "12", # Excel Formula: =calc_reg_width(E60:E62,F62)
+    Type => "Config",
+    FdllCbtAlmFullCfg => { #Structure Type: RegField;
+      Name => "FdllCbtAlmFullCfg",
+      RegMem => "RegField",
+      Description => "Internal fifo size configuration.",
+      Width => "5",
+      Position => "4:0", # Excel Formula: =calc_position(F59,E60,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d6",
+    },
+    SmsCbtAlmFullCfg => { #Structure Type: RegField;
+      Name => "SmsCbtAlmFullCfg",
+      RegMem => "RegField",
+      Description => "Internal fifo size configuration.",
+      Width => "6",
+      Position => "10:5", # Excel Formula: =calc_position(F60,E61)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d2",
+    },
+    IgnoreTxCredits => { #Structure Type: RegField;
+      Name => "IgnoreTxCredits",
+      RegMem => "RegField",
+      Description => "Internal debug configuration.",
+      Width => "1",
+      Position => "11", # Excel Formula: =calc_position(F61,E62)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "b0",
+    },
+  },
+  CbtNotReadyCounter => { #Structure Type: Reg;
+    Name => "CbtNotReadyCounter",
+    RegMem => "Reg",
+    Address => "114", # Excel Formula: =calc_reg_address(C59,A59,G59)
+    Description => "Counters of back pressure clocks of the outgoing interfaces",
+    Width => "96", # Excel Formula: =calc_reg_width(E64:E66,F66)
+    Type => "ReadOnly",
+    FdllCbtNotReadyCnt => { #Structure Type: RegField;
+      Name => "FdllCbtNotReadyCnt",
+      RegMem => "RegField",
+      Description => "Counts back pressure clocks to FDLL interface",
+      Width => "32",
+      Position => "31:0", # Excel Formula: =calc_position(F63,E64,TRUE)
+      Type => "Counter",
+      UsedBy => "FDOQ",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    Sms0CbtNotReadyCnt => { #Structure Type: RegField;
+      Name => "Sms0CbtNotReadyCnt",
+      RegMem => "RegField",
+      Description => "Counts back pressure clocks to SMS 0 interface",
+      Width => "32",
+      Position => "63:32", # Excel Formula: =calc_position(F64,E65)
+      Type => "Counter",
+      UsedBy => "FDOQ",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+    Sms1CbtNotReadyCnt => { #Structure Type: RegField;
+      Name => "Sms1CbtNotReadyCnt",
+      RegMem => "RegField",
+      Description => "Counts back pressure clocks to SMS 1 interface",
+      Width => "32",
+      Position => "95:64", # Excel Formula: =calc_position(F65,E66)
+      Type => "Counter",
+      UsedBy => "FDOQ",
+      AdditionalInfo => "CounterIncrWidth=1",
+    },
+  },
+  InternalFifoDebug => { #Structure Type: Reg;
+    Name => "InternalFifoDebug",
+    RegMem => "Reg",
+    Address => "115", # Excel Formula: =calc_reg_address(C63,A63,G63)
+    Description => "Fifos watermarks",
+    Width => "29", # Excel Formula: =calc_reg_width(E68:E71,F71)
+    Type => "ReadOnly",
+    FdllReqFifoWmk0 => { #Structure Type: RegField;
+      Name => "FdllReqFifoWmk0",
+      RegMem => "RegField",
+      Description => "Pending FDLL requested FDs of SMS 0 interface max value",
+      Width => "7",
+      Position => "6:0", # Excel Formula: =calc_position(F67,E68,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "FDOQ",
+    },
+    FdllReqFifoWmk1 => { #Structure Type: RegField;
+      Name => "FdllReqFifoWmk1",
+      RegMem => "RegField",
+      Description => "Pending FDLL requested FDs of SMS 1 interface max value",
+      Width => "7",
+      Position => "13:7", # Excel Formula: =calc_position(F68,E69)
+      Type => "MaxWmk",
+      UsedBy => "FDOQ",
+    },
+    FdllDelReqFifoWmk => { #Structure Type: RegField;
+      Name => "FdllDelReqFifoWmk",
+      RegMem => "RegField",
+      Description => "Pending FDLL requested deleted FDs max value",
+      Width => "8",
+      Position => "21:14", # Excel Formula: =calc_position(F69,E70)
+      Type => "MaxWmk",
+      UsedBy => "FDOQ",
+    },
+    FdllWrFailReqFifoWmk => { #Structure Type: RegField;
+      Name => "FdllWrFailReqFifoWmk",
+      RegMem => "RegField",
+      Description => "Pending FDLL requested write fail FDs max value",
+      Width => "7",
+      Position => "28:22", # Excel Formula: =calc_position(F70,E71)
+      Type => "MaxWmk",
+      UsedBy => "FDOQ",
+    },
+  },
+  IfgCreditDebugCfg => { #Structure Type: Reg;
+    Name => "IfgCreditDebugCfg",
+    RegMem => "Reg",
+    Address => "116", # Excel Formula: =calc_reg_address(C67,A67,G67)
+    Description => "Selector for IFG Tx buffer credit counter debug",
+    Width => "6", # Excel Formula: =calc_reg_width(E73:E73,F73)
+    Type => "Config",
+    IfgCreditSelect => { #Structure Type: RegField;
+      Name => "IfgCreditSelect",
+      RegMem => "RegField",
+      Description => "Selects one of 52 credit counters of the IFG Tx buffer for debug",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F72,E73,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d0",
+    },
+  },
+  IfgCreditDebug => { #Structure Type: Reg;
+    Name => "IfgCreditDebug",
+    RegMem => "Reg",
+    Address => "117", # Excel Formula: =calc_reg_address(C72,A72,G72)
+    Description => "Selected IFG Tx buffer credit counter debug",
+    Width => "86", # Excel Formula: =calc_reg_width(E75:E77,F77)
+    Type => "ReadOnly",
+    IfgCreditStatus => { #Structure Type: RegField;
+      Name => "IfgCreditStatus",
+      RegMem => "RegField",
+      Description => "IFG Tx buffer credit counter instantaneous status",
+      Width => "17",
+      Position => "16:0", # Excel Formula: =calc_position(F74,E75,TRUE)
+      Type => "Status",
+      UsedBy => "FDOQ",
+    },
+    IfgCreditMinWmk => { #Structure Type: RegField;
+      Name => "IfgCreditMinWmk",
+      RegMem => "RegField",
+      Description => "IFG Tx buffer credit counter min value",
+      Width => "17",
+      Position => "33:17", # Excel Formula: =calc_position(F75,E76)
+      Type => "MinWmk",
+      UsedBy => "FDOQ",
+    },
+    IfgCreditFlowControl => { #Structure Type: RegField;
+      Name => "IfgCreditFlowControl",
+      RegMem => "RegField",
+      Description => "IFG Tx buffer credit counter empty, sticky bit",
+      Width => "52", # Excel Formula: =calc_field_width_define("PDOQ_NUM_IFC")*2
+      Position => "85:34", # Excel Formula: =calc_position(F76,E77)
+      Type => "Event",
+      UsedBy => "FDOQ",
+    },
+  },
+  TxppFlowControlDebug => { #Structure Type: Reg;
+    Name => "TxppFlowControlDebug",
+    RegMem => "Reg",
+    Address => "118", # Excel Formula: =calc_reg_address(C74,A74,G74)
+    Description => "TxPP per interface flow control sticky status",
+    Width => "52", # Excel Formula: =calc_reg_width(E79:E79,F79)
+    Type => "ReadOnly",
+    TxppFlowControl => { #Structure Type: RegField;
+      Name => "TxppFlowControl",
+      RegMem => "RegField",
+      Description => "TxPP per interface flow control sticky status",
+      Width => "52", # Excel Formula: =calc_field_width_define("PDOQ_NUM_IFC")*2
+      Position => "51:0", # Excel Formula: =calc_position(F78,E79,TRUE)
+      Type => "Event",
+      UsedBy => "FDOQ",
+    },
+  },
+  PdifDebugCfg => { #Structure Type: Reg;
+    Name => "PdifDebugCfg",
+    RegMem => "Reg",
+    Address => "119", # Excel Formula: =calc_reg_address(C78,A78,G78)
+    Description => "Selector for PD interface fifos debug",
+    Width => "6", # Excel Formula: =calc_reg_width(E81:E81,F81)
+    Type => "Config",
+    PdifSelect => { #Structure Type: RegField;
+      Name => "PdifSelect",
+      RegMem => "RegField",
+      Description => "Selects one of 53 status counters of the PDIF fifos for debug",
+      Width => "6",
+      Position => "5:0", # Excel Formula: =calc_position(F80,E81,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d0",
+    },
+  },
+  PdifStatusDebug => { #Structure Type: Reg;
+    Name => "PdifStatusDebug",
+    RegMem => "Reg",
+    Address => "11A", # Excel Formula: =calc_reg_address(C80,A80,G80)
+    Description => "Selected PDIF fifo status debug",
+    Width => "49", # Excel Formula: =calc_reg_width(E83:E85,F85)
+    Type => "ReadOnly",
+    PdifPdStatus => { #Structure Type: RegField;
+      Name => "PdifPdStatus",
+      RegMem => "RegField",
+      Description => "PDIF fifo instantaneous status",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F82,E83,TRUE)
+      Type => "Status",
+      UsedBy => "FDOQ",
+    },
+    PdifPdWmk => { #Structure Type: RegField;
+      Name => "PdifPdWmk",
+      RegMem => "RegField",
+      Description => "PDIF fifo status in PDs max value",
+      Width => "12",
+      Position => "23:12", # Excel Formula: =calc_position(F83,E84)
+      Type => "MaxWmk",
+      UsedBy => "FDOQ",
+    },
+    PdifByteWmk => { #Structure Type: RegField;
+      Name => "PdifByteWmk",
+      RegMem => "RegField",
+      Description => "PDIF fifo status in Bytes max value",
+      Width => "25",
+      Position => "48:24", # Excel Formula: =calc_position(F84,E85)
+      Type => "MaxWmk",
+      UsedBy => "FDOQ",
+    },
+  },
+  PdifFcDebug => { #Structure Type: Reg;
+    Name => "PdifFcDebug",
+    RegMem => "Reg",
+    Address => "11B", # Excel Formula: =calc_reg_address(C82,A82,G82)
+    Description => "PDIF flow control sticky status",
+    Width => "106", # Excel Formula: =calc_reg_width(E87:E88,F88)
+    Type => "ReadOnly",
+    PdifAlmFull => { #Structure Type: RegField;
+      Name => "PdifAlmFull",
+      RegMem => "RegField",
+      Description => "PDIF almost full sticky indication per fifo",
+      Width => "54", # Excel Formula: =calc_field_width_define("PDOQ_NUM_IFC")*2+2
+      Position => "53:0", # Excel Formula: =calc_position(F86,E87,TRUE)
+      Type => "Event",
+      UsedBy => "FDOQ",
+    },
+    PdifFcSch => { #Structure Type: RegField;
+      Name => "PdifFcSch",
+      RegMem => "RegField",
+      Description => "PDIF flow control to TxSCH sticky indication per fifo",
+      Width => "52", # Excel Formula: =calc_field_width_define("PDOQ_NUM_IFC")*2
+      Position => "105:54", # Excel Formula: =calc_position(F87,E88)
+      Type => "Event",
+      UsedBy => "FDOQ",
+    },
+  },
+  TotalCounterDebugCfg => { #Structure Type: Reg;
+    Name => "TotalCounterDebugCfg",
+    RegMem => "Reg",
+    Address => "11C", # Excel Formula: =calc_reg_address(C86,A86,G86)
+    Description => "Selector for FDOQ total counters debug",
+    Width => "1", # Excel Formula: =calc_reg_width(E90:E90,F90)
+    Type => "Config",
+    TotalCounterSelect => { #Structure Type: RegField;
+      Name => "TotalCounterSelect",
+      RegMem => "RegField",
+      Description => "Selects 1 of 2 FDOQ total counters for debug",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F89,E90,TRUE)
+      Type => "Config",
+      UsedBy => "FDOQ",
+      DefaultValue => "d0",
+    },
+  },
+  TotalCounterDebug => { #Structure Type: Reg;
+    Name => "TotalCounterDebug",
+    RegMem => "Reg",
+    Address => "11D", # Excel Formula: =calc_reg_address(C89,A89,G89)
+    Description => "Selected total FDOQ counter debug",
+    Width => "40", # Excel Formula: =calc_reg_width(E92:E94,F94)
+    Type => "ReadOnly",
+    TotalPdCounterWmk => { #Structure Type: RegField;
+      Name => "TotalPdCounterWmk",
+      RegMem => "RegField",
+      Description => "FDOQ total counter status in PDs max value",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F91,E92,TRUE)
+      Type => "MaxWmk",
+      UsedBy => "FDOQ",
+    },
+    TotalByteCounterWmk => { #Structure Type: RegField;
+      Name => "TotalByteCounterWmk",
+      RegMem => "RegField",
+      Description => "FDOQ total counter status in Bytes max value",
+      Width => "26",
+      Position => "37:12", # Excel Formula: =calc_position(F92,E93)
+      Type => "MaxWmk",
+      UsedBy => "FDOQ",
+    },
+    TotalCounterFc => { #Structure Type: RegField;
+      Name => "TotalCounterFc",
+      RegMem => "RegField",
+      Description => "FDOQ total counter flow control sticky status to TxSCH",
+      Width => "2",
+      Position => "39:38", # Excel Formula: =calc_position(F93,E94)
+      Type => "Event",
+      UsedBy => "FDOQ",
+    },
+  },
+  PdifFifoResetPort => { #Structure Type: Reg;
+    Name => "PdifFifoResetPort",
+    RegMem => "Reg",
+    Address => "11E", # Excel Formula: =calc_reg_address(C91,A91,G91)
+    Description => "Reset pulse per port to PDIF FIFO, allows change of port rate under traffic",
+    Width => "52", # Excel Formula: =calc_reg_width(E96:E96,F96)
+    Type => "External",
+    UsedBy => "FDOQ",
+    AdditionalInfo => "ExternalSampleDisable",
+    PdifFifoResetPerPort => { #Structure Type: RegField;
+      Name => "PdifFifoResetPerPort",
+      RegMem => "RegField",
+      Description => "Bitmap of reset pulse, set bit of port number to reset its FIFO",
+      Width => "52", # Excel Formula: =calc_field_width_define("PDOQ_NUM_IFC")*2
+      Position => "51:0", # Excel Formula: =calc_position(F95,E96,TRUE)
+      Type => "External",
+      ArrayItemWidth => "1",
+    },
+  },
+  PdifFifo => { #Structure Type: Mem;
+    Name => "PdifFifo",
+    RegMem => "Mem",
+    Address => "100000",
+    Description => "Pdif fifo memory, stores packet size and dual PD indication. Partitioned by configuration to 41 fifos, 1 for delete and 20 fifos per each IFG.",
+    Width => "21", # Excel Formula: =calc_mem_width(E98:E98,M97,F98,-1)
+    Type => "Dynamic",
+    UsedBy => "FDOQ",
+    MemEntries => "2048", # Excel Formula: =calc_field_width_define("PDOQ_FDOQ_PDIF_ENTRIES")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=1,SampleReadAfterProt=1,SampleWriteAfterProt=1,DisableSameAddressErr=Enabled,WriteActivityFactor=100,ReadActivityFactor=100,PortErrPropagate=Disabled,CpuReadAccess=Disabled,CpuWriteAccess=Disabled",
+    MemLogicalWidth => "15",
+    PdifFifoData => { #Structure Type: MemField;
+      Name => "PdifFifoData",
+      RegMem => "MemField",
+      Description => "PDIF fifo data",
+      Width => "15", # Excel Formula: =calc_field_width_define("PDOQ_PKT_SIZE_WIDTH") + 1
+      Position => "14:0", # Excel Formula: =calc_position(F97,E98,TRUE)
+    },
+  },
+  Pdif => { #Structure Type: Mem;
+    Name => "Pdif",
+    RegMem => "Mem",
+    Address => "200000", # Excel Formula: =calc_mem_address(C97,A97,G99,L99)
+    Description => "Pdif PD memory, stores the entire PD. Address is the same address as PdifFifo memory",
+    Width => "207", # Excel Formula: =calc_mem_width(E100:E100,M99,F100,-1)
+    Type => "Dynamic",
+    UsedBy => "FDOQ",
+    MemEntries => "2048", # Excel Formula: =calc_field_width_define("PDOQ_FDOQ_PDIF_ENTRIES")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=100,ReadActivityFactor=100,PortErrPropagate=Disabled",
+    MemLogicalWidth => "198",
+    PdifData => { #Structure Type: MemField;
+      Name => "PdifData",
+      RegMem => "MemField",
+      Description => "PDIF PDs",
+      Width => "198", # Excel Formula: =calc_field_width_define("PDOQ2FDOQ_DUAL_PD_WIDTH") - calc_field_width_define("DEST_PIF_WIDTH")
+      Position => "197:0", # Excel Formula: =calc_position(F99,E100,TRUE)
+    },
+  },
+  PdifEmFail => { #Structure Type: Mem;
+    Name => "PdifEmFail",
+    RegMem => "Mem",
+    Address => "300000", # Excel Formula: =calc_mem_address(C99,A99,G101,L101)
+    Description => "Pdif write fail fifo, stores the PD that suffered PDOQ write fail",
+    Width => "58", # Excel Formula: =calc_mem_width(E102:E106,M101,F106,-1)
+    Type => "Dynamic",
+    UsedBy => "FDOQ",
+    MemEntries => "48", # Excel Formula: =calc_field_width_define("PDOQ_FDOQ_PDIF_EM_FAIL_DEPTH")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,DisableSameAddressErr=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    MemLogicalWidth => "51",
+    PacketSize => { #Structure Type: MemField;
+      Name => "PacketSize",
+      RegMem => "MemField",
+      Description => "Packet size",
+      Width => "14", # Excel Formula: =calc_field_width_define("PKT_SIZE_WIDTH")
+      Position => "13:0", # Excel Formula: =calc_position(F101,E102,TRUE)
+    },
+    Ucdv => { #Structure Type: MemField;
+      Name => "Ucdv",
+      RegMem => "MemField",
+      Description => "UCDV",
+      Width => "14", # Excel Formula: =calc_field_width_define("PD_UCDV_WIDTH")
+      Position => "27:14", # Excel Formula: =calc_position(F102,E103)
+    },
+    PacketId => { #Structure Type: MemField;
+      Name => "PacketId",
+      RegMem => "MemField",
+      Description => "Packet ID",
+      Width => "19", # Excel Formula: =calc_field_width_define("PKT_ID_WIDTH")
+      Position => "46:28", # Excel Formula: =calc_position(F103,E104)
+    },
+    CgmCounterType => { #Structure Type: MemField;
+      Name => "CgmCounterType",
+      RegMem => "MemField",
+      Description => "CGM counter type",
+      Width => "3", # Excel Formula: =calc_field_width_define("CGM_COUNTER_TYPE_WIDTH")
+      Position => "49:47", # Excel Formula: =calc_position(F104,E105)
+    },
+    DualPd => { #Structure Type: MemField;
+      Name => "DualPd",
+      RegMem => "MemField",
+      Description => "Dual PD indication",
+      Width => "1",
+      Position => "50", # Excel Formula: =calc_position(F105,E106)
+    },
+  },
+  DualPdifEmFail => { #Structure Type: Mem;
+    Name => "DualPdifEmFail",
+    RegMem => "Mem",
+    Address => "300000", # Excel Formula: =calc_mem_address(C101,A101,G107,L107)
+    Description => "Pdif EM write fail Dual PD parsing",
+    Width => "58", # Excel Formula: =calc_mem_width(E108:E111,M107,F111,-1)
+    Type => "DocOnly",
+    UsedBy => "FDOQ",
+    MemEntries => "48", # Excel Formula: =calc_field_width_define("PDOQ_FDOQ_PDIF_EM_FAIL_DEPTH")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,DisableSameAddressErr=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "51",
+    PacketId0 => { #Structure Type: MemField;
+      Name => "PacketId0",
+      RegMem => "MemField",
+      Width => "19", # Excel Formula: =calc_field_width_define("PKT_ID_WIDTH")
+      Position => "18:0", # Excel Formula: =calc_position(F107,E108,TRUE)
+    },
+    PacketId1 => { #Structure Type: MemField;
+      Name => "PacketId1",
+      RegMem => "MemField",
+      Width => "19", # Excel Formula: =calc_field_width_define("PKT_ID_WIDTH")
+      Position => "37:19", # Excel Formula: =calc_position(F108,E109)
+    },
+    Reserved => { #Structure Type: MemField;
+      Name => "Reserved",
+      RegMem => "MemField",
+      Width => "12",
+      Position => "49:38", # Excel Formula: =calc_position(F109,E110)
+    },
+    DualPd => { #Structure Type: MemField;
+      Name => "DualPd",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "50", # Excel Formula: =calc_position(F110,E111)
+    },
+  },
+  FdllReqFifo => { #Structure Type: Mem;
+    Name => "FdllReqFifo",
+    RegMem => "Mem",
+    Address => "400000", # Excel Formula: =calc_mem_address(C101,A101,G112,L112)
+    Description => "FDLL request fifo per IFG - PD and controls. Stores PDs and FDs of fragments that pend FDLL buffer pointer.",
+    Width => "224", # Excel Formula: =calc_mem_width(E113:E113,M112,F113,-1)
+    Type => "Dynamic",
+    UsedBy => "FDOQ",
+    MemEntries => "160", # Excel Formula: =calc_field_width_define("PDOQ_FDOQ_FDLL_LATENCY")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=90,ReadActivityFactor=90,PortErrPropagate=Disabled",
+    MemLogicalWidth => "215",
+    FdllReqFifoData => { #Structure Type: MemField;
+      Name => "FdllReqFifoData",
+      RegMem => "MemField",
+      Description => "PD and FD of FDLL request",
+      Width => "215", # Excel Formula: =E100+calc_field_width_define("SOP_WIDTH")+calc_field_width_define("EOP_WIDTH")+calc_field_width_define("FRAGMENT_SIZE_WIDTH")+1+calc_field_width_define("DEST_PIF_WIDTH")
+      Position => "214:0", # Excel Formula: =calc_position(F112,E113,TRUE)
+    },
+  },
+  FdllDelReqFifo => { #Structure Type: Mem;
+    Name => "FdllDelReqFifo",
+    RegMem => "Mem",
+    Address => "500000", # Excel Formula: =calc_mem_address(C112,A112,G114,L114)
+    Description => "FDLL request fifo per Delete and Write fail - PD and controls. Stores PDs and FDs of fragments that pend FDLL buffer pointer.",
+    Width => "61", # Excel Formula: =calc_mem_width(E115:E122,M114,F122,-1)
+    Type => "Dynamic",
+    UsedBy => "FDOQ",
+    MemEntries => "192", # Excel Formula: =calc_field_width_define("PDOQ_FDOQ_FDLL_DEL_FIFO_DEPTH") + calc_field_width_define("PDOQ_FDOQ_FDLL_WR_FAIL_FIFO_DEPTH")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    MemLogicalWidth => "54",
+    Sop => { #Structure Type: MemField;
+      Name => "Sop",
+      RegMem => "MemField",
+      Description => "SOP",
+      Width => "1",
+      Position => "0", # Excel Formula: =calc_position(F114,E115,TRUE)
+      Comments => "sop+eop+pkt_size+ucdv+pkt_id+cgm_type+is_dual+access",
+    },
+    Eop => { #Structure Type: MemField;
+      Name => "Eop",
+      RegMem => "MemField",
+      Description => "EOP",
+      Width => "1",
+      Position => "1", # Excel Formula: =calc_position(F115,E116)
+    },
+    PacketSize => { #Structure Type: MemField;
+      Name => "PacketSize",
+      RegMem => "MemField",
+      Description => "Packet size",
+      Width => "14", # Excel Formula: =calc_field_width_define("PD_UCDV_WIDTH")
+      Position => "15:2", # Excel Formula: =calc_position(F116,E117)
+    },
+    Ucdv => { #Structure Type: MemField;
+      Name => "Ucdv",
+      RegMem => "MemField",
+      Description => "UCDV",
+      Width => "14", # Excel Formula: =calc_field_width_define("PD_UCDV_WIDTH")
+      Position => "29:16", # Excel Formula: =calc_position(F117,E118)
+    },
+    PacketId => { #Structure Type: MemField;
+      Name => "PacketId",
+      RegMem => "MemField",
+      Description => "Packet ID",
+      Width => "19", # Excel Formula: =calc_field_width_define("PKT_ID_WIDTH")
+      Position => "48:30", # Excel Formula: =calc_position(F118,E119)
+    },
+    CgmCounterType => { #Structure Type: MemField;
+      Name => "CgmCounterType",
+      RegMem => "MemField",
+      Description => "CGM counter type",
+      Width => "3", # Excel Formula: =calc_field_width_define("CGM_COUNTER_TYPE_WIDTH")
+      Position => "51:49", # Excel Formula: =calc_position(F119,E120)
+    },
+    AccessFdll => { #Structure Type: MemField;
+      Name => "AccessFdll",
+      RegMem => "MemField",
+      Description => "Accessed FDLL",
+      Width => "1",
+      Position => "52", # Excel Formula: =calc_position(F120,E121)
+    },
+    DualPd => { #Structure Type: MemField;
+      Name => "DualPd",
+      RegMem => "MemField",
+      Description => "Dual PD indication",
+      Width => "1",
+      Position => "53", # Excel Formula: =calc_position(F121,E122)
+    },
+  },
+  FdllDualDelReqFifo => { #Structure Type: Mem;
+    Name => "FdllDualDelReqFifo",
+    RegMem => "Mem",
+    Address => "500000", # Excel Formula: =calc_mem_address(C114,A114,G123,L123)
+    Description => "FDLL request fifo per Delete and Write fail - PD and controls",
+    Width => "61", # Excel Formula: =calc_mem_width(E124:E127,M123,F127,-1)
+    Type => "DocOnly",
+    UsedBy => "FDOQ",
+    MemEntries => "192", # Excel Formula: =calc_field_width_define("PDOQ_FDOQ_FDLL_DEL_FIFO_DEPTH") + calc_field_width_define("PDOQ_FDOQ_FDLL_WR_FAIL_FIFO_DEPTH")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=10,ReadActivityFactor=10,PortErrPropagate=Disabled",
+    MemLogicalWidth => "54",
+    PacketId0 => { #Structure Type: MemField;
+      Name => "PacketId0",
+      RegMem => "MemField",
+      Width => "19", # Excel Formula: =calc_field_width_define("PKT_ID_WIDTH")
+      Position => "18:0", # Excel Formula: =calc_position(F123,E124,TRUE)
+    },
+    PacketId1 => { #Structure Type: MemField;
+      Name => "PacketId1",
+      RegMem => "MemField",
+      Width => "19", # Excel Formula: =calc_field_width_define("PKT_ID_WIDTH")
+      Position => "37:19", # Excel Formula: =calc_position(F124,E125)
+    },
+    Reserved => { #Structure Type: MemField;
+      Name => "Reserved",
+      RegMem => "MemField",
+      Width => "15",
+      Position => "52:38", # Excel Formula: =calc_position(F125,E126)
+    },
+    DualPd => { #Structure Type: MemField;
+      Name => "DualPd",
+      RegMem => "MemField",
+      Width => "1",
+      Position => "53", # Excel Formula: =calc_position(F126,E127)
+    },
+  },
+  FdllReplyFifo => { #Structure Type: Mem;
+    Name => "FdllReplyFifo",
+    RegMem => "Mem",
+    Address => "600000", # Excel Formula: =calc_mem_address(C114,A114,G128,L128)
+    Description => "FDLL reply fifo - buffer pointer and found indication",
+    Width => "26", # Excel Formula: =calc_mem_width(E129:E129,M128,F129,-1)
+    Type => "Dynamic",
+    UsedBy => "FDOQ",
+    MemEntries => "352", # Excel Formula: =calc_field_width_define("PDOQ_FDOQ_FDLL_LATENCY")+calc_field_width_define("PDOQ_FDOQ_FDLL_DEL_FIFO_DEPTH") + calc_field_width_define("PDOQ_FDOQ_FDLL_WR_FAIL_FIFO_DEPTH")
+    MemWrapper => "1R1W",
+    MemProtect => "ECC",
+    AdditionalInfo => "SampleReadAccess=1,SampleReadBeforeProt=2,SampleReadAfterProt=1,SampleWriteAfterProt=1,CpuReadAccess=Enabled,CpuWriteAccess=Enabled,WriteActivityFactor=50,ReadActivityFactor=50,PortErrPropagate=Disabled",
+    Comments => "buff+found",
+    MemLogicalWidth => "20",
+    FdllReplyFifoData => { #Structure Type: MemField;
+      Name => "FdllReplyFifoData",
+      RegMem => "MemField",
+      Description => "FDLL reply fifo - buffer pointer and found indication",
+      Width => "20", # Excel Formula: =calc_field_width_define("SMS_BUFF_PTR_WIDTH")+1
+      Position => "19:0", # Excel Formula: =calc_position(F128,E129,TRUE)
+    },
+  },
+  PdifFifoSize => { #Structure Type: Mem;
+    Name => "PdifFifoSize",
+    RegMem => "Mem",
+    Address => "700000", # Excel Formula: =calc_mem_address(C128,A128,G130,L130)
+    Description => "Pdif fifo size configuration. 26 fifos are for each IFG and 1 fifo for delete. Summation of all fifo sizes should be equal or less than 1792.",
+    Width => "12", # Excel Formula: =calc_mem_width(E131:E131,M130,F131,-1)
+    Type => "Config",
+    UsedBy => "FDOQ",
+    MemEntries => "53", # Excel Formula: =calc_field_width_define("PDOQ_NUM_IFC")*2+1
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "12",
+    PdifFifoSizeData => { #Structure Type: MemField;
+      Name => "PdifFifoSizeData",
+      RegMem => "MemField",
+      Description => "Fifo size per IFG interface 0-51 and Delete 52",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F130,E131,TRUE)
+      InitValueSa => "(line == 24) ? 62 :
+(line == 25) ? 62 :
+(line == 50) ? 62 :
+(line == 51) ? 62 :
+(line == 52) ? 312 : 0",
+      InitValueLcNwk => "(line == 24) ? 62 :
+(line == 25) ? 62 :
+(line == 50) ? 62 :
+(line == 51) ? 62 :
+(line == 52) ? 312 : 0",
+      InitValueLcFab => "is_100g_fabric && line < 24 && (line % 2 == 0) ? 64 :
+!is_100g_fabric && line < 24 && (line % 4 == 0) ? 128 :
+(line == 24) ? 32 :
+(line == 25) ? 64 :
+(line == 50) ? 32 :
+(line == 51) ? 64 :
+(line == 52) ? 320 : 0",
+      InitValueFe => "is_100g_fabric && line < 24 && (line % 2 == 0) ? 64 :
+!is_100g_fabric && line < 24 && (line % 4 == 0) ? 128 :
+(line == 24) ? 32 :
+(line == 25) ? 64 :
+(line == 50) ? 32 :
+(line == 51) ? 64 :
+(line == 52) ? 320 : 0",
+    },
+  },
+  PdifFifoSizeStartAddr => { #Structure Type: Mem;
+    Name => "PdifFifoSizeStartAddr",
+    RegMem => "Mem",
+    Address => "800000", # Excel Formula: =calc_mem_address(C130,A130,G132,L132)
+    Description => "Pdif fifo start address configuration. 26 fifos are for each IFG and 1 fifo for delete. Overlaps are not allowed, meaning, Fifo start address n + Fifo size n should be < Fifo start address n+1",
+    Width => "11", # Excel Formula: =calc_mem_width(E133:E133,M132,F133,-1)
+    Type => "Config",
+    UsedBy => "FDOQ",
+    MemEntries => "53", # Excel Formula: =calc_field_width_define("PDOQ_NUM_IFC")*2+1
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "11",
+    PdifFifoSizeStartAddrData => { #Structure Type: MemField;
+      Name => "PdifFifoSizeStartAddrData",
+      RegMem => "MemField",
+      Description => "Fifo start address per IFG interface 0-51 and Delete 52",
+      Width => "11",
+      Position => "10:0", # Excel Formula: =calc_position(F132,E133,TRUE)
+      InitValueSa => "(line < 25) ? line*31 :
+(line == 25) ? 24*31 + 62 :
+(line < 26+25) ? 24*31 + 2*62 + (line-26)*31 :
+(line == 26+25) ? 24*31 + 2*62 + 24*31 + 62 : 24*31 + 2*62 + 24*31 + 2*62",
+      InitValueLcNwk => "(line < 25) ? line*31 :
+(line == 25) ? 24*31 + 62 :
+(line < 26+25) ? 24*31 + 2*62 + (line-26)*31 :
+(line == 26+25) ? 24*31 + 2*62 + 24*31 + 62 : 24*31 + 2*62 + 24*31 + 2*62",
+      InitValueLcFab => "(line < 26) ? line*32 :
+(line < 52) ? 864 + (line-26)*32 : 1728",
+      InitValueFe => "(line < 26) ? line*32 :
+(line < 52) ? 864 + (line-26)*32 : 1728",
+    },
+  },
+  FdoqIfgCalendar0 => { #Structure Type: Mem; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 16;
+    Name => "FdoqIfgCalendar[2]",
+    RegMem => "Mem",
+    Address => "900000", # Excel Formula: =calc_mem_address(C132,A132,G134,L134)
+    Description => "FDOQ interface arbiter per IFG. Work conserving RR is applied on the calendar entries. Each entry represents IFG interface. The interface may appear several times in t he calendar, depends on its speed. The calendar is configured automatically by SW based on all IFG ports",
+    Width => "5", # Excel Formula: =calc_mem_width(E135:E135,M134,F135,-1)
+    Type => "Config",
+    UsedBy => "FDOQ",
+    MemEntries => "28", # Excel Formula: =calc_field_width_define("PDOQ_FDOQ_CALENDAR_ENTRIES")
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,PortErrPropagate=Disabled",
+    ArrayLength => "2",
+    ArrayIndex => "0",
+    MemLogicalWidth => "5",
+    FdoqIfgCalendarData0 => { #Structure Type: MemField; ArrayLength: 2; ArrayIndex: 0; ArrayLocationInName: 20;
+      Name => "FdoqIfgCalendarData[n]",
+      RegMem => "MemField",
+      Description => "Each entry holds interface number 0-25, 26 is invalid",
+      Width => "5", # Excel Formula: =calc_field_width_define("PDOQ_IFC_WIDTH")
+      Position => "4:0", # Excel Formula: =calc_position(F134,E135,TRUE)
+      InitValueAllModes => "26",
+      InitValueLcFab => "line < 12 ? 2*line :
+line < 24 ? 2*(line-12) : 26
+",
+      InitValueFe => "line < 12 ? 2*line :
+line < 24 ? 2*(line-12) : 26
+",
+    },
+  },
+  FdoqIfgCalendar1 => { #Structure Type: Mem; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 16;
+    Name => "FdoqIfgCalendar[2]",
+    RegMem => "Mem",
+    Address => "A00000",
+    Description => "FDOQ interface arbiter per IFG. Work conserving RR is applied on the calendar entries. Each entry represents IFG interface. The interface may appear several times in t he calendar, depends on its speed. The calendar is configured automatically by SW based on all IFG ports",
+    Width => "5", # Excel Formula: =calc_mem_width(E135:E135,M134,F135,-1)
+    Type => "Config",
+    UsedBy => "FDOQ",
+    MemEntries => "28", # Excel Formula: =calc_field_width_define("PDOQ_FDOQ_CALENDAR_ENTRIES")
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PackArrayToBus=Enabled,PortErrPropagate=Disabled",
+    ArrayLength => "2",
+    ArrayIndex => "1",
+    MemLogicalWidth => "5",
+    FdoqIfgCalendarData1 => { #Structure Type: MemField; ArrayLength: 2; ArrayIndex: 1; ArrayLocationInName: 20;
+      Name => "FdoqIfgCalendarData[n]",
+      RegMem => "MemField",
+      Description => "Each entry holds interface number 0-25, 26 is invalid",
+      Width => "5", # Excel Formula: =calc_field_width_define("PDOQ_IFC_WIDTH")
+      Position => "4:0", # Excel Formula: =calc_position(F134,E135,TRUE)
+      InitValueAllModes => "26",
+      InitValueLcFab => "line < 12 ? 2*line :
+line < 24 ? 2*(line-12) : 26
+",
+      InitValueFe => "line < 12 ? 2*line :
+line < 24 ? 2*(line-12) : 26
+",
+    },
+  },
+  PdIfFifosThresholdsProfile => { #Structure Type: Mem;
+    Name => "PdIfFifosThresholdsProfile",
+    RegMem => "Mem",
+    Address => "B00000", # Excel Formula: =calc_mem_address(C134,A134,G136,L136)
+    Description => "Map IFG interface to profile for PdIfFifosThresholds",
+    Width => "3", # Excel Formula: =calc_mem_width(E137:E137,M136,F137,-1)
+    Type => "Config",
+    UsedBy => "FDOQ",
+    MemEntries => "53", # Excel Formula: =calc_field_width_define("PDOQ_NUM_FDOQ")
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "3",
+    PdifThProfile => { #Structure Type: MemField;
+      Name => "PdifThProfile",
+      RegMem => "MemField",
+      Description => "1 of 8 profiles",
+      Width => "3", # Excel Formula: =ROUNDUP(LOG(calc_field_width_define("PDOQ_FDOQ_NUM_PDIF_TH_PROFILES"),2),0)
+      Position => "2:0", # Excel Formula: =calc_position(F136,E137,TRUE)
+      InitValueSa => "(line == 52) ? 1 : 0",
+      InitValueLcNwk => "(line == 52) ? 1 : 0",
+      InitValueLcFab => "(line == 52) ? 1 : is_100g_fabric ? 4 : 3",
+      InitValueFe => "(line == 52) ? 1 : is_100g_fabric ? 4 : 3",
+    },
+  },
+  PdIfFifosThresholds => { #Structure Type: Mem;
+    Name => "PdIfFifosThresholds",
+    RegMem => "Mem",
+    Address => "C00000", # Excel Formula: =calc_mem_address(C136,A136,G138,L138)
+    Description => "Pdif fifo thresholds, if crossed, flow control is set to TxSCH. Profile for (1200G, 800G, 400G, 200G, 100G, 50G, 40G, RCY 600G)",
+    Width => "37", # Excel Formula: =calc_mem_width(E139:E140,M138,F140,-1)
+    Type => "Config",
+    UsedBy => "FDOQ",
+    MemEntries => "8", # Excel Formula: =calc_field_width_define("PDOQ_FDOQ_NUM_PDIF_TH_PROFILES")
+    MemWrapper => "RegArray",
+    MemProtect => "None",
+    AdditionalInfo => "CpuReadAccess=Enabled,CpuWriteAccess=Enabled,PortErrPropagate=Disabled",
+    MemLogicalWidth => "37",
+    PdifPdsTh => { #Structure Type: MemField;
+      Name => "PdifPdsTh",
+      RegMem => "MemField",
+      Description => "Threshold for PD counter",
+      Width => "12",
+      Position => "11:0", # Excel Formula: =calc_position(F138,E139,TRUE)
+      InitValueAllModes => "(line == 0) ? 600 : (line == 1) ? 300 : (line == 2) ? 120 : (line == 3) ? 64 : (line == 4) ? 32 : (line == 5) ? 20 : (line == 6) ? 11 : 180",
+    },
+    PdifBytesTh => { #Structure Type: MemField;
+      Name => "PdifBytesTh",
+      RegMem => "MemField",
+      Description => "Threshold for Byte counter",
+      Width => "25", # Excel Formula: =(ROUNDUP(LOG(calc_field_width_define("PDOQ_FDOQ_PDIF_ENTRIES"),2),0) + calc_field_width_define("PDOQ_PKT_SIZE_WIDTH"))
+      Position => "36:12", # Excel Formula: =calc_position(F139,E140)
+      InitValueAllModes => "(line == 0) ? 163840 : (line == 1) ? 81920 : (line == 2) ? 40960 : (line == 3) ? 30720 : (line == 4) ? 30720 : (line == 5) ? 10000 : (line == 6) ? 10000 : 61440",
+    },
+  },
+};

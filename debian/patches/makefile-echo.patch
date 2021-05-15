@@ -1,0 +1,30 @@
+Index: sdk/sai/Makefile
+===================================================================
+--- sdk.orig/sai/Makefile
++++ sdk/sai/Makefile
+@@ -130,15 +130,15 @@ FULL_PROJECTS = $(foreach project, $(PRO
+ full: $(FULL_PROJECTS)
+ $(FULL_PROJECTS): %-full:
+ 	$(MAKE) DEVICE_TYPE=$* sai
+-	$(MAKE) DEVICE_TYPE=$* full-slib
+-
+-FULL_SLIB = $(SLIB_OUTPUT_DIR)/libsai_full.a
+-
+-.PHONY: full-slib
+-full-slib: $(FULL_SLIB)
+-
+-$(FULL_SLIB): $($(DEVICE_TYPE)-slibs) $(npsuite-slibs) $(SLIB_OUTPUT_DIR)/libsai.a
+-	libtool --mode=link gcc -static -o $@ $^
++#	$(MAKE) DEVICE_TYPE=$* full-slib
++#
++#FULL_SLIB = $(SLIB_OUTPUT_DIR)/libsai_full.a
++#
++#.PHONY: full-slib
++#full-slib: $(FULL_SLIB)
++#
++#$(FULL_SLIB): $($(DEVICE_TYPE)-slibs) $(npsuite-slibs) $(SLIB_OUTPUT_DIR)/libsai.a
++#	libtool --mode=link gcc -static -o $@ $^
+ 
+ .PHONY: clean
+ clean::
+

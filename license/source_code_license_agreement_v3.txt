@@ -1,0 +1,74 @@
+CISCO SYSTEMS, INC.
+LIMITED SOURCE CODE LICENSE AGREEMENT
+
+ Access to the Cisco Systems, Inc. ("Cisco") Silicon One Device SDK source and/or object code and related documentation "Licensed 
+Material(s)," is preconditioned upon agreement to the following terms and conditions. Licensee agrees:
+License.  Cisco hereby grants to Licensee, under Cisco's intellectual property rights in the Licensed Material(s), a non-transferable, 
+non-exclusive, revocable, royalty free, limited license (without right of sublicense) solely to (i) internally view and internally use the 
+necessary portions of the Licensed Material(s) (as furnished by Cisco in Source Code or Object Code form) solely for the purpose of 
+programming Cisco Silicon One devices as used by Licensee in its products (ii) on a secure development computer.  This license is 
+subject to the terms and conditions of this Agreement, including the restrictions set forth in License Restrictions below.	
+License Restrictions.  Licensee shall not: (a) copy, modify, adapt, alter, or translate the Licensed Material(s), or create copyrightable, 
+patented or trade secret materials ("Derivative Technology") improving, recasting, adding integrated features or functions, or 
+transforming the Licensed Material(s); (b) sell, assign, sublicense, distribute, publicly display, lease, rent, loan, transfer, encumber or 
+suffer to exist any lien or security interest (other than those of Cisco) or otherwise permit third parties to access, use, copy, disclose, 
+or otherwise transfer the Licensed Material(s); (c) create or attempt to create by reverse engineering, reverse assembly, reverse 
+compiling, decrypting, disassembling or otherwise all or part of the source code from any Licensed Material(s) or permit a third party 
+to do so; or (d) remove, alter, obscure, or destroy any copyright notices, proprietary markings or confidential legends placed upon or 
+contained within the Licensed Material(s) or any copies thereof.  Except for the express and limited purpose license granted herein, 
+no other licenses are granted by implication, estoppel or otherwise.  
+Ownership.  (a) Cisco retains all right, title and interest in and to the Licensed Material(s) and shall own any Derivative Technology 
+thereof created by or for Licensee.  Licensee hereby conveys and assigns to Cisco, its successors and assigns, all of Licensee's right, 
+title and interest in and to any such Derivative Technology of the Licensed Material(s) and  made by or for Licensee under this 
+Agreement, including all copyrights, patents, trade secrets, and other intellectual property rights therein (including renewals 
+thereof).  Licensee shall execute and deliver such instruments and take such other action as may be required and requested by Cisco 
+to perfect the assignments and prosecute such patent and copyright applications.  
+(b) Licensee owns all right, title and interest in and to any design, features or functions developed using the Licensed Materials and 
+that does not improve, recast, add integrated features or functions, or transform the Licensed Material(s).  
+Termination.  Either party may terminate this Agreement or any license granted under this Agreement at any time. 
+Effect of Termination or Expiration. Within five (5) days after the date of termination or expiration of this Agreement or any license 
+granted under this Agreement, Licensee shall furnish to Cisco written certification by an authorized representative of Licensee that 
+the original and all copies, including partial copies, of the corresponding Licensed Material(s), and any material received from Cisco 
+or made in connection with such license have been returned to Cisco.  Only the section titled "License" shall termination or expire, 
+all other provisions shall survive expiration or termination of this Agreement. 
+Warranty Disclaimer. THE LICENSED MATERIAL(S) ARE PROVIDED "AS IS" AND CISCO MAKES NO WARRANTY, EXPRESS OR IMPLIED, 
+AND DISCLAIMS ANY REPRESENTATIONS AND WARRANTIES WITH RESPECT TO THE LICENSED MATERIAL(S), OR ANY MODIFICATIONS 
+THERETO, IN WHOLE OR IN PART, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTY OF TITLE, FITNESS FOR A 
+PARTICULAR PURPOSE, MERCHANTABILITY, OR NONINFRINGEMENT.  IN NO EVENT SHALL CISCO BE LIABLE FOR THE ACCURACY OR 
+COMPLETENESS OF THE LICENSED MATERIAL(S).
+Limitation of Liability.  CISCO SHALL HAVE NO LIABILITY UNDER THIS AGREEMENT, REGARDLESS OF WHETHER CISCO HAS BEEN 
+ADVISED OF THE POSSIBILITY OF ANY DAMAGES OR OF ANY REMEDY SET FORTH HEREIN FAILING OF ITS ESSENTIAL PURPOSE OR 
+OTHERWISE.  CISCO SHALL NOT BE LIABLE FOR COSTS OF PROCUREMENT OF SUBSTITUTE GOODS, LOSS OF PROFITS, INTERRUPTION 
+OF BUSINESS, OR FOR ANY OTHER SPECIAL, INDIRECT, CONSEQUENTIAL OR INCIDENTAL DAMAGES, HOWEVER CAUSED, WHETHER 
+FOR BREACH OF WARRANTY, CONTRACT, TORT, NEGLIGENCE, STRICT LIABILITY OR OTHERWISE.  LICENSEE ACKNOWLEDGES THAT 
+THE BENEFIT AFFORDED TO IT UNDER THIS AGREEMENT IS A FULL AND ADEQUATE BENEFIT OF THE BARGAIN SUPPORTING 
+LICENSEE'S ACCEPTANCE OF THIS ALLOCATION OF RISK TO IT. 
+Maintenance, Installation and Training.  Cisco has no obligation under this Agreement to provide any maintenance, upgrades, 
+updates, support, installation or training. Any assistance provided by Cisco hereunder shall be at Cisco's discretion and without 
+liability or risk to Cisco. 
+Confidential Information. The Licensed Material(s), whether in whole or in part, and are the confidential and proprietary property of 
+Cisco.  Handling of such Confidential Information is covered by the terms of the parties' Non-Disclosure Agreement, incorporated 
+herein. 
+No Assignment.  Licensee may not assign its rights or delegate its obligations hereunder, either in whole or in part, whether by 
+operation of law or otherwise, without the prior written consent of Cisco.  
+Security and Open Source.  (a) Licensee will implement and maintain an information security program that is appropriate to the 
+nature and scope of Licensee's activities.  The security program will be designed, maintained, updated, as necessary, and 
+documented to reasonably address known risks to Licensed Materials. Licensee shall diligently address any security vulnerability in 
+the Licensed Materials and immediately bring any security vulnerability to the attention of Cisco's Product Security Incident 
+Response Team (PSIRT) by emailing psirt@cisco.com. 
+(b) License will not take any action or inaction that would result in open source contamination of any of the Licensed Material(s).
+Notices.  Any notice required or permitted to be given by either party under this Agreement shall be in writing and shall be 
+personally delivered or sent by a reputable overnight mail service or by first class mail (certified or registered), 
+Governing Law. The validity, interpretation, and performance of this Agreement shall be controlled by and construed under the laws 
+of the State of California, United States of America, as if performed wholly within the state and without giving effect to the principles 
+of conflict of laws, and the State and federal courts of California shall have jurisdiction over any claim arising under this Agreement.  
+Publicity. Licensee shall not refer to Cisco, or any of Cisco's trademarks, in any manner including to its customers, suppliers or 
+partners or in any of its promotional or advertising material, written or oral, without obtaining Cisco's prior written consent.  This 
+restriction includes the disclosure in any media releases, public announcements and other public disclosures by Licensee, its 
+employees or agents relating to or referring to this Agreement or its subject matter.
+*** END ***
+
+1
+
+		CISCO CONFIDENTIAL
+	Source_Code_Lic_Out.revised version (2012).doc	

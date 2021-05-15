@@ -1,0 +1,230 @@
+# BEGIN_LEGAL
+#
+# Copyright (c) 2015-current, Cisco Systems, Inc. ("Cisco"). All Rights Reserved.
+#
+# This file and all technical concepts, proprietary knowledge, algorithms and
+# intellectual property rights it contains (collectively the "Confidential Information"),
+# are the sole propriety information of Cisco and shall remain at Cisco's ownership.
+# You shall not disclose the Confidential Information to any third party and you
+# shall use it solely in connection with operating and/or maintaining of Cisco's
+# products and pursuant to the terms and conditions of the license agreement you
+# entered into with Cisco.
+#
+# THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+# IN NO EVENT SHALL CISCO BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+# AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+# THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# END_LEGAL
+
+# Leaba common makefile.
+#
+# The following parameters can be used in your main makefile to configure the common Makefile system.
+#
+#
+
+# parameter cross build to use specific build actions for building on ARM
+export ARM_BUILD ?= 0
+
+# Parameter: Verbose build
+export VERBOSE ?= 0
+
+# Parameter: Debug information build
+export DEBUG ?= 1
+
+# Parameter: Optimization level
+export OPT ?= 0
+
+# Parameter: Build with clang
+export USE_CLANG ?= 0
+
+# Parameter: Enable code coverage
+export COVERAGE ?= 0
+
+# Parameter: Permissive build
+export PERMISSIVE ?= 0
+
+# Parameter: Generate documentation
+export GENERATE_DOCS ?= 0
+
+# Parameter: Name of version to build.
+export VERSION ?= dev
+
+# Parameter to disable building and linking NPSUITE dependencies
+export NO_NSIM ?= 
+export NO_NPL ?= 1
+export PREBUILT_DEPENDS ?= 1
+
+export PREBUILT_AND_NO_NPL = 0
+ifeq ($(PREBUILT_DEPENDS), 1)
+    ifeq ($(NO_NPL), 1)
+        export PREBUILT_AND_NO_NPL = 1
+    endif
+endif
+
+export PREBUILT_AND_NO_NSIM = 0
+ifeq ($(PREBUILT_DEPENDS), 1)
+    ifeq ($(NO_NSIM), 1)
+        export PREBUILT_AND_NO_NSIM = 1
+    endif
+endif
+
+# Determine whether the SDK is going yo use a simulator only npsuite release
+export SIMULATOR ?= 1
+
+# Used to skip NPL microcode generation, required for some types of customer releases
+export GENERATE_NPL ?= 1
+
+# Parameter: force serialization tool to use old/new ABI when linking with llvm libs
+# currently in our servers llvm is compiled with old ABI
+export SERIALIZATION_TOOL_FORCE_OLD_ABI ?= 1
+# allow forcing new abi for the tool even if default is use old ABI
+export SERIALIZATION_TOOL_FORCE_NEW_ABI ?= 0
+
+# Parameter: If set, run tests with --track-origin=no
+export VALGRIND_DONT_TRACK_ORIGIN ?= 0
+
+# Parameter: enable debug symbols for serialization files
+export CEREAL_DEBUG ?= 0
+
+PLATFORM_DIR := $(shell $(UNLOGGED) dirname $(lastword $(MAKEFILE_LIST)))
+ARCHITECTURE_TYPE := $(shell uname -p)
+
+ifeq ($(OUTROOT),)
+    $(error OUTROOT not defined)
+endif
+
+OS_NAME := $(shell $(UNLOGGED) uname -s)
+
+IS_LINUX   =
+IS_MACOS   =
+
+ifeq  ($(OS_NAME), Linux)
+	IS_LINUX = True
+	include $(PLATFORM_DIR)/Makefile.gcc
+else ifeq  ($(OS_NAME), Darwin)
+	IS_MACOS = True
+	include $(PLATFORM_DIR)/Makefile.gcc
+else
+	$(error Not supported OS)
+endif
+
+ifeq ($(IS_LINUX), True)
+	LINK_DIRS += $(LIN_LINK_DIRS)
+	CFLAGS    += $(LIN_CFLAGS)
+	CXXFLAGS  += $(LIN_CXXFLAGS)
+endif
+
+ifeq ($(VERBOSE), 0)
+    SILENT = @
+endif
+
+ifeq ($(BUILD_MODE), Debug)
+    DEBUG = 1
+    OPT = 0
+endif
+
+ifeq ($(BUILD_MODE), Release)
+    DEBUG = 0
+    OPT = 3
+endif
+
+ifeq ($(OPT), 0)
+    BUILD_TYPE = noopt
+else
+    BUILD_TYPE = opt$(OPT)
+endif
+
+ifeq ($(COVERAGE), 0)
+    BUILD_TYPE := $(BUILD_TYPE)
+else
+    BUILD_TYPE := $(BUILD_TYPE)-cov
+endif
+
+ifeq ($(DEBUG), 1)
+    BUILD_TYPE := $(BUILD_TYPE)-debug
+endif
+
+ifeq ($(USE_CLANG), 1)
+    BUILD_TYPE := $(BUILD_TYPE)-clang
+endif
+
+ifeq ($(ENABLE_SERIALIZATION), 1)
+	CFLAGS    += -DENABLE_SERIALIZATION
+	CXXFLAGS  += -DENABLE_SERIALIZATION
+	CEREAL_GEN_EXTRA_FLAGS := -DNPLAPI_NUM_SLICES=6
+endif
+
+ifeq ($(ARM_BUILD), 1)
+    #when cross buildig, this HOST_BASE_OUTPUT_DIR should contain path to folder with already build dependencies on host (x86) that can't run using arm dependencies on host
+    #these dependencies will be copied rather than build because their builder must be performed on arm machine
+    BUILD_TYPE := $(BUILD_TYPE)$(ARM_SUFIX)
+    PKG-CEREAL-GEN := False
+endif
+
+#disable fw build and documents creation when building on arm target (sanity run)
+ifeq ($(ARM_ARCHITECTURE), $(ARCHITECTURE_TYPE))
+    BUILD_FIRMWARE := 0
+    GENERATE_DOCS := 0
+endif
+
+ifeq ($(CEREAL_DEBUG), 0)
+	CEREAL_COMPILE_FLAGS := -g0
+endif
+
+export PYTHON_BIN # So scripts can use it
+export BASE_OUTPUT_DIR = $(OUTROOT)/$(BUILD_TYPE)
+export FORMAT_OUTPUT_DIR = $(OUTROOT)/format
+export BIN_OUTPUT_DIR = $(BASE_OUTPUT_DIR)/bin
+export DLIB_OUTPUT_DIR = $(BASE_OUTPUT_DIR)/lib
+export SLIB_OUTPUT_DIR = $(BASE_OUTPUT_DIR)/lib_static
+export PYLIB_OUTPUT_DIR = $(BASE_OUTPUT_DIR)/pylib
+export DOC_OUTPUT_DIR = $(BASE_OUTPUT_DIR)/doc
+export MOD_OUTPUT_DIR = $(BASE_OUTPUT_DIR)/modules
+export RES_OUTPUT_DIR = $(BASE_OUTPUT_DIR)/res
+export BUILD_OUTPUT_DIR = $(BASE_OUTPUT_DIR)/build/
+export INCLUDE_OUTPUT_DIR = $(BASE_OUTPUT_DIR)/include
+export SHARED_INCLUDE_OUTPUT_DIR = $(BASE_OUTPUT_DIR)/shared/include
+export SRC_OUTPUT_DIR = $(BUILD_OUTPUT_DIR)
+export OBJ_OUTPUT_DIR = $(BUILD_OUTPUT_DIR)
+export DEP_OUTPUT_DIR = $(BUILD_OUTPUT_DIR)/.dep
+export COVERAGE_OUTPUT_DIR = $(BASE_OUTPUT_DIR)/gcov
+
+RELEASE_DIR = /cad/leaba/driver
+
+# recursive wildcard macro
+# usage examples:
+#   all C files in the current directory (or below):
+#     $(call rwildcard,,*.c)
+#   all C files in /tmp:
+#     $(call rwildcard,/tmp/,*.c)
+#   Multiple patterns can be used. Here are all C and H files:
+#     $(call rwildcard,/tmp/,*.c *.h)
+rwildcard = $(foreach d, $(wildcard $1*), $(call rwildcard, $d/, $2) \
+                                          $(filter $(subst *, %, $2), $d))
+
+# generate set of numbers from 0 to n-1
+# gen_seq1 generate the set of numbers from 1 to n
+# example for calling it:
+# $(call gen_seq1,5)
+# result will be: 1 2 3 4 5
+gen_seq_inner = $(if $(filter $1,$(words $2)),$2 $(words $2),$(call gen_seq_inner,$1,$2 $(words $2)))
+gen_seq = $(call gen_seq_inner,$1,)
+gen_seq1 = $(filter-out temp_elem,$(call gen_seq_inner,$1,temp_elem))
+
+CSRCS = $(PKG-EXTRA_CSRCS) $(wildcard *.c) $(foreach d, $(VPATH), $(wildcard $d/*.c))
+CPPSRCS = $(PKG-EXTRA_CPPSRCS) $(EXTRA_CPPSRCS) $(wildcard *.cpp) $(foreach d, $(VPATH), $(wildcard $d/*.cpp))
+SWIG_SRCS = $(PKG-EXTRA_SWIG_SRCS) $(wildcard swig.i) $(foreach d, $(VPATH), $(wildcard $d/swig.i))
+OBJS = $(patsubst %.c,$(OBJ_OUTPUT_DIR)/%$(OBJ_EXT),$(CSRCS)) $(patsubst %.cpp,$(OBJ_OUTPUT_DIR)/%$(OBJ_EXT),$(CPPSRCS))
+SWIGOBJS = $(patsubst %.i,$(OBJ_OUTPUT_DIR)/%_wrap$(OBJ_EXT),$(SWIG_SRCS))
+FORMAT_SRCS = $(foreach dir, $(FORMAT_DIRS), $(call rwildcard, $(dir)/, *.h *.cpp *.tcc *.c *.i *.npl *.py *.pl *.inc)) $(filter-out %~, $(wildcard Makefile*))
+
+LINK_DIRS = $(ZLIB_LINK_DIR) $(BOOST_LIB_DIR)
+LINK_DIRS_FLAGS = $(foreach d, $(LINK_DIRS), $(LINK_LIBPATH_FLAG)$(d))
+PYTHON_LINK_DIR_FLAG = $(LINK_LIBPATH_FLAG)$(PYTHON_LINK_DIR)
+
+PY_SRCS = $(wildcard *.py)
+PY_OBJS = $(patsubst %.py,$(BIN_OUTPUT_DIR)/%.py,$(PY_SRCS))
+
+PYTESTS = $(wildcard test_*.py)
+RUN_PYTESTS = $(patsubst test_%.py,runtest_%,$(PYTESTS))

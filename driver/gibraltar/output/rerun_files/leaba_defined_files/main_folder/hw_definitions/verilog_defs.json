@@ -1,0 +1,97 @@
+{
+    "verilog_definitions": {
+        "tcl_environments": {
+            "npu 6 slices environment": {
+                "always_exists_signal": "npu_tb.i_dut.i_npu_top.clk",
+                "termination_engine_prefix_slice": "npu_tb.i_dut.i_npu_top.i_rxpp",
+                "forwarding_engine_prefix_slice": "npu_tb.i_dut.i_npu_top.i_rxpp",
+                "transmit_engine_prefix_slice": "npu_tb.i_dut.i_npu_top.i_txpp",
+                "npu_host_engine_prefix_slice": "",
+                "termination_engine_prefix_npe": "i_rxpp_term.i_rxpp_term.i_nps_term.npe",
+                "forwarding_engine_prefix_npe": "i_rxpp_fwd.i_rxpp_fwd.i_nps_fwd.npe",
+                "transmit_engine_prefix_npe": "i_txpp_top_macro.i_txpp_top.i_txpp_npu.i_npe",
+                "npu_host_engine_prefix_npe": "npu_tb.i_npu_host",
+                "termination_engine_prefix_after_npe": ".i_npe_top.i_npe.",
+                "forwarding_engine_prefix_after_npe": ".i_npe_top.i_npe.",
+                "transmit_engine_prefix_after_npe": ".",
+                "npu_host_engine_prefix_after_npe": ".npu_host_npe."
+            },
+            "npu environment": {
+                "always_exists_signal": "npu_tb.i_dut.clk",
+                "termination_engine_prefix_slice": "npu_tb.i_dut.i_rxpp",
+                "forwarding_engine_prefix_slice": "npu_tb.i_dut.i_rxpp",
+                "transmit_engine_prefix_slice": "npu_tb.i_dut.i_txpp",
+                "npu_host_engine_prefix_slice": "",
+                "termination_engine_prefix_npe": "i_rxpp_term.i_rxpp_term.i_nps_term.npe",
+                "forwarding_engine_prefix_npe": "i_rxpp_fwd.i_rxpp_fwd.i_nps_fwd.npe",
+                "transmit_engine_prefix_npe": "i_txpp_top_macro.i_txpp_top.i_txpp_npu.i_npe",
+                "npu_host_engine_prefix_npe": "npu_tb.i_npu_host",
+                "termination_engine_prefix_after_npe": ".i_npe_top.i_npe.",
+                "forwarding_engine_prefix_after_npe": ".i_npe_top.i_npe.",
+                "transmit_engine_prefix_after_npe": ".",
+                "npu_host_engine_prefix_after_npe": ".npu_host_npe."
+            },
+            "txpp environment": {
+                "always_exists_signal": "txpp_tb.i_dut.i_txpp_top.clk",
+                "termination_engine_prefix_slice": "invalid",
+                "forwarding_engine_prefix_slice": "invalid",
+                "transmit_engine_prefix_slice": "",
+                "npu_host_engine_prefix_slice": "invalid",
+                "termination_engine_prefix_npe": "invalid",
+                "forwarding_engine_prefix_npe": "invalid",
+                "transmit_engine_prefix_npe": "txpp_tb.i_dut.i_txpp_top.i_txpp_npu.i_npe",
+                "npu_host_engine_prefix_npe": "invalid",
+                "termination_engine_prefix_after_npe": ".i_npe_top.i_npe.",
+                "forwarding_engine_prefix_after_npe": ".i_npe_top.i_npe.",
+                "transmit_engine_prefix_after_npe": ".",
+                "npu_host_engine_prefix_after_npe": ".npu_host_npe."
+            },
+            "NPU Host environment": {
+                "always_exists_signal": "npu_host_env_tb.i_dut.npu_host_npe.clk",
+                "termination_engine_prefix_slice": "pacific_tb.i_pacific.i_core.i_npu_top.i_rxpp",
+                "forwarding_engine_prefix_slice": "pacific_tb.i_pacific.i_core.i_npu_top.i_rxpp",
+                "transmit_engine_prefix_slice": "pacific_tb.i_pacific.i_core.i_npu_top.i_txpp",
+                "npu_host_engine_prefix_slice": "",
+                "termination_engine_prefix_npe": "i_rxpp_top.i_rxpp_term.i_nps_term.npe",
+                "forwarding_engine_prefix_npe": "i_rxpp_top.i_rxpp_fwd.i_nps_fwd.npe",
+                "transmit_engine_prefix_npe": "i_txpp_top.i_txpp_npu.i_npe",
+                "npu_host_engine_prefix_npe": "npu_host_env_tb.i_dut",
+                "termination_engine_prefix_after_npe": ".i_npe_top.i_npe.",
+                "forwarding_engine_prefix_after_npe": ".i_npe_top.i_npe.",
+                "transmit_engine_prefix_after_npe": ".",
+                "npu_host_engine_prefix_after_npe": ".npu_host_npe."
+            },
+            "rxpp environment": {
+                "always_exists_signal": "rxpp_tb.i_dut.clk",
+                "termination_engine_prefix_slice": "",
+                "forwarding_engine_prefix_slice": "",
+                "transmit_engine_prefix_slice": "invalid",
+                "npu_host_engine_prefix_slice": "invalid",
+                "termination_engine_prefix_npe": "rxpp_tb.i_dut.i_rxpp_term.i_nps_term.npe",
+                "forwarding_engine_prefix_npe": "rxpp_tb.i_dut.i_rxpp_fwd.i_nps_fwd.npe",
+                "transmit_engine_prefix_npe": "invalid",
+                "npu_host_engine_prefix_npe": "invalid",
+                "termination_engine_prefix_after_npe": ".i_npe_top.i_npe.",
+                "forwarding_engine_prefix_after_npe": ".i_npe_top.i_npe.",
+                "transmit_engine_prefix_after_npe": ".",
+                "npu_host_engine_prefix_after_npe": ".npu_host_npe."
+            },
+            "full chip environment": {
+                "always_exists_signal": "gibraltar_tb.i_gibraltar.i_gibraltar_core.i_npu_top.clk",
+                "termination_engine_prefix_slice": "gibraltar_tb.i_gibraltar.i_gibraltar_core.i_npu_top.i_rxpp",
+                "forwarding_engine_prefix_slice": "gibraltar_tb.i_gibraltar.i_gibraltar_core.i_npu_top.i_rxpp",
+                "transmit_engine_prefix_slice": "gibraltar_tb.i_gibraltar.i_gibraltar_core.i_npu_top.i_txpp",
+                "npu_host_engine_prefix_slice": "invalid",
+                "termination_engine_prefix_npe": "i_rxpp_term.i_rxpp_term.i_nps_term.npe",
+                "forwarding_engine_prefix_npe": "i_rxpp_fwd.i_rxpp_fwd.i_nps_fwd.npe",
+                "transmit_engine_prefix_npe": "i_txpp_top_macro.i_txpp_top.i_txpp_npu.i_npe",
+                "npu_host_engine_prefix_npe": "invalid",
+                "termination_engine_prefix_after_npe": ".i_npe_top.i_npe.",
+                "forwarding_engine_prefix_after_npe": ".i_npe_top.i_npe.",
+                "transmit_engine_prefix_after_npe": ".",
+                "npu_host_engine_prefix_after_npe": ".npu_host_npe."
+            }
+        },
+        "allow_application_override":  false
+    }
+}
