@@ -23,7 +23,8 @@ DOCKER_SHA1_FILES := \
 	docker/sonic-jenkins-id_rsa.pub \
 	docker/quiltrc-dpkg
 
-USER := $(shell $(UNLOGGED) id -un | tr A-Z a-z)
+USER := $(shell $(UNLOGGED) id -un)
+USER_LC := $(shell $(UNLOGGED) id -un | tr A-Z a-z)
 UID := $(shell $(UNLOGGED) id -u $(USER))
 GUID := $(shell $(UNLOGGED) id -g $(USER))
 FULLNAME :=  $(shell $(UNLOGGED) getent passwd $(USER) | cut -d ':' -f 5)
@@ -32,7 +33,7 @@ no_proxy ?= localhost
 
 TAG := $(shell $(UNLOGGED) cat $(DOCKER_SHA1_FILES) | sha1sum)
 TAG := $(shell echo $(TAG) | cut -c1-13)
-SILICON-ONE_SLAVE := $(shell $(UNLOGGED) docker image inspect $(SILICON-ONE_IMAGE)-$(USER):$(TAG) > /dev/null 2>&1 || echo $(SILICON-ONE_IMAGE)-$(USER))
+SILICON-ONE_SLAVE := $(shell $(UNLOGGED) docker image inspect $(SILICON-ONE_IMAGE)-$(USER_LC):$(TAG) > /dev/null 2>&1 || echo $(SILICON-ONE_IMAGE)-$(USER_LC))
 
 PYTHON_VER-$(SILICON-ONE_IMAGE) := 3.8.0
 PYTHON_VER-silicon_one-slave-stretch := 3.8.0
@@ -84,10 +85,10 @@ docker/$(SILICON-ONE_IMAGE)-python/$(TAG): $(DOCKER_SHA1_FILES)
 	@$(call docker_build,$(SILICON-ONE_IMAGE)-python,$(SILICON-ONE_IMAGE)-base:latest,Dockerfile.python)
 	@touch $@
 
-docker/$(SILICON-ONE_IMAGE)-$(USER)/$(TAG): docker/$(SILICON-ONE_IMAGE)-python/$(TAG)
-docker/$(SILICON-ONE_IMAGE)-$(USER)/$(TAG): $(DOCKER_SHA1_FILES)
-	@$(call docker_build,$(SILICON-ONE_IMAGE)-$(USER),$(SILICON-ONE_IMAGE)-python:$(TAG),Dockerfile.user)
+docker/$(SILICON-ONE_IMAGE)-$(USER_LC)/$(TAG): docker/$(SILICON-ONE_IMAGE)-python/$(TAG)
+docker/$(SILICON-ONE_IMAGE)-$(USER_LC)/$(TAG): $(DOCKER_SHA1_FILES)
+	@$(call docker_build,$(SILICON-ONE_IMAGE)-$(USER_LC),$(SILICON-ONE_IMAGE)-python:$(TAG),Dockerfile.user)
 	@touch $@
 
-.PHONY: $(SILICON-ONE_IMAGE)-$(USER)
-$(SILICON-ONE_IMAGE)-$(USER): docker/$(SILICON-ONE_IMAGE)-$(USER)/$(TAG)
+.PHONY: $(SILICON-ONE_IMAGE)-$(USER_LC)
+$(SILICON-ONE_IMAGE)-$(USER_LC): docker/$(SILICON-ONE_IMAGE)-$(USER_LC)/$(TAG)
