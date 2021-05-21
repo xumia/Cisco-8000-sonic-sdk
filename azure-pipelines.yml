@@ -11,8 +11,7 @@ stages:
 
   jobs:
   - job: Build
-    pool:
-      vmImage: ubuntu-20.04
+    pool: sonicbld
 
     steps:
     - script: |
