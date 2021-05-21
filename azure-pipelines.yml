@@ -1,0 +1,20 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+stages:
+- stage: Build
+
+  jobs:
+  - job: Build
+    pool:
+      vmImage: ubuntu-20.04
+
+    steps:
+    - script: |
+        scripts/unpack_lfs.sh
+        make JOBS=4 DEBIAN_BUILD=1 DEBIAN_CUSTOMER=1 buster
