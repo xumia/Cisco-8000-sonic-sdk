@@ -23,7 +23,7 @@ DOCKER_SHA1_FILES := \
 	docker/sonic-jenkins-id_rsa.pub \
 	docker/quiltrc-dpkg
 
-USER := $(shell $(UNLOGGED) id -un)
+USER := $(shell $(UNLOGGED) id -un | tr A-Z a-z)
 UID := $(shell $(UNLOGGED) id -u $(USER))
 GUID := $(shell $(UNLOGGED) id -g $(USER))
 FULLNAME :=  $(shell $(UNLOGGED) getent passwd $(USER) | cut -d ':' -f 5)
