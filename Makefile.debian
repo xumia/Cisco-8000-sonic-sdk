@@ -41,16 +41,7 @@ DEBIAN_PROJECT ?= 'pacific gibraltar'
 JOBS := $(JOBS)
 SDK_NAME := $(shell $(UNLOGGED) basename ${PWD})
 
-
-
-
-
-
-
-
-
-
-:= docker run \
+DOCKER_RUN := docker run \
 	--rm \
 	--privileged \
 	-v "$${PWD}/../:/deb_build" \
