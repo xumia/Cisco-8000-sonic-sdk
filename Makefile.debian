@@ -22,6 +22,7 @@ PID := pid.$(shell $(UNLOGGED) echo $$$$)
 SYSTEM_DATE := $(shell $(UNLOGGED) date -R)
 SYSTEM_TIME := `date +'%y.%m.%d-%H.%M.%S'`
 USERID := $(shell $(UNLOGGED) id -un)
+USER_LC := $(shell $(UNLOGGED) id -un | tr A-Z a-z)
 
 # DEBIAN_BUILD flag is used to bypass the need
 # for NPSUITE path to be provided. Part of the
@@ -40,7 +41,16 @@ DEBIAN_PROJECT ?= 'pacific gibraltar'
 JOBS := $(JOBS)
 SDK_NAME := $(shell $(UNLOGGED) basename ${PWD})
 
-DOCKER_RUN := docker run \
+
+
+
+
+
+
+
+
+
+:= docker run \
 	--rm \
 	--privileged \
 	-v "$${PWD}/../:/deb_build" \
@@ -70,7 +80,7 @@ include docker/Makefile.inc
 
 .PHONY: deb-build
 deb-build: .stamp $(SILICON-ONE_SLAVE) debian/copyright debian/changelog debian/control sai/res/release_info debian/sdk_ver.mk
-	script -qfec "time $(DOCKER_RUN) $(SILICON-ONE_IMAGE)-$(USER):latest bash -c \
+	script -qfec "time $(DOCKER_RUN) $(SILICON-ONE_IMAGE)-$(USER_LC):latest bash -c \
 	'dpkg-buildpackage -b -us -uc --changes-option=-m\"${USERID} <${USERID}@cisco.com>\"'" \
 	dpkg-buildpackage.log
 
@@ -82,7 +92,7 @@ buster.shell:
 	@$(MAKE) SILICON-ONE_IMAGE=silicon_one-slave-buster$(IMAGE_NAME_EXT) DEBIAN_CODENAME=buster _shell
 
 _shell: .extract.stamp $(SILICON-ONE_SLAVE)
-	$(DOCKER_RUN) -t $(SILICON-ONE_IMAGE)-$(USER):latest bash
+	$(DOCKER_RUN) -t $(SILICON-ONE_IMAGE)-$(USER_LC):latest bash
 
 .stamp: .patch.stamp
 	touch $@
@@ -92,7 +102,7 @@ _shell: .extract.stamp $(SILICON-ONE_SLAVE)
 	touch $@
 
 .patch.stamp: .extract.stamp
-	$(DOCKER_RUN) $(SILICON-ONE_IMAGE)-$(USER):latest bash -c \
+	$(DOCKER_RUN) $(SILICON-ONE_IMAGE)-$(USER_LC):latest bash -c \
 	'export QUILT_PATCHES=debian/patches \
 	&& quilt push -a || true'
 	touch $@
