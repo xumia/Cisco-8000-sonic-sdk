@@ -9,7 +9,7 @@ stages:
 
   jobs:
   - job: Build
-    pool: sonicbld
+    pool: sonic-image-builder
 
     steps:
     - script: |
