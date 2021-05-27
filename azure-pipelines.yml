@@ -10,7 +10,7 @@ stages:
   jobs:
   - job: Build
     timeoutInMinutes: 600
-    pool: sonic-image-builder
+    pool: sonicbld
 
     steps:
     - script: |
