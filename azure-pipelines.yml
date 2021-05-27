@@ -10,7 +10,7 @@ stages:
   jobs:
   - job: Build
     timeoutInMinutes: 600
-    pool: sonicbld
+    pool: sonic
 
     steps:
     - script: |
