@@ -3,17 +3,29 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+trigger:
+  branches:
+    include:
+    - master
 
 stages:
 - stage: Build
 
   jobs:
   - job: Build
-    timeoutInMinutes: 600
+    timeoutInMinutes: 300
     pool: sonic
 
     steps:
     - script: |
+        sudo pip install PyYAML
+      displayName: "Install packages"
+
+    - script: |
         scripts/unpack_lfs.sh
         make JOBS=4 DEBIAN_BUILD=1 DEBIAN_CUSTOMER=1 buster
-      displayName: "Make"
+      displayName: "Build packages"
+
+    - publish: $(System.DefaultWorkingDirectory)/target
+      artifact: 'cisco-8000-sonic.sdk'
+      displayName: "Archive the sdk"
