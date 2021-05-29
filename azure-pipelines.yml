@@ -24,7 +24,7 @@ stages:
 
     - script: |
         scripts/unpack_lfs.sh
-        make JOBS=2 DEBIAN_BUILD=1 DEBIAN_CUSTOMER=1 buster
+        make JOBS=1 DEBIAN_BUILD=1 DEBIAN_CUSTOMER=1 buster
       displayName: "Build packages"
 
     - publish: $(System.DefaultWorkingDirectory)/target
