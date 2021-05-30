@@ -14,7 +14,7 @@ stages:
 
   jobs:
   - job: Build
-    timeoutInMinutes: 300
+    timeoutInMinutes: 900
     pool: sonicbld_16c
 
     steps:
