@@ -14,7 +14,7 @@ stages:
 
   jobs:
   - job: Build
-    timeoutInMinutes: 900
+    timeoutInMinutes: 1200
     pool: sonicbld_16c
 
     steps:
@@ -24,7 +24,7 @@ stages:
 
     - script: |
         scripts/unpack_lfs.sh
-        make JOBS=4 DEBIAN_BUILD=1 DEBIAN_CUSTOMER=1 buster
+        make JOBS=16 DEBIAN_BUILD=1 DEBIAN_CUSTOMER=1 buster
       displayName: "Build packages"
 
     - publish: $(System.DefaultWorkingDirectory)/target
