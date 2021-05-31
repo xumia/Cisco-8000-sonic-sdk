@@ -29,6 +29,11 @@ stages:
       displayName: "Build packages"
 
     - script: |
+        ls -l .
+        ls -l ..
+      displayName: "List files"
+
+    - script: |
         mkdir $(Build.ArtifactStagingDirectory)/target
         cp *.deb -r $(Build.ArtifactStagingDirectory)/target/
       displayName: Copy Artifacts
