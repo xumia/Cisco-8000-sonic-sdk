@@ -23,10 +23,16 @@ stages:
       displayName: "Install packages"
 
     - script: |
+        set -e
         scripts/unpack_lfs.sh
         make JOBS=16 DEBIAN_BUILD=1 DEBIAN_CUSTOMER=1 buster
       displayName: "Build packages"
 
+    - script: |
+        mkdir $(Build.ArtifactStagingDirectory)/target
+        cp *.deb -r $(Build.ArtifactStagingDirectory)/target/
+      displayName: Copy Artifacts
+
     - publish: $(System.DefaultWorkingDirectory)/target
       artifact: 'cisco-8000-sonic.sdk'
-      displayName: "Archive the sdk"
+      displayName: "Archive Artifacts"
