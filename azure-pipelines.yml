@@ -25,7 +25,7 @@ stages:
     - script: |
         set -e
         scripts/unpack_lfs.sh
-        make JOBS=16 DEBIAN_BUILD=1 DEBIAN_CUSTOMER=1 buster
+        make JOBS=8 DEBIAN_BUILD=1 DEBIAN_CUSTOMER=1 buster
       displayName: "Build packages"
 
     - script: |
