@@ -25,7 +25,7 @@ stages:
     - script: |
         scripts/unpack_lfs.sh
         make JOBS=16 DEBIAN_BUILD=1 DEBIAN_CUSTOMER=1 buster
-      displayName: "Build packages"
+      displayName: "Make targets"
 
     - publish: $(System.DefaultWorkingDirectory)/target
       artifact: 'cisco-8000-sonic.sdk'
