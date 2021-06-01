@@ -35,7 +35,7 @@ stages:
 
     - script: |
         mkdir $(Build.ArtifactStagingDirectory)/target
-        cp ../*.deb -r $(Build.ArtifactStagingDirectory)/target/
+        cp ../*.deb $(Build.ArtifactStagingDirectory)/target/
       displayName: Copy Artifacts
 
     - publish: $(System.DefaultWorkingDirectory)/target
