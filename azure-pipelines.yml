@@ -20,7 +20,8 @@ stages:
     steps:
     - script: |
         sudo pip install PyYAML
-      displayName: "Install packages"
+        rm -f ../*.deb
+      displayName: "Init"
 
     - script: |
         scripts/unpack_lfs.sh
@@ -30,3 +31,12 @@ stages:
     - publish: $(System.DefaultWorkingDirectory)/target
       artifact: 'cisco-8000-sonic.sdk'
       displayName: "Archive the sdk"
+
+    - script: |
+        mkdir $(Build.ArtifactStagingDirectory)/target
+        cp ../*.deb -r $(Build.ArtifactStagingDirectory)/target/
+      displayName: Copy Artifacts
+
+    - publish: $(System.DefaultWorkingDirectory)/target
+      artifact: 'cisco-8000-sonic.sdk'
+      displayName: "Archive Artifacts"
