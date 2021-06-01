@@ -15,7 +15,7 @@ stages:
   jobs:
   - job: Build
     timeoutInMinutes: 900
-    pool: cisco_sonicbld_8c
+    pool: cisco_sonicbld_16c
 
     steps:
     - script: |
