@@ -24,6 +24,10 @@ stages:
         sudo rm -rf $(ls -A1)
       displayName: "Init"
 
+    - checkout: self
+      submodules: recursive
+      displayName: 'Checkout code'
+
     - script: |
         scripts/unpack_lfs.sh
         make JOBS=16 DEBIAN_BUILD=1 DEBIAN_CUSTOMER=1 buster
