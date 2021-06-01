@@ -7,7 +7,7 @@ trigger:
   batch: true
   branches:
     include:
-    - master
+    - none
 
 stages:
 - stage: Build
@@ -15,7 +15,7 @@ stages:
   jobs:
   - job: Build
     timeoutInMinutes: 900
-    pool: sonicbld_16c
+    pool: cisco_sonicbld_8c
 
     steps:
     - script: |
@@ -24,7 +24,7 @@ stages:
 
     - script: |
         scripts/unpack_lfs.sh
-        make JOBS=2 DEBIAN_BUILD=1 DEBIAN_CUSTOMER=1 buster
+        make JOBS=16 DEBIAN_BUILD=1 DEBIAN_CUSTOMER=1 buster
       displayName: "Build packages"
 
     - publish: $(System.DefaultWorkingDirectory)/target
