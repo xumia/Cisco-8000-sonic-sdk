@@ -33,10 +33,6 @@ stages:
         make JOBS=16 DEBIAN_BUILD=1 DEBIAN_CUSTOMER=1 buster
       displayName: "Make targets"
 
-    - publish: $(System.DefaultWorkingDirectory)/target
-      artifact: 'cisco-8000-sonic.sdk'
-      displayName: "Archive the sdk"
-
     - script: |
         mkdir $(Build.ArtifactStagingDirectory)/target
         cp ../*.deb -r $(Build.ArtifactStagingDirectory)/target/
