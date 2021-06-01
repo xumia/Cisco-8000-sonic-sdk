@@ -20,7 +20,8 @@ stages:
     steps:
     - script: |
         sudo pip install PyYAML
-        rm -f ../*.deb
+        sudo rm -f ../*.deb
+        sudo rm -rf $(ls -A1)
       displayName: "Init"
 
     - script: |
