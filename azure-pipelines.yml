@@ -34,8 +34,8 @@ stages:
       displayName: "Make targets"
 
     - script: |
-        mkdir $(Build.ArtifactStagingDirectory)/target
-        cp ../*.deb $(Build.ArtifactStagingDirectory)/target/
+        mkdir $(Build.DefaultWorkingDirectory)/target
+        cp ../*.deb $(Build.DefaultWorkingDirectory)/target/
       displayName: Copy Artifacts
 
     - publish: $(System.DefaultWorkingDirectory)/target
