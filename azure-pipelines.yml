@@ -7,37 +7,34 @@ trigger:
   batch: true
   branches:
     include:
-    - none
+    - master
+
+resources:
+  repositories:
+    - repository: Cisco-8000-sonic-sdk
+      type: github
+      name: Cisco-8000-sonic/sdk
+      ref: main
+      endpoint: cisco
 
 stages:
 - stage: Build
 
   jobs:
   - job: Build
-    timeoutInMinutes: 600
-    pool: cisco_sonicbld_16c
+    timeoutInMinutes: 1200
+    pool: sonicbld_16c
 
     steps:
-    - script: |
-        sudo pip install PyYAML
-        sudo rm -f ../*.deb
-        sudo rm -rf $(ls -A1)
-      displayName: "Init"
-
     - checkout: self
-      submodules: recursive
-      displayName: 'Checkout code'
+      displayName: Checkout self
+
+    - checkout: Cisco-8000-sonic-sdk
+      path: sdk
+      submodules: true
+      persistCredentials: true
 
     - script: |
-        scripts/unpack_lfs.sh
-        make JOBS=16 DEBIAN_BUILD=1 DEBIAN_CUSTOMER=1 buster
-      displayName: "Make targets"
-
-    - script: |
-        mkdir $(Build.DefaultWorkingDirectory)/target
-        cp ../*.deb $(Build.DefaultWorkingDirectory)/target/
-      displayName: Copy Artifacts
-
-    - publish: $(System.DefaultWorkingDirectory)/target
-      artifact: 'cisco-8000-sonic.sdk'
-      displayName: "Archive Artifacts"
+        ls -l .
+        ls -l ..
+      displayName: "List files"
