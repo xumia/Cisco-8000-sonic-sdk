@@ -35,7 +35,6 @@ stages:
     - checkout: Cisco-8000-sonic-sdk
       path: sdk
       submodules: true
-      persistCredentials: true
 
     - script: |
         git checkout -b test $(COMMIT_ID)
