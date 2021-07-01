@@ -9,6 +9,9 @@ trigger:
     include:
     - master
 
+variables:
+  COMMIT_ID: ea36e52af2326516b4f3f2a08d94d9a4d6db48f9
+
 resources:
   repositories:
     - repository: Cisco-8000-sonic-sdk
@@ -35,8 +38,7 @@ stages:
       persistCredentials: true
 
     - script: |
-        ls -l .
-        ls -l ..
-        cd ../sdk
-        git checkout ea36e52af2326516b4f3f2a08d94d9a4d6db48f9
-      displayName: "List files"
+        git checkout -b test $(COMMIT_ID)
+        git branch -vv
+      workingDirectory: $(Pipeline.Workspace)/sdk
+      displayName: "Change working branch"
