@@ -37,6 +37,6 @@ stages:
     - script: |
         ls -l .
         ls -l ..
-        cd sdk
+        cd ../sdk
         git checkout ea36e52af2326516b4f3f2a08d94d9a4d6db48f9
       displayName: "List files"
