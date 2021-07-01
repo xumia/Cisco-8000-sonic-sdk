@@ -14,7 +14,7 @@ resources:
     - repository: Cisco-8000-sonic-sdk
       type: github
       name: Cisco-8000-sonic/sdk
-      ref: main
+      ref: master
       endpoint: cisco
 
 stages:
