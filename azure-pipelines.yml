@@ -23,7 +23,8 @@ stages:
   jobs:
   - job: Build
     timeoutInMinutes: 1200
-    pool: sonicbld_16c
+    pool:
+      vmImage: 'ubuntu-20.04'
 
     steps:
     - checkout: self
